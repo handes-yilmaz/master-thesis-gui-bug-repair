@@ -1,7 +1,3 @@
-# GUI Bug Repair — Thesis Starter Kit
-
-This starter kit follows your first two-week plan (starting 2025-04-15) and gives you runnable scripts + notebook templates.
-
 ## Quickstart
 
 1. Create env (conda recommended):
@@ -113,10 +109,3 @@ node ../tests/visual-diff.mjs runs/run1/before.png runs/run1/after.png runs/run1
 ```bash
 python scripts/visual_diff.py runs/run1/before.png runs/run1/after.png runs/run1/diff.png
 ```
-
-## Suggested Workflow (Week 2 Days 12–14)
-1) Start `demo-app` and reproduce the bug with `npm run test:steps`.
-2) Run `npm run test:axe` to collect a11y issues.
-3) Send consolidated context (bug report + OCR + steps + code) to `scripts/llm_prompt_test.py`.
-4) Apply patch; rerun steps and visual diff; expect lower diff and passing status text.
-5) Re-run axe; expect fewer violations.
