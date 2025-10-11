@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/util/DrilldownUtil.js",
+            "lib/modeling/cmd/UpdateCanvasRootHandler.js",
+            "lib/modeling/behavior/RootElementReferenceBehavior.js"
+        ],
+        "explanation": "The error is directly related to the drilldown process and root element management. Files in 'lib/features/drilldown/' such as 'DrilldownBreadcrumbs.js' and 'DrilldownOverlayBehavior.js' likely manage the navigation and overlay behavior that must be synchronized with root changes. Additionally, 'UpdateCanvasRootHandler.js' in 'lib/modeling/cmd/' might be responsible for updating the canvas root when changes occur, and 'RootElementReferenceBehavior.js' in 'lib/modeling/behavior/' likely handles references to root elements that need updating during drill operations.",
+        "bug_scenario": "The bug occurs when trying to navigate out of a sub-process after it has been wrapped in a pool. This causes an error: 'Uncaught Error: rootElement required' within the 'Canvas.js', suggesting a mismanagement of root changes, particularly in drilling out of nested sub-process levels."
+    },
+    "2": {
+        "bug_files": [
+            "lib/core/index.js",
+            "lib/features/drilldown/DrilldownBreadcrumbs.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/modeling/cmd/UpdateCanvasRootHandler.js"
+        ],
+        "explanation": "1. `lib/features/drilldown/DrilldownBreadcrumbs.js`: The error occurs in this file, suggesting an issue within the drilldown functionality.\n2. `lib/features/drilldown/DrilldownOverlayBehavior.js`: This handles drilldown logic which may need to be updated to account for root changes.\n3. `lib/modeling/cmd/UpdateCanvasRootHandler.js`: Managing root changes requires updates here to ensure that drilldowns are aware of root modifications.\n4. `lib/core/index.js`: Core linkage might need adjustments to properly notify or manage root element transitions.",
+        "bug_scenario": "When a sub-process is wrapped in a pool and then navigated into, an error occurs upon trying to move back to the parent process. The error message 'Uncaught Error: rootElement required' suggests that the drilldown feature does not properly handle changes in the root element."
+    }
+}

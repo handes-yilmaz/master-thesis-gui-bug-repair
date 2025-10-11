@@ -1,0 +1,27 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape"
+        ],
+        "explanation": "The class `DropOnFlowBehavior` and its function `insertShape` are responsible for handling the behavior when elements are dropped on a flow. The logic inside `insertShape` determines how shapes are inserted into a flow and connected. The unexpected connections when pasting multiple shapes suggest an issue with how connections are being managed and created within this function.",
+        "bug_scenario": "The bug occurs when multiple shapes are pasted onto a sequence flow. Instead of connecting logically, they create unexpected connections as seen in the provided animation image."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior",
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//preExecute",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//postExecuted",
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences"
+        ],
+        "explanation": "The issue is related to how shapes are inserted and pasted onto a connection. In 'DropOnFlowBehavior.js', the 'insertShape' function is responsible for handling the insertion of shapes onto a flow, which includes reconnecting the flow ends. The 'preExecute' and 'postExecuted' functions manage the movement of elements, which affects how multiple shapes interact when pasted. In 'BpmnCopyPaste.js', 'copyProperties' and 'resolveReferences' manage the properties and connections of elements being copied and pasted, which directly influences the behavior observed when multiple shapes are pasted onto a sequence flow. These functions collectively contribute to the unexpected connections issue.",
+        "bug_scenario": "The image shows a sequence flow where multiple shapes are pasted onto a connection. The issue arises when these shapes are pasted; the connections between them are unexpected, leading to incorrect diagram behavior."
+    }
+}

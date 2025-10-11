@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-cpp.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the incorrect handling of C++ literals that include single quote separators in the syntax highlighting. The relevant file is `components/prism-cpp.js`, where the C++ language definition is extended from C (`extend('c')`). The bug is likely due to the current regex patterns not accounting for single quotes within numbers, leading to incorrect tokenization and highlighting. The attempted fix in the report involves modifying the regex to include single quotes, which suggests the `components/prism-cpp.js` is directly responsible for handling such syntax patterns. The absence of a specific function in the compressed file indicates that the issue is more with the regex patterns used within the language extension rather than a discrete function.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for C++ literals that use single quotes for digit separation. This feature is supported in C++, allowing literals like `1'000'000` to be interpreted as `1000000`. The images provided show incorrect highlighting on the top (current implementation) versus the correct highlighting on the bottom (expected outcome). The issue becomes more pronounced with multiple quotes in literals, as shown in the second image."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-cpp.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The file `components/prism-cpp.js` is directly related to the bug because it contains the logic for extending the C language syntax highlighting to support C++. The issue is that C++ allows single quotes as digit separators in both integer and floating point literals, which is not currently supported by the regex patterns in this file. The problem is described in the bug report, and the attempted fix involved modifying regex patterns in this file to include single quotes in numerical literals, which suggests that this file is where the bug needs to be resolved.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for C++ floating point and integer literals that include single quotes as digit separators. The current implementation does not correctly handle literals such as `1'000'000`, which should be equivalent to `1000000`. The bug is visually evident in the provided screenshots, where the top half shows the incorrect highlighting and the bottom half shows the desired correct highlighting."
+    }
+}

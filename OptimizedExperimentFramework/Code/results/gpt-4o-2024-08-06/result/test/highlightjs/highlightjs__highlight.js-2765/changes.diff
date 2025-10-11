@@ -1,0 +1,23 @@
+diff --git a/src/languages/handlebars.js b/src/languages/handlebars.js
+index eba95ab2..b371bbca 100644
+--- a/src/languages/handlebars.js
++++ b/src/languages/handlebars.js
+@@ -212,12 +212,12 @@ export default function(hljs) {
+         begin: /\{\{#/,
+         end: /\}\}/,
+         contains: [OPENING_BLOCK_MUSTACHE_CONTENTS],
+-      },
+-      {
+-        className: 'template-tag',
+-        begin: /\{\{(?=else\}\})/,
+-        end: /\}\}/,
+-        keywords: 'else'
++{
++className: 'template-tag',
++begin: /\\{\\{(?=else(\\s+if\\s+[^\\}]+)?\\}\\})/,
++end: /\\}\\}/,
++keywords: 'else if'
++}
+       },
+       {
+         // closing block statement

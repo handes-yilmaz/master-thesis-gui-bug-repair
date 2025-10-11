@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "explanation": "The file 'lib/features/rules/BpmnRules.js' likely contains the logic for defining rules related to BPMN connections, including message flows. Since the bug report highlights an issue with how message flows are evaluated against intermediate message catch boundary events, the rules specified in this file need to be revisited and adjusted to align with the BPMN 2.0 specifications, allowing such connections.",
+        "bug_scenario": "The bug involves message flows targeting intermediate message catch boundary events being disallowed, contrary to BPMN 2.0 specifications which allow it. The issue arises when attempting to connect a message flow from an activity in one participant to an intermediate message catch boundary event; the modeler currently disallows this connection despite BPMN 2.0 permitting it."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "explanation": "1. `BoundaryEventBehavior.js`: This file likely contains logic related to boundary event behaviors. Given the bug involves the allowance of message flows to intermediate message catch boundary events, modifying the behavior might be necessary.\n\n2. `BpmnRules.js`: This file likely defines the connection rules and constraints for BPMN elements. Since the issue involves incorrect application of rules regarding message flows, this file would need adjustment to comply with BPMN 2.0 specifications.",
+        "bug_scenario": "The bug occurs when trying to connect a message flow from an activity in one participant to an intermediate message catch boundary event. The modeler currently disallows such connections, contrary to the BPMN 2.0 specification which allows them."
+    }
+}

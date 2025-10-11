@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/print/type-parameters.js//printTypeParameters"
+        ],
+        "bug_functions": [
+            "src/language-js/print/type-parameters.js//printTypeParameters"
+        ],
+        "explanation": "The bug relates to the handling of type parameters and trailing commas in TypeScript files with certain extensions (.mts, .cts). The `printTypeParameters` function in `type-parameters.js` is responsible for formatting type parameters, including the decision to include or omit trailing commas. Given the bug report, this function likely contains logic that incorrectly removes the trailing comma, leading to invalid syntax in .mts files. This function should be reviewed and adjusted to ensure that trailing commas are retained as expected in these file types.",
+        "bug_scenario": "The bug involves the removal of a required trailing comma in the generic arguments list in .mts files by Prettier version 2.8.4. The expected behavior is for the comma to remain due to compiler requirements, which is not happening, leading to syntax errors in .mts or .cts files."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-js/print/type-parameters.js//printTypeParameters"
+        ],
+        "bug_functions": [
+            "src/language-js/print/type-parameters.js//printTypeParameters"
+        ],
+        "explanation": "The `printTypeParameters` function in `src/language-js/print/type-parameters.js` deals with the formatting of type parameters. It is responsible for determining if a trailing comma should be included based on certain conditions. Since the bug involves the incorrect removal of a trailing comma in type parameters, this function is a likely candidate for where the bug needs to be fixed. The logic to retain the comma in .mts files needs to be checked or adjusted here.",
+        "bug_scenario": "The bug is related to the removal of a trailing comma in TypeScript generic type parameters within .mts files. The code example shows that a trailing comma is expected by the compiler, but Prettier removes it, leading to syntax issues in .mts or .cts files."
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_file": "src/tab/index.jsx",
+        "compressed": "NO",
+        "line_numbers": 52,
+        "compressed_line_numbers": 52,
+        "compressed_bug_file_content": "import ConfigProvider from '../config-provider';\nimport Tab from './tab';\nimport Item from './tabs/tab-item';\n\nTab.Item = Item;\n\nTab.TabPane = ConfigProvider.config(Item, {\n    transform: (props, deprecated) => {\n        deprecated('Tab.TabPane', 'Tab.Item', 'Tab');\n        return props;\n    },\n});\n\nexport default ConfigProvider.config(Tab, {\n    transform: /* istanbul ignore next */ (props, deprecated) => {\n        if ('type' in props) {\n            deprecated('type', 'shape', 'Tab');\n            const { type, ...others } = props;\n            props = { shape: type, ...others };\n        }\n        if ('resDirection' in props) {\n            const { resDirection, ...others } = props;\n\n            let excessMode;\n            if (resDirection === 'horizontal') {\n                deprecated(\n                    'resDirection=horizontal',\n                    'excessMode=slide',\n                    'Tab'\n                );\n\n                excessMode = 'slide';\n            } else if (resDirection === 'vertical') {\n                deprecated(\n                    'resDirection=vertical',\n                    'excessMode=dropdown',\n                    'Tab'\n                );\n\n                excessMode = 'dropdown';\n            }\n            props = { excessMode, ...others };\n        }\n        if ('tabBarExtraContent' in props) {\n            deprecated('tabBarExtraContent', 'extra', 'Tab');\n            const { tabBarExtraContent, ...others } = props;\n            props = { extra: tabBarExtraContent, ...others };\n        }\n\n        return props;\n    },\n});"
+    },
+    "2": {
+        "bug_file": "src/tab/tabs/nav.jsx",
+        "compressed": "YES",
+        "line_numbers": 620,
+        "compressed_line_numbers": 41,
+        "compressed_bug_file_content": "import React from 'react';\nimport { findDOMNode } from 'react-dom';\nimport PropTypes from 'prop-types';\nimport classnames from 'classnames';\nimport Icon from '../../icon';\nimport Overlay from '../../overlay';\nimport Menu from '../../menu';\nimport Animate from '../../animate';\nimport { events, KEYCODE, dom, obj } from '../../util';\nimport { triggerEvents, getOffsetLT, getOffsetWH, isTransformSupported } from './utils';\n\n\n        // 此处通过延时处理，屏蔽动画带来的定位不准确问题（由于要支持ie9，因此无法使用transitionend）\n\n\n    /**\n     * The key method about move\n     * @param {number} target position to slide to\n     * @param {bool} checkSlideBtn need to check the slide button status or not\n     * @param {bool} setActive need to check the active status or not\n     */\n\n\n        // target should not be great than 0, i.e. should not over slide to left-most\n\n        // when need to slide, should not slide to exceed right-most\n\n\n            // needs move\n\n\n            // active tab covers wrapper right edge\n\n\n            // active tab covers wrapper left edge\n\n\n        // TEMP: 这里会受 Animate 影响，re-render 过程中 this.nav 实际上指向的是上次的 tabList 元素，建议暂时关闭 animation 解决\n\n\nexport default Nav;\n"
+    }
+}

@@ -1,0 +1,84 @@
+{
+    "1/1": {
+        "src/js/components/Form/Form.js": [
+            {
+                "SEARCH": [
+                    "const filterRemovedFields = (prevValidations) => {",
+                    "const nextValidations = prevValidations;",
+                    "return Object.keys(nextValidations)",
+                    ".filter(",
+                    "(n) =>",
+                    "!validationRulesRef.current[n] || nextValidations[n] === undefined,",
+                    ")",
+                    ".forEach((n) => delete nextValidations[n]);",
+                    "};"
+                ],
+                "REPLACE": [
+                    "const filterRemovedFields = (prevValidations) => {",
+                    "  const nextValidations = { ...prevValidations };",
+                    "  Object.keys(nextValidations)",
+                    "    .filter((n) => !validationRulesRef.current[n])",
+                    "    .forEach((n) => delete nextValidations[n]);",
+                    "  return nextValidations;",
+                    "};"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "setValidationResults((prevValidationResults) => {",
+                    "// Keep any previous errors and infos for untouched keys,",
+                    "// these may have come from a Submit.",
+                    "const nextErrors = {",
+                    "...prevValidationResults.errors,",
+                    "...validatedErrors,",
+                    "};",
+                    "const nextInfos = {",
+                    "...prevValidationResults.infos,",
+                    "...validatedInfos,",
+                    "};",
+                    "// Remove previous errors and infos for keys no longer in the",
+                    "// form, these may have been fields removed from a dynamic form.",
+                    "filterRemovedFields(nextErrors);",
+                    "filterRemovedFields(nextInfos);",
+                    "const nextValidationResults = {",
+                    "errors: nextErrors,",
+                    "infos: nextInfos,",
+                    "};",
+                    "if (onValidate)",
+                    "onValidate({",
+                    "...nextValidationResults,",
+                    "valid: buildValid(nextErrors),",
+                    "});",
+                    "validationResultsRef.current = nextValidationResults;",
+                    "return nextValidationResults;",
+                    "});"
+                ],
+                "REPLACE": [
+                    "setValidationResults((prevValidationResults) => {",
+                    "  // Keep any previous errors and infos for untouched keys,",
+                    "  // these may have come from a Submit.",
+                    "  const nextErrors = filterRemovedFields({",
+                    "    ...prevValidationResults.errors,",
+                    "    ...validatedErrors,",
+                    "  });",
+                    "  const nextInfos = filterRemovedFields({",
+                    "    ...prevValidationResults.infos,",
+                    "    ...validatedInfos,",
+                    "  });",
+                    "  const nextValidationResults = {",
+                    "    errors: nextErrors,",
+                    "    infos: nextInfos,",
+                    "  };",
+                    "  if (onValidate)",
+                    "    onValidate({",
+                    "      ...nextValidationResults,",
+                    "      valid: buildValid(nextErrors),",
+                    "    });",
+                    "  validationResultsRef.current = nextValidationResults;",
+                    "  return nextValidationResults;",
+                    "});"
+                ]
+            }
+        ]
+    }
+}

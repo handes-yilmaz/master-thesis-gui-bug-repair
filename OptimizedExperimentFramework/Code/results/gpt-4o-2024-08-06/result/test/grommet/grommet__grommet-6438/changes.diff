@@ -1,0 +1,59 @@
+diff --git a/src/js/components/DateInput/DateInput.js b/src/js/components/DateInput/DateInput.js
+index 057eebcaa..81b24b437 100644
+--- a/src/js/components/DateInput/DateInput.js
++++ b/src/js/components/DateInput/DateInput.js
+@@ -175,27 +175,35 @@ Use the icon prop instead.`,
+         dates={dates}
+         // places focus on days grid when Calendar opens
+         initialFocus={open ? 'days' : undefined}
+-        onSelect={
+-          disabled
+-            ? undefined
+-            : (nextValue) => {
+-                let normalizedValue;
+-                if (range && Array.isArray(nextValue))
+-                  [normalizedValue] = nextValue;
+-                // clicking an edge date removes it
+-                else if (range) normalizedValue = [nextValue, nextValue];
+-                else normalizedValue = nextValue;
++onSelect={
++  disabled
++    ? undefined
++    : (nextValue) => {
++        let normalizedValue;
++        if (range && Array.isArray(nextValue))
++          [normalizedValue] = nextValue;
++        else if (range) normalizedValue = [nextValue, nextValue];
++        else normalizedValue = nextValue;
+ 
+-                if (schema) setTextValue(valueToText(normalizedValue, schema));
+-                setValue(normalizedValue);
+-                setReference(getReference(nextValue));
+-                if (onChange) onChange({ value: normalizedValue });
+-                if (open && !range) {
+-                  closeCalendar();
+-                  setTimeout(() => ref.current.focus(), 1);
+-                }
+-              }
++        // Check if the selected date is within bounds
++        const isWithinBounds = (date) => {
++          const [start, end] = calendarProps.bounds || [];
++          const dateObj = new Date(date);
++          return (!start || dateObj >= new Date(start)) && (!end || dateObj <= new Date(end));
++        };
++
++        if (isWithinBounds(normalizedValue)) {
++          if (schema) setTextValue(valueToText(normalizedValue, schema));
++          setValue(normalizedValue);
++          setReference(getReference(nextValue));
++          if (onChange) onChange({ value: normalizedValue });
++          if (open && !range) {
++            closeCalendar();
++            setTimeout(() => ref.current.focus(), 1);
++          }
+         }
++      }
++}
+         {...calendarProps}
+       />
+     );

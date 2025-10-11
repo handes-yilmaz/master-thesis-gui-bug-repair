@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_file": "src/table/base/sort.jsx",
+        "compressed": "NO",
+        "line_numbers": 97,
+        "compressed_line_numbers": 97,
+        "compressed_bug_file_content": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport classnames from 'classnames';\nimport Icon from '../../icon';\nimport { KEYCODE } from '../../util';\n\n/* eslint-disable react/prefer-stateless-function */\nexport default class Sort extends React.Component {\n    static propTypes = {\n        prefix: PropTypes.string,\n        rtl: PropTypes.bool,\n        className: PropTypes.string,\n        sort: PropTypes.object,\n        sortIcons: PropTypes.object,\n        onSort: PropTypes.func,\n        dataIndex: PropTypes.string,\n        locale: PropTypes.object,\n    };\n    static defaultProps = {\n        sort: {},\n    };\n    // 渲染排序\n    renderSort() {\n        const {\n                prefix,\n                sort,\n                sortIcons,\n                className,\n                dataIndex,\n                locale,\n                rtl,\n            } = this.props,\n            sortStatus = sort[dataIndex],\n            map = {\n                desc: 'descending',\n                asc: 'ascending',\n            };\n\n        const icons = ['asc', 'desc'].map(sortOrder => {\n            return (\n                <a\n                    key={sortOrder}\n                    className={sortStatus === sortOrder ? 'current' : ''}\n                >\n                    {sortIcons ? (\n                        sortIcons[sortOrder]\n                    ) : (\n                        <Icon rtl={rtl} type={map[sortOrder]} size=\"small\" />\n                    )}\n                </a>\n            );\n        });\n\n        const cls = classnames({\n            [`${prefix}table-sort`]: true,\n            [className]: className,\n        });\n\n        return (\n            <span\n                role=\"button\"\n                tabIndex=\"0\"\n                aria-label={locale[sortStatus]}\n                className={cls}\n                onClick={this.handleClick.bind(this)}\n                onKeyDown={this.keydownHandler}\n            >\n                {icons}\n            </span>\n        );\n    }\n\n    handleClick = () => {\n        const { sort, dataIndex } = this.props;\n        this.onSort(dataIndex, sort[dataIndex] === 'desc' ? 'asc' : 'desc');\n    };\n\n    keydownHandler = e => {\n        e.preventDefault();\n        e.stopPropagation();\n\n        if (e.keyCode === KEYCODE.ENTER) {\n            this.handleClick();\n        }\n    };\n\n    onSort = (dataIndex, order) => {\n        const sort = {};\n        sort[dataIndex] = order;\n\n        this.props.onSort(dataIndex, order, sort);\n    };\n\n    render() {\n        return this.renderSort();\n    }\n}"
+    },
+    "2": {
+        "bug_file": "src/table/main.scss",
+        "compressed": "YES",
+        "line_numbers": 527,
+        "compressed_line_numbers": 14,
+        "compressed_bug_file_content": "\n\n/* put your code here */\n\n\n    // border-right: $table-normal-border-width $table-normal-border-style $table-normal-border-color;\n\n\n        // @include table-last-child-border($table-normal-border-width);\n\n\n        // @include table-last-child-border($table-normal-border-width);\n\n\n"
+    },
+    "3": {
+        "bug_file": "src/table/sticky/header.jsx",
+        "compressed": "NO",
+        "line_numbers": 43,
+        "compressed_line_numbers": 43,
+        "compressed_bug_file_content": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport classnames from 'classnames';\nimport Affix from '../../affix';\n\n/* eslint-disable react/prefer-stateless-function*/\nexport default class StickHeader extends React.Component {\n    static propTypes = {\n        prefix: PropTypes.string,\n    };\n    static contextTypes = {\n        Header: PropTypes.any,\n        offsetTop: PropTypes.number,\n        affixProps: PropTypes.object,\n    };\n\n    getAffixRef = ref => {\n        this.props.affixRef && this.props.affixRef(ref);\n    };\n\n    render() {\n        const { prefix } = this.props;\n        const { Header, offsetTop, affixProps } = this.context;\n\n        const newAffixProps = affixProps || {};\n        const { className, ...others } = newAffixProps;\n        const cls = classnames({\n            [`${prefix}table-affix`]: true,\n            className,\n        });\n\n        return (\n            <Affix\n                ref={this.getAffixRef}\n                {...others}\n                className={cls}\n                offsetTop={offsetTop}\n            >\n                <Header {...this.props} />\n            </Affix>\n        );\n    }\n}"
+    }
+}

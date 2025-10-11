@@ -1,0 +1,74 @@
+{
+    "1/1": {
+        "lib/features/drilldown/DrilldownOverlayBehavior.js": [
+            {
+                "SEARCH": [
+                    "this.executed('shape.toggleCollapse', LOW_PRIORITY, function(context) {",
+                    "var shape = context.shape;",
+                    "",
+                    "// Add overlay to the collapsed shape",
+                    "if (self.canDrillDown(shape)) {",
+                    "self.addOverlay(shape);",
+                    "} else {",
+                    "self.removeOverlay(shape);",
+                    "}",
+                    "}, true);"
+                ],
+                "REPLACE": [
+                    "  this.executed('shape.toggleCollapse', LOW_PRIORITY, function(context) {",
+                    "    var shape = context.shape;",
+                    "",
+                    "    // Always update overlay visibility",
+                    "    self.updateDrilldownOverlay(shape);",
+                    "",
+                    "    // Add overlay to the collapsed shape",
+                    "    if (self.canDrillDown(shape)) {",
+                    "      self.addOverlay(shape);",
+                    "    } else {",
+                    "      self.removeOverlay(shape);",
+                    "    }",
+                    "  }, true);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.executed(['shape.create', 'shape.move', 'shape.delete'], LOW_PRIORITY,",
+                    "function(context) {",
+                    "var oldParent = context.oldParent,",
+                    "newParent = context.newParent || context.parent,",
+                    "shape = context.shape;",
+                    "",
+                    "// Add overlay to the collapsed shape",
+                    "if (self.canDrillDown(shape)) {",
+                    "self.addOverlay(shape);",
+                    "}",
+                    "",
+                    "self.updateDrilldownOverlay(oldParent);",
+                    "self.updateDrilldownOverlay(newParent);",
+                    "self.updateDrilldownOverlay(shape);",
+                    "}, true);"
+                ],
+                "REPLACE": [
+                    "  this.executed(['shape.create', 'shape.move', 'shape.delete'], LOW_PRIORITY,",
+                    "    function(context) {",
+                    "      var oldParent = context.oldParent,",
+                    "          newParent = context.newParent || context.parent,",
+                    "          shape = context.shape;",
+                    "",
+                    "      // Always update overlay visibility",
+                    "      self.updateDrilldownOverlay(shape);",
+                    "",
+                    "      // Add overlay to the collapsed shape",
+                    "      if (self.canDrillDown(shape)) {",
+                    "        self.addOverlay(shape);",
+                    "      }",
+                    "",
+                    "      self.updateDrilldownOverlay(oldParent);",
+                    "      self.updateDrilldownOverlay(newParent);",
+                    "      self.updateDrilldownOverlay(shape);",
+                    "    }, true);"
+                ]
+            }
+        ]
+    }
+}

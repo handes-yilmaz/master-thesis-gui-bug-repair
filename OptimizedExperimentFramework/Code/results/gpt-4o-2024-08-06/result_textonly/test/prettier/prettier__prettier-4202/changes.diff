@@ -1,0 +1,21 @@
+diff --git a/src/language-markdown/printer-markdown.js b/src/language-markdown/printer-markdown.js
+index a45b03926..b34b9132c 100644
+--- a/src/language-markdown/printer-markdown.js
++++ b/src/language-markdown/printer-markdown.js
+@@ -469,9 +469,15 @@ function printTable(path, options, print) {
+     contents[0].map(() => 3) // minimum width = 3 (---, :--, :-:, --:)
+   );
+ 
++  // Check if any row exceeds the maximum allowed length
++  const maxLineLength = 80; // Define a maximum line length
++  const shouldUseSimpleSeparator = contents.some(rowContents =>
++    rowContents.join(" | ").length > maxLineLength
++  );
++
+   return join(hardline, [
+     printRow(contents[0]),
+-    printSeparator(),
++    shouldUseSimpleSeparator ? "| :---: | :---: | :---: |" : printSeparator(),
+     join(hardline, contents.slice(1).map(printRow))
+   ]);
+ 

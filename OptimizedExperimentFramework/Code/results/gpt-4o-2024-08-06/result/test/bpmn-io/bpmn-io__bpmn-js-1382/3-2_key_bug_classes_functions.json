@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/replace/ReplaceOptions.js//START_EVENT",
+            "lib/features/popup-menu/ReplaceMenuProvider.js//ReplaceMenuProvider"
+        ],
+        "bug_functions": [
+            "lib/features/popup-menu/util/TypeUtil.js//isDifferentType"
+        ],
+        "explanation": "1. **ReplaceOptions.js**: This file likely defines various replacement options. The absence of a DataStoreReference option in this file could lead to the empty menu issue.\n\n2. **ReplaceMenuProvider.js**: This file provides the replace menu functionality. It likely needs modification to include the new replacement options involving DataObjectReference and DataStoreReference.\n\n3. **TypeUtil.js - isDifferentType**: This function checks if an element is of a different type compared to a target definition. It might need adjustment to handle the new types being introduced (DataObjectReference and DataStoreReference).",
+        "bug_scenario": "The bug scenario involves the DataObjectReference replace menu being empty and only containing the collection marker. It is suggested to allow switching between DataObjectReference and DataStoreReference to ensure the menu is always populated."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/replace/ReplaceOptions.js",
+            "lib/features/popup-menu/ReplaceMenuProvider.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The ReplaceOptions.js file likely contains the definitions for what can be replaced in the menu, including the current collection marker. By updating or adding new options here, such as DataStoreReference, the menu can be populated with the desired elements. The ReplaceMenuProvider.js file is responsible for providing the replace menu and filtering the entries from ReplaceOptions.js. This file will need modifications to handle the new replacement options and ensure they are displayed correctly in the menu.",
+        "bug_scenario": "The bug involves a feature request to improve the user interface of the DataObjectReference replace menu, which currently feels empty and out of place. The request is to add the ability to switch between DataObjectReference and DataStoreReference to populate the menu until other inputs/outputs are handled."
+    }
+}

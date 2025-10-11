@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/utils/index.js"
+        ],
+        "explanation": "The bug relates to JavaScript code formatting, specifically how comments are handled in switch case statements within JS code. The files identified are likely involved in this formatting process: \n1. 'src/language-js/printer-estree.js': This file is responsible for printing the ESTree format (which is used internally by Prettier for JavaScript and related languages). It likely includes logic for handling the formatting of switch case statements and comments.\n2. 'src/language-js/utils/index.js': This utility file might contain related helper functions that manage how comments or statements are parsed or printed. \nModifications in these files might be necessary to adjust the handling of comments in switch case structures to meet the expected formatting behavior outlined in the bug report.",
+        "bug_scenario": "The bug scenario involves inconsistent formatting of comments in switch case statements as parsed by Prettier. The specific issue is that while the 'case' keyword keeps its comment on the same line, the 'default' keyword has the comment moved to the next line by the formatter. The user expects both 'case' and 'default' comments to maintain their position on the same line without altering the line breaks during formatting."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/print/statement.js"
+        ],
+        "explanation": "The files identified are related to how Prettier formats JavaScript syntax, particularly 'switch' statements. The file 'src/language-js/printer-estree.js' is responsible for implementing the core logic of how JavaScript AST nodes are printed as formatted code. It likely contains code dealing with the formatting of 'switch' cases which include handling how comments are printed. The 'src/language-js/print/statement.js' file is responsible for printing various JavaScript statements, including 'switch' statements. Since the bug pertains to how 'switch' statements are formatted, this file is relevant as it contains logic directly related to the printing behavior of statement nodes in the abstract syntax tree which includes handling multi-line comments within the code. Thus, any discrepancy in formatting 'case' or 'default' in 'switch' statements likely resides within these files.",
+        "bug_scenario": "The bug arises from a formatting issue within the Prettier code formatter, specifically when formatting 'switch' statements in JavaScript or JSX. The expected behavior for the Prettier formatter is that it should maintain the comment on the same line as the 'case' and 'default' keywords within a 'switch' statement. However, currently, it formats the 'default' case by placing the comment on a new line, which results in an unintended modification to the code's format and readability. The image attached with the bug report shows how the output differs from the expected outcome, where Prettier incorrectly formats the 'default' statement with the comment on a new line, while the 'case' statement does not experience this issue."
+    }
+}

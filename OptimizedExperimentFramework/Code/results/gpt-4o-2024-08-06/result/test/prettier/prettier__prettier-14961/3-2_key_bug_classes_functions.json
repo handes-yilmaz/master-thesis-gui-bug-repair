@@ -1,0 +1,27 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-html/embed/angular-attributes.js",
+            "src/language-html/embed/angular-interpolation.js"
+        ],
+        "bug_functions": [
+            "src/language-html/embed/angular-attributes.js//createAngularPrinter",
+            "src/language-html/embed/angular-attributes.js//printAngularAttribute",
+            "src/language-html/embed/angular-interpolation.js//printAngularInterpolation"
+        ],
+        "explanation": "The classes and functions identified are responsible for handling Angular attributes and interpolation within HTML files. The 'createAngularPrinter' and 'printAngularAttribute' functions in 'angular-attributes.js' manage the formatting of Angular-specific attributes, which likely includes the pipe syntax. The 'printAngularInterpolation' function in 'angular-interpolation.js' deals with the formatting of Angular interpolation expressions, and may also be involved in managing how spaces are inserted around pipes and their arguments. These components need adjustment to ensure that unnecessary spaces are not added, aligning with the expected behavior.",
+        "bug_scenario": "The bug involves the formatting of Angular pipes in HTML, where Prettier 2.8.0 adds spaces around pipe arguments. The expected behavior is to have no spaces between pipe names and their arguments when these arguments are strings or numbers, aligning with Angular documentation standards. This issue is evident in the provided Webstorm image, where the spaces are visually disruptive."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-html/embed/angular-attributes.js",
+            "src/language-html/embed/angular-interpolation.js"
+        ],
+        "bug_functions": [
+            "src/language-html/embed/angular-attributes.js//printAngularAttribute",
+            "src/language-html/embed/angular-interpolation.js//printAngularInterpolation"
+        ],
+        "explanation": "The issue is related to how Angular pipes are formatted in HTML files. The functions and classes involved are responsible for formatting and printing Angular-specific syntax. `printAngularAttribute` in `angular-attributes.js` is responsible for handling Angular-specific attributes and deciding how they should be printed, which directly affects the spacing issue. Similarly, `printAngularInterpolation` in `angular-interpolation.js` handles the interpolation syntax and ensures it is formatted correctly. Adjustments in these areas are required to ensure that spaces are only added according to the expected behavior, particularly when pipe arguments are strings or numbers.",
+        "bug_scenario": "The issue involves the formatting of Angular pipes in HTML templates. Prettier 2.8.0 introduces unwanted spaces between pipe arguments. The expected behavior is to have no spaces between pipe arguments when they are strings or numbers, as it appears more aesthetically pleasing and aligns with official Angular documentation."
+    }
+}

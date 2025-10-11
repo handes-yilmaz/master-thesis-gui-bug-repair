@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/language-js/options.js",
+            "src/language-js/parser-flow.js"
+        ],
+        "explanation": "These files are related to JavaScript language parsing and options handling within Prettier. 'parser-babel.js' is likely responsible for parsing JavaScript code using Babel, which is critical in interpreting new syntax proposals. 'options.js' in the language-js directory may define or influence what syntax features are enabled or configurable. Similarly, 'parser-flow.js' is responsible for handling Flow syntax, which may intersect with detecting the correct proposal type.",
+        "bug_scenario": "The bug occurs due to an unexpected syntax error when attempting to use the pipeline operator with Smart proposal syntax in Prettier. The expected behavior is that the minimal proposal should be supported, but the error suggests that there is a problem with interpreting the syntax correctly."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/main/options.js",
+            "tests_integration/__tests__/syntax-error.js"
+        ],
+        "explanation": "1. `src/language-js/parser-babel.js`: This file likely handles parsing JavaScript and needs changes to accommodate the minimal proposal for pipeline operators.\n\n2. `src/main/options.js`: Contains configurable options and may need adjustments to explicitly support or enable the minimal pipeline proposal.\n\n3. `tests_integration/__tests__/syntax-error.js`: Test file for verifying the syntax behavior, should include tests ensuring that the minimal pipeline proposal is handled correctly without syntax errors.",
+        "bug_scenario": "The bug involves a SyntaxError when using the `#` character in conjunction with the pipeline operator `|>`, indicating that the \"minimal\" pipeline proposal (where `#` may be used) should work correctly. The input `5 |> # * 2` throws a syntax error, which deviates from the expected behavior supporting the minimal pipeline proposal."
+    }
+}

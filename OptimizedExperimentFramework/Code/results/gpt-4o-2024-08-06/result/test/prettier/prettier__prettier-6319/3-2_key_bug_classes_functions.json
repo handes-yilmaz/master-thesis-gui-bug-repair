@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/parser-babel.js//babelOptions"
+        ],
+        "bug_functions": [
+            "src/language-js/parser-babel.js//createParse",
+            "src/language-js/parser-babel.js//tryCombinations"
+        ],
+        "explanation": "The 'babelOptions' function specifies the plugins used for parsing, including the 'pipelineOperator' with the 'minimal' proposal. This function is directly related to enabling the parsing of different pipeline proposals. The 'createParse' function is responsible for parsing the text using specified plugins, and the 'tryCombinations' function attempts parsing with different plugin combinations. These functions are crucial for determining how different pipeline proposals are interpreted and processed, making them relevant to the bug.",
+        "bug_scenario": "The bug revolves around the pipeline operator in Prettier 1.17.1, where the input with a smart pipeline proposal ('5 |> # * 2') results in a syntax error due to an unexpected character. The image indicates that only 'minimal' and 'smart' proposals are currently supported, with 'fsharp' still in progress, suggesting the issue may lie in the proposal handling."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-js/parser-babel.js//babelOptions"
+        ],
+        "bug_functions": [
+            "src/language-js/parser-babel.js//babelOptions"
+        ],
+        "explanation": "The issue stems from the 'babelOptions' function which configures the plugins for parsing. It currently includes the 'pipelineOperator' with only the 'minimal' proposal. To fix the bug, this function needs to be modified to support the 'smart' and potentially 'fsharp' proposals, as indicated by the syntax error and the expected behavior described in the bug report.",
+        "bug_scenario": "The bug scenario involves supporting the 'Smart' and 'F#' proposals for the pipeline operator in the code. Currently, only the 'minimal' proposal is supported, as depicted in the images and report. The 'Smart' proposal is more convenient and should be supported, but the attempt to use it results in a syntax error."
+    }
+}

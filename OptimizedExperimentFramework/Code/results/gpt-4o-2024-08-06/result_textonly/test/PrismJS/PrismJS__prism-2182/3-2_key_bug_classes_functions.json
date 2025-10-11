@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [],
+        "explanation": "The bug is related to the regex pattern used in the 'attr-name' key of the Prism.languages.elixir object within the 'components/prism-elixir.js' file. The current pattern is '\\\\w+:(?!:)', which does not account for attributes ending with '?'. To fix the issue, this pattern needs to be changed to '\\\\w+?:(?!:)', as suggested in the bug report. This change will allow the regex to correctly identify attribute names that end with a '?', aligning the syntax highlighting behavior with Elixir's syntax.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in the Elixir language support within a syntax highlighter library (PrismJS). Attributes in Elixir can end with a '?', but the current regex pattern used to identify these attributes does not account for this, resulting in incorrect syntax highlighting. Specifically, the regex pattern for 'attr-name' needs to be modified to include an optional '?' at the end to properly highlight Elixir attributes that end with '?'."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [],
+        "explanation": "The bug is related to the regex pattern defined for 'attr-name' in the Elixir language definition within the Prism library. The pattern currently is '\\\\w+:(?!:)', which does not capture attributes that end with a question mark, like 'attribute?'. The suggested fix involves altering this pattern to '\\\\w+\\\\?:(?!:)', thus including attributes that end with a '?'. This change is crucial for correct syntax highlighting of such attributes in Elixir code.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting of attributes in Elixir code that end with a '?'. The current regex pattern used to identify 'attr-name' tokens does not account for attributes ending with a '?', leading to these attributes being highlighted incorrectly."
+    }
+}

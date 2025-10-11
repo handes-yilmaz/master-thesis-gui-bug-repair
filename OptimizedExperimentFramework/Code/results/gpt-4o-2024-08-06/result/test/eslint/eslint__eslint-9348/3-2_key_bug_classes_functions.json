@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/no-this-before-super.js"
+        ],
+        "bug_functions": [
+            "lib/rules/no-this-before-super.js//isCalled",
+            "lib/rules/no-this-before-super.js//isBeforeCallOfSuper",
+            "lib/rules/no-this-before-super.js//setSuperCalled"
+        ],
+        "explanation": "The bug is related to incorrect handling of 'super()' calls in class constructors. The 'no-this-before-super.js' file contains logic to ensure 'super()' is called correctly before using 'this' or 'super'. The functions 'isCalled', 'isBeforeCallOfSuper', and 'setSuperCalled' are responsible for managing and checking whether 'super()' has been called. The error 'Cannot read property 'superCalled' of undefined' suggests that the logic in these functions is failing to handle certain cases, leading to an attempt to access 'superCalled' on an undefined object.",
+        "bug_scenario": "The bug scenario involves a parsing error in ESLint, specifically an 'Unexpected token' error. The error message states 'Cannot read property 'superCalled' of undefined,' indicating that a property is being accessed on an undefined object. This issue is occurring in a JavaScript file handling class inheritance, where a constructor uses 'super()' incorrectly, causing the ESLint error."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/rules/constructor-super.js",
+            "lib/rules/no-this-before-super.js"
+        ],
+        "bug_functions": [
+            "lib/rules/constructor-super.js//create",
+            "lib/rules/no-this-before-super.js//create"
+        ],
+        "explanation": "The error 'Cannot read property 'superCalled' of undefined' suggests a problem in ensuring that 'super()' is correctly called in constructors of derived classes. The 'constructor-super.js' file contains the rule definition for ensuring 'super()' is called, while 'no-this-before-super.js' handles the rule preventing the use of 'this' or 'super' before 'super()' is called in constructors. Both files have functions that manipulate the state related to 'super()' calls, which are directly related to the reported issue.",
+        "bug_scenario": "The error occurs when attempting to read the 'superCalled' property, which is undefined. This is likely due to the incorrect handling of 'super' calls in a constructor when extending a class. The image shows a JavaScript file with a class 'BugProof' extending 'Extender', and a parsing error related to an unexpected token."
+    }
+}

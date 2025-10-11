@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Box/Box.js//Box"
+        ],
+        "bug_functions": [
+            "src/js/components/Box/StyledBox.js//gapStyle"
+        ],
+        "explanation": "The Box component class in 'src/js/components/Box/Box.js' is directly related to the bug because the issue arises when specific properties ('border' and 'gap') are set on this component, leading to a TypeError. The 'gapStyle' function in 'src/js/components/Box/StyledBox.js' is also relevant because it handles the styling logic for the gap, which is involved in the error when processing the 'between' border setting. The error suggests that there might be a miscalculation or a missing check when 'gap' is specified in pixels, causing the undefined property access.",
+        "bug_scenario": "The bug occurs in the Box component when both 'border=\"between\"' and a 'gap' with pixel values are set. Instead of applying the gap value correctly, a TypeError is thrown, indicating an issue with reading properties of undefined. The expected behavior was to apply half the gap value around the separator line, but the actual behavior results in a runtime error."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/Box/Box.js//Box"
+        ],
+        "bug_functions": [
+            "src/js/components/Box/StyledBox.js//gapStyle"
+        ],
+        "explanation": "The bug is related to the Box component in the `Box.js` file where the logic for handling the gap and border properties are implemented. Specifically, the check for `border === 'between'` without a corresponding gap value triggers a warning which suggests that handling of these properties might be incorrect or incomplete. The use of these properties likely leads to an error when the component attempts to render.\n\nAdditionally, the `gapStyle` function in `StyledBox.js` is responsible for calculating and applying the CSS styles related to the gap and potentially the border. Given the error message indicating a TypeError related to reading 'match', it's likely that the calculation or application of the styles in `gapStyle` doesn't handle a pixel-based gap correctly, or there's an issue in how the gap interacts with the border property in this function.",
+        "bug_scenario": "The issue occurs when using the Box component with the properties `border=\"between\"` and `gap=\"10px\"` or any size in pixels. This causes a runtime error with a TypeError indicating that a property is being accessed on an undefined object, specifically during the reading of 'match'. The expected behavior is to apply half the value of the gap around the separator line, but instead, the application crashes."
+    }
+}

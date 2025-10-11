@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js"
+        ],
+        "bug_functions": [
+            "src/languages/python.js//export default function",
+            "src/lib/regex.js//export function concat",
+            "src/lib/regex.js//export function either"
+        ],
+        "explanation": "The bug is related to how the syntax highlighting is processed for Python code. The file 'src/languages/python.js' defines the language-specific rules for Python, including reserved words and identifier patterns. The issue is likely due to incorrect handling of keyword boundaries or identifier recognition, which is why the function in this file is relevant. Additionally, 'src/lib/regex.js' contains utility functions for regular expression manipulation, such as 'concat' and 'either', which are used to construct and process the regular expressions that define syntax highlighting rules. Errors in these functions could lead to incorrect regex behavior, affecting how identifiers and keywords are detected and highlighted.",
+        "bug_scenario": "The bug involves syntax highlighting in a JavaScript library (highlight.js) where part of a Python identifier is incorrectly highlighted as a keyword. Specifically, the identifier '_undef' is partially highlighted to make 'def' appear as a keyword, causing incorrect syntax highlighting. This issue is observed when using version 11.0.0 of the library but not in 10.7.3."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/python.js"
+        ],
+        "bug_functions": [
+            "src/languages/python.js//function(hljs)"
+        ],
+        "explanation": "The issue arises from the syntax highlighting logic in the 'python.js' file. This file defines how Python code is parsed and highlighted by the system, including the rules for recognizing keywords and identifiers. The function in this file includes definitions for 'RESERVED_WORDS' and 'IDENT_RE', which are critical in determining what gets highlighted as a keyword versus an identifier. The bug likely stems from a regex pattern or keyword list that incorrectly parses part of the identifier '_undef' as the keyword 'def'. Adjusting these definitions to correctly differentiate between keywords and identifiers, especially those starting with an underscore, would be necessary to fix the issue.",
+        "bug_scenario": "The bug scenario involves syntax highlighting in Python code where part of an identifier (specifically '_undef') is being highlighted as if it were a Python keyword ('def'). This is causing confusion as it changes the appearance of the identifier unexpectedly."
+    }
+}

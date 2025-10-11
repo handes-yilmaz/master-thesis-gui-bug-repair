@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/config-provider/index.jsx",
+            "src/config-provider/cache.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "1. `src/config-provider/index.jsx`: This file is directly referenced in the bug report and contains the implementation where `componentWillUnmount` is mentioned to manage cache clearing. The exact line indicated in the report is part of the unmounting logic which doesn't get executed in SSR, causing the memory leak.\n\n2. `src/config-provider/cache.js`: This file likely contains the cache management logic utilized by the `ConfigProvider`. It might need adjustments to provide an alternative manual cache clearing method or another strategy to handle cache in SSR.\n\n3. `src/config-provider/config.jsx`: Given its central role in handling configuration within a provider, changes to cache behavior could also require updates here to integrate new APIs or modify existing ones for better cache management in SSR contexts.",
+        "bug_scenario": "In SSR (Server-Side Rendering) environments, the `ConfigProvider` component experiences a memory leak due to its internal cache growth, which cannot be garbage collected. This issue arises because the `componentWillUnmount` lifecycle method is not triggered in SSR, which is expected to clear the cache. This leads to an increase in memory usage over time."
+    },
+    "2": {
+        "bug_files": [
+            "src/config-provider/index.jsx",
+            "src/config-provider/cache.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "The files related to the bug are those directly involved with the `ConfigProvider` component:\n\n1. `src/config-provider/index.jsx`: This is the main file for the `ConfigProvider` component where the lifecycle methods are likely implemented, including `componentWillUnmount`, which is mentioned directly in the context of the problem.\n2. `src/config-provider/cache.js`: Since the issue involves a memory leak tied to internal caching, this file is likely responsible for handling or storing cache management logic and is directly mentioned as part of the cache infrastructure.\n3. `src/config-provider/config.jsx`: As part of the `ConfigProvider` module, this file might contain related configurations or connections impacting cache behavior and resource management in SSR scenarios.\n\nAdjustments potentially need to be made to these files to either ensure the cache is cleared independently of the missing lifecycle call or to provide a new API for manual cache clearing.",
+        "bug_scenario": "The bug report indicates a memory leak issue with the `ConfigProvider` component in a Server-Side Rendering (SSR) scenario. Specifically, it mentions that the internal cache of `ConfigProvider` expands during load testing and cannot be garbage collected. Although the cache is supposed to be cleared in the `componentWillUnmount` lifecycle method, in certain SSR processes `componentWillUnmount` is not called, preventing the cache from being cleared."
+    }
+}

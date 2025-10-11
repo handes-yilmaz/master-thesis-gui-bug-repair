@@ -1,0 +1,114 @@
+{
+    "1/1": {
+        "src/number-picker/number-picker.jsx": [
+            {
+                "SEARCH": [
+                    "render() {",
+                    "const {",
+                    "device,",
+                    "prefix,",
+                    "rtl,",
+                    "disabled,",
+                    "style,",
+                    "className,",
+                    "size,",
+                    "max,",
+                    "min,",
+                    "autoFocus,"
+                ],
+                "REPLACE": [
+                    "render() {",
+                    "    const {",
+                    "        device,",
+                    "        prefix,",
+                    "        rtl,",
+                    "        disabled,",
+                    "        style,",
+                    "        className,",
+                    "        size,",
+                    "        max,",
+                    "        min,",
+                    "        autoFocus,",
+                    "        alwaysShowTrigger,"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "<div",
+                    "className={classNames({",
+                    "[`${prefix}number-picker`]: true,",
+                    "[`${prefix}disabled`]: disabled,",
+                    "[`${prefix}${size}`]: size,",
+                    "[className]: className,",
+                    "})}",
+                    "style={style}",
+                    "dir={rtl ? 'rtl' : undefined}",
+                    ">"
+                ],
+                "REPLACE": [
+                    "<div",
+                    "    className={classNames({",
+                    "        [`${prefix}number-picker`]: true,",
+                    "        [`${prefix}disabled`]: disabled,",
+                    "        [`${prefix}${size}`]: size,",
+                    "        [className]: className,",
+                    "        [`${prefix}focus-within`]: this.state.hasFocused,",
+                    "    })}",
+                    "    style={style}",
+                    "    dir={rtl ? 'rtl' : undefined}",
+                    ">"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "{hasTrigger && (",
+                    "<div className={`${prefix}number-picker-trigger`}>",
+                    "<button",
+                    "type=\"button\"",
+                    "className={`${prefix}number-picker-trigger-up`}",
+                    "onMouseDown={this.handleMouseDown}",
+                    "onClick={this.up.bind(this, disabled)}",
+                    "disabled={disabled}",
+                    ">",
+                    "<Icon type=\"arrow-up\" />",
+                    "</button>",
+                    "<button",
+                    "type=\"button\"",
+                    "className={`${prefix}number-picker-trigger-down`}",
+                    "onMouseDown={this.handleMouseDown}",
+                    "onClick={this.down.bind(this, disabled)}",
+                    "disabled={disabled}",
+                    ">",
+                    "<Icon type=\"arrow-down\" />",
+                    "</button>",
+                    "</div>",
+                    ")}"
+                ],
+                "REPLACE": [
+                    "{(hasTrigger || alwaysShowTrigger) && (",
+                    "    <div className={`${prefix}number-picker-trigger`}>",
+                    "        <button",
+                    "            type=\"button\"",
+                    "            className={`${prefix}number-picker-trigger-up`}",
+                    "            onMouseDown={this.handleMouseDown}",
+                    "            onClick={this.up.bind(this, disabled)}",
+                    "            disabled={disabled}",
+                    "        >",
+                    "            <Icon type=\"arrow-up\" />",
+                    "        </button>",
+                    "        <button",
+                    "            type=\"button\"",
+                    "            className={`${prefix}number-picker-trigger-down`}",
+                    "            onMouseDown={this.handleMouseDown}",
+                    "            onClick={this.down.bind(this, disabled)}",
+                    "            disabled={disabled}",
+                    "        >",
+                    "            <Icon type=\"arrow-down\" />",
+                    "        </button>",
+                    "    </div>",
+                    ")}"
+                ]
+            }
+        ]
+    }
+}

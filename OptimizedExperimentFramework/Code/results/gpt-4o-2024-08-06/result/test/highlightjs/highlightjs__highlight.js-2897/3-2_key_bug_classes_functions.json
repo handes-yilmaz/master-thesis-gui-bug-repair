@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/javascript.js//default function",
+            "src/languages/typescript.js//default function"
+        ],
+        "bug_functions": [
+            "src/languages/javascript.js//default function(hljs)",
+            "src/languages/typescript.js//default function(hljs)"
+        ],
+        "explanation": "The issue lies in how comments are handled in the syntax highlighter for JavaScript and TypeScript. The problem occurs due to the pattern `/**/` not being correctly parsed, which leads to a failure in highlighting the subsequent code. The default function in both `javascript.js` and `typescript.js` files is responsible for defining how these languages are parsed and highlighted, including the handling of comments. Adjusting the comment parsing logic in these functions should address the issue.",
+        "bug_scenario": "The bug involves syntax highlighting failing when an empty block comment is used in JavaScript or TypeScript code. Specifically, using the comment pattern `/**/` breaks the syntax highlight as shown in the provided images and sample code."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/javascript.js//JSDOC_COMMENT",
+            "src/languages/javascript.js//COMMENT",
+            "src/languages/typescript.js//DECORATOR"
+        ],
+        "bug_functions": [
+            "src/languages/javascript.js//isTrulyOpeningTag"
+        ],
+        "explanation": "The problem seems to be caused by the handling of comments in the JavaScript and TypeScript language definitions. In `src/languages/javascript.js`, the `JSDOC_COMMENT` and `COMMENT` classes handle different types of comments, including block comments, which are not being processed correctly if they are empty. The `isTrulyOpeningTag` function is involved in determining the opening of tags, which might affect how comments are parsed in some cases. In `src/languages/typescript.js`, the `DECORATOR` class involves a similar syntax parsing that could be related to comment parsing and decoration.",
+        "bug_scenario": "The issue is related to syntax highlighting in JavaScript and TypeScript when using empty block comments. The sample code provided with only block comments causes the highlighter to break, as shown in the images where syntax highlighting is not applied correctly beyond the empty block comment."
+    }
+}

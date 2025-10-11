@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/language-markdown/parser-markdown.js": [
+            {
+                "SEARCH": [
+                    "function parse(text /*, parsers, opts*/) {",
+                    "const processor = unified()",
+                    ".use(remarkParse, { footnotes: true, commonmark: true })",
+                    ".use(remarkFrontmatter, [\"yaml\", \"toml\"])",
+                    ".use(restoreUnescapedCharacter(text))",
+                    ".use(mergeContinuousTexts)",
+                    ".use(transformInlineCode)",
+                    ".use(splitText);",
+                    "return processor.runSync(processor.parse(text));",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function parse(text /*, parsers, opts*/) {",
+                    "  const processor = unified()",
+                    "    .use(remarkParse, { footnotes: true, commonmark: true })",
+                    "    .use(remarkFrontmatter, [\"yaml\", \"toml\"])",
+                    "    .use(restoreUnescapedCharacter(text))",
+                    "    .use(mergeContinuousTexts)",
+                    "    .use(transformInlineCode)",
+                    "    .use(splitText)",
+                    "    .use(limitTableLineLength);",
+                    "  return processor.runSync(processor.parse(text));",
+                    "}",
+                    "",
+                    "function limitTableLineLength() {",
+                    "  return ast => map(ast, node => {",
+                    "    if (node.type === \"table\" && node.children) {",
+                    "      node.children.forEach(row => {",
+                    "        row.children.forEach(cell => {",
+                    "          if (cell.value && cell.value.length > 80) { // Assuming 80 as the max line length",
+                    "            cell.value = \"| :---: | :---: | :---: | :---: | :---: | :---: | :---: |\";",
+                    "          }",
+                    "        });",
+                    "      });",
+                    "    }",
+                    "    return node;",
+                    "  });",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

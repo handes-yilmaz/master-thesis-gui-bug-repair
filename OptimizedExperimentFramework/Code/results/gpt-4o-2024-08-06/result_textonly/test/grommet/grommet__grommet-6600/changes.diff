@@ -1,0 +1,43 @@
+diff --git a/src/js/components/DataFilters/DataFilters.js b/src/js/components/DataFilters/DataFilters.js
+index c1fa3bf5ff..5c1b4a2848 100644
+--- a/src/js/components/DataFilters/DataFilters.js
++++ b/src/js/components/DataFilters/DataFilters.js
+@@ -16,7 +16,7 @@ const dropProps = {
+   align: { top: 'bottom', right: 'right' },
+ };
+ 
+-export const DataFilters = ({ drop, children, heading, ...rest }) => {
++export const DataFilters = ({ drop, layer, children, heading, ...rest }) => {
+   const { clearFilters, data, messages, properties, view } =
+     useContext(DataContext);
+   const { format } = useContext(MessageContext);
+@@ -26,7 +26,7 @@ export const DataFilters = ({ drop, children, heading, ...rest }) => {
+   // on what's inside DataFilters as opposed to trying to track from the view
+   // object.
+   const [touched, setTouched] = useState({});
+-  const controlled = useMemo(() => drop, [drop]);
++  const controlled = useMemo(() => drop || layer, [drop, layer]);
+   // generate the badge value based on touched fields that have a value
+   const badge = useMemo(
+     () =>
+@@ -106,7 +106,7 @@ export const DataFilters = ({ drop, children, heading, ...rest }) => {
+     </DataForm>
+   );
+ 
+-  if (!controlled) return content;
++  if (!controlled) return layer ? <Layer>{content}</Layer> : content;
+ 
+   // drop
+   const control = (
+diff --git a/src/js/components/DataFilters/propTypes.js b/src/js/components/DataFilters/propTypes.js
+index 22ab3ab641..751b724598 100644
+--- a/src/js/components/DataFilters/propTypes.js
++++ b/src/js/components/DataFilters/propTypes.js
+@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
+   PropType = {
+     drop: PropTypes.bool,
+     heading: PropTypes.string,
++    layer: PropTypes.bool,
+   };
+ }
+ export const DataFiltersPropTypes = PropType;

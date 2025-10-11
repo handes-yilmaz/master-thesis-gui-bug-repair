@@ -1,0 +1,20 @@
+diff --git a/src/language-markdown/printer-markdown.js b/src/language-markdown/printer-markdown.js
+index a45b039262..ba769daec5 100644
+--- a/src/language-markdown/printer-markdown.js
++++ b/src/language-markdown/printer-markdown.js
+@@ -195,11 +195,13 @@ function genericPrint(path, options, print) {
+           privateUtil.getMaxContinuousCount(node.value, styleUnit) + 1
+         )
+       );
++      // Extract language ignoring any attributes
++      const lang = node.lang ? node.lang.split(/\s+/)[0] : "";
+       return concat([
+         style,
+-        node.lang || "",
++        lang,
+         hardline,
+-        join(hardline, node.value.split("\n")),
++        join(hardline, node.value.split("\\n")),
+         hardline,
+         style
+       ]);

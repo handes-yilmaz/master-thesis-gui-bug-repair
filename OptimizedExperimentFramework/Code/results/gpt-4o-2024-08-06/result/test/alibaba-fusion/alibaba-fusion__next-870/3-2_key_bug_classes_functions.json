@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/overlay/popup.jsx//Popup",
+            "src/overlay/utils/position.js//Position"
+        ],
+        "bug_functions": [],
+        "explanation": "The `Popup` class in `popup.jsx` is responsible for rendering and managing the visibility of overlays, which include the DatePicker popup. This class deals with events like clicking and scrolling that affect the overlay's position. The `Position` class in `position.js` handles the calculation of the overlay's positioning based on elements and viewport. The bug likely lies in how these classes calculate and update the position of the overlay, especially with multiple scrollbars, leading to incorrect popup placement.",
+        "bug_scenario": "The bug involves an incorrect positioning of the overlay when there are two scrollbars. The DatePicker's popup appears in the wrong place after scrolling. Additionally, the NumberPicker's 'innerBefore' style is incorrect and does not support 'innerAfter'."
+    },
+    "2": {
+        "bug_classes": [
+            "src/overlay/popup.jsx//Popup",
+            "src/overlay/utils/position.js//Position"
+        ],
+        "bug_functions": [],
+        "explanation": "The Popup class in 'src/overlay/popup.jsx' is responsible for rendering and positioning the overlay elements. The issue of incorrect positioning when there are multiple scrollbars suggests a problem in how the position is calculated or adjusted. This class includes methods for handling visibility changes and positioning that might need adjustments to handle scrollbars correctly.\n\nThe Position class in 'src/overlay/utils/position.js' handles the calculation of element positions, which is directly related to the overlay positioning issue described in the bug report. It includes methods to get element rects and viewport sizes, which are crucial for fixing the overlay's position.\n\nThese classes are likely causing the overlay positioning issue, and they need to be examined and modified to fix the bug described in the report.",
+        "bug_scenario": "The bug scenario involves UI elements being misaligned or positioned incorrectly when there are multiple scrollbars on the page. Additionally, there is a styling issue with the NumberPicker component where before and after styles are not applied correctly."
+    }
+}

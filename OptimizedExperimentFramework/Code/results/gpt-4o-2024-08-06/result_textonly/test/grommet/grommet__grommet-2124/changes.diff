@@ -1,0 +1,37 @@
+diff --git a/src/js/components/Calendar/Calendar.js b/src/js/components/Calendar/Calendar.js
+index 88da295b74..6b917c5138 100644
+--- a/src/js/components/Calendar/Calendar.js
++++ b/src/js/components/Calendar/Calendar.js
+@@ -43,11 +43,10 @@ const buildState = (props) => {
+   } else {
+     reference = new Date();
+   }
+-  return {
+-    ...buildStartEnd(reference, firstDayOfWeek),
+-    reference,
++  return Object.assign({}, buildStartEnd(reference, firstDayOfWeek), {
++    reference: reference,
+     active: new Date(reference),
+-  };
++  });
+ };
+ 
+ class Calendar extends Component {
+diff --git a/src/js/components/Calendar/StyledCalendar.js b/src/js/components/Calendar/StyledCalendar.js
+index e1a4eeb7c4..a1900a5aa3 100644
+--- a/src/js/components/Calendar/StyledCalendar.js
++++ b/src/js/components/Calendar/StyledCalendar.js
+@@ -37,9 +37,12 @@ export const StyledWeeks = styled.div`
+ `;
+ 
+ export const StyledWeek = styled.div`
++  display: -ms-flexbox;
+   display: flex;
++  -ms-flex-direction: row;
+   flex-direction: row;
+-  flex-justify: between;
++  -ms-flex-pack: justify;
++  justify-content: space-between;
+ `;
+ 
+ export const StyledDayContainer = styled.div`

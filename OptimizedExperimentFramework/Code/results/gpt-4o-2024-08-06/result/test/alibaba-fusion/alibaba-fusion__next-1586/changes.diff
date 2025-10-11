@@ -1,0 +1,23 @@
+diff --git a/src/tree/view/tree-node.jsx b/src/tree/view/tree-node.jsx
+index 3e5ea2d98..c76e70725 100644
+--- a/src/tree/view/tree-node.jsx
++++ b/src/tree/view/tree-node.jsx
+@@ -179,12 +179,13 @@ export default class TreeNode extends Component {
+         this.setState({ loading });
+     }
+ 
+-    handleSelect(e) {
+-        e.preventDefault();
++handleSelect(e) {
++    e.preventDefault();
+ 
+-        const { root, selected, eventKey } = this.props;
+-        root.handleSelect(!selected, eventKey, this, e);
+-    }
++    const { root, eventKey } = this.props;
++    const selected = !this.props.selected; // Toggle the selected state
++    root.handleSelect(selected, eventKey, this, e);
++}
+ 
+     handleCheck() {
+         const { root, checked, eventKey } = this.props;

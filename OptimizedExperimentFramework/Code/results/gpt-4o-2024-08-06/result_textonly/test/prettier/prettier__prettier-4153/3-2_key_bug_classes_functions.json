@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse",
+            "src/language-markdown/parser-markdown.js//transformInlineCode",
+            "src/language-markdown/parser-markdown.js//map"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//restoreUnescapedCharacter",
+            "src/language-markdown/parser-markdown.js//mergeContinuousTexts",
+            "src/language-markdown/parser-markdown.js//splitText"
+        ],
+        "explanation": "The bug is related to the parsing logic in the markdown parser, specifically in handling fenced code blocks. The function 'parse' in 'parser-markdown.js' is responsible for parsing the markdown text and might not correctly handle additional attributes in code blocks. The 'transformInlineCode' function processes inline code and might need adjustments to handle attributes after language identifiers. The 'map' function is used to traverse and transform the abstract syntax tree (AST), which could be pivotal in modifying how code blocks are detected and processed. Other functions like 'restoreUnescapedCharacter', 'mergeContinuousTexts', and 'splitText' are involved in text processing and may require updates to correctly parse and ignore attributes following language identifiers in fenced code blocks.",
+        "bug_scenario": "The bug scenario involves Prettier's failure to detect the language of a fenced code block in markdown files when additional attributes are included after the language identifier. The expected behavior is that any text following the language identifier should be ignored for language detection, allowing correct formatting and syntax highlighting."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//parse"
+        ],
+        "explanation": "The 'parse' function in 'src/language-markdown/parser-markdown.js' is responsible for processing and transforming Markdown text, including code blocks. The bug relates to detecting the language of fenced code blocks when attributes are present. This function uses a series of plugins and transformations that operate on the Markdown Abstract Syntax Tree (AST), making it a key location to implement the logic needed to ignore attributes following the language identifier. The function's use of 'remarkParse' and handling of inline code further suggests it's involved in parsing the syntax that needs modification to fix the bug.",
+        "bug_scenario": "The bug scenario involves Prettier failing to detect the language of a fenced code block in Markdown if non-whitespace characters (attributes) follow the language declaration. The expected behavior is to format code blocks starting with '```js {cmd=node .line-numbers}' the same as '```js', ignoring any text after the language identifier for syntax highlighting purposes."
+    }
+}

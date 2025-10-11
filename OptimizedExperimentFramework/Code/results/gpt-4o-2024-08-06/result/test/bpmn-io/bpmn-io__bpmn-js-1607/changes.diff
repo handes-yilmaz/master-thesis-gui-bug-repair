@@ -1,0 +1,47 @@
+diff --git a/lib/features/modeling/behavior/GroupBehavior.js b/lib/features/modeling/behavior/GroupBehavior.js
+index 2cba2453..f8575fbd 100644
+--- a/lib/features/modeling/behavior/GroupBehavior.js
++++ b/lib/features/modeling/behavior/GroupBehavior.js
+@@ -165,8 +165,11 @@ export default function GroupBehavior(
+       var definitions = getDefinitions(),
+           categoryValue = createCategoryValue(definitions, bpmnFactory);
+ 
+-      // link the reference to the Group
+-      businessObject.categoryValueRef = categoryValue;
++      // Ensure categoryValue is linked to the correct parent
++      if (categoryValue) {
++        businessObject.categoryValueRef = categoryValue;
++        categoryValue.$parent = definitions;
++      }
+     }
+   });
+ 
+@@ -208,4 +211,4 @@ GroupBehavior.$inject = [
+   'moddleCopy'
+ ];
+ 
+-inherits(GroupBehavior, CommandInterceptor);
+\ No newline at end of file
++inherits(GroupBehavior, CommandInterceptor);
+diff --git a/lib/features/modeling/behavior/util/CategoryUtil.js b/lib/features/modeling/behavior/util/CategoryUtil.js
+index 4d0b7c09..57aee9f0 100644
+--- a/lib/features/modeling/behavior/util/CategoryUtil.js
++++ b/lib/features/modeling/behavior/util/CategoryUtil.js
+@@ -21,10 +21,12 @@ export function createCategoryValue(definitions, bpmnFactory) {
+       });
+ 
+   // add to correct place
+-  collectionAdd(definitions.get('rootElements'), category);
+-  getBusinessObject(category).$parent = definitions;
+-  getBusinessObject(categoryValue).$parent = category;
++  if (definitions && category) {
++    collectionAdd(definitions.get('rootElements'), category);
++    getBusinessObject(category).$parent = definitions;
++    getBusinessObject(categoryValue).$parent = category;
++  }
+ 
+   return categoryValue;
+ 
+-}
+\ No newline at end of file
++}

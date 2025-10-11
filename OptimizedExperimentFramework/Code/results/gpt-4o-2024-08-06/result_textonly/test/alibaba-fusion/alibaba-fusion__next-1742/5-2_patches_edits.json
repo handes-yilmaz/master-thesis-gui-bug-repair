@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/cascader/cascader.jsx": [
+            {
+                "SEARCH": [
+                    "/**",
+                    "* 每列列表项渲染函数",
+                    "* @param {Object} data 数据",
+                    "* @return {ReactNode} 列表项内容",
+                    "*/",
+                    "itemRender: PropTypes.func,"
+                ],
+                "REPLACE": [
+                    "        /** ",
+                    "         * 是否显示标题信息",
+                    "         */",
+                    "        showTitle: PropTypes.bool,",
+                    "        /** ",
+                    "         * 每列列表项渲染函数",
+                    "         * @param {Object} data 数据",
+                    "         * @return {ReactNode} 列表项内容",
+                    "         */",
+                    "        itemRender: PropTypes.func,"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "};"
+                ],
+                "REPLACE": [
+                    "        showTitle: true,",
+                    "    };"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "itemRender: item => item.label,"
+                ],
+                "REPLACE": [
+                    "        itemRender: item => {",
+                    "            const title = this.props.showTitle ? item.label : undefined;",
+                    "            return <span title={title}>{item.label}</span>;",
+                    "        },"
+                ]
+            }
+        ]
+    }
+}

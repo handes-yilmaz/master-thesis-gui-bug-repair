@@ -1,0 +1,26 @@
+diff --git a/src/language-markdown/print-whitespace.js b/src/language-markdown/print-whitespace.js
+index b57e83bec3..2d16e0eecb 100644
+--- a/src/language-markdown/print-whitespace.js
++++ b/src/language-markdown/print-whitespace.js
+@@ -273,13 +273,18 @@ function isBreakable(path, value, proseWrap, isLink, canBeSpace) {
+  * normalized form of link labels. https://spec.commonmark.org/0.30/#matches
+  */
+ function printWhitespace(path, value, proseWrap, isLink) {
+-  if (proseWrap === "preserve" && value === "\n") {
+-    return hardline;
++  if (proseWrap === "preserve") {
++    if (value === "\\n") {
++      return hardline;
++    }
++    if (value === "") {
++      return "";
++    }
+   }
+ 
+   const canBeSpace =
+     value === " " ||
+-    (value === "\n" && lineBreakCanBeConvertedToSpace(path, isLink));
++    (value === "\\n" && lineBreakCanBeConvertedToSpace(path, isLink));
+ 
+   if (isBreakable(path, value, proseWrap, isLink, canBeSpace)) {
+     return canBeSpace ? line : softline;

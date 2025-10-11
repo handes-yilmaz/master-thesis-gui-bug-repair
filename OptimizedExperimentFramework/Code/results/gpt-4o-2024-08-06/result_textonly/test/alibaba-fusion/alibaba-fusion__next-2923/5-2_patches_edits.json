@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "src/config-provider/index.jsx": [
+            {
+                "SEARCH": [
+                    "render() {",
+                    "return Children.only(this.props.children);",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    /**",
+                    "     * Manually clear the cache to prevent memory leaks in SSR scenarios.",
+                    "     */",
+                    "    static clearCache() {",
+                    "        childContextCache._store.clear();",
+                    "        childContextCache._root = null;",
+                    "    }",
+                    "",
+                    "    render() {",
+                    "        return Children.only(this.props.children);",
+                    "    }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

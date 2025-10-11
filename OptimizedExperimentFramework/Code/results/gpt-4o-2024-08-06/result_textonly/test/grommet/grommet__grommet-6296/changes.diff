@@ -1,0 +1,30 @@
+diff --git a/src/js/components/PageHeader/PageHeader.js b/src/js/components/PageHeader/PageHeader.js
+index 812cd967cd..876f0e4707 100644
+--- a/src/js/components/PageHeader/PageHeader.js
++++ b/src/js/components/PageHeader/PageHeader.js
+@@ -70,13 +70,18 @@ const PageHeader = forwardRef(
+           <Box gridArea="parent" {...theme.pageHeader.parent}>
+             {parent}
+           </Box>
+-          <Box gridArea="title">
+-            {typeof title === 'string' ? (
+-              <Heading {...sizeStyle(size, 'title', theme)}>{title}</Heading>
+-            ) : (
+-              title
+-            )}
+-          </Box>
++<Box gridArea="title">
++  {typeof title === 'string' ? (
++    <Heading
++      {...sizeStyle(size, 'title', theme)}
++      style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}
++    >
++      {title}
++    </Heading>
++  ) : (
++    title
++  )}
++</Box>
+           <Box gridArea="subtitle">
+             {typeof subtitle === 'string' ? (
+               <Paragraph {...sizeStyle(size, 'subtitle', theme)}>

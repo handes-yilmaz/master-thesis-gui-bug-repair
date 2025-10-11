@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/Form/Form.js",
+            "src/js/components/Form/stories/DynamicFields.js"
+        ],
+        "explanation": "The bug is related to the dynamic addition and removal of form fields. The `Form.js` file is the main component handling form logic, including validation. The bug is likely occurring there since the issue involves form validity state not updating correctly when fields are dynamically altered. Additionally, `DynamicFields.js` contains a relevant story for reproducing this specific scenario, making it pertinent for testing and understanding the behavior mentioned in the bug report.",
+        "bug_scenario": "The bug involves a form where dynamically adding and removing a required field causes the form to remain invalid even after the field is removed. The expected behavior is that when the checkbox is unchecked, a new required TextInput field should appear, making the form invalid as expected. However, when the checkbox is rechecked to remove the field, the form remains invalid even if all other conditions are met."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/Form/Form.js",
+            "src/js/components/Form/stories/DynamicFields.js",
+            "src/js/components/Form/FormContext.js"
+        ],
+        "explanation": "The bug relates to dynamic form validation, which is managed within the Form component's logic. The files 'src/js/components/Form/Form.js' and 'FormContext.js' likely contain the form validation logic that needs adjustment to correctly handle the addition and removal of dynamic fields. The story file 'DynamicFields.js' illustrates the scenario and can be used to test and adjust the behavior.",
+        "bug_scenario": "The bug occurs when a required TextInput field is dynamically added and removed, causing the form validation to fail incorrectly. When a checkbox is checked, a required TextInput appears, which works as expected. However, when the checkbox is unchecked and the TextInput is removed, the form still reports as invalid despite no missing information."
+    }
+}

@@ -1,0 +1,14 @@
+diff --git a/lib/features/rules/BpmnRules.js b/lib/features/rules/BpmnRules.js
+index a03b5fec..365313bb 100644
+--- a/lib/features/rules/BpmnRules.js
++++ b/lib/features/rules/BpmnRules.js
+@@ -285,7 +285,8 @@ function isMessageFlowTarget(element) {
+         is(element, 'bpmn:CatchEvent') &&
+         hasEventDefinitionOrNone(element, 'bpmn:MessageEventDefinition')
+       )
+-    )
++    ) &&
++    !is(element, 'bpmn:BoundaryEvent') // Disallow boundary events as targets
+   );
+ }
+ 

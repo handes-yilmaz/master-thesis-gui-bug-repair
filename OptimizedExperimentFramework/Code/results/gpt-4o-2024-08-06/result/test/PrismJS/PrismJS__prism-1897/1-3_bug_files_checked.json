@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-markdown.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The files likely responsible for this bug are `prism-markdown.js` and `prism-core.js`. These files are core components of a Markdown handling library, and modifications within the text parsing logic are needed to correctly handle a single layer of italic/bold syntax. The provided solution pattern suggests altering the regex in these files to address the greedy matching problem.",
+        "bug_scenario": "The bug in this scenario involves incorrect handling of italic and bold text in Markdown. When using either '*' or '_' to denote italics, the parser is overly greedy, applying the formatting incorrectly by matching excessive punctuation marks. This results in awkward representations, as shown in the image with text like '*__foo__*' and '_**bar**_'."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-markdown.js"
+        ],
+        "explanation": "The file `components/prism-markdown.js` is related to Markdown parsing, which directly handles the rendering logic for Markdown syntax like italics and bold. Since the bug is related to the incorrect parsing of Markdown italic and bold syntax using `*` and `_`, this file would require editing to adjust the parsing rules and fix the issue.",
+        "bug_scenario": "The bug involves Markdown italic and bold syntaxes with the `_` and `*` characters matching too greedily, leading to incorrect rendering. In the provided image, the parts of the text like `*__foo__*` and `_**bar**_` are not rendering properly due to incorrect application of italics and bold formatting."
+    }
+}

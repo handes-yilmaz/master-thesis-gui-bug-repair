@@ -1,0 +1,49 @@
+diff --git a/lib/rules/no-unused-vars.js b/lib/rules/no-unused-vars.js
+index 5dd632fdb..f75e52581 100644
+--- a/lib/rules/no-unused-vars.js
++++ b/lib/rules/no-unused-vars.js
+@@ -137,23 +137,28 @@ module.exports = {
+          * @returns {boolean} True if the variable is exported, false if not.
+          * @private
+          */
+-        function hasRestSpreadSibling(variable) {
+-            if (config.ignoreRestSiblings) {
+-                const restProperties = new Set(["ExperimentalRestProperty", "RestProperty"]);
+-
+-                return variable.defs
+-                    .filter(def => def.name.type === "Identifier")
+-                    .some(def => (
+-                        def.node.id &&
+-                        def.node.id.type === "ObjectPattern" &&
+-                        def.node.id.properties.length &&
+-                        restProperties.has(def.node.id.properties[def.node.id.properties.length - 1].type) &&  // last property is a rest property
+-                        !restProperties.has(def.name.parent.type)  // variable is sibling of the rest property
+-                    ));
+-            }
++function hasRestSpreadSibling(variable) {
++    if (config.ignoreRestSiblings) {
++        const restProperties = new Set(["ExperimentalRestProperty", "RestProperty"]);
++
++        return variable.defs
++            .filter(def => def.name.type === "Identifier")
++            .some(def => (
++                def.node.id &&
++                def.node.id.type === "ObjectPattern" &&
++                def.node.id.properties.length &&
++                restProperties.has(def.node.id.properties[def.node.id.properties.length - 1].type) &&  // last property is a rest property
++                !restProperties.has(def.name.parent.type)  // variable is sibling of the rest property
++            )) ||
++            variable.defs
++            .filter(def => def.type === "Parameter")
++            .some(def => (
++                def.node.type === "RestElement"
++            ));
++    }
+ 
+-            return false;
+-        }
++    return false;
++}
+ 
+         /**
+          * Determines if a reference is a read operation.

@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/lib/ecmascript.js//TYPES"
+        ],
+        "bug_functions": [],
+        "explanation": "The `TYPES` array in `src/languages/lib/ecmascript.js` is responsible for listing JavaScript built-in types. Since `BigInt` is missing from this list, it is not being highlighted correctly. Updating this array to include `BigInt` (as well as potentially `BigInt64Array` and `BigUint64Array`) would fix the highlighting issue.",
+        "bug_scenario": "The issue is that the `BigInt` type is not highlighted as expected in ECMAScript and JavaScript code. In the images, the `BigInt` keyword is not recognized as a built-in type, unlike other recognized types (e.g., `Number`)."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/lib/ecmascript.js//TYPES",
+            "src/languages/lib/ecmascript.js//BUILT_INS"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is that `BigInt` and related types like `BigInt64Array` are not included in the `TYPES` and `BUILT_INS` arrays in the `ecmascript.js` file. These arrays define the recognized built-in types and constructs in the language. Adding `BigInt` to these lists will ensure it gets highlighted correctly as a built-in type, resolving the issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves `BigInt` not being recognized and highlighted as a type in the same way that `Number` is within JavaScript code highlighting. This affects the `ecmascript` and `javascript` languages. The expected behavior is for `BigInt` to be highlighted similarly to `Number`, but currently, it is not recognized as a built-in type."
+    }
+}

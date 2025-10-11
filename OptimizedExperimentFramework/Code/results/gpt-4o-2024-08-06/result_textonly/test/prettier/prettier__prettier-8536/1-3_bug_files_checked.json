@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/document/doc-printer.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "The bug report suggests that the issue with trailing newlines is related to the code responsible for handling line breaks and document printing. Given the Prettier project structure, `src/document/doc-printer.js` is likely responsible for printing the documents, including handling newlines. Additionally, `src/language-js/printer-estree.js` is involved in JavaScript printing and would handle specific parsing and printing rules for JavaScript code, which includes directives followed by comments. Therefore, both files are potential candidates that might need adjustments to fix the extra newline issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves Prettier, a code formatting tool, improperly adding an extra newline in the formatted output when a file consists of a directive followed by a comment. The expected behavior is for Prettier to add just a single newline, but it instead adds two."
+    },
+    "2": {
+        "bug_files": [
+            "src/document/doc-printer.js",
+            "src/document/doc-printer.js",
+            "src/index.js"
+        ],
+        "explanation": "1. **src/document/doc-printer.js**: This file likely handles the printing logic of the document, which would include how newlines are managed during formatting.\n2. **src/printer.js**: The bug report itself points to a line in a file named `printer.js`, indicating that the handling of hardlines or newlines is managed in this file.\n3. **src/index.js**: This is the main entry point for Prettier and potentially handles configuration or initialization of formatting rules that could be affecting how newlines are processed. It is typically where the processing flow is controlled, which might include directive handling.",
+        "bug_scenario": "The bug reported is related to Prettier's behavior where a directive followed by a comment results in an extra hard line (newline) being added by Prettier, creating unwanted spacing. The expected behaviour is to have no extra newlines after the comment, preserving the original format more accurately."
+    }
+}

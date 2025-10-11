@@ -1,0 +1,18 @@
+diff --git a/src/select/select.jsx b/src/select/select.jsx
+index 1a3b71708..d12cd5360 100644
+--- a/src/select/select.jsx
++++ b/src/select/select.jsx
+@@ -215,6 +215,13 @@ class Select extends Base {
+                 this.valueDataSource.mapValueDS,
+                 this.dataStore.getMapDS()
+             );
++        } else if (this.props.defaultValue) {
++            // Handle default value when dataSource is empty
++            this.valueDataSource = getValueDataSource(
++                this.props.defaultValue,
++                this.valueDataSource.mapValueDS,
++                this.dataStore.getMapDS()
++            );
+         }
+ 
+         if (isIE9) {

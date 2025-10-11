@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/util/LaneUtil.js"
+        ],
+        "explanation": "1. **CreateParticipantBehavior.js**: This file likely manages behavior related to creating pool participants, which could be impacted by adding or removing lanes.\n2. **DeleteLaneBehavior.js**: This file handles the behavior when lanes are deleted, which is directly related to the steps that reproduce the bug.\n3. **LaneUtil.js**: Provides utility functions for handling lanes, which are at the core of the reported problem of connection after lane manipulation.",
+        "bug_scenario": "The bug involves difficulty connecting a message flow to the boundary of a pool after a lane has been added and removed. The flow can only be connected by dropping the connector at the pool's header instead of anywhere within the single lane."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/behavior/ResizeLaneBehavior.js",
+            "lib/features/modeling/cmd/AddLaneHandler.js",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js",
+            "lib/features/modeling/cmd/SplitLaneHandler.js"
+        ],
+        "explanation": "These files are likely responsible for managing the creation, resizing, and possible deletion of lanes and participants in the BPMN model. Since the issue arises when manipulating lanes within pools and affects the ability to connect message flows at the pool boundaries, these files involve the logic that could lead to the described behavior.",
+        "bug_scenario": "The bug occurs when trying to connect two pools with a message flow. If a pool previously had more than one lane and then reverted to a single lane, the connection can only be made by dropping the connector in the pool's header, not within the lane as expected."
+    }
+}

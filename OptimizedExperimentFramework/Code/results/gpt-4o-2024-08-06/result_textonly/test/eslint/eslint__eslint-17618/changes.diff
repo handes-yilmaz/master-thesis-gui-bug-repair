@@ -1,0 +1,14 @@
+diff --git a/lib/linter/code-path-analysis/code-path-analyzer.js b/lib/linter/code-path-analysis/code-path-analyzer.js
+index b60e55c16..c0b1854d1 100644
+--- a/lib/linter/code-path-analysis/code-path-analyzer.js
++++ b/lib/linter/code-path-analysis/code-path-analyzer.js
+@@ -297,6 +297,9 @@ function preprocess(analyzer, node) {
+                 parent.right === node &&
+                 isHandledLogicalOperator(parent.operator)
+             ) {
++                if (parent.operator === "&&") {
++                    state.forkBypassPath(); // Add a bypass path for short-circuiting
++                }
+                 state.makeLogicalRight();
+             }
+             break;

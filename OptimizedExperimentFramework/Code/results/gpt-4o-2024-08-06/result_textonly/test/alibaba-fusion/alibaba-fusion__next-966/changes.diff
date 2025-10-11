@@ -1,0 +1,26 @@
+diff --git a/src/menu/view/group.jsx b/src/menu/view/group.jsx
+index 66017409c..9a0142f75 100644
+--- a/src/menu/view/group.jsx
++++ b/src/menu/view/group.jsx
+@@ -40,7 +40,7 @@ export default class Group extends Component {
+             [className]: !!className,
+         });
+ 
+-        const newChildren = children.map(child => {
++        const newChildren = React.Children.toArray(children).filter(React.isValidElement).map(child => {
+             const { className } = child.props;
+             const newChildClassName = cx({
+                 [`${prefix}menu-group-item`]: true,
+diff --git a/src/menu/view/sub-menu.jsx b/src/menu/view/sub-menu.jsx
+index dd6f3204b..332801f1a 100644
+--- a/src/menu/view/sub-menu.jsx
++++ b/src/menu/view/sub-menu.jsx
+@@ -118,7 +118,7 @@ export default class SubMenu extends Component {
+     passParentToChildren(children) {
+         const { mode, root } = this.props;
+ 
+-        return Children.map(children, child => {
++        return Children.toArray(children).filter(React.isValidElement).map(child => {
+             return cloneElement(child, {
+                 parent: this,
+                 parentMode: mode || root.props.mode,

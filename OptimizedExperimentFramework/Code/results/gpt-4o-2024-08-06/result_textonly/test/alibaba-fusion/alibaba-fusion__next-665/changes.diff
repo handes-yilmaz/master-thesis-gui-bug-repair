@@ -1,0 +1,21 @@
+diff --git a/src/table/base/header.jsx b/src/table/base/header.jsx
+index 58b796224..d4fa19567 100644
+--- a/src/table/base/header.jsx
++++ b/src/table/base/header.jsx
+@@ -145,6 +145,7 @@ export default class Header extends React.Component {
+                     }
+                     attrs.rowSpan = rowSpan - index;
+                 }
++                const cellContent = typeof col.cell === 'function' ? col.cell() : title;
+                 return (
+                     <Cell
+                         {...others}
+@@ -153,7 +154,7 @@ export default class Header extends React.Component {
+                         prefix={prefix}
+                         pure={pure}
+                         rtl={rtl}
+-                        cell={title}
++                        cell={cellContent}
+                         component="th"
+                         align={alignHeader ? alignHeader : align}
+                         className={className}

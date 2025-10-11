@@ -1,0 +1,51 @@
+{
+    "1/1": {
+        "src/language-js/printer-estree.js": [
+            {
+                "SEARCH": [
+                    "case \"ParenthesizedExpression\": {",
+                    "const shouldHug =",
+                    "!hasComment(node.expression) &&",
+                    "(node.expression.type === \"ObjectExpression\" ||",
+                    "node.expression.type === \"ArrayExpression\");",
+                    "if (shouldHug) {",
+                    "return [\"(\", print(\"expression\"), \")\"];",
+                    "}",
+                    "return group([",
+                    "\"(\",",
+                    "indent([softline, print(\"expression\")]),",
+                    "softline,",
+                    "\")\",",
+                    "]);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    case \"ParenthesizedExpression\": {",
+                    "      const shouldHug =",
+                    "        !hasComment(node.expression) &&",
+                    "        (node.expression.type === \"ObjectExpression\" ||",
+                    "          node.expression.type === \"ArrayExpression\");",
+                    "      if (shouldHug) {",
+                    "        return [\"(\", print(\"expression\"), \")\"];",
+                    "      }",
+                    "      // Ensure parentheses are retained for JSDoc @satisfies",
+                    "      if (node.expression.type === \"ObjectExpression\" && hasComment(node, CommentCheckFlags.JSDoc)) {",
+                    "        return group([",
+                    "          \"(\",",
+                    "          indent([softline, print(\"expression\")]),",
+                    "          softline,",
+                    "          \")\",",
+                    "        ]);",
+                    "      }",
+                    "      return group([",
+                    "        \"(\",",
+                    "        indent([softline, print(\"expression\")]),",
+                    "        softline,",
+                    "        \")\",",
+                    "      ]);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

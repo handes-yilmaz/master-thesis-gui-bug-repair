@@ -1,0 +1,21 @@
+diff --git a/src/overlay/utils/position.js b/src/overlay/utils/position.js
+index db8c3df7c..c6b411e88 100644
+--- a/src/overlay/utils/position.js
++++ b/src/overlay/utils/position.js
+@@ -37,14 +37,8 @@ function _getElementRect(elem) {
+     } while ((elem = elem.offsetParent) !== null);
+ 
+     return {
+-        top:
+-            offsetTop -
+-            scrollTop -
+-            (document.documentElement.scrollTop || document.body.scrollTop),
+-        left:
+-            offsetLeft -
+-            scrollLeft -
+-            (document.documentElement.scrollLeft || document.body.scrollLeft),
++        top: offsetTop - (document.documentElement.scrollTop || document.body.scrollTop),
++        left: offsetLeft - (document.documentElement.scrollLeft || document.body.scrollLeft),
+         height: offsetHeight,
+         width: offsetWidth,
+     };

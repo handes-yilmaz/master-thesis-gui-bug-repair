@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/rules/no-unused-vars.js"
+        ],
+        "explanation": "The bug is related to the `no-unused-vars` rule not working as expected due to the `ignoreRestSiblings` flag inside function arguments. The file `lib/rules/no-unused-vars.js` is responsible for the implementation of this rule in ESLint. It would need to be edited to address the issue with handling `ignoreRestSiblings` in different contexts.",
+        "bug_scenario": "The bug report states that the `no-unused-vars` rule doesn't seem to respect the `ignoreRestSiblings` flag when used inside function arguments. The image shows an ESLint warning for the `children` variable, defined but never used at line 42, which should be ignored due to the `ignoreRestSiblings` setting."
+    },
+    "2": {
+        "bug_files": [
+            "lib/rules/no-unused-vars.js"
+        ],
+        "explanation": "The `no-unused-vars` rule is implemented in `lib/rules/no-unused-vars.js`. This file needs to be examined and potentially modified to ensure that the `ignoreRestSiblings` option works correctly when function arguments include rest siblings.",
+        "bug_scenario": "The ESLint rule `no-unused-vars` does not properly suppress warnings for unused variables when using the 'ignoreRestSiblings' option inside function arguments. The screenshot shows a specific example where `children` is marked as defined but never used, even though it should be ignored due to the rest sibling `...props`."
+    }
+}

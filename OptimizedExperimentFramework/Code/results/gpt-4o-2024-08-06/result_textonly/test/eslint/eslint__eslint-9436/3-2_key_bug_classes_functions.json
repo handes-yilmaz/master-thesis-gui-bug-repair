@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/no-constant-condition.js//module.exports"
+        ],
+        "bug_functions": [
+            "lib/rules/no-constant-condition.js//isConstant",
+            "lib/rules/no-constant-condition.js//reportIfConstant"
+        ],
+        "explanation": "The 'no-constant-condition' rule is responsible for identifying constant conditions within the code. The issue arises from the rule's implementation, particularly in how it determines what constitutes a constant condition and how it reports these conditions. The 'isConstant' function is directly involved in identifying constant conditions, and it likely contributes to the incorrect marking of the entire statement or expression. Additionally, 'reportIfConstant' is the function that reports these constant conditions, meaning it plays a role in defining the error range reported to the user. Adjustments to these functions are necessary to ensure that only the constant part of the condition is highlighted, rather than the entire statement.",
+        "bug_scenario": "The bug scenario involves the ESLint rule 'no-constant-condition' reporting error ranges that are too broad. Instead of highlighting only the constant conditions, such as 'true', the entire statement or expression containing the constant condition is underlined, leading to confusion about what part of the code is problematic."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/rules/no-constant-condition.js"
+        ],
+        "bug_functions": [
+            "lib/rules/no-constant-condition.js//reportIfConstant",
+            "lib/rules/no-constant-condition.js//isConstant"
+        ],
+        "explanation": "The bug is related to the `no-constant-condition` rule, which is implemented in the `lib/rules/no-constant-condition.js` file. The key functions involved are `reportIfConstant` and `isConstant`. The `reportIfConstant` function is responsible for reporting when a node contains a constant condition, directly impacting how error ranges are determined and reported. Meanwhile, `isConstant` checks if a node has a constant truthiness value, which is crucial for identifying constant conditions that need to be reported. The incorrect error range likely stems from logic within these functions that encompasses more than just the constant condition when determining the range to highlight.",
+        "bug_scenario": "The bug scenario involves an ESLint rule that incorrectly reports the error range for constant conditions in JavaScript code. Specifically, when the `no-constant-condition` rule is triggered by code with constant conditions, the reported error range includes the entire statement instead of just the constant condition itself. This results in an overly broad error highlight which is not user-friendly. The expected behavior is for the error range to be limited to the constant condition portion of the code, such as the keyword 'true' in an if statement or conditional expression."
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/doc/doc-printer.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "The bug described is related to the incorrect formatting of nested code blocks and HTML in markdown files, specifically when using format on save. The files most likely to be involved are within the markdown language and parsing modules:\n\n1. **src/language-markdown/parser-markdown.js**: This parser is responsible for handling markdown syntax. Any issues arising from improper parsing of nested structures would likely need adjustment here.\n\n2. **src/language-markdown/printer-markdown.js**: This printer is crucial as it handles the formatting output. Issues in misalignment during formatting would necessitate changes in the logic of how nested elements are handled.\n\n3. **src/doc/doc-printer.js**: This file might handle the document printing logic across different formats, influencing how markdown documents are indented and aligned.\n\n4. **src/main/parser.js**: This could be involved as it deals with parsing strategies and transformations that might affect how markdown nodes are translated and formatted.\n\nThese files are central to the processes involved in parsing and formatting markdown, which is directly related to the nested indentation bug described.",
+        "bug_scenario": "The bug involves \"format on save\" altering the indentation of nested code blocks or raw HTML within markdown files, particularly when using Prettier in VS Code. The continuous saving of the file increases the indentation each time, leading to syntax misalignment. This issue persists with raw HTML unless the \"format on save\" feature is turned off or markdown files are ignored, which are not ideal solutions."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/printer-markdown.js",
+            "src/language-markdown/parser-markdown.js",
+            "src/main/multiparser.js",
+            "src/main/options.js",
+            "src/config/resolve-config.js"
+        ],
+        "explanation": "The files related to this bug are primarily concerned with the parsing and formatting of markdown files, as well as handling the configuration options relevant to formatting. The `printer-markdown.js` and `parser-markdown.js` are responsible for defining how markdown is parsed and formatted, which is directly related to the issue of incorrect indentation of nested blocks and raw HTML. The `multiparser.js` handles parsing across different file types and formats, which could be affecting how markdown is processed during format-on-save operations. Further, `options.js` may define how formatting options like indentation are applied. `resolve-config.js` is involved as well because it manages configuration settings, which could relate to how markdown files are formatted differently from the expected behavior.",
+        "bug_scenario": "The bug is specific to markdown files when using Prettier's format-on-save functionality in VS Code. The issue arises when dealing with nested code blocks or raw HTML, where each save operation increases the indentation, leading to incorrect formatting over multiple save operations. This problem is more evident with raw HTML, where the only workaround currently is to disable the format-on-save feature for markdown files."
+    }
+}

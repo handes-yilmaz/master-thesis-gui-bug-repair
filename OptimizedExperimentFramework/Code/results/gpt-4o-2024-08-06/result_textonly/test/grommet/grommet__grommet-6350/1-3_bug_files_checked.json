@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/List/List.js",
+            "src/js/components/List/stories/Order.js",
+            "src/js/components/List/stories/Action.js"
+        ],
+        "explanation": "'List.js' is the core file where the logic for the List component, including the rendering of its items and handling of properties like 'action' and 'onOrder', is implemented. This is the likely source of the interaction issue between these properties.'Order.js' and 'Action.js' in the stories directory demonstrate the usage of these properties and would be helpful for reproducing the issue. Understanding the problem in these user interaction scenarios helps in debugging and verifying any fixes applied.",
+        "bug_scenario": "When a List component is used with both the 'action' and 'onOrder' properties, the list items become unaligned. The images provided in the bug report illustrate this issue: in the first image, where 'onOrder' is used, the list and action buttons are not aligned. In contrast, the second image, which lacks 'onOrder', shows the elements correctly aligned. This indicates a problem where the 'action' and 'onOrder' properties conflict, resulting in misalignment."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/List/List.js",
+            "src/js/components/List/__tests__/List-test.js",
+            "src/js/components/List/stories/Action.js",
+            "src/js/components/List/stories/Order.js",
+            "src/js/components/List/index.js"
+        ],
+        "explanation": "These files are identified as bug-related due to their direct involvement in the implementation and testing of the List component that exhibits the alignment issue when using 'action' and 'onOrder' properties.\\n\\n1. 'src/js/components/List/List.js': This is the main file where the List component is implemented. Since 'onOrder' and 'action' are properties related to the List component, any bug in their interaction would likely be addressed here.\\n\\n2. 'src/js/components/List/__tests__/List-test.js': This file contains tests for the List component. It is important to check this for any relevant test cases regarding 'action' and 'onOrder' to ensure the bug is replicable and to add tests once fixed.\\n\\n3. 'src/js/components/List/stories/Action.js' and 'src/js/components/List/stories/Order.js': These files are story implementations showing how 'action' and 'onOrder' are intended to be used in a functioning UI. They can help in reproducing the error scenario and are useful for visual testing once a fix is implemented.\\n\\n4. 'src/js/components/List/index.js': This file handles the export of List-related components, and its involvement is necessary for the correct inclusion of the component in builds or package exports.\\n\\nIdentifying and modifying these files would assist in diagnosing the cause behind the misalignment issues and validate the fix through testing and story-based examples.",
+        "bug_scenario": "The bug scenario involves a Grommet List component where adding both 'action' and 'onOrder' properties leads to misalignment issues with the list. The expected behavior is for the action to align correctly regardless of the onOrder property, but they currently do not work well together, causing visual misalignment as demonstrated in the provided images."
+    }
+}

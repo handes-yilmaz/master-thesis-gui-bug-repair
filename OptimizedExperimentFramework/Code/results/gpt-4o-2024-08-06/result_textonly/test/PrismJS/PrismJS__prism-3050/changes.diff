@@ -1,0 +1,44 @@
+diff --git a/components/index.js b/components/index.js
+index b2edcc2a..725e4b9b 100644
+--- a/components/index.js
++++ b/components/index.js
+@@ -36,7 +36,7 @@ function loadLanguages(languages) {
+ 			return;
+ 		}
+ 
+-		const pathToLanguage = './prism-' + lang;
++\t\tconst pathToLanguage = lang === 'mermaid' ? './prism-mermaid' : './prism-' + lang;
+ 
+ 		// remove from require cache and from Prism
+ 		delete require.cache[require.resolve(pathToLanguage)];
+diff --git a/prism.js b/prism.js
+index 2358d68c..c5269807 100644
+--- a/prism.js
++++ b/prism.js
+@@ -1504,9 +1504,23 @@ Prism.languages.clike = {
+ 			'punctuation': /[.\\]/
+ 		}
+ 	},
+-	'keyword': /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
+-	'boolean': /\b(?:true|false)\b/,
+-	'function': /\b\w+(?=\()/,
++\t\tToken: Token
++\t};
++
++\t// Add Mermaid language support
++\tPrism.languages.mermaid = {
++\t\t'diagram': {
++\t\t\tpattern: /(?:graph|sequenceDiagram|classDiagram|stateDiagram|gantt|pie|journey|erDiagram)[^;]*;/,
++\t\t\tinside: {
++\t\t\t\t'keyword': /\b(?:graph|sequenceDiagram|classDiagram|stateDiagram|gantt|pie|journey|erDiagram)\b/,
++\t\t\t\t'punctuation': /[{}[\];(),.:]/,
++\t\t\t\t'operator': /-->|---|==>|==|->|--|==|->>|->|<-|<--|<==|<==>/,
++\t\t\t\t'entity': /\b[A-Z][A-Za-z0-9_]*\b/
++\t\t\t}
++\t\t}
++\t};
++
++\t_self.Prism = _;
+ 	'number': /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
+ 	'operator': /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
+ 	'punctuation': /[{}[\];(),.:]/

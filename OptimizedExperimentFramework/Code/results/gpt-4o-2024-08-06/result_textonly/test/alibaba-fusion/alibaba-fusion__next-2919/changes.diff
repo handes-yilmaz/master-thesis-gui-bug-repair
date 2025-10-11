@@ -1,0 +1,16 @@
+diff --git a/src/tab/tabs/nav.jsx b/src/tab/tabs/nav.jsx
+index 22a1dd4e4..e0a31551b 100644
+--- a/src/tab/tabs/nav.jsx
++++ b/src/tab/tabs/nav.jsx
+@@ -555,9 +555,9 @@ class Nav extends React.Component {
+         const tabList = this.renderTabList(this.props);
+ 
+         const container = (
+-            <div className={containerCls} onKeyDown={onKeyDown} key="nav-container">
++            <div className={containerCls} onKeyDown={this.handleKeyDown} key="nav-container">
+                 <div className={`${prefix}tabs-nav-wrap`} ref={this.wrapperRefHandler}>
+-                    <div className={`${prefix}tabs-nav-scroll`}>
++                    <div className={`${prefix}tabs-nav-scroll`} style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+                         {animation ? (
+                             <Animate
+                                 role="tablist"

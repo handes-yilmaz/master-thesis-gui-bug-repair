@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/RadioButton/StyledRadioButton.js//StyledRadioButtonBox",
+            "src/js/components/RadioButton/RadioButton.js//RadioButton"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue described in the bug report is related to how the background color is being applied to radio buttons. The 'StyledRadioButtonBox' class in 'StyledRadioButton.js' is responsible for styling the radio button box, including setting the background color. This class should conditionally apply the background color only if the radio button is checked. The 'RadioButton' component in 'RadioButton.js' controls the rendering and behavior of the radio buttons, including checking if a radio button is selected. This component needs to ensure that the background color is applied only to the checked radio button, which may involve modifying how the 'StyledRadioButtonBox' is rendered or styled based on the checked state.",
+        "bug_scenario": "The bug scenario involves a styling issue where the background color intended for a checked radio button is being applied to all radio buttons, rather than just the one that is checked. This results in all radio buttons showing a blue background, which is not the expected behavior. The user expects only the currently checked radio button to have the blue background, while the others should remain default grey."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/RadioButton/StyledRadioButton.js//StyledRadioButtonBox"
+        ],
+        "bug_functions": [
+            "src/js/components/RadioButton/RadioButton.js//RadioButton"
+        ],
+        "explanation": "The bug relates to how the background color for radio buttons is applied. In `src/js/components/RadioButton/StyledRadioButton.js`, the `StyledRadioButtonBox` component uses `background-color: ${(props) => normalizeColor(props.theme.radioButton.check.background?.color, props.theme)}` which sets the background color for all radio buttons, not only the checked one. This is likely where the issue originates because it does not conditionally apply the background color based on whether the radio button is checked or not.\\n\\nIn `src/js/components/RadioButton/RadioButton.js`, the `RadioButton` function is responsible for rendering each radio button and handles the logic for checking a radio button. The logic should include conditions to ensure that the background color is only applied to the checked radio button. Adjusting how the `checked` state influences the styling within this function would be necessary to resolve the issue.",
+        "bug_scenario": "The bug scenario is that the background color specified for the checked radio button is being incorrectly applied to all radio buttons, rather than just the one that is checked. This issue is visually demonstrated in the provided image where all radio buttons are displaying a blue background color, instead of only the selected one having this color."
+    }
+}

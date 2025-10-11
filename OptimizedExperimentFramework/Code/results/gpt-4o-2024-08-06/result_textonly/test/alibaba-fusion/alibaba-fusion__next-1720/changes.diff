@@ -1,0 +1,26 @@
+diff --git a/src/search/Search.jsx b/src/search/Search.jsx
+index 6478d419a..3f30b5b21 100644
+--- a/src/search/Search.jsx
++++ b/src/search/Search.jsx
+@@ -200,7 +200,8 @@ class Search extends React.Component {
+         if (this.props.disabled) {
+             return;
+         }
+-        this.props.onSearch(this.state.value, this.state.filterValue);
++        const selectedValue = this.autoCompleteRef && this.autoCompleteRef.state.value;
++        this.props.onSearch(selectedValue || this.state.value, this.state.filterValue);
+     };
+ 
+     onFilterChange = filterValue => {
+diff --git a/src/select/auto-complete.jsx b/src/select/auto-complete.jsx
+index 44cf694ea..c2f655f87 100644
+--- a/src/select/auto-complete.jsx
++++ b/src/select/auto-complete.jsx
+@@ -257,6 +257,7 @@ class AutoComplete extends Base {
+             case KEYCODE.ENTER:
+                 e.preventDefault();
+                 this.chooseHighlightItem(e);
++                this.setState({ value: this.state.highlightKey }); // Update state with selected suggestion
+                 break;
+             case KEYCODE.SPACE:
+                 // stopPropagation can make use onChange triggerd while typing space('') in Input

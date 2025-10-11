@@ -1,0 +1,49 @@
+{
+    "1/1": {
+        "lib/features/rules/BpmnRules.js": [
+            {
+                "SEARCH": [
+                    "function canConnect(source, target, connection) {",
+                    "",
+                    "if (nonExistingOrLabel(source) || nonExistingOrLabel(target)) {",
+                    "return null;",
+                    "}",
+                    "",
+                    "if (!is(connection, 'bpmn:DataAssociation')) {",
+                    "",
+                    "if (canConnectMessageFlow(source, target)) {",
+                    "return { type: 'bpmn:MessageFlow' };",
+                    "}",
+                    "",
+                    "if (canConnectSequenceFlow(source, target)) {",
+                    "return { type: 'bpmn:SequenceFlow' };",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function canConnect(source, target, connection) {",
+                    "",
+                    "  if (nonExistingOrLabel(source) || nonExistingOrLabel(target)) {",
+                    "    return null;",
+                    "  }",
+                    "",
+                    "  // Disallow message flows to boundary events",
+                    "  if (is(target, 'bpmn:BoundaryEvent')) {",
+                    "    return false;",
+                    "  }",
+                    "",
+                    "  if (!is(connection, 'bpmn:DataAssociation')) {",
+                    "",
+                    "    if (canConnectMessageFlow(source, target)) {",
+                    "      return { type: 'bpmn:MessageFlow' };",
+                    "    }",
+                    "",
+                    "    if (canConnectSequenceFlow(source, target)) {",
+                    "      return { type: 'bpmn:SequenceFlow' };",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

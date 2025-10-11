@@ -1,0 +1,25 @@
+diff --git a/src/js/components/Data/Data.js b/src/js/components/Data/Data.js
+index 8cc31e106..da1e182f5 100644
+--- a/src/js/components/Data/Data.js
++++ b/src/js/components/Data/Data.js
+@@ -142,6 +142,7 @@ export const Data = ({
+         {(toolbar === true || toolbar === 'search') && <DataSearch />}
+         {(toolbar === true || toolbar === 'view') && <DataView />}
+         {(toolbar === true || toolbar === 'filters') && <DataFilters drop />}
++        {toolbar && <Button label="Clear Filters" onClick={contextValue.clearFilters} />}
+       </Toolbar>,
+       <DataSummary key="summary" />,
+     ];
+diff --git a/src/js/components/DataFilters/DataFilters.js b/src/js/components/DataFilters/DataFilters.js
+index 204c708d5..aafc73917 100644
+--- a/src/js/components/DataFilters/DataFilters.js
++++ b/src/js/components/DataFilters/DataFilters.js
+@@ -48,7 +48,7 @@ export const DataFilters = ({ drop, children, heading, layer, ...rest }) => {
+     [controlled, touched],
+   );
+ 
+-  const clearControl = badge && (
++  const clearControl = (
+     <Box flex={false} margin={{ start: 'small' }}>
+       <Button
+         label={format({

@@ -1,0 +1,19 @@
+diff --git a/src/slider/slick/arrow.jsx b/src/slider/slick/arrow.jsx
+index e8f9b6610..7445f83da 100644
+--- a/src/slider/slick/arrow.jsx
++++ b/src/slider/slick/arrow.jsx
+@@ -52,12 +52,12 @@ export default class Arrow extends Component {
+ 
+         // 下一个 index 大于总数？？
+         if (slideCount <= slidesToShow) {
+-            return true;
++            return currentSlide <= 0;
+         }
+ 
+         // 向前箭头：当前是第 0 个
+         if (type === 'prev') {
+-            return currentSlide <= 0;
++            return currentSlide <= 0 && !centerMode;
+         }
+ 
+         if (centerMode && currentSlide >= slideCount - 1) {

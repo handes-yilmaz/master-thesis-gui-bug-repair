@@ -1,0 +1,34 @@
+diff --git a/src/languages/javascript.js b/src/languages/javascript.js
+index 8bfa6eca..bfeba0ef 100644
+--- a/src/languages/javascript.js
++++ b/src/languages/javascript.js
+@@ -360,15 +360,20 @@ export default function(hljs) {
+           hljs.UNDERSCORE_TITLE_MODE
+         ]
+       },
+-      {
+-        beginKeywords: 'constructor',
+-        end: /[\{;]/,
+-        excludeEnd: true,
+-        contains: [
+-          'self',
+-          PARAMS
+-        ]
+-      },
++{
++beginKeywords: 'constructor',
++end: /[\{;]/,
++excludeEnd: true,
++contains: [
++'self',
++PARAMS
++]
++},
++{
++className: 'function',
++begin: IDENT_RE + '\\s*(?=\\()',
++relevance: 0
++},
+       {
+         begin: '(get|set)\\s+(?=' + IDENT_RE + '\\()',
+         end: /{/,

@@ -1,0 +1,31 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/table/base/header.jsx//Header",
+            "src/table/fixed/header.jsx//FixedHeader",
+            "src/table/base/filter.jsx//Filter"
+        ],
+        "bug_functions": [
+            "src/table/base/header.jsx//render",
+            "src/table/base/header.jsx//onSort",
+            "src/table/base/header.jsx//getCellRef",
+            "src/table/base/filter.jsx//onFilterVisible",
+            "src/table/base/filter.jsx//render"
+        ],
+        "explanation": "The bug is likely related to the interaction between the rendering of the header and the filter component. The `Header` class in `header.jsx` handles the rendering of table headers with sorting, filtering, and resizing capabilities. The `FixedHeader` in `fixed/header.jsx` manages the fixed header functionality. The `Filter` class in `filter.jsx` deals with filter display and its visibility state. The issue might be in how the filter dropdown is being rendered and positioned when headers are fixed and resizable, possibly requiring adjustments in event handling or styles in `render` and visibility functions.",
+        "bug_scenario": "When using fixedHeader and resizable together in a table, clicking the filter button causes the header to display incorrectly. The reproduction link and image show that the filter dropdown overlaps or misaligns with the header, causing a visual glitch."
+    },
+    "2": {
+        "bug_classes": [
+            "src/table/base/header.jsx//Header",
+            "src/table/fixed/header.jsx//FixedHeader"
+        ],
+        "bug_functions": [
+            "src/table/base/header.jsx//render",
+            "src/table/base/header.jsx//getCellRef",
+            "src/table/base/header.jsx//onSort"
+        ],
+        "explanation": "The issue likely arises from how the header is rendered and managed when both fixedHeader and resizable are used. The 'Header' class in 'header.jsx' handles the rendering of the table headers, including filters and resizable elements. The 'render' function is responsible for creating the table header cells, which includes the filter and resize elements. The 'getCellRef' and 'onSort' functions also interact with header elements and could be involved in handling the header state incorrectly. The 'FixedHeader' class in 'fixed/header.jsx' integrates the 'Header' component, and problems could arise from how the fixed header is implemented or displayed.",
+        "bug_scenario": "The bug occurs when using both fixedHeader and resizable options in a table component. When clicking the filter button, the header displays incorrectly. The image shows a dropdown that is misaligned or incorrectly rendered in the table header."
+    }
+}

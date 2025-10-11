@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/menu/view/item.jsx//Item"
+        ],
+        "bug_functions": [
+            "src/menu/view/item.jsx//Item.getTitle",
+            "src/menu/view/item.jsx//Item.render"
+        ],
+        "explanation": "The `Item` class in `src/menu/view/item.jsx` is responsible for rendering menu items. The `getTitle` function generates the title attribute based on the children of a menu item, which is crucial to the current bug as it's responsible for adding the title attribute that leads to the duplication issue. The `render` function applies this title to the menu items, directly affecting the user experience by potentially displaying unwanted tooltips.",
+        "bug_scenario": "The bug involves the automatic addition of the title attribute to Menu Items, which is used for accessibility and displaying long text on hover. However, it causes issues when the title and innerText are identical, violating WCAG principles and affecting user experience by displaying unwanted title tooltips."
+    },
+    "2": {
+        "bug_classes": [
+            "src/menu/view/item.jsx//Item"
+        ],
+        "bug_functions": [
+            "src/menu/view/item.jsx//Item.getTitle",
+            "src/menu/view/item.jsx//Item.render"
+        ],
+        "explanation": "The 'Item' class in 'src/menu/view/item.jsx' is responsible for rendering menu items, including the logic for setting the 'title' attribute. The 'getTitle' function generates the title string from the children elements, and the 'render' function applies the title to the menu item. These are directly related to the issue of unwanted title tooltips, as they handle how and when titles are added to menu items, which is the core of the reported bug.",
+        "bug_scenario": "The bug report discusses the automatic addition of the 'title' attribute to Menu Items, which is used to support accessibility and display collapsed text on hover. However, this causes issues when the 'title' is identical to the 'innerText', violating WCAG principles and affecting user experience. Various solutions are proposed to address this issue, such as using 'aria-label' instead of 'title' or providing an API to control 'title' visibility."
+    }
+}

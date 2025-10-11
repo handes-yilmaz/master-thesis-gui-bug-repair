@@ -1,0 +1,18 @@
+diff --git a/components/prism-core.js b/components/prism-core.js
+index c573881ad..16c05b31c 100644
+--- a/components/prism-core.js
++++ b/components/prism-core.js
+@@ -82,7 +82,12 @@ var _ = _self.Prism = {
+ 		}
+ 	},
+ 
+-	languages: {
++\tlanguages: {
++\t\tgcode: {
++\t\t\tcomment: /;.*/,
++\t\t\tkeyword: /\b(G[\d]+|M[\d]+)\b/g,
++\t\t\tproperty: /\b(X|Y|Z|E|F|S|P|T|I|J|D|H|R|Q|N|\*)/g
++\t\t},
+ 		extend: function (id, redef) {
+ 			var lang = _.util.clone(_.languages[id]);
+ 

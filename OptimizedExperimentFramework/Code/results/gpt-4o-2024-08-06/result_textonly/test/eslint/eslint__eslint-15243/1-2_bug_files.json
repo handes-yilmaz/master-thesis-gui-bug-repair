@@ -1,0 +1,31 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/cli-engine/cli-engine.js",
+            "lib/cli-engine/formatters/checkstyle.js",
+            "lib/cli-engine/formatters/compact.js",
+            "lib/cli-engine/formatters/html.js",
+            "lib/cli-engine/formatters/jslint-xml.js",
+            "lib/cli-engine/formatters/json-with-metadata.js",
+            "lib/cli-engine/formatters/json.js",
+            "lib/cli-engine/formatters/junit.js",
+            "lib/cli-engine/formatters/stylish.js",
+            "lib/cli-engine/formatters/tap.js",
+            "lib/cli-engine/formatters/unix.js",
+            "lib/cli-engine/formatters/visualstudio.js"
+        ],
+        "explanation": "The files located in 'lib/cli-engine/formatters/' directory are directly related to the formatter functionality in ESLint. The main 'cli-engine.js' may need modifications to support executing formatters as asynchronous functions, allowing for asynchronous operations such as those required by the 'shiki' highlighter. Each formatter file (e.g., 'checkstyle.js', 'compact.js', etc.) would also need to be checked and potentially updated to be async/await compatible to handle async highlighter operations, thus these are the files related to the bug.",
+        "bug_scenario": "The bug is related to adding support for an asynchronous formatter in ESLint, as the current formatter does not support asynchronous operations which is necessary for integrating the 'shiki' highlighter."
+    },
+    "2": {
+        "bug_files": [
+            "lib/cli-engine/cli-engine.js",
+            "lib/cli-engine/formatters/compact.js",
+            "lib/cli-engine/formatters/checkstyle.js",
+            "lib/cli-engine/formatters/stylish.js",
+            "lib/cli-engine/formatters/json.js"
+        ],
+        "explanation": "The files listed above are related to the formatter feature of ESLint. Since the request is to support asynchronous formatters, modifications would likely need to occur within the core logic where formatters are handled. \n\n1. **lib/cli-engine/cli-engine.js**: This file is potentially where the CLI logic orchestrates the entire linting process, including the invocation of formatters. Support for async functions would need adjustments in handling promises within this pipeline.\n\n2. **lib/cli-engine/formatters/compact.js** and other formatter files: These files contain implementations of specific formatters. They represent where the formatters are defined and how they output the lint results. To support async formatters, they must be refactored to return promises, and the upstream code must be updated to handle these promises correctly.\n\nThe above files directly influence how formatters are used in ESLint, making them central to implementing the requested feature of supporting async formatters.",
+        "bug_scenario": "The issue is a feature request to support asynchronous formatters in ESLint. Currently, ESLint does not support formatters that return promises or require asynchronous operations, such as highlighters like `shiki`, which is an async highlighter intended to replace the existing synchronous highlighter used in a custom ESLint formatter. The feature request suggests allowing formatters to be asynchronous functions to accommodate such libraries."
+    }
+}

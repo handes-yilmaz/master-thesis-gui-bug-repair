@@ -1,0 +1,30 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/config-provider/index.jsx//ConfigProvider",
+            "src/config-provider/cache.js//Cache"
+        ],
+        "bug_functions": [
+            "src/config-provider/index.jsx//componentWillUnmount",
+            "src/config-provider/index.jsx//constructor",
+            "src/config-provider/cache.js//remove"
+        ],
+        "explanation": "The ConfigProvider class in 'src/config-provider/index.jsx' is directly responsible for the memory leak as it manages the cache that isn't cleared due to the SSR lifecycle issue. The constructor initializes the cache, and componentWillUnmount attempts to clear it, which doesn't work in SSR. In 'src/config-provider/cache.js', the Cache class manages the storage, with the remove function intended to clear entries. Adding a manual API to clear the cache or modifying how it's managed would address the leak.",
+        "bug_scenario": "The bug scenario involves a memory leak in the ConfigProvider component during server-side rendering (SSR). The issue arises because the internal cache of ConfigProvider grows and is not garbage collected. This happens because the componentWillUnmount lifecycle method, which is responsible for removing the cache, is not executed in SSR scenarios."
+    },
+    "2": {
+        "bug_classes": [
+            "src/config-provider/index.jsx//ConfigProvider",
+            "src/config-provider/cache.js//Cache"
+        ],
+        "bug_functions": [
+            "src/config-provider/index.jsx//componentWillUnmount",
+            "src/config-provider/index.jsx//constructor",
+            "src/config-provider/index.jsx//componentDidUpdate",
+            "src/config-provider/cache.js//remove",
+            "src/config-provider/index.jsx//render"
+        ],
+        "explanation": "The 'ConfigProvider' class is directly related to the issue as it is responsible for managing the cache that is leaking memory. The 'componentWillUnmount' method attempts to clear the cache but does not execute in SSR, contributing to the leak. The 'constructor' and 'componentDidUpdate' methods are involved in adding data to the cache, which needs to be managed for proper cleanup. The 'Cache' class's 'remove' function is crucial for clearing elements from the cache. The 'render' method is involved in the lifecycle that might need adjustments to handle SSR scenarios better.",
+        "bug_scenario": "The image shows a memory usage analysis tool where multiple instances of 'ConfigProvider' are consuming significant memory, indicating potential memory leaks."
+    }
+}

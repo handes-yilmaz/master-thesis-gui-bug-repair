@@ -1,0 +1,47 @@
+{
+    "1/1": {
+        "lib/rules/constructor-super.js": [
+            {
+                "SEARCH": [
+                    "let segInfoMap = Object.create(null);"
+                ],
+                "REPLACE": [
+                    "let segInfoMap = new Map();"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const info = segInfoMap[segment.id] = {",
+                    "calledInSomePaths: false,",
+                    "calledInEveryPaths: false,",
+                    "validNodes: []",
+                    "};"
+                ],
+                "REPLACE": [
+                    "const info = {",
+                    "    calledInSomePaths: false,",
+                    "    calledInEveryPaths: false,",
+                    "    validNodes: []",
+                    "};",
+                    "segInfoMap.set(segment.id, info);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "info = segInfoMap[segment.id];"
+                ],
+                "REPLACE": [
+                    "info = segInfoMap.get(segment.id);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "segInfoMap = Object.create(null);"
+                ],
+                "REPLACE": [
+                    "segInfoMap.clear();"
+                ]
+            }
+        ]
+    }
+}

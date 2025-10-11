@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "src/date-picker2/panels/time-panel.jsx": [
+            {
+                "SEARCH": [
+                    "const { prefix, rtl, locale, timePanelProps = {}, value } = this.props;",
+                    "const { showHour, showMinute, showSecond } = this.getShow();",
+                    "",
+                    "return (",
+                    "<div dir={rtl ? 'rtl' : undefined} className={`${prefix}date-time-picker-wrapper ${prefix}calendar2-panel`}>",
+                    "<div className={`${prefix}calendar2-header`}>",
+                    "<div className={`${prefix}calendar2-header-text-field`}>{value ? this.formater(value) : null}</div>",
+                    "</div>",
+                    "<TimePickerPanel",
+                    "prefix={prefix}",
+                    "locale={locale}",
+                    "onSelect={this.onSelect}",
+                    "showHour={showHour}",
+                    "showSecond={showSecond}",
+                    "showMinute={showMinute}",
+                    "{...timePanelProps}",
+                    "value={value}",
+                    "/>",
+                    "</div>",
+                    ");"
+                ],
+                "REPLACE": [
+                    "        const { prefix, rtl, locale, timePanelProps = {}, value, defaultValue } = this.props;",
+                    "        const { showHour, showMinute, showSecond } = this.getShow();",
+                    "",
+                    "        const displayValue = value || defaultValue;",
+                    "",
+                    "        return (",
+                    "            <div dir={rtl ? 'rtl' : undefined} className={`${prefix}date-time-picker-wrapper ${prefix}calendar2-panel`}>",
+                    "                <div className={`${prefix}calendar2-header`}>",
+                    "                    <div className={`${prefix}calendar2-header-text-field`}>{displayValue ? this.formater(displayValue) : null}</div>",
+                    "                </div>",
+                    "                <TimePickerPanel",
+                    "                    prefix={prefix}",
+                    "                    locale={locale}",
+                    "                    onSelect={this.onSelect}",
+                    "                    showHour={showHour}",
+                    "                    showSecond={showSecond}",
+                    "                    showMinute={showMinute}",
+                    "                    {...timePanelProps}",
+                    "                    value={displayValue}",
+                    "                />",
+                    "            </div>",
+                    "        );"
+                ]
+            }
+        ]
+    }
+}

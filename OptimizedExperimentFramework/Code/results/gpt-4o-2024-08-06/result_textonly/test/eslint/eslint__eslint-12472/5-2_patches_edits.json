@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "lib/rules/key-spacing.js": [
+            {
+                "SEARCH": [
+                    "function isKeyValueProperty(property) {",
+                    "return !(",
+                    "(property.method ||",
+                    "property.shorthand ||",
+                    "property.kind !== \"init\" || property.type !== \"Property\") // Could be \"ExperimentalSpreadProperty\" or \"SpreadElement\"",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        function isKeyValueProperty(property) {",
+                    "            return !(",
+                    "                (property.method ||",
+                    "                property.shorthand ||",
+                    "                property.kind !== \"init\" || property.type !== \"Property\") // Could be \"ExperimentalSpreadProperty\" or \"SpreadElement\"",
+                    "            ) && property.parent.type !== \"JSXExpressionContainer\";",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

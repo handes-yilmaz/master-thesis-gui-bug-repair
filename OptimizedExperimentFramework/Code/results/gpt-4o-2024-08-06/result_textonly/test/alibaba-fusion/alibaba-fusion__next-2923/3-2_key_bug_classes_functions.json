@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/config-provider/index.jsx//ConfigProvider",
+            "src/config-provider/cache.js//Cache"
+        ],
+        "bug_functions": [
+            "src/config-provider/index.jsx//componentWillUnmount"
+        ],
+        "explanation": "The ConfigProvider class in 'src/config-provider/index.jsx' is directly mentioned in the bug report as having an issue with its internal cache not being cleared during SSR, leading to a memory leak. The componentWillUnmount function within ConfigProvider is intended to remove cached data but does not execute in SSR, as explained in the report. This function is crucial since its failure to execute is the root cause of the memory leak. The Cache class in 'src/config-provider/cache.js' manages the cache storage and retrieval within ConfigProvider, and modifications here might be necessary to introduce a manual cache clearing mechanism or to ensure proper cache management even when componentWillUnmount is not called.",
+        "bug_scenario": "The bug scenario involves a memory leak in the ConfigProvider component when used in a Server-Side Rendering (SSR) context. The cache within ConfigProvider grows and is not garbage collected, as the componentWillUnmount lifecycle method, which removes the cache, is not executed in SSR scenarios due to a known React issue."
+    },
+    "2": {
+        "bug_classes": [
+            "src/config-provider/index.jsx//ConfigProvider",
+            "src/config-provider/cache.js//Cache"
+        ],
+        "bug_functions": [
+            "src/config-provider/index.jsx//componentWillUnmount",
+            "src/config-provider/cache.js//remove"
+        ],
+        "explanation": "The `ConfigProvider` class in `src/config-provider/index.jsx` is the main component involved in the scenario, as it holds the cache that is not being cleared due to the absence of `componentWillUnmount` execution in SSR. The `Cache` class in `src/config-provider/cache.js` is directly related because it manages the cache storage that is experiencing the leak. The `componentWillUnmount` function in `ConfigProvider` is intended to clear the cache but is not invoked in SSR, leading to the leak. The `remove` function in the `Cache` class is relevant because it performs the action of deleting cache entries, which is not happening as expected in this scenario. These elements are directly tied to the memory management issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves a memory leak in the `ConfigProvider` component when used in a server-side rendering (SSR) environment. The memory leak occurs because the cached data inside `ConfigProvider` does not get garbage collected. This happens because the `componentWillUnmount` lifecycle method, which is responsible for clearing the cache, is not called in SSR scenarios due to a known issue with React (https://github.com/facebook/react/issues/3714). The bug report suggests the need for a manual API to clear the cache or another method to handle cache cleanup in SSR."
+    }
+}

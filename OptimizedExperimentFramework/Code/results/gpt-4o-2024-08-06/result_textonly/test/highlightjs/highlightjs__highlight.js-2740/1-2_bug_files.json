@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/sql.js",
+            "src/languages/tsql.js",
+            "src/highlight.js"
+        ],
+        "explanation": "The bug is related to the highlighting of SQL code, specifically issues with escape sequences in string literals. The files 'src/languages/sql.js' and 'src/languages/tsql.js' would be directly responsible for defining how SQL and T-SQL code blocks are parsed and highlighted by the library. Hence, any issue with escape sequences would likely need a correction in these files. 'src/highlight.js' is probably the main library file that deals with language detection and overall implementation of highlighting rules, so any fundamental issue or bug fix related to highlighting escape sequences should be checked or implemented here.",
+        "bug_scenario": "The issue described in the bug report is that the syntax highlighting (probably using the highlight.js library) is not correctly processing SQL strings with escape sequences. Particularly, this issue becomes apparent when dynamic SQL is used with quotes which need to be escaped, leading to potential errors in how the SQL code is highlighted in the UI."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/sql.js",
+            "src/languages/tsql.js",
+            "src/highlight.js"
+        ],
+        "explanation": "- `src/languages/sql.js` and `src/languages/tsql.js`: These files are likely responsible for defining the rules and syntax highlighting behaviors for SQL and T-SQL code respectively. Since the bug involves incorrect highlighting of SQL escape sequences, these files would need to be examined and possibly adjusted to handle nested quotes and escape sequences properly.\n- `src/highlight.js`: This file is likely central to the functioning of the overall syntax highlighting feature, coordinating how language rules are applied. The bug report mentions the use of 'highlight', indicating issues may reside in the library's core, which would involve this file where the main highlighting logic is implemented.",
+        "bug_scenario": "The bug scenario involves the syntax highlighting tool 'highlight.js' improperly handling SQL escape sequences, especially within dynamic SQL statements. The issue is triggered when rendering the escape sequences in quoted strings, causing incorrect syntax highlighting as demonstrated in a sample tsql code.\n\nThis occurs despite using both \"sql\" and \"tsql\" language settings in the highlighter, suggesting a parser issue with handling nested quote escapes and dynamic SQL statements, as shown by the image and described in the bug report. These are sequences like `N''DROP VIEW IF EXISTS...'` which should be highlighted consistently with SQL syntax."
+    }
+}

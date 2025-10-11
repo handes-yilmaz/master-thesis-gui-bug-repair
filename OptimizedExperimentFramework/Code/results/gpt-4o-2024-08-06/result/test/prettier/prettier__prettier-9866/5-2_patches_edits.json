@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/language-js/print/jsx.js": [
+            {
+                "SEARCH": [
+                    "function printJSXChildren(",
+                    "path,",
+                    "options,",
+                    "print,",
+                    "jsxWhitespace,",
+                    "isFacebookTranslationTag",
+                    ") {",
+                    "const n = path.getValue();",
+                    "const children = [];",
+                    "",
+                    "path.each((childPath, i) => {",
+                    "const child = childPath.getValue();",
+                    "if (isLiteral(child)) {",
+                    "const text = rawText(child);",
+                    "",
+                    "// Contains a non-whitespace character",
+                    "if (isMeaningfulJSXText(child)) {",
+                    "const words = text.split(matchJsxWhitespaceRegex);"
+                ],
+                "REPLACE": [
+                    "function printJSXChildren(",
+                    "  path,",
+                    "  options,",
+                    "  print,",
+                    "  jsxWhitespace,",
+                    "  isFacebookTranslationTag",
+                    ") {",
+                    "  const n = path.getValue();",
+                    "  const children = [];",
+                    "",
+                    "  path.each((childPath, i) => {",
+                    "    const child = childPath.getValue();",
+                    "    if (isLiteral(child)) {",
+                    "      const text = rawText(child).replace(/\\u3000/g, ' ');",
+                    "",
+                    "      // Contains a non-whitespace character",
+                    "      if (isMeaningfulJSXText(child)) {",
+                    "        const words = text.split(matchJsxWhitespaceRegex);"
+                ]
+            }
+        ]
+    }
+}

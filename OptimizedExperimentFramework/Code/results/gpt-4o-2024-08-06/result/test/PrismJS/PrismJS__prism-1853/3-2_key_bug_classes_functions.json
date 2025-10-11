@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-json.js//Prism.languages.json"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue lies in the tokenization rules defined for JSON in 'components/prism-json.js'. The pattern for comments likely interferes with strings containing '/*'. The 'comment' pattern is not correctly distinguishing between comments and strings that contain similar patterns, causing incorrect highlighting.",
+        "bug_scenario": "The JSON syntax highlighting breaks due to misinterpretation of a string containing '/*' as a comment. This is likely due to the tokenization not correctly distinguishing between strings and comments when '/*' appears inside a string."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-json.js//Prism.languages.json"
+        ],
+        "bug_functions": [],
+        "explanation": "The problem is related to JSON tokenization where the '/*' is being interpreted incorrectly. In 'components/prism-json.js', the language definition for JSON includes patterns for comments, which are likely causing this misinterpretation. The 'comment' pattern defined as /\\/\\/.*|\\/\\*[\\s\\S]*?(?:\\*\\/|$)/ may be incorrectly matching '/*' within the JSON string, leading to the tokenization issue.",
+        "bug_scenario": "The image shows a JSON object being logged. The issue occurs when the HTTP header 'Accept: */*' causes incorrect syntax highlighting. The JSON key 'A' with value '/*' is being misinterpreted, likely due to it being mistaken for the start of a comment."
+    }
+}

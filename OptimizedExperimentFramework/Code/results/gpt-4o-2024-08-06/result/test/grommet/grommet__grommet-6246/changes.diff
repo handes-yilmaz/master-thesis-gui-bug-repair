@@ -1,0 +1,17 @@
+diff --git a/src/js/components/DataChart/DataChart.js b/src/js/components/DataChart/DataChart.js
+index 0e6d79524..21b8bd978 100644
+--- a/src/js/components/DataChart/DataChart.js
++++ b/src/js/components/DataChart/DataChart.js
+@@ -293,6 +293,12 @@ const DataChart = forwardRef(
+         });
+       });
+ 
++      // Ensure bounds include zero for negative values
++      chartBounds = chartBounds.map(bounds => {
++        bounds[1][0] = Math.min(bounds[1][0], 0);
++        return bounds;
++      });
++
+       if (boundsProp === 'align' && chartBounds.length) {
+         const alignedBounds = [...chartBounds[0]];
+         chartBounds.forEach((bounds) => {

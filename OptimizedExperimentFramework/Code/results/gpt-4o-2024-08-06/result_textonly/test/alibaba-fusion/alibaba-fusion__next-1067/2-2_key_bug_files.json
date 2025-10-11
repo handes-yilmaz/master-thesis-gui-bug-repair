@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/slider/slick/arrow.jsx",
+            "src/slider/slick/mixins/helpers.js",
+            "src/slider/slick/inner-slider.jsx"
+        ],
+        "explanation": "1. **src/slider/slick/arrow.jsx**: This file contains the logic for enabling and disabling the slider arrows. The `isDisabled` method checks conditions under which the arrows should be disabled. Since the bug involves the left arrow being disabled incorrectly, this file is crucial for addressing the logic that determines when arrows are active.\n\n2. **src/slider/slick/mixins/helpers.js**: This file includes helper functions that manage the slider's state, such as `canGoNext`, which determines if the slider can move to the next slide. The logic here affects whether the slider can move in either direction, impacting the arrow functionality.\n\n3. **src/slider/slick/inner-slider.jsx**: This file is the main component for the slider, integrating various props and state management. It initializes the slider's state, including the current slide and whether the slider is infinite. The bug is related to the initial state setup and how it affects arrow functionality, making this file relevant for ensuring the slider's initial conditions are correctly set.",
+        "bug_scenario": "The bug scenario involves a slider component where the left arrow is disabled when the number of slides to show is greater than the total number of slides, the slider is not set to infinite, and the default active index is not zero. This means that when the slider is initialized in a state where it cannot scroll left due to these conditions, the left arrow becomes non-functional."
+    }
+}

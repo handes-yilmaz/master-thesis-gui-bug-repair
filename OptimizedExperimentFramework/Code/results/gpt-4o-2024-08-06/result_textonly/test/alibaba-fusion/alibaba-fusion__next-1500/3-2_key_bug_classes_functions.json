@@ -1,0 +1,32 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/table/base/header.jsx//Header",
+            "src/table/fixed/header.jsx//FixedHeader"
+        ],
+        "bug_functions": [
+            "src/table/base/header.jsx//render",
+            "src/table/base/header.jsx//headerCellRef"
+        ],
+        "explanation": "The bug is related to the rendering of the table headers when both fixedHeader and resizable options are used. The 'Header' class in 'src/table/base/header.jsx' is responsible for rendering the table header including the filter, sort, and resize components. The 'render' function within this class constructs the header row and attaches the filter and resize elements, which are directly related to the bug scenario. Additionally, the 'headerCellRef' function is notable as it manages references to header cells, which might be important for managing how these cells are resized or rendered when fixed headers are involved. The 'FixedHeader' class in 'src/table/fixed/header.jsx' is a wrapper that manages the fixed header rendering, and thus also relates to the bug as it involves the fixedHeader functionality causing the issue.",
+        "bug_scenario": "The bug scenario involves the Table component where using fixedHeader and resizable features together leads to the header filter options displaying incorrectly. This issue is evident when the filter button is clicked, and the header does not render as expected, leading to a visual anomaly."
+    },
+    "2": {
+        "bug_classes": [
+            "src/table/base/header.jsx//Header",
+            "src/table/fixed/header.jsx//FixedHeader"
+        ],
+        "bug_functions": [
+            "src/table/base/header.jsx//render",
+            "src/table/base/header.jsx//getCellRef",
+            "src/table/base/header.jsx//onSort",
+            "src/table/base/filter.jsx//onFilter",
+            "src/table/base/resize.jsx//onMouseDown",
+            "src/table/base/resize.jsx//onMouseMove",
+            "src/table/base/resize.jsx//onMouseUp",
+            "src/table/base/resize.jsx//render"
+        ],
+        "explanation": "The bug is related to the table header's behavior when both `fixedHeader` and `resizable` properties are used. The `Header` class in `src/table/base/header.jsx` is responsible for rendering the table header, which includes handling of filtering, sorting, and resizing. The `render` function in this class generates the table header elements, including the filter and resize components, which are likely where the issue manifests. The `getCellRef` and `onSort` methods are involved in the header cell's reference management and sorting logic, respectively, possibly interfering with the filter dropdown alignment.\n\nThe `FixedHeader` class in `src/table/fixed/header.jsx` wraps the base header and is crucial because it manages the fixed position of the header, which can affect how dropdowns are rendered and positioned.\n\nThe `Filter` class in `src/table/base/filter.jsx` handles the visibility and selection logic of the filter dropdown. The `onFilter` function is directly responsible for applying filter changes, which could interact incorrectly with the fixed and resizable properties.\n\nThe `Resize` class in `src/table/base/resize.jsx` manages the resizing logic of table columns. The `onMouseDown`, `onMouseMove`, and `onMouseUp` functions control the resizing interactions, which could interfere with the positioning of the filter dropdown when the header is being resized. The `render` function in this class is responsible for rendering the resize handler, which could visually conflict with the filter dropdown when both are active.",
+        "bug_scenario": "The bug report describes an issue where the table's header filter options display incorrectly when both `fixedHeader` and `resizable` properties are used together. The provided reproduction link demonstrates this issue, which is visually evident in the screenshot where the filter dropdown is not aligned correctly or appears misplaced when the header is both fixed and resizable."
+    }
+}

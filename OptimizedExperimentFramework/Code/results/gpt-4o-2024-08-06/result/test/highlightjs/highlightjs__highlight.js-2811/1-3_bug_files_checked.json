@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "1. **src/languages/python.js**: This file is likely responsible for defining the syntax rules and highlighting logic for Python code. If comments are not being correctly identified when decorators are present, the issue might stem from this file not recognizing comment patterns properly in certain scenarios.\n\n2. **src/lib/modes.js**: This file could contain logic for handling different highlighting modes and ensuring that decorators and comments are processed separately. Adjustments here might be necessary to differentiate between decorators and subsequent comments on the same line.",
+        "bug_scenario": "The bug in question relates to the incorrect syntax highlighting of comments in Python code when they appear on the same line as a decorator. Instead of the comment portion being highlighted as a comment, the entire line is incorrectly given the 'hljs-meta' class intended for metadata, with no differentiation for the comment section."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/modes.js",
+            "src/lib/token_tree.js"
+        ],
+        "explanation": "1. **src/languages/python.js** - This file likely contains the syntax definition and tokenization rules for Python, including decorators and comments. Any issue with how decorators and comments are processed in Python would need to be addressed here.\n\n2. **src/lib/modes.js** - This file is likely involved in determining how different code structures are parsed and assigned classes. If decorators and comments are not being distinguished correctly, changes may be needed here.\n\n3. **src/lib/token_tree.js** - This file possibly manages the way tokens are organized and styled, which would include ensuring comments are recognized and styled correctly.",
+        "bug_scenario": "The bug report describes an issue where, in Python code, if a comment is on the same line as a decorator, the entire line is incorrectly styled with the `hljs-meta` class, including the comment, which should instead be styled using `hljs-comment`. In the provided image, the first line with the decorator `@pytest.mark.asyncio` has the comment styled incorrectly, while the comment on the line with `async def` is styled correctly."
+    }
+}

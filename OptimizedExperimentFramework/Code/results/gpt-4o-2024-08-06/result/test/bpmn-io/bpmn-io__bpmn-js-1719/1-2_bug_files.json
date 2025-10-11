@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/label-editing/LabelUtil.js"
+        ],
+        "explanation": "1. **lib/draw/BpmnRenderer.js**: Responsible for rendering BPMN elements, likely interacting with labels during rendering.\n2. **lib/features/drilldown/DrilldownOverlayBehavior.js**: Deals with collapsing and expanding subprocesses, could affect label visibility.\n3. **lib/features/modeling/behavior/LabelBehavior.js**: Manages label-related behavior which is crucial in ensuring labels are visible or hidden appropriately when subprocesses are collapsed.\n4. **lib/features/label-editing/LabelUtil.js**: Provides utilities for label positioning and visibility, possibly requiring adjustments to hide labels within collapsed sub processes.",
+        "bug_scenario": "When a sub process is collapsed, the label of the start event within it becomes visible and even moves further outside the sub process boundary. This issue happens when clicking through the steps, although importing and exporting the diagram works fine."
+    },
+    "2": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js"
+        ],
+        "explanation": "1. **lib/draw/BpmnRenderer.js**: Responsible for rendering BPMN elements which includes handling labels and ensuring their visibility and positioning during rendering.\n2. **lib/features/modeling/behavior/LabelBehavior.js**: Manages the behavior of labels in the model, likely where the handling of label visibility inside collapsed sub-processes is implemented.\n3. **lib/features/modeling/behavior/SubProcessPlaneBehavior.js**: Controls the behavior and interaction of sub-process planes which include their transition between expanded and collapsed states.\n4. **lib/features/modeling/behavior/SubProcessStartEventBehavior.js**: Specifically involved in handling elements related to the start event in sub-processes.",
+        "bug_scenario": "The bug involves labels becoming visible after collapsing a sub-process that contains a start, task, and end event. The label of the start event moves outside unexpectedly. This occurs specifically when interaction steps are followed as described in the provided animation."
+    }
+}

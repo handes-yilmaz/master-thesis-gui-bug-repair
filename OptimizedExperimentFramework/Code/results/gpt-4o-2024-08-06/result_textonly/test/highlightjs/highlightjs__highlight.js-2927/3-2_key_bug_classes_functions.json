@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/lib/modes.js//C_NUMBER_MODE"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue relates to the incorrect highlighting of integer literals with the 'LL' suffix. In the compressed bug files, the relevant part is the 'C_NUMBER_MODE' in 'src/lib/modes.js', which defines the regular expression for C number literals. The 'C_NUMBER_MODE' uses 'C_NUMBER_RE', a regular expression that likely needs to be adjusted to properly recognize and highlight the 'LL' suffix as a valid part of C/C++ integer literals. Therefore, this mode is a critical element related to the bug where the highlighting logic is defined.",
+        "bug_scenario": "The bug report describes an issue where only the first 'L' of the 'LL' integer literal suffix is highlighted in C/C++ code snippets, instead of highlighting both 'L's. This issue is observed on a platform like StackOverflow, where code highlighting is used."
+    },
+    "2": {
+        "bug_classes": [
+            "src/lib/modes.js//C_NUMBER_MODE"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue relates to the incorrect highlighting of `LL` suffixes in C/C++ integer literals. In the compressed bug files, the `C_NUMBER_MODE` in `src/lib/modes.js` contains the regex pattern `C_NUMBER_RE` which defines how numbers, including those with suffixes like `LL`, are matched and highlighted. Since the problem is with the highlighting of the `LL` suffix, this specific mode is likely responsible for parsing and highlighting numbers in C/C++ code. Adjusting this regex to correctly account for `LL` suffixes will address the bug.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting when using the `LL` suffix for integer literals in C/C++ code. Specifically, only the first `L` is highlighted, which is incorrect as both `L`s should be highlighted to properly represent the type of integer literal in C/C++ programming. This issue is particularly visible on platforms like StackOverflow where code syntax highlighting is crucial for readability and understanding."
+    }
+}

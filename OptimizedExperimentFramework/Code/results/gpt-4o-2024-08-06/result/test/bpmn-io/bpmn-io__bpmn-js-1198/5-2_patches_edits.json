@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js": [
+            {
+                "SEARCH": [
+                    "if (isDefaultFlow(connection, source)) {",
+                    "modeling.updateProperties(source, {",
+                    "'default': null",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (isDefaultFlow(connection, source) && !isCatchEvent(connection)) {",
+                    "      modeling.updateProperties(source, {",
+                    "        'default': null",
+                    "      });",
+                    "    }",
+                    "",
+                    "function isCatchEvent(connection) {",
+                    "  var bo = getBusinessObject(connection.target);",
+                    "  return is(bo, 'bpmn:IntermediateCatchEvent');",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

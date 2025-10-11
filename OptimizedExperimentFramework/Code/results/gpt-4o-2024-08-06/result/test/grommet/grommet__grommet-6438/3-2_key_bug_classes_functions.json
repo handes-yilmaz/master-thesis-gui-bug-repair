@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/DateInput/DateInput.js//DateInput"
+        ],
+        "bug_functions": [
+            "src/js/components/DateInput/DateInput.js//getReference",
+            "src/js/components/DateInput/DateInput.js//onSelect"
+        ],
+        "explanation": "The issue relates to the DateInput component in 'src/js/components/DateInput/DateInput.js'. The 'getReference' function determines the reference date, which may not correctly account for the calendarProps bounds. Additionally, the 'onSelect' function within the calendar selection logic does not enforce the bounds when a date is selected. These parts of the code are responsible for handling date selection and validation against the provided bounds, which is where the bug manifests.",
+        "bug_scenario": "The bug allows users to select a day outside the specified bounds of the DateInput component. In this case, the user can select June 30, 2020, even though the bounds are set to July 1, 2020, to July 31, 2020."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/DateInput/DateInput.js//DateInput"
+        ],
+        "bug_functions": [
+            "src/js/components/DateInput/DateInput.js//DateInput",
+            "src/js/components/DateInput/utils.js//textToValue",
+            "src/js/components/DateInput/utils.js//schemaToMask",
+            "src/js/components/DateInput/utils.js//valueToText"
+        ],
+        "explanation": "The issue is that the DateInput component allows selecting dates outside the specified bounds. The DateInput component is responsible for rendering the calendar and handling date selection. The bug likely originates from how dates are validated and displayed, which involves multiple functions: the DateInput component for the main logic, textToValue for converting text input to date values, schemaToMask for defining input masks, and valueToText for converting date values to text. Adjustments in these functions would be necessary to enforce proper bounds checking.",
+        "bug_scenario": "The bug involves selecting dates outside the specified range bounds in a date input calendar. Even when the calendarProps are set to specific bounds, users can select dates from the previous month that should be disabled."
+    }
+}

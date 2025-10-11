@@ -1,0 +1,60 @@
+{
+    "1/1": {
+        "lib/features/copy-paste/BpmnCopyPaste.js": [
+            {
+                "SEARCH": [
+                    "if (isLabel(descriptor)) {",
+                    "return descriptor;",
+                    "}",
+                    "",
+                    "// default sequence flow",
+                    "if (businessObject.default) {",
+                    "descriptor.default = businessObject.default.id;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (isLabel(descriptor)) {",
+                    "      descriptor.businessObject = getBusinessObject(cache[descriptor.labelTarget]);",
+                    "      return descriptor;",
+                    "    }",
+                    "",
+                    "    // copy label text",
+                    "    var label = getLabel(element);",
+                    "    if (label) {",
+                    "      descriptor.label = label;",
+                    "    }",
+                    "",
+                    "    // default sequence flow",
+                    "    if (businessObject.default) {",
+                    "      descriptor.default = businessObject.default.id;",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "// do NOT copy business object if external label",
+                    "if (isLabel(descriptor)) {",
+                    "descriptor.businessObject = getBusinessObject(cache[ descriptor.labelTarget ]);",
+                    "",
+                    "return;",
+                    "}",
+                    "",
+                    "newBusinessObject = bpmnFactory.create(oldBusinessObject.$type);"
+                ],
+                "REPLACE": [
+                    "    // handle label during paste",
+                    "    if (isLabel(descriptor)) {",
+                    "      descriptor.businessObject = getBusinessObject(cache[descriptor.labelTarget]);",
+                    "      setLabel(descriptor, descriptor.label || '', true);",
+                    "      return;",
+                    "    }",
+                    "",
+                    "    newBusinessObject = bpmnFactory.create(oldBusinessObject.$type);",
+                    "    if (descriptor.label) {",
+                    "      setLabel(newBusinessObject, descriptor.label);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

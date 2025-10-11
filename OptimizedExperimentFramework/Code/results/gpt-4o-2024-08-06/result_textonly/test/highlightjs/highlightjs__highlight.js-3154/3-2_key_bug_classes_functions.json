@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/ruby.js//RUBY_DEFAULT_CONTAINS",
+            "src/languages/ruby.js//STRING"
+        ],
+        "bug_functions": [
+            "src/languages/ruby.js//function",
+            "src/languages/ruby.js//RUBY_METHOD_RE"
+        ],
+        "explanation": "The bug relates to Ruby heredoc syntax highlighting, particularly when there's no interpolation. The 'RUBY_DEFAULT_CONTAINS' and 'STRING' constants in 'src/languages/ruby.js' are key elements as they define how strings, including heredocs, are processed and recognized by the highlighter. The 'function' is relevant as it determines how different Ruby components, including heredocs, are parsed. The 'RUBY_METHOD_RE' is also a part of this parsing process, ensuring that the correct Ruby syntax rules are followed. Together, these elements need to be adjusted to correctly identify and highlight heredocs without interpolation.",
+        "bug_scenario": "The bug involves Ruby heredocs without interpolation not being correctly highlighted in the syntax highlighter. The issue is that these heredocs have different opening and closing markers, and the ending is not being detected properly, resulting in incorrect syntax highlighting."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [
+            "src/languages/ruby.js//STRING"
+        ],
+        "explanation": "The issue resides in the Ruby language definition file, specifically in the handling of string literals, which includes heredocs. The 'STRING' function in 'src/languages/ruby.js' is responsible for defining how strings are parsed and highlighted. The problem is that the current regex pattern for heredocs does not account for the lack of interpolation, which is identified by single quotes around the heredoc identifier. Thus, the 'STRING' function and its variants need to be examined and modified to properly recognize and highlight heredocs without interpolation.",
+        "bug_scenario": "The bug scenario involves the incorrect syntax highlighting of Ruby heredocs without interpolation. In Ruby, heredocs without interpolation are expected to have slightly different syntax, but the current implementation does not recognize these differences, leading to incorrect highlighting. Specifically, the ending of the heredoc is not detected, resulting in the entire heredoc not being highlighted as a string."
+    }
+}

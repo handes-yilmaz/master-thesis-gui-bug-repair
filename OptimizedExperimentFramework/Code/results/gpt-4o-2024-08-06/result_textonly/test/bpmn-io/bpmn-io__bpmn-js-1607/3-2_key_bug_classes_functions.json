@@ -1,0 +1,35 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/GroupBehavior.js//GroupBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/GroupBehavior.js//removeReferencedCategoryValue",
+            "lib/features/modeling/behavior/GroupBehavior.js//removeCategory",
+            "lib/features/modeling/behavior/GroupBehavior.js//createCategoryValue",
+            "lib/import/BpmnImporter.js//BpmnImporter.prototype.add",
+            "lib/import/BpmnImporter.js//BpmnImporter.prototype._getEnd",
+            "lib/import/BpmnImporter.js//BpmnImporter.prototype._getSource",
+            "lib/import/BpmnImporter.js//BpmnImporter.prototype._getTarget"
+        ],
+        "explanation": "The class 'GroupBehavior' in 'GroupBehavior.js' is directly involved in managing BPMN group behaviors, including creating, removing, and referencing category values, which are central to the bug issue. Functions such as 'removeReferencedCategoryValue', 'removeCategory', and 'createCategoryValue' are crucial for handling category values associated with groups, which are part of the problem described in the bug report.\n\nIn 'BpmnImporter.js', the function 'BpmnImporter.prototype.add' is responsible for adding BPMN elements to the canvas and handling their attributes, which includes dealing with category values and references. This function and related functions like '_getEnd', '_getSource', and '_getTarget' are involved in resolving references to semantic elements and ensuring they are properly linked and displayed. These functions are likely involved in the export/import process that is failing to correctly resolve group references when they are inside collapsed sub-processes, leading to the unresolved reference error.",
+        "bug_scenario": "The bug occurs when a group is created inside a collapsed sub-process and then saved. Upon re-importing the diagram, a warning appears indicating an unresolved reference to a category value, specifically 'unresolved reference <CategoryValue_01k5toe>'. This suggests that the reference to the group category value is not being handled correctly during the export or re-import process."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/GroupBehavior.js//GroupBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/GroupBehavior.js//removeReferencedCategoryValue",
+            "lib/features/modeling/behavior/GroupBehavior.js//removeCategory",
+            "lib/features/modeling/behavior/GroupBehavior.js//getGroupElements",
+            "lib/features/modeling/behavior/GroupBehavior.js//isReferenced",
+            "lib/features/modeling/behavior/GroupBehavior.js//executed",
+            "lib/features/modeling/behavior/GroupBehavior.js//reverted",
+            "lib/features/modeling/behavior/GroupBehavior.js//execute",
+            "lib/features/modeling/behavior/GroupBehavior.js//revert"
+        ],
+        "explanation": "The `GroupBehavior` class in `lib/features/modeling/behavior/GroupBehavior.js` is directly related to handling BPMN group behaviors, including creation and deletion, which is central to the bug scenario. This class contains methods that manage the lifecycle of category values linked to BPMN:Group elements (`removeReferencedCategoryValue`, `removeCategory`, etc.). These methods are responsible for adding, removing, and maintaining references to category values, which are crucial to resolving the `unresolved reference` error. The functions `executed`, `reverted`, `execute`, and `revert` are particularly relevant as they handle the execution and reversal of commands related to shape (group) creation and deletion, directly influencing how category values are managed and potentially causing the unresolved reference issue during re-import.",
+        "bug_scenario": "The bug scenario involves creating a group inside a collapsed sub-process in a BPMN model, which leads to an unresolved reference error when the model is saved and re-imported. The error message indicates an unresolved reference to a category value, which suggests that the issue is related to the handling of category values within groups in the context of BPMN diagrams."
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/tree/view/tree-node.jsx//TreeNode",
+            "src/tree/view/tree.jsx//Tree"
+        ],
+        "bug_functions": [
+            "src/tree/view/util.js//getAllCheckedKeys"
+        ],
+        "explanation": "The `TreeNode` class in `tree-node.jsx` likely handles the node-level logic for selection, which is directly related to toggling behavior. The `Tree` class in `tree.jsx` manages the overall tree structure and interactions, including selection state management. The `getAllCheckedKeys` function in `util.js` deals with handling the keys of selected nodes, which is crucial for updating the selected state correctly.",
+        "bug_scenario": "The bug involves the tree component's node selection and deselection toggle. When a node is selected, the 'selected' parameter changes to false after clicking once and doesn't change back on subsequent clicks. The style doesn't change, making it impossible to distinguish between true and false states. The expected behavior is that clicking the same node should toggle the 'selected' state and styles between true and false."
+    },
+    "2": {
+        "bug_classes": [
+            "src/tree/view/tree-node.jsx//TreeNode",
+            "src/tree/view/tree.jsx//Tree"
+        ],
+        "bug_functions": [
+            "src/tree/view/util.js//isNodeChecked",
+            "src/tree/view/util.js//getAllCheckedKeys"
+        ],
+        "explanation": "The 'TreeNode' class in 'tree-node.jsx' likely manages individual node states, including selection, and would need adjustments to ensure state toggling reflects correctly. The 'Tree' class in 'tree.jsx' handles the overall tree component, which includes logic for managing state changes across nodes. The functions 'isNodeChecked' and 'getAllCheckedKeys' in 'util.js' are directly related to checking the state of nodes and managing checked keys, which are integral to the selection and deselection process.",
+        "bug_scenario": "The bug involves the tree component where a node's selected state does not toggle correctly. When a node is clicked for the first time, the 'selected' parameter changes to false, but subsequent clicks do not change this value or the styling, making it impossible to distinguish between true or false states. The expected behavior is that clicking the same node should toggle 'selected' between true and false, with corresponding CSS style changes."
+    }
+}

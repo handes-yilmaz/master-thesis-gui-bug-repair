@@ -1,0 +1,28 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//DeleteLaneBehavior",
+            "lib/features/modeling/util/LaneUtil.js"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//compensateLaneDelete",
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//postExecuted",
+            "lib/features/modeling/util/LaneUtil.js//getChildLanes"
+        ],
+        "explanation": "The issue is related to the behavior of connecting message flows to pools with lanes. The \"DeleteLaneBehavior\" class in \"DeleteLaneBehavior.js\" is directly involved in handling the deletion of lanes and compensating for the removal, which is central to the problem of connecting message flows after lanes are removed. The \"compensateLaneDelete\" function is responsible for adjusting the layout after a lane is deleted, which might not be handling connections correctly. The \"postExecuted\" function is a hook for post-processing after a lane deletion command, which might need adjustments to ensure the message flows can connect correctly. In \"LaneUtil.js\", the \"getChildLanes\" function is used to retrieve lane elements, which is crucial for determining the pool's structure after lanes are added or removed, affecting how connections are made. These elements are key because they manage the structure and behaviors of lanes in pools, directly impacting the ability to connect flows to the pool boundaries.",
+        "bug_scenario": "The bug occurs when trying to connect a message flow to the boundary of a pool that previously had more than one lane. The connector can only be attached at the header of the pool and not within the single lane of the pool. This issue arises after adding and then immediately removing lanes from the pool."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//DeleteLaneBehavior",
+            "lib/features/modeling/util/LaneUtil.js//LaneUtil"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//compensateLaneDelete",
+            "lib/features/modeling/util/LaneUtil.js//getChildLanes",
+            "lib/features/modeling/util/LaneUtil.js//getLanesRoot"
+        ],
+        "explanation": "The bug involves the behavior of connecting message flows to pool boundaries, especially after lanes are deleted. The `DeleteLaneBehavior` class in `DeleteLaneBehavior.js` contains logic for adjusting the layout when lanes are deleted, which directly relates to the problem described. The `compensateLaneDelete` function is responsible for adjusting elements' positions after a lane is deleted, which could affect how connections are made to the pool.\n\nIn `LaneUtil.js`, the `getChildLanes` function is crucial as it retrieves lane information for a given shape, and any issue here could lead to incorrect handling of the pool's structure after lane deletion. Similarly, `getLanesRoot` is used to find the root element containing the lanes, which is important for managing connections to the correct pool boundaries after structural changes. These functions need to be examined to ensure they correctly handle the case when a lane is deleted and the pool is reverted to a single-lane state.",
+        "bug_scenario": "When attempting to connect a message flow to a pool boundary that previously had multiple lanes, the connection can only be made at the pool's header rather than within the single lane, which is incorrect behavior."
+    }
+}

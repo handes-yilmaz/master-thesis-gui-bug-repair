@@ -1,0 +1,20 @@
+diff --git a/src/transfer/view/transfer-panel.jsx b/src/transfer/view/transfer-panel.jsx
+index 8c157adcd..74a731dd6 100644
+--- a/src/transfer/view/transfer-panel.jsx
++++ b/src/transfer/view/transfer-panel.jsx
+@@ -200,12 +200,13 @@ export default class TransferPanel extends Component {
+     }
+ 
+     renderSearch() {
+-        const { prefix, searchPlaceholder, locale, searchProps = {} } = this.props;
++        const { prefix, searchPlaceholder, locale, searchProps = {}, position } = this.props;
++        const positionSpecificSearchProps = searchProps[position] || {};
+         return (
+             <Search
+                 aria-labelledby={this.headerId}
+                 shape="simple"
+-                {...searchProps}
++                {...positionSpecificSearchProps}
+                 className={`${prefix}transfer-panel-search`}
+                 placeholder={searchPlaceholder || locale.searchPlaceholder}
+                 onChange={this.handleSearch}

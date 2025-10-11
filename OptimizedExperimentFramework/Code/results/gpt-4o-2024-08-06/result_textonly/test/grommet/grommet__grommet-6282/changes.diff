@@ -1,0 +1,19 @@
+diff --git a/src/js/components/DataTable/DataTable.js b/src/js/components/DataTable/DataTable.js
+index 6c02fd954f..c50d303157 100644
+--- a/src/js/components/DataTable/DataTable.js
++++ b/src/js/components/DataTable/DataTable.js
+@@ -112,10 +112,10 @@ const DataTable = ({
+   // the data filtered and sorted, if needed
+   // Note: onUpdate mode expects the data to be passed
+   //   in completely filtered and sorted already.
+-  const adjustedData = useMemo(
+-    () => (onUpdate ? data : filterAndSortData(data, filters, onSearch, sort)),
+-    [data, filters, onSearch, onUpdate, sort],
+-  );
++const adjustedData = useMemo(
++  () => (onUpdate ? data : filterAndSortData(data, filters, onSearch, sort, columns)),
++  [data, filters, onSearch, onUpdate, sort, columns],
++);
+ 
+   // the values to put in the footer cells
+   const footerValues = useMemo(

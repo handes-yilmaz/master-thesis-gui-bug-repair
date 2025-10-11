@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-javascript.min.js",
+            "prism.js"
+        ],
+        "explanation": "The files `components/prism-javascript.js` and its minified version `components/prism-javascript.min.js` are directly related to the bug because they handle the parsing and syntax highlighting specifically for JavaScript, which is where the issue occurs as described in the bug report. The core file `prism.js` is also relevant because it is likely to contain the central logic for handling the execution of syntax highlighting across different languages, including JavaScript. The problem seems to stem from the way PrismJS tokenizer handles specific JavaScript syntax combinations that affect the highlighting setup, which is defined in these files.",
+        "bug_scenario": "The bug is related to the incorrect parsing and highlighting of template literals in JavaScript. The issue arises when a regex pattern containing a single quote is used in conjunction with template literals that also contain single quotes, followed by a comment with template literals. This sequence breaks the parsing of subsequent normal template literals, leading to incorrect syntax highlighting."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-javascript.min.js",
+            "components/prism-typescript.js",
+            "components/prism-typescript.min.js",
+            "prism.js"
+        ],
+        "explanation": "Given the problem is related to JavaScript and TypeScript highlighting breaking, the files \"prism-javascript.js\" and \"prism-typescript.js\" are directly related to parsing and syntax highlighting of these languages. Since PrismJS is handling these scenarios, the core logic for parsing templates may reside in its JavaScript or Typescript handling files, thus requiring updates here to fix the parsing state after a regex match or a comment with template literals. Additionally, \"prism.js\" might contain core parsing logic applicable across multiple languages or special handling for embedded template tags which could affect the behavior when they follow peculiar configurations as described. These files would need investigation and updates to address how template literal tokens are processed to prevent misinterpretation or state inversion affecting subsequent template literals.",
+        "bug_scenario": "The bug is related to the syntax highlighting of JavaScript (and TypeScript) template literals in \"PrismJS\". The user reports that after a specific setup of code involving regex containing single quotes and template literals in comments, basic template literal parsing breaks for the rest of the file. The issue potentially affects the template handling logic, likely caused by incorrect state management when parsing template literals in the PrismJS syntax highlighting engine."
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "1/1": {
+        "src/js/components/DataTable/DataTable.js": [
+            {
+                "SEARCH": [
+                    "const adjustedData = useMemo(",
+                    "() => (onUpdate ? data : filterAndSortData(data, filters, onSearch, sort)),",
+                    "[data, filters, onSearch, onUpdate, sort],",
+                    ");"
+                ],
+                "REPLACE": [
+                    "const adjustedData = useMemo(",
+                    "  () => (onUpdate ? data : filterAndSortData(data, filters, onSearch, sort, columns)),",
+                    "  [data, filters, onSearch, onUpdate, sort, columns],",
+                    ");"
+                ]
+            }
+        ],
+        "src/js/components/DataTable/buildState.js": [
+            {
+                "SEARCH": [
+                    "export const filterAndSortData = (data, filters, onSearch, sort) => {",
+                    "let result = data;",
+                    "// existing filtering logic",
+                    "if (sort && sort.property) {",
+                    "const { property, direction } = sort;",
+                    "result = result.sort((a, b) => {",
+                    "if (a[property] < b[property]) return direction === 'asc' ? -1 : 1;",
+                    "if (a[property] > b[property]) return direction === 'asc' ? 1 : -1;",
+                    "return 0;",
+                    "});",
+                    "}",
+                    "return result;",
+                    "};"
+                ],
+                "REPLACE": [
+                    "export const filterAndSortData = (data, filters, onSearch, sort, columns) => {",
+                    "  let result = data;",
+                    "  // existing filtering logic",
+                    "  if (sort && sort.property) {",
+                    "    const { property, direction } = sort;",
+                    "    const column = columns.find(col => col.property === property);",
+                    "    result = result.sort((a, b) => {",
+                    "      const aValue = a[property] ?? '';",
+                    "      const bValue = b[property] ?? '';",
+                    "      if (aValue < bValue) return direction === 'asc' ? -1 : 1;",
+                    "      if (aValue > bValue) return direction === 'asc' ? 1 : -1;",
+                    "      return 0;",
+                    "    });",
+                    "  }",
+                    "  return result;",
+                    "};"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "src/field/index.js": [
+            {
+                "SEARCH": [
+                    "this.values = options.values || {};"
+                ],
+                "REPLACE": [
+                    "        this.values = JSON.parse(JSON.stringify(options.values || {}));"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (options.values) {",
+                    "this.setValues(options.values, false);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        if (options.values) {",
+                    "            const valuesCopy = JSON.parse(JSON.stringify(options.values));",
+                    "            this.setValues(valuesCopy, false);",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "lib/rules/prefer-const.js": [
+            {
+                "SEARCH": [
+                    "if (!isVarDecParentNull && varDeclParent.declarations.length > 0) {",
+                    "const firstDeclaration = varDeclParent.declarations[0];",
+                    "",
+                    "if (firstDeclaration.init) {",
+                    "const firstDecParent = firstDeclaration.init.parent;"
+                ],
+                "REPLACE": [
+                    "                if (!isVarDecParentNull && varDeclParent.declarations.length > 0) {",
+                    "                    const firstDeclaration = varDeclParent.declarations[0];",
+                    "",
+                    "                    if (firstDeclaration.init && firstDeclaration.init.name !== \"undefined\") {",
+                    "                        const firstDecParent = firstDeclaration.init.parent;"
+                ]
+            }
+        ]
+    }
+}

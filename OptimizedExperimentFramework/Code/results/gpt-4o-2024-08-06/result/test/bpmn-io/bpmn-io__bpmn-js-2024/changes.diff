@@ -1,0 +1,86 @@
+diff --git a/lib/draw/BpmnRenderer.js b/lib/draw/BpmnRenderer.js
+index a344b152..37fb5391 100644
+--- a/lib/draw/BpmnRenderer.js
++++ b/lib/draw/BpmnRenderer.js
+@@ -347,31 +347,31 @@ export default function BpmnRenderer(
+     return circle;
+   }
+ 
+-  function drawRect(parentGfx, width, height, r, offset, attrs) {
++function drawRect(parentGfx, width, height, r, offset, attrs, isHorizontal = true) {
+ 
+-    if (isObject(offset)) {
+-      attrs = offset;
+-      offset = 0;
+-    }
++  if (isObject(offset)) {
++    attrs = offset;
++    offset = 0;
++  }
+ 
+-    offset = offset || 0;
++  offset = offset || 0;
+ 
+-    attrs = shapeStyle(attrs);
++  attrs = shapeStyle(attrs);
+ 
+-    var rect = svgCreate('rect', {
+-      x: offset,
+-      y: offset,
+-      width: width - offset * 2,
+-      height: height - offset * 2,
+-      rx: r,
+-      ry: r,
+-      ...attrs
+-    });
++  var rect = svgCreate('rect', {
++    x: offset,
++    y: offset,
++    width: isHorizontal ? width - offset * 2 : height - offset * 2,
++    height: isHorizontal ? height - offset * 2 : width - offset * 2,
++    rx: r,
++    ry: r,
++    ...attrs
++  });
+ 
+-    svgAppend(parentGfx, rect);
++  svgAppend(parentGfx, rect);
+ 
+-    return rect;
+-  }
++  return rect;
++}
+ 
+   function drawDiamond(parentGfx, width, height, attrs) {
+ 
+@@ -2310,4 +2310,4 @@ function pickAttrs(attrs, keys = []) {
+ 
+     return pickedAttrs;
+   }, {});
+-}
+\ No newline at end of file
++}
+diff --git a/lib/features/modeling/behavior/IsHorizontalFix.js b/lib/features/modeling/behavior/IsHorizontalFix.js
+index 68fb5e6b..2661b082 100644
+--- a/lib/features/modeling/behavior/IsHorizontalFix.js
++++ b/lib/features/modeling/behavior/IsHorizontalFix.js
+@@ -35,11 +35,14 @@ export default function IsHorizontalFix(eventBus) {
+         bo = getBusinessObject(shape),
+         di = getDi(shape);
+ 
+-    if (isAny(bo, elementTypesToUpdate) && !di.get('isHorizontal')) {
+-
+-      // set attribute directly to avoid modeling#updateProperty side effects
+-      di.set('isHorizontal', true);
+-    }
++if (isAny(bo, elementTypesToUpdate)) {
++  var isHorizontal = di.get('isHorizontal');
++  
++  if (isHorizontal === undefined) {
++    // Default to true if not set
++    di.set('isHorizontal', true);
++  }
++}
+   });
+ 
+ }

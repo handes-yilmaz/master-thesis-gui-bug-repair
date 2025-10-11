@@ -1,0 +1,33 @@
+diff --git a/src/dialog/dialog.jsx b/src/dialog/dialog.jsx
+index 5ed513a6b..0a77914f8 100644
+--- a/src/dialog/dialog.jsx
++++ b/src/dialog/dialog.jsx
+@@ -4,6 +4,7 @@ import Overlay from '../overlay';
+ import zhCN from '../locale/zh-cn';
+ import { focus, obj, func, events, dom } from '../util';
+ import Inner from './inner';
++import { ConfigProvider } from '../config-provider';
+ 
+ const noop = () => {};
+ const { limitTabRange } = focus;
+@@ -170,6 +171,8 @@ export default class Dialog extends Component {
+         ]);
+     }
+ 
++    static contextType = ConfigProvider;
++
+     componentDidMount() {
+         events.on(document, 'keydown', this.onKeyDown);
+         if (!this.useCSSToPosition()) {
+@@ -311,8 +314,11 @@ export default class Dialog extends Component {
+             locale,
+             visible,
+             rtl,
++            container: popupContainer,
+             height,
+         } = this.props;
++
++        const { popupContainer } = this.context;
+         const others = pickOthers(Object.keys(Dialog.propTypes), this.props);
+ 
+         return (

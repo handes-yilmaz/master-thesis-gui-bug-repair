@@ -1,0 +1,43 @@
+{
+    "1/1": {
+        "src/table/util.js": [
+            {
+                "SEARCH": [
+                    "const field = path.split('.');",
+                    "let val, key;",
+                    "if (field.length) {",
+                    "key = field[0];",
+                    "// lists[1].name",
+                    "if (key.indexOf('[') >= 0) {",
+                    "key = key.match(/(.*)\\\\[(.*)\\\\]/);",
+                    "if (key) {",
+                    "val = object[key[1]][key[2]];",
+                    "}",
+                    "} else {",
+                    "val = object[field[0]];",
+                    "}",
+                    "if (val) {",
+                    "for (let colIndex = 1; colIndex < field.length; colIndex++) {",
+                    "val = val[field[colIndex]];",
+                    "if (typeof val === 'undefined') {",
+                    "break;",
+                    "}",
+                    "}",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const field = path.match(/([^[.\\]]+)/g);",
+                    "    let val = object;",
+                    "    for (let i = 0; i < field.length; i++) {",
+                    "        if (val === undefined) {",
+                    "            return undefined;",
+                    "        }",
+                    "        val = val[field[i]];",
+                    "    }",
+                    "    return val;"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/python.js"
+        ],
+        "explanation": "The file `python.js` within the `src/languages` directory likely contains the rules and logic for syntax highlighting Python code. Since the issue is specific to Python keywords being incorrectly parsed and highlighted, modifications in this file are needed to adjust the parsing logic for keywords directly following numbers without spaces.",
+        "bug_scenario": "The issue is with Python syntax highlighting where keywords directly following a number without a space are not correctly separated. This causes the number and keyword to be incorrectly identified as one token, leading to improper syntax highlighting. In Python, keywords cannot start with a number, so the highlighting should distinguish between the number and the keyword even if they are adjacent."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/modes.js",
+            "src/lib/compile_keywords.js"
+        ],
+        "explanation": "The problem is related to syntax highlighting of Python code. The `src/languages/python.js` file is likely responsible for defining how Python syntax is tokenized and highlighted. Issues with keyword separation may require changes to this file. The `src/lib/modes.js` file is involved in defining how different code segments are categorized based on patterns and needs to ensure numbers and keywords are treated separately. The `src/lib/compile_keywords.js` file is likely involved in compiling keyword lists used across various languages to ensure keywords are correctly highlighted when adjacent to numbers.",
+        "bug_scenario": "The issue involves incorrect syntax highlighting in Python where keywords directly follow numbers without a separating space. The highlighting does not correctly separate the number from the keyword, leading to incorrect classification in the rendered output, as shown in the image comparisons."
+    }
+}

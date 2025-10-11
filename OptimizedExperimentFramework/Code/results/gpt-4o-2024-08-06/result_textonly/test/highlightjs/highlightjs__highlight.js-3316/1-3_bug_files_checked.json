@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/cpp.js",
+            "src/languages/arduino.js"
+        ],
+        "explanation": "1. **src/languages/cpp.js** - This file is likely to contain the definitions for C++ language syntax highlighting. Since the bug relates to how C++ primitive types are classified and highlighted, editing this file could address the issue by reverting the change that split primitive types from keywords.\n\n2. **src/languages/arduino.js** - Mentioned in the bug report is a change relating to Arduino-specific types being highlighted as keywords. This file could contain the syntax rules for Arduino, which is relevant because Arduino is a C++ superset and the bug mentions aligning Arduino highlighting behavior.\n\n3. **CHANGES.md** - Though not containing code per se, this file is crucial for documenting changes made to resolve the bug. It would need updating to reflect the bug fix and maintain proper documentation which was pointed out as part of the checklist in the bug report.",
+        "bug_scenario": "The bug scenario revolves around the changes in syntax highlighting behavior in the hljs library version 11.0.0, where primitive types in C++ (like `int` and `char`) which are considered keywords by the C++ standard, are no longer being highlighted as keywords. This makes the syntax highlighting appear unnatural in comparison to previous behavior and many popular C++ editors."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/cpp.js",
+            "src/languages/arduino.js"
+        ],
+        "explanation": "1. `src/languages/cpp.js`: This file is likely responsible for the syntax highlighting rules specific to C++. Given the issue involves the highlighting of C++ primitive types and keywords, changes would need to be made here to adjust how keywords and primitive types are categorized or highlighted.\n\n2. `src/languages/arduino.js`: Since Arduino is mentioned as a superset of C++ and part of the changes included using `keyword` for Arduino data types, this file might also need adjustments to align with the desired highlighting behavior, ensuring consistency between C++ and Arduino within the context of hljs.\n\n3. `CHANGES.md`: This file would be updated to reflect any changes made in the codebase to fix the highlighting issue. Documentation of the bug fix is necessary for tracking the changes and informing users who follow the project's updates.",
+        "bug_scenario": "The bug scenario describes an issue with C++ syntax highlighting, particularly concerning how primitive types, which should be recognized as keywords, have been handled in hljs 11.0.0. The change made in version 11.0.0 separated primitive types from reserved keywords, leading to potentially confusing syntax highlighting, as primitive types like 'int' and 'char' are no longer highlighted in the same way. This change contrasts with common behavior in many C++ IDEs and editors, which treat primitive types as keywords."
+    }
+}

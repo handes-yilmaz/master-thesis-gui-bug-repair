@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/index.js"
+        ],
+        "explanation": "The bug is related to the parsing of markdown files, focusing on the detection of fenced code block languages with additional attributes. Therefore, the relevant files likely to contain the logic for parsing and interpreting markdown syntax, including code blocks, are located in the \"src/language-markdown/\" directory. Specifically, the \"parser-markdown.js\" file is crucial because it should contain logic for recognizing and tokenizing markdown syntax, including fenced code blocks with languages and attributes. The \"index.js\" file in the same directory might be used for exporting or orchestrating the parser logic and may require modifications to handle new cases for language detection.",
+        "bug_scenario": "Prettier fails to detect the language of fenced code blocks when non-whitespace attributes are present after the language identifier, such as in \"``` js {cmd=node .line-numbers}\". This results in the code block not being formatted correctly, which is an issue since editors like Atom and VSCode can handle these attributes for syntax highlighting."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/doc/doc-printer.js"
+        ],
+        "explanation": "The file `src/language-markdown/parser-markdown.js` is likely responsible for parsing markdown files and detecting code block languages. Since the issue is directly related to the incorrect handling and recognition of the language in code blocks with attributes, adjustments in this parser file are necessary to account for the presence of text following the language identifier.\n\nAdditionally, `src/doc/doc-printer.js` may be responsible for the formatting and printing of documentation, including how code blocks are printed. To ensure that code block attributes do not interfere with language detection and are ignored appropriately during formatting, this file might need updates.\n\nThese files are crucial for recognizing and processing markdown syntax and ensuring proper language detection and formatting according to the expected behavior described in the bug report.",
+        "bug_scenario": "The bug occurs when Prettier, a code formatting tool, fails to detect the language of code blocks in markdown files if the language identifier is followed by non-whitespace characters, such as attributes. This scenario is evident in code blocks that specify additional attributes after the language identifier, common in certain markdown flavors for styling or execution purposes, like those used in markdown-preview-enhanced for Atom and VSCode. As a result, Prettier does not apply syntax highlighting and formatting correctly when such attributes are present, which leads to inconsistent code formatting outputs."
+    }
+}

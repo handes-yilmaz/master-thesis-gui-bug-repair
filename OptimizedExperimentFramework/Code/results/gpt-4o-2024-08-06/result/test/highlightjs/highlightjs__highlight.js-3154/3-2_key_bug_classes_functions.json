@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/ruby.js//"
+        ],
+        "bug_functions": [
+            "src/languages/ruby.js//STRING"
+        ],
+        "explanation": "The issue is related to the syntax highlighting of Ruby heredocs without interpolation. The `STRING` object in `src/languages/ruby.js` defines the rules for highlighting strings, including heredocs. The current regex for heredocs does not correctly handle heredocs without interpolation, as shown by the incorrect highlighting. Modifying the heredoc variant handling within the `STRING` object would likely address the issue.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for Ruby heredocs without interpolation in the code editor. The standard heredoc is highlighted correctly, but the heredoc without interpolation is not fully recognized, leading to incorrect highlighting."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/ruby.js//STRING"
+        ],
+        "bug_functions": [],
+        "explanation": "The `STRING` object in `src/languages/ruby.js` is responsible for defining how strings, including heredocs, are highlighted. The issue arises because the current regex pattern does not correctly handle heredocs without interpolation. The pattern needs adjustments to differentiate between standard heredocs and those without interpolation to ensure proper highlighting.",
+        "bug_scenario": "The bug scenario involves highlighting issues in Ruby heredocs without interpolation. In the provided image, the standard heredoc is highlighted correctly, while the heredoc without interpolation is not, leading to inconsistent syntax highlighting."
+    }
+}

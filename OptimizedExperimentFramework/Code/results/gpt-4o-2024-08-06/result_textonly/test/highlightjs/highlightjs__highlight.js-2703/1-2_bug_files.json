@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/javascript.js",
+            "src/languages/scala.js",
+            "src/lib/html_renderer.js"
+        ],
+        "explanation": "The issue is related to how comments are parsed and categorized in the source code. For the Scala issue, it involves recognizing comments correctly when parsing class definitions, likely related to the syntax parsing for class and comments in Scala - possibly requiring tweaks in `src/languages/scala.js`. \n\nFor the JavaScript issue, it pertains to properly identifying and rendering comments inside function parameters which requires modifications in `src/languages/javascript.js`, which handles JavaScript specific syntax highlighting.\n\nEach language-specific file likely dictates how the syntax is supposed to be parsed and highlighted for that particular language, so these files require adjusting to fix the comment highlighting bugs.\n\nAdditionally, the `src/lib/html_renderer.js` is responsible for rendering the parsed elements, so if there's an issue with distinguishing between titles and comments in rendered HTML, this file may also be involved in a broader implementation change required to correct the issue across different languages.",
+        "bug_scenario": "The bug involves incorrect rendering of comments in code using Highlight.js. In Scala code, comments following a class are incorrectly rendered as titles instead of comments when the curly brace is on a new line. For JavaScript, comments inside function parameters are not highlighted at all."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/scala.js",
+            "src/languages/javascript.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "1. **src/languages/scala.js**: This file likely contains the definitions and rules for Scala syntax highlighting. Since the bug affects how comments are rendered for Scala, this file would need to be checked for rules around parsing class declarations and comments.\n\n2. **src/languages/javascript.js**: This file likely contains the definitions and rules for Javascript syntax highlighting. As the bug specifically affects the highlighting of comments within parameters in Javascript, it would be necessary to inspect this file to adjust the rules for handling inline comments.\n\n3. **src/lib/modes.js**: This file likely handles the generic syntax highlighting modes, including how comments are processed. Since both Scala and JavaScript have issues with comment rendering, the core comment handling logic might reside here, necessitating a review of how comments are parsed and highlighted generically.",
+        "bug_scenario": "The bug scenario involves incorrect rendering of comments in Scala and Javascript code when using Highlight.js for syntax highlighting. For Scala, comments are incorrectly rendered as titles when the curly brace is on the following line. For Javascript, comments within function parameters do not get highlighted."
+    }
+}

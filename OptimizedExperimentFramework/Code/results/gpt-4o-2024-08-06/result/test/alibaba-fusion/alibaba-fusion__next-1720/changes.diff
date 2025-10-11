@@ -1,0 +1,15 @@
+diff --git a/src/search/Search.jsx b/src/search/Search.jsx
+index 6478d419a..b24b3943f 100644
+--- a/src/search/Search.jsx
++++ b/src/search/Search.jsx
+@@ -218,7 +218,9 @@ class Search extends React.Component {
+         if (e.keyCode !== KEYCODE.ENTER) {
+             return;
+         }
+-        this.onSearch();
++        const selectedSuggestion = this.autoCompleteRef && this.autoCompleteRef.getSelectedValue();
++        const searchValue = selectedSuggestion || this.state.value;
++        this.props.onSearch(searchValue, this.state.filterValue);
+     };
+     render() {
+         const {

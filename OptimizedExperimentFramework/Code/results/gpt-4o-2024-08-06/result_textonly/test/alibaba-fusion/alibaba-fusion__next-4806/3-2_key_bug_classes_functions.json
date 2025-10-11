@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/cascader-select/cascader-select.tsx//CascaderSelect"
+        ],
+        "bug_functions": [
+            "components/cascader-select/cascader-select.tsx//onSearch",
+            "components/cascader-select/cascader-select.tsx//onChange",
+            "components/cascader-select/types.ts//onVisibleChange"
+        ],
+        "explanation": "The bug is related to the search and selection behavior of the CascaderSelect component. The `CascaderSelect` class in `cascader-select.tsx` is the central component managing the dropdown behavior, including search and selection. The `onSearch` function is likely responsible for handling search input changes, and modifying this function could allow for the implementation of a mechanism to clear the results after selection. The `onChange` function is involved in handling changes to the selected items, which is relevant when considering how to detect that all items have been selected. The `onVisibleChange` function in `types.ts` is related to managing the visibility of the dropdown, which could be adjusted to ensure the dropdown behaves as expected after selections are made. These functions and class are directly related to the user experience described in the bug report, where the main issue is with the search and selection interaction not meeting user expectations.",
+        "bug_scenario": "The bug scenario involves the CascaderSelect component where, after a user performs a search and selects all available options, the results are not cleared automatically. The user is left on the search results page without a clear way to return to the main list. The current mechanism requires the user to click outside the dropdown to close it and then reopen it to return to the full list view. This is not intuitive and may confuse users. The request is to implement a feature that either automatically clears the search results once all options are selected or provides a button to clear the search results manually."
+    },
+    "2": {
+        "bug_classes": [
+            "components/cascader-select/cascader-select.tsx//CascaderSelect",
+            "components/cascader-select/types.ts//CascaderSelectProps"
+        ],
+        "bug_functions": [
+            "components/cascader-select/cascader-select.tsx//onChange",
+            "components/cascader-select/types.ts//onSearch"
+        ],
+        "explanation": "The bug is related to the CascaderSelect component's behavior after a search operation. The class 'CascaderSelect' in 'cascader-select.tsx' is the main component class where the logic for handling selection and search should be implemented. The function 'onChange' is likely responsible for handling changes in selection, which is crucial for implementing a mechanism to clear search results after selection. Additionally, 'CascaderSelectProps' in 'types.ts' defines properties such as 'onSearch', which is directly related to handling search input and results. Modifying these properties and functions would allow for the addition of features like clearing search results after selection or providing a clear button.",
+        "bug_scenario": "The bug involves the CascaderSelect component, where after performing a search and selecting all results, the search results are not automatically cleared. The user remains on the search results page and is unsure how to return to the full list, needing to click outside the dropdown to reopen it. The requirement is for a mechanism to automatically clear search results after selecting all items or to provide a button to clear the current search."
+    }
+}

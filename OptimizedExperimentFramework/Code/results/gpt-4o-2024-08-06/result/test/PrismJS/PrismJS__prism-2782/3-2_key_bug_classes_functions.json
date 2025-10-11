@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [
+            "components/prism-basic.js//Prism.languages.basic"
+        ],
+        "explanation": "The issue arises because the regex pattern for strings in 'Prism.languages.basic' does not account for the '@' symbol. The pattern '/\"(?:\"\"|[!#$%&'()*,\\/:;<=>?^_ +\\-.A-Z\\d])*\"/i' needs to be updated to include '@' in the set of allowable characters within a string. This modification will ensure that strings containing '@' are correctly recognized and highlighted.",
+        "bug_scenario": "The bug scenario shows a syntax highlighting issue in VB.NET code. When a string contains an '@' symbol within quotes, the opening quotes are not recognized properly, leading to incorrect highlighting. The first line with '@Code' is incorrectly highlighted, whereas the second line without '@' is highlighted correctly."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-basic.js//Prism.languages.basic",
+            "components/prism-vbnet.js//Prism.languages.vbnet"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue arises from how the string pattern is defined in the syntax highlighting configuration. The regular expression for strings in 'prism-basic.js' does not account for the '@' symbol, which is causing the syntax highlighting issue. Since 'prism-vbnet.js' extends the 'basic' language, it inherits this incorrect pattern. Modifying the string pattern to include '@' in 'prism-basic.js' should address the bug.",
+        "bug_scenario": "In VB.NET, when a string in the code contains an '@' symbol, the syntax highlighting fails to recognize the opening quotes correctly. This is evident from the example where the first line with '@Code' is not highlighted correctly, whereas the second line without '@' works as expected."
+    }
+}

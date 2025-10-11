@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-basic.js",
+            "components/prism-vbnet.js",
+            "components/prism-clike.js"
+        ],
+        "explanation": "The bug is related to the syntax highlighting behavior in Prism.js. Specifically, the bug report suggests potential changes to the string pattern for Prism's syntax highlighting, which involves the '@' symbol within strings.\n\n1. **components/prism-basic.js**: This file likely contains the base or shared logic for syntax highlighting patterns that could impact common tokens like strings across different languages supported by Prism.js. Modifying the string pattern here might resolve the issue for a subset of language definitions that extend or include basic patterns.\n\n2. **components/prism-vbnet.js**: Given that VB.NET is the specific language where the issue is observed, it is probable that the file defining VB.NET syntax highlighting needs review or an adjustment in string token definitions. Any specific rules for VB.NET recognition, especially concerning variable interpolation or special character handling, would be centralized here.\n\n3. **components/prism-clike.js**: This is a common foundation for C-like language syntax highlighting in Prism.js. Many language files in Prism.js extend the clike definitions for inheritance of common rules; therefore, it may require examination if VB.NET inherits styles from this set impacting general pattern definitions, including string-handling code.\n\nThe reasoning behind choosing these files is due to the nature of the reported problem involving the handling of string syntax definitions, which is often located in the core or language-specific components related to how syntax patterns are defined in Prism.",
+        "bug_scenario": "When SQL commands in VB.NET contain the '@' symbol, the syntax highlighting does not correctly recognize the opening quotes, thus causing incorrect syntax highlighting, as seen in the screenshot provided in the bug scenario images."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-basic.js",
+            "components/prism-vbnet.js"
+        ],
+        "explanation": "The bug is described as incorrect handling of strings containing '@' in the VB.NET language highlighting. Based on the bug report, the issue might be rectified by modifying the string pattern to include '@'. The file that potentially requires modification would be related to the basic string pattern handling or specific to VB.NET. Thus, 'components/prism-basic.js' is relevant since it might define basic string patterns including '@', which can affect VB.NET syntax highlighting, potentially causing this bug. Moreover, 'components/prism-vbnet.js' is directly related to VB.NET highlighting in the Prism tool, so any language-specific handling that influences string parsing in VB.NET would be found there.",
+        "bug_scenario": "The bug is related to incorrect syntax highlighting in VB.NET code when a string contains the '@' symbol. In the provided example, the SQL command string with '@Code' inside is not highlighted correctly compared to a similar string without the '@'. This indicates a specific issue in the language processing or token pattern used in the syntax highlighting tool, likely due to the '@' symbol being mishandled or not included in the string recognition pattern."
+    }
+}

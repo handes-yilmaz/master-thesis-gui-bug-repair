@@ -1,0 +1,66 @@
+{
+    "1/1": {
+        "src/js/components/DataTable/Header.js": [
+            {
+                "SEARCH": [
+                    "import React, {",
+                    "forwardRef,",
+                    "useCallback,",
+                    "useContext,",
+                    "useEffect,",
+                    "useState,",
+                    "} from 'react';"
+                ],
+                "REPLACE": [
+                    "import React, {",
+                    "  forwardRef,",
+                    "  useCallback,",
+                    "  useContext,",
+                    "  useEffect,",
+                    "  useState,",
+                    "  useLayoutEffect,",
+                    "} from 'react';"
+                ]
+            }
+        ],
+        "src/js/components/DataTable/Sorter.js": [
+            {
+                "SEARCH": [
+                    "const Sorter = ({",
+                    "align,",
+                    "children,",
+                    "fill,",
+                    "onSort,",
+                    "property,",
+                    "sort,",
+                    "themeProps,",
+                    "}) => {"
+                ],
+                "REPLACE": [
+                    "const Sorter = ({",
+                    "  align,",
+                    "  children,",
+                    "  fill,",
+                    "  onSort,",
+                    "  property,",
+                    "  sort: initialSort,",
+                    "  themeProps,",
+                    "}) => {",
+                    "  const [sort, setSort] = useState(initialSort);",
+                    "",
+                    "  useEffect(() => {",
+                    "    const handlePopState = () => {",
+                    "      const newSort = getSortFromURL(); // Assume this function extracts sort info from URL",
+                    "      setSort(newSort);",
+                    "    };",
+                    "",
+                    "    window.addEventListener('popstate', handlePopState);",
+                    "    return () => {",
+                    "      window.removeEventListener('popstate', handlePopState);",
+                    "    };",
+                    "  }, []);"
+                ]
+            }
+        ]
+    }
+}

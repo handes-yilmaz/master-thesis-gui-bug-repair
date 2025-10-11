@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "features/copy-paste/BpmnCopyPaste.js",
+            "features/modeling/behavior/AttachEventBehavior.js",
+            "features/modeling/behavior/CreateBoundaryEventBehavior.js"
+        ],
+        "explanation": "The bug involves the copying and changing of properties of events in a BPMN model. 'BpmnCopyPaste.js' is likely responsible for handling the copy-paste functionality specifically. 'AttachEventBehavior.js' and 'CreateBoundaryEventBehavior.js' are relevant because they involve the interaction and behavior of attaching events as boundary events, which is where the bug manifests. These files likely contain the logic that needs fixing to ensure that properties are retained when an Intermediate Event is pasted as a Boundary Event.",
+        "bug_scenario": "When an Intermediate Event is copied and pasted as a Boundary Event, it loses the properties that were initially configured such as Async Continuations and Job Configurations. The expected behavior is that these properties should be retained after pasting as a Boundary Event."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/modeling/behavior/AttachEventBehavior.js",
+            "lib/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file likely handles the logic for copying and pasting events. Ensuring properties are retained during this operation is critical.\n\n2. **lib/modeling/behavior/AttachEventBehavior.js**: As the bug involves attaching an Intermediate Event as a Boundary Event, this file may influence how events are handled when attached to tasks.\n\n3. **lib/modeling/cmd/UpdatePropertiesHandler.js**: This file is likely responsible for updating properties of modeling elements. It should ensure properties are properly transferred when pasting events.",
+        "bug_scenario": "When an Intermediate Event is created with specific properties filled, those properties are lost if the event is copied and pasted as a Boundary Event on a Task. The attached GIF demonstrates this by showing how properties like 'Async Continuations' and 'Job Configurations' are filled for an Intermediate Event but disappear when pasted as a Boundary Event."
+    }
+}

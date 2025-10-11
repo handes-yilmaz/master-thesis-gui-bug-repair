@@ -1,0 +1,19 @@
+diff --git a/src/config-provider/index.jsx b/src/config-provider/index.jsx
+index 59ed4c36f..d7eaeddd4 100644
+--- a/src/config-provider/index.jsx
++++ b/src/config-provider/index.jsx
+@@ -246,6 +246,14 @@ class ConfigProvider extends Component {
+         childContextCache.remove(this);
+     }
+ 
++    /**
++     * Manually clear the cache to prevent memory leaks in SSR scenarios.
++     */
++    static clearCache() {
++        childContextCache._store.clear();
++        childContextCache._root = null;
++    }
++
+     render() {
+         return Children.only(this.props.children);
+     }

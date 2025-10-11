@@ -1,0 +1,25 @@
+diff --git a/lib/features/modeling/behavior/DeleteLaneBehavior.js b/lib/features/modeling/behavior/DeleteLaneBehavior.js
+index 53bd506a..a53bcdc8 100644
+--- a/lib/features/modeling/behavior/DeleteLaneBehavior.js
++++ b/lib/features/modeling/behavior/DeleteLaneBehavior.js
+@@ -43,6 +43,13 @@ export default function DeleteLaneBehavior(eventBus, modeling, spaceTool) {
+     });
+ 
+     if (!siblings.length) {
++      // Update pool boundary when no siblings are present
++      modeling.updateBounds(oldParent, {
++        x: oldParent.x,
++        y: oldParent.y,
++        width: oldParent.width,
++        height: oldParent.height - shape.height
++      });
+       return;
+     }
+ 
+@@ -109,4 +116,4 @@ DeleteLaneBehavior.$inject = [
+   'spaceTool'
+ ];
+ 
+-inherits(DeleteLaneBehavior, CommandInterceptor);
+\ No newline at end of file
++inherits(DeleteLaneBehavior, CommandInterceptor);

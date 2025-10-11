@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-typescript.js"
+        ],
+        "bug_functions": [
+            "components/prism-typescript.js//Prism.languages.typescript"
+        ],
+        "explanation": "The issue likely resides in the TypeScript language definition within the Prism library. The pattern for recognizing TypeScript keywords is too broad, causing it to incorrectly flag words like 'inference' and 'typeDefs' as keywords. The problem is in the regular expression used to define keywords that need to be followed by non-alphabetic characters. Adjusting the regular expression pattern in the TypeScript language definition should resolve the incorrect syntax highlighting.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting in TypeScript code. Keywords like 'infer' and 'type' are incorrectly treated as keywords even when they are followed by an alphabetic character, such as in 'inference' and 'typeDefs'. This results in incorrect highlighting, as shown in the image where 'inference' and 'typeDefs' are marked incorrectly as keywords, while 'constants' is correctly not highlighted as a keyword."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-typescript.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is in the handling of TypeScript keywords within the Prism syntax highlighting library. The file 'components/prism-typescript.js' extends JavaScript syntax to accommodate TypeScript. The problematic behavior is likely due to the regular expressions defining TypeScript keywords, specifically those that incorrectly match keywords followed by alphabetic characters. Adjusting these expressions can resolve the highlighting issue.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting in TypeScript where keywords such as 'infer' and 'type' are treated as keywords even when followed by alphabetic characters, leading to incorrect highlighting."
+    }
+}

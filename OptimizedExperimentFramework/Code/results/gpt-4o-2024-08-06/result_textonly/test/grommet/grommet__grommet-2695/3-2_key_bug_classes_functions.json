@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Meter/Circle.js//Circle",
+            "src/js/components/Meter/StyledMeter.js//StyledMeter"
+        ],
+        "bug_functions": [
+            "src/js/components/Meter/utils.js//strokeProps"
+        ],
+        "explanation": "The 'Circle' class in 'src/js/components/Meter/Circle.js' is responsible for rendering the circle Meter component and managing its animation properties. The animation issue is likely rooted in how this class handles SVG paths and their transitions. The 'StyledMeter' class in 'src/js/components/Meter/StyledMeter.js' defines the CSS for the SVG paths, including the transition property that is causing the animation problem. The 'strokeProps' function in 'src/js/components/Meter/utils.js' is involved in applying stroke properties to the paths, which might also contribute to the rendering and animation behavior of the SVG elements if not handled correctly.",
+        "bug_scenario": "The bug involves the animation of a circle Meter component, where the animation is not smooth in Chrome and does not animate at all in Firefox and Safari. The issue seems to be related to a 'transition all' of 300ms applied to the path of the SVG, causing unintended behavior in the animation."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/Meter/Circle.js//Circle",
+            "src/js/components/Meter/StyledMeter.js//StyledMeter"
+        ],
+        "bug_functions": [
+            "src/js/components/Meter/utils.js//strokeProps",
+            "src/js/components/Meter/utils.js//defaultColor"
+        ],
+        "explanation": "The 'Circle' class in 'src/js/components/Meter/Circle.js' is directly responsible for rendering the circle meter component, including its animation behavior. The 'StyledMeter' class in 'src/js/components/Meter/StyledMeter.js' includes CSS styles for the SVG, specifically the transition property on the path elements, which is central to the reported animation issue. The 'strokeProps' function in 'src/js/components/Meter/utils.js' is related to how the stroke of the SVG path is styled, which could affect the animation if there are changes in stroke properties. The 'defaultColor' function is used to determine the color of the path, and any transition or styling related to color can affect the animation, making these functions relevant to the bug.",
+        "bug_scenario": "The bug scenario involves a strange animation on the path of a Meter component of type 'circle'. The expected behavior is a smooth animation when the value changes, but the actual behavior is a strange animation in Chrome, and no animation in the latest versions of Firefox and Safari. The issue is related to a 'transition all' of 300ms on the SVG path, causing the animation to behave unexpectedly."
+    }
+}

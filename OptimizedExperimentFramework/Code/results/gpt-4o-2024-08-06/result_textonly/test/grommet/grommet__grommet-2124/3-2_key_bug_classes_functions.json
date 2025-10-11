@@ -1,0 +1,31 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Calendar/Calendar.js//Calendar",
+            "src/js/components/Calendar/StyledCalendar.js//StyledCalendar"
+        ],
+        "bug_functions": [
+            "src/js/components/Calendar/Calendar.js//buildState",
+            "src/js/components/Calendar/Calendar.js//render",
+            "src/js/components/Calendar/StyledCalendar.js//sizeStyle"
+        ],
+        "explanation": "1. **Calendar Class (src/js/components/Calendar/Calendar.js)**: This class is the main component for rendering the calendar. Since the issue is with the calendar not displaying properly, the bug is likely within this class as it handles the logic for rendering the calendar view and managing its state.\n\n2. **StyledCalendar Class (src/js/components/Calendar/StyledCalendar.js)**: This class handles the styling of the calendar. IE11 may have specific quirks with CSS rendering, so the styles applied by StyledCalendar could be part of the issue.\n\n3. **buildState Function (src/js/components/Calendar/Calendar.js)**: This function initializes the state of the calendar based on the provided properties. If the initial state is not set correctly, it could lead to rendering issues in specific browsers.\n\n4. **render Function (src/js/components/Calendar/Calendar.js)**: The render method is responsible for constructing the JSX output of the calendar. Any issues in this function could directly affect how the calendar is displayed across different browsers.\n\n5. **sizeStyle Function (src/js/components/Calendar/StyledCalendar.js)**: This function applies styles based on the calendar's size. Incorrect styles or styles not supported by IE11 could cause display issues.\n\nThese classes and functions are directly related to rendering and styling the calendar, making them key areas to investigate and potentially modify to resolve the display problem in IE11.",
+        "bug_scenario": "The Grommet2 Calendar component is not displaying properly in Internet Explorer 11 (IE11). When attempting to view the calendar at the provided URL, the calendar does not render correctly, as evidenced by the attached screenshot. This issue is specifically affecting IE11, and it is expected that the calendar should display properly across all supported browsers."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/Calendar/Calendar.js//Calendar",
+            "src/js/components/Calendar/StyledCalendar.js//StyledCalendar"
+        ],
+        "bug_functions": [
+            "src/js/components/Calendar/Calendar.js//buildStartEnd",
+            "src/js/components/Calendar/Calendar.js//buildState",
+            "src/js/components/Calendar/Calendar.js//setReference",
+            "src/js/components/Calendar/Calendar.js//setActive",
+            "src/js/components/Calendar/utils.js//addDays",
+            "src/js/components/Calendar/utils.js//subtractDays"
+        ],
+        "explanation": "The main class related to the bug is the `Calendar` class in `Calendar.js`, as it is the core component responsible for rendering the calendar UI and handling its logic. The `StyledCalendar` class in `StyledCalendar.js` is also relevant as it handles the styling, which could be affected in IE11 due to styling or CSS issues. \n\nThe functions `buildStartEnd` and `buildState` in `Calendar.js` are key because they determine the state and rendering logic of the calendar, including the range of dates displayed. Since the calendar is not displaying correctly, these functions could be failing to calculate the correct date ranges in IE11.\n\n`setReference` and `setActive` are important because they handle updates to the calendar's reference date and active date. Errors in these functions could lead to incorrect rendering in IE11.\n\nIn `utils.js`, `addDays` and `subtractDays` manage date calculations that are crucial for rendering the correct calendar days. If these calculations are incorrect due to browser-specific issues, it could cause the calendar to render improperly in IE11.",
+        "bug_scenario": "The bug scenario involves the Grommet2 Calendar component not rendering correctly in Internet Explorer 11 (IE11). The calendar is expected to display properly, but it does not, as evidenced by the bug report and the accompanying screenshot showing a broken calendar interface."
+    }
+}

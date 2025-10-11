@@ -1,0 +1,19 @@
+diff --git a/src/languages/dart.js b/src/languages/dart.js
+index 238423de7..3408645f4 100644
+--- a/src/languages/dart.js
++++ b/src/languages/dart.js
+@@ -170,7 +170,13 @@ export default function(hljs) {
+         }
+       ),
+       hljs.C_LINE_COMMENT_MODE,
+-      hljs.C_BLOCK_COMMENT_MODE,
++hljs.COMMENT(
++'/\\*\\*?/',
++'\\*/',
++{
++relevance: 0
++}
++),
+       {
+         className: 'class',
+         beginKeywords: 'class interface',

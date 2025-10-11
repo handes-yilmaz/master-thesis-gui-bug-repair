@@ -1,0 +1,49 @@
+{
+    "1/1": {
+        "lib/features/modeling/cmd/UpdateCanvasRootHandler.js": [
+            {
+                "SEARCH": [
+                    "// (1) replace process old <> new root",
+                    "canvas.setRootElement(newRoot);",
+                    "canvas.removeRootElement(oldRoot);"
+                ],
+                "REPLACE": [
+                    "  // (1) replace process old <> new root",
+                    "  canvas.setRootElement(newRoot);",
+                    "  canvas.removeRootElement(oldRoot);",
+                    "",
+                    "  // Notify drilldown overlay of root change",
+                    "  this._modeling.get('eventBus').fire('root.changed', { newRoot: newRoot, oldRoot: oldRoot });"
+                ]
+            }
+        ],
+        "lib/features/drilldown/DrilldownOverlayBehavior.js": [
+            {
+                "SEARCH": [
+                    "eventBus.on('import.done', function() {",
+                    "elementRegistry.filter(function(e) {",
+                    "return self.canDrillDown(e);",
+                    "}).map(function(el) {",
+                    "self.addOverlay(el);",
+                    "});",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  eventBus.on('import.done', function() {",
+                    "    elementRegistry.filter(function(e) {",
+                    "      return self.canDrillDown(e);",
+                    "    }).map(function(el) {",
+                    "      self.addOverlay(el);",
+                    "    });",
+                    "  });",
+                    "",
+                    "  // Listen for root changes to update overlays",
+                    "  eventBus.on('root.changed', function(event) {",
+                    "    self.updateDrilldownOverlay(event.newRoot);",
+                    "    self.updateDrilldownOverlay(event.oldRoot);",
+                    "  });"
+                ]
+            }
+        ]
+    }
+}

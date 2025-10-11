@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/table/util.js//fetchDataByPath"
+        ],
+        "bug_functions": [
+            "src/table/util.js//fetchDataByPath"
+        ],
+        "explanation": "The `fetchDataByPath` function in `src/table/util.js` is responsible for retrieving data using a path string. The issue arises because the function does not currently support handling of strings formatted as `'[start, end]'`. The function attempts to access nested properties based on the path, which fails and returns undefined when the path is not correctly parsed or matched, leading to the TypeError seen in the bug scenario images. Enhancing this function to handle such cases is necessary to fix the problem.",
+        "bug_scenario": "The bug scenario involves a feature request to enhance the compatibility of the `dataIndex` attribute in a table component to support strings like `'[start, end]'`. The current implementation does not handle such strings properly, resulting in a TypeError when trying to access properties of undefined objects when using paths like `startDate,endDate`."
+    },
+    "2": {
+        "bug_classes": [
+            "src/table/util.js"
+        ],
+        "bug_functions": [
+            "src/table/util.js//fetchDataByPath"
+        ],
+        "explanation": "The function `fetchDataByPath` is responsible for accessing properties based on a path string. The current implementation does not handle paths formatted as '[start, end]', which is needed for business purposes. This leads to errors when trying to access non-existent properties. Modifying this function to handle such formats will resolve the issue.",
+        "bug_scenario": "The issue is with the Table component where the `dataIndex` does not support certain string formats such as '[start, end]'. This is causing an error when accessing properties that do not exist, resulting in an 'Uncaught TypeError'. The images show how the `dataIndex` is used and the error output when it fails."
+    }
+}

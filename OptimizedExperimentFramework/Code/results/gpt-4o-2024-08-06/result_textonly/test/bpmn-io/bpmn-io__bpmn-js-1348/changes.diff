@@ -1,0 +1,16 @@
+diff --git a/lib/features/rules/BpmnRules.js b/lib/features/rules/BpmnRules.js
+index a15966d0..ed639706 100644
+--- a/lib/features/rules/BpmnRules.js
++++ b/lib/features/rules/BpmnRules.js
+@@ -281,7 +281,10 @@ function isMessageFlowSource(element) {
+ function isMessageFlowTarget(element) {
+   return (
+     is(element, 'bpmn:InteractionNode') &&
+-    !is(element, 'bpmn:BoundaryEvent') &&
++    (!is(element, 'bpmn:BoundaryEvent') || (
++      is(element, 'bpmn:BoundaryEvent') &&
++      hasEventDefinition(element, 'bpmn:MessageEventDefinition')
++    )) &&
+     !isForCompensation(element) && (
+       !is(element, 'bpmn:Event') || (
+         is(element, 'bpmn:CatchEvent') &&

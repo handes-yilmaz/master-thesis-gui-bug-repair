@@ -1,0 +1,90 @@
+{
+    "1/1": {
+        "src/language-js/needs-parens.js": [
+            {
+                "SEARCH": [
+                    "if (",
+                    "node.type === \"ObjectExpression\" ||",
+                    "node.type === \"FunctionExpression\" ||",
+                    "node.type === \"ClassExpression\" ||",
+                    "node.type === \"DoExpression\"",
+                    ") {",
+                    "const expression = path.findAncestor(",
+                    "(node) => node.type === \"ExpressionStatement\"",
+                    ")?.expression;",
+                    "if (",
+                    "expression &&",
+                    "startsWithNoLookaheadToken(",
+                    "expression,",
+                    "(leftmostNode) => leftmostNode === node",
+                    ")",
+                    ") {",
+                    "return true;",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (",
+                    "    node.type === \"ObjectExpression\" ||",
+                    "    node.type === \"FunctionExpression\" ||",
+                    "    node.type === \"ClassExpression\" ||",
+                    "    node.type === \"DoExpression\" ||",
+                    "    (node.type === \"ObjectExpression\" && path.getParentNode().type === \"JSDocComment\")",
+                    "  ) {",
+                    "    const expression = path.findAncestor(",
+                    "      (node) => node.type === \"ExpressionStatement\"",
+                    "    )?.expression;",
+                    "    if (",
+                    "      expression &&",
+                    "      startsWithNoLookaheadToken(",
+                    "        expression,",
+                    "        (leftmostNode) => leftmostNode === node",
+                    "      )",
+                    "    ) {",
+                    "      return true;",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ],
+        "src/language-js/printer-estree.js": [
+            {
+                "SEARCH": [
+                    "case \"ParenthesizedExpression\": {",
+                    "const shouldHug =",
+                    "!hasComment(node.expression) &&",
+                    "(node.expression.type === \"ObjectExpression\" ||",
+                    "node.expression.type === \"ArrayExpression\");",
+                    "if (shouldHug) {",
+                    "return [\"(\", print(\"expression\"), \")\"];",
+                    "}",
+                    "return group([",
+                    "\"(\",",
+                    "indent([softline, print(\"expression\")]),",
+                    "softline,",
+                    "\")\",",
+                    "]);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    case \"ParenthesizedExpression\": {",
+                    "      const shouldHug =",
+                    "        !hasComment(node.expression) &&",
+                    "        (node.expression.type === \"ObjectExpression\" ||",
+                    "          node.expression.type === \"ArrayExpression\" ||",
+                    "          (node.expression.type === \"ObjectExpression\" && path.getParentNode().type === \"JSDocComment\"));",
+                    "      if (shouldHug) {",
+                    "        return [\"(\", print(\"expression\"), \")\"];",
+                    "      }",
+                    "      return group([",
+                    "        \"(\",",
+                    "        indent([softline, print(\"expression\")]),",
+                    "        softline,",
+                    "        \")\",",
+                    "      ]);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

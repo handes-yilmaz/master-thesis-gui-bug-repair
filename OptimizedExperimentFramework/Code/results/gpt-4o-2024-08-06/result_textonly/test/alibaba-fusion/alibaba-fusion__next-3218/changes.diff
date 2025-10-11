@@ -1,0 +1,24 @@
+diff --git a/src/select/select.jsx b/src/select/select.jsx
+index 536ba34f2..d8ab704b7 100644
+--- a/src/select/select.jsx
++++ b/src/select/select.jsx
+@@ -200,7 +200,7 @@ class Select extends Base {
+         adjustTagSize: false,
+         onSearch: noop,
+         onSearchClear: noop,
+-        hasArrow: true,
++        hasArrow: false, // Changed to false for more flexibility
+         onRemove: noop,
+         // highlightFirstItem: true,
+         valueRender: item => {
+@@ -939,8 +939,8 @@ class Select extends Base {
+             );
+         }
+ 
+-        // do not use this.hasClear() here, to make sure clear btn always exists, can not influenced by apis like `disabled` `readOnly`
+-        if (hasClear) {
++        // Ensure clear button is only shown when necessary
++        if (hasClear && this.hasClear()) {
+             ret.push(
+                 <span key="clear" aria-hidden onClick={this.handleClear} className={`${prefix}select-clear`}>
+                     <Icon type="delete-filling" />

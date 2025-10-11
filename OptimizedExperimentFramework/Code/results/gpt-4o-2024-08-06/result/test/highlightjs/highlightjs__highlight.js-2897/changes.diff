@@ -1,0 +1,56 @@
+diff --git a/src/languages/javascript.js b/src/languages/javascript.js
+index 3372b917..f8d23b3a 100644
+--- a/src/languages/javascript.js
++++ b/src/languages/javascript.js
+@@ -167,14 +167,18 @@ export default function(hljs) {
+       ]
+     }
+   );
+-  const COMMENT = {
+-    className: "comment",
+-    variants: [
+-      JSDOC_COMMENT,
+-      hljs.C_BLOCK_COMMENT_MODE,
+-      hljs.C_LINE_COMMENT_MODE
+-    ]
+-  };
++const COMMENT = {
++className: "comment",
++variants: [
++JSDOC_COMMENT,
++hljs.C_BLOCK_COMMENT_MODE,
++hljs.C_LINE_COMMENT_MODE,
++{
++begin: /\/\*\*\//, // Handle empty block comments
++relevance: 0
++}
++]
++};
+   const SUBST_INTERNALS = [
+     hljs.APOS_STRING_MODE,
+     hljs.QUOTE_STRING_MODE,
+diff --git a/src/languages/typescript.js b/src/languages/typescript.js
+index 8c8483be..a661f31d 100644
+--- a/src/languages/typescript.js
++++ b/src/languages/typescript.js
+@@ -73,11 +73,15 @@ export default function(hljs) {
+   Object.assign(tsLanguage.keywords, KEYWORDS);
+ 
+   tsLanguage.exports.PARAMS_CONTAINS.push(DECORATOR);
+-  tsLanguage.contains = tsLanguage.contains.concat([
+-    DECORATOR,
+-    NAMESPACE,
+-    INTERFACE,
+-  ]);
++tsLanguage.contains = tsLanguage.contains.concat([
++DECORATOR,
++NAMESPACE,
++INTERFACE,
++{
++begin: /\/\*\*\//, // Handle empty block comments
++relevance: 0
++}
++]);
+ 
+   // TS gets a simpler shebang rule than JS
+   swapMode(tsLanguage, "shebang", hljs.SHEBANG());

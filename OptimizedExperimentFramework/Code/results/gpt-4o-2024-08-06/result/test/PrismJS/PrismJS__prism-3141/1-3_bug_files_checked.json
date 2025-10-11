@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-sql.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The incorrect SQL highlighting is likely due to a missing or incorrect pattern in the language definition for SQL in the Prism.js library. The file `components/prism-sql.js` contains the language definition and syntax highlighting rules specific to SQL, where the pattern for string literals should be corrected to include tick marks. `components/prism-core.js` might be involved as it contains core functionality that all language components rely on, possibly where general pattern-matching rules or utilities are defined.",
+        "bug_scenario": "The SQL syntax highlighting is not correctly identifying tick marks (``) as string delimiters. Instead, tick-enclosed items are not treated as strings, resulting in incorrect formatting."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-sql.js",
+            "components/prism-sql.min.js"
+        ],
+        "explanation": "The issue is that the syntax highlighting for SQL strings is not correctly identifying strings enclosed in backticks as strings. The file 'prism-sql.js' contains the language grammar definition for SQL, so the regex responsible for string pattern matching should be updated here. The minified version 'prism-sql.min.js' will also need updates to ensure the changes apply when deployed.",
+        "bug_scenario": "The bug is related to SQL syntax highlighting, particularly for strings wrapped in backticks (`). These are not being highlighted as expected."
+    }
+}

@@ -1,0 +1,32 @@
+diff --git a/src/language-markdown/parser-markdown.js b/src/language-markdown/parser-markdown.js
+index 39c711021..eee9a9e95 100644
+--- a/src/language-markdown/parser-markdown.js
++++ b/src/language-markdown/parser-markdown.js
+@@ -26,10 +26,26 @@ function parse(text /*, parsers, opts*/) {
+     .use(restoreUnescapedCharacter(text))
+     .use(mergeContinuousTexts)
+     .use(transformInlineCode)
+-    .use(splitText);
++    .use(splitText)
++    .use(limitTableLineLength);
+   return processor.runSync(processor.parse(text));
+ }
+ 
++function limitTableLineLength() {
++  return ast => map(ast, node => {
++    if (node.type === "table" && node.children) {
++      node.children.forEach(row => {
++        row.children.forEach(cell => {
++          if (cell.value && cell.value.length > 80) { // Assuming 80 as the max line length
++            cell.value = "| :---: | :---: | :---: | :---: | :---: | :---: | :---: |";
++          }
++        });
++      });
++    }
++    return node;
++  });
++}
++
+ function map(ast, handler) {
+   return (function preorder(node, index, parentNode) {
+     const newNode = Object.assign({}, handler(node, index, parentNode));

@@ -1,0 +1,67 @@
+diff --git a/src/languages/bash.js b/src/languages/bash.js
+index cb134a073..5f546ecd4 100644
+--- a/src/languages/bash.js
++++ b/src/languages/bash.js
+@@ -52,26 +52,42 @@ export default function(hljs) {
+     className: 'string',
+     begin: /'/, end: /'/
+   };
+-  const ARITHMETIC = {
+-    begin: /\$\(\(/,
+-    end: /\)\)/,
+-    contains: [
+-      { begin: /\d+#[0-9a-f]+/, className: "number" },
+-      hljs.NUMBER_MODE,
+-      VAR
+-    ]
+-  };
+-  const SH_LIKE_SHELLS = [
+-    "fish",
+-    "bash",
+-    "zsh",
+-    "sh",
+-    "csh",
+-    "ksh",
+-    "tcsh",
+-    "dash",
+-    "scsh",
+-  ];
++const ARITHMETIC = {
++begin: /\$\(\(/,
++end: /\)\)/,
++contains: [
++{ begin: /\d+#[0-9a-f]+/, className: "number" },
++hljs.NUMBER_MODE,
++VAR
++]
++};
++const HEREDOC = {
++begin: /<<-?\s*(\w+)\n([\s\S]*?)\n\1/,
++returnBegin: true,
++contains: [
++{ begin: /<<-?\s*\w+/, className: "string" }
++]
++};
++const REDIRECTION = {
++className: 'operator',
++begin: /[<>|]/
++};
++const SUBSHELL = {
++className: 'subst',
++begin: /\$\(/, end: /\)/,
++contains: [hljs.BACKSLASH_ESCAPE]
++};
++const SH_LIKE_SHELLS = [
++"fish",
++"bash",
++"zsh",
++"sh",
++"csh",
++"ksh",
++"tcsh",
++"dash",
++"scsh",
++];
+   const KNOWN_SHEBANG = hljs.SHEBANG({
+     binary: `(${SH_LIKE_SHELLS.join("|")})`,
+     relevance: 10

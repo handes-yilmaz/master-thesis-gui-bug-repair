@@ -1,0 +1,30 @@
+{
+    "1": {
+        "bug_file": "components/cascader-select/cascader-select.tsx",
+        "compressed": "YES",
+        "line_numbers": 899,
+        "compressed_line_numbers": 70,
+        "compressed_bug_file_content": "import React, {\n\n\nimport PropTypes from 'prop-types';\nimport { polyfill } from 'react-lifecycles-compat';\nimport classNames from 'classnames';\nimport Select from '../select';\nimport Cascader, { type CascaderDataItem, type Extra } from '../cascader';\nimport Menu from '../menu';\nimport { func, obj, dom, KEYCODE, type ClassPropsWithDefault } from '../util';\nimport zhCN from '../locale/zh-cn';\nimport type {\n\n\nimport type { Popup } from '../overlay';\n\n\nexport type CascaderSelectPropsWithDefault = ClassPropsWithDefault<\n\n\n/**\n * CascaderSelect\n */\n\n\n        // 缓存选中值数据\n\n\n    /**\n     * 使组件获得焦点\n     * @public\n     */\n\n\n            // 这里需要延迟下，showSearch 的情况下通过手动设置 menuProps={{focusable: true}} 回车 focus 会有延迟\n\n\n                // no default\n\n\n            // @ts-expect-error 待 overlay 技术升级完成\n\n\n    /**\n     * 刷新值数据缓存，删除无效值\n     * @param curValue - 当前值\n     */\n\n\n            // onChange 中的 data 参数也应该保留不存在的 value 的数据\n            // 在 dataSource 异步加载的情况下，会出现 value 重复的现象，需要去重\n\n\n            // 更新缓存\n\n\n        // 单选时点击清空按钮\n\n\n        // @ts-expect-error nums 应该是一个数组，这里可能是想表达 nums 的长度为 2？\n\n\n        // mode 应与 multiple api 保持一致\n\n\n            // 单选模式 select 会强制 cache=true，会导致菜单展开状态的初始化不执行\n            // 若用户没有手动设置 cache true，这里重置为 false\n\n\nexport default polyfill(CascaderSelect);\n"
+    },
+    "2": {
+        "bug_file": "components/cascader-select/main.scss",
+        "compressed": "NO",
+        "line_numbers": 35,
+        "compressed_line_numbers": 35,
+        "compressed_bug_file_content": "@import \"../core/index-noreset.scss\";\n@import \"./scss/variable\";\n\n#{$cascader-select-prefix} {\n    @include box-sizing;\n\n    &-dropdown {\n        @include box-sizing;\n\n        border: $popup-local-border-width $popup-local-border-style $popup-local-border-color;\n        border-radius: $popup-local-corner;\n        box-shadow: $popup-local-shadow;\n\n        .#{$css-prefix}cascader {\n            display: block;\n            border: none;\n            box-shadow: none;\n        }\n    }\n\n    &-not-found {\n        padding: 0;\n        border: none;\n        box-shadow: none;\n        overflow: auto;\n        color: $color-text1-2;\n\n        .#{$css-prefix}menu-item:hover {\n            color: $color-text1-2;\n            /* TODO */\n            background: $color-white;\n            cursor: default;\n        }\n    }\n}"
+    },
+    "3": {
+        "bug_file": "components/cascader-select/style.ts",
+        "compressed": "NO",
+        "line_numbers": 3,
+        "compressed_line_numbers": 3,
+        "compressed_bug_file_content": "import '../select/style';\nimport '../cascader/style';\nimport './main.scss';"
+    },
+    "4": {
+        "bug_file": "components/cascader-select/__tests__/index-spec.tsx",
+        "compressed": "YES",
+        "line_numbers": 539,
+        "compressed_line_numbers": 11,
+        "compressed_bug_file_content": "import React, { useState } from 'react';\nimport CascaderSelect, { type CascaderSelectDataItem, type CascaderSelectProps } from '../index';\nimport '../style';\n\n\n        // 多选 multiple=true\n\n\n        // // 单选 multiple=false\n\n\n"
+    }
+}

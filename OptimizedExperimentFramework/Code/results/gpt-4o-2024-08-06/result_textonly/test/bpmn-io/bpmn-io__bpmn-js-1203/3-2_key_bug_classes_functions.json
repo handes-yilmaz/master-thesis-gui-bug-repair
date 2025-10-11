@@ -1,0 +1,29 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/copy-paste/ModdleCopy.js//ModdleCopy"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/ModdleCopy.js//copyElement",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js//preExecute"
+        ],
+        "explanation": "The `BpmnCopyPaste` class in `lib/features/copy-paste/BpmnCopyPaste.js` handles the copying and pasting of BPMN elements. The `copyProperties` function within this class is responsible for copying properties from the source to the target element. In the bug report, the properties of the Intermediate Event are not correctly copied to the Boundary Event, indicating a potential issue in this function.\n\nThe `ModdleCopy` class in `lib/features/copy-paste/ModdleCopy.js` provides utility functions for copying model properties, including the `copyElement` function. This function is responsible for copying elements and their properties from a source to a target, and it likely plays a role in the bug as it might not be preserving all necessary properties during the copying process.\n\nThe `CreateBoundaryEventBehavior` class in `lib/features/modeling/behavior/CreateBoundaryEventBehavior.js` contains the `preExecute` function, which handles the replacement of an Intermediate Event with a Boundary Event when attached to a shape. It sets up the properties of the Boundary Event, and any issues here could result in missing properties when the event is created.",
+        "bug_scenario": "The bug scenario describes a situation where properties of an Intermediate Event in a BPMN model are lost when the event is copied and pasted as a Boundary Event. Specifically, fields such as Async Continuations and Job Configurations are not retained in the new Boundary Event after pasting."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js//CreateBoundaryEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//removeProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences",
+            "lib/features/copy-paste/ModdleCopy.js//ModdleCopy.prototype.copyElement"
+        ],
+        "explanation": "The bug is related to how properties are copied and managed during the copy-paste operation in BPMN diagrams. The `BpmnCopyPaste` class and its functions like `copyProperties`, `removeProperties`, and `resolveReferences` are directly involved in managing properties during the copy and paste actions. If these methods do not handle the properties correctly, this could lead to losing properties when pasting as a Boundary Event. The `CreateBoundaryEventBehavior` class is responsible for the behavior when creating Boundary Events, which directly relates to changing the Intermediate Event to a Boundary Event and potentially losing properties during this transformation. Additionally, the `ModdleCopy.prototype.copyElement` function in `ModdleCopy.js` is crucial as it defines how elements and their properties are copied, which might be missing certain properties when transitioning from an Intermediate to a Boundary Event.",
+        "bug_scenario": "The bug scenario involves copying an Intermediate Event in a BPMN diagram, filling its Async Continuations and Job Configurations, and pasting it onto a Task as a Boundary Event, which results in the loss of the previously filled properties."
+    }
+}

@@ -1,0 +1,22 @@
+diff --git a/src/js/components/Tabs/StyledTabs.js b/src/js/components/Tabs/StyledTabs.js
+index a5ed12dcdb..e77134ce2a 100644
+--- a/src/js/components/Tabs/StyledTabs.js
++++ b/src/js/components/Tabs/StyledTabs.js
+@@ -5,6 +5,17 @@ import { defaultProps } from '../../default-props';
+ 
+ const StyledTabsHeader = styled.div`
+   ${props => props.theme.tabs.header.extend};
++  position: relative;
++  overflow: hidden;
++  &:after {
++    content: '';
++    position: absolute;
++    bottom: 0;
++    left: 0;
++    right: 0;
++    height: 2px;
++    background-color: ${props => props.theme.global.colors['brand']};
++  }
+ `;
+ 
+ StyledTabsHeader.defaultProps = {};

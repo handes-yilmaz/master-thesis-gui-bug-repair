@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/statement.js"
+        ],
+        "explanation": "The file `src/language-js/print/statement.js` is likely responsible for printing the structure of switch statements in JavaScript. Since the issue is with the formatting output of switch case comments, this part of the codebase would be directly involved in how switch case comments are handled and thus likely contains the code that needs adjustment to ensure consistent formatting across case and default blocks.",
+        "bug_scenario": "The bug is a formatting inconsistency with how comments are placed in switch case statements, particularly in the 'default' case. The 'case' statement keeps the comment on the same line, while the 'default' case moves the comment to a new line."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/print/comment.js",
+            "src/language-js/print/statement.js",
+            "src/main/core.js"
+        ],
+        "explanation": "1. **src/language-js/print/comment.js**: This file likely handles how comments are printed and managed during formatting. Adjustments here could ensure comments stay inline with switch cases.\\n2. **src/language-js/print/statement.js**: This is where switch statements might be processed for JS files. Ensuring consistency in printing logic can solve the formatting issue.\\n3. **src/main/core.js**: Core logic of the Prettier formatter, which could impact how switch cases and comments are processed. Any logic changes to maintain comment positioning can be integrated here.",
+        "bug_scenario": "The issue revolves around the formatting of switch statements in the Prettier tool (version 2.3.2). When formatting, the comments associated with different case blocks, particularly the 'default' case, are moved onto a new line instead of staying inline. This behavior is inconsistent with previous or expected formatting where the comment stays inline with the 'default' label."
+    }
+}

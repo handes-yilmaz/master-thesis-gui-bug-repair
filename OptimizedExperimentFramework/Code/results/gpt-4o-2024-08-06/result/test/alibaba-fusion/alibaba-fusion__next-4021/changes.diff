@@ -1,0 +1,17 @@
+diff --git a/src/number-picker/number-picker.jsx b/src/number-picker/number-picker.jsx
+index c33491fd4..e0e2b34e0 100644
+--- a/src/number-picker/number-picker.jsx
++++ b/src/number-picker/number-picker.jsx
+@@ -321,8 +321,11 @@ class NumberPicker extends React.Component {
+         // ignore space & Compatible Chinese Input Method
+         value = value.replace('。', '.').trim();
+         let onlyDisplay = false;
+-        if (this.props.editable === true && this.shouldFireOnChange(value)) {
++        if (this.props.editable === true) {
+             let valueCorrected = this.correctValue(value);
++            if (!this.withinMinMax(valueCorrected)) {
++                valueCorrected = this.correctBoundary(valueCorrected);
++            }
+             if (this.state.value !== valueCorrected) {
+                 this.setValue({ value: valueCorrected, e });
+             }

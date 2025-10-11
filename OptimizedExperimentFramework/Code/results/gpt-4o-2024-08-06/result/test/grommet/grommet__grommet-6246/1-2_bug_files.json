@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/DataChart/DataChart.js",
+            "src/js/components/DataChart/utils.js"
+        ],
+        "explanation": "The issue is related to the rendering of charts, especially when handling negative values. 'DataChart.js' is the main file for the DataChart component, which likely contains the logic for rendering data, including how negative values should be displayed. 'utils.js' in the same folder may contain functions related to data processing or graphical calculations that could affect rendering choices for negative values. Examining these files could provide insights into why negative values are not displayed.",
+        "bug_scenario": "The images and report show that the DataChart component fails to render bars when data includes a negative value. The image with the negative amount renders an empty chart, whereas the image with positive values renders properly."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/DataChart/DataChart.js",
+            "src/js/components/DataChart/utils.js",
+            "src/js/components/DataChart/__tests__/DataChart-test.js"
+        ],
+        "explanation": "1. **DataChart.js**: This file likely contains the core logic of the DataChart component. Since the bug impacts the rendering of charts with negative values, the issue might be in how the data is processed or how the chart is rendered when negative values are present.\n\n2. **utils.js**: This file might contain utility functions related to the DataChart. These functions could be responsible for calculations or data transformations which may not correctly handle negative values.\n\n3. **DataChart-test.js**: This test file should include test cases that verify the rendering of charts with both positive and negative values. It can be enhanced to cover scenarios where negative values exist, ensuring that future changes do not reintroduce the bug.",
+        "bug_scenario": "The bug occurs when the DataChart component is unable to render bars when the data includes a negative value, resulting in a chart that shows nothing. The report indicates that the behavior should include a zero line guide and customizable attributes for negative values but currently fails to render any chart."
+    }
+}

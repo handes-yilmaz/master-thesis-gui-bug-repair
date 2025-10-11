@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/powershell.js//PS_ARGUMENTS"
+        ],
+        "bug_functions": [
+            "src/languages/powershell.js//export default function(hljs)"
+        ],
+        "explanation": "The bug is related to the syntax highlighting of PowerShell flags, which is defined in the `src/languages/powershell.js` file. The `PS_ARGUMENTS` constant in this file is responsible for defining the syntax that matches arguments in PowerShell scripts, including flags. Currently, it contains patterns that match single hyphen flags but may not correctly handle double hyphen flags, leading to the incorrect highlighting issue. The main function `export default function(hljs)` is where the PowerShell language highlighting is configured, and it uses `PS_ARGUMENTS` to define how arguments and flags are highlighted. Adjustments to these patterns would be necessary to ensure that double hyphen flags are correctly recognized and highlighted.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for PowerShell flags in a code editor or viewer. The specific issue reported is that double hyphen flags (e.g., `--flag`) are not being highlighted correctly, whereas single hyphen flags (e.g., `-flag`) are highlighted correctly. The expected behavior is that both single and double hyphen flags should be highlighted, as both are recognized in PowerShell and other command-line interfaces. The user provided images show the discrepancy in highlighting, with a reference to PowerShell Core 7.1.3 where both types of flags are highlighted correctly."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/powershell.js//CMDLETS",
+            "src/languages/powershell.js//PS_ARGUMENTS"
+        ],
+        "bug_functions": [
+            "src/languages/powershell.js//export default function"
+        ],
+        "explanation": "The PowerShell language file `src/languages/powershell.js` is responsible for defining the syntax highlighting rules for PowerShell scripts. Within this file, the `CMDLETS` and `PS_ARGUMENTS` constants define patterns for recognizing command-line arguments and cmdlets, which are crucial for highlighting flags. The `CMDLETS` definition uses a pattern that includes a hyphen followed by alphanumeric characters, which might need adjustment to correctly identify double hyphen flags. The `PS_ARGUMENTS` handles the operators and literals, including flags, and its pattern might also need to be updated to accommodate flags that start with double hyphens. The main function `export default function` initializes the language definition, including the inclusion of `CMDLETS` and `PS_ARGUMENTS` in the language's syntax rules. Any fix to the flag highlighting would likely involve changes to these specific patterns or logic within this function to ensure double hyphen flags are correctly processed and highlighted.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting for PowerShell command-line flags in a code highlighting library. Specifically, flags with double hyphens (e.g., `--flag`) are not being highlighted correctly, while single hyphen flags (e.g., `-flag`) are highlighted as expected. The issue arises when using the highlighting feature, presumed to be `highlight`, which is observed in a software environment like Discord. The expectation is that both single and double hyphen flags should be highlighted correctly."
+    }
+}

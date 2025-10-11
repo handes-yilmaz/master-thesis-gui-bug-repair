@@ -1,0 +1,16 @@
+diff --git a/lib/rules/no-constant-condition.js b/lib/rules/no-constant-condition.js
+index 31e5b372c..75ce2fe7c 100644
+--- a/lib/rules/no-constant-condition.js
++++ b/lib/rules/no-constant-condition.js
+@@ -150,7 +150,10 @@ module.exports = {
+          */
+         function reportIfConstant(node) {
+             if (node.test && isConstant(node.test, true)) {
+-                context.report({ node, message: "Unexpected constant condition." });
++                context.report({
++                    node: node.test,
++                    message: "Unexpected constant condition."
++                });
+             }
+         }
+ 

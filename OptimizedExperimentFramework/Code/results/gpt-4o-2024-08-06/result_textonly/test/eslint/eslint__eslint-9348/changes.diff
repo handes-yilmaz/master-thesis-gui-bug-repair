@@ -1,0 +1,49 @@
+diff --git a/lib/rules/constructor-super.js b/lib/rules/constructor-super.js
+index d0a238df8..d19f403b8 100644
+--- a/lib/rules/constructor-super.js
++++ b/lib/rules/constructor-super.js
+@@ -121,7 +121,7 @@ module.exports = {
+          * - calledInEveryPaths: A flag of be called `super()` in all code paths.
+          * - validNodes:
+          */
+-        let segInfoMap = Object.create(null);
++let segInfoMap = new Map();
+ 
+         /**
+          * Gets the flag which shows `super()` is called in some paths.
+@@ -228,11 +228,12 @@ module.exports = {
+                 }
+ 
+                 // Initialize info.
+-                const info = segInfoMap[segment.id] = {
+-                    calledInSomePaths: false,
+-                    calledInEveryPaths: false,
+-                    validNodes: []
+-                };
++const info = {
++    calledInSomePaths: false,
++    calledInEveryPaths: false,
++    validNodes: []
++};
++segInfoMap.set(segment.id, info);
+ 
+                 // When there are previous segments, aggregates these.
+                 const prevSegments = segment.prevSegments;
+@@ -314,7 +315,7 @@ module.exports = {
+                         const segment = segments[i];
+ 
+                         if (segment.reachable) {
+-                            info = segInfoMap[segment.id];
++info = segInfoMap.get(segment.id);
+ 
+                             duplicate = duplicate || info.calledInSomePaths;
+                             info.calledInSomePaths = info.calledInEveryPaths = true;
+@@ -378,7 +379,7 @@ module.exports = {
+              * @returns {void}
+              */
+             "Program:exit"() {
+-                segInfoMap = Object.create(null);
++segInfoMap.clear();
+             }
+         };
+     }

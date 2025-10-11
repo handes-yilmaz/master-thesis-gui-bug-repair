@@ -1,0 +1,40 @@
+diff --git a/lib/features/modeling/behavior/DropOnFlowBehavior.js b/lib/features/modeling/behavior/DropOnFlowBehavior.js
+index ef843a0a..254b5d2c 100644
+--- a/lib/features/modeling/behavior/DropOnFlowBehavior.js
++++ b/lib/features/modeling/behavior/DropOnFlowBehavior.js
+@@ -156,7 +156,9 @@ export default function DropOnFlowBehavior(eventBus, bpmnRules, modeling) {
+         position = context.position;
+ 
+     if (targetFlow) {
+-      insertShape(shapes[0], targetFlow, position);
++      shapes.forEach(function(shape) {
++        insertShape(shape, targetFlow, position);
++      });
+     }
+ 
+   }, true);
+@@ -169,17 +171,19 @@ export default function DropOnFlowBehavior(eventBus, bpmnRules, modeling) {
+     if (bpmnRules.canInsert(shape, parent)) {
+       context.targetFlow = parent;
+       context.parent = parent.parent;
+-    }
+-  }, true);
+-
+   this.postExecuted('shape.create', function(context) {
+ 
+-    var shape = context.shape,
++    var shapes = context.shapes,
+         targetFlow = context.targetFlow,
+         positionOrBounds = context.position;
+ 
+     if (targetFlow) {
+-      insertShape(shape, targetFlow, positionOrBounds);
++      shapes.forEach(function(shape) {
++        insertShape(shape, targetFlow, positionOrBounds);
++      });
++    }
++
++  }, true);
+     }
+   }, true);
+ }

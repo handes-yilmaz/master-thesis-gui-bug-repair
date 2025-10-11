@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/no-constant-condition.js//module.exports"
+        ],
+        "bug_functions": [
+            "lib/rules/no-constant-condition.js//isConstant",
+            "lib/rules/no-constant-condition.js//reportIfConstant"
+        ],
+        "explanation": "The 'module.exports' in 'lib/rules/no-constant-condition.js' exports the rule definition, which is the primary module responsible for the behavior of the 'no-constant-condition' rule. The 'isConstant' function determines if a node has a constant truthiness value, which directly impacts the identification of constant conditions. The 'reportIfConstant' function is responsible for reporting nodes with constant conditions. These functions are central to the issue because they directly affect how and what portions of the code are flagged as errors.",
+        "bug_scenario": "The error ranges for the 'no-constant-condition' rule in ESLint are too broad. The rule should only flag the constant conditions themselves, but instead, it flags the entire statement or expression that the condition is a part of."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/rules/no-constant-condition.js//module.exports"
+        ],
+        "bug_functions": [
+            "lib/rules/no-constant-condition.js//isConstant",
+            "lib/rules/no-constant-condition.js//reportIfConstant"
+        ],
+        "explanation": "The 'module.exports' in 'lib/rules/no-constant-condition.js' defines the rule responsible for identifying constant conditions. The 'isConstant' function determines if a node has a constant truthiness value, which is central to identifying constant conditions. The 'reportIfConstant' function reports nodes with constant conditions, and its behavior impacts how error ranges are reported. These elements are directly related to the issue of incorrectly broad error ranges.",
+        "bug_scenario": "The bug scenario involves the ESLint rule 'no-constant-condition' reporting error ranges that are too broad. The errors include the entire statement or expression, rather than just the constant conditions themselves. The image shows underlining extending beyond the constant condition 'true' to encompass more of the code."
+    }
+}

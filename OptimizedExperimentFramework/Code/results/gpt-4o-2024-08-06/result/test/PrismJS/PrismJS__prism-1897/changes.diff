@@ -1,0 +1,22 @@
+diff --git a/components/prism-markdown.js b/components/prism-markdown.js
+index 18a5154c..dc2755b1 100644
+--- a/components/prism-markdown.js
++++ b/components/prism-markdown.js
+@@ -2,7 +2,7 @@ Prism.languages.markdown = Prism.languages.extend('markup', {});
+ Prism.languages.insertBefore('markdown', 'prolog', {
+ 	'blockquote': {
+ 		// > ...
+-		pattern: /^>(?:[\t ]*>)*/m,
++\t\tpattern: /(^|[^\\\\])(\\*\\*|__)((?:(?:\\r?\\n|\\r)(?!\\r?\\n|\\r)|.)+?)\\2/,
+ 		alias: 'punctuation'
+ 	},
+ 	'code': [
+@@ -111,7 +111,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
+ 		// _em_
+ 
+ 		// Allow only one line break
+-		pattern: /(^|[^\\])([*_])(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
++\t\tpattern: /(^|[^\\\\])([*_])((?:(?:\\r?\\n|\\r)(?!\\r?\\n|\\r)|.)+?)\\2/,
+ 		lookbehind: true,
+ 		greedy: true,
+ 		inside: {

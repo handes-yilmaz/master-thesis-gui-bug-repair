@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/index.js",
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "tests_integration/__tests__/plugin-options.js"
+        ],
+        "explanation": "The files within `src/language-markdown/` are related to markdown processing, including parsing and printing functionality (`index.js`, `parser-markdown.js`, and `printer-markdown.js`). These are likely candidates for containing logic related to how tables are parsed or formatted, especially in handling markdown table structures. Given the problem is with markdown table formatting, these files will need to be inspected and possibly adjusted to handle scenarios where table rows become excessively long, by implementing the fallback to the three-dash markdown format. The test file `tests_integration/__tests__/plugin-options.js` is included as it is a suitable place to add integration tests ensuring that this new behavior works correctly and doesn't break existing functionality.",
+        "bug_scenario": "The bug is related to the markdown files in the `all-contributors` table not being pretty-printed correctly when they have long lines. The issue arises when Prettier attempts to format markdown tables with long HTML content, resulting in excessively lengthy lines that are difficult to read. The expected behavior is for the table formatting to revert to the standard three-dash pattern (`:---:`) when excessively long lines are detected, rather than trying to maintain the lengthy format."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/printer-markdown.js",
+            "src/language-markdown/parser-markdown.js",
+            "src/doc/doc-printer.js"
+        ],
+        "explanation": "1. **src/language-markdown/printer-markdown.js**: This file is likely responsible for formatting and printing markdown content. Since the issue revolves around how markdown tables are printed (specifically, with excessively long lines), this file would be directly involved in deciding the final output of the markdown being processed.\n\n2. **src/language-markdown/parser-markdown.js**: Parsing markdown correctly is crucial before printing it. This file is responsible for handling markdown syntax, and any adjustments or checks needed to identify table structures and apply new rules (like limiting line length) would start here.\n\n3. **src/doc/doc-printer.js**: Given the problem discussed involves how data is formatted for display, the document printing logic may also be in this file. It could include utilities or methods relied on by the markdown printer to format tables, making it an important part of implementing any line-length restrictions or table formatting logic. \n\nThese files are related as they collectively handle the process of reading, parsing, formatting, and finally printing markdown tables, hence the issue of long lines will require changes in their logic.",
+        "bug_scenario": "The bug scenario involves processing markdown files with tables that contain HTML content. As depicted in the bug report, after running markdown tables through a tool named Prettier, the processed lines can become excessively long (e.g., 865 characters). This is problematic for readability and formatting standards. Prettier should ideally retain tables with a three-dash separator pattern where the line length is excessive. The current functionality does not limit these line lengths adequately, seen in the long horizontal scroll in the images."
+    }
+}

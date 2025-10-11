@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/config/resolve-config.js"
+        ],
+        "explanation": "1. **src/language-markdown/parser-markdown.js**: This file is likely responsible for parsing Markdown content. Any indentation issues might originate from how the Markdown is parsed, specifically handling nested blocks and raw HTML.\n2. **src/language-markdown/printer-markdown.js**: This could contain logic for formatting Markdown documents. It might be improperly increasing indentation for nested content, leading to the described bug.\n3. **src/config/resolve-config.js**: Configuration resolution might affect how formatting settings are applied, particularly those related to indentation and HTML handling. Ensuring that formatting settings align with intended user configurations can be crucial in preventing such bugs.",
+        "bug_scenario": "The bug is related to indentation issues in Markdown files when using Prettier's 'format on save' feature in VS Code. The format function adds extra spaces to nested code blocks or raw HTML each time the file is saved, disrupting the intended structure. The problem seems persistent with raw HTML, requiring manual intervention or disabling formatting on save to avoid misalignment."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/main/options.js"
+        ],
+        "explanation": "The issue appears to stem from how Prettier formats markdown files, particularly related to handling nested code blocks and raw HTML. The files responsible for parsing and printing markdown, such as `parser-markdown.js` and `printer-markdown.js`, are likely where the logic is encountering issues with handling indentation during formatting. Additionally, `options.js` in the main directory could be related to format-on-save settings and configurations, which might be adjusting indentation behavior inappropriately.",
+        "bug_scenario": "The bug is related to the unintended increase in indentation for nested code blocks or raw HTML within markdown files each time the file is saved in VS Code using Prettier. Observably, continuous indentation shifts the content further to the right upon each save, impacting alignment and formatting consistency."
+    }
+}

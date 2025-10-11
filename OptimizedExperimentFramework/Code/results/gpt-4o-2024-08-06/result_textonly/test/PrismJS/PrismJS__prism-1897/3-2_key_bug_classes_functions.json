@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-markdown.js//italic",
+            "components/prism-markdown.js//bold",
+            "components/prism-markdown.js//strike"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the handling of Markdown syntax for formatting text, particularly the italic, bold, and strike-through styles. The classes `italic`, `bold`, and `strike` in `components/prism-markdown.js` define the patterns used to match these styles in Markdown text. The issue arises from the regex patterns being too greedy, which leads to incorrect parsing of Markdown syntax. These classes are directly responsible for handling the patterns and parsing logic of these text styles, hence they are the key elements related to the bug.",
+        "bug_scenario": "The bug scenario involves the incorrect handling of italic and bold text in Markdown. The pattern used to match italic and bold text with `*` and `_` is too greedy, capturing incorrect punctuation. This is demonstrated with examples like `*__foo__*` or `_**bar**_`, where the formatting is not applied as expected."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-markdown.js//Prism.languages.markdown"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the `Prism.languages.markdown` class within the `components/prism-markdown.js` file. The issue stems from the pattern matching for italic and bold text, which is defined within the markdown language extension. The pattern's greediness incorrectly matches sequences of characters, leading to the improper formatting of text. Adjusting the regular expressions for these patterns in the `Prism.languages.markdown` configuration will resolve the issue by accurately matching the intended text without overreaching.",
+        "bug_scenario": "The bug scenario involves the incorrect handling of italic and bold markdown text. The Markdown language component in the code is too greedy when matching the punctuation for italic and bold text, such as `*` and `_`. This results in incorrect text formatting when using these symbols in Markdown."
+    }
+}

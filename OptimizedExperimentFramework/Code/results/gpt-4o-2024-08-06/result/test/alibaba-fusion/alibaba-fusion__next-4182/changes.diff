@@ -1,0 +1,70 @@
+diff --git a/src/cascader-select/cascader-select.jsx b/src/cascader-select/cascader-select.jsx
+index 25bbe4168..7a94698f7 100644
+--- a/src/cascader-select/cascader-select.jsx
++++ b/src/cascader-select/cascader-select.jsx
+@@ -217,7 +217,9 @@ class CascaderSelect extends Component {
+         /**
+          * 透传到 Popup 的属性对象
+          */
+-        popupProps: PropTypes.object,
++        popupProps: PropTypes.shape({
++            v2: PropTypes.bool,
++        }),
+         /**
+          * 是否跟随滚动
+          */
+diff --git a/src/overlay/popup-v2.jsx b/src/overlay/popup-v2.jsx
+index 47a08686f..99b0aa587 100644
+--- a/src/overlay/popup-v2.jsx
++++ b/src/overlay/popup-v2.jsx
+@@ -42,7 +42,7 @@ const Popup = props => {
+     const [visible, setVisible] = useState(defaultVisible);
+     const [animation, setAnimation] = useState(panimation);
+     const [isAnimationEnd, markAnimationEnd] = useState(true);
+-    const overlayRef = useRef(null);
++    const overlayRef = useRef();
+ 
+     useEffect(() => {
+         if ('visible' in props) {
+@@ -69,23 +69,35 @@ const Popup = props => {
+ 
+     const handleEnter = () => {
+         markAnimationEnd(false);
+-        typeof beforeOpen === 'function' && beforeOpen(overlayRef.current);
++        if (overlayRef.current) {
++            typeof beforeOpen === 'function' && beforeOpen(overlayRef.current);
++        }
+     };
+     const handleEntering = () => {
+-        typeof onOpen === 'function' && onOpen(overlayRef.current);
++        if (overlayRef.current) {
++            typeof onOpen === 'function' && onOpen(overlayRef.current);
++        }
+     };
+     const handleEntered = () => {
+-        typeof afterOpen === 'function' && afterOpen(overlayRef.current);
++        if (overlayRef.current) {
++            typeof afterOpen === 'function' && afterOpen(overlayRef.current);
++        }
+     };
+     const handleExit = () => {
+-        typeof beforeClose === 'function' && beforeClose(overlayRef.current);
++        if (overlayRef.current) {
++            typeof beforeClose === 'function' && beforeClose(overlayRef.current);
++        }
+     };
+     const handleExiting = () => {
+-        typeof onClose === 'function' && onClose(overlayRef.current);
++        if (overlayRef.current) {
++            typeof onClose === 'function' && onClose(overlayRef.current);
++        }
+     };
+     const handleExited = () => {
+         markAnimationEnd(true);
+-        typeof afterClose === 'function' && afterClose(overlayRef.current);
++        if (overlayRef.current) {
++            typeof afterClose === 'function' && afterClose(overlayRef.current);
++        }
+     };
+ 
+     overlayNode = (

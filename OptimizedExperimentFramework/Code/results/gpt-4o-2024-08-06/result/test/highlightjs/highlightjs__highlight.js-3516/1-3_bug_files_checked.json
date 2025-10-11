@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/css.js",
+            "src/languages/lib/css-shared.js"
+        ],
+        "explanation": "These files are related to the CSS language syntax highlighting in the repository. The issue involves parsing CSS strings correctly, so the changes are likely needed in these files to adjust how strings and special characters are tokenized in CSS code highlighting.",
+        "bug_scenario": "The issue is with the syntax highlighting in CSS strings when there are parentheses in the URL path. The highlight prioritizes `)` over the quote characters, leading to incorrect tokenizing of the CSS string in the demonstration image. This misbehavior affects the appearance of CSS code highlighting by incorrectly terminating the string early."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/css.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "The file `src/languages/css.js` is likely responsible for defining CSS syntax highlighting rules, which need to be updated to correctly interpret strings within parentheses. The `src/lib/regex.js` is probably used to apply regex rules for tokenizing or highlighting text, where adjustments will be necessary to prevent parentheses from incorrectly terminating strings.",
+        "bug_scenario": "The CSS code highlighting is incorrect when parentheses are within strings. The close parenthesis ')' is taking precedence over quotes in the CSS syntax highlighting, causing parts of strings within url() functions to be misinterpreted and not fully highlighted as strings."
+    }
+}

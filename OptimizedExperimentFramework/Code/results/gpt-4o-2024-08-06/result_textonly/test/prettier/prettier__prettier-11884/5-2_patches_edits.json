@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "src/language-js/print/type-parameters.js": [
+            {
+                "SEARCH": [
+                    "const trailingComma =",
+                    "node.type === \"TSTypeParameterInstantiation\" // https://github.com/microsoft/TypeScript/issues/21984",
+                    "? \"\"",
+                    ": getFunctionParameters(node).length === 1 &&",
+                    "isTSXFile(options) &&",
+                    "!node[paramsKey][0].constraint &&",
+                    "path.getParentNode().type === \"ArrowFunctionExpression\"",
+                    "? \",\"",
+                    ": shouldPrintComma(options, \"all\")",
+                    "? ifBreak(\",\")",
+                    ": \"\";"
+                ],
+                "REPLACE": [
+                    "  const trailingComma =",
+                    "    node.type === \"TSTypeParameterInstantiation\" || node[paramsKey].length === 0 // https://github.com/microsoft/TypeScript/issues/21984",
+                    "      ? \"\"",
+                    "      : getFunctionParameters(node).length === 1 &&",
+                    "        isTSXFile(options) &&",
+                    "        !node[paramsKey][0].constraint &&",
+                    "        path.getParentNode().type === \"ArrowFunctionExpression\"",
+                    "      ? \",\"",
+                    "      : shouldPrintComma(options, \"all\")",
+                    "      ? ifBreak(\",\")",
+                    "      : \"\";"
+                ]
+            }
+        ]
+    }
+}

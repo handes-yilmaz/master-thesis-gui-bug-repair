@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//DrilldownOverlayBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/LabelBehavior.js//getVisibleLabelAdjustment",
+            "lib/features/modeling/behavior/LabelBehavior.js//postExecute",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//addOverlay",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//removeOverlay"
+        ],
+        "explanation": "The classes and functions identified are responsible for handling label behavior and overlay management in subprocesses. 'LabelBehavior' is likely related because it manages how labels are created, updated, and positioned, which is directly related to the issue of labels remaining visible when they should be hidden. 'DrilldownOverlayBehavior' deals with overlays in collapsed subprocesses, suggesting it may play a role in incorrectly rendering or managing label visibility. The functions 'getVisibleLabelAdjustment' and 'postExecute' in 'LabelBehavior.js' handle label adjustments and command executions that could affect label visibility. Similarly, 'addOverlay' and 'removeOverlay' in 'DrilldownOverlayBehavior.js' manage overlays that might not be correctly hiding when a subprocess is collapsed.",
+        "bug_scenario": "The animation shows a BPMN editor where a user creates a subprocess with start, task, and end events, labels them, and then collapses the subprocess. The labels remain visible outside the collapsed subprocess, with the start event's label moving further away."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js//SubProcessPlaneBehavior"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to label visibility and position management when a sub-process is collapsed. The `LabelBehavior` class in `lib/features/modeling/behavior/LabelBehavior.js` is responsible for managing the creation and updating of labels for elements, including handling external labels and their positions. This class likely contains logic that needs to be adjusted to ensure labels are hidden when the sub-process is collapsed.\n\nThe `SubProcessPlaneBehavior` class in `lib/features/modeling/behavior/SubProcessPlaneBehavior.js` manages the creation of BPMNPlane elements and canvas planes when subprocesses are created or modified. It includes handling for collapsed subprocesses, which suggests it might need modifications to properly manage label visibility when a subprocess is collapsed.",
+        "bug_scenario": "The bug involves visible labels becoming improperly positioned when changing a sub-process to a collapsed state. The labels of start, task, and end events inside the sub-process are not hidden as expected when the process is collapsed. The start event label moves unexpectedly outside the expected boundary, which only occurs when clicking through certain steps, although importing and exporting the diagram works correctly."
+    }
+}

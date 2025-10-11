@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/properties.js"
+        ],
+        "explanation": "The issue is related to incorrect parsing of properties files with a trailing backslash. The file `src/languages/properties.js` is responsible for handling properties file parsing, and changes there would address the handling of escaped characters to resolve this bug.",
+        "bug_scenario": "The issue is with handling multi-line values in properties files, which breaks when the last character is an escaped backslash. The provided images show incorrect parsing of the properties, where the final backslash in a value causes incomplete parsing, affecting subsequent properties."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/properties.js"
+        ],
+        "explanation": "The file `properties.js` is where the parsing logic for properties files is likely implemented. Since the bug is related to the parsing of `\\` in property files, modifications in this file are necessary to correctly handle trailing backslashes without erroneously continuing to the next line.",
+        "bug_scenario": "The issue arises from the incorrect handling of a trailing escaped backslash (`\\`) in property files, specifically when they end lines. This affects how multi-line strings are parsed, especially in file paths like those on Windows systems. The images show how the property `b` should be parsed separately as `b = b\\\\`, but due to the bug, it incorrectly joins with the next line property `c = c`."
+    }
+}

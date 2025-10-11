@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "src/js/components/Box/StyledBox.js": [
+            {
+                "SEARCH": [
+                    "const gapStyle = (directionProp, gap, responsive, border, theme) => {",
+                    "const metric = theme.global.edgeSize[gap] || gap;",
+                    "const breakpoint = getBreakpointStyle(theme, theme.box.responsiveBreakpoint);",
+                    "const responsiveMetric = responsive && breakpoint && breakpoint.edgeSize[gap];"
+                ],
+                "REPLACE": [
+                    "const gapStyle = (directionProp, gap, responsive, border, theme) => {",
+                    "  const metric = theme.global.edgeSize[gap] || (gap.match(/px$/) ? gap : theme.global.edgeSize[gap]);",
+                    "  const breakpoint = getBreakpointStyle(theme, theme.box.responsiveBreakpoint);",
+                    "  const responsiveMetric = responsive && breakpoint && (breakpoint.edgeSize[gap] || (gap.match(/px$/) ? gap : breakpoint.edgeSize[gap]));"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse",
+            "src/language-markdown/parser-markdown.js//transformInlineCode",
+            "src/language-markdown/parser-markdown.js//restoreUnescapedCharacter",
+            "src/language-markdown/parser-markdown.js//mergeContinuousTexts",
+            "src/language-markdown/parser-markdown.js//splitText"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//parse",
+            "src/language-markdown/parser-markdown.js//transformInlineCode",
+            "src/language-markdown/parser-markdown.js//restoreUnescapedCharacter",
+            "src/language-markdown/parser-markdown.js//mergeContinuousTexts",
+            "src/language-markdown/parser-markdown.js//splitText"
+        ],
+        "explanation": "The identified classes and functions relate to how markdown text is parsed and formatted. The 'parse' function is responsible for processing the text and applying various transformations. 'transformInlineCode' deals with code block formatting, which is directly related to the issue of indentation in code blocks. 'restoreUnescapedCharacter', 'mergeContinuousTexts', and 'splitText' functions handle text transformations that might affect whitespace and formatting. The bug relates to incorrect handling of indentation during formatting, which these functions potentially influence, making them relevant for investigation and fixing.",
+        "bug_scenario": "The bug scenario involves an issue with the 'format on save' feature in markdown files when using Prettier in VS Code. Specifically, when nesting code blocks or raw HTML, each save adds additional indentation, breaking the formatting. This issue occurs intermittently with code blocks but consistently with raw HTML unless the 'format on save' feature is disabled or markdown files are ignored."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//restoreUnescapedCharacter",
+            "src/language-markdown/parser-markdown.js//mergeContinuousTexts",
+            "src/language-markdown/parser-markdown.js//transformInlineCode"
+        ],
+        "explanation": "The bug is related to how markdown files are parsed and formatted for saving. The parse function in 'parser-markdown.js' is responsible for processing markdown text, which includes handling code blocks and HTML. The 'restoreUnescapedCharacter', 'mergeContinuousTexts', and 'transformInlineCode' functions are involved in processing and transforming the markdown abstract syntax tree (AST), which could be contributing to the unwanted additional spacing. Specifically, these functions handle transformations and whitespace adjustments that are crucial to maintaining proper indentation and format. Errors in these areas could lead to the indentation issues described in the bug report.",
+        "bug_scenario": "The bug scenario involves an issue in markdown files where nesting code blocks or raw HTML results in additional spacing being added each time the file is saved, breaking the indentation. This is particularly problematic with raw HTML, and the only current workarounds are disabling the format on save feature or ignoring markdown files, neither of which are satisfactory solutions. The issue is demonstrated with an HTML table that gets increasingly indented with each save."
+    }
+}

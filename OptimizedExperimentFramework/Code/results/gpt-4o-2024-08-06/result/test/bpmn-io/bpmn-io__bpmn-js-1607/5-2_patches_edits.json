@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/GroupBehavior.js": [
+            {
+                "SEARCH": [
+                    "var definitions = getDefinitions(),",
+                    "categoryValue = createCategoryValue(definitions, bpmnFactory);",
+                    "",
+                    "// link the reference to the Group",
+                    "businessObject.categoryValueRef = categoryValue;"
+                ],
+                "REPLACE": [
+                    "      var definitions = getDefinitions(),",
+                    "          categoryValue = createCategoryValue(definitions, bpmnFactory);",
+                    "",
+                    "      // Ensure categoryValue is linked to the correct parent",
+                    "      if (categoryValue) {",
+                    "        businessObject.categoryValueRef = categoryValue;",
+                    "        categoryValue.$parent = definitions;",
+                    "      }"
+                ]
+            }
+        ],
+        "lib/features/modeling/behavior/util/CategoryUtil.js": [
+            {
+                "SEARCH": [
+                    "collectionAdd(definitions.get('rootElements'), category);",
+                    "getBusinessObject(category).$parent = definitions;",
+                    "getBusinessObject(categoryValue).$parent = category;"
+                ],
+                "REPLACE": [
+                    "  if (definitions && category) {",
+                    "    collectionAdd(definitions.get('rootElements'), category);",
+                    "    getBusinessObject(category).$parent = definitions;",
+                    "    getBusinessObject(categoryValue).$parent = category;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

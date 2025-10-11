@@ -1,0 +1,16 @@
+diff --git a/src/rating/rating.jsx b/src/rating/rating.jsx
+index 93e89c889..da8704a40 100644
+--- a/src/rating/rating.jsx
++++ b/src/rating/rating.jsx
+@@ -325,7 +325,10 @@ class Rating extends Component {
+             this.setState({ value: isReset ? 0 : newValue, clicked: true });
+         }
+ 
+-        this.props.onChange(isReset ? 0 : newValue);
++        if (newValue !== value) {
++            this.props.onChange(isReset ? 0 : newValue);
++        }
++        
+         setTimeout(() => {
+             this.setState({ clicked: false });
+         }, 100);

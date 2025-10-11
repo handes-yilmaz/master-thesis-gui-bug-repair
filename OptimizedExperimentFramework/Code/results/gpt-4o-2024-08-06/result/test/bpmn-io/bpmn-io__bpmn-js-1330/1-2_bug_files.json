@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "explanation": "The `BoundaryEventBehavior.js` is likely responsible for defining behaviors related to boundary events, including their placement and interactions. To prevent connections to boundary events, this file should include logic to disallow such connections. The `BpmnRules.js` is responsible for rule validation within BPMN. Since the bug relates to an issue of incorrect connections being allowed, adding or updating validations in the rules here would address the issue by enforcing the restriction on message flow connections with boundary events.",
+        "bug_scenario": "The bug involves a BPMN model where it is possible to connect a message flow to a boundary event, which should not be allowed according to BPMN semantics. The issue arises when attempting to connect participant 'B' to a boundary event, which should be disallowed by the rules, yet it is not for untyped boundary events."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/rules/BpmnRules.js",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js"
+        ],
+        "explanation": "1. **lib/features/rules/BpmnRules.js**: This file likely contains the rules related to BPMN connections and behaviors. To enforce the restriction on boundary events, updates to validation rules in this file may be needed.\n2. **lib/features/modeling/behavior/BoundaryEventBehavior.js**: This file handles behaviors related to boundary events. Logic to ensure that connections involving boundary events are prohibited should be present here.\n3. **lib/features/modeling/behavior/ReplaceConnectionBehavior.js**: As this file deals with the replacement or modification of connections, it may require changes to ensure improper connections to boundary events are restricted.",
+        "bug_scenario": "The issue is related to BPMN diagrams where it is possible to connect a message flow to a boundary event, which should be prohibited based on BPMN semantics. The bug demonstration shows an attempt to connect participant B to a boundary event, which should be disallowed according to the expected behavior."
+    }
+}

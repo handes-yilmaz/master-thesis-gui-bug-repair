@@ -1,0 +1,28 @@
+diff --git a/lib/rules/prefer-const.js b/lib/rules/prefer-const.js
+index 439a4db3c..697380d3c 100644
+--- a/lib/rules/prefer-const.js
++++ b/lib/rules/prefer-const.js
+@@ -450,12 +450,17 @@ module.exports = {
+                         node,
+                         messageId: "useConst",
+                         data: node,
+-                        fix: shouldFix
+-                            ? fixer => fixer.replaceText(
+-                                sourceCode.getFirstToken(varDeclParent, t => t.value === varDeclParent.kind),
+-                                "const"
+-                            )
+-                            : null
++fix: shouldFix
++    ? fixer => {
++        const firstDeclaration = varDeclParent.declarations[0];
++        const initText = firstDeclaration.init ? sourceCode.getText(firstDeclaration.init) : "";
++
++        return fixer.replaceTextRange(
++            [varDeclParent.range[0], firstDeclaration.range[1]],
++            `const ${sourceCode.getText(firstDeclaration.id)}${initText ? ` = ${initText}` : ""}`
++        );
++    }
++    : null
+                     });
+                 });
+             }

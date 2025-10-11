@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/handlebars.js"
+        ],
+        "bug_functions": [
+            "src/languages/handlebars.js//OPENING_BLOCK_MUSTACHE_CONTENTS",
+            "src/languages/handlebars.js//CLOSING_BLOCK_MUSTACHE_CONTENTS",
+            "src/languages/handlebars.js//BASIC_MUSTACHE_CONTENTS"
+        ],
+        "explanation": "The issue is related to the improper syntax highlighting of Handlebars block statements, particularly `if` and `else` blocks. The `src/languages/handlebars.js` file contains the logic for parsing and highlighting Handlebars syntax. Specifically, the `OPENING_BLOCK_MUSTACHE_CONTENTS`, `CLOSING_BLOCK_MUSTACHE_CONTENTS`, and `BASIC_MUSTACHE_CONTENTS` functions are responsible for handling the contents of Handlebars mustache expressions. These functions define how block statements and variables within Handlebars templates are identified and highlighted. If these functions do not correctly parse or apply the highlighting rules for `if` and `else` statements, the rendered output will not meet the expected behavior. Adjustments in these functions would be necessary to fix the syntax rendering issue.",
+        "bug_scenario": "The bug scenario involves the incorrect rendering of block `if` and `else` statements in Handlebars Glimmer templates. The syntax highlighting does not distinguish values and keywords properly, leading to inconsistent and confusing code representation. The provided image from a blog shows how the code is not highlighted as expected, with values and keywords not being distinctly highlighted."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/handlebars.js"
+        ],
+        "bug_functions": [
+            "src/languages/handlebars.js//OPENING_BLOCK_MUSTACHE_CONTENTS",
+            "src/languages/handlebars.js//CLOSING_BLOCK_MUSTACHE_CONTENTS",
+            "src/languages/handlebars.js//BASIC_MUSTACHE_CONTENTS"
+        ],
+        "explanation": "The `src/languages/handlebars.js` file is central to the issue as it contains the definition for Handlebars syntax highlighting, including block helpers like `if` and `else`. The functions `OPENING_BLOCK_MUSTACHE_CONTENTS`, `CLOSING_BLOCK_MUSTACHE_CONTENTS`, and `BASIC_MUSTACHE_CONTENTS` are directly responsible for parsing and highlighting the different parts of Handlebars templates, such as block statements and template variables. The incorrect rendering of block `if` and `else` statements suggests that these functions may not correctly parse or highlight the syntax elements involved, thus causing the highlighting issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves the incorrect rendering of Handlebars block `if` and `else` statements in Glimmer templates when using the highlight feature. The expected behavior is that values and keywords should be distinctly and consistently highlighted, similar to how GitHub highlights them, but the current implementation fails to do so."
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "1. **src/languages/python.js**: This file is responsible for defining the syntax highlighting rules for Python. It includes the definition of keywords, built-ins, literals, and various modes such as strings, numbers, and comments. The issue with decorators and comments likely stems from how the `meta` class is applied to decorators and how comments are processed in this file.\n\n2. **src/lib/modes.js**: This file contains common modes and utilities for syntax highlighting, including the definition of comment modes. The `HASH_COMMENT_MODE` is defined here, which is used for highlighting comments in Python. The problem with comment highlighting when decorators are present may require adjustments in how comment modes are applied or prioritized in relation to other modes like `meta`. These two files are key to addressing the incorrect application of syntax highlighting classes.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in Python code where comments on the same line as a decorator are incorrectly highlighted. The entire line, including the comment, is given the `hljs-meta` class instead of the comment section being highlighted with the `hljs-comment` class. This results in incorrect formatting of comments in Python code when decorators are used."
+    }
+}

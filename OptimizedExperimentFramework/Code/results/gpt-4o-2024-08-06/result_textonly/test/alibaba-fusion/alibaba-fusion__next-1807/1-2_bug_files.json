@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/config-provider/config.jsx",
+            "src/menu/view/item.jsx",
+            "src/menu/view/create.jsx",
+            "src/menu/util.js"
+        ],
+        "explanation": "1. **src/config-provider/config.jsx**: The bug report suggests considering a configuration option for enabling the title attribute based on user preference, which would be defined in a configuration provider. This file likely handles the configuration options for the components and would require modifications to support a new option like 'showTitle'.\n\n2. **src/menu/view/item.jsx**: This file likely manages the rendering of individual Menu Items. Since the bug specifically deals with behaviors related to Menu Item elements, changes to handle conditional title attribute setting would be needed here.\n\n3. **src/menu/view/create.jsx**: This file may deal with the creation and rendering logic of menu components including tooltips or title attributes, and would be a part of the solution to either add or suppress title attributes based on proposed user configurations.\n\n4. **src/menu/util.js**: Utility functions related to Menu Items and their attributes might be present here; modifying these functions will assist in managing title attributes or aria-label settings based on the bug's solutions.\n\nThese files are related because they collectively form the part of the codebase that deals with configuration, rendering, and utility functions for menu items and their attributes\u2014the focus of the described bug.",
+        "bug_scenario": "The bug report describes the default behavior of adding a title attribute to Menu Item elements. This title attribute causes certain accessibility and UI issues. Specifically, when the title and the innerText of an element are identical, it violates the WCAG guideline of avoiding redundant text. Additionally, business users might not want the title tooltip appearing on their pages. Several solution proposals are discussed, focusing on retaining accessibility and readability without the unwanted behavior when hover displays the title. The images provided in the bug report likely show the current behavior of the Menu Item when hovered, displaying the tooltip with the title content over the truncated text."
+    },
+    "2": {
+        "bug_files": [
+            "src/menu/view/item.jsx",
+            "src/config-provider/config.jsx",
+            "src/menu/view/menu.jsx"
+        ],
+        "explanation": "1. *src/menu/view/item.jsx*: This file likely contains the Menu Item component implementation, which is directly responsible for setting or rendering the 'title' attribute on the Menu Items. Modifications here are essential to control the appearance of the 'title' based on content type or configuration settings.\n\n2. *src/config-provider/config.jsx*: Since one of the proposed solutions involves adding a configuration option to toggle the 'title' attribute, changes in the ConfigProvider setup will affect how configurations are passed throughout the application. If an option like 'showTitle' is introduced, this file should facilitate this functionality.\n\n3. *src/menu/view/menu.jsx*: This file might manage the overall rendering and logic for the menu, including any default properties passed to Menu Items and systemic changes to how attributes like 'title' or 'aria-label' are handled across different cases in the menu hierarchy.",
+        "bug_scenario": "The bug scenario revolves around the removal of the 'title' attribute from Menu Items in a UI component library. The current implementation automatically adds a 'title' to all Menu Items causing several issues: it violates WCAG principles by creating repetitive text when the title and innerText are the same, and it disrupts some users' workflows with unwanted tooltip pop-ups. Various solutions are proposed, such as replacing 'title' with 'aria-label', providing a configuration option to toggle 'title' presence, or conditionally setting 'title' based on the content type of Menu Item's children."
+    }
+}

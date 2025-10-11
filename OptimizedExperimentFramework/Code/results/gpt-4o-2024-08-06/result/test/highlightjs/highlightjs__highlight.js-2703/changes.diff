@@ -1,0 +1,73 @@
+diff --git a/src/languages/javascript.js b/src/languages/javascript.js
+index 66eeaba1..47b42cce 100644
+--- a/src/languages/javascript.js
++++ b/src/languages/javascript.js
+@@ -78,14 +78,16 @@ export default function(hljs) {
+     NUMBER,
+     hljs.REGEXP_MODE
+   ];
+-  var PARAMS_CONTAINS = SUBST.contains.concat([
+-    // eat recursive parens in sub expressions
+-    { begin: /\(/, end: /\)/,
+-      contains: ["self"].concat(SUBST.contains, [hljs.C_BLOCK_COMMENT_MODE, hljs.C_LINE_COMMENT_MODE])
+-    },
+-    hljs.C_BLOCK_COMMENT_MODE,
+-    hljs.C_LINE_COMMENT_MODE
+-  ]);
++var PARAMS_CONTAINS = SUBST.contains.concat([
++// eat recursive parens in sub expressions
++{ begin: /\(/, end: /\)/,
++contains: ["self"].concat(SUBST.contains, [hljs.C_BLOCK_COMMENT_MODE, hljs.C_LINE_COMMENT_MODE])
++},
++hljs.C_BLOCK_COMMENT_MODE,
++hljs.C_LINE_COMMENT_MODE,
++hljs.C_LINE_COMMENT_MODE,
++hljs.C_BLOCK_COMMENT_MODE
++]);
+   var PARAMS = {
+     className: 'params',
+     begin: /\(/, end: /\)/,
+diff --git a/src/languages/scala.js b/src/languages/scala.js
+index ee3beab3..01616cf8 100644
+--- a/src/languages/scala.js
++++ b/src/languages/scala.js
+@@ -57,22 +57,24 @@ export default function(hljs) {
+     relevance: 0
+   };
+ 
+-  var NAME = {
+-    className: 'title',
+-    begin: /[^0-9\n\t "'(),.`{}\[\]:;][^\n\t "'(),.`{}\[\]:;]+|[^0-9\n\t "'(),.`{}\[\]:;=]/,
+-    relevance: 0
+-  };
++var NAME = {
++className: 'title',
++begin: /[^0-9\n\t "'(),.`{}\[\]:;][^\n\t "'(),.`{}\[\]:;]+|[^0-9\n\t "'(),.`{}\[\]:;=]/,
++relevance: 0
++};
+ 
+-  var CLASS = {
+-    className: 'class',
+-    beginKeywords: 'class object trait type',
+-    end: /[:={\[\n;]/,
+-    excludeEnd: true,
+-    contains: [
+-      {
+-        beginKeywords: 'extends with',
+-        relevance: 10
+-      },
++var CLASS = {
++className: 'class',
++beginKeywords: 'class object trait type',
++end: /[:={\[\n;]/,
++excludeEnd: true,
++contains: [
++{
++beginKeywords: 'extends with',
++relevance: 10
++},
++hljs.C_LINE_COMMENT_MODE,
++hljs.C_BLOCK_COMMENT_MODE,
+       {
+         begin: /\[/,
+         end: /\]/,

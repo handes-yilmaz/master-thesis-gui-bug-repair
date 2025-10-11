@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-basic.js",
+            "components/prism-vbnet.js"
+        ],
+        "explanation": "The issue is likely due to the pattern defined for strings in the Prism syntax highlighter. The file `components/prism-basic.js` contains the syntax patterns used for basic language parsing, which might need adjustment to handle the '@' character appropriately in strings. Additionally, `components/prism-vbnet.js` should also be examined as it could contain VB.NET specific syntax rules that need modification to ensure that strings with '@' symbols are highlighted correctly without breaking.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting when using an '@' symbol inside quotation marks in VB.NET code within a SQL command. The '@' symbol within quotes is not being recognized correctly, causing syntax highlighting to break."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-basic.js",
+            "components/prism-vbnet.js"
+        ],
+        "explanation": "1. `components/prism-basic.js`: This file contains the basic string pattern definitions in the PrismJS language setup. The issue might be occurring here due to missing or incorrect handling of the '@' symbol within strings. Modifying the pattern in this file could resolve the highlighting issue without impacting other languages. The suggestion in the bug report about adding '@' to the string pattern directly relates to this file.\\n\\n2. `components/prism-vbnet.js`: As this bug is specific to VB.NET highlighting, this file is likely to contain the language-specific syntax rules. Adjustments to handle the '@' symbol for VB.NET could also be required to ensure it does not affect VB.NET-specific syntax or cause regressions in other usage scenarios.",
+        "bug_scenario": "The scenario involves incorrect syntax highlighting in VB.NET when an '@' symbol is included in a string within quotation marks. The '@' symbol within the string causes the opening quotation mark not to be recognized, leading to incorrect syntax highlighting as shown in the first line of the scenario image. The line without the '@' symbol is highlighted correctly."
+    }
+}

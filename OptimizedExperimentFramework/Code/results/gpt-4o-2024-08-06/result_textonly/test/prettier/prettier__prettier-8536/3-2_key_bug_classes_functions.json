@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/document/doc-printer.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to how Prettier formats the output in certain scenarios. Based on the compressed bug files provided, the likely candidates for this issue are in the files 'src/document/doc-printer.js' and 'src/language-js/printer-estree.js'. These files are involved in handling the printing and formatting logic, as indicated by the comments in the skeleton files. The 'doc-printer.js' file includes logic for whitespace management and line breaks, which is directly relevant to the issue of extra newlines. Similarly, 'printer-estree.js' contains logic for handling different node types and formatting decisions, which could affect how directives and comments are printed. Therefore, modifications in these files would likely be necessary to fix the bug.",
+        "bug_scenario": "The bug scenario involves Prettier, a code formatting tool, which incorrectly adds an extra newline when a directive is followed by a comment and nothing else in the file. This is demonstrated with a simple input consisting of a 'use strict' directive followed by a comment and an unexpected extra newline in the output."
+    },
+    "2": {
+        "bug_classes": [
+            "src/document/doc-printer.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The classes and files identified are related to the bug because they deal with the document printing logic and language-specific formatting within Prettier. The src/document/doc-printer.js file includes logic for handling line breaks and whitespace, which are directly related to the issue of trailing newlines. Similarly, the src/language-js/printer-estree.js file contains logic related to parsing and formatting JavaScript code, including handling directives and comments, which are central to the bug report scenario. These files likely contain the logic that needs to be adjusted to correct the unwanted extra newline behavior.",
+        "bug_scenario": "The bug scenario involves a formatting issue in Prettier where a directive followed by a comment results in the file ending with two newlines instead of one. This occurs when using the babylon parser. The expected behavior is for the output to maintain a single newline after the directive and comment, but currently, it results in two newlines, causing an unwanted extra line in the formatted output."
+    }
+}

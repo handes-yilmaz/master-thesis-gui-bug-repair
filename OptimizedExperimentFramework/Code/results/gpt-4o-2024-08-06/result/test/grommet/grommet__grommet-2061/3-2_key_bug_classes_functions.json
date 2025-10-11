@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Select/Select.js//Select"
+        ],
+        "bug_functions": [
+            "src/js/components/Select/Select.js//render"
+        ],
+        "explanation": "The bug is related to the CSS rendering of the search input within the Select component in Safari. The issue is likely within the 'Select' class and its 'render' function in 'Select.js'. The 'SelectTextInput' styled component might lack the necessary CSS properties to ensure consistent appearance across browsers. Specifically, adding '-webkit-appearance: textfield;' to the input type 'search' might be required here. Adjustments in the render function could address the style inconsistencies between browsers.",
+        "bug_scenario": "In Safari, the padding for the search input within the Select component is ignored, making the input appear very small. In contrast, the input appears as expected in Chrome."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/Select/Select.js//Select",
+            "src/js/components/Select/SelectContainer.js//SelectContainer",
+            "src/js/components/TextInput/TextInput.js//TextInput"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the rendering of the search input within the Select component, which involves the Select, SelectContainer, and TextInput classes. The Select class manages the overall structure and interaction of the Select component, including the rendering of the text input. The SelectContainer class handles the dropdown and search functionality. The TextInput class is directly involved with rendering the search input field, where the CSS styling including padding is applied. A modification in the CSS, specifically for the input type 'search', is needed to address the visual discrepancy in Safari by applying '-webkit-appearance: textfield;'.",
+        "bug_scenario": "The search input within the Select component appears very small in Safari compared to other browsers like Chrome. This issue is due to the padding being ignored in Safari."
+    }
+}

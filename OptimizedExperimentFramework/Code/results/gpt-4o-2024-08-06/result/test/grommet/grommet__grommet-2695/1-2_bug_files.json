@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/Meter/Meter.js",
+            "src/js/components/Meter/Circle.js",
+            "src/js/components/Meter/utils.js",
+            "src/js/components/Meter/StyledMeter.js"
+        ],
+        "explanation": "The files in the Meter component folder (Meter.js, Circle.js, and StyledMeter.js) directly pertain to how the Meter component is rendered and styled, which is central to the reported animation issues. The animations and transitions are likely defined within these files. The utils.js file may contain helper functions affecting the component's behavior. Adjustments will likely need to be made to ensure consistent animation across browsers.",
+        "bug_scenario": "The bug involves strange animation on the path of a circular Meter component. The intended behavior is smooth animation with changing values, but there's jerky animation on Chrome, and no animation in Firefox and Safari. This is likely due to a 300ms 'transition all' on the SVG path causing issues."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/Meter/Circle.js",
+            "src/js/components/Meter/StyledMeter.js",
+            "src/js/components/Meter/Meter.js"
+        ],
+        "explanation": "These files are directly involved in rendering and styling the Meter component. The 'Circle.js' file is likely responsible for defining the SVG path and transition properties. 'StyledMeter.js' may contain CSS or styled components responsible for the animation behavior. 'Meter.js' coordinates the component logic, potentially influencing how props like animation transitions are applied.",
+        "bug_scenario": "The bug involves a strange animation behavior when changing the value of a circular Meter component. The animation on the SVG path is not smooth, displaying an unintended transition in Chrome, and no animation in Firefox and Safari."
+    }
+}

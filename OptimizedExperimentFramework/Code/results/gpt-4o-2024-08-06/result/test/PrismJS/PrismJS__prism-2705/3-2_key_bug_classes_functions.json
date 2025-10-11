@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-javascript.js",
+            "components/prism-js-templates.js"
+        ],
+        "bug_functions": [
+            "components/prism-js-templates.js//createTemplate",
+            "components/prism-js-templates.js//tokenizeInterpolationExpression"
+        ],
+        "explanation": "The issue occurs in the template string parsing logic. The function `createTemplate` in `prism-js-templates.js` is responsible for creating patterns to match template strings, which may not correctly handle the sequence of regex and comments leading to broken parsing. The `tokenizeInterpolationExpression` function is involved in handling interpolation within template literals and might not correctly tokenize certain scenarios, causing parsing errors. The `prism-javascript.js` file defines the language syntax highlighting rules, which may require adjustments to properly parse the sequence of elements causing the issue.",
+        "bug_scenario": "The bug involves incorrect highlighting of template literals in JavaScript code. It occurs when a regex with a single quote and a comment with template literals precede a basic template literal, causing parsing errors for subsequent template literals."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-javascript.js//Prism.languages.javascript",
+            "components/prism-js-templates.js//Prism.languages.javascript['template-string']"
+        ],
+        "bug_functions": [
+            "components/prism-js-templates.js//createTemplate"
+        ],
+        "explanation": "The bug is related to how template literals are parsed and highlighted. The issue occurs because the combination of regex patterns and template literals in comments affects the parsing of subsequent template literals. In 'prism-javascript.js', the JavaScript language definition includes patterns for template strings, which are not correctly handling this order of constructs. In 'prism-js-templates.js', the template strings and how they are embedded (particularly the 'createTemplate' function) appear to be involved in this incorrect tokenization. Adjustments in these areas are necessary to correctly parse and highlight the template literals.",
+        "bug_scenario": "The issue arises when using template literals in JavaScript. The syntax highlighting fails after a specific combination of regex with single quotes and comments with template literals, causing incorrect parsing of subsequent template literals."
+    }
+}

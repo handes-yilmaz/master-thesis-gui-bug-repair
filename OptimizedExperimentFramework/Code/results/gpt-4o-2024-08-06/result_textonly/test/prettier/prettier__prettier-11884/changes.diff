@@ -1,0 +1,13 @@
+diff --git a/src/language-js/print/type-parameters.js b/src/language-js/print/type-parameters.js
+index c6a21670fa..2c4a631519 100644
+--- a/src/language-js/print/type-parameters.js
++++ b/src/language-js/print/type-parameters.js
+@@ -64,7 +64,7 @@ function printTypeParameters(path, options, print, paramsKey) {
+   // has one type parameter that isn't extend with any types.
+   // Because, otherwise formatted result will be invalid as tsx.
+   const trailingComma =
+-    node.type === "TSTypeParameterInstantiation" // https://github.com/microsoft/TypeScript/issues/21984
++    node.type === "TSTypeParameterInstantiation" || node[paramsKey].length === 0 // https://github.com/microsoft/TypeScript/issues/21984
+       ? ""
+       : getFunctionParameters(node).length === 1 &&
+         isTSXFile(options) &&

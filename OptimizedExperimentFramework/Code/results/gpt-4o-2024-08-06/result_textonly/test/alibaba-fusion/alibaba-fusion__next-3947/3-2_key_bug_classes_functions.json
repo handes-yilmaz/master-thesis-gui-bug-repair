@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/form/form.jsx//Form"
+        ],
+        "bug_functions": [
+            "src/form/enhance.jsx//getRules"
+        ],
+        "explanation": "The `Form` class in `src/form/form.jsx` is the main component where the form functionalities and properties, such as `useLabelForErrorMessage`, are defined and managed. This class is responsible for rendering the form and handling its configuration, making it a central point for implementing the proposed `errorMessageLabel` API. Modifying or extending this class would allow for the integration of new features related to form validation and label handling.\n\nThe `getRules` function in `src/form/enhance.jsx` is responsible for generating validation rules for form fields. This function already interacts with the `labelForErrorMessage` property, which is directly related to the bug report's mention of label handling for error messages. By modifying this function, we can ensure that the new `errorMessageLabel` API is properly integrated into the validation process, allowing error messages to utilize label information effectively.",
+        "bug_scenario": "The bug scenario involves the need for an additional API, `getLabel`, to address issues when styles are wrapped at the business layer, leading to a non-functional `useLabelForErrorMessage` API. The expectation is to introduce an `errorMessageLabel` API to work alongside `useLabelForErrorMessage`."
+    },
+    "2": {
+        "bug_classes": [
+            "src/form/form.jsx//Form",
+            "src/form/item.jsx//Item"
+        ],
+        "bug_functions": [
+            "src/form/enhance.jsx//getRules"
+        ],
+        "explanation": "The Form class in 'src/form/form.jsx' is directly related to the bug because it includes the useLabelForErrorMessage prop, which is part of the issue described. The Item class in 'src/form/item.jsx' is also relevant, as it manages individual form elements and their validation, which could be affected by changes in label handling. Finally, the getRules function in 'src/form/enhance.jsx' is responsible for constructing validation rules and already includes logic for labelForErrorMessage, indicating it will need to be updated to support the new errorMessageLabel API.",
+        "bug_scenario": "The bug scenario involves an issue with the Form component where the useLabelForErrorMessage API does not work correctly when additional DOM structure is added by the business layer. The suggestion is to add a new API called errorMessageLabel to work in conjunction with useLabelForErrorMessage."
+    }
+}

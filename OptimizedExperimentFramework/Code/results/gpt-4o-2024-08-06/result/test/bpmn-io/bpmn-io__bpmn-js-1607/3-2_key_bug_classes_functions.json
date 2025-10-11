@@ -1,0 +1,30 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/GroupBehavior.js"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/GroupBehavior.js//removeReferencedCategoryValue",
+            "lib/features/modeling/behavior/GroupBehavior.js//removeCategory",
+            "lib/features/modeling/behavior/GroupBehavior.js//getGroupElements",
+            "lib/features/modeling/behavior/GroupBehavior.js//isReferenced",
+            "lib/features/modeling/behavior/GroupBehavior.js//execute",
+            "lib/features/modeling/behavior/GroupBehavior.js//createCategoryValue"
+        ],
+        "explanation": "The issue is related to the handling of category values within groups, particularly when they are inside collapsed sub-processes. The 'removeReferencedCategoryValue' and 'removeCategory' functions suggest a problem with cleaning up or maintaining references to category values. The 'getGroupElements' and 'isReferenced' functions are responsible for managing group elements and their references. The 'execute' function in 'GroupBehavior.js' handles actions related to group creation and deletion, which is likely where the bug manifests, as it involves creating new category values and linking them to groups. The 'createCategoryValue' function is crucial as it initializes category values which are not correctly referenced upon re-import.",
+        "bug_scenario": "The bug occurs when a group is created inside a collapsed sub-process in a BPMN diagram. Upon re-importing the diagram, an unresolved reference warning is shown: 'unresolved reference <CategoryValue_01k5toe>'. This suggests that the reference to a category value is not being correctly resolved or maintained, leading to diagram import issues."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/GroupBehavior.js//GroupBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/GroupBehavior.js//removeReferencedCategoryValue",
+            "lib/features/modeling/behavior/GroupBehavior.js//createCategoryValue",
+            "lib/features/modeling/behavior/GroupBehavior.js//isReferenced",
+            "lib/features/modeling/behavior/util/CategoryUtil.js//createCategoryValue"
+        ],
+        "explanation": "The issue seems to relate to how category values are created and managed within groups in collapsed sub-processes. The `GroupBehavior` class handles the creation and removal of category values when groups are created or deleted. The `removeReferencedCategoryValue` function is responsible for cleaning up category references, and the `createCategoryValue` function creates new category values. These functions might not correctly update references when groups are inside collapsed sub-processes, leading to unresolved references upon re-import. The `isReferenced` function checks if a category value is still in use, which is crucial for cleanup operations. Ensuring these functions correctly handle groups in collapsed sub-processes is key to resolving the import warning.",
+        "bug_scenario": "The bug occurs when creating a group inside a collapsed sub-process in a BPMN model. Upon saving and re-importing the diagram, a warning appears indicating an unresolved reference to a CategoryValue. This results in potential rendering issues for the BPMN diagram."
+    }
+}

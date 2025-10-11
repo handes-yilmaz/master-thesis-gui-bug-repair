@@ -1,0 +1,39 @@
+{
+    "1/1": {
+        "src/number-picker/number-picker.jsx": [
+            {
+                "SEARCH": [
+                    "onChange(value, e) {",
+                    "// ignore space & Compatible Chinese Input Method",
+                    "value = value.replace('\u3002', '.').trim();",
+                    "let onlyDisplay = false;",
+                    "if (this.props.editable === true && this.shouldFireOnChange(value)) {",
+                    "let valueCorrected = this.correctValue(value);",
+                    "if (this.state.value !== valueCorrected) {",
+                    "this.setValue({ value: valueCorrected, e });",
+                    "}",
+                    "} else {",
+                    "onlyDisplay = true;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    onChange(value, e) {",
+                    "        // ignore space & Compatible Chinese Input Method",
+                    "        value = value.replace('\u3002', '.').trim();",
+                    "        let onlyDisplay = false;",
+                    "        if (this.props.editable === true) {",
+                    "            let valueCorrected = this.correctValue(value);",
+                    "            if (!this.withinMinMax(valueCorrected)) {",
+                    "                valueCorrected = this.correctBoundary(valueCorrected);",
+                    "            }",
+                    "            if (this.state.value !== valueCorrected) {",
+                    "                this.setValue({ value: valueCorrected, e });",
+                    "            }",
+                    "        } else {",
+                    "            onlyDisplay = true;",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

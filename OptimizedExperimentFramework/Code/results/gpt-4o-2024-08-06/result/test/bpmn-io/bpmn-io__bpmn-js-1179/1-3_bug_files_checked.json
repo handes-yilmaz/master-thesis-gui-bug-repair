@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js",
+            "lib/features/modeling/behavior/util/LineAttachmentUtil.js"
+        ],
+        "explanation": "The issue occurs when elements are dropped onto a sequence flow, leading to incorrect docking and layout. This suggests that behaviors related to handling dropping elements on flows, such as docking and layout utilities, are suspect. 'DropOnFlowBehavior.js' will handle the drop action directly. 'LabelLayoutUtil.js' and 'LineAttachmentUtil.js' are likely involved in calculating positions and attachments during such operations.",
+        "bug_scenario": "The diagram shows a sequence flow layout issue that occurs after dropping an element onto the flow. The layout becomes disrupted, and the new sequence flow attaches incorrectly at the top left corner."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/behavior/util/LineAttachmentUtil.js",
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js"
+        ],
+        "explanation": "1. **DropOnFlowBehavior.js**: Likely handles logic for elements dropped onto sequence flows, directly related to the described issue.\n2. **LineAttachmentUtil.js**: Utility for line attachments, related to how sequence flows are redocked.\n3. **BpmnRenderer.js**: Renders the BPMN elements, potentially related to visual layout issues.\n4. **LayoutConnectionBehavior.js**: Handles connection layout adjustments, important for fixing broken layouts when sequence flows are added.",
+        "bug_scenario": "The bug occurs when dropping an element onto a sequence flow. The layout breaks, and the docking point of the new sequence flow defaults to the top left corner, disrupting the intended design."
+    }
+}

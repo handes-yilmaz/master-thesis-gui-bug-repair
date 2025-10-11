@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-rest.js",
+            "components/prism-core.js",
+            "prism.js"
+        ],
+        "explanation": "- `components/prism-rest.js`: This file is responsible for syntax highlighting reStructuredText (reST). Any issues with rendering reST elements would likely be addressed here since it directly handles the parsing and highlighting of reST syntax.\n- `components/prism-core.js`: The core file manages the overall syntax parsing and highlighting processes for various languages, including error handling and recognition of patterns. The issue might stem from a higher-level parsing logic error that affects all language specific implementations.\n- `prism.js`: This is the main file that initializes and configures the syntax highlighter functionality. It may contain logic that affects the rendering behavior in cases like single-line vs multi-line inputs.",
+        "bug_scenario": "In the provided bug scenario images, the reStructuredText (reST) verbatim and link elements are incorrectly rendered. Instead of correctly highlighting links and verbs, the entire text is shown as italic. However, when the code is split into two lines, it renders correctly. This suggests that there's a bug in the syntax highlighting process for reST when inline code is not line-broken."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-rest.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The bug is related to the incorrect rendering of reST syntax, particularly link and verbatim elements. The likely culprits are files handling reST syntax highlighting. \"components/prism-rest.js\" manages the syntax highlighting for reST, so it is directly responsible for processing reST elements. \"components/prism-core.js\" may also play a role in core parsing logic that affects all languages.",
+        "bug_scenario": "The reST link and verbatim elements are not rendering correctly. The issue is that these elements are incorrectly displayed as italic text instead of being recognized as a link or verbatim."
+    }
+}

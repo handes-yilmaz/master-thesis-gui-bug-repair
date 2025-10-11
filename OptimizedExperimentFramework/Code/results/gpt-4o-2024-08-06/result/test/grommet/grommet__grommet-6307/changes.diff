@@ -1,0 +1,38 @@
+diff --git a/src/js/components/DataTable/Header.js b/src/js/components/DataTable/Header.js
+index 1248437ec8..e1eff6f20f 100644
+--- a/src/js/components/DataTable/Header.js
++++ b/src/js/components/DataTable/Header.js
+@@ -5,6 +5,7 @@ import React, {
+   useContext,
+   useEffect,
+   useState,
++  useLayoutEffect,
+ } from 'react';
+ import styled, { css, ThemeContext } from 'styled-components';
+ 
+@@ -147,6 +148,25 @@ const Header = forwardRef(
+     ref,
+   ) => {
+     const theme = useContext(ThemeContext) || defaultProps.theme;
++    
++    // Function to update sort state based on URL
++    const updateSortFromURL = useCallback(() => {
++      const params = new URLSearchParams(window.location.search);
++      const property = params.get('property');
++      const direction = params.get('direction');
++      if (property && direction) {
++        onSort({ property, direction });
++      }
++    }, [onSort]);
++
++    // Listen for URL changes
++    useLayoutEffect(() => {
++      window.addEventListener('popstate', updateSortFromURL);
++      updateSortFromURL(); // Initial check
++      return () => {
++        window.removeEventListener('popstate', updateSortFromURL);
++      };
++    }, [updateSortFromURL]);
+     const [layoutProps, textProps] = separateThemeProps(theme);
+ 
+     const [cellWidths, setCellWidths] = useState([]);

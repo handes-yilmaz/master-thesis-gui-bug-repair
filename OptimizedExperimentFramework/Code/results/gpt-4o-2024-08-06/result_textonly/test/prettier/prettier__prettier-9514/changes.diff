@@ -1,0 +1,26 @@
+diff --git a/src/language-js/index.js b/src/language-js/index.js
+index 00c22e142..91083229e 100644
+--- a/src/language-js/index.js
++++ b/src/language-js/index.js
+@@ -12,6 +12,7 @@ const languages = [
+       since: "0.0.0",
+       parsers: [
+         "babel",
++        "cherow",
+         "espree",
+         "babel-flow",
+         "babel-ts",
+diff --git a/src/language-js/parser-babel.js b/src/language-js/parser-babel.js
+index 539571361..9755f37d8 100644
+--- a/src/language-js/parser-babel.js
++++ b/src/language-js/parser-babel.js
+@@ -97,7 +97,8 @@ function createParse(parseMethod, ...pluginCombinations) {
+     }
+ 
+     // Inline the require to avoid loading all the JS if we don't use it
+-    const babel = require("@babel/parser");
++const cherow = require("cherow");
++const babel = require("@babel/parser");
+ 
+     const sourceType =
+       opts.__babelSourceType === "script" ? "script" : "module";

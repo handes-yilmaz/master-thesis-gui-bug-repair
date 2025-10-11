@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "src/language-js/print/jsx.js": [
+            {
+                "SEARCH": [
+                    "const rawJsxWhitespace = options.singleQuote ? \"{\\' \\'}\" : '{\" \"}';",
+                    "const jsxWhitespace = isMdxBlock",
+                    "? concat([\" \"])",
+                    ": ifBreak(concat([rawJsxWhitespace, softline]), \" \");"
+                ],
+                "REPLACE": [
+                    "  const rawJsxWhitespace = options.singleQuote ? \"{\\' \\'}\" : '{\" \"}';",
+                    "  const jsxWhitespace = isMdxBlock",
+                    "    ? concat([\" \"])",
+                    "    : ifBreak(concat([rawJsxWhitespace, softline]), \" \");",
+                    "",
+                    "  // Handle full-width space (U+3000) consistently",
+                    "  const fullWidthSpace = \"\\u3000\";",
+                    "  const jsxFullWidthWhitespace = ifBreak(concat([`{\"${fullWidthSpace}\"}`, softline]), fullWidthSpace);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const children = printJSXChildren(",
+                    "path,",
+                    "options,",
+                    "print,",
+                    "jsxWhitespace,",
+                    "isFacebookTranslationTag",
+                    ");"
+                ],
+                "REPLACE": [
+                    "  const children = printJSXChildren(",
+                    "    path,",
+                    "    options,",
+                    "    print,",
+                    "    jsxWhitespace,",
+                    "    isFacebookTranslationTag",
+                    "  ).map(child => {",
+                    "    // Ensure full-width spaces are handled consistently",
+                    "    if (typeof child === 'string' && child.includes(fullWidthSpace)) {",
+                    "      return child.replace(new RegExp(fullWidthSpace, 'g'), jsxFullWidthWhitespace);",
+                    "    }",
+                    "    return child;",
+                    "  });"
+                ]
+            }
+        ]
+    }
+}

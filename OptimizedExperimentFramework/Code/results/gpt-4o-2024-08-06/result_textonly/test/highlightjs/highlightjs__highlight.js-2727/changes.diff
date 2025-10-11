@@ -1,0 +1,37 @@
+diff --git a/src/languages/javascript.js b/src/languages/javascript.js
+index 8bfa6eca..24349fb8 100644
+--- a/src/languages/javascript.js
++++ b/src/languages/javascript.js
+@@ -349,17 +349,21 @@ export default function(hljs) {
+         ],
+         relevance: 0
+       },
+-      { // ES6 class
+-        className: 'class',
+-        beginKeywords: 'class',
+-        end: /[{;=]/,
+-        excludeEnd: true,
+-        illegal: /[:"\[\]]/,
+-        contains: [
+-          { beginKeywords: 'extends' },
+-          hljs.UNDERSCORE_TITLE_MODE
+-        ]
+-      },
++{ // ES6 class
++className: 'class',
++beginKeywords: 'class',
++end: /[{;=]/,
++excludeEnd: true,
++illegal: /[:"\[\]]/,
++contains: [
++{ beginKeywords: 'extends' },
++hljs.UNDERSCORE_TITLE_MODE,
++{
++begin: /[A-Za-z$_][0-9A-Za-z$_]*(?=\()/, // member function
++className: 'title'
++}
++]
++},
+       {
+         beginKeywords: 'constructor',
+         end: /[\{;]/,

@@ -1,0 +1,31 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/parser-babel.js"
+        ],
+        "bug_functions": [
+            "src/language-js/parser-babel.js//babelOptions",
+            "src/language-js/parser-babel.js//createParse",
+            "src/language-js/parser-babel.js//isFlowFile",
+            "src/language-js/parser-babel.js//tryCombinations"
+        ],
+        "explanation": "These classes and functions are integral to the parsing mechanism in Prettier. The 'parser-babel.js' file is responsible for configuring and invoking the Babel parser, which is being considered for replacement. The 'babelOptions' function configures parser options, which would need modification to integrate a different parser like Cherow. The 'createParse' function is central to creating parser instances, and 'isFlowFile' checks for Flow syntax which Cherow currently lacks support for. The 'tryCombinations' function handles parsing attempts with different configurations, relevant for testing Cherow's integration.",
+        "bug_scenario": "The bug report discusses the need for a faster JavaScript parser in Prettier, specifically suggesting the use of the Cherow parser due to its performance benefits over the current Babylon parser. However, Cherow lacks support for Flow syntax, which is a consideration for its integration."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-js/parser-babel.js",
+            "src/language-js/parser-flow.js",
+            "src/language-js/index.js"
+        ],
+        "bug_functions": [
+            "src/language-js/parser-babel.js//createParse",
+            "src/language-js/parser-babel.js//isFlowFile",
+            "src/language-js/parser-babel.js//babelOptions",
+            "src/language-js/parser-flow.js//parse",
+            "src/language-js/index.js//parsers"
+        ],
+        "explanation": "The bug is related to the parser used for JavaScript in Prettier. The compressed bug files show that the main parser functionalities are defined in 'src/language-js/parser-babel.js', particularly in the 'createParse', 'isFlowFile', and 'babelOptions' functions. These functions define how JavaScript files are parsed, including handling Babel plugins and Flow syntax. Additionally, 'src/language-js/parser-flow.js' contains the 'parse' function for handling Flow syntax, which is a critical aspect of the bug since Cherow does not support Flow yet. Finally, 'src/language-js/index.js' contains the 'parsers' object, which manages the available parsers in the application, and would need adjustment to integrate Cherow as a potential parser.",
+        "bug_scenario": "The bug scenario involves improving the performance of the Prettier JavaScript formatter by replacing the current parser with Cherow, which is reportedly 40% faster than Babylon, especially in format-on-save situations. However, Cherow does not yet support Flow syntax, which is a consideration for its implementation."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/util/LaneUtil.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/DeleteLaneBehavior.js**: This file contains logic related to the deletion of lanes. The bug report mentions issues arising after a lane is added and then removed, suggesting that the behavior of lane deletion might not be correctly updating the pool's state, affecting subsequent message flow connections.\n\n2. **lib/features/modeling/behavior/CreateParticipantBehavior.js**: This file handles the creation of participants (pools) and their interactions. Since the bug involves connecting message flows to pool boundaries, the creation and modification of pool structures (participants) are relevant, especially when lanes are involved.\n\n3. **lib/features/modeling/util/LaneUtil.js**: This utility file provides functions for handling lanes, such as getting child lanes and computing lane resizes. Given that the bug involves lane manipulation (adding and removing lanes), this file likely contains functions that are not correctly updating the state of the pool or its lanes, leading to the connection issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves an issue with connecting message flows to the boundary of a pool in a BPMN diagram. When a pool initially had more than one lane and then the additional lane is removed, connecting a message flow to the pool's boundary becomes problematic. The connection can only be made at the pool's header, not within the single lane of the pool."
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/modeling/Modeling.js",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js"
+        ],
+        "bug_functions": [
+            "lib/features/label-editing/LabelEditingProvider.js//LabelEditingProvider.prototype.update",
+            "lib/features/modeling/Modeling.js//Modeling.prototype.updateLabel",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//execute",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//revert"
+        ],
+        "explanation": "The functions and classes identified are responsible for handling label updates and direct editing in the BPMN modeling tool. The 'LabelEditingProvider' is involved in managing direct editing sessions, which may not be properly canceled when an element is deleted. The 'Modeling' class's 'updateLabel' method is directly involved in executing label update commands, which could lead to illegal invocations if the command stack is not correctly managed. The 'UpdateLabelHandler' functions handle the execution and reversion of label updates, which are crucial in ensuring that label changes are properly managed and reverted without causing exceptions.",
+        "bug_scenario": "The bug occurs when deleting an element while direct editing is active, causing an 'illegal invocation' exception. The image shows a BPMN diagram with an element being selected for deletion, which can trigger the bug when direct editing is active on the element's label."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/label-editing/LabelEditingProvider.js"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/Modeling.js//updateLabel",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//execute",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//revert"
+        ],
+        "explanation": "The 'illegal invocation' error is related to the label updating process during direct editing. The `LabelEditingProvider.js` manages direct editing and is responsible for activating and completing direct edits. The functions `updateLabel`, `execute`, and `revert` in `Modeling.js` and `UpdateLabelHandler.js` are directly involved in the label update process. Issues in these functions could lead to the illegal invocation error when an element is deleted during an active direct edit.",
+        "bug_scenario": "The bug scenario involves an 'illegal invocation' exception that occurs when an element is deleted while direct editing is active in a BPMN diagram. This is demonstrated in the GIF where an element is selected and removed, triggering the error."
+    }
+}

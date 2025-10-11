@@ -1,0 +1,46 @@
+diff --git a/lib/features/drilldown/DrilldownBreadcrumbs.js b/lib/features/drilldown/DrilldownBreadcrumbs.js
+index 20447a86..27301423 100644
+--- a/lib/features/drilldown/DrilldownBreadcrumbs.js
++++ b/lib/features/drilldown/DrilldownBreadcrumbs.js
+@@ -29,7 +29,10 @@ export default function DrilldownBreadcrumbs(eventBus, elementRegistry, overlays
+       var link = domify('<li><span class="bjs-crumb"><a title="' + title + '">' + title + '</a></span></li>');
+ 
+       link.addEventListener('click', function() {
+-        canvas.setRootElement(canvas.findRoot(planeId(el)) || canvas.findRoot(el.id));
++        var newRoot = canvas.findRoot(planeId(el)) || canvas.findRoot(el.id);
++        if (newRoot) {
++          canvas.setRootElement(newRoot);
++        }
+       });
+ 
+       return link;
+@@ -68,4 +71,4 @@ function getParentChain(child) {
+   }
+ 
+   return parents.reverse();
+-}
+\ No newline at end of file
++}
+diff --git a/lib/features/drilldown/DrilldownOverlayBehavior.js b/lib/features/drilldown/DrilldownOverlayBehavior.js
+index 7d6b690a..0eb01e85 100644
+--- a/lib/features/drilldown/DrilldownOverlayBehavior.js
++++ b/lib/features/drilldown/DrilldownOverlayBehavior.js
+@@ -150,7 +150,10 @@ DrilldownOverlayBehavior.prototype.addOverlay = function(element) {
+   var button = domify('<button class="bjs-drilldown">' + ARROW_DOWN_SVG + '</button>');
+ 
+   button.addEventListener('click', function() {
+-    canvas.setRootElement(canvas.findRoot(planeId(element)));
++    var newRoot = canvas.findRoot(planeId(element));
++    if (newRoot) {
++      canvas.setRootElement(newRoot);
++    }
+   });
+ 
+   overlays.add(element, 'drilldown', {
+@@ -178,4 +181,4 @@ DrilldownOverlayBehavior.$inject = [
+   'eventBus',
+   'elementRegistry',
+   'overlays'
+-];
+\ No newline at end of file
++];

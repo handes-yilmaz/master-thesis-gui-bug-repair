@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/tree-select/tree-select.jsx",
+            "src/tree-select/index.jsx"
+        ],
+        "explanation": "The problem reported involves the TreeSelect component specifically. Within the repository structure, the files directly associated with the TreeSelect functionality are located in the `src/tree-select/` directory. The key files likely responsible for rendering the TreeSelect component and handling state and props (including keys and selection state) are `tree-select.jsx` and `index.jsx`. These files would potentially include logic for rendering the component tree, listening to state changes, handling default values and keys, and reflecting these visually in the component. To fix issues related to duplicate rendering of components, these files should be examined for how they manage keys and state transitions, particularly in their componentDidMount or useEffect hooks, as well as where props are spread or managed.",
+        "bug_scenario": "In the TreeSelect component of the project, when both the disabled state and default values are enabled at the same time, there is an issue where duplicate labels appear in the input box during initialization. The error message suggests that there are duplicate keys within children components, which affects the rendering, causing either repeated display or omission, which may be unsupported in future versions of React."
+    },
+    "2": {
+        "bug_files": [
+            "src/tree-select/tree-select.jsx",
+            "src/tree-select/index.jsx",
+            "src/tree/view/tree.jsx",
+            "src/tree/view/tree-node.jsx"
+        ],
+        "explanation": "1. `src/tree-select/tree-select.jsx`: This file is likely to contain the implementation of the TreeSelect component itself. The issue is directly related to how the TreeSelect component handles default selections and disabled states, so changes here might be necessary.\n   \n2. `src/tree-select/index.jsx`: As the entry point or main file for the TreeSelect component, it might manage the states or props that control the rendering of tree nodes and handle the default and disabled configurations.\n\n3. `src/tree/view/tree.jsx`: Since TreeSelect often relies on Tree views for hierarchical structures, this file probably contains logic related to rendering each tree node. Issues with unique keys or node configurations might be resolved here.\n\n4. `src/tree/view/tree-node.jsx`: This file likely handles individual tree nodes. Duplicate keys often arise from how each node is keyed during rendering; thus, adjustments might be necessary to ensure each node has a unique identifier, especially when certain nodes are disabled or selected by default.",
+        "bug_scenario": "The bug report describes an issue with the TreeSelect component where enabling both disabled items and default values results in duplicate labels in the input field. This is caused by non-unique keys in the tree nodes when rendering, leading to duplicate DOM elements."
+    }
+}

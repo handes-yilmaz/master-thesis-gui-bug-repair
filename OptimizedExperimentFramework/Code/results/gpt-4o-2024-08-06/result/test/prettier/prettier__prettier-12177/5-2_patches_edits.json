@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "src/language-js/print/statement.js": [
+            {
+                "SEARCH": [
+                    "function printSwitchCaseConsequent(path, options, print) {",
+                    "return printStatementSequence(path, options, print, \"consequent\");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function printSwitchCaseConsequent(path, options, print) {",
+                    "  const node = path.getValue();",
+                    "  const parts = [];",
+                    "",
+                    "  if (node.type === \"SwitchCase\" && node.test === null) {",
+                    "    // Handle default case",
+                    "    parts.push(\"default: \");",
+                    "    if (hasComment(node, CommentCheckFlags.Leading)) {",
+                    "      parts.push(print([], { needsSemi: false }));",
+                    "    }",
+                    "  } else {",
+                    "    parts.push(printStatementSequence(path, options, print, \"consequent\"));",
+                    "  }",
+                    "",
+                    "  return parts;",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

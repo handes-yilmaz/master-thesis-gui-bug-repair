@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-markdown.js//Prism.languages.markdown"
+        ],
+        "bug_functions": [
+            "components/prism-markdown.js//Prism.languages.insertBefore",
+            "components/prism-markdown.js//Prism.hooks.add"
+        ],
+        "explanation": "The bug is related to how Markdown syntax is parsed for italic and bold text. The regex patterns in the 'italic', 'bold', and 'strike' sections of 'prism-markdown.js' are responsible for matching these styles. The issue arises from the greedy nature of the regex patterns, which need to be modified to correctly parse the Markdown syntax without matching excess characters. The functions 'Prism.languages.insertBefore' and 'Prism.hooks.add' are involved in setting up and processing the Markdown language rules, making them relevant to the bug fix.",
+        "bug_scenario": "The bug occurs when using Markdown for italic and bold text. The punctuation seems to match any number of leading '*' or '_' characters, causing incorrect rendering of Markdown text. This leads to issues with nested or combined emphasis styles, as shown in the image where both italic and bold styles are incorrectly parsed."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-markdown.js//Prism.languages.markdown"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to how the Markdown parser in 'prism-markdown.js' handles italic and bold text. The issue arises from overly greedy regular expressions used to match Markdown syntax, which affects the rendering of text enclosed in '*' or '_'. Adjusting these patterns in the 'italic' and 'bold' sections of the parser will fix the bug.",
+        "bug_scenario": "The image illustrates a Markdown rendering issue where italic and bold syntax is overly matched, causing improper styling. This is due to the pattern being too greedy and matching extra punctuation marks."
+    }
+}

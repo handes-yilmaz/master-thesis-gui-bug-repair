@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/indent.js//IndentationChecker"
+        ],
+        "bug_functions": [
+            "lib/rules/indent.js//checkBinaryExpressionIndent",
+            "lib/rules/indent.js//checkParenthesizedIndent"
+        ],
+        "explanation": "The bug relates to the indentation rule implementation in ESLint, specifically within the `lib/rules/indent.js` file. The class and functions identified are responsible for calculating and verifying indentation levels. The `IndentationChecker` class likely encapsulates logic for checking indentation rules, while the `checkBinaryExpressionIndent` function is directly involved in handling binary expression indentations, which is a key aspect of the reported bug. Additionally, the `checkParenthesizedIndent` function is relevant because the issue occurs when binary expressions are wrapped in parentheses, indicating that this function might be responsible for ensuring correct indentation in such scenarios. Therefore, these elements are critical to fixing the bug as they directly influence how indentation rules are applied to the given code structure.",
+        "bug_scenario": "The bug scenario involves incorrect indentation handling in JSX binary expressions within ESLint version 4.1.1. The user expects the code with JSX binary expressions wrapped in parentheses to not produce indentation errors, as it did not in the previous version 4.0. However, indentation errors are being reported in the current setup when parentheses are used around the binary expression. The issue is specific to how indentation is calculated when parentheses are involved, and without parentheses, the code does not produce errors."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/rules/indent.js"
+        ],
+        "bug_functions": [
+            "lib/rules/indent.js//setDesiredOffset",
+            "lib/rules/indent.js//checkIndentForBlocksAndClassBodies",
+            "lib/rules/indent.js//addIndentationForBinaryLogicalExpressions"
+        ],
+        "explanation": "The issue is related to how ESLint's 'indent' rule handles JSX binary expressions with parentheses. The compressed file 'lib/rules/indent.js' contains several functions that are responsible for calculating and verifying indentation levels: \n\n1. **setDesiredOffset**: This function is crucial because it sets the desired offset for tokens, which directly impacts how indentation levels are determined. Given the bug is about incorrect indentation when parentheses are involved, this function likely needs adjustments to handle such cases correctly.\n\n2. **checkIndentForBlocksAndClassBodies**: This function checks indentation for blocks, and since JSX expressions can be block-like structures, this function might be involved in the incorrect indentation calculations for JSX elements.\n\n3. **addIndentationForBinaryLogicalExpressions**: The bug specifically mentions issues with binary expressions, indicating that this function, which adds indentation for binary/logical expressions, might not be handling JSX binary expressions correctly when parentheses are used.\n\nThese functions are directly related to the logic that handles indentation and are likely candidates for where the bug manifests and needs to be fixed.",
+        "bug_scenario": "The bug report describes an indentation regression issue in ESLint version 4.1.1 when using JSX binary expressions with parentheses. The expected behavior is no errors for the given code with parentheses, as it was fine in version 4.0. However, the actual behavior results in indentation errors. The issue seems to occur when parentheses are used around binary expressions in JSX, as removing the parentheses allows the code to pass linting without errors."
+    }
+}

@@ -1,0 +1,60 @@
+diff --git a/src/languages/bash.js b/src/languages/bash.js
+index cb134a073..e276eeb54 100644
+--- a/src/languages/bash.js
++++ b/src/languages/bash.js
+@@ -28,20 +28,41 @@ export default function(hljs) {
+     ]
+   });
+ 
+-  const SUBST = {
+-    className: 'subst',
+-    begin: /\$\(/, end: /\)/,
+-    contains: [hljs.BACKSLASH_ESCAPE]
+-  };
+-  const QUOTE_STRING = {
+-    className: 'string',
+-    begin: /"/, end: /"/,
+-    contains: [
+-      hljs.BACKSLASH_ESCAPE,
+-      VAR,
+-      SUBST
+-    ]
+-  };
++const SUBST = {
++className: 'subst',
++begin: /\$\(/, end: /\)/,
++contains: [hljs.BACKSLASH_ESCAPE]
++};
++const QUOTE_STRING = {
++className: 'string',
++begin: /"/, end: /"/,
++contains: [
++hljs.BACKSLASH_ESCAPE,
++VAR,
++SUBST
++]
++};
++
++const PIPE = {
++className: 'operator',
++begin: /\|/
++};
++
++const REDIRECTION = {
++className: 'operator',
++begin: />|<|>>|<<|<>|>&|<&|<>>|<<</
++};
++
++const HEREDOC = {
++className: 'string',
++begin: /<<-?\s*(\w+)\b/, end: /\b\1\b/,
++contains: [hljs.BACKSLASH_ESCAPE]
++};
++
++const CONTINUATION = {
++className: 'symbol',
++begin: /\\$/
++};
+   SUBST.contains.push(QUOTE_STRING);
+   const ESCAPED_QUOTE = {
+     className: '',

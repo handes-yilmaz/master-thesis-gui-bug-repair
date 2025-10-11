@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-sql.js"
+        ],
+        "explanation": "Based on the bug report which discusses the incorrect highlighting of SQL backticks, it is clear that the issue resides within the language definition for SQL. Within the repository structure, the file `components/prism-sql.js` is responsible for defining the SQL language support in Prism. This file would need to be edited to correctly define the pattern that includes backticks for strings, ensuring they are highlighted correctly as strings during syntax highlighting.",
+        "bug_scenario": "The bug report indicates that when using backticks (\\`) to surround a keyword in SQL, the word should be formatted as a string. However, this highlighting is not working as expected when using Prism for SQL syntax highlighting."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-sql.js",
+            "components/prism-sql.min.js"
+        ],
+        "explanation": "The bug pertains to the incorrect highlighting of SQL strings when using backticks. The `prism-sql.js` file found under the `components/` directory is responsible for defining the language grammar for SQL. Given the bug's nature, modifications need to be made in this file to recognize backticks as valid string delimiters for SQL queries. The minimised version `prism-sql.min.js` would also need updating post-fix.",
+        "bug_scenario": "The issue is with SQL syntax highlighting where tick marks used in SQL queries should format the enclosed text as strings but fail to do so. The image linked in the bug report likely shows SQL code where keywords enclosed by backticks (`) are not being formatted correctly as strings, indicating that the syntax highlighting is not recognizing them as such."
+    }
+}

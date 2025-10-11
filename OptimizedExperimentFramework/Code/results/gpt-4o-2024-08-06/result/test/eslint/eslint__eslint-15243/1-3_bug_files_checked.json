@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/cli-engine/formatters/stylish.js",
+            "lib/cli-engine/cli-engine.js",
+            "lib/cli-engine/index.js"
+        ],
+        "explanation": "1. **lib/cli-engine/formatters/stylish.js**: This file is likely where formatters are handled. Modifications would be needed here to support an async formatter.\n   \n2. **lib/cli-engine/cli-engine.js**: The main CLI engine might need changes to support async operations to handle async formatters.\n   \n3. **lib/cli-engine/index.js**: As this is an entry point, it might require adjustments to accommodate changes in supporting async formatters.",
+        "bug_scenario": "The bug report indicates a need for ESLint to support an asynchronous formatter to accommodate an external library (shiki) for syntax highlighting. A specific issue arises because shiki uses async methods which aren't currently supported by ESLint. The image shows a code snippet with lint errors likely related to formatting issues due to the current limitations."
+    },
+    "2": {
+        "bug_files": [
+            "lib/cli-engine/formatters/json.js",
+            "lib/cli-engine/formatters/stylish.js",
+            "lib/cli-engine/formatters/html.js",
+            "lib/cli-engine/formatters/unix.js",
+            "lib/cli-engine/formatters/visualstudio.js",
+            "lib/cli-engine/cli-engine.js"
+        ],
+        "explanation": "1. **lib/cli-engine/formatters/:** This directory contains different formatter modules. If ESLint needs to support async formatters, changes might be necessary in one or more formatter files like `json.js`, `stylish.js`, `html.js`, `unix.js`, and `visualstudio.js`. These files would be directly relevant to implementing async functionality.\n\n2. **lib/cli-engine/cli-engine.js:** This file likely manages the overall engine for executing linters, so any changes to how formatters are called (sync vs. async) would need changes here.",
+        "bug_scenario": "The bug report describes a request for ESLint to support asynchronous formatters, particularly to allow integration with asynchronous highlighters like 'shiki'. The provided images indicate linting errors related to spacing and punctuation, which show the importance of proper formatting rules, though they might be unrelated to the async support."
+    }
+}

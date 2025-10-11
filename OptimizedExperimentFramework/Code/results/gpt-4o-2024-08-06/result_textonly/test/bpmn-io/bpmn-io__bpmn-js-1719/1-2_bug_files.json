@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/util/LabelUtil.js"
+        ],
+        "explanation": "1. **`lib/draw/BpmnRenderer.js`**: This file is responsible for rendering the elements of the BPMN diagram, including labels. A bug in this file could lead to elements being incorrectly rendered, such as labels being visible when they shouldn't be.\n\n2. **`lib/features/modeling/behavior/LabelBehavior.js`**: This file likely handles the behavior of labels, including their visibility and positioning. Since the bug involves labels not being hidden properly, changes in this file might be necessary to fix the issue.\n\n3. **`lib/features/modeling/behavior/SubProcessPlaneBehavior.js`**: This file could contain logic related to the handling of sub processes and their contents. Ensuring that elements within a collapsed sub process are correctly hidden may require modifications here.\n\n4. **`lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js`**: This file probably manages the collapsing and expanding of elements such as sub processes. Fixing the bug might involve ensuring that the toggle mechanism appropriately updates the visibility of internal elements including labels.\n\n5. **`lib/util/LabelUtil.js`**: This utility file may provide functions used for label positioning and visibility across the application. Ensuring that labels are correctly hidden or shown when a sub process is toggled might depend on the functions within this utility file.",
+        "bug_scenario": "The bug occurs when a user adds a task and end event, then transforms the task into an expanded sub process, appends additional elements like tasks and end events inside that sub process, and labels these elements. Upon clicking to collapse the sub process, the labels from within the sub process do not hide as expected. In some cases, the labels might even move further outside of their original position. This behavior is unexpected as the labels inside a collapsed sub process should not be visible."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/draw/TextRenderer.js"
+        ],
+        "explanation": "1. **LabelEditingProvider.js**: This file likely handles the functionality related to creating or updating labels, which is central to the bug report that describes a label visibility issue.\n\n2. **ToggleElementCollapseBehaviour.js**: This file may manage the behavior when expanding or collapsing subprocesses. As the bug is specifically triggered when a subprocess is collapsed, this file may control how elements are managed visually during these transitions.\n\n3. **SubProcessStartEventBehavior.js**: Since the bug report specifically mentions the label of the start event moving when the subprocess is collapsed, it is likely that this file contains logic that could be misplacing or failing to hide these labels correctly.\n\n4. **TextRenderer.js**: This file manages rendering of text (labels) on the diagram, which aligns with the bug's symptom of visible or misplaced labels after certain interactions with the subprocess.",
+        "bug_scenario": "The bug involves labels being unexpectedly visible or misplaced when a subprocess is collapsed after previously being expanded, with labels added to its start, task, and end events."
+    }
+}

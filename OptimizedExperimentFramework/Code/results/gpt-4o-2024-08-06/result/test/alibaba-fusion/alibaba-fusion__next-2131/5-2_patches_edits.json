@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/tree/view/tree.jsx": [
+            {
+                "SEARCH": [
+                    "data.map((item, index) => {",
+                    "// 为了兼容之前的实现 保留非法节点",
+                    "if (item.illegalFlag) {",
+                    "return item;",
+                    "}",
+                    "",
+                    "const { children } = item;",
+                    "const pos = `${prefix}-${index}`;",
+                    "let { key } = item;",
+                    "",
+                    "item.pos = pos;",
+                    "item.level = level;"
+                ],
+                "REPLACE": [
+                    "        data.map((item, index) => {",
+                    "            // 为了兼容之前的实现 保留非法节点",
+                    "            if (!item || typeof item !== 'object' || item.illegalFlag) {",
+                    "                return item;",
+                    "            }",
+                    "",
+                    "            const { children } = item;",
+                    "            const pos = `${prefix}-${index}`;",
+                    "            let { key } = item;",
+                    "",
+                    "            item.pos = pos;",
+                    "            item.level = level;"
+                ]
+            }
+        ]
+    }
+}

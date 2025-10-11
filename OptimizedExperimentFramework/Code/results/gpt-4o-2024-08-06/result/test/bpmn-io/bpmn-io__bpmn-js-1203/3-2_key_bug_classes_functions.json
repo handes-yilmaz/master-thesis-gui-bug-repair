@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//removeProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences"
+        ],
+        "explanation": "The issue occurs because the properties of an Intermediate Event are not retained when it is pasted as a Boundary Event. The class `BpmnCopyPaste` and its associated functions `copyProperties`, `removeProperties`, and `resolveReferences` are responsible for handling the copying and pasting of BPMN elements. These functions manage property copying, removal, and resolution of references, which directly affect whether properties are retained during the paste operation. Ensuring that these functions properly handle the transition from Intermediate Events to Boundary Events is crucial to resolving the bug.",
+        "bug_scenario": "The bug scenario involves copying an Intermediate Event with properties filled in and pasting it as a Boundary Event. Upon pasting, the properties are lost, which is not the expected behavior."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//removeProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences"
+        ],
+        "explanation": "The BpmnCopyPaste class in the 'BpmnCopyPaste.js' file manages the copy-paste functionality. The 'copyProperties' and 'removeProperties' functions handle the copying and removal of properties when elements are copied. The 'resolveReferences' function manages the references when pasting elements, which is crucial for maintaining the integrity of the copied properties. These functions are directly involved in the process where the properties are lost, indicating they are the key bug areas.",
+        "bug_scenario": "The bug involves copying an Intermediate Event and pasting it as a Boundary Event. When this action is performed, the properties such as Async Continuations and Job Configurations are lost in the process, as shown in the GIF image provided. The expected behavior is for these properties to be retained."
+    }
+}

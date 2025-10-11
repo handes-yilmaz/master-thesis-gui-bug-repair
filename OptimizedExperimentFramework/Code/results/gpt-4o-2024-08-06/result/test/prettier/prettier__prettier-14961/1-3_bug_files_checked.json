@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-html/embed/angular-attributes.js",
+            "src/language-html/embed/angular-interpolation.js",
+            "src/language-html/printer-html.js",
+            "src/language-html/parser-html.js"
+        ],
+        "explanation": "These files are related to HTML parsing and printing, particularly concerning Angular syntax handling. The files 'angular-attributes.js' and 'angular-interpolation.js' could deal with how Angular-specific constructs are parsed and interpreted. 'printer-html.js' is likely involved in the formatting output of HTML related to Angular templates, thus directly affecting how spaces in pipes are formatted. 'parser-html.js' might be responsible for the initial parsing of HTML which includes Angular templates.",
+        "bug_scenario": "The bug involves incorrect formatting of Angular pipes where additional spaces are added. Prettier 2.8.0 introduces spaces between pipe names and their arguments, which contradicts the preferred style in Angular's official documentation. The expected behavior is to have no spaces when the pipe argument is a string or number."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-html/embed/angular-interpolation.js",
+            "src/language-html/printer-html.js",
+            "src/language-js/print/angular.js",
+            "src/language-js/printer.js"
+        ],
+        "explanation": "The issue revolves around formatting Angular pipes. Files involved in parsing or printing HTML and JS with Angular-specific syntax are likely contributors. Specifically, \"angular-interpolation.js\" could handle interpolation logic, while \"printer-html.js\" and \"angular.js\" likely deal with the formatting of Angular components in HTML and JS. They could control how spaces around pipes are managed. \"printer.js\" may handle broader JS formatting that could affect Angular templates.",
+        "bug_scenario": "The bug involves incorrect formatting of Angular pipes, where spaces are added around pipe arguments inappropriately. The expected formatting keeps strings and numbers without spaces, contrary to the current output."
+    }
+}

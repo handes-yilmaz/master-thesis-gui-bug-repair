@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/language-markdown/printer-markdown.js": [
+            {
+                "SEARCH": [
+                    "case \"html\": {",
+                    "const parentNode = path.getParentNode();",
+                    "return parentNode.type === \"root\" &&",
+                    "privateUtil.getLast(parentNode.children) === node",
+                    "? node.value.trimRight()",
+                    ": node.value;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    case \"html\": {",
+                    "      const parentNode = path.getParentNode();",
+                    "      const isNested = parentNode.type !== \"root\";",
+                    "      return isNested",
+                    "        ? align(\" \".repeat(options.tabWidth), node.value)",
+                    "        : node.value.trimRight();",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

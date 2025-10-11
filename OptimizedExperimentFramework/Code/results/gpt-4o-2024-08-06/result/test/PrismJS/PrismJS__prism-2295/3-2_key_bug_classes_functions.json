@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-java.js//namespace"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the incorrect highlighting of single-package names. The 'namespace' pattern in 'prism-java.js' is responsible for identifying package declarations and imports. The pattern currently handles compound package names but might not properly address single-package names like 'baz'. Adjustments to this pattern will be necessary to ensure single-package names are highlighted consistently with compound names.",
+        "bug_scenario": "The bug scenario shows that single-package names in Java are not highlighted correctly. Specifically, the package name 'baz' is not highlighted in the same way as a compound package name like 'baz.zap'. This inconsistency in syntax highlighting can lead to confusion when reading code."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-java.js//namespace"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the highlighting of Java package names, particularly those with a single segment. The `namespace` pattern within `components/prism-java.js` is responsible for identifying package names and imports. Currently, it seems to only match multi-segment package names because the regex expects at least one dot in the name. To fix the bug, the regex pattern for `namespace` needs to be adjusted to also match single-segment package names.",
+        "bug_scenario": "In the screenshot, Java package names that consist of a single segment (like `package baz;`) are not highlighted correctly, while multi-segment package names like `package baz.zap;` and imports are highlighted properly."
+    }
+}

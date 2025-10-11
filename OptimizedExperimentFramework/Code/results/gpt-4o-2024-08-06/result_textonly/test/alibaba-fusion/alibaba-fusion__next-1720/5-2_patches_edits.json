@@ -1,0 +1,102 @@
+{
+    "1/1": {
+        "src/search/Search.jsx": [
+            {
+                "SEARCH": [
+                    "onSearch = () => {",
+                    "if (this.props.disabled) {",
+                    "return;",
+                    "}",
+                    "this.props.onSearch(this.state.value, this.state.filterValue);",
+                    "};"
+                ],
+                "REPLACE": [
+                    "    onSearch = () => {",
+                    "        if (this.props.disabled) {",
+                    "            return;",
+                    "        }",
+                    "        const selectedValue = this.autoCompleteRef && this.autoCompleteRef.state.value;",
+                    "        this.props.onSearch(selectedValue || this.state.value, this.state.filterValue);",
+                    "    };"
+                ]
+            }
+        ],
+        "src/select/auto-complete.jsx": [
+            {
+                "SEARCH": [
+                    "handleTriggerKeyDown(e) {",
+                    "const { popupContent, onToggleHighlightItem, onKeyDown } = this.props;",
+                    "if (popupContent) {",
+                    "e.stopPropagation(); //stopPropagation can make use onChange triggerd while typing space('') in Input",
+                    "return onKeyDown(e);",
+                    "}",
+                    "",
+                    "switch (e.keyCode) {",
+                    "case KEYCODE.UP:",
+                    "e.preventDefault();",
+                    "onToggleHighlightItem(this.toggleHighlightItem(-1, e), 'up');",
+                    "break;",
+                    "case KEYCODE.DOWN:",
+                    "e.preventDefault();",
+                    "onToggleHighlightItem(this.toggleHighlightItem(1, e), 'down');",
+                    "break;",
+                    "case KEYCODE.ENTER:",
+                    "e.preventDefault();",
+                    "this.chooseHighlightItem(e);",
+                    "break;",
+                    "case KEYCODE.SPACE:",
+                    "// stopPropagation can make use onChange triggerd while typing space('') in Input",
+                    "e.stopPropagation();",
+                    "break;",
+                    "case KEYCODE.ESC:",
+                    "e.preventDefault();",
+                    "this.state.visible && this.setVisible(false, 'esc');",
+                    "break;",
+                    "default:",
+                    "break;",
+                    "}",
+                    "",
+                    "onKeyDown(e);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    handleTriggerKeyDown(e) {",
+                    "        const { popupContent, onToggleHighlightItem, onKeyDown } = this.props;",
+                    "        if (popupContent) {",
+                    "            e.stopPropagation(); //stopPropagation can make use onChange triggerd while typing space('') in Input",
+                    "            return onKeyDown(e);",
+                    "        }",
+                    "",
+                    "        switch (e.keyCode) {",
+                    "            case KEYCODE.UP:",
+                    "                e.preventDefault();",
+                    "                onToggleHighlightItem(this.toggleHighlightItem(-1, e), 'up');",
+                    "                break;",
+                    "            case KEYCODE.DOWN:",
+                    "                e.preventDefault();",
+                    "                onToggleHighlightItem(this.toggleHighlightItem(1, e), 'down');",
+                    "                break;",
+                    "            case KEYCODE.ENTER:",
+                    "                e.preventDefault();",
+                    "                this.chooseHighlightItem(e);",
+                    "                this.setState({ value: this.state.highlightKey }); // Update state with selected suggestion",
+                    "                break;",
+                    "            case KEYCODE.SPACE:",
+                    "                // stopPropagation can make use onChange triggerd while typing space('') in Input",
+                    "                e.stopPropagation();",
+                    "                break;",
+                    "            case KEYCODE.ESC:",
+                    "                e.preventDefault();",
+                    "                this.state.visible && this.setVisible(false, 'esc');",
+                    "                break;",
+                    "            default:",
+                    "                break;",
+                    "        }",
+                    "",
+                    "        onKeyDown(e);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

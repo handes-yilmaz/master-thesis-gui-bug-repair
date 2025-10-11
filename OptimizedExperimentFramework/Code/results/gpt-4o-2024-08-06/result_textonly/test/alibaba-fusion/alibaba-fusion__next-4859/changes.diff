@@ -1,0 +1,23 @@
+diff --git a/components/cascader-select/cascader-select.tsx b/components/cascader-select/cascader-select.tsx
+index 49be8bf38..d3c1adbd2 100644
+--- a/components/cascader-select/cascader-select.tsx
++++ b/components/cascader-select/cascader-select.tsx
+@@ -498,7 +498,7 @@ class CascaderSelect extends Component<CascaderSelectProps, CascaderSelectState>
+             return;
+         }
+ 
+-        const { prefix, popupProps } = this.props;
++        const { prefix, popupProps, useVirtual } = this.props;
+         const { v2 = false } = popupProps;
+         if (!v2) {
+             // @ts-expect-error 待 overlay 技术升级完成
+@@ -506,6 +506,9 @@ class CascaderSelect extends Component<CascaderSelectProps, CascaderSelectState>
+             const cascaderNode = dropDownNode.querySelector(`.${prefix}cascader`) as HTMLElement;
+             if (cascaderNode) {
+                 this.cascaderHeight = getStyle(cascaderNode, 'height');
++                if (useVirtual) {
++                    cascaderNode.style.backgroundColor = 'inherit'; // Ensure background color is set correctly
++                }
+             }
+         }
+ 

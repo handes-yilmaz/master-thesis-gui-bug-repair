@@ -1,0 +1,28 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//DeleteLaneBehavior",
+            "lib/features/modeling/util/LaneUtil.js"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//compensateLaneDelete",
+            "lib/features/modeling/util/LaneUtil.js//getChildLanes",
+            "lib/features/modeling/util/LaneUtil.js//getLanesRoot"
+        ],
+        "explanation": "The issue likely stems from the way lane deletions are handled. The `DeleteLaneBehavior` class and its `compensateLaneDelete` function are directly involved in managing lane deletions, which affects pool boundaries. The `LaneUtil.js` file includes utility functions like `getChildLanes` and `getLanesRoot` that manage lane hierarchy and might not properly restore the pool boundary interaction after a lane is removed. Modifications in these areas could resolve the connection issue by ensuring proper lane and boundary management.",
+        "bug_scenario": "The bug involves difficulty in connecting a message flow to a pool boundary that previously had more than one lane. The connection is only possible by dropping the connector at the pool's header, not within the single lane."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/util/LaneUtil.js"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/util/LaneUtil.js//collectLanes",
+            "lib/features/modeling/util/LaneUtil.js//getChildLanes",
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//compensateLaneDelete"
+        ],
+        "explanation": "The issue arises when a lane is added and then removed, affecting the ability to connect message flows. The `DeleteLaneBehavior.js` file is relevant because it handles behavior related to deleting lanes, which includes compensating for changes in layout and possibly affecting connection points. The `LaneUtil.js` file contains functions like `collectLanes` and `getChildLanes`, which are crucial for managing lanes within pools and ensuring proper updates when lanes are added or removed. These functions are likely responsible for handling the collection and organization of lanes, which directly impacts the connection behaviors described in the bug.",
+        "bug_scenario": "The bug involves difficulties in connecting a message flow to the boundary of a pool that previously had more than one lane. The connection is only possible by dropping the connector at the pool's header, not inside the single lane."
+    }
+}

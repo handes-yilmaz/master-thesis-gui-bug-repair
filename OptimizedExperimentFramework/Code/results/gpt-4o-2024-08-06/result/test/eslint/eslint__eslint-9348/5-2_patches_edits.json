@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "lib/rules/no-this-before-super.js": [
+            {
+                "SEARCH": [
+                    "onCodePathSegmentStart(segment) {",
+                    "if (!isInConstructorOfDerivedClass()) {",
+                    "return;",
+                    "}",
+                    "",
+                    "// Initialize info.",
+                    "segInfoMap[segment.id] = {",
+                    "superCalled: (",
+                    "segment.prevSegments.length > 0 &&",
+                    "segment.prevSegments.every(isCalled)",
+                    "),",
+                    "invalidNodes: []",
+                    "};",
+                    "},"
+                ],
+                "REPLACE": [
+                    "            onCodePathSegmentStart(segment) {",
+                    "                // Ensure segInfoMap is initialized for all segments",
+                    "                segInfoMap[segment.id] = segInfoMap[segment.id] || {",
+                    "                    superCalled: false,",
+                    "                    invalidNodes: []",
+                    "                };",
+                    "",
+                    "                if (isInConstructorOfDerivedClass()) {",
+                    "                    // Update info if in a constructor of a derived class",
+                    "                    segInfoMap[segment.id].superCalled = (",
+                    "                        segment.prevSegments.length > 0 &&",
+                    "                        segment.prevSegments.every(isCalled)",
+                    "                    );",
+                    "                }",
+                    "            },"
+                ]
+            }
+        ]
+    }
+}

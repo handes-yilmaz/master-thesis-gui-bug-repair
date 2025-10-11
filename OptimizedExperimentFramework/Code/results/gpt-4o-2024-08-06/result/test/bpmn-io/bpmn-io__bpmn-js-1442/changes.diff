@@ -1,0 +1,15 @@
+diff --git a/lib/features/modeling/behavior/DropOnFlowBehavior.js b/lib/features/modeling/behavior/DropOnFlowBehavior.js
+index ef843a0a..2f0757e7 100644
+--- a/lib/features/modeling/behavior/DropOnFlowBehavior.js
++++ b/lib/features/modeling/behavior/DropOnFlowBehavior.js
+@@ -156,7 +156,9 @@ export default function DropOnFlowBehavior(eventBus, bpmnRules, modeling) {
+         position = context.position;
+ 
+     if (targetFlow) {
+-      insertShape(shapes[0], targetFlow, position);
++      shapes.forEach(function(shape) {
++        insertShape(shape, targetFlow, position);
++      });
+     }
+ 
+   }, true);

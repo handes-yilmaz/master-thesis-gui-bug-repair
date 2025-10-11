@@ -1,0 +1,20 @@
+diff --git a/lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js b/lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js
+index 9c6f1be4..f854565c 100644
+--- a/lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js
++++ b/lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js
+@@ -26,7 +26,7 @@ export default function DeleteSequenceFlowBehavior(eventBus, modeling) {
+         connection = context.connection,
+         source = connection.source;
+ 
+-    if (isDefaultFlow(connection, source)) {
++    if (isDefaultFlow(connection, source) && !isCatchEventAddition(context)) {
+       modeling.updateProperties(source, {
+         'default': null
+       });
+@@ -54,4 +54,4 @@ function isDefaultFlow(connection, source) {
+       sequenceFlow = getBusinessObject(connection);
+ 
+   return sourceBo.get('default') === sequenceFlow;
+-}
+\ No newline at end of file
++}

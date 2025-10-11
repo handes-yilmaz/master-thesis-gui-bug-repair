@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//BoundaryEventBehavior",
+            "lib/features/rules/BpmnRules.js//BpmnRules"
+        ],
+        "explanation": "The `BoundaryEventBehavior` class in `BoundaryEventBehavior.js` handles behaviors related to boundary events, including post-execution rules for connections, which are directly related to the issue of disallowing message flows to boundary events. The `BpmnRules` function in `BpmnRules.js` appears to contain logic for modeling rules, including restrictions on connections involving boundary events, making it relevant to ensuring message flows are not allowed to connect to boundary events.",
+        "bug_scenario": "The bug scenario involves the incorrect ability to connect message flows to boundary events in a BPMN diagram, which should not be allowed according to BPMN semantics. The image shows a diagram with participants labeled 'A' and 'B', and a task with a boundary event. The connection between participant 'B' and the boundary event should be disallowed."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The `BoundaryEventBehavior.js` file handles BPMN-specific behaviors for boundary events, including connection rules. This file should contain logic to prevent connections to boundary events if such connections are not allowed by BPMN semantics. The `BpmnRules.js` file is responsible for defining modeling rules, including rules about valid connections between elements. It should ensure that message flows cannot target boundary events, aligning with the expected behavior described in the bug report.",
+        "bug_scenario": "The image shows a BPMN diagram with two participants labeled 'A' and 'B'. There is a task with a boundary event attached to it. The bug report describes an issue where it is possible to connect a message flow to a boundary event, which is against BPMN semantics. The expected behavior is that such connections should be disallowed."
+    }
+}

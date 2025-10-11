@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js//NUMBER"
+        ],
+        "bug_functions": [
+            "src/languages/python.js//export default function"
+        ],
+        "explanation": "The bug stems from the way numbers and keywords are defined and handled in the highlighting logic. The 'NUMBER' class in 'src/languages/python.js' defines the patterns for numeric literals, which should be adjusted to ensure numbers are properly separated from keywords in the highlight. The 'export default function' in the same file is responsible for defining the language syntax highlighting rules, and changes here can ensure the correct separation and identification of keywords following numbers.",
+        "bug_scenario": "The issue is that in Python syntax highlighting, keywords directly following numbers are not being detected properly. Instead of recognizing '1if' as a number followed by a keyword 'if', it is treated as a single entity, which is incorrect. The highlighting should separate the number from the keyword part to accurately reflect the syntax."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/python.js//NUMBER"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue stems from how numbers and keywords are recognized and separated in the syntax highlighting process. In `src/languages/python.js`, the `NUMBER` constant defines how numbers are detected. The current setup does not properly handle cases where a keyword follows a number without a space, leading to incorrect highlighting. Adjustments need to be made to ensure correct parsing and separation of numbers and keywords to fix the highlighting bug.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting of Python code where keywords directly follow numbers. This results in no separation between numbers and keywords in the highlighting output. The expected behavior is for the highlighting to clearly differentiate between numbers and keywords, as shown in the expected output image."
+    }
+}

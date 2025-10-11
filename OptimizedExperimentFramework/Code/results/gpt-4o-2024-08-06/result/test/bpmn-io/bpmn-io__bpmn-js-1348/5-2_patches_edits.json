@@ -1,0 +1,39 @@
+{
+    "1/1": {
+        "lib/features/rules/BpmnRules.js": [
+            {
+                "SEARCH": [
+                    "function isMessageFlowTarget(element) {",
+                    "return (",
+                    "is(element, 'bpmn:InteractionNode') &&",
+                    "!is(element, 'bpmn:BoundaryEvent') &&",
+                    "!isForCompensation(element) && (",
+                    "!is(element, 'bpmn:Event') || (",
+                    "is(element, 'bpmn:CatchEvent') &&",
+                    "hasEventDefinitionOrNone(element, 'bpmn:MessageEventDefinition')",
+                    ")",
+                    ")",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function isMessageFlowTarget(element) {",
+                    "  return (",
+                    "    is(element, 'bpmn:InteractionNode') &&",
+                    "    (!is(element, 'bpmn:BoundaryEvent') || (",
+                    "      is(element, 'bpmn:BoundaryEvent') &&",
+                    "      hasEventDefinition(element, 'bpmn:MessageEventDefinition')",
+                    "    )) &&",
+                    "    !isForCompensation(element) && (",
+                    "      !is(element, 'bpmn:Event') || (",
+                    "        is(element, 'bpmn:CatchEvent') &&",
+                    "        hasEventDefinitionOrNone(element, 'bpmn:MessageEventDefinition')",
+                    "      )",
+                    "    )",
+                    "  );",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

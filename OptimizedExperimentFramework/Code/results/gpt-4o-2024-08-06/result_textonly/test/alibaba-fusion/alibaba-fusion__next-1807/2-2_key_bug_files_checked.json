@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/menu/view/item.jsx",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "1. **src/menu/view/item.jsx**: This file is directly responsible for rendering the Menu Item components. It includes logic for setting the 'title' attribute on menu items, which is central to the bug described. The function `getTitle` is used to generate the title from the children, and the `render` method applies this title to the menu item. This is where the default behavior of adding a title to menu items is implemented, making it a key file for addressing the bug.\n\n2. **src/config-provider/config.jsx**: This file contains the configuration logic for components, including the potential to manage global settings that could affect how titles are applied to menu items. The bug report suggests a solution involving a configuration option (`showTitle`), which would likely be implemented or managed within this configuration provider. This makes it relevant for implementing a solution that allows users to control the presence of titles on menu items.",
+        "bug_scenario": "The bug scenario involves the automatic addition of a 'title' attribute to Menu Items in a user interface. This title attribute is currently added by default, allowing users to see all collapsed text when hovering over the item for 3 seconds, and enabling screen readers to read the text. However, this behavior violates the WCAG principle of avoiding repetitive text when the title and innerText are identical. Additionally, some business users find the title tooltip undesirable. The proposed solutions involve either replacing the title with an aria-label or providing a configuration option to control the title's presence."
+    }
+}

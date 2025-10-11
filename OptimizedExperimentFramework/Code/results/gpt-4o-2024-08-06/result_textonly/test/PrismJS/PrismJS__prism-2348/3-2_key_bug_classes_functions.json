@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [],
+        "explanation": "The issue is related to how PrismJS identifies and highlights class names in C++ language syntax. The `class-name` pattern defined in `components/prism-cpp.js` and `components/prism-cpp.min.js` files is responsible for detecting class names. The pattern currently used does not account for all C++ class naming scenarios, particularly when inheritance is involved or when class names are used in member function definitions. Therefore, the `class-name` pattern in these files needs to be modified to correctly identify and highlight all occurrences of class names in C++ code. This is the root cause of the highlighting failure described in the bug report.",
+        "bug_scenario": "The bug involves the PrismJS library failing to correctly highlight class names in C++ code. Specifically, it does not highlight the class name in cases like `class MainWindow : public QMainWindow` and `void MainWindow::changeWindowTitle()`, where `QMainWindow` and `MainWindow` should be highlighted but are not."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-cpp.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the syntax highlighting rules defined in the 'components/prism-cpp.js' file, which extends the C language definition to support C++. The relevant part of the file is the pattern for 'class-name', which is supposed to match C++ class definitions. The current pattern does not correctly identify class names when they are part of inheritance or member function definitions, leading to the failure in highlighting 'QMainWindow' and 'MainWindow'. Adjustments to this pattern would correct the highlighting issue.",
+        "bug_scenario": "The bug scenario involves PrismJS, a syntax highlighting library, which fails to highlight class names in C++ code. Specifically, in C++ code examples such as 'class MainWindow : public QMainWindow', PrismJS does not highlight the class name 'QMainWindow', and in 'void MainWindow::changeWindowTitle()', it does not highlight 'MainWindow'. This issue does not occur on GitHub, which highlights these correctly."
+    }
+}

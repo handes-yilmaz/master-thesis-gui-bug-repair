@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/menu/view/item.jsx",
+            "src/menu/view/menu.jsx",
+            "src/cascader/menu.jsx",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "1. **src/menu/view/item.jsx**: Handles individual menu items where title attributes might be set and need modification.\n2. **src/menu/view/menu.jsx**: Manages the overall menu component where title or aria-label settings could be adjusted.\n3. **src/cascader/menu.jsx**: Relevant due to the inclusion of Cascader, which also might have similar title handling issues.\n4. **src/config-provider/config.jsx**: This file would potentially include configurations for title settings, such as settings for enabling or disabling tooltips via configurations like `showTitle`. Adjustments here could help implement solution options provided in the bug report, like adding a new API to control title display.",
+        "bug_scenario": "The images show a menu dropdown with items that have tooltips or titles appearing when hovered over. The titles seem to duplicate the visible text, violating accessibility guidelines and causing unwanted visual elements for some users."
+    },
+    "2": {
+        "bug_files": [
+            "src/menu/view/item.jsx",
+            "src/menu/view/menu.jsx",
+            "src/config-provider/config.jsx",
+            "src/select/select.jsx",
+            "src/select/option.jsx",
+            "src/cascader/menu.jsx"
+        ],
+        "explanation": "The files listed are involved in rendering the menu and select components where the title attributes might be assigned. The bug report discusses changing the behavior of auto-adding title attributes to menu items, and these components are directly involved in that process. Modifications will likely need to occur in these files to either remove or modify the title attributes based on configuration options or specific conditions.",
+        "bug_scenario": "The issue is related to the display of tooltips (title attributes) in dropdown menu items. The problem arises when there is a tooltip (title) being added automatically to menu items which can result in redundant information, especially when title and innerText are identical. This violates accessibility guidelines and can be undesirable for some business users who do not want the tooltip to appear."
+    }
+}
