@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Meter/Meter.js//Meter",
+            "src/js/components/Meter/Circle.js//Circle"
+        ],
+        "bug_functions": [
+            "src/js/components/Meter/Meter.js//deriveMax",
+            "src/js/components/Meter/Circle.js//Circle"
+        ],
+        "explanation": "The 'Meter' class in 'src/js/components/Meter/Meter.js' is responsible for rendering the meter component, and it uses the 'Circle' class from 'src/js/components/Meter/Circle.js' when the type is 'circle'. The 'deriveMax' function in 'Meter.js' calculates the maximum value for the meter, which is crucial for rendering all data points correctly. The 'Circle' class in 'Circle.js' is directly responsible for rendering the circular meter, and any issues in its logic could lead to incorrect rendering of data points. The problem likely lies in how the 'Circle' class processes the 'values' array and calculates angles for rendering each segment, which is why these classes and functions are identified as bug-related elements.",
+        "bug_scenario": "The bug scenario involves a 'Meter' component with type 'circle' that fails to render all data points. Instead, it only renders the last data point when multiple values are provided. This issue was introduced in version 2.25.0, whereas it worked correctly in version 2.24.0."
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/imagevector.js",
+            "src/ol/interaction/draw.js"
+        ],
+        "explanation": "1. `src/ol/source/imagevector.js`: This file contains the implementation of the `ol.source.ImageVector` class, which has been deprecated in favor of using `ol.layer.Vector` with `renderMode: 'image'`. The deprecation and the transition to the new rendering mode are likely causing the performance issues observed in version 4.6.2.\n\n2. `src/ol/interaction/draw.js`: This file handles the drawing interaction in OpenLayers. Given that the performance issue is related to drawing interactions, this file is relevant as it may need adjustments to optimize performance with the new rendering mode in version 4.6.2.",
+        "bug_scenario": "The bug scenario involves a performance issue when using the draw interaction in OpenLayers version 4.6.2 compared to version 4.4.2. The problem arises due to the deprecation of `ol.source.ImageVector` and the use of `renderMode: 'image'` in the newer version, which results in slower rendering performance. The test condition involves drawing a triangle at a specific resolution, as shown in the provided image."
+    }
+}

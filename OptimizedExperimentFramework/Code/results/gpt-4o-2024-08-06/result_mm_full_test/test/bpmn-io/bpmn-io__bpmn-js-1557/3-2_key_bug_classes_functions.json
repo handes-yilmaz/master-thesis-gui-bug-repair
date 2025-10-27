@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnUpdater.js//BpmnUpdater",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js//UpdateSemanticParentHandler",
+            "lib/features/modeling/behavior/DataStoreBehavior.js//DataStoreBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnUpdater.js//BpmnUpdater.prototype.updateDiParent",
+            "lib/features/modeling/BpmnUpdater.js//BpmnUpdater.prototype.updateParent",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js//UpdateSemanticParentHandler.prototype.execute",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js//UpdateSemanticParentHandler.prototype.revert",
+            "lib/features/modeling/behavior/DataStoreBehavior.js//updateDataStoreParent"
+        ],
+        "explanation": "The error is related to updating the parent elements in the BPMN model. The `BpmnUpdater` class, particularly the `updateDiParent` and `updateParent` functions, are responsible for updating the diagram's parent elements, which is where the error occurs. The `UpdateSemanticParentHandler` class and its `execute` and `revert` functions are involved in updating the semantic and DI parents, which are directly related to the morphing operation. The `DataStoreBehavior` class, specifically the `updateDataStoreParent` function, handles the behavior of data stores, which is relevant when morphing between DataStoreReference and DataObjectReference.",
+        "bug_scenario": "The bug occurs when attempting to morph a DataStoreReference to a DataObjectReference outside of a Pool in a BPMN model. This action throws an error due to undefined properties being accessed, as shown in the console error log."
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/interaction/Draw.js//Draw",
+            "src/ol/geom/Polygon.js//Polygon"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Draw.js//createRegularPolygon",
+            "src/ol/interaction/Draw.js//createBox",
+            "src/ol/geom/Polygon.js//fromCircle",
+            "src/ol/geom/Polygon.js//makeRegular"
+        ],
+        "explanation": "The 'Draw' class in 'src/ol/interaction/Draw.js' is responsible for handling the drawing interactions, including the creation of circles and polygons. The 'createRegularPolygon' and 'createBox' functions are directly related to the creation of regular polygons and box shapes, which are reported to be problematic in the bug report. The 'Polygon' class in 'src/ol/geom/Polygon.js' is involved in the geometry of polygons, and the 'fromCircle' and 'makeRegular' functions are used to create regular polygons from circles, which aligns with the issues described in the bug report regarding irregular shapes. These classes and functions are key to addressing the reported issues with geometry shapes and sizes in geographic projections.",
+        "bug_scenario": "The bug scenario involves issues with the size and shape of drawn circles and other custom geometries when using the 'useGeographic' option in a drawing interaction. Specifically, circles do not extend to the pointer position as expected, especially noticeable at higher latitudes. Additionally, regular shapes created by 'createRegularPolygon' are not regular, and drawing a box with 'createBox' is problematic if the view projection is not parallel to WGS84."
+    }
+}

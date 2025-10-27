@@ -1,0 +1,31 @@
+diff --git a/lighthouse-core/audits/uses-rel-preconnect.js b/lighthouse-core/audits/uses-rel-preconnect.js
+index 8b652eb..8ef1da2 100644
+--- a/lighthouse-core/audits/uses-rel-preconnect.js
++++ b/lighthouse-core/audits/uses-rel-preconnect.js
+@@ -166,8 +166,11 @@ class UsesRelPreconnectAudit extends Audit {
+       if (wastedMs < IGNORE_THRESHOLD_IN_MS) return;
+ 
+       if (preconnectOrigins.has(securityOrigin)) {
+-        // Add a warning for any origin the user tried to preconnect to but failed
+-        warnings.push(str_(UIStrings.crossoriginWarning, {securityOrigin}));
++        // Check if the preconnect link has the correct crossorigin attribute
++        const preconnectLink = preconnectLinks.find(link => URL.getOrigin(link.href || '') === securityOrigin);
++        if (preconnectLink && preconnectLink.crossOrigin !== 'anonymous') {
++          warnings.push(str_(UIStrings.crossoriginWarning, {securityOrigin}));
++        }
+         return;
+       }
+ 
+diff --git a/lighthouse-core/gather/gatherers/link-elements.js b/lighthouse-core/gather/gatherers/link-elements.js
+index a6961ed..d249e19 100644
+--- a/lighthouse-core/gather/gatherers/link-elements.js
++++ b/lighthouse-core/gather/gatherers/link-elements.js
+@@ -65,7 +65,7 @@ function getLinkElementsInDOM() {
+       hrefRaw: link.href,
+       hreflang: link.hreflang,
+       as: link.as,
+-      crossOrigin: link.crossOrigin,
++      crossOrigin: link.crossOrigin || 'anonymous',
+       source: link.closest('head') ? 'head' : 'body',
+     });
+   }

@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const opacity = cssOpacity(layerState.opacity);",
+                    "const container = this.container;",
+                    "if (opacity !== container.style.opacity) {",
+                    "container.style.opacity = opacity;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const container = this.container;",
+                    "    container.style.opacity = cssOpacity(layerState.opacity);"
+                ]
+            }
+        ],
+        "src/ol/renderer/canvas/Layer.js": [
+            {
+                "SEARCH": [
+                    "if (context && context.canvas.style.transform === transform) {",
+                    "// Container of the previous layer renderer can be used.",
+                    "this.container = target;",
+                    "this.context = context;",
+                    "this.containerReused = true;",
+                    "} else if (this.containerReused) {",
+                    "// Previously reused container cannot be used any more.",
+                    "this.container = null;",
+                    "this.context = null;",
+                    "this.containerReused = false;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (context && context.canvas.style.transform === transform) {",
+                    "      // Container of the previous layer renderer can be used.",
+                    "      this.container = target;",
+                    "      this.context = context;",
+                    "      this.containerReused = true;",
+                    "      this.container.style.opacity = cssOpacity(opacity);",
+                    "    } else if (this.containerReused) {",
+                    "      // Previously reused container cannot be used any more.",
+                    "      this.container = null;",
+                    "      this.context = null;",
+                    "      this.containerReused = false;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

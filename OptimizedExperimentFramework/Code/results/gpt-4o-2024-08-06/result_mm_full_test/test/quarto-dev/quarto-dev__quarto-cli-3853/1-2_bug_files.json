@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/render/latexmk/latex.ts",
+            "src/render/latexmk/latexmk.ts",
+            "src/render/output-tex.ts",
+            "src/render/normalize.ts"
+        ],
+        "explanation": "These files are related to LaTeX rendering and output processes. The file `src/render/latexmk/latex.ts` likely handles the LaTeX generation logic. `src/render/latexmk/latexmk.ts` may manage the build process for LaTeX documents. `src/render/output-tex.ts` is likely involved in generating the final LaTeX output. `src/render/normalize.ts` could be responsible for ensuring the LaTeX content is formatted correctly. These files are likely involved in the generation of the problematic LaTeX code that causes the excessive spacing and misplacement of the QED symbol.",
+        "bug_scenario": "The bug involves excessive vertical space before definition/theorem environments in LaTeX output. The issue is caused by additional code prepended to these environments, particularly the `\\leavevmode\\vadjust pre{\\hypertarget{def-def}{}}` line, which adds unwanted vertical space. Additionally, the QED symbol's placement is affected by an empty line at the end of the proof environment."
+    },
+    "2": {
+        "bug_files": [
+            "src/render/latexmk/latex.ts",
+            "src/render/latexmk/latexmk.ts",
+            "src/render/output-tex.ts"
+        ],
+        "explanation": "The files related to LaTeX rendering and output are crucial for addressing this bug. Specifically, `latex.ts` and `latexmk.ts` in `src/render/latexmk/` are likely involved in generating the LaTeX code, where the extra commands causing spacing issues are inserted. The file `output-tex.ts` in `src/render/` could be responsible for handling the output specifics of the LaTeX document, including the handling of spacing and commands like `\\leavevmode\\vadjust pre{...}`.",
+        "bug_scenario": "The bug involves excessive vertical space before definition/theorem environments in LaTeX output. The issue is caused by extra code `\\leavevmode\\vadjust pre{\\hypertarget{def-def}{}}` added before these environments, which creates unwanted space. Additionally, the positioning of the QED symbol in proofs is affected by an empty line in the generated LaTeX code."
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "lighthouse-core/computed/load-simulator.js": [
+            {
+                "SEARCH": [
+                    "break;"
+                ],
+                "REPLACE": [
+                    "        options.layoutTaskMultiplier = throttling.layoutTaskMultiplier || 1;",
+                    "        break;"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/driver/wait-for-condition.js": [
+            {
+                "SEARCH": [
+                    "const resolveOnNetworkIdle = waitForNetworkIdle(session, networkMonitor, networkQuietThresholdMs);"
+                ],
+                "REPLACE": [
+                    "  const resolveOnNetworkIdle = waitForNetworkIdle(session, networkMonitor, networkQuietThresholdMs * 1.5);"
+                ]
+            }
+        ]
+    }
+}

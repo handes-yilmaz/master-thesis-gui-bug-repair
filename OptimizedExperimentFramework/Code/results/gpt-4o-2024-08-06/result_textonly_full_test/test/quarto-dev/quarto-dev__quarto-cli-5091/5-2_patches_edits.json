@@ -1,0 +1,69 @@
+{
+    "1/1": {
+        "src/core/image.ts": [
+            {
+                "SEARCH": [
+                    "import { existsSync } from \"fs/exists.ts\";",
+                    "import { extname } from \"path/mod.ts\";",
+                    "import PngImage from \"./png.ts\";",
+                    "",
+                    "export function imageSize(path: string) {",
+                    "if (path !== undefined) {",
+                    "if (path.endsWith(\".png\")) {",
+                    "if (existsSync(path)) {",
+                    "const imageData = Deno.readFileSync(path);",
+                    "try {",
+                    "const png = new PngImage(imageData);",
+                    "return {",
+                    "height: png.height,",
+                    "width: png.width,",
+                    "};",
+                    "} catch (error) {",
+                    "throw new Error(`Error reading file ${path}\\n${error.message}`);",
+                    "}",
+                    "}",
+                    "}",
+                    "}",
+                    "}",
+                    "",
+                    "export function imageContentType(path: string) {",
+                    "const ext = extname(path);",
+                    "return kimageTypes[ext];",
+                    "}"
+                ],
+                "REPLACE": [
+                    "import { existsSync } from \"fs/exists.ts\";",
+                    "import { extname } from \"path/mod.ts\";",
+                    "import PngImage from \"./png.ts\";",
+                    "import { decodeURIComponent } from \"url\";",
+                    "",
+                    "export function imageSize(path: string) {",
+                    "  if (path !== undefined) {",
+                    "    const decodedPath = decodeURIComponent(path);",
+                    "    if (decodedPath.endsWith(\".png\")) {",
+                    "      if (existsSync(decodedPath)) {",
+                    "        const imageData = Deno.readFileSync(decodedPath);",
+                    "        try {",
+                    "          const png = new PngImage(imageData);",
+                    "          return {",
+                    "            height: png.height,",
+                    "            width: png.width,",
+                    "          };",
+                    "        } catch (error) {",
+                    "          throw new Error(`Error reading file ${decodedPath}\\n${error.message}`);",
+                    "        }",
+                    "      }",
+                    "    }",
+                    "  }",
+                    "}",
+                    "",
+                    "export function imageContentType(path: string) {",
+                    "  const decodedPath = decodeURIComponent(path);",
+                    "  const ext = extname(decodedPath);",
+                    "  return kimageTypes[ext];",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

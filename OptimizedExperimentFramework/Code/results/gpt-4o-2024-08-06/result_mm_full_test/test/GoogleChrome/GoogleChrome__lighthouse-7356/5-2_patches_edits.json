@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/driver.js": [
+            {
+                "SEARCH": [
+                    "const DEFAULT_PROTOCOL_TIMEOUT = 30000;"
+                ],
+                "REPLACE": [
+                    "const DEFAULT_PROTOCOL_TIMEOUT = 60000; // Increase to 60 seconds"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gather-runner.js": [
+            {
+                "SEARCH": [
+                    "let maxWaitMs = passContext.settings && passContext.settings.maxWaitForLoad;",
+                    "...",
+                    "if (typeof maxWaitMs !== 'number') maxWaitMs = constants.defaultSettings.maxWaitForLoad;"
+                ],
+                "REPLACE": [
+                    "let maxWaitMs = passContext.settings && passContext.settings.maxWaitForLoad;",
+                    "...",
+                    "if (typeof maxWaitMs !== 'number') maxWaitMs = 60000; // Increase to 60 seconds"
+                ]
+            }
+        ]
+    }
+}

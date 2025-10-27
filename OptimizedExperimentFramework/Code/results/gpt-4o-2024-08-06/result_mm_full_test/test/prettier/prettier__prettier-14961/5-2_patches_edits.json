@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "src/language-html/printer-html.js": [
+            {
+                "SEARCH": [
+                    "case \"interpolation\":",
+                    "return [",
+                    "printOpeningTagStart(node, options),",
+                    "...path.map(print, \"children\"),",
+                    "printClosingTagEnd(node, options),",
+                    "];"
+                ],
+                "REPLACE": [
+                    "    case \"interpolation\":",
+                    "      return [",
+                    "        printOpeningTagStart(node, options),",
+                    "        ...path.map((childPath) => {",
+                    "          const childNode = childPath.getValue();",
+                    "          if (childNode.type === \"text\" && /^[0-9]+$/.test(childNode.value.trim())) {",
+                    "            // No spaces for number arguments",
+                    "            return childNode.value.trim();",
+                    "          }",
+                    "          return print(childPath);",
+                    "        }, \"children\"),",
+                    "        printClosingTagEnd(node, options),",
+                    "      ];"
+                ]
+            }
+        ]
+    }
+}

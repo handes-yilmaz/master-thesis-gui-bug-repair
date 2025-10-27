@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/reproj/DataTile.js//ReprojDataTile",
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//configure_",
+            "src/ol/source/GeoTIFF.js//loadTile_"
+        ],
+        "explanation": "The class 'ReprojDataTile' in 'src/ol/reproj/DataTile.js' is directly involved in the reprojection process of data tiles, which is where the issue with the 'wrapX' option not being respected likely originates. This class handles the transformation of tile data from one projection to another, and any logic related to cropping or wrapping during reprojection would be implemented here.\n\nThe class 'GeoTIFFSource' in 'src/ol/source/GeoTIFF.js' is responsible for managing GeoTIFF data sources, including how they are loaded and configured. The 'configure_' function is likely involved in setting up the tile grid and handling options like 'wrapX', which could be where the bug is introduced if the option is not correctly applied during configuration. The 'loadTile_' function is responsible for loading tile data, and any issues with how tiles are cropped or wrapped during loading could also contribute to the bug.",
+        "bug_scenario": "The bug scenario involves the incorrect handling of the 'wrapX' option in GeoTIFF source tiles when they are reprojected. The expected behavior is that the 'wrapX' option should crop the output to the tile grid extent on both the x and y axes, regardless of the source projection being global. However, when reprojection occurs, this option is not respected, leading to issues with how the tiles are displayed or processed."
+    }
+}

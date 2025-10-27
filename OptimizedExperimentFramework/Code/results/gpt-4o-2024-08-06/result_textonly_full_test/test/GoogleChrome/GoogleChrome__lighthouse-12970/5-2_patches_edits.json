@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js": [
+            {
+                "SEARCH": [
+                    "for (const resource of artifacts.TagsBlockingFirstPaint) {",
+                    "// Ignore any resources that finished after observed FCP (they're clearly not render-blocking)",
+                    "if (resource.endTime * 1000 > fcpTsInMs) continue;"
+                ],
+                "REPLACE": [
+                    "    for (const resource of artifacts.TagsBlockingFirstPaint) {",
+                    "      // Ignore local resources (file:///) and any resources that finished after observed FCP",
+                    "      if (resource.tag.url.startsWith('file://') || resource.endTime * 1000 > fcpTsInMs) continue;"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js": [
+            {
+                "SEARCH": [
+                    "const request = requests.get(tag.url);",
+                    "if (!request || request.isLinkPreload) continue;"
+                ],
+                "REPLACE": [
+                    "      const request = requests.get(tag.url);",
+                    "      if (!request || request.isLinkPreload || tag.url.startsWith('file://')) continue;"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js//ReportRenderer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js//renderReport",
+            "lighthouse-core/report/v2/renderer/report-renderer.js//_renderReportHeader"
+        ],
+        "explanation": "The class `ReportRenderer` in `report-renderer.js` is responsible for rendering the Lighthouse report based on JSON output. The function `renderReport` is crucial as it is the entry point for rendering the report into a container, and any changes to include warnings would likely need to be integrated here. The `_renderReportHeader` function is specifically responsible for rendering the header of the report, which is where the warning needs to be prominently displayed. Therefore, these elements are directly related to the bug fix, as they are responsible for the structure and content of the report where the warning should appear.",
+        "bug_scenario": "The bug scenario involves a need to warn users about performance numbers when a report is generated using headless Chrome. The warning should be prominently displayed at the top of the report to ensure visibility, as performance-related audits can appear in various sections of the report. Additionally, there is a consideration of whether running the module should also trigger a warning."
+    }
+}

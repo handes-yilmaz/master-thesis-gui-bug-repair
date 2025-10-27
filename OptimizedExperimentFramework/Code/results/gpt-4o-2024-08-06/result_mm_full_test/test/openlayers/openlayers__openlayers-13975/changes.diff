@@ -1,0 +1,17 @@
+diff --git a/src/ol/style/Icon.js b/src/ol/style/Icon.js
+index 52535bc..cec44cc 100644
+--- a/src/ol/style/Icon.js
++++ b/src/ol/style/Icon.js
+@@ -293,7 +293,11 @@ class Icon extends ImageStyle {
+       this.normalizedAnchor_ = anchor;
+     }
+     const displacement = this.getDisplacement();
+-    return [anchor[0] - displacement[0], anchor[1] + displacement[1]];
++    const scale = this.getScale();
++    return [
++      anchor[0] - displacement[0] * scale,
++      anchor[1] + displacement[1] * scale
++    ];
+   }
+ 
+   /**

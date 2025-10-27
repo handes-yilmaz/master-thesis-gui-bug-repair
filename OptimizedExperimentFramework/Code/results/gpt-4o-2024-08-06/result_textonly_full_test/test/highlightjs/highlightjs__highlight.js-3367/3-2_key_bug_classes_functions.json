@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js//NUMBER"
+        ],
+        "bug_functions": [
+            "src/lib/regex.js//source",
+            "src/lib/regex.js//lookahead",
+            "src/lib/regex.js//either",
+            "src/lib/mode_compiler.js//compileLanguage",
+            "src/lib/mode_compiler.js//compileMode"
+        ],
+        "explanation": "The issue is related to the syntax highlighting of Python code, specifically the detection of keywords following numbers. The 'NUMBER' class in 'src/languages/python.js' is responsible for defining how numbers are recognized in the syntax highlighting process. This class likely needs adjustment to ensure that numbers followed by keywords are correctly separated.\n\nThe functions in 'src/lib/regex.js' such as 'source', 'lookahead', and 'either' are involved in constructing and manipulating regular expressions, which are crucial for defining the patterns used in syntax highlighting. These functions may need to be adjusted to correctly handle the separation of numbers and keywords.\n\nIn 'src/lib/mode_compiler.js', the 'compileLanguage' and 'compileMode' functions are responsible for compiling language definitions and modes, which include the rules for syntax highlighting. These functions may need to be updated to ensure that the compiled rules correctly handle the separation of numbers and keywords in Python code.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in Python code where keywords directly following numbers are not being detected correctly. The highlighting should separate the number and the keyword part, but currently, it does not, leading to incorrect syntax highlighting."
+    }
+}

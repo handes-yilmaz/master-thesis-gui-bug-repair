@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js**: This file contains logic related to unsetting the default flow property of a sequence flow's source when an element is deleted. The bug report indicates that adding a Timer Intermediate Catch Event removes the default attribute, which suggests that the logic in this file might be incorrectly triggered or not handling the addition of catch events properly.\n\n2. **lib/features/modeling/cmd/UpdatePropertiesHandler.js**: This file handles updates to BPMN element properties, including the default flow property. The bug involves the removal of the default attribute, which is directly related to property updates. The logic in this file might be responsible for incorrectly updating or failing to preserve the default attribute when a catch event is added.",
+        "bug_scenario": "The bug scenario involves a BPMN model where an exclusive gateway with two outgoing sequence flows has one of them set as the default flow. When a Timer Intermediate Catch Event is added to the non-default flow, the default attribute is removed from the gateway, although the default flow remains visually rendered. This issue is not limited to Timer Intermediate Catch Events but may occur with other types of catch events as well."
+    }
+}

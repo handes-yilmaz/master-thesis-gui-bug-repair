@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/metrics.js",
+            "lighthouse-core/computed/metrics/metric.js",
+            "lighthouse-core/gather/gatherers/iframe-elements.js",
+            "lighthouse-core/audits/third-party-summary.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/metrics/metrics.js**: This file likely handles the calculation and reporting of metrics like First Contentful Paint, Speed Index, and Time to Interactive. The bug relates to how these metrics are aggregated when iframes are involved.\n\n2. **lighthouse-core/computed/metrics/metric.js**: This file computes individual metrics. It might need adjustments to consider iframe loading times in the context of the parent page.\n\n3. **lighthouse-core/gather/gatherers/iframe-elements.js**: This file gathers information about iframes. It may need modifications to ensure that iframe performance is captured accurately.\n\n4. **lighthouse-core/audits/third-party-summary.js**: This file might summarize third-party content, including iframes. It may need updates to reflect the impact of iframes on performance accurately.",
+        "bug_scenario": "The bug report indicates a discrepancy in Lighthouse performance scores between a parent page containing an iframe and the iframe itself. The parent page, which includes a slow-loading iframe, receives a better performance score than the iframe alone, suggesting that the iframe's performance is not being adequately reflected in the parent's report."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/metrics.js",
+            "lighthouse-core/gather/gatherers/iframe-elements.js",
+            "lighthouse-core/computed/metrics/metric.js"
+        ],
+        "explanation": "These files are related to metrics evaluation and iframe gathering:\n1. **lighthouse-core/audits/metrics/metrics.js**: This file likely defines the metrics audit, which needs to be adjusted to consider iframe performance in its calculations.\n2. **lighthouse-core/gather/gatherers/iframe-elements.js**: This gatherer is responsible for collecting information about iframes, which is crucial for assessing their impact on performance.\n3. **lighthouse-core/computed/metrics/metric.js**: This file computes metrics based on gathered data, and would need updates to include iframe data in the performance evaluation.",
+        "bug_scenario": "The bug report highlights an issue with the Lighthouse performance report when a page contains an iframe. The performance metrics do not accurately reflect the impact of a slow iframe, leading to misleading results. The provided images show a discrepancy in performance scores between a parent page with an iframe and the iframe content itself, indicating the need for better evaluation of iframe performance in Lighthouse audits."
+    }
+}

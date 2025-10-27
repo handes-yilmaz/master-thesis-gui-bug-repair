@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/doc/doc-utils.js"
+        ],
+        "explanation": "1. **src/language-markdown/parser-markdown.js**: This file is likely responsible for parsing markdown files. The issue is related to markdown table formatting, so changes might be needed here to properly parse and handle tables with long content.\n\n2. **src/language-markdown/printer-markdown.js**: This file handles the printing or formatting of markdown documents. Since the issue involves the formatting of markdown tables, this file is directly related to the bug.\n\n3. **src/doc/doc-utils.js**: Utility functions for document handling may need adjustments to support the desired table formatting behavior, such as implementing line length checks or format normalization for markdown tables.",
+        "bug_scenario": "The bug is related to the handling of markdown tables in Prettier. Specifically, when markdown tables have columns with long content, the lines become excessively long (e.g., 865 characters) when processed by Prettier. The desired behavior is to maintain a three-dash separator for tables instead of creating long lines."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/doc/doc-printer.js"
+        ],
+        "explanation": "1. **src/language-markdown/parser-markdown.js**: This file likely handles parsing markdown content, which is relevant in understanding how markdown tables are being processed.\n2. **src/language-markdown/printer-markdown.js**: This file is responsible for printing or formatting markdown content, which is directly related to the issue of excessive line lengths in the markdown tables.\n3. **src/doc/doc-printer.js**: This file might handle the overall document printing logic, including markdown tables, thus influencing how tables are formatted and printed.",
+        "bug_scenario": "The bug involves markdown tables that, when processed, result in excessively long lines of text, specifically with HTML content. The desired behavior is to limit these lines and prevent them from becoming overly long, using three-dash separators instead."
+    }
+}

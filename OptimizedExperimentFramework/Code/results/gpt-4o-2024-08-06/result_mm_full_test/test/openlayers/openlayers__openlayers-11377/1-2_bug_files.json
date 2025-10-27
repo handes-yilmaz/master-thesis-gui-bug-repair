@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/events/Event.js",
+            "src/ol/interaction/Pointer.js",
+            "src/ol/MapBrowserEvent.js",
+            "src/ol/MapBrowserEventHandler.js",
+            "src/ol/renderer/canvas/Map.js"
+        ],
+        "explanation": "The performance issue is related to pointer events, which suggests the problem might be in the event handling or rendering logic. The files related to event handling (Event.js, Pointer.js) and the main map browser event handler (MapBrowserEvent.js, MapBrowserEventHandler.js) are likely involved. Additionally, the map rendering file (renderer/canvas/Map.js) might contain optimizations or changes affecting performance.",
+        "bug_scenario": "The bug report indicates a performance regression in version 6.4.0 compared to 6.3.1. Specifically, the pointermove event is slower, affecting operations like zoom and panning. This is visually apparent in the provided images, where the cursor movement is much slower in the 6.4.0 version compared to 6.3.1."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/interaction/Pointer.js",
+            "src/ol/events/Event.js",
+            "src/ol/render/canvas/Executor.js",
+            "src/ol/render/canvas/ExecutorGroup.js",
+            "src/ol/interaction/MouseWheelZoom.js"
+        ],
+        "explanation": "These files are related to pointer events and rendering, which are directly involved in handling user interactions such as zooming and panning. 'Pointer.js' and 'Event.js' handle pointer events, which are central to the reported performance issue. 'Executor.js' and 'ExecutorGroup.js' are involved in rendering, which could be causing the slowdown when handling many features. 'MouseWheelZoom.js' is included as zooming is explicitly mentioned in the bug report as being affected.",
+        "bug_scenario": "The bug report indicates a performance issue with the pointermove event between versions 6.3.1 and 6.4.0. The performance in version 6.4.0 is slower, affecting operations like zoom and panning. This is illustrated through the provided images, which show a map with a dense overlay of features, suggesting that the rendering of these features might be contributing to the performance degradation."
+    }
+}

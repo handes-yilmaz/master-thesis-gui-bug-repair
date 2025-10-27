@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "flow-report/src/summary/summary.tsx",
+            "flow-report/src/common.tsx",
+            "flow-report/src/util.ts"
+        ],
+        "explanation": "1. **flow-report/src/summary/summary.tsx**: This file is responsible for rendering the summary of the report, including thumbnails. The `SummaryFlowStep` component uses `FlowStepThumbnail` to display thumbnails, which are currently hotlinked. This file needs modification to use full-page screenshots instead.\n\n2. **flow-report/src/common.tsx**: This file contains the `FlowStepThumbnail` component, which is directly responsible for rendering the thumbnail images. It currently uses `getScreenshot` and `getFilmstripFrames` to fetch and display images. This logic needs to be updated to use full-page screenshots instead of hotlinked images.\n\n3. **flow-report/src/util.ts**: This file provides utility functions like `getScreenshot` and `getFilmstripFrames`, which are used to fetch images for thumbnails. These functions need to be updated to fetch full-page screenshots instead of relying on remote images.",
+        "bug_scenario": "The bug scenario involves removing image hotlinking from reports. Currently, the reports use `<img>` tags to hotlink images from remote servers for items with `type=thumbnail`. The goal is to replace these with assets from full-page screenshots (fpss) to simplify content security policy (CSP) and mixed content issues, especially when reports are shown over HTTPS."
+    }
+}

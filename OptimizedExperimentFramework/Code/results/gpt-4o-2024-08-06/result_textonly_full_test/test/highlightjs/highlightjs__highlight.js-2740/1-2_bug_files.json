@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/sql.js",
+            "src/languages/tsql.js",
+            "highlight.js"
+        ],
+        "explanation": "The files identified as bug-related are directly responsible for the syntax highlighting of SQL and TSQL code in the highlight.js library.\\n1. `src/languages/sql.js` and `src/languages/tsql.js`: These files contain the definitions and rules for highlighting SQL and TSQL code. The issue described in the bug report pertains to how escape sequences are handled within SQL strings, which means the rules governing string parsing and highlighting likely need adjustment to correctly handle escape sequences.\\n2. `highlight.js`: As the core file of the highlight.js library, it integrates various language definitions and manages the overall process of syntax highlighting. Any modifications to the way SQL strings are parsed would need to be compatible with the core highlighting logic implemented in this file.\\nFixing the bug will likely involve updating the language definitions in `sql.js` and `tsql.js` to correctly interpret and render escape sequences, as well as ensuring that any changes are adequately supported by the core logic in `highlight.js`. This might include adjusting regex patterns or logic that identifies and processes string boundaries and escape characters.",
+        "bug_scenario": "The bug scenario involves incorrect handling of string escape sequences in SQL code by the highlight.js library. This issue is specifically observed when rendering SQL code with dynamic elements, such as the use of single quotes within a string that is itself delimited by single quotes. The rendering output incorrectly highlights or formats these sequences, leading to a visual representation that does not match the intended syntax highlighting, as illustrated in the provided bug scenario image showing malformed highlighted SQL code."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/sql.js",
+            "src/languages/tsql.js",
+            "src/highlight.js"
+        ],
+        "explanation": "The files `src/languages/sql.js` and `src/languages/tsql.js` are directly related to the specific languages mentioned in the bug report (SQL and T-SQL). These files likely contain the logic for parsing and highlighting SQL code, including handling escape sequences. The `src/highlight.js` file is likely responsible for the core functionality of the highlighting process, which may involve invoking specific language handlers like SQL or T-SQL. The issue with escape sequences not being properly highlighted suggests a problem in how these files parse and process such sequences. Therefore, these files are relevant for fixing the reported bug.",
+        "bug_scenario": "The issue is with the syntax highlighting of SQL escape sequences in dynamic SQL strings. The bug arises when using `highlight.js` to handle T-SQL code, specifically with escape sequences in SQL strings, causing incorrect syntax highlighting. This is evident in the provided code snippet where the string escape sequences in the dynamic SQL are not handled correctly, leading to improper highlighting."
+    }
+}

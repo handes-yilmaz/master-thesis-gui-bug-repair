@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/worker/geotiff-decoder.js"
+        ],
+        "explanation": "1. **src/ol/source/GeoTIFF.js**: This file is likely responsible for handling GeoTIFF image sources within the library. Changes to this file would be necessary to implement the use of STATISTICS_MAXIMUM and STATISTICS_MINIMUM as default values for normalization.\n\n2. **src/worker/geotiff-decoder.js**: This file may handle the decoding of GeoTIFF images, including the extraction of metadata. Modifications here would ensure that the metadata extraction process considers the STATISTICS_MAXIMUM and STATISTICS_MINIMUM values for normalization purposes.",
+        "bug_scenario": "The bug report indicates that the GeoTIFF normalization process does not currently utilize the STATISTICS_MAXIMUM and STATISTICS_MINIMUM metadata values as default parameters for normalization. This is an enhancement request to use these values if present, which would improve the accuracy of the normalization process when extracting metadata from GeoTIFF images."
+    },
+    "2": {
+        "bug_files": [
+            "src/source/GeoTIFF.js",
+            "src/worker/geotiff-decoder.js"
+        ],
+        "explanation": "The file 'src/source/GeoTIFF.js' is likely responsible for handling GeoTIFF data sources. Since the bug report mentions needing to use metadata for normalization, modifications in this file would be necessary to incorporate 'STATISTICS_MAXIMUM' and 'STATISTICS_MINIMUM' into the normalization process. The 'src/worker/geotiff-decoder.js' file might be involved in decoding geotiff images and extracting metadata, so it could also require changes to ensure the correct metadata is used during normalization.",
+        "bug_scenario": "The bug report suggests that the normalization process should account for metadata statistics, specifically 'STATISTICS_MAXIMUM' and 'STATISTICS_MINIMUM', when available, as default 'max' and 'min' values for GeoTIFF sources. This indicates that normalization is not considering these metadata values, leading to potential inaccuracies in data processing."
+    }
+}

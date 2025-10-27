@@ -1,0 +1,9 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js"
+        ],
+        "explanation": "The file 'lighthouse-core/audits/byte-efficiency/unminified-javascript.js' is responsible for auditing JavaScript files to determine if they are minified and estimating the potential savings from minification. The bug report indicates that the issue lies in how Lighthouse, specifically this audit, handles scripts that contain non-minified sections like copyright notices. The audit uses Esprima to tokenize the script content, and if Esprima fails, it can lead to incorrect estimations of minification savings. This file contains the logic for computing waste and handling errors during the tokenization process, making it the key file related to the bug.",
+        "bug_scenario": "The bug scenario involves the Lighthouse tool overestimating the savings from minifying JavaScript files when the Esprima library fails to parse the script correctly. This issue arises because the script in question contains a copyright notice with carriage returns and whitespace, which is not minified. The problem is identified when running Lighthouse tests against AMP pages, where a specific JavaScript file is flagged as not being minified due to the presence of this copyright notice."
+    }
+}

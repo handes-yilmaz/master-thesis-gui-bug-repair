@@ -1,0 +1,44 @@
+diff --git a/lighthouse-core/audits/dobetterweb/js-libraries.js b/lighthouse-core/audits/dobetterweb/js-libraries.js
+index ac1e4d1..ab1876a 100644
+--- a/lighthouse-core/audits/dobetterweb/js-libraries.js
++++ b/lighthouse-core/audits/dobetterweb/js-libraries.js
+@@ -43,7 +43,7 @@ class JsLibrariesAudit extends Audit {
+    */
+   static audit(artifacts) {
+     const libDetails = artifacts.Stacks
+-      .filter(stack => stack.detector === 'js')
++      .filter(stack => stack.detector === 'js' && !stack.experimental)
+       .map(stack => ({
+         name: stack.name,
+         version: stack.version,
+diff --git a/lighthouse-core/lib/stack-collector.js b/lighthouse-core/lib/stack-collector.js
+index 8fd8633..98a80ab 100644
+--- a/lighthouse-core/lib/stack-collector.js
++++ b/lighthouse-core/lib/stack-collector.js
+@@ -81,10 +81,11 @@ async function collectStacks(passContext) {
+ 
+   return jsLibraries.map(lib => ({
+     detector: /** @type {'js'} */ ('js'),
+-    id: lib.id,
++    id: lib.id || `${lib.name}-${lib.version}`, // Ensure unique id
+     name: lib.name,
+     version: lib.version || undefined,
+     npm: lib.npm || undefined,
++    experimental: lib.experimental || false, // Mark experimental entries
+   }));
+ }
+ 
+diff --git a/lighthouse-core/lib/stack-packs.js b/lighthouse-core/lib/stack-packs.js
+index 8edf47c..278a985 100644
+--- a/lighthouse-core/lib/stack-packs.js
++++ b/lighthouse-core/lib/stack-packs.js
+@@ -47,7 +47,8 @@ function getStackPacks(pageStacks) {
+ 
+   for (const pageStack of pageStacks) {
+     const stackPackToIncl = stackPacksToInclude.find(stackPackToIncl =>
+-      stackPackToIncl.requiredStacks.includes(`${pageStack.detector}:${pageStack.id}`));
++      stackPackToIncl.requiredStacks.includes(`${pageStack.detector}:${pageStack.id}`) &&
++      !pageStack.experimental); // Exclude experimental stacks
+     if (!stackPackToIncl) {
+       continue;
+     }

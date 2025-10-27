@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/canvas/Immediate.js//CanvasImmediateRenderer",
+            "src/ol/render/canvas/TextBuilder.js//CanvasTextBuilder",
+            "src/ol/renderer/canvas/VectorLayer.js//CanvasVectorLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/render/canvas/Immediate.js//drawText_",
+            "src/ol/render/canvas/TextBuilder.js//drawText",
+            "src/ol/renderer/canvas/VectorLayer.js//renderFrame"
+        ],
+        "explanation": "The `CanvasImmediateRenderer` class in `src/ol/render/canvas/Immediate.js` is responsible for direct rendering of features and geometries to an HTML5 Canvas context, which includes handling text rendering. The `drawText_` function within this class likely deals with the rendering of text, including its rotation and offset, making it a key area to investigate for inconsistencies.\n\nThe `CanvasTextBuilder` class in `src/ol/render/canvas/TextBuilder.js` is involved in building text instructions for rendering. The `drawText` function is directly related to how text is drawn, including handling of offsets and rotations, which are central to the reported bug.\n\nThe `CanvasVectorLayerRenderer` class in `src/ol/renderer/canvas/VectorLayer.js` is the canvas renderer for vector layers. The `renderFrame` function is responsible for rendering the layer, which includes text elements. This function's handling of text rendering, especially in terms of rotation and offset, is crucial to ensuring consistency between vector layers and vector context.",
+        "bug_scenario": "The bug scenario involves inconsistent rendering of offset and rotated text between vector layers and vector context. The vector layer renderer rotates offset text around the feature from which it is offset, while the immediate renderer rotates it around its offset anchor point as defined by the `textAlign` and `textBaseline` settings. This inconsistency is observed when offset and rotation are applied together to text, leading to different behaviors between vector layer and immediate renderers."
+    }
+}

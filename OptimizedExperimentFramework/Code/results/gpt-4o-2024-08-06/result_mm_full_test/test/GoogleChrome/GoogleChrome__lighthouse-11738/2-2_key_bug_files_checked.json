@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/computed/load-simulator.js",
+            "lighthouse-core/gather/driver/wait-for-condition.js"
+        ],
+        "explanation": "1. **lighthouse-core/computed/load-simulator.js**: This file handles the simulation of network conditions. The issue is likely related to how the simulation is configured, particularly with the 'simulate' throttling method. Adjustments may be needed to ensure that the simulation waits long enough to capture the CLS.\n\n2. **lighthouse-core/gather/driver/wait-for-condition.js**: This file manages the waiting conditions for various page load events. The problem might be due to insufficient waiting time for the page to stabilize, affecting the detection of CLS. Modifications here could help ensure that the page is fully loaded and stable before measuring CLS.",
+        "bug_scenario": "The bug report indicates that Lighthouse does not wait long enough to detect the Cumulative Layout Shift (CLS) when the throttling method is set to 'simulate'. The expected behavior is to report a lower CLS score because the page loads later than detected. The provided image shows a performance score of 84 with a CLS of 0, suggesting that the CLS is not being captured accurately."
+    }
+}

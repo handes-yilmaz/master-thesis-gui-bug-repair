@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/gather/gatherers/offline.js b/lighthouse-core/gather/gatherers/offline.js
+index 673f0d4..a37bd65 100644
+--- a/lighthouse-core/gather/gatherers/offline.js
++++ b/lighthouse-core/gather/gatherers/offline.js
+@@ -24,7 +24,7 @@ class Offline extends Gatherer {
+   afterPass(passContext, loadData) {
+     const navigationRecord = loadData.networkRecords.filter(record => {
+       return URL.equalWithExcludedFragments(record.url, passContext.url) &&
+-        record.fetchedViaServiceWorker;
++        (record.fetchedViaServiceWorker || record.fromDiskCache);
+     }).pop(); // Take the last record that matches.
+ 
+     return passContext.driver.goOnline(passContext)

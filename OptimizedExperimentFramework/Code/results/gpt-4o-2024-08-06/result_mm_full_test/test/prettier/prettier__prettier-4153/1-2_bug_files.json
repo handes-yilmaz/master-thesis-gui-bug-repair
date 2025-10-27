@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js"
+        ],
+        "explanation": "These files are responsible for parsing and printing markdown syntax in Prettier. The issue is related to how markdown code blocks with language identifiers and attributes are interpreted, making these files likely candidates for needing modifications to handle the additional attributes correctly and ensure proper language detection and formatting.",
+        "bug_scenario": "The bug occurs when Prettier fails to detect the language of a fenced code block if there are non-whitespace characters (attributes) following the language identifier in markdown files. The expected behavior is for Prettier to format code blocks with attributes the same way it formats blocks without attributes, ignoring any text after the language identifier."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/index.js"
+        ],
+        "explanation": "The files in the 'language-markdown' directory are responsible for parsing and handling markdown syntax in Prettier. Specifically, 'parser-markdown.js' would handle the parsing logic that needs to be updated to correctly identify the language when additional attributes are present. 'index.js' might also contain relevant code or exports related to markdown parsing.",
+        "bug_scenario": "The bug is that Prettier fails to detect the language of a fenced code block in markdown when additional attributes are present after the language identifier. This issue affects syntax highlighting and formatting, as shown in the images where the code block with options doesn't format correctly."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Group.js//LayerGroup",
+            "src/ol/TileQueue.js//TileQueue"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Group.js//LayerGroup.handleLayersChanged_",
+            "src/ol/TileQueue.js//TileQueue.loadMoreTiles"
+        ],
+        "explanation": "The LayerGroup class in 'src/ol/layer/Group.js' is responsible for managing a collection of layers, and its method 'handleLayersChanged_' is likely involved in how layers are added or removed, which could affect the order or concurrency of tile requests. The TileQueue class in 'src/ol/TileQueue.js' manages the queue of tile requests, and its method 'loadMoreTiles' controls how many tiles are loaded simultaneously. Changes in these classes or methods could directly impact the behavior of tile loading, leading to the sequential loading observed in version 7.0.",
+        "bug_scenario": "The bug scenario involves a change in the behavior of tile requests for layers within a LayerGroup after upgrading from version 6.1 to 7.0. In version 6.1, tile requests for layers in a LayerGroup were sent concurrently, allowing for quick imagery loading. However, in version 7.0, the requests are sent sequentially, causing a noticeable delay in imagery load times."
+    }
+}

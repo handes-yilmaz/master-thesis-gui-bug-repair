@@ -1,0 +1,19 @@
+diff --git a/src/ol/interaction/Modify.js b/src/ol/interaction/Modify.js
+index 1173408..fdf1dfa 100644
+--- a/src/ol/interaction/Modify.js
++++ b/src/ol/interaction/Modify.js
+@@ -717,9 +717,11 @@ class Modify extends PointerInteraction {
+   writeGeometryCollectionGeometry_(feature, geometry) {
+     const geometries = geometry.getGeometriesArray();
+     for (let i = 0; i < geometries.length; ++i) {
+-      const geometry = geometries[i];
+-      const writer = this.SEGMENT_WRITERS_[geometry.getType()];
+-      writer(feature, geometry);
++      const geom = geometries[i];
++      const writer = this.SEGMENT_WRITERS_[geom.getType()];
++      if (writer) {
++        writer(feature, geom);
++      }
+     }
+   }
+ 

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageArcGISRest.js//ImageArcGISRest"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageArcGISRest.js//constructor",
+            "src/ol/source/ImageArcGISRest.js//getImageInternal"
+        ],
+        "explanation": "The class ImageArcGISRest in the file 'src/ol/source/ImageArcGISRest.js' is directly related to the bug because it handles the source for data from ArcGIS Rest services, including the management of the ratio parameter that is causing the layer-map mismatch. The constructor function initializes the ImageArcGISRest object and sets the default ratio value, which is central to the bug. The getImageInternal function is responsible for fetching the image based on the current ratio and other parameters, and any misalignment or mismatch in rendering would be handled here. Adjustments to these functions are necessary to address the bug by ensuring the ratio is correctly applied and managed.",
+        "bug_scenario": "The bug scenario involves a mismatch between the ArcGIS MapServer layers and the map in OpenLayers version 7.4. This issue arises due to the default value of the ratio parameter in the ImageArcGISRest source being set to 1.5. When the computer's zoom or scaling ratio is not 100%, such as 150%, the layers may not align correctly with the map, especially when the ratio is set to values other than 1 or 1.5. Additionally, a mismatch can occur after map rotation, even if the ratio is set to 1.5 or other values."
+    }
+}

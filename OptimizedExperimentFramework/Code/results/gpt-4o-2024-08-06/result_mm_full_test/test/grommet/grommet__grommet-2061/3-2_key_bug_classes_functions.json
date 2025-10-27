@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Select/Select.js//Select",
+            "src/js/components/Select/SelectContainer.js//SelectContainer"
+        ],
+        "bug_functions": [
+            "src/js/components/Select/SelectContainer.js//render"
+        ],
+        "explanation": "The `Select` class in `Select.js` is responsible for rendering the Select component, which includes the search input. The `SelectContainer` class in `SelectContainer.js` contains the `render` function where the `TextInput` is styled and rendered. The issue is likely related to the styling of the `TextInput` component, which is where the `-webkit-appearance` CSS property should be applied to ensure consistent appearance across browsers.",
+        "bug_scenario": "The search input in the Select component appears very small in Safari compared to Chrome. This is due to Safari ignoring padding, which was previously solved by adding the CSS property `-webkit-appearance: textfield;` for `<input type='search' />`."
+    }
+}

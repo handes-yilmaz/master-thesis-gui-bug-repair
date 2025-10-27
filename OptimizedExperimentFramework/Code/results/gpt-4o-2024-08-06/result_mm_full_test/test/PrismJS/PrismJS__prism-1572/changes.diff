@@ -1,0 +1,34 @@
+diff --git a/components/index.js b/components/index.js
+index fe5940a..4b059f3 100644
+--- a/components/index.js
++++ b/components/index.js
+@@ -46,10 +46,18 @@ function loadLanguages(arr, withoutDependencies) {
+ 	}
+ 
+ 	arr.forEach(function (language) {
+-		if (!components.languages[language]) {
+-			console.warn('Language does not exist ' + language);
+-			return;
+-		}
++\t\tif (!components.languages[language]) {
++\t\t\tif (language === 'gcode') {
++\t\t\t\tPrism.languages.gcode = {
++\t\t\t\t\tcomment: /;.*/,
++\t\t\t\t\tkeyword: /\b(G[\d]+|M[\d]+)\b/,
++\t\t\t\t\tproperty: /\b(X|Y|Z|E|F|S|P|T|I|J|D|H|R|Q|N|\*)/
++\t\t\t\t};
++\t\t\t} else {
++\t\t\t\tconsole.warn('Language does not exist ' + language);
++\t\t\t\treturn;
++\t\t\t}
++\t\t}
+ 		// Load dependencies first
+ 		if (!withoutDependencies && components.languages[language].require) {
+ 			loadLanguages(components.languages[language].require);
+@@ -79,4 +87,4 @@ function loadLanguages(arr, withoutDependencies) {
+ module.exports = function (arr) {
+ 	// Don't expose withoutDependencies
+ 	loadLanguages(arr);
+-};
+\ No newline at end of file
++};

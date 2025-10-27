@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js//UnminifiedJavaScript"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js//computeWaste",
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js//audit_"
+        ],
+        "explanation": "The class 'UnminifiedJavaScript' and its methods 'computeWaste' and 'audit_' are directly responsible for analyzing JavaScript files to determine if they are minified and estimating potential savings. The 'computeWaste' function calculates the wasted bytes by comparing the length of parseable tokens to the total script length, which is where the issue arises when esprima fails to parse due to non-standard elements like copyright notices. The 'audit_' function orchestrates the audit process, applying the 'computeWaste' logic to each script, and is therefore also implicated in the bug.",
+        "bug_scenario": "The bug scenario involves the Lighthouse tool incorrectly reporting a JavaScript file as not being minified due to the presence of a copyright notice with carriage returns and whitespace. This issue arises when running Lighthouse tests against AMP pages, specifically with the file 'amp-date-picker-0.1.js'. The problem is attributed to Lighthouse's method of estimating minification savings, which fails when the esprima library cannot parse the script correctly due to these non-standard elements in the minified file."
+    }
+}

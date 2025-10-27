@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/renderer/canvas/TileLayer.js",
+            "src/ol/render/VectorContext.js"
+        ],
+        "explanation": "1. **src/ol/renderer/canvas/TileLayer.js**: This file is responsible for the canvas rendering of tile layers. Given the bug report, the issue is likely related to how the tile layers are rendered when rotated, affecting stroke width, text scale, and geometry precision. The rendering logic in this file would need to be examined and potentially adjusted to ensure consistency with vector layers.\n\n2. **src/ol/render/VectorContext.js**: This file provides the context for drawing geometries, which is crucial for rendering vector data. Since the bug involves rendering inconsistencies between tile and vector layers, the VectorContext class might need adjustments to handle transformations or scaling correctly when applied to tile layers, especially under rotation.",
+        "bug_scenario": "The bug scenario involves incorrect rendering in the vector context of rotated tile layers, particularly when the view is rotated close to 90 and 270 degrees. This affects the stroke width, text scale, and precision of geometry. The issue is observed when comparing the rendering on a tile layer with a vector layer, where the vector layer behaves as expected. The problem is also evident in the Flight Animation example, which uses a tile layer for animating flights in progress, while the Marker Animation example, using a vector layer, is unaffected."
+    }
+}

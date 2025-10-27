@@ -1,0 +1,40 @@
+diff --git a/src/ol/expr/expression.js b/src/ol/expr/expression.js
+index 44550b4..f350944 100644
+--- a/src/ol/expr/expression.js
++++ b/src/ol/expr/expression.js
+@@ -193,6 +193,7 @@ export const Ops = {
+   Concat: 'concat',
+   GeometryType: 'geometry-type',
+   Any: 'any',
++  GetId: 'get-id', // New operator for fetching the feature id
+   All: 'all',
+   Not: '!',
+   Resolution: 'resolution',
+@@ -774,6 +775,11 @@ function createParser(returnType, ...argValidators) {
+ function parseCallExpression(encoded, context, typeHint) {
+   const operator = encoded[0];
+ 
++  if (operator === Ops.GetId) {
++    // Handle the 'get-id' operator
++    return new CallExpression(StringType, operator);
++  }
++
+   const parser = parsers[operator];
+   if (!parser) {
+     throw new Error(`Unknown operator: ${operator}`);
+diff --git a/src/ol/format/GeoJSON.js b/src/ol/format/GeoJSON.js
+index 21bcbf0..1c951df 100644
+--- a/src/ol/format/GeoJSON.js
++++ b/src/ol/format/GeoJSON.js
+@@ -242,6 +242,11 @@ class GeoJSON extends JSONFeature {
+       object.id = id;
+     }
+ 
++    // Add support for fetching the id using the 'get-id' operator
++    if (context && context.properties && context.properties.has('id')) {
++      context.properties.add('id');
++    }
++
+     if (!feature.hasProperties()) {
+       return object;
+     }

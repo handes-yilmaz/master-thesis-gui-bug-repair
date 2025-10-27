@@ -1,0 +1,27 @@
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index 4d2fccc..1635909 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -257,17 +257,16 @@ class WebGLTileLayerRenderer extends WebGLBaseTileLayerRenderer {
+       Uniforms.TEXTURE_RESOLUTION,
+       tileResolution,
+     );
++    const adjustedTileOriginX = (tileOrigin[0] + tileCenterI * tileSize[0] * tileResolution - gutter * tileResolution) % 360;
++    const adjustedTileOriginY = tileOrigin[1] - tileCenterJ * tileSize[1] * tileResolution + gutter * tileResolution;
++
+     this.helper.setUniformFloatValue(
+       Uniforms.TEXTURE_ORIGIN_X,
+-      tileOrigin[0] +
+-        tileCenterI * tileSize[0] * tileResolution -
+-        gutter * tileResolution,
++      adjustedTileOriginX,
+     );
+     this.helper.setUniformFloatValue(
+       Uniforms.TEXTURE_ORIGIN_Y,
+-      tileOrigin[1] -
+-        tileCenterJ * tileSize[1] * tileResolution +
+-        gutter * tileResolution,
++      adjustedTileOriginY,
+     );
+ 
+     this.helper.drawElements(0, this.indices_.getSize());

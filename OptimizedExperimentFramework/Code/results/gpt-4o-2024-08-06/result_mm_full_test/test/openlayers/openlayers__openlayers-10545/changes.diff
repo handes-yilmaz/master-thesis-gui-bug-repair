@@ -1,0 +1,15 @@
+diff --git a/src/ol/format/KML.js b/src/ol/format/KML.js
+index 11c1ec0..b3e2868 100644
+--- a/src/ol/format/KML.js
++++ b/src/ol/format/KML.js
+@@ -533,6 +533,10 @@ class KML extends XMLFeature {
+     // we do not remove the styleUrl property from the object, so it
+     // gets stored on feature when setProperties is called
+ 
++    // Decode HTML entities in the name property
++    if (object['name']) {
++      object['name'] = decodeHtmlEntities(object['name']);
++    }
+     feature.setProperties(object, true);
+ 
+     return feature;

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//LabelLayoutUtil",
+            "lib/features/modeling/Modeling.js//Modeling",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//findNewLabelLineStartIndex",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//getLabelAdjustment"
+        ],
+        "explanation": "The error message specifically mentions 'segmentIndex', which is a property accessed in the 'findNewLabelLineStartIndex' function within 'LabelLayoutUtil.js'. This function is responsible for determining the new index of a label line segment, which is directly related to the error. The 'getLabelAdjustment' function in the same file also deals with label adjustments based on connection waypoints, which could be related to the issue if the waypoints are not correctly defined or updated.\n\nThe 'LabelBehavior' class in 'LabelBehavior.js' is involved in updating and creating labels, which are directly related to the error when inserting elements like gateways. The 'Modeling' class in 'Modeling.js' is responsible for executing commands related to element updates, including labels, which could be affected by the error.\n\nThe 'DropOnFlowBehavior' class in 'DropOnFlowBehavior.js' handles the behavior of dropping elements onto flows, which is the action that triggers the error. This class likely contains logic that needs to be adjusted to handle cases where the 'segmentIndex' is undefined.",
+        "bug_scenario": "The bug scenario involves an error occurring when a user attempts to insert a gateway onto a flow in a diagram editor. The error message indicates that there is an attempt to read the 'segmentIndex' property of an undefined object, causing the editor to crash and become unresponsive."
+    }
+}

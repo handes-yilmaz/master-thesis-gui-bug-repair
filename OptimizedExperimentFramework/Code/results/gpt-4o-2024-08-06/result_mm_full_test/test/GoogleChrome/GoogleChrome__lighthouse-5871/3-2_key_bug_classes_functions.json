@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/driver.js//Driver"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/driver.js//getUserAgent",
+            "lighthouse-core/gather/gather-runner.js//getBaseArtifacts"
+        ],
+        "explanation": "The `Driver` class in `lighthouse-core/gather/driver.js` is responsible for managing browser interactions, including retrieving the user agent string via the `getUserAgent` function. This function is directly related to the bug as it is supposed to fetch the correct user agent string. The `getBaseArtifacts` function in `lighthouse-core/gather/gather-runner.js` uses `getUserAgent` to set the user agent in the artifacts, which are then used in the Lighthouse report. Any inconsistency in these functions can lead to the mismatch observed in the bug report.",
+        "bug_scenario": "The bug scenario involves a mismatch between the user agent reported in the Lighthouse runtime settings and the actual user agent used in test requests. This inconsistency is observed in the Lighthouse report and the web server logs, causing confusion as the user agent in the runtime settings does not match the one in the logs."
+    }
+}

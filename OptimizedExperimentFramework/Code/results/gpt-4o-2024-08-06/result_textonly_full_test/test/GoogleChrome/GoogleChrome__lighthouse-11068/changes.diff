@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/gather/gatherers/css-usage.js b/lighthouse-core/gather/gatherers/css-usage.js
+index 282dbd7..ead8e33 100644
+--- a/lighthouse-core/gather/gatherers/css-usage.js
++++ b/lighthouse-core/gather/gatherers/css-usage.js
+@@ -47,7 +47,7 @@ class CSSUsage extends Gatherer {
+     await driver.sendCommand('DOM.disable');
+ 
+     const dedupedStylesheets = new Map(styleSheetInfo.map(sheet => {
+-      return /** @type {[string, LH.Artifacts.CSSStyleSheetInfo]} */ ([sheet.content, sheet]);
++      return /** @type {[string, LH.Artifacts.CSSStyleSheetInfo]} */ ([sheet.header.sourceURL || sheet.content, sheet]);
+     }));
+     return {
+       rules: ruleUsageResponse.ruleUsage,

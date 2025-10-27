@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js//CreateParticipantBehavior",
+            "lib/features/modeling/behavior/ResizeBehavior.js//ResizeBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js//getParticipantBounds",
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js//getParticipantCreateConstraints",
+            "lib/features/modeling/behavior/ResizeBehavior.js//getParticipantResizeConstraints"
+        ],
+        "explanation": "The classes and functions identified are related to the creation and resizing of participants in a BPMN diagram, which are directly involved in the process of wrapping a process in a pool. The `CreateParticipantBehavior` class handles the behavior when a participant is created, including fitting the participant to the diagram and ensuring collaboration. The `ResizeBehavior` class sets constraints on resizing elements, which could affect how the diagram is displayed when elements are resized or moved. The functions `getParticipantBounds` and `getParticipantCreateConstraints` in `CreateParticipantBehavior.js` are responsible for calculating the bounds and constraints of participants, which are crucial in maintaining the diagram's stability. Similarly, `getParticipantResizeConstraints` in `ResizeBehavior.js` manages the constraints during resizing, which could lead to the diagram jumping if not handled correctly. These elements are likely causing the diagram to jump when a process is wrapped in a pool, as they directly influence the layout and positioning of diagram elements.",
+        "bug_scenario": "The bug scenario involves a diagram that jumps or shifts unexpectedly when a process is wrapped in a pool. This occurs during the modeling of a process in a BPMN diagram, where the expected behavior is for the diagram to remain stable and within the current viewport, but instead, it jumps, causing a disruption in the user experience."
+    }
+}

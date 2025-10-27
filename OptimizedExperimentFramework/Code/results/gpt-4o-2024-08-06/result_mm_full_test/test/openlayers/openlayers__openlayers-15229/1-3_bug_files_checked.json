@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLPoints.js",
+            "src/ol/renderer/webgl/PointsLayer.js",
+            "src/ol/style/Icon.js",
+            "src/ol/webgl/styleparser.js"
+        ],
+        "explanation": "- **src/ol/layer/WebGLPoints.js**: This file likely contains the implementation of the WebGLPoints layer, which is directly mentioned in the bug report as having issues with icon distortion. Any logic related to how icons are handled within this layer is likely found here.\n- **src/ol/renderer/webgl/PointsLayer.js**: This file is responsible for rendering the WebGLPoints layer. Since the issue is about rendering icons correctly with view rotation, this renderer would need to handle transformations properly based on viewport dimensions.\n- **src/ol/style/Icon.js**: As the issue involves 'icon-rotate-with-view', this file would include how icons are styled and possibly rotated. Any distortion due to rotation would need to be addressed here.\n- **src/ol/webgl/styleparser.js**: This file may handle parsing and applying styles in WebGL contexts, including the 'icon-rotate-with-view' property and how it interacts with non-square viewports.",
+        "bug_scenario": "The bug involves the distortion of icons in the WebGLPoints layer when the 'icon-rotate-with-view' property is set to true and the viewport is non-square. The expected behavior is that the icons should not be distorted under these conditions. The issue appears specifically when the viewport is not square, indicating a potential problem in the way the icons are being rendered or transformed in relation to the viewport dimensions."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/WebGLPoints.js",
+            "src/ol/renderer/webgl/PointsLayer.js",
+            "src/ol/render/webgl/VectorStyleRenderer.js"
+        ],
+        "explanation": "The issue is related to rendering icons on a `WebGLPoints` layer when using the `icon-rotate-with-view` property. The files `src/ol/layer/WebGLPoints.js` and `src/ol/renderer/webgl/PointsLayer.js` are involved in the implementation and rendering of the `WebGLPoints` layer, which is where the distortion of icons occurs. Additionally, `src/ol/render/webgl/VectorStyleRenderer.js` is likely involved in applying styles to the vectors in a WebGL context, which includes handling icon rotations. These files would need to be reviewed and potentially modified to ensure that the icons are rendered correctly without distortion when the viewport is not square.",
+        "bug_scenario": "The bug scenario involves icons being distorted on the `WebGLPoints` layer when the `icon-rotate-with-view` property is set to true with a non-square viewport. This leads to improper rendering of icons, particularly when the view is rotated, causing them to appear skewed or stretched, as depicted in the provided image."
+    }
+}

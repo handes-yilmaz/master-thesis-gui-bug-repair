@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/render/pandoc.ts//runPandoc"
+        ],
+        "bug_functions": [
+            "src/command/render/pandoc.ts//cleanupPandocMetadata",
+            "src/command/render/pandoc.ts//resolveExtras"
+        ],
+        "explanation": "The `runPandoc` function is responsible for executing the Pandoc command, which is central to rendering Markdown. The `cleanupPandocMetadata` function deals with metadata, which could affect how lists are parsed and formatted. The `resolveExtras` function handles additional formatting resources, which might influence the final output structure. These elements are likely involved in the incorrect parsing and formatting of the Markdown list.",
+        "bug_scenario": "The bug involves incorrect Markdown formatting when using the `pander` package. The output shows sub-bullets where they shouldn't be, indicating a parsing issue in the intermediary Markdown processing."
+    }
+}

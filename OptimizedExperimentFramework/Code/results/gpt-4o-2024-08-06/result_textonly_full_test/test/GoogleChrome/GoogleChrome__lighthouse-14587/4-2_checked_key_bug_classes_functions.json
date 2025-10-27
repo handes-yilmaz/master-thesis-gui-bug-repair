@@ -1,0 +1,36 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "emulate",
+            "file_path": "core/lib/emulation.js",
+            "function_details": [
+                {
+                    "name": "emulate",
+                    "start_line": 65,
+                    "end_line": 82
+                }
+            ],
+            "function_code": [
+                "async function emulate(session, settings) {",
+                "  if (settings.emulatedUserAgent !== false) {",
+                "    const userAgent = /** @type {string} */ (settings.emulatedUserAgent);",
+                "    await session.sendCommand('Network.setUserAgentOverride', {",
+                "      userAgent,",
+                "      userAgentMetadata: parseUseragentIntoMetadata(userAgent, settings.formFactor),",
+                "    });",
+                "  }",
+                "  // See devtools-entry for one usecase for disabling screenEmulation",
+                "  if (settings.screenEmulation.disabled !== true) {",
+                "    const {width, height, deviceScaleFactor, mobile} = settings.screenEmulation;",
+                "    const params = {width, height, deviceScaleFactor, mobile};",
+                "    await session.sendCommand('Emulation.setDeviceMetricsOverride', params);",
+                "    await session.sendCommand('Emulation.setTouchEmulationEnabled', {",
+                "      enabled: params.mobile,",
+                "    });",
+                "  }",
+                "}"
+            ]
+        }
+    }
+}

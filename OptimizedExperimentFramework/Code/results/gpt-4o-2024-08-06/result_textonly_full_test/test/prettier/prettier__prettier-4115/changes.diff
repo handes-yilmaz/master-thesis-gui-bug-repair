@@ -1,0 +1,52 @@
+diff --git a/src/language-markdown/printer-markdown.js b/src/language-markdown/printer-markdown.js
+index 4b7b03f..f6cd5da 100644
+--- a/src/language-markdown/printer-markdown.js
++++ b/src/language-markdown/printer-markdown.js
+@@ -170,20 +170,16 @@ function genericPrint(path, options, print) {
+         printChildren(path, options, print)
+       ]);
+     case "code": {
+-      if (
+-        // the first char may point to `\n`, e.g. `\n\t\tbar`, just ignore it
+-        /^\n?( {4,}|\t)/.test(
+-          options.originalText.slice(
+-            node.position.start.offset,
+-            node.position.end.offset
+-          )
+-        )
+-      ) {
++      const originalIndentation = options.originalText.slice(
++        node.position.start.offset,
++        node.position.end.offset
++      ).match(/^\n?( {4,}|\t)/);
++
++      if (originalIndentation) {
+         // indented code block
+-        const alignment = " ".repeat(4);
+         return align(
+-          alignment,
+-          concat([alignment, join(hardline, node.value.split("\n"))])
++          originalIndentation[0],
++          concat([originalIndentation[0], join(hardline, node.value.split("\n"))])
+         );
+       }
+ 
+@@ -209,6 +205,18 @@ function genericPrint(path, options, print) {
+     case "toml":
+       return concat(["+++", hardline, node.value, hardline, "+++"]);
+     case "html": {
++      const originalIndentation = options.originalText.slice(
++        node.position.start.offset,
++        node.position.end.offset
++      ).match(/^\n?( {4,}|\t)/);
++
++      if (originalIndentation) {
++        return align(
++          originalIndentation[0],
++          node.value
++        );
++      }
++
+       const parentNode = path.getParentNode();
+       return parentNode.type === "root" &&
+         privateUtil.getLast(parentNode.children) === node

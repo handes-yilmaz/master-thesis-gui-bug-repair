@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/critical-request-chains.js//CriticalRequestChains",
+            "lighthouse-core/audits/uses-rel-preload.js//UsesRelPreloadAudit",
+            "lighthouse-core/gather/computed/critical-request-chains.js//CriticalRequestChains"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/critical-request-chains.js//CriticalRequestChains.audit",
+            "lighthouse-core/audits/uses-rel-preload.js//UsesRelPreloadAudit.audit",
+            "lighthouse-core/gather/computed/critical-request-chains.js//CriticalRequestChains.isCritical"
+        ],
+        "explanation": "The classes and functions identified are directly related to the handling and auditing of critical request chains and the use of `rel=preload`. The `CriticalRequestChains` class in `lighthouse-core/audits/critical-request-chains.js` is responsible for auditing critical request chains, which is the main concern of the bug report. The `audit` function within this class is where the logic for determining critical request chains is implemented. Similarly, the `UsesRelPreloadAudit` class in `lighthouse-core/audits/uses-rel-preload.js` deals with auditing the use of `rel=preload`, which is directly related to the bug scenario. The `audit` function in this class evaluates the effectiveness and necessity of preloading resources. Lastly, the `CriticalRequestChains` class in `lighthouse-core/gather/computed/critical-request-chains.js` contains the `isCritical` function, which determines the criticality of requests based on network priorities, a key factor in the bug scenario. These elements are crucial for understanding and potentially resolving the issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves the use of `link[rel=preload]` to fetch a stylesheet asynchronously, which is then applied after loading. Lighthouse flags this stylesheet as part of a 'critical request chain,' even though it does not block page rendering and contains no CSS styles that impact page layout. The issue is about understanding why Lighthouse considers this a 'critical request' and whether it is due to the priority of `rel=preload`."
+    }
+}

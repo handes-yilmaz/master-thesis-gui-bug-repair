@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "lighthouse-core/report/v2/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "renderReport(report, container) {",
+                    "container.textContent = ''; // Remove previous report.",
+                    "const element = container.appendChild(this._renderReport(report));",
+                    "",
+                    "return /** @type {!Element} **/ (element);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  renderReport(report, container) {",
+                    "    if (!report || !report.generatedTime) {",
+                    "      console.error('Invalid report object:', report);",
+                    "      return;",
+                    "    }",
+                    "    container.textContent = ''; // Remove previous report.",
+                    "    const element = container.appendChild(this._renderReport(report));",
+                    "",
+                    "    return /** @type {!Element} **/ (element);",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+diff --git a/lib/features/modeling/behavior/CreateDataObjectBehavior.js b/lib/features/modeling/behavior/CreateDataObjectBehavior.js
+index 57532fe..4a1ac60 100644
+--- a/lib/features/modeling/behavior/CreateDataObjectBehavior.js
++++ b/lib/features/modeling/behavior/CreateDataObjectBehavior.js
+@@ -24,6 +24,9 @@ export default function CreateDataObjectBehavior(eventBus, bpmnFactory, moddle)
+ 
+       // set the reference to the DataObject
+       shape.businessObject.dataObjectRef = dataObject;
++
++      // set isCollection to false by default
++      dataObject.isCollection = false;
+     }
+   });
+ 
+@@ -35,4 +38,4 @@ CreateDataObjectBehavior.$inject = [
+   'moddle'
+ ];
+ 
+-inherits(CreateDataObjectBehavior, CommandInterceptor);
+\ No newline at end of file
++inherits(CreateDataObjectBehavior, CommandInterceptor);
+diff --git a/lib/features/popup-menu/ReplaceMenuProvider.js b/lib/features/popup-menu/ReplaceMenuProvider.js
+index c11a224..74c4404 100644
+--- a/lib/features/popup-menu/ReplaceMenuProvider.js
++++ b/lib/features/popup-menu/ReplaceMenuProvider.js
+@@ -262,6 +262,18 @@ ReplaceMenuProvider.prototype.getHeaderEntries = function(element) {
+     headerEntries.push(this._getAdHocEntry(element));
+   }
+ 
++  if (is(element, 'bpmn:DataObjectReference')) {
++    headerEntries.push({
++      id: 'toggle-is-collection',
++      className: 'bpmn-icon-data-object-collection',
++      title: 'Toggle Collection',
++      action: function() {
++        var dataObject = element.businessObject.dataObjectRef;
++        dataObject.isCollection = !dataObject.isCollection;
++      }
++    });
++  }
++
+   return headerEntries;
+ };
+ 

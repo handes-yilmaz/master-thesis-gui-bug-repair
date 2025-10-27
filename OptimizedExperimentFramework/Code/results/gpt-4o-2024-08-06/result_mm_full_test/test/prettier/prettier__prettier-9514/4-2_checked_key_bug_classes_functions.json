@@ -1,0 +1,120 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "createParse",
+            "file_path": "src/language-js/parser-babel.js",
+            "function_details": [
+                {
+                    "name": "createParse",
+                    "start_line": 92,
+                    "end_line": 138
+                }
+            ],
+            "function_code": [
+                "function createParse(parseMethod, ...pluginCombinations) {",
+                "  return (text, parsers, opts = {}) => {",
+                "    if (opts.parser === \"babel\" && isFlowFile(text, opts)) {",
+                "      opts.parser = \"babel-flow\";",
+                "      return parseFlow(text, parsers, opts);",
+                "    }",
+                "",
+                "    // Inline the require to avoid loading all the JS if we don't use it",
+                "const cherow = require(\"cherow\");",
+                "const babel = require(\"@babel/parser\");",
+                "",
+                "    const sourceType =",
+                "      opts.__babelSourceType === \"script\" ? \"script\" : \"module\";",
+                "",
+                "    let ast;",
+                "    try {",
+                "      const combinations = resolvePluginsConflict(",
+                "        text.includes(\"|>\"),",
+                "        pluginCombinations,",
+                "        [",
+                "          [\"pipelineOperator\", { proposal: \"smart\" }],",
+                "          [\"pipelineOperator\", { proposal: \"minimal\" }],",
+                "          [\"pipelineOperator\", { proposal: \"fsharp\" }],",
+                "        ]",
+                "      );",
+                "      ast = tryCombinations(",
+                "        (options) => babel[parseMethod](text, options),",
+                "        combinations.map((extraPlugins) =>",
+                "          babelOptions({ sourceType, extraPlugins })",
+                "        )",
+                "      );",
+                "    } catch (error) {",
+                "      // babel error prints (l:c) with cols that are zero indexed",
+                "      // so we need our custom error",
+                "      const { message, loc } = error;",
+                "",
+                "      throw createError(message.replace(/ \\(.*\\)/, \"\"), {",
+                "        start: {",
+                "          line: loc ? loc.line : 0,",
+                "          column: loc ? loc.column + 1 : 0,",
+                "        },",
+                "      });",
+                "    }",
+                "",
+                "    return postprocess(ast, { ...opts, originalText: text });",
+                "  };",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "tryCombinations",
+            "file_path": "src/language-js/parser-babel.js",
+            "function_details": [
+                {
+                    "name": "tryCombinations",
+                    "start_line": 152,
+                    "end_line": 164
+                }
+            ],
+            "function_code": [
+                "function tryCombinations(fn, combinations) {",
+                "  let error;",
+                "  for (let i = 0; i < combinations.length; i++) {",
+                "    try {",
+                "      return rethrowSomeRecoveredErrors(fn(combinations[i]));",
+                "    } catch (_error) {",
+                "      if (!error) {",
+                "        error = _error;",
+                "      }",
+                "    }",
+                "  }",
+                "  throw error;",
+                "}"
+            ]
+        },
+        "3": {
+            "function_name": "resolvePluginsConflict",
+            "file_path": "src/language-js/parser-babel.js",
+            "function_details": [
+                {
+                    "name": "resolvePluginsConflict",
+                    "start_line": 50,
+                    "end_line": 65
+                }
+            ],
+            "function_code": [
+                "function resolvePluginsConflict(",
+                "  condition,",
+                "  pluginCombinations,",
+                "  conflictPlugins",
+                ") {",
+                "  if (!condition) {",
+                "    return pluginCombinations;",
+                "  }",
+                "  const combinations = [];",
+                "  for (const combination of pluginCombinations) {",
+                "    for (const plugin of conflictPlugins) {",
+                "      combinations.push([...combination, plugin]);",
+                "    }",
+                "  }",
+                "  return combinations;",
+                "}"
+            ]
+        }
+    }
+}

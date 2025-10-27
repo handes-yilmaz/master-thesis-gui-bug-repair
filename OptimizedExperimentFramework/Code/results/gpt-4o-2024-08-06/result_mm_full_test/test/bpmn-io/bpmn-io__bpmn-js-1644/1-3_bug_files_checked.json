@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior.js"
+        ],
+        "explanation": "The bug involves losing multi-instance properties during a transition between parallel and sequential configurations. The files in question are likely handling properties updates or modifications related to BPMN elements and their behavior. Specifically, the `UpdateModdlePropertiesHandler.js` and `UpdatePropertiesHandler.js` are responsible for managing changes to properties, which would include multi-instance properties. The `UpdateFlowNodeRefsBehavior.js` may also be involved, as it could handle the references and behaviors associated with flow nodes when properties are updated or changed.",
+        "bug_scenario": "When changing a sub-process from parallel to sequential multi-instance, the properties related to the multi-instance configuration are lost. This is evident when following the steps to reproduce the issue: creating a sub-process, setting it to parallel multi-instance, adding loop cardinality, and then switching to sequential multi-instance. The expected behavior is that these properties should be retained."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js"
+        ],
+        "explanation": "These files are likely responsible because the bug involves the loss of properties during a transition between parallel and sequential multi-instance processes. 'UpdateModdlePropertiesHandler.js' manages moddle properties, crucial when updating instances. 'SubProcessPlaneBehavior.js' and 'ToggleElementCollapseBehaviour.js' may also relate to handling changes in subprocess configurations and behaviors, which are critical in ensuring properties are maintained during state changes.",
+        "bug_scenario": "The bug occurs when changing a sub-process from parallel to sequential multi-instance. The multi-instance properties are lost during this change, which is unexpected behavior. The image shows a user interface with a process panel where this issue may be reproduced, likely involving properties associated with multi-instance configurations."
+    }
+}

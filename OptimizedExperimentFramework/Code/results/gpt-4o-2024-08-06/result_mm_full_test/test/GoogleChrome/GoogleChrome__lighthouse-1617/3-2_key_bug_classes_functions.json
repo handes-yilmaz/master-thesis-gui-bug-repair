@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/manifest-short-name-length.js//ManifestShortNameLength",
+            "lighthouse-core/audits/manifest-short-name.js//ManifestShortName"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/manifest-short-name-length.js//audit",
+            "lighthouse-core/audits/manifest-short-name.js//audit",
+            "lighthouse-core/lib/manifest-parser.js//parseShortName"
+        ],
+        "explanation": "The `ManifestShortNameLength` class and its `audit` function are responsible for checking the length of the manifest's short name. The false positive occurs because the function does not correctly handle the case where the short name is missing. Similarly, the `ManifestShortName` class and its `audit` function are involved in checking the presence of the short name, which is relevant to the bug. The `parseShortName` function in `manifest-parser.js` is responsible for parsing the short name from the manifest, and any issues in this function could contribute to the false positive error.",
+        "bug_scenario": "The bug scenario involves a false positive error where the manifest's short name length is incorrectly flagged as too long when it is actually missing. The image shows an error message indicating that the short name is 0 characters long, which is misleading because it is missing, not too long."
+    }
+}

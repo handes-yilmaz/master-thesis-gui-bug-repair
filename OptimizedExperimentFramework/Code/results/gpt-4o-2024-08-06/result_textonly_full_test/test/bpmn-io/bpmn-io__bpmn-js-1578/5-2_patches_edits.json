@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "hypothetical_file_path.js": [
+            {
+                "SEARCH": [
+                    "function copyPool(originalPool) {",
+                    "const newPool = { ...originalPool };",
+                    "newPool.id = originalPool.id; // Retains the original ID",
+                    "return newPool;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function copyPool(originalPool) {",
+                    "    const newPool = { ...originalPool };",
+                    "    newPool.id = generateUniqueId(originalPool.id); // Generates a new unique ID",
+                    "    return newPool;",
+                    "}",
+                    "",
+                    "function generateUniqueId(baseId) {",
+                    "    return baseId + '_' + Math.random().toString(36).substr(2, 9); // Example of generating a unique ID",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

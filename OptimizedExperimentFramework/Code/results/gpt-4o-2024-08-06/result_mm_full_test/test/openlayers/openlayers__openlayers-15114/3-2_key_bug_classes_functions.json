@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/geom/flat/orient.js//linearRingIsClockwise",
+            "src/ol/geom/flat/orient.js//linearRingsAreOriented",
+            "src/ol/geom/flat/orient.js//orientLinearRings"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/webgl/VectorLayer.js//WebGLVectorLayerRenderer",
+            "src/ol/render/webgl/VectorStyleRenderer.js//VectorStyleRenderer"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they handle the orientation and rendering of linear rings in WebGL. The `linearRingIsClockwise` function in `orient.js` determines if a linear ring is oriented clockwise, which is directly related to the issue of incorrect fill-color application. The `linearRingsAreOriented` and `orientLinearRings` functions are responsible for checking and setting the orientation of linear rings, which is crucial for ensuring that the fill-color is applied correctly. The `WebGLVectorLayerRenderer` class in `VectorLayer.js` and the `VectorStyleRenderer` class in `VectorStyleRenderer.js` are involved in rendering the vector layers using WebGL, and any issues in these classes could lead to the observed rendering problems.",
+        "bug_scenario": "The bug scenario involves a WebGL rendering issue where the fill-color property is incorrectly applied to linear rings, causing them to be drawn in a clockwise orientation when they should not be. This results in the fill color being overlapped multiple times, leading to incorrect visual output. The issue is observed when converting vectorial layers with polygons to WebGL layers, particularly when using world coordinates to draw reversed zones (everything except the hole). The problem seems to be related to the orientation of the linear rings, as valid GeoJSONs are not displayed correctly, while invalid ones are."
+    }
+}

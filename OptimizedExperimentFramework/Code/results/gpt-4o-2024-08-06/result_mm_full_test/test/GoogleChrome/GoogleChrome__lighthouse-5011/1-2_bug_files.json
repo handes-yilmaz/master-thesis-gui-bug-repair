@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/critical-request-chains.js",
+            "lighthouse-core/audits/uses-rel-preload.js",
+            "lighthouse-core/gather/computed/critical-request-chains.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/critical-request-chains.js`: This file is directly responsible for analyzing and reporting critical request chains, which is the core of the issue described.\n2. `lighthouse-core/audits/uses-rel-preload.js`: This file likely contains logic related to handling and auditing the use of `rel=preload`, which is central to the scenario described in the bug report.\n3. `lighthouse-core/gather/computed/critical-request-chains.js`: This file computes the critical request chains that are audited, making it relevant for understanding how the chains are determined and flagged as critical.",
+        "bug_scenario": "The bug report describes an issue where a stylesheet is preloaded using `link[rel=preload]`, and then applied after loading with `onload=\"this.rel='stylesheet'; this.onload=null;\"`. Lighthouse flags this as a \"critical request chain,\" despite it not blocking page rendering or impacting layout. The report questions Lighthouse's criteria for marking this as critical and seeks clarification on whether the `rel=preload` priority triggers it."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/critical-request-chains.js",
+            "lighthouse-core/audits/uses-rel-preload.js",
+            "lighthouse-core/gather/computed/critical-request-chains.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/critical-request-chains.js`: This file likely contains the logic for identifying and auditing critical request chains, as it's directly related to the issue described.\n2. `lighthouse-core/audits/uses-rel-preload.js`: Since the bug pertains to the use of `rel=preload`, this file is relevant as it could contain code that evaluates the use of preload links.\n3. `lighthouse-core/gather/computed/critical-request-chains.js`: This file probably computes or gathers data about request chains, making it relevant to understanding why the stylesheet is flagged as critical.",
+        "bug_scenario": "The bug report discusses an issue where a stylesheet fetched using `link[rel=preload]` is flagged as part of a \"critical request chain\" by Lighthouse, even though it doesn't block page rendering or impact layout. The image shows a diagnostic report indicating a critical request chain with a total length of 5,902.4ms for loading a small CSS file."
+    }
+}

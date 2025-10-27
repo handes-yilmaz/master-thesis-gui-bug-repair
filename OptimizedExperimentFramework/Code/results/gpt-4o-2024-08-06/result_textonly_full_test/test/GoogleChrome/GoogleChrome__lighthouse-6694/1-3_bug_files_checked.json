@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/uses-rel-preconnect.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/uses-rel-preconnect.js**: This file is directly related to the audit suggesting the use of 'preconnect'. It is likely responsible for checking the presence of 'preconnect' links and generating the audit report. This would need to be examined to ensure it correctly identifies existing 'preconnect' links and does not suggest them if they are already present.\n\n2. **lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js**: This gatherer might be involved in identifying and categorizing tags that could affect the first paint, which includes preconnect and dns-prefetch tags. It should accurately detect these tags to avoid false positives.\n\n3. **lighthouse-core/lib/network-recorder.js**: This utility is likely responsible for recording network requests that could include the preconnect requests. Ensuring accurate recording and detection is crucial for the audit to reflect the actual state of the webpage's preconnect usage.",
+        "bug_scenario": "The bug scenario involves a false positive report by Lighthouse (LH) 3.0.3 suggesting the user to use 'dns-prefetch' or 'preconnect', even though the user has already implemented 'preconnect' for the specified domains. The issue is observed when Lighthouse's performance opportunities suggest optimizing DNS prefetching and preconnecting to reduce round-trip times (RTTs) to origins, despite the user having already implemented these optimizations as seen in the provided screenshots."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/uses-rel-preconnect.js",
+            "lighthouse-core/gather/gatherers/seo/canonical.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/uses-rel-preconnect.js**: This file likely contains the audit logic that checks for and suggests the use of 'dns-prefetch' or 'preconnect'. Since the issue is with the audit suggesting improvements where they are not needed, this file would need to be examined and potentially modified to correct the logic that identifies when 'preconnect' is already in use.\n\n2. **lighthouse-core/gather/gatherers/seo/canonical.js**: Although this file's primary use is for SEO, gatherers are responsible for collecting information from the page, such as links and resources. It might require updates to ensure that it correctly collects 'preconnect' links or related resources from the DOM.\n\n3. **lighthouse-core/lib/network-recorder.js**: This file manages network request recording. Any issues with recognizing existing connections might originate here if it doesn't properly record or interpret preconnections already established by the browser. Fixes here might involve ensuring that network requests are accurately captured to prevent false positive audit results.",
+        "bug_scenario": "The bug report describes an issue with the Lighthouse tool incorrectly suggesting the use of 'dns-prefetch' or 'preconnect' for origins that are already being preconnected. The user expects that the tool should identify existing 'preconnect' links in the DOM and not suggest redundant improvements. The images provided in the bug report show the Lighthouse performance opportunities report incorrectly listing origins that already have 'preconnect' implemented, indicating a false positive for this optimization suggestion."
+    }
+}

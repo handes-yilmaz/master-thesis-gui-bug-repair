@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/util/ModelUtil.js"
+        ],
+        "explanation": "1. **lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js**: This file likely handles updates to model properties. If the XML label is not updating, it could be due to a failure in this handler to properly set the 'isSequential' property.\n\n2. **lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js**: This file may manage the behavior of elements when toggling between different states. It could be related to the bug if the behavior is not triggering updates to the XML.\n\n3. **lib/util/ModelUtil.js**: Utility functions related to model handling are likely found here. If there is an issue with reading or writing the XML properties, this file could be involved.",
+        "bug_scenario": "The bug report describes an issue with toggling between Parallel and Sequential options in a multi-instance loop in a BPMN editor. The expected behavior is that the XML label should update to reflect the selected option, but this update is not occurring. The attached GIF demonstrates this issue by showing the lack of change in the XML label when toggling between options."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DataInputAssociationBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/BpmnUpdater.js"
+        ],
+        "explanation": "1. **DataInputAssociationBehavior.js**: This file likely handles the behavior related to data input associations in the BPMN model, which may include the handling of multi-instance configurations.\n\n2. **UpdatePropertiesHandler.js**: This file is responsible for updating properties within the model. The issue involves updating XML labels, which is directly related to property updates.\n\n3. **BpmnUpdater.js**: This file is probably responsible for updating BPMN elements, including their XML representations. Since the bug involves incorrect XML output, this file is likely involved in fixing the issue.",
+        "bug_scenario": "The bug involves a multi-instance toggle loop in a BPMN modeler where toggling between Parallel and Sequential does not update the XML label as expected. The expected behavior is for the XML label to reflect the multi-instance loop characteristics, either with or without the 'isSequential' attribute."
+    }
+}

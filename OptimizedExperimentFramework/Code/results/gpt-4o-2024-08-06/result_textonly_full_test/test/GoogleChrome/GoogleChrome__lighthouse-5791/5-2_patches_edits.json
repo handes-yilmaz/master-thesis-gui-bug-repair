@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "lighthouse-core/report/html/renderer/performance-category-renderer.js": [
+            {
+                "SEARCH": [
+                    "const oppTmpl = this.dom.cloneTemplate('#tmpl-lh-opportunity', this.templateContext);",
+                    "const element = this.populateAuditValues(audit, index, oppTmpl);",
+                    "element.id = audit.result.id;",
+                    "",
+                    "if (!audit.result.details || audit.result.scoreDisplayMode === 'error') {",
+                    "return element;",
+                    "}",
+                    "// TODO(bckenny): remove cast when details is fully discriminated based on `type`.",
+                    "const details = /** @type {OpportunityDetails} */ (audit.result.details);",
+                    "if (details.type !== 'opportunity') {",
+                    "return element;",
+                    "}",
+                    "",
+                    "// Overwrite the displayValue with opportunity's wastedMs",
+                    "const displayEl = this.dom.find('.lh-audit__display-text', element);",
+                    "const sparklineWidthPct = `${details.overallSavingsMs / scale * 100}%`;",
+                    "this.dom.find('.lh-sparkline__bar', element).style.width = sparklineWidthPct;",
+                    "displayEl.textContent = Util.formatSeconds(details.overallSavingsMs, 0.01);"
+                ],
+                "REPLACE": [
+                    "    const oppTmpl = this.dom.cloneTemplate('#tmpl-lh-opportunity', this.templateContext);",
+                    "    const element = this.populateAuditValues(audit, index, oppTmpl);",
+                    "    element.id = audit.result.id;",
+                    "    element.style.flex = '1 1 auto'; // Ensure the element can grow and shrink properly",
+                    "",
+                    "    if (!audit.result.details || audit.result.scoreDisplayMode === 'error') {",
+                    "      return element;",
+                    "    }",
+                    "    // TODO(bckenny): remove cast when details is fully discriminated based on `type`.",
+                    "    const details = /** @type {OpportunityDetails} */ (audit.result.details);",
+                    "    if (details.type !== 'opportunity') {",
+                    "      return element;",
+                    "    }",
+                    "",
+                    "    // Overwrite the displayValue with opportunity's wastedMs",
+                    "    const displayEl = this.dom.find('.lh-audit__display-text', element);",
+                    "    const sparklineWidthPct = `${details.overallSavingsMs / scale * 100}%`;",
+                    "    this.dom.find('.lh-sparkline__bar', element).style.width = sparklineWidthPct;",
+                    "    displayEl.textContent = Util.formatSeconds(details.overallSavingsMs, 0.01);",
+                    "    displayEl.style.whiteSpace = 'nowrap'; // Prevent text from wrapping"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/GroupBehavior.js//GroupBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/GroupBehavior.js//removeReferencedCategoryValue",
+            "lib/features/modeling/behavior/GroupBehavior.js//removeCategory",
+            "lib/features/modeling/behavior/GroupBehavior.js//getGroupElements",
+            "lib/features/modeling/behavior/GroupBehavior.js//isReferenced",
+            "lib/features/modeling/behavior/GroupBehavior.js//execute",
+            "lib/features/modeling/behavior/GroupBehavior.js//revert",
+            "lib/features/modeling/behavior/GroupBehavior.js//createCategoryValue"
+        ],
+        "explanation": "The `GroupBehavior` class in `GroupBehavior.js` is directly related to the handling of BPMN group elements, including their creation, deletion, and reference management. The functions `removeReferencedCategoryValue`, `removeCategory`, `getGroupElements`, and `isReferenced` are involved in managing category values associated with groups, which is central to the bug where unresolved references occur. The `execute` and `revert` functions handle the creation and deletion of shapes, including groups, and ensure that category values are correctly linked or unlinked. The `createCategoryValue` function is responsible for creating new category values when a group is created, which is crucial for ensuring that references are correctly established. These elements are key to addressing the bug because they manage the lifecycle and references of category values in BPMN groups.",
+        "bug_scenario": "The bug scenario involves creating a group inside a collapsed sub-process in a BPMN model. When the model is saved and then re-imported, a warning appears indicating an unresolved reference to a category value. This suggests that the group creation process does not correctly handle category value references, leading to issues during the export and import of the BPMN model."
+    }
+}

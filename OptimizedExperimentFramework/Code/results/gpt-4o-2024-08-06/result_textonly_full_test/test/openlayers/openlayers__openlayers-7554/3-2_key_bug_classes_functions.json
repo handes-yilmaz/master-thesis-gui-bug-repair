@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/imagevector.js//ol.source.ImageVector",
+            "src/ol/interaction/draw.js//ol.interaction.Draw"
+        ],
+        "bug_functions": [
+            "src/ol/source/imagevector.js//ol.source.ImageVector.prototype.canvasFunctionInternal_",
+            "src/ol/source/imagevector.js//ol.source.ImageVector.prototype.renderFeature_",
+            "src/ol/interaction/draw.js//ol.interaction.Draw.prototype.handleEvent",
+            "src/ol/interaction/draw.js//ol.interaction.Draw.prototype.modifyDrawing_"
+        ],
+        "explanation": "The class ol.source.ImageVector in 'src/ol/source/imagevector.js' is directly related to the bug because it is deprecated and was replaced by a new method in version 4.6.2, which is causing the performance issue. The function ol.source.ImageVector.prototype.canvasFunctionInternal_ is responsible for rendering the canvas, which is crucial for performance. The function ol.source.ImageVector.prototype.renderFeature_ is involved in rendering individual features, which can impact performance if not optimized.\n\nIn 'src/ol/interaction/draw.js', the class ol.interaction.Draw is responsible for handling drawing interactions, which are directly affected by the performance issue. The function ol.interaction.Draw.prototype.handleEvent is crucial as it handles the drawing events, and any inefficiency here can lead to performance degradation. The function ol.interaction.Draw.prototype.modifyDrawing_ is involved in modifying the drawing, which can also impact performance if not handled efficiently.",
+        "bug_scenario": "The bug scenario involves a performance issue when using the draw interaction in OpenLayers version 4.6.2 with the renderMode set to 'image'. The performance is significantly slower compared to version 4.4.2, which used the deprecated ol.source.ImageVector. The issue is observed when drawing a triangle at a specific resolution, as shown in the provided image."
+    }
+}

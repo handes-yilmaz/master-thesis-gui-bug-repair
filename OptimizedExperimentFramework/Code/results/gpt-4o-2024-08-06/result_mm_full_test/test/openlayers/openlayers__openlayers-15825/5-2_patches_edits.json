@@ -1,0 +1,37 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "this.tileGrid = tileGrid;"
+                ],
+                "REPLACE": [
+                    "    this.tileGrid = new TileGrid({",
+                    "      extent: extent,",
+                    "      minZoom: minZoom,",
+                    "      origin: origin,",
+                    "      resolutions: resolutions,",
+                    "      tileSizes: commonRenderTileSizes,",
+                    "      wrapX: true // Ensure wrapping around the antimeridian",
+                    "    });"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const gridExtent = tileGrid.getExtent();",
+                    "if (!gridExtent || containsCoordinate(gridExtent, coordinate)) {",
+                    "break;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const gridExtent = tileGrid.getExtent();",
+                    "    if (!gridExtent || containsCoordinate(gridExtent, coordinate) || tileGrid.getWrapX()) {",
+                    "      break;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/reproj/DataTile.js",
+            "src/ol/reproj/common.js"
+        ],
+        "explanation": "1. 'src/ol/source/GeoTIFF.js': This file likely contains the implementation of the GeoTIFF source, including handling of the 'wrapX' option that is not working correctly when reprojected.\n2. 'src/ol/reproj/DataTile.js': Since the bug involves reprojection of data tiles, this file is relevant as it likely manages how data tiles are handled during reprojection, including cropping behavior.\n3. 'src/ol/reproj/common.js': This file might include shared functions or utilities used in the reprojection process, including those affecting how the 'wrapX' option is applied during tile reprojection.",
+        "bug_scenario": "The bug involves the 'wrapX' option in GeoTIFF not being respected when the data is reprojected, causing the tiles not to be cropped correctly to the tile grid extent. This is evident when a non-zero nodata value is specified, as shown in the provided image. The expected behavior is for the tiles to be cropped to the grid extent on both axes, regardless of the source projection."
+    },
+    "2": {
+        "bug_files": [
+            "src/reproj/DataTile.js",
+            "src/source/GeoTIFF.js"
+        ],
+        "explanation": "1. **src/reproj/DataTile.js**: Since the issue involves reprojection and cropping of the tiles, the `DataTile.js` file in the `reproj` directory is likely handling the reprojection logic for data tiles. This file would need modifications to ensure that the `wrapX` option is correctly applied during the reprojection of GeoTIFF tiles.\n\n2. **src/source/GeoTIFF.js**: This file is responsible for handling GeoTIFF sources. The problem described affects how GeoTIFF tiles are handled, particularly in terms of cropping and applying the `wrapX` option. Changes in this file would be necessary to ensure that the option functions correctly when GeoTIFF tiles are reprojected.",
+        "bug_scenario": "The bug is related to the handling of the `wrapX` option in GeoTIFF sources when they are reprojected. The issue is that the option to crop GeoTIFF source tiles to the tile grid extent is not respected if it is reprojected, especially when a non-zero nodata value is specified. This causes the output to not be cropped correctly to the tile grid on both axes, which is expected to be done by the `wrapX` option when there is no reprojection involved."
+    }
+}

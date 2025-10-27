@@ -1,0 +1,60 @@
+{
+    "1/1": {
+        "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js": [
+            {
+                "SEARCH": [
+                    "setModdleProperties(moddleElement, properties);",
+                    "",
+                    "context.oldProperties = oldProperties;",
+                    "context.changed = changed;",
+                    "",
+                    "return changed;"
+                ],
+                "REPLACE": [
+                    "  // Ensure isSequential property is correctly updated",
+                    "  if (properties.hasOwnProperty('isSequential')) {",
+                    "    moddleElement.isSequential = properties.isSequential;",
+                    "  }",
+                    "",
+                    "  setModdleProperties(moddleElement, properties);",
+                    "",
+                    "  context.oldProperties = oldProperties;",
+                    "  context.changed = changed;",
+                    "",
+                    "  return changed;"
+                ]
+            }
+        ],
+        "lib/features/modeling/cmd/UpdatePropertiesHandler.js": [
+            {
+                "SEARCH": [
+                    "// update properties",
+                    "setProperties(element, properties);",
+                    "",
+                    "// store old values",
+                    "context.oldProperties = oldProperties;",
+                    "context.changed = changed;",
+                    "",
+                    "// indicate changed on objects affected by the update",
+                    "return changed;"
+                ],
+                "REPLACE": [
+                    "  // Ensure isSequential property is correctly updated",
+                    "  if (properties.hasOwnProperty('isSequential')) {",
+                    "    businessObject.isSequential = properties.isSequential;",
+                    "  }",
+                    "",
+                    "  // update properties",
+                    "  setProperties(element, properties);",
+                    "",
+                    "  // store old values",
+                    "  context.oldProperties = oldProperties;",
+                    "  context.changed = changed;",
+                    "",
+                    "  // indicate changed on objects affected by the update",
+                    "  return changed;"
+                ]
+            }
+        ]
+    }
+}

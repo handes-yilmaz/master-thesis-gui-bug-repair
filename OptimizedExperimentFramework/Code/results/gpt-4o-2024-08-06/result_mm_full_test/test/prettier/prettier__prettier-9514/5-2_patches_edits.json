@@ -1,0 +1,63 @@
+{
+    "1/1": {
+        "src/language-js/parser-babel.js": [
+            {
+                "SEARCH": [
+                    "const cherow = require(\"cherow\");",
+                    "const babel = require(\"@babel/parser\");",
+                    "",
+                    "const sourceType =",
+                    "opts.__babelSourceType === \"script\" ? \"script\" : \"module\";",
+                    "",
+                    "let ast;",
+                    "try {",
+                    "const combinations = resolvePluginsConflict(",
+                    "text.includes(\"|>\"),",
+                    "pluginCombinations,",
+                    "[",
+                    "[\"pipelineOperator\", { proposal: \"smart\" }],",
+                    "[\"pipelineOperator\", { proposal: \"minimal\" }],",
+                    "[\"pipelineOperator\", { proposal: \"fsharp\" }],",
+                    "]",
+                    ");",
+                    "ast = tryCombinations(",
+                    "(options) => babel[parseMethod](text, options),",
+                    "combinations.map((extraPlugins) =>",
+                    "babelOptions({ sourceType, extraPlugins })",
+                    ")",
+                    ");"
+                ],
+                "REPLACE": [
+                    "const cherow = require(\"cherow\");",
+                    "const babel = require(\"@babel/parser\");",
+                    "",
+                    "    const sourceType =",
+                    "      opts.__babelSourceType === \"script\" ? \"script\" : \"module\";",
+                    "",
+                    "    let ast;",
+                    "    try {",
+                    "      if (!isFlowFile(text, opts)) {",
+                    "        // Use Cherow for non-Flow files",
+                    "        ast = cherow.parse(text, { module: sourceType === \"module\" });",
+                    "      } else {",
+                    "        const combinations = resolvePluginsConflict(",
+                    "          text.includes(\"|>\"),",
+                    "          pluginCombinations,",
+                    "          [",
+                    "            [\"pipelineOperator\", { proposal: \"smart\" }],",
+                    "            [\"pipelineOperator\", { proposal: \"minimal\" }],",
+                    "            [\"pipelineOperator\", { proposal: \"fsharp\" }],",
+                    "          ]",
+                    "        );",
+                    "        ast = tryCombinations(",
+                    "          (options) => babel[parseMethod](text, options),",
+                    "          combinations.map((extraPlugins) =>",
+                    "            babelOptions({ sourceType, extraPlugins })",
+                    "          )",
+                    "        );",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

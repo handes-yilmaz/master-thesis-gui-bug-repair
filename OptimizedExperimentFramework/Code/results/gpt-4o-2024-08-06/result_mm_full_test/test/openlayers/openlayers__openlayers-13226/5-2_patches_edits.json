@@ -1,0 +1,60 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "getSourceBandCount_() {",
+                    "const source = this.getSource();",
+                    "return source && 'bandCount' in source ? source.bandCount : 4;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  getSourceBandCount_() {",
+                    "    const source = this.getSource();",
+                    "    if (!source) {",
+                    "      return 4; // Default band count",
+                    "    }",
+                    "    if ('bandCount' in source) {",
+                    "      return source.bandCount;",
+                    "    }",
+                    "    if (source.getTileGrid) {",
+                    "      const tileGrid = source.getTileGrid();",
+                    "      if (tileGrid) {",
+                    "        return tileGrid.getBandCount();",
+                    "      }",
+                    "    }",
+                    "    return 4; // Default band count",
+                    "  }"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const tileGrid = tileSource.getTileGridForProjection(viewState.projection);",
+                    "const tileTextureCache = this.tileTextureCache_;",
+                    "const tileRange = tileGrid.getTileRangeForExtentAndZ(",
+                    "extent,",
+                    "z,",
+                    "this.tempTileRange_",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const tileGrid = tileSource.getTileGridForProjection(viewState.projection);",
+                    "    const tileTextureCache = this.tileTextureCache_;",
+                    "    let tileRange;",
+                    "    if (tileGrid) {",
+                    "      tileRange = tileGrid.getTileRangeForExtentAndZ(",
+                    "        extent,",
+                    "        z,",
+                    "        this.tempTileRange_",
+                    "      );",
+                    "    } else {",
+                    "      // Handle case where tileGrid is not available",
+                    "      tileRange = new TileRange(0, 0, 0, 0);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "1/1": {
+        "lib/features/snapping/BpmnConnectSnapping.js": [
+            {
+                "SEARCH": [
+                    "function snapInsideTarget(event, target) {",
+                    "",
+                    "AXES.forEach(function(axis) {",
+                    "var matchingTargetDimension = getDimensionForAxis(axis, target),",
+                    "newCoordinate;",
+                    "",
+                    "if (event[axis] < target[axis] + TARGET_BOUNDS_PADDING) {",
+                    "newCoordinate = target[axis] + TARGET_BOUNDS_PADDING;",
+                    "} else if (event[axis] > target[axis] + matchingTargetDimension - TARGET_BOUNDS_PADDING) {",
+                    "newCoordinate = target[axis] + matchingTargetDimension - TARGET_BOUNDS_PADDING;",
+                    "}",
+                    "",
+                    "if (newCoordinate) {",
+                    "setSnapped(event, axis, newCoordinate);",
+                    "}",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function snapInsideTarget(event, target) {",
+                    "",
+                    "  AXES.forEach(function(axis) {",
+                    "    var matchingTargetDimension = getDimensionForAxis(axis, target),",
+                    "        targetCenter = target[axis] + matchingTargetDimension / 2,",
+                    "        newCoordinate;",
+                    "",
+                    "    if (Math.abs(event[axis] - targetCenter) < TARGET_BOUNDS_PADDING) {",
+                    "      newCoordinate = targetCenter;",
+                    "    } else if (event[axis] < target[axis] + TARGET_BOUNDS_PADDING) {",
+                    "      newCoordinate = target[axis] + TARGET_BOUNDS_PADDING;",
+                    "    } else if (event[axis] > target[axis] + matchingTargetDimension - TARGET_BOUNDS_PADDING) {",
+                    "      newCoordinate = target[axis] + matchingTargetDimension - TARGET_BOUNDS_PADDING;",
+                    "    }",
+                    "",
+                    "    if (newCoordinate) {",
+                    "      setSnapped(event, axis, newCoordinate);",
+                    "    }",
+                    "  });",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

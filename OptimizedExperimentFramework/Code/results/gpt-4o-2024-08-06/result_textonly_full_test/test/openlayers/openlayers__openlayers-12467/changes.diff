@@ -1,0 +1,28 @@
+diff --git a/src/ol/render/canvas/Builder.js b/src/ol/render/canvas/Builder.js
+index 9735410..563f014 100644
+--- a/src/ol/render/canvas/Builder.js
++++ b/src/ol/render/canvas/Builder.js
+@@ -56,7 +56,7 @@ class CanvasBuilder extends VectorContext {
+      * @protected
+      * @type {number}
+      */
+-    this.pixelRatio = pixelRatio;
++    this.pixelRatio = pixelRatio !== undefined ? pixelRatio : 1;
+ 
+     /**
+      * @protected
+diff --git a/src/ol/render/canvas/Immediate.js b/src/ol/render/canvas/Immediate.js
+index b83b9e5..90f5827 100644
+--- a/src/ol/render/canvas/Immediate.js
++++ b/src/ol/render/canvas/Immediate.js
+@@ -501,8 +501,8 @@ class CanvasImmediateRenderer extends VectorContext {
+       const context = this.context_;
+       context.beginPath();
+       context.arc(
+-        pixelCoordinates[0],
+-        pixelCoordinates[1],
++        pixelCoordinates[0] + 0.5, // Adjust for sub-pixel rendering
++        pixelCoordinates[1] + 0.5, // Adjust for sub-pixel rendering
+         radius,
+         0,
+         2 * Math.PI

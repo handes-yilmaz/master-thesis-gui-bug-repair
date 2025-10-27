@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/format/KML.js",
+            "src/ol/style/Text.js"
+        ],
+        "explanation": "1. **src/ol/format/KML.js**: This file is responsible for handling KML format data, which is an XML-based format. The issue of character codes not being decoded properly is likely to originate from this file, as it involves reading and writing KML data. The functions related to reading and writing text, such as `readName`, `readPlacemark_`, and `writePlacemark`, are potential areas where decoding should be implemented.\n\n2. **src/ol/style/Text.js**: This file deals with text styling for vector features. Since the bug involves text rendering, this file is relevant because it manages how text is displayed, including properties like font, alignment, and the actual text content. Ensuring that text is decoded before being set or rendered is crucial, and this file might need adjustments to handle decoded text properly.",
+        "bug_scenario": "The bug scenario involves character codes appearing in labels instead of being properly decoded. In the provided image, the name 'Andy' is displayed as 'Andy&amp;apos;s', indicating that the character code for an apostrophe is not being decoded correctly. This issue is likely to occur in any XML-based format, such as KML, where text needs to be rendered from encoded data."
+    }
+}

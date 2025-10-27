@@ -1,0 +1,41 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index 8c77819..ee61aee 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -44,6 +44,12 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+     var descriptor = context.descriptor,
+         element = context.element;
+ 
++    // Check if the element can be pasted onto the target
++    if (!canPaste(element, context.target)) {
++      context.preventDefault();
++      return;
++    }
++
+     var businessObject = descriptor.oldBusinessObject = getBusinessObject(element);
+ 
+     descriptor.type = element.type;
+diff --git a/lib/features/rules/BpmnRules.js b/lib/features/rules/BpmnRules.js
+index 3d56d54..1db8f21 100644
+--- a/lib/features/rules/BpmnRules.js
++++ b/lib/features/rules/BpmnRules.js
+@@ -512,6 +512,19 @@ function canDrop(element, target, position) {
+   return false;
+ }
+ 
++function canPaste(element, target) {
++  // Disallow pasting typed start events onto subprocesses
++  if (is(element, 'bpmn:StartEvent') && hasOneOfEventDefinitions(element, [
++    'bpmn:MessageEventDefinition',
++    'bpmn:TimerEventDefinition',
++    'bpmn:SignalEventDefinition',
++    'bpmn:ConditionalEventDefinition'
++  ]) && is(target, 'bpmn:SubProcess')) {
++    return false;
++  }
++  return true;
++}
++
+ function isDroppableBoundaryEvent(event) {
+   return getBusinessObject(event).cancelActivity && (
+     hasNoEventDefinition(event) || hasCommonBoundaryIntermediateEventDefinition(event)

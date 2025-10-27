@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//parseStyle",
+            "src/ol/layer/WebGLTile.js//setStyle",
+            "src/ol/layer/WebGLTile.js//updateStyleVariables",
+            "src/ol/renderer/webgl/TileLayer.js//reset"
+        ],
+        "explanation": "The class 'WebGLTileLayer' in 'src/ol/layer/WebGLTile.js' is directly related to the bug because it represents the WebGL tile layer that needs the new blending functionality. The 'parseStyle', 'setStyle', and 'updateStyleVariables' functions within this class are responsible for handling the style and rendering parameters, which would include the new blending options.\n\nThe 'WebGLTileLayerRenderer' class in 'src/ol/renderer/webgl/TileLayer.js' is also relevant because it is responsible for rendering the WebGL tile layers. The 'reset' function in this class is likely involved in reinitializing the rendering parameters, which would need to accommodate the new blending functionality. These classes and functions are central to implementing the desired blending behavior in the WebGL rendering process.",
+        "bug_scenario": "The bug scenario involves a digital slide microscopy images viewer that uses OpenLayer for rendering pyramidal multi-resolution layers. The issue is the need to blend images from different WebGL Tile Layers using a specific WebGL blend function (gl.blendFunc(gl.ONE, gl.ONE)). The current API lacks a parameter to set different blending options for WebGL rendering, which is necessary for the application's use case."
+    }
+}

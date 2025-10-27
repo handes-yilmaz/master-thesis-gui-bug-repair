@@ -1,0 +1,39 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "this.projection = projection;"
+                ],
+                "REPLACE": [
+                    "    this.projection = projection || 'EPSG:4326'; // Default to EPSG:4326 if no projection is found"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const sources = this.getSources(frameState.extent, viewState.resolution);"
+                ],
+                "REPLACE": [
+                    "    const sources = this.getSources(frameState.extent, viewState.resolution).map(source => {",
+                    "      if (source.getProjection() !== viewState.projection) {",
+                    "        return new ReprojTile(",
+                    "          source.getProjection(),",
+                    "          source.getTileGrid(),",
+                    "          viewState.projection,",
+                    "          this.getTileGrid(),",
+                    "          frameState.tileCoord,",
+                    "          null,",
+                    "          frameState.pixelRatio,",
+                    "          0,",
+                    "          (z, x, y, pixelRatio) => source.getTile(z, x, y, pixelRatio)",
+                    "        );",
+                    "      }",
+                    "      return source;",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

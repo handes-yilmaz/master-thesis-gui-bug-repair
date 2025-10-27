@@ -1,0 +1,22 @@
+diff --git a/src/ol/source/Raster.js b/src/ol/source/Raster.js
+index 9992395..32e18fa 100644
+--- a/src/ol/source/Raster.js
++++ b/src/ol/source/Raster.js
+@@ -99,6 +99,17 @@ export class RasterSourceEvent extends Event {
+      */
+     this.data = data;
+   }
++
++  /**
++   * Terminate the worker to free up resources.
++   * @api
++   */
++  dispose() {
++    if (this.worker_) {
++      this.worker_.dispose();
++      this.worker_ = null;
++    }
++  }
+ }
+ 
+ /**

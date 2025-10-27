@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/table/base/cell.jsx",
+            "src/table/index.jsx",
+            "src/table/util.js"
+        ],
+        "explanation": "The files related to the 'Table' component are likely involved in resolving this bug, as they are responsible for the handling and rendering of table data based on 'dataIndex'. Specifically:\n\n- `src/table/base/cell.jsx`: This file is likely involved in rendering individual cells within the table. Modifications here might be necessary to properly support and display data when 'dataIndex' is given in the '[start, end]' format.\n\n- `src/table/index.jsx`: This file serves as an entry point for the Table component and likely handles overall table configuration, including the setting of 'dataIndex'. Changes might be needed here to parse and interpret the '[start, end]' format.\n\n- `src/table/util.js`: Utility functions related to table operations might reside here, including those that process 'dataIndex'. Adjustments here could ensure that the new format is recognized and handled appropriately across various table functions.",
+        "bug_scenario": "The bug report describes an issue with the 'Table' component where it does not support a specific format of string for the 'dataIndex'. The desired feature is to allow 'dataIndex' to accept a string format like '[start, end]', which is required for certain business needs despite having no intrinsic meaning. The provided images likely show the current behavior of the Table component when trying to use this 'dataIndex' format, possibly displaying errors or incorrect data rendering."
+    },
+    "2": {
+        "bug_files": [
+            "src/table/util.js",
+            "src/table/index.jsx",
+            "src/table/base/cell.jsx"
+        ],
+        "explanation": "The `util.js` file in the `src/table/` directory is likely responsible for various utility functions used across the Table component, including parsing and handling of `dataIndex` values. Therefore, it is a prime candidate for containing logic that would need to be updated to support the new string format.\n\nThe `index.jsx` file in `src/table/` is the main entry point for the Table component. It is where the component is likely defined and where `dataIndex` might be initially processed or passed down to other parts of the Table.\n\nFinally, `base/cell.jsx` is likely responsible for rendering individual cells in the table, where `dataIndex` might be used to determine the content of the cell. This file might need updates to correctly interpret the new `dataIndex` format when rendering table cells.",
+        "bug_scenario": "The bug report describes an issue with the `Table` component where there is a need to support a specific format for the `dataIndex` property. The desired format is a string that looks like `'[start, end]'`, which the current implementation does not support. The issue is likely with the parsing or handling of `dataIndex` values in the table component, which needs to be adjusted to parse this new format correctly."
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/format/GeoJSON.js//GeoJSON",
+            "src/ol/geom/MultiPolygon.js//MultiPolygon"
+        ],
+        "bug_functions": [
+            "src/ol/format/GeoJSON.js//readFeatureFromObject",
+            "src/ol/format/GeoJSON.js//readFeaturesFromObject",
+            "src/ol/geom/MultiPolygon.js//setCoordinates"
+        ],
+        "explanation": "The error is related to handling GeoJSON data, specifically with MultiPolygon geometries. The 'GeoJSON' class in 'GeoJSON.js' is responsible for reading features from GeoJSON objects, and the functions 'readFeatureFromObject' and 'readFeaturesFromObject' are directly involved in this process. The 'MultiPolygon' class in 'MultiPolygon.js' is where the error occurs, particularly in the 'setCoordinates' function, which suggests an issue with how coordinates are being processed or validated for MultiPolygon geometries.",
+        "bug_scenario": "The bug report describes an error occurring when using the OpenLayers library to load a GeoJSON file. The error is a 'RangeError: Invalid array length' which occurs when trying to set coordinates for a MultiPolygon. The issue does not occur in Leaflet.js, indicating a problem specific to OpenLayers. The error trace points to issues in handling the GeoJSON data, particularly with the MultiPolygon geometry."
+    }
+}

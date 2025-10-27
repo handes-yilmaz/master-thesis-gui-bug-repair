@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/offline-start-url.js",
+            "lighthouse-core/gather/gatherers/service-worker.js",
+            "lighthouse-core/gather/gatherers/offline.js",
+            "lighthouse-core/lib/network-recorder.js",
+            "lighthouse-core/lib/network-request.js"
+        ],
+        "explanation": "The files listed are related to the offline capabilities and service worker functionality, which are central to resolving the bug where Lighthouse fails to properly detect offline loading. \n\n1. `lighthouse-core/audits/offline-start-url.js`: This file likely contains logic to audit whether the start URL can be loaded offline, and thus would need to be inspected to ensure it correctly checks for offline readiness.\n2. `lighthouse-core/gather/gatherers/service-worker.js`: Since the issue involves service worker functionality, this file is relevant as it likely contains logic to gather and evaluate service worker registrations and their states.\n3. `lighthouse-core/gather/gatherers/offline.js`: This file would be directly related to determining if a page can be loaded offline, needing review to ensure it correctly simulates or detects offline conditions.\n4. `lighthouse-core/lib/network-recorder.js` and `lighthouse-core/lib/network-request.js`: These files likely deal with recording and analyzing network requests, which is critical in determining whether resources are being served from the service worker or cache when offline. Any bugs in handling these requests could lead to the observed problem.",
+        "bug_scenario": "The bug occurs when running Lighthouse on the URL https://www.bhphotovideo.com/. Lighthouse incorrectly reports that the start URL does not load offline, while the current page does. During the offline pass, it is expected to show a typical offline page, but instead, the desktop version of the site is visible, indicating that network requests are not being served from the service worker or disk cache as they should be when offline. The flags `fromServiceWorker` and `fromDiskCache` being `false` confirm this issue."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/offline-start-url.js",
+            "lighthouse-core/gather/gatherers/offline.js",
+            "lighthouse-core/audits/works-offline.js",
+            "lighthouse-core/gather/gatherers/service-worker.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/offline-start-url.js**: This file is likely responsible for the audit that checks if the start URL can be loaded offline. The bug report specifically mentions issues with the offline start URL, indicating a potential problem in this audit's logic.\n\n2. **lighthouse-core/gather/gatherers/offline.js**: The gatherer responsible for simulating and testing offline conditions. If the offline simulation is not correctly set up, it could cause the described bug.\n\n3. **lighthouse-core/audits/works-offline.js**: This audit checks if the page works offline, which directly relates to the problem described where the page does not behave as expected in offline mode.\n\n4. **lighthouse-core/gather/gatherers/service-worker.js**: Since the issue involves the service worker not serving the page as expected, this gatherer, responsible for collecting service worker data, might have a bug.\n\n5. **lighthouse-core/lib/network-recorder.js**: This file deals with recording network requests, which is crucial since the bug involves checking 'fromServiceWorker' and 'fromDiskCache' flags on network requests. If these flags are not set correctly, it could explain why the page doesn't work offline as expected.",
+        "bug_scenario": "The bug occurs when running Lighthouse (LH) on the specified URL. Although the LH is expected to load the start URL offline, it mistakenly loads the desktop version of the page in the offline pass. The network requests' 'fromServiceWorker' and 'fromDiskCache' flags are false, which indicates the requests are not being served from the service worker cache or disk cache, even though the test is supposed to simulate an offline environment."
+    }
+}

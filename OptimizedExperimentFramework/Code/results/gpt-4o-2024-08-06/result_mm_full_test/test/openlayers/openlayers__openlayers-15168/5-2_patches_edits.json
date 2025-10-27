@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/ol/reproj/Image.js": [
+            {
+                "SEARCH": [
+                    "const width = getWidth(this.targetExtent_) / this.targetResolution_;",
+                    "const height = getHeight(this.targetExtent_) / this.targetResolution_;"
+                ],
+                "REPLACE": [
+                    "      const targetResolutionX = this.targetResolution_;",
+                    "      const targetResolutionY = this.targetResolution_ * (getHeight(this.targetExtent_) / getWidth(this.targetExtent_));",
+                    "      const width = getWidth(this.targetExtent_) / targetResolutionX;",
+                    "      const height = getHeight(this.targetExtent_) / targetResolutionY;"
+                ]
+            }
+        ],
+        "src/ol/reproj/Tile.js": [
+            {
+                "SEARCH": [
+                    "const width = typeof size === 'number' ? size : size[0];",
+                    "const height = typeof size === 'number' ? size : size[1];",
+                    "const targetResolution = this.targetTileGrid_.getResolution(z);"
+                ],
+                "REPLACE": [
+                    "      const targetResolutionX = this.targetTileGrid_.getResolution(z);",
+                    "      const targetResolutionY = targetResolutionX * (getHeight(targetExtent) / getWidth(targetExtent));",
+                    "      const width = getWidth(targetExtent) / targetResolutionX;",
+                    "      const height = getHeight(targetExtent) / targetResolutionY;"
+                ]
+            }
+        ],
+        "src/ol/reproj/DataTile.js": [
+            {
+                "SEARCH": [
+                    "const targetWidth = typeof size === 'number' ? size : size[0];",
+                    "const targetHeight = typeof size === 'number' ? size : size[1];",
+                    "const targetResolution = this.targetTileGrid_.getResolution(z);"
+                ],
+                "REPLACE": [
+                    "      const targetResolutionX = this.targetTileGrid_.getResolution(z);",
+                    "      const targetResolutionY = targetResolutionX * (getHeight(targetExtent) / getWidth(targetExtent));",
+                    "      const targetWidth = getWidth(targetExtent) / targetResolutionX;",
+                    "      const targetHeight = getHeight(targetExtent) / targetResolutionY;"
+                ]
+            }
+        ]
+    }
+}

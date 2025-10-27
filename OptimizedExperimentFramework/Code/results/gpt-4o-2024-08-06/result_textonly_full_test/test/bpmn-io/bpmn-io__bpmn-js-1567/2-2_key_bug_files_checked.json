@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js"
+        ],
+        "explanation": "1. **lib/features/drilldown/DrilldownBreadcrumbs.js**: This file is responsible for managing the breadcrumbs that allow navigation between different levels of the BPMN diagram. The error occurs when trying to set the root element, which is handled in this file. The function `updateBreadcrumbs` uses `canvas.setRootElement`, which is directly related to the error message.\n\n2. **lib/features/drilldown/DrilldownOverlayBehavior.js**: This file manages the drilldown overlay behavior, including adding and removing overlays when shapes are collapsed or expanded. It listens for root changes and updates overlays accordingly. The error might be due to the overlay not being updated correctly when the root changes, which is handled in this file.\n\n3. **lib/features/modeling/cmd/UpdateCanvasRootHandler.js**: This file handles the execution and reversion of root element updates on the canvas. It includes logic for setting and removing root elements and firing events when the root changes. The error message suggests a problem with setting the root element, which is a key function of this file.",
+        "bug_scenario": "The bug scenario involves an error occurring when attempting to drill out of a sub-process after a root change in a BPMN diagram. The error message indicates that a 'rootElement' is required, suggesting that the drilldown overlay is not properly handling root changes. The steps to reproduce the bug include wrapping a collapsed sub-process with a pool, navigating into the sub-process, and then trying to move back to the parent process, which results in the error being emitted. The expected behavior is for the drilldown to be aware of root element changes and allow navigation back to the parent process without errors."
+    }
+}

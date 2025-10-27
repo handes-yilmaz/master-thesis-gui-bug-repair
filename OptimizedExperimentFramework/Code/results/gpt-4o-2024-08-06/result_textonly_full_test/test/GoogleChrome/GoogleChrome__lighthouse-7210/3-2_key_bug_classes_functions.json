@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js//UnusedCSSRules"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js//UnusedCSSRules.computeUsage",
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js//UnusedCSSRules.indexStylesheetsById",
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js//UnusedCSSRules.indexUsedRules"
+        ],
+        "explanation": "The class `UnusedCSSRules` and its functions `computeUsage`, `indexStylesheetsById`, and `indexUsedRules` are directly related to the bug because they are responsible for calculating and reporting the usage of CSS rules. The `computeUsage` function calculates the bytes used and wasted, which is crucial for determining the efficiency of CSS usage. The `indexStylesheetsById` and `indexUsedRules` functions are involved in organizing and analyzing the CSS stylesheets and their rules, which directly impacts the accuracy of the reported CSS size and potential savings. The bug report indicates a mismatch in the reported and actual sizes, suggesting that these functions may not be accurately calculating or reporting the CSS usage, leading to the observed issue.",
+        "bug_scenario": "The bug scenario involves a discrepancy in the reported size of CSS resources by Google Pagespeed. The tool reports a size of 80kb with potential savings of 70kb under 'Defer unused CSS', while the actual gzipped size fetched by the tool is only around 20kb. This indicates that the Pagespeed tool is not accurately reflecting the actual data fetched, leading to incorrect optimization suggestions."
+    }
+}

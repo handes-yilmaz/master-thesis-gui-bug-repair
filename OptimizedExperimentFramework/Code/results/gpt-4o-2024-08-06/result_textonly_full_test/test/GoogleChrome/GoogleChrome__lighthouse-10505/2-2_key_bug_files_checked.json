@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/computed/metrics/first-cpu-idle.js",
+            "lighthouse-core/computed/metrics/interactive.js",
+            "lighthouse-core/audits/metrics/interactive.js",
+            "lighthouse-core/audits/metrics/first-cpu-idle.js"
+        ],
+        "explanation": "1. `lighthouse-core/computed/metrics/first-cpu-idle.js`: This file is responsible for computing the First CPU Idle metric, which is directly related to the NO_TTI_CPU_IDLE_PERIOD error. The logic for determining when the CPU is idle is crucial to resolving this issue.\n\n2. `lighthouse-core/computed/metrics/interactive.js`: This file computes the Time to Interactive (TTI) metric, which is closely related to the CPU idle period. The error message specifically mentions NO_TTI_CPU_IDLE_PERIOD, indicating a problem in determining the interactive state of the page.\n\n3. `lighthouse-core/audits/metrics/interactive.js`: This audit file uses the computed interactive metric to evaluate the page's interactivity. Any issues in the computation logic could lead to the error observed.\n\n4. `lighthouse-core/audits/metrics/first-cpu-idle.js`: Similar to the interactive audit, this file audits the First CPU Idle metric. Errors in this audit could contribute to the NO_TTI_CPU_IDLE_PERIOD error, especially if the audit fails to correctly identify idle periods.",
+        "bug_scenario": "The bug scenario involves a NO_TTI_CPU_IDLE_PERIOD error occurring in Lighthouse when running performance audits with specific throttling settings. The error is triggered when the page has a slow First Contentful Paint (FCP) but becomes idle immediately after. This issue is observed in both DevTools and CLI environments, particularly when using provided throttling methods. The expected behavior is for Lighthouse to report a performance score without errors, but currently, it fails to do so under these conditions."
+    }
+}

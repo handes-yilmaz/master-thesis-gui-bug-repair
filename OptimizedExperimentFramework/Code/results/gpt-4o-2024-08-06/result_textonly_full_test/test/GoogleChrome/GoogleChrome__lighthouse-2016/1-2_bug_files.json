@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/renderer/details-renderer.js",
+            "lighthouse-core/report/v2/renderer/report-renderer.js"
+        ],
+        "explanation": "These files are related to the rendering of the report UI:\n\n1. **lighthouse-core/report/v2/renderer/details-renderer.js**: This file likely manages the rendering logic for details sections in the report. If a dropdown is incorrectly shown for 0 passing audits, it's probable that this file contains the logic that determines when to render these detail sections.\n\n2. **lighthouse-core/report/v2/renderer/report-renderer.js**: This file is responsible for the overall rendering of the report. It likely contains logic to determine when to include or exclude various sections, such as the details dropdown. Adjustments here might be needed to ensure that the dropdown is only rendered when appropriate (i.e., when there are passing audits).",
+        "bug_scenario": "The bug scenario involves a UI issue where a report with 0 passing audits is displaying a dropdown for details, which should not be present. The image attached in the bug report shows a UI panel with an unnecessary details dropdown visible, despite no audits passing."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/audit.js",
+            "lighthouse-core/report/v2/renderer/details-renderer.js",
+            "lighthouse-core/report/v2/renderer/report-renderer.js"
+        ],
+        "explanation": "The files are likely related to the bug because:\n\n1. **lighthouse-core/audits/audit.js**: This file is likely where the audit logic resides, including conditions for when to display details. If a passing audit with a score of 0 should not have a details dropdown, this logic might need adjustment here.\n\n2. **lighthouse-core/report/v2/renderer/details-renderer.js**: This file is responsible for rendering the details dropdown. Any logic related to when this dropdown is displayed would be found here, making it a key suspect for this bug.\n\n3. **lighthouse-core/report/v2/renderer/report-renderer.js**: This is the main renderer for the report, which would coordinate when and how each part of the report, including the details dropdown, is displayed. Changes to how passing audits are handled would likely involve this file.",
+        "bug_scenario": "The bug report indicates an issue where audits that pass with a score of 0 should not display a details dropdown, suggesting a problem in the UI rendering logic of the report."
+    }
+}

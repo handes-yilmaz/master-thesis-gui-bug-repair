@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-rest.js",
+            "components/prism-markup.js",
+            "components.js"
+        ],
+        "explanation": "1. **components/prism-rest.js**: This file is the most directly related to the reST language, which is where the bug is occurring. It likely contains the language definition and parsing rules for reST, so any issues in detecting reST syntax would be addressed here.\n\n2. **components/prism-markup.js**: This file might be involved because markup processing is crucial for correctly rendering elements like links and verbatim text, especially in languages like reST where such elements are common.\n\n3. **components.js**: This file likely acts as an index or configuration file that manages the inclusion and setup of the various language components, including reST. Any misconfiguration here could lead to improper language detection or rendering issues across the library.",
+        "bug_scenario": "The bug involves the incorrect rendering of reStructuredText (reST) verbatim and link elements. In the provided example, a reST link and verbatim element are being highlighted incorrectly as italicized text instead of their intended formats. When the elements are split across two lines, they render correctly, suggesting an issue with line parsing or recognition for these reST features."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-rest.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The bug is related to how PrismJS handles reStructuredText (reST) syntax, specifically for link and verbatim elements. The file `components/prism-rest.js` is directly related as it contains the language definition for reST, which would include rules for parsing and highlighting reST syntax correctly. Additionally, `components/prism-core.js` is the core file responsible for handling the overall syntax highlighting logic, including matching and rendering tokens, and could therefore contain broader logic that affects the parsing of reST syntax. Adjustments in these files would likely be necessary to fix the bug related to reST link and verbatim element highlighting.",
+        "bug_scenario": "The bug report describes an issue with reStructuredText (reST) language highlighting in the PrismJS library. Specifically, the bug occurs when link elements and verbatim elements are not detected correctly. Instead of rendering these elements appropriately, the entire text appears italicized. The issue does not occur when the text is split into two lines, suggesting a problem with handling single-line reST link and verbatim syntax."
+    }
+}

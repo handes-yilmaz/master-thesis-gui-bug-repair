@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "The bug is related to the loss of multi-instance properties during a change in configuration of a BPMN element. This suggests an issue with how properties are managed or updated when the configuration changes. \n\n1. **UpdatePropertiesHandler.js**: This file is responsible for updating properties of BPMN elements. If properties are lost during configuration changes, this handler may not be correctly persisting or restoring necessary properties.\n\n2. **UpdateModdlePropertiesHandler.js**: Similar to the properties handler, this file deals with updating the underlying moddle properties of BPMN elements, which could include the multi-instance properties that are being lost.\n\n3. **ReplaceElementBehaviour.js**: This file manages the behavior when an element is replaced, which would be relevant if the process of switching from parallel to sequential involves replacing elements rather than simply toggling attributes.\n\n4. **ToggleElementCollapseBehaviour.js**: This behavior might be relevant if the toggle between parallel and sequential multi-instance affects how elements are rendered and managed in the DOM, potentially affecting property retention.\n\n5. **Modeling.js**: This file is central to the modeling capabilities and may manage broader state changes or interactions that could impact property retention when configurations are toggled.",
+        "bug_scenario": "The bug scenario involves losing multi-instance properties when toggling between parallel and sequential multi-instance configurations in a sub-process. The expected behavior is that the multi-instance properties should be retained during this change."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "1. **UpdateModdlePropertiesHandler.js**: This file likely handles updates to the properties of BPMN elements. When the user changes the multi-instance settings, the properties should be updated correctly and preserved. If properties are lost, it suggests an issue with how properties are updated or stored.\n\n2. **ReplaceElementBehaviour.js**: This file might be responsible for handling behavior changes when elements are replaced or changed. Switching from parallel to sequential multi-instance could be considered a replacement or modification of the element, and any associated behaviors that lead to property loss would be managed here.\n\n3. **Modeling.js**: This file is likely responsible for higher-level modeling operations. Since the bug involves the transformation of BPMN elements, the core modeling logic that governs these transformations would reside here. If properties are not retained during these transformations, the problem could stem from how the modeling logic is implemented in this file.",
+        "bug_scenario": "The bug occurs when a user creates a subprocess and adds a parallel multi-instance with loop cardinality, then changes it to a sequential multi-instance, resulting in the loss of multi-instance properties. This issue is reproducible in the library version 8.9.0."
+    }
+}

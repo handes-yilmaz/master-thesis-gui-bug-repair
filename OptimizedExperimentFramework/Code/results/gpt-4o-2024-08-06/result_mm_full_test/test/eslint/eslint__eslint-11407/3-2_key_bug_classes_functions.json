@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/implicit-arrow-linebreak.js//module.exports"
+        ],
+        "bug_functions": [
+            "lib/rules/implicit-arrow-linebreak.js//autoFixBesides",
+            "lib/rules/implicit-arrow-linebreak.js//addParentheses",
+            "lib/rules/implicit-arrow-linebreak.js//validateExpression"
+        ],
+        "explanation": "The bug is related to the autofixing logic in the 'implicit-arrow-linebreak' rule. The 'autoFixBesides' function is responsible for fixing the position of arrow function bodies, and it seems to mishandle cases with comments, leading to broken code. The 'addParentheses' function is involved in wrapping function bodies with parentheses, which might be incorrectly applied. The 'validateExpression' function checks the location of arrow function bodies and triggers the autofix, which is where the issue manifests. These functions are directly involved in the logic that leads to the bug.",
+        "bug_scenario": "The bug involves the ESLint autofixer for the 'implicit-arrow-linebreak' rule, which sometimes adds extra characters, resulting in broken JavaScript code. The issue occurs when comments are placed in certain positions, causing the autofixer to incorrectly format the code, particularly around arrow functions and their bodies."
+    }
+}

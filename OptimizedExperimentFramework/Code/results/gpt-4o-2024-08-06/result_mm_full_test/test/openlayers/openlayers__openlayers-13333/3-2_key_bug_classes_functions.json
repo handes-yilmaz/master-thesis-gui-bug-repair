@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//getSources",
+            "src/ol/layer/WebGLTile.js//render",
+            "src/ol/renderer/webgl/TileLayer.js//getRenderExtent"
+        ],
+        "explanation": "The `WebGLTileLayer` class in `src/ol/layer/WebGLTile.js` is responsible for managing the tile layer's properties, including its extent. The `getSources` function retrieves the sources for rendering, which may not be correctly filtering by extent. The `render` function is responsible for rendering the tiles, and it should ensure that tiles outside the extent are not rendered. In `src/ol/renderer/webgl/TileLayer.js`, the `WebGLTileLayerRenderer` class handles the rendering process, and the `getRenderExtent` function is crucial for determining the correct extent for rendering. If this function does not correctly intersect the frame extent with the layer's extent, it can lead to rendering outside the intended boundaries.",
+        "bug_scenario": "The bug scenario involves WebGLTile layers rendering images outside their original extent. The images show that the rendered tiles exceed the defined boundaries, causing visual artifacts and incorrect rendering."
+    }
+}

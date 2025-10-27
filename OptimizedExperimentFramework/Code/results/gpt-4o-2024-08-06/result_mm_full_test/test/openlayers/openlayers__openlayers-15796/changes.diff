@@ -1,0 +1,16 @@
+diff --git a/src/ol/renderer/canvas/VectorLayer.js b/src/ol/renderer/canvas/VectorLayer.js
+index c5025e4..099da46 100644
+--- a/src/ol/renderer/canvas/VectorLayer.js
++++ b/src/ol/renderer/canvas/VectorLayer.js
+@@ -304,6 +304,11 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+ 
+     this.setDrawContext_();
+ 
++    // Clear the canvas if opacity is less than 1
++    if (this.opacity_ < 1) {
++      context.clearRect(0, 0, context.canvas.width, context.canvas.height);
++    }
++
+     this.preRender(context, frameState);
+ 
+     const projection = viewState.projection;

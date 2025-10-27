@@ -1,0 +1,16 @@
+diff --git a/src/number-picker/number-picker.jsx b/src/number-picker/number-picker.jsx
+index 322a0e9..310710d 100644
+--- a/src/number-picker/number-picker.jsx
++++ b/src/number-picker/number-picker.jsx
+@@ -322,6 +322,11 @@ class NumberPicker extends React.Component {
+         value = value.replace('。', '.').trim();
+         let onlyDisplay = false;
+         let valueCorrected = this.correctValue(value);
++
++        // Prevent input beyond max limit
++        if (this.isGreaterThan(valueCorrected, this.state.max)) {
++            valueCorrected = this.state.max;
++        }
+         
+         if (this.props.editable === true) {
+             if (this.shouldFireOnChange(valueCorrected)) {

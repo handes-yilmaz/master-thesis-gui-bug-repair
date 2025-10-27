@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/components/modal/modal.jsx",
+            "src/components/record-modal/record-modal.jsx",
+            "src/containers/modal.jsx"
+        ],
+        "explanation": "The issue is related to the behavior of the modal when interacting with mouse events, specifically when dragging actions occur. The files likely involved in the bug are:\n\n1. `src/components/modal/modal.jsx`: This file is a core component for handling modals across the application. It is responsible for defining how the modal behaves, including its open and close logic. Since the bug involves the modal closing unexpectedly, changes here might be necessary to prevent the modal from closing when the mouse is dragged outside.\n\n2. `src/components/record-modal/record-modal.jsx`: This component is specifically for the record modal, where the issue occurs. It may have specific logic related to the recording modal's handling of mouse events or modal state management that needs to be addressed.\n\n3. `src/containers/modal.jsx`: This container might be responsible for managing the modal state and its interaction with the rest of the application. Adjustments here could ensure that the modal does not close due to unintended mouse interactions.\n\nThe problem might be related to how mouse events are handled, possibly requiring updates to event listeners or conditions that determine when a modal should close.",
+        "bug_scenario": "The bug scenario involves a sound recording modal where dragging the mouse outside the modal accidentally closes it, causing the user to lose their work. This is an undesired behavior as users may unintentionally close the modal and lose unsaved changes while performing actions like dragging sound selection handles to the edge of the sound."
+    },
+    "2": {
+        "bug_files": [
+            "src/components/modal/modal.jsx",
+            "src/components/record-modal/record-modal.jsx",
+            "src/containers/modal.jsx",
+            "src/containers/record-modal.jsx"
+        ],
+        "explanation": "The issue is likely related to the handling of mouse events in modal components. The files that are likely related to the bug include those responsible for the modal behavior and sound recording functionality.\\n1. **`src/components/modal/modal.jsx`**: This file defines the generic modal component used throughout the application. Since the bug involves a modal closing unintentionally, the core modal logic should be examined to ensure it handles mouse events correctly.\\n\\n2. **`src/components/record-modal/record-modal.jsx`**: This file is specific to the record modal, which is where the issue is occurring. It likely contains specific logic related to the sound recording process and the user interactions within this modal.\\n\\n3. **`src/containers/modal.jsx` and `src/containers/record-modal.jsx`**: These container files may include higher-order logic or state management for the modal components, influencing the behavior of the modals in the application. They should be checked for any event listeners or state changes that might cause the modal to close when it shouldn't.\\n\\nThe bug might be fixed by updating how mouse events are handled when the cursor leaves the modal area, ensuring that such actions do not trigger the modal to close unless explicitly intended by a user action.",
+        "bug_scenario": "The bug occurs when a user is working within a sound recording modal. When the user clicks on and drags the sound selection handles to the right and accidentally moves the mouse cursor outside the modal, the modal closes unexpectedly, causing the user to lose their work. This behavior is contrary to the expected behavior where the modal should remain open regardless of the mouse position relative to the modal boundaries."
+    }
+}

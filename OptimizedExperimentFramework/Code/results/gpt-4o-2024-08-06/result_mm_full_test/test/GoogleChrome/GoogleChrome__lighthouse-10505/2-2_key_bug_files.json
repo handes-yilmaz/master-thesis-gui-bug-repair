@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/computed/metrics/interactive.js",
+            "lighthouse-core/audits/metrics/interactive.js"
+        ],
+        "explanation": "1. **lighthouse-core/computed/metrics/interactive.js**: This file is responsible for computing the 'Time To Interactive' (TTI) metric. The error 'NO_TTI_CPU_IDLE_PERIOD' is directly related to the logic in this file, which checks for overlapping quiet periods of CPU and network activity. The error is thrown when such periods are not found, indicating a potential issue in how these periods are detected or calculated.\n\n2. **lighthouse-core/audits/metrics/interactive.js**: This file defines the audit for the TTI metric. It uses the computed metric from the previous file to generate the audit result. If the computed metric is incorrect or fails, it will result in an error in this audit, making it a key file to investigate for potential issues in the audit logic or configuration.",
+        "bug_scenario": "The bug scenario involves a Lighthouse report showing a 'NO_TTI_CPU_IDLE_PERIOD' error, indicating that the page took too long to load and did not have a sufficient idle period after the First Contentful Paint (FCP). This error occurs when the page is idle immediately after a slow FCP, particularly under provided throttling conditions in DevTools."
+    }
+}

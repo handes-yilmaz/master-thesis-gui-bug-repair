@@ -1,0 +1,13 @@
+diff --git a/src/languages/latex.js b/src/languages/latex.js
+index 408e1d8..5af45de 100644
+--- a/src/languages/latex.js
++++ b/src/languages/latex.js
+@@ -32,7 +32,7 @@ export default function(hljs) {
+       '(?:[lr]angle|q?quad|[lcvdi]?dots|d?dot|hat|tilde|bar)'
+     ].map(word => word + '(?![a-zA-Z@:_])'));
+   const L3_REGEX = new RegExp([
+-      // A function \module_function_name:signature or \__module_function_name:signature,
++const MAGIC_COMMENT = /% !TeX [^\n]*/i;
+       // where both module and function_name need at least two characters and
+       // function_name may contain single underscores.
+       '(?:__)?[a-zA-Z]{2,}_[a-zA-Z](?:_?[a-zA-Z])+:[a-zA-Z]*',

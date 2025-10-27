@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/render/canvas/Instruction.js"
+        ],
+        "explanation": "1. `src/ol/style/Text.js`: This file is directly related to the styling of text, specifically managing properties like `textAlign`. Any changes or regressions related to text alignment would likely involve modifications in this file.\n\n2. `src/ol/render/canvas/TextBuilder.js`: This file is responsible for building text instructions for rendering on canvas. If there's an issue with how text alignment is rendered, this file might contain the logic that needs to be corrected.\n\n3. `src/ol/render/canvas/Instruction.js`: This file likely contains instructions related to how text is drawn on the canvas, including alignment. Any regression in the alignment logic could stem from incorrect instructions being issued during rendering.",
+        "bug_scenario": "The bug report indicates a regression issue with the 'start' and 'end' values of the 'textAlign' property in the `Text` style. This causes text alignment for specific cases ('Small text' and 'negative offsetX') to be incorrect, aligning text at the wrong end. This issue was noticed during rendering tests but had been unnoticed for a considerable time."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/TextBuilder.js"
+        ],
+        "explanation": "1. `src/ol/style/Text.js`: This file is likely responsible for defining the properties and behavior of text styles, including `textAlign`. Any regression in how text alignment is handled would be relevant here.\n\n2. `src/ol/render/canvas/TextBuilder.js`: This file is responsible for the rendering of text on a canvas. If there is an issue with how text is being aligned when rendered, this file would be crucial in diagnosing and fixing the bug as it deals directly with the rendering instructions for text alignment.",
+        "bug_scenario": "The bug is related to a regression in the alignment of text when using the 'start' and 'end' values for the `textAlign` property in the `Text` style. The issue specifically affects the rendering of text in certain cases, such as aligning 'Small text' and 'negative offsetX' at the wrong end in tests."
+    }
+}

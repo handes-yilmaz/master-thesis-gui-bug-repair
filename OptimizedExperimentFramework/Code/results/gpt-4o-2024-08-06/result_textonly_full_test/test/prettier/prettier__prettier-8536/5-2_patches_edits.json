@@ -1,0 +1,46 @@
+{
+    "1/1": {
+        "src/document/doc-printer.js": [
+            {
+                "SEARCH": [
+                    "// Trim whitespace at the end of line",
+                    "while (",
+                    "out.length > 0 &&",
+                    "typeof out[out.length - 1] === \"string\" &&",
+                    "out[out.length - 1].match(/^[\\t ]*$/)",
+                    ") {",
+                    "trimCount += out.pop().length;",
+                    "}",
+                    "",
+                    "if (out.length && typeof out[out.length - 1] === \"string\") {",
+                    "const trimmed = out[out.length - 1].replace(/[\\t ]*$/, \"\");",
+                    "trimCount += out[out.length - 1].length - trimmed.length;",
+                    "out[out.length - 1] = trimmed;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  // Trim whitespace and extra newlines at the end of line",
+                    "  while (",
+                    "    out.length > 0 &&",
+                    "    typeof out[out.length - 1] === \"string\" &&",
+                    "    out[out.length - 1].match(/^[\\t ]*$/)",
+                    "  ) {",
+                    "    trimCount += out.pop().length;",
+                    "  }",
+                    "",
+                    "  if (out.length && typeof out[out.length - 1] === \"string\") {",
+                    "    const trimmed = out[out.length - 1].replace(/[\\t ]*$/, \"\");",
+                    "    trimCount += out[out.length - 1].length - trimmed.length;",
+                    "    out[out.length - 1] = trimmed;",
+                    "  }",
+                    "",
+                    "  // Remove extra newline if present",
+                    "  if (out.length > 0 && out[out.length - 1] === \"\\n\") {",
+                    "    out.pop();",
+                    "    trimCount++;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

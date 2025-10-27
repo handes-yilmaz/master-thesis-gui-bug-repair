@@ -1,0 +1,19 @@
+diff --git a/src/ol/render/canvas/TextBuilder.js b/src/ol/render/canvas/TextBuilder.js
+index fe37971..dad4496 100644
+--- a/src/ol/render/canvas/TextBuilder.js
++++ b/src/ol/render/canvas/TextBuilder.js
+@@ -598,7 +598,13 @@ class CanvasTextBuilder extends CanvasBuilder {
+       textState.font = font;
+       textState.maxAngle = textStyle.getMaxAngle();
+       textState.placement = textStyle.getPlacement();
+-      textState.textAlign = textStyle.getTextAlign();
++      const textAlign = textStyle.getTextAlign();
++      if (textAlign === 'start' || textAlign === 'end') {
++        const isRtl = getComputedStyle(document.body).direction === 'rtl';
++        textState.textAlign = (textAlign === 'start') ? (isRtl ? 'right' : 'left') : (isRtl ? 'left' : 'right');
++      } else {
++        textState.textAlign = textAlign;
++      }
+       textState.repeat = textStyle.getRepeat();
+       textState.justify = textStyle.getJustify();
+       textState.textBaseline =

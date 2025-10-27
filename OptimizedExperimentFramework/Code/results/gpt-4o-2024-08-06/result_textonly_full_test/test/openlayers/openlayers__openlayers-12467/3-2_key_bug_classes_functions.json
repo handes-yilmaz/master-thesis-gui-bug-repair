@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Circle.js//CircleStyle",
+            "src/ol/render/canvas/Builder.js//CanvasBuilder",
+            "src/ol/render/canvas/Immediate.js//CanvasImmediateRenderer"
+        ],
+        "bug_functions": [],
+        "explanation": "The 'CircleStyle' class in 'src/ol/style/Circle.js' is directly related to the circle's rendering style, which is crucial for addressing the jitter issue. The 'CanvasBuilder' class in 'src/ol/render/canvas/Builder.js' and 'CanvasImmediateRenderer' class in 'src/ol/render/canvas/Immediate.js' are involved in rendering operations on the canvas, including handling animations and pixel snapping. These classes are likely responsible for the changes in rendering behavior between versions, making them key areas to investigate and modify to resolve the jitter problem.",
+        "bug_scenario": "The bug scenario involves a noticeable jitter in the animation of circles when using OpenLayers version 6.5, compared to version 4.6.5. In version 4.6.5, the 'snapToPixel' option was set to false for 'ol.style.Circle' to achieve accurate rendering during animations, preventing jitter. This option was removed in version 5.2.0, as the renderer was updated to handle pixel snapping differently. However, the jitter issue persists in version 6.5, especially noticeable at the end of the animation when the circle's diameter is largest."
+    }
+}

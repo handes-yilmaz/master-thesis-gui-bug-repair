@@ -1,0 +1,20 @@
+diff --git a/src/command/render/render.ts b/src/command/render/render.ts
+index 05b8773..2ecfbf0 100644
+--- a/src/command/render/render.ts
++++ b/src/command/render/render.ts
+@@ -145,6 +145,15 @@ export async function renderPandoc(
+   let markdownInput = notebookResult.markdown
+     ? notebookResult.markdown
+     : executeResult.markdown;
++
++  // Ensure figures are rendered even if fig-cap is character(0)
++  if (executeResult.figures && executeResult.figures.length > 0) {
++    for (const figure of executeResult.figures) {
++      if (!figure.caption || figure.caption.length === 0) {
++        figure.caption = " "; // Assign a non-empty string to ensure rendering
++      }
++    }
++  }
+   if (format.render[kInlineIncludes]) {
+     const collectIncludes = (
+       location:

@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js"
+        ],
+        "explanation": "1. **features/copy-paste/BpmnCopyPaste.js**: The issue is related to copying and pasting elements. The functionality for handling paste operations likely resides here, and any missing behavior such as label positioning should be addressed in this file.\n2. **features/modeling/behavior/AdaptiveLabelPositioningBehavior.js**: This file directly handles the AdaptiveLabelPositioningBehavior. Since the bug is about this behavior not being applied, the issue may stem from how this behavior is triggered or executed after pasting.",
+        "bug_scenario": "The bug occurs when elements are copied and pasted onto flows, and the AdaptiveLabelPositioningBehavior is not applied. The expectation is for the labels to reposition adaptively after pasting, but as shown in the GIF, this behavior is missing."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js",
+            "lib/features/label-editing/LabelUtil.js"
+        ],
+        "explanation": "1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file is likely responsible for handling the copy-paste functionality. Since the bug occurs after pasting, this file might need modifications to trigger the label positioning behavior post-paste.\n\n2. **lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js**: This file directly implements the adaptive label positioning logic. It should ensure that labels are correctly positioned after any relevant action, such as pasting.\n\n3. **lib/features/label-editing/LabelUtil.js**: This utility file might be involved in calculating or setting label positions. It could require adjustments to support adaptive positioning post-paste.",
+        "bug_scenario": "The bug involves the AdaptiveLabelPositioningBehavior not being applied after copying and pasting elements onto flows in the Camunda Modeler. The provided GIF demonstrates the issue where a boundary event with a vertically aligned label is copied and pasted onto a flow, but the label positioning does not adapt as expected."
+    }
+}

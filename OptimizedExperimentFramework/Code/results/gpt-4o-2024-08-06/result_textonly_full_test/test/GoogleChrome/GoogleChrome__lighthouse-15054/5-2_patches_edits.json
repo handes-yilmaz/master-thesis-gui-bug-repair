@@ -1,0 +1,61 @@
+{
+    "1/1": {
+        "core/gather/gatherers/global-listeners.js": [
+            {
+                "SEARCH": [
+                    "// Get a RemoteObject handle to `window`.",
+                    "const {result: {objectId}} = await session.sendCommand('Runtime.evaluate', {",
+                    "expression: 'window',",
+                    "returnByValue: false,",
+                    "});",
+                    "if (!objectId) {",
+                    "throw new Error('Error fetching information about the global object');",
+                    "}",
+                    "",
+                    "// And get all its listeners of interest.",
+                    "const {listeners} = await session.sendCommand('DOMDebugger.getEventListeners', {objectId});",
+                    "const filteredListeners = listeners.filter(GlobalListeners._filterForAllowlistedTypes)",
+                    ".map(listener => {",
+                    "const {type, scriptId, lineNumber, columnNumber} = listener;",
+                    "return {",
+                    "type,",
+                    "scriptId,",
+                    "lineNumber,",
+                    "columnNumber,",
+                    "};",
+                    "});"
+                ],
+                "REPLACE": [
+                    "    // Get all execution contexts.",
+                    "    const {result: {executionContexts}} = await session.sendCommand('Runtime.getExecutionContexts');",
+                    "    let allListeners = [];",
+                    "",
+                    "    for (const context of executionContexts) {",
+                    "      // Get a RemoteObject handle to `window` in each context.",
+                    "      const {result: {objectId}} = await session.sendCommand('Runtime.evaluate', {",
+                    "        expression: 'window',",
+                    "        returnByValue: false,",
+                    "        contextId: context.id,",
+                    "      });",
+                    "      if (!objectId) continue;",
+                    "",
+                    "      // And get all its listeners of interest.",
+                    "      const {listeners} = await session.sendCommand('DOMDebugger.getEventListeners', {objectId});",
+                    "      const filteredListeners = listeners.filter(GlobalListeners._filterForAllowlistedTypes)",
+                    "      .map(listener => {",
+                    "        const {type, scriptId, lineNumber, columnNumber} = listener;",
+                    "        return {",
+                    "          type,",
+                    "          scriptId,",
+                    "          lineNumber,",
+                    "          columnNumber,",
+                    "        };",
+                    "      });",
+                    "",
+                    "      allListeners = allListeners.concat(filteredListeners);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

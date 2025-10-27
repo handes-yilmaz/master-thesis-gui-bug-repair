@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/offscreen-images.js": [
+            {
+                "SEARCH": [
+                    "const resultsMap = images.reduce((results, image) => {",
+                    "if (!image.networkRecord) {",
+                    "return results;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const resultsMap = images.reduce((results, image) => {",
+                    "      if (!image.networkRecord || image.networkRecord.mimeType === 'image/svg+xml') {",
+                    "        return results;",
+                    "      }"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/image-usage.js": [
+            {
+                "SEARCH": [
+                    "const indexedNetworkRecords = traceData.networkRecords.reduce((map, record) => {",
+                    "if (/^image/.test(record._mimeType)) {",
+                    "map[record._url] = {",
+                    "url: record.url,",
+                    "resourceSize: record.resourceSize,",
+                    "startTime: record.startTime,",
+                    "endTime: record.endTime,",
+                    "responseReceivedTime: record.responseReceivedTime,",
+                    "mimeType: record._mimeType",
+                    "};",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const indexedNetworkRecords = traceData.networkRecords.reduce((map, record) => {",
+                    "      if (/^image/.test(record._mimeType) && record._mimeType !== 'image/svg+xml') {",
+                    "        map[record._url] = {",
+                    "          url: record.url,",
+                    "          resourceSize: record.resourceSize,",
+                    "          startTime: record.startTime,",
+                    "          endTime: record.endTime,",
+                    "          responseReceivedTime: record.responseReceivedTime,",
+                    "          mimeType: record._mimeType",
+                    "        };",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+diff --git a/src/ol/layer/Graticule.js b/src/ol/layer/Graticule.js
+index f1480dd..9a8ee22 100644
+--- a/src/ol/layer/Graticule.js
++++ b/src/ol/layer/Graticule.js
+@@ -679,8 +679,13 @@ class Graticule extends VectorLayer {
+ 
+     validExtent = transformExtent(validExtent, this.projection_, 'EPSG:4326');
+     const maxLat = validExtent[3];
+-    const maxLon = validExtent[2];
+-    const minLat = validExtent[1];
++    let maxLon = validExtent[2];
++    let minLon = validExtent[0];
++
++    // Adjust for dateline crossing
++    if (minLon > maxLon) {
++      maxLon += 360;
++    }
+     const minLon = validExtent[0];
+ 
+     // Create meridians

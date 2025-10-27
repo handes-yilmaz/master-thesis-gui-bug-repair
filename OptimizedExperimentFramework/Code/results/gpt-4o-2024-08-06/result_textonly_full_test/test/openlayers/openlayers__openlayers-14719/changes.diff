@@ -1,0 +1,26 @@
+diff --git a/src/ol/renderer/canvas/ImageLayer.js b/src/ol/renderer/canvas/ImageLayer.js
+index f92414f..b91a91a 100644
+--- a/src/ol/renderer/canvas/ImageLayer.js
++++ b/src/ol/renderer/canvas/ImageLayer.js
+@@ -160,7 +160,7 @@ class CanvasImageLayerRenderer extends CanvasLayerRenderer {
+     const viewCenter = viewState.center;
+     const viewResolution = viewState.resolution;
+     const scale =
+-      (pixelRatio * imageResolution) / (viewResolution * imagePixelRatio);
++      Math.round((pixelRatio * imageResolution) / (viewResolution * imagePixelRatio));
+ 
+     const extent = frameState.extent;
+     const resolution = viewState.resolution;
+diff --git a/src/ol/source/ImageWMS.js b/src/ol/source/ImageWMS.js
+index 4d48448..6fd40d3 100644
+--- a/src/ol/source/ImageWMS.js
++++ b/src/ol/source/ImageWMS.js
+@@ -297,7 +297,7 @@ class ImageWMS extends ImageSource {
+       pixelRatio = 1;
+     }
+ 
+-    const imageResolution = resolution / pixelRatio;
++    const imageResolution = Math.round(resolution / pixelRatio);
+ 
+     const center = getCenter(extent);
+     const viewWidth = ceil(getWidth(extent) / imageResolution, DECIMALS);

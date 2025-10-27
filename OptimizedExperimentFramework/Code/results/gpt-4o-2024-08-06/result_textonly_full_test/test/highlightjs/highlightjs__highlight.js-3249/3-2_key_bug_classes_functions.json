@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/latex.js//MAGIC_COMMENT"
+        ],
+        "bug_functions": [],
+        "explanation": "The MAGIC_COMMENT class in the src/languages/latex.js file is responsible for defining the pattern that identifies magic comments in LaTeX code. The current implementation only matches '% !TeX' with a specific case, which is why the line '% !TEX encoding = UTF-8' is not being highlighted as expected. To fix the bug, the MAGIC_COMMENT pattern needs to be modified to be case insensitive, allowing it to match both 'TeX' and 'TEX' regardless of case.",
+        "bug_scenario": "The bug scenario involves the LaTeX language highlighting in the highlight.js library. The issue is that TeX magic comments, which should be case insensitive, are not being highlighted correctly. Specifically, the line with '% !TEX encoding = UTF-8' is not being recognized as a MAGIC_COMMENT due to the case difference in 'TeX' vs. 'TEX'."
+    }
+}

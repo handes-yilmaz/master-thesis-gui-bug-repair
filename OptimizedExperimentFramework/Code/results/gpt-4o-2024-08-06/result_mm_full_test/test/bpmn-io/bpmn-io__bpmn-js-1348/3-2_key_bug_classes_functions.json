@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/rules/BpmnRules.js//BpmnRules",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//BoundaryEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/rules/BpmnRules.js//canConnectMessageFlow",
+            "lib/features/rules/BpmnRules.js//canConnect"
+        ],
+        "explanation": "The BpmnRules class in 'BpmnRules.js' is responsible for defining the rules for BPMN modeling, including connection rules. The 'canConnectMessageFlow' and 'canConnect' functions are likely involved in determining whether a message flow can be connected to a boundary event. The BoundaryEventBehavior class in 'BoundaryEventBehavior.js' handles specific behaviors related to boundary events, which may need adjustment to allow message flows to target intermediate message catch boundary events as per the BPMN 2.0 specification.",
+        "bug_scenario": "The bug scenario involves attempting to connect a message flow from an activity in one participant to an intermediate message catch boundary event. The modeler currently disallows this connection, which contradicts the BPMN 2.0 specification that permits such connections. The images illustrate the attempt to create this connection and the relevant BPMN 2.0 specification table that supports the expected behavior."
+    }
+}

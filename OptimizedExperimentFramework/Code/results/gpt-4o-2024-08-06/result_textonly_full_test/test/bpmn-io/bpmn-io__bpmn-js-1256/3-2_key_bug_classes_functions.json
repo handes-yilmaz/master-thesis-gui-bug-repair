@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//DeleteLaneBehavior",
+            "lib/features/modeling/cmd/UpdateFlowNodeRefsHandler.js//UpdateFlowNodeRefsHandler"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//compensateLaneDelete",
+            "lib/features/modeling/cmd/UpdateFlowNodeRefsHandler.js//computeUpdates",
+            "lib/features/modeling/cmd/UpdateFlowNodeRefsHandler.js//execute"
+        ],
+        "explanation": "The bug is related to the deformation of the diagram when a child lane is removed. The `DeleteLaneBehavior` class in `DeleteLaneBehavior.js` is responsible for handling the deletion of lanes and compensating for the removal by adjusting the positions of other lanes. The `compensateLaneDelete` function within this class specifically deals with adjusting the layout after a lane is deleted, which is directly related to the bug scenario.\n\nThe `UpdateFlowNodeRefsHandler` class in `UpdateFlowNodeRefsHandler.js` is responsible for updating lane references when elements change. The `computeUpdates` function calculates the necessary updates to lane references, and the `execute` function applies these updates. These functions are crucial for maintaining the integrity of the diagram's structure when lanes are added or removed, and any issues in these functions could lead to the deformation observed in the bug scenario.",
+        "bug_scenario": "The bug occurs when a child lane is removed from a parent lane in a BPMN diagram. This action causes the diagram to deform, affecting the layout of other related lanes and sometimes preventing further editing of the diagram."
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js"
+        ],
+        "explanation": "1. `lib/features/modeling/cmd/UpdatePropertiesHandler.js`: This file is responsible for updating properties of BPMN elements, including handling changes to the `waypoints` property. The bug likely involves incorrect handling or serialization of the `waypoints` property when updating the element's properties.\n\n2. `lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js`: This file deals with snapping connections with a Manhattan layout and includes logic for handling waypoints, particularly when there are middle segments. The bug is likely related to how middle segments are processed and serialized, leading to the incorrect `[object Object]` output in the XML.",
+        "bug_scenario": "The bug scenario involves creating a new task from an existing one in a BPMN diagram, which results in an illegal `waypoints` property being serialized in the exported XML. The `waypoints` are incorrectly serialized as `[object Object],[object Object],[object Object],[object Object]` when there is a middle segment in the connection. The expected behavior is to have the waypoints properly serialized without this issue."
+    }
+}

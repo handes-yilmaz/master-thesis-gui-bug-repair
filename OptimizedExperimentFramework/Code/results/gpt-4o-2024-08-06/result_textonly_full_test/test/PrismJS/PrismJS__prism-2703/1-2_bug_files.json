@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-fsharp.js",
+            "components/prism-fsharp.min.js"
+        ],
+        "explanation": "The bug is related to the F# syntax highlighting, which is managed by the `prism-fsharp.js` file in the components directory. This file contains the logic for parsing and highlighting F# code. Since the issue is with how `(*)` is interpreted as a comment rather than a function, modifications to the F# language definition in this file are necessary to correctly differentiate between the two scenarios and fix the highlighting issue. The `prism-fsharp.min.js` file is the minified version of the same script and would also require updating to reflect any changes made in `prism-fsharp.js`.",
+        "bug_scenario": "The bug pertains to the F# syntax highlighting in Prism.js. The issue arises because, in F#, it is common to convert the multiplier operator to a function using `(*)`. However, the F# syntax highlighter mistakenly treats `(*... ..*)` as a multi-line comment, which is not the intended behavior when using `(*)` as a function. This results in incorrect highlighting of F# code that utilizes the `(*)` function, as demonstrated in the provided example code snippet and the linked screenshot."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-fsharp.js",
+            "components/prism-fsharp.min.js"
+        ],
+        "explanation": "The bug is related to the F# syntax highlighting, which is specifically handled in the 'prism-fsharp.js' and its minified version 'prism-fsharp.min.js'. These files contain the logic for parsing and highlighting F# code, including the recognition of operators and comments. The issue with distinguishing the (*) operator from multi-line comments likely resides in these files, making them the key to resolving the syntax highlighting error.",
+        "bug_scenario": "The bug occurs in the F# syntax highlighting in Prism.js, where the multiplier operator (*) is mistakenly identified as the start of a multi-line comment. This causes the code using (*), such as in function applications, to be incorrectly highlighted as a comment, leading to incorrect syntax highlighting, as evidenced by the screenshot provided in the bug report."
+    }
+}

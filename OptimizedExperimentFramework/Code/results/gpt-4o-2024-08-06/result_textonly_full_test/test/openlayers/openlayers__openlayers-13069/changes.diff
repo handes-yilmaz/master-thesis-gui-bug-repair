@@ -1,0 +1,19 @@
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 88b81a6..44031eb 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -671,6 +671,14 @@ class GeoTIFFSource extends DataTile {
+           let max = source.max;
+           let gain, bias;
+           if (normalize) {
++            const image = this.sourceImagery_[sourceIndex][z];
++            const metadata = image.getGDALMetadata();
++            if (metadata.STATISTICS_MINIMUM !== undefined) {
++              min = parseFloat(metadata.STATISTICS_MINIMUM);
++            }
++            if (metadata.STATISTICS_MAXIMUM !== undefined) {
++              max = parseFloat(metadata.STATISTICS_MAXIMUM);
++            }
+             if (min === undefined) {
+               min = getMinForDataType(sourceSamples[sourceIndex][0]);
+             }

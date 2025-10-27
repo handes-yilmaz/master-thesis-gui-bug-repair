@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js//export default function"
+        ],
+        "bug_functions": [
+            "src/languages/python.js//export default function"
+        ],
+        "explanation": "The issue is related to the syntax highlighting of Python code, specifically how decorators and comments are parsed and styled. The `export default function` in `src/languages/python.js` is responsible for defining the syntax highlighting rules for Python. Within this function, the handling of decorators and comments is defined, including the use of `hljs.HASH_COMMENT_MODE` for comments. The bug is likely due to incorrect handling or missing logic for comments that appear on the same line as decorators, causing the entire line to be incorrectly classified. Adjusting the logic in this function to correctly identify and style comments in this scenario would address the bug.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in Python code where comments on the same line as a decorator are not being formatted correctly. Instead of the comment section being highlighted as a comment, the entire line is being given the `hljs-meta` class, which is incorrect. The expected behavior is for the comment to be greyed out, similar to how GitHub handles it."
+    }
+}

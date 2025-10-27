@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/config/constants.js",
+            "lighthouse-core/lib/dependency-graph/simulator/simulator.js",
+            "lighthouse-core/computed/load-simulator.js"
+        ],
+        "explanation": "1. **lighthouse-core/config/constants.js**: This file contains the configuration settings for throttling, including the 'simulate' method. The issue may stem from incorrect settings or thresholds that do not allow enough time for layout shifts to be detected.\n\n2. **lighthouse-core/lib/dependency-graph/simulator/simulator.js**: This file is responsible for simulating network and CPU conditions. If the simulation does not accurately reflect real-world conditions, it could lead to premature completion of the page load process, missing layout shifts.\n\n3. **lighthouse-core/computed/load-simulator.js**: This file computes the load simulation based on the throttling method. It is crucial to ensure that the simulation parameters are correctly set to allow sufficient time for layout shifts to occur and be measured.",
+        "bug_scenario": "The bug scenario involves the Lighthouse tool not waiting long enough to detect the Cumulative Layout Shift (CLS) when the throttling method is set to 'simulate'. This results in an inaccurate CLS score being reported, as the page may load later than expected, causing layout shifts that are not captured."
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/Form/Form.js",
+            "src/js/components/FormField/FormField.js",
+            "src/js/components/TextInput/TextInput.js"
+        ],
+        "explanation": "These files are related to the form validation process. 'Form.js' likely manages overall form state and validation logic. 'FormField.js' handles individual field validation, and 'TextInput.js' is involved because the bug involves dynamically adding and removing this type of field. The issue arises from validation not updating correctly when fields are removed, so these files are the likely candidates for where the fix is needed.",
+        "bug_scenario": "The bug occurs when dynamically adding and removing a required field using a checkbox toggle. When the checkbox is unchecked, a required TextInput field is added, making the form invalid as expected. However, when the checkbox is checked again, removing the TextInput, the form remains invalid due to the onValidate method still considering the removed field."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/Form/Form.js",
+            "src/js/components/Form/__tests__/Form-test-controlled.js",
+            "src/js/components/Form/__tests__/Form-test-uncontrolled.js",
+            "src/js/components/FormField/FormField.js"
+        ],
+        "explanation": "The bug pertains to form validation when dynamically adding and removing fields. The relevant files likely include `Form.js` where the form logic such as validation and state management is implemented, and `FormField.js` where individual form field behaviors are defined. Test files like `Form-test-controlled.js` and `Form-test-uncontrolled.js` are relevant for examining existing test coverage and creating new tests to ensure the issue is resolved.",
+        "bug_scenario": "The bug occurs when dynamically adding and removing required fields in a form. When a checkbox is unchecked, a required TextInput field appears, making the form invalid as expected. However, when the checkbox is checked again and the TextInput is removed, the form remains invalid, which is incorrect. The form should be valid if all other validations are satisfied."
+    }
+}

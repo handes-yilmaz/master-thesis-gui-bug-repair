@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-html/embed/angular-interpolation.js//printAngularInterpolation",
+            "src/language-html/printer-html.js//genericPrint"
+        ],
+        "bug_functions": [
+            "src/language-html/embed/angular-interpolation.js//printAngularInterpolation",
+            "src/language-html/printer-html.js//genericPrint"
+        ],
+        "explanation": "The function `printAngularInterpolation` in `angular-interpolation.js` is responsible for handling the formatting of Angular interpolations, which directly relates to how spaces are managed around pipe arguments. The `genericPrint` function in `printer-html.js` handles the printing logic for various node types, including interpolation, and is likely involved in the decision to add spaces around pipe arguments. These functions are key to addressing the bug because they control the formatting behavior that needs to be adjusted to meet the expected output.",
+        "bug_scenario": "The bug involves the addition of spaces in Angular pipes by Prettier 2.8.0, which is not consistent with the official Angular documentation. The expected behavior is to have no spaces between pipe arguments when they are strings or numbers, but spaces are added in other cases. The issue affects the readability and consistency of code formatting, as shown in the Webstorm display image where additional spaces are not visually appealing."
+    }
+}

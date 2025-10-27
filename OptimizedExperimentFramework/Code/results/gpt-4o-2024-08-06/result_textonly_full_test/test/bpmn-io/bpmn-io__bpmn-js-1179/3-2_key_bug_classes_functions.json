@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior",
+            "lib/features/modeling/BpmnLayouter.js//BpmnLayouter"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape",
+            "lib/features/modeling/BpmnLayouter.js//layoutConnection"
+        ],
+        "explanation": "The class `DropOnFlowBehavior` in `DropOnFlowBehavior.js` is responsible for handling the behavior when an element is dropped onto a flow. The function `insertShape` within this class is directly involved in reconnecting the start or end of a connection after an element is dropped, which is where the bug manifests as it incorrectly handles the docking point.\n\nThe class `BpmnLayouter` in `BpmnLayouter.js` is responsible for laying out connections, including sequence flows. The function `layoutConnection` is involved in determining the waypoints and layout of connections, which is crucial for ensuring the sequence flow is correctly laid out after an element is dropped. The bug likely involves incorrect handling of waypoints or docking points, leading to the layout breaking.",
+        "bug_scenario": "The bug scenario involves a sequence flow layout breaking when an element is dropped onto it. The docking of the new incoming sequence flow defaults to the top left corner, which is incorrect and causes the layout to break."
+    }
+}

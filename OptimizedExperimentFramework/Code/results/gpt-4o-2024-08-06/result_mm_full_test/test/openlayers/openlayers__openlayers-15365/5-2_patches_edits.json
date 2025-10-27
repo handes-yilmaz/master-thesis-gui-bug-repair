@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "src/ol/layer/Group.js": [
+            {
+                "SEARCH": [
+                    "const ownLayerState = this.getLayerState();",
+                    "let defaultZIndex = ownLayerState.zIndex;",
+                    "if (!dest && ownLayerState.zIndex === undefined) {",
+                    "defaultZIndex = 0;",
+                    "}",
+                    "for (let i = pos, ii = states.length; i < ii; i++) {",
+                    "const layerState = states[i];",
+                    "layerState.opacity *= ownLayerState.opacity;"
+                ],
+                "REPLACE": [
+                    "    const ownLayerState = this.getLayerState();",
+                    "    let defaultZIndex = ownLayerState.zIndex;",
+                    "    if (!dest && ownLayerState.zIndex === undefined) {",
+                    "      defaultZIndex = 0;",
+                    "    }",
+                    "    for (let i = pos, ii = states.length; i < ii; i++) {",
+                    "      const layerState = states[i];",
+                    "      layerState.opacity *= ownLayerState.opacity;",
+                    "      if (layerState.type === 'VECTOR_TILE') {",
+                    "        layerState.labelOpacity = ownLayerState.opacity;",
+                    "      }"
+                ]
+            }
+        ],
+        "src/ol/renderer/canvas/VectorTileLayer.js": [
+            {
+                "SEARCH": [
+                    "context.globalAlpha = layer.getOpacity();"
+                ],
+                "REPLACE": [
+                    "    context.globalAlpha = layer.getOpacity() * (layer.get('labelOpacity') || 1);"
+                ]
+            }
+        ]
+    }
+}

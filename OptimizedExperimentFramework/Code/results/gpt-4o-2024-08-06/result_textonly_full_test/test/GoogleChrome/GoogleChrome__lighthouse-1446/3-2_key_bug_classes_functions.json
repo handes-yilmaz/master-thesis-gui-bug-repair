@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/lib/asset-saver.js",
+            "lighthouse-core/lib/traces/tracing-processor.js",
+            "lighthouse-core/gather/computed/trace-of-tab.js"
+        ],
+        "bug_functions": [
+            "lighthouse-core/lib/asset-saver.js//prepareAssets",
+            "lighthouse-core/lib/asset-saver.js//saveAssets",
+            "lighthouse-core/lib/traces/tracing-processor.js//getRiskToResponsiveness",
+            "lighthouse-core/gather/computed/trace-of-tab.js//compute_"
+        ],
+        "explanation": "The classes and functions identified are related to the process of saving and processing trace data, which is central to the bug scenario described. The 'prepareAssets' and 'saveAssets' functions in 'asset-saver.js' are responsible for preparing and saving trace data, which is directly related to the issue of integrating performance metrics into the timeline. The 'getRiskToResponsiveness' function in 'tracing-processor.js' is involved in calculating responsiveness metrics, which are part of the performance results being visualized. The 'compute_' function in 'trace-of-tab.js' is responsible for parsing trace data to extract key events, which is crucial for correctly visualizing the performance metrics in the timeline. These elements are likely where the bug manifests, as they handle the core functionality of processing and displaying the performance data.",
+        "bug_scenario": "The bug scenario involves exploring performance results in a timeline using the Lighthouse tool. The goal is to visualize performance metrics such as 'First contentful paint', 'First meaningful paint', 'First visual change', 'Visually complete', 'Perceptual Speed Index', and 'Time to Interactive' against a timeline. The process involves taking metrics and turning them into fake trace events, which are then injected into the trace before saving it to disk. The issue seems to be related to how these metrics are integrated and visualized in the timeline."
+    }
+}

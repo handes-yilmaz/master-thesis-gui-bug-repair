@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "core/lib/emulation.js": [
+            {
+                "SEARCH": [
+                    "if (settings.screenEmulation.disabled !== true) {",
+                    "const {width, height, deviceScaleFactor, mobile} = settings.screenEmulation;",
+                    "const params = {width, height, deviceScaleFactor, mobile};",
+                    "await session.sendCommand('Emulation.setDeviceMetricsOverride', params);",
+                    "await session.sendCommand('Emulation.setTouchEmulationEnabled', {",
+                    "enabled: params.mobile,",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (settings.screenEmulation.disabled !== true) {",
+                    "    const {width, height, deviceScaleFactor, mobile} = settings.screenEmulation;",
+                    "    const params = {width, height, deviceScaleFactor, mobile};",
+                    "    await session.sendCommand('Emulation.setDeviceMetricsOverride', params);",
+                    "    await session.sendCommand('Emulation.setTouchEmulationEnabled', {",
+                    "      enabled: params.mobile,",
+                    "    });",
+                    "  } else {",
+                    "    // When screen emulation is disabled, ensure the report reflects testing on a real device",
+                    "    await session.sendCommand('Emulation.clearDeviceMetricsOverride');",
+                    "    await session.sendCommand('Emulation.setTouchEmulationEnabled', {",
+                    "      enabled: false,",
+                    "    });",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

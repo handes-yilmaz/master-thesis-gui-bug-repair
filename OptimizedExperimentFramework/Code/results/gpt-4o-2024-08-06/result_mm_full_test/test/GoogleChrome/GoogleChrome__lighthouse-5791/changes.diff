@@ -1,0 +1,28 @@
+diff --git a/lighthouse-core/audits/redirects.js b/lighthouse-core/audits/redirects.js
+index a7af0cd..9cad61e 100644
+--- a/lighthouse-core/audits/redirects.js
++++ b/lighthouse-core/audits/redirects.js
+@@ -101,6 +101,14 @@ class Redirects extends Audit {
+     const summary = {wastedMs: totalWastedMs};
+     const details = Audit.makeTableDetails(headings, pageRedirects, summary);
+ 
++    // Ensure details are properly formatted and displayed
++    const formattedDetails = {
++      type: 'table',
++      headings,
++      items: pageRedirects,
++      summary,
++    };
++
+     return {
+       // We award a passing grade if you only have 1 redirect
+       score: redirectRequests.length <= 2 ? 1 : UnusedBytes.scoreForWastedMs(totalWastedMs),
+@@ -113,7 +121,7 @@ class Redirects extends Audit {
+           wastedMs: totalWastedMs,
+         },
+       },
+-      details,
++      details: formattedDetails,
+     };
+   }
+ }

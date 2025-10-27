@@ -1,0 +1,25 @@
+{
+    "lib/features/space-tool/BpmnSpaceTool.js": [
+        "...",
+        "inherits(BpmnSpaceTool, SpaceTool);",
+        "",
+        "/**",
+        " * @param {Shape[]} elements",
+        " * @param {Axis} axis",
+        " * @param {Point} delta",
+        " * @param {number} start",
+        " *",
+        " * @return {Object}",
+        " */",
+        "BpmnSpaceTool.prototype.calculateAdjustments = function(elements, axis, delta, start) {",
+        "  var adjustments = SpaceTool.prototype.calculateAdjustments.call(this, elements, axis, delta, start);",
+        "",
+        "  // do not resize text annotations",
+        "  adjustments.resizingShapes = adjustments.resizingShapes.filter(function(shape) {",
+        "    return !is(shape, 'bpmn:TextAnnotation');",
+        "  });",
+        "",
+        "  return adjustments;",
+        "};"
+    ]
+}

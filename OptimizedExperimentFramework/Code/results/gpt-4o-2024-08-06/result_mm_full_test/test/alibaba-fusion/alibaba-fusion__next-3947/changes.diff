@@ -1,0 +1,22 @@
+diff --git a/src/form/enhance.jsx b/src/form/enhance.jsx
+index 7e2d420..5c504c1 100644
+--- a/src/form/enhance.jsx
++++ b/src/form/enhance.jsx
+@@ -97,13 +97,13 @@ export function getRules(props, labelForErrorMessage) {
+         });
+     }
+ 
+-    if (labelForErrorMessage) {
++    if (props.errorMessageLabel) {
+         result.forEach(r => {
+-            r.aliasName = labelForErrorMessage;
++            r.aliasName = props.errorMessageLabel;
+         });
+-    } else if (props.errorMessageLabel) {
++    } else if (labelForErrorMessage) {
+         result.forEach(r => {
+-            r.aliasName = props.errorMessageLabel;
++            r.aliasName = labelForErrorMessage;
+         });
+     }
+ 

@@ -1,0 +1,49 @@
+diff --git a/src/upload/card.jsx b/src/upload/card.jsx
+index 4ff619d..f9e8e86 100644
+--- a/src/upload/card.jsx
++++ b/src/upload/card.jsx
+@@ -41,7 +41,7 @@ class Card extends Base {
+         /**
+          * 自定义成功和失败的列表渲染方式
+          */
+-        itemRender: PropTypes.func,
++itemRender: PropTypes.func.isRequired,
+         /**
+          * 上传中
+          */
+diff --git a/src/upload/list.jsx b/src/upload/list.jsx
+index a0c383e..eac0dd1 100644
+--- a/src/upload/list.jsx
++++ b/src/upload/list.jsx
+@@ -360,24 +360,13 @@ class List extends Component {
+         } else {
+             /* eslint-disable no-lonely-if */
+ if (typeof itemRender === 'function') {
+-    item = itemRender(file);
+-    if (this.props.closable && !isPreview) {
+-        item = (
+-            <div>
+-                {item}
+-                <span className={`${prefixCls}-tool-close`}>
+-                    <Icon
+-                        type="ashbin"
+-                        aria-label={locale.card.delete}
+-                        tabIndex="0"
+-                        role="button"
+-                        onClick={onClose}
+-                        onKeyDown={onKeyDownClose}
+-                    />
+-                </span>
+-            </div>
+-        );
+-    }
++    item = itemRender(file, {
++        onClose,
++        onKeyDownClose,
++        closable: this.props.closable && !isPreview,
++        locale,
++        prefixCls,
++    });
+ } else {
+     item = [
+         <div className={`${prefixCls}-list-item-thumbnail`} key="img">

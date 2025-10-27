@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/CreateDataObjectBehavior.js",
+            "lib/features/modeling/behavior/DataInputAssociationBehavior.js",
+            "lib/features/modeling/behavior/DataStoreBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/Modeling.js",
+            "lib/features/palette/PaletteProvider.js"
+        ],
+        "explanation": "1. `CreateDataObjectBehavior.js`: This file is likely responsible for behaviors associated with creating data objects. Modifications here may be required to accommodate the new `isCollection` toggle feature.\n\n2. `DataInputAssociationBehavior.js`: Since the feature involves data input objects, this file may require changes to ensure that the `isCollection` property is correctly handled during the creation and association of data inputs.\n\n3. `DataStoreBehavior.js`: This file may involve behaviors related to data storage, which could be impacted by the introduction of a collection-type data object.\n\n4. `UpdatePropertiesHandler.js`: This file is likely responsible for updating properties of elements. The `isCollection` toggle would require updates in this handler to ensure the property is set and updated correctly.\n\n5. `Modeling.js`: As a core part of the modeling feature, this file likely orchestrates various modeling behaviors, including property updates and element creation, and would need adjustments to fully support the `isCollection` feature.\n\n6. `PaletteProvider.js`: This file might need changes to ensure that the user interface (palette) reflects the ability to toggle the `isCollection` property when interacting with data objects.",
+        "bug_scenario": "The bug scenario involves the inability to toggle the `isCollection` marker on data objects within a BPMN model, which is a feature outlined in the BPMN 2.0 specification. The provided images likely demonstrate the current behavior of data objects without the `isCollection` toggle and possibly a comparison to how similar toggles (like multiple / ad-hoc modifiers on user tasks) are implemented. The request is to implement a feature that allows users to toggle this property, similar to how other properties are toggled in the system."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/CreateDataObjectBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "1. `lib/features/modeling/behavior/CreateDataObjectBehavior.js`: This file likely deals with the behavior associated with creating data objects. Modifying or adding logic here would be necessary to handle the `isCollection` property when a new data object is created.\n\n2. `lib/features/modeling/cmd/UpdatePropertiesHandler.js`: This file is responsible for updating properties of elements, which would include the `isCollection` property. Implementing a toggle functionality would require modifications here.\n\n3. `lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js`: Although primarily for collapse behavior, handling the toggle nature of the `isCollection` property might share similarities with toggle functionalities implemented here.\n\n4. `lib/features/modeling/Modeling.js`: This file likely acts as a central point for modeling operations and would need to incorporate changes to include the new `isCollection` toggle functionality as part of the data object manipulation operations.",
+        "bug_scenario": "The bug report highlights an issue with the current BPMN 2.0 implementation related to the handling of data objects with the `isCollection` marker. The request is to add a feature that allows toggling the `isCollection` property for data objects, similar to other modifiers like multiple or ad-hoc modifiers on user tasks."
+    }
+}

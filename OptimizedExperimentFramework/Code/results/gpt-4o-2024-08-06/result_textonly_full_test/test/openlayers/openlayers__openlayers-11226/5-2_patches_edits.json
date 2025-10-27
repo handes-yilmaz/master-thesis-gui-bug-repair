@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "src/ol/interaction/Modify.js": [
+            {
+                "SEARCH": [
+                    "writeGeometryCollectionGeometry_(feature, geometry) {",
+                    "const geometries = geometry.getGeometriesArray();",
+                    "for (let i = 0; i < geometries.length; ++i) {",
+                    "const geometry = geometries[i];",
+                    "const writer = this.SEGMENT_WRITERS_[geometry.getType()];",
+                    "writer(feature, geometry);",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "writeGeometryCollectionGeometry_(feature, geometry) {",
+                    "  const geometries = geometry.getGeometriesArray();",
+                    "  for (let i = 0; i < geometries.length; ++i) {",
+                    "    const subGeometry = geometries[i];",
+                    "    const writer = this.SEGMENT_WRITERS_[subGeometry.getType()];",
+                    "    if (writer) {",
+                    "      writer(feature, subGeometry);",
+                    "    }",
+                    "  }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

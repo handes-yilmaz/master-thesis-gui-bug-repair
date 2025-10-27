@@ -1,0 +1,38 @@
+{
+    "1/1": {
+        "src/ol/webgl/TileTexture.js": [
+            {
+                "SEARCH": [
+                    "const pixelCount = this.size[0] * this.size[1];",
+                    "this.bandCount = data.byteLength / (isFloat ? 4 : 1) / pixelCount;",
+                    "const textureCount = Math.ceil(this.bandCount / 4);",
+                    "",
+                    "if (textureCount === 1) {",
+                    "const texture = gl.createTexture();",
+                    "this.textures.push(texture);",
+                    "uploadDataTexture(helper, texture, data, this.size, this.bandCount);",
+                    "return;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  const pixelCount = this.size[0] * this.size[1];",
+                    "  this.bandCount = data.byteLength / (isFloat ? 4 : 1) / pixelCount;",
+                    "  const textureCount = Math.ceil(this.bandCount / 4);",
+                    "",
+                    "  if (textureCount === 1) {",
+                    "    const texture = gl.createTexture();",
+                    "    this.textures.push(texture);",
+                    "    // Ensure data size matches expected size",
+                    "    const expectedDataSize = pixelCount * this.bandCount;",
+                    "    if (data.length !== expectedDataSize) {",
+                    "      console.warn(`Data size mismatch: expected ${expectedDataSize}, got ${data.length}`);",
+                    "      return;",
+                    "    }",
+                    "    uploadDataTexture(helper, texture, data, this.size, this.bandCount);",
+                    "    return;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

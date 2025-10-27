@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/BpmnLayouter.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/DropOnFlowBehavior.js**: This file contains the logic for handling the insertion of shapes onto flows. The function `insertShape` is responsible for reconnecting the start and end of a connection after an element is dropped on a flow. The issue likely lies in how the docking point is calculated and applied, leading to the incorrect layout behavior observed.\n\n2. **lib/features/modeling/BpmnLayouter.js**: This file is responsible for laying out connections, including sequence flows. The `layoutConnection` function uses Manhattan layout options to determine the waypoints of connections. If the layout is breaking when elements are dropped, it suggests that the logic for recalculating or maintaining waypoints might be flawed, especially in how it handles new docking points or intersections.",
+        "bug_scenario": "The bug scenario involves a sequence flow layout issue in a BPMN diagram. When an element is dropped onto a sequence flow, the layout breaks, and the docking of the new incoming sequence flow defaults to the top left corner, which is incorrect. This is visually represented in the provided GIF image, where the sequence flow does not adjust correctly after an element is dropped onto it."
+    }
+}

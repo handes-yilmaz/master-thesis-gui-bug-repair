@@ -1,0 +1,28 @@
+diff --git a/src/ol/interaction/Draw.js b/src/ol/interaction/Draw.js
+index c4e2824..756b5f0 100644
+--- a/src/ol/interaction/Draw.js
++++ b/src/ol/interaction/Draw.js
+@@ -298,14 +298,15 @@ class Draw extends PointerInteraction {
+          * @param {import("../geom/SimpleGeometry.js").default=} opt_geometry Optional geometry.
+          * @return {import("../geom/SimpleGeometry.js").default} A geometry.
+          */
+-        geometryFunction = function(coordinates, opt_geometry) {
+-          const circle = opt_geometry ? /** @type {Circle} */ (opt_geometry) :
+-            new Circle([NaN, NaN]);
+-          const squaredLength = squaredCoordinateDistance(
+-            coordinates[0], coordinates[1]);
+-          circle.setCenterAndRadius(coordinates[0], Math.sqrt(squaredLength));
+-          return circle;
+-        };
++geometryFunction = function(coordinates, opt_geometry) {
++  const circle = opt_geometry ? /** @type {Circle} */ (opt_geometry) :
++    new Circle([NaN, NaN]);
++  const center = coordinates[0];
++  const edge = coordinates[1];
++  const radius = getGeodesicDistance(center, edge);
++  circle.setCenterAndRadius(center, radius);
++  return circle;
++};
+       } else {
+         let Constructor;
+         const mode = this.mode_;

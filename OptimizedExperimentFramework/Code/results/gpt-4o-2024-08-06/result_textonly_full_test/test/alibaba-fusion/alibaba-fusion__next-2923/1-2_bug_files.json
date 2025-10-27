@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/config-provider/index.jsx",
+            "src/config-provider/cache.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "The files related to the bug are within the `config-provider` directory. The `index.jsx` file is crucial because it contains the component logic, including the lifecycle methods like `componentWillUnmount` where cache removal would typically occur. The `cache.js` file is relevant because it likely handles the caching mechanism directly, and any modifications to fix the memory leak would need to address how caching is managed. The `config.jsx` might contain configuration details or utilities used by `ConfigProvider` which could also be part of the memory management logic. These files collectively contribute to the issue described in the bug report.",
+        "bug_scenario": "The bug report describes a memory leak issue occurring with the `ConfigProvider` component in server-side rendering (SSR) scenarios. The problem arises from an internal cache within `ConfigProvider` that grows in memory and is not garbage collected as expected. Although there is a mechanism to remove this cache during the `componentWillUnmount` lifecycle method, this method is not executed in SSR as per a known React issue (https://github.com/facebook/react/issues/3714). Therefore, a manual API for cache clearance or an alternative approach is suggested to manage the cache effectively."
+    },
+    "2": {
+        "bug_files": [
+            "src/config-provider/index.jsx",
+            "src/config-provider/cache.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "The `ConfigProvider` component is directly mentioned in the bug report as the source of the memory leak. The `index.jsx` file is likely to contain the main implementation of this component, including lifecycle methods such as `componentWillUnmount`. The `cache.js` file is relevant because it likely handles the caching logic that is not being cleared, leading to the memory leak. The `config.jsx` might contain configuration logic or utilities that interact with the cache, making it relevant for addressing the bug.",
+        "bug_scenario": "The bug report highlights a memory leak issue occurring in the `ConfigProvider` component when used in a Server-Side Rendering (SSR) environment. The issue arises because the component's internal cache grows and is not garbage collected as expected. This is due to the fact that the `componentWillUnmount` lifecycle method, which is responsible for removing the cache, is not called in SSR as per the noted React issue (https://github.com/facebook/react/issues/3714). The report suggests the need for a manual cache clearing API or another method to handle cache cleanup."
+    }
+}

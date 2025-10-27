@@ -1,0 +1,20 @@
+diff --git a/src/ol/renderer/webgl/PointsLayer.js b/src/ol/renderer/webgl/PointsLayer.js
+index be6a204..907a034 100644
+--- a/src/ol/renderer/webgl/PointsLayer.js
++++ b/src/ol/renderer/webgl/PointsLayer.js
+@@ -619,9 +619,12 @@ class WebGLPointsLayerRenderer extends WebGLLayerRenderer {
+     this.helper.enableAttributes(this.attributes);
+ 
+     do {
+-      this.helper.makeProjectionTransform(frameState, this.currentTransform_);
+-      translateTransform(this.currentTransform_, world * worldWidth, 0);
+-      multiplyTransform(this.currentTransform_, this.invertRenderTransform_);
++    this.helper.makeProjectionTransform(frameState, this.currentTransform_);
++    // Adjust for aspect ratio
++    const aspectRatio = frameState.size[0] / frameState.size[1];
++    scaleTransform(this.currentTransform_, 1, aspectRatio);
++    translateTransform(this.currentTransform_, world * worldWidth, 0);
++    multiplyTransform(this.currentTransform_, this.invertRenderTransform_);
+       this.helper.applyUniforms(frameState);
+       this.helper.applyHitDetectionUniform(forHitDetection);
+       const renderCount = this.indicesBuffer_.getSize();

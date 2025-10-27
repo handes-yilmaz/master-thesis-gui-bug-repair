@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Meter/Meter.js//Meter",
+            "src/js/components/Meter/Circle.js//Circle"
+        ],
+        "bug_functions": [
+            "src/js/components/Meter/Meter.js//deriveMax"
+        ],
+        "explanation": "The issue is likely related to how the 'circle' type meter processes and renders values. The 'Meter' class in 'Meter.js' is responsible for determining the type of meter and passing the values to the 'Circle' component. The 'Circle' class in 'Circle.js' handles the rendering of the circle meter. The 'deriveMax' function in 'Meter.js' calculates the maximum value for the meter, which is crucial for rendering all values correctly. If this function or the way values are passed to 'Circle' is incorrect, it could result in only the last value being rendered.",
+        "bug_scenario": "The bug scenario involves a 'circle' type meter not rendering all data points as expected. In the working version (v2.24.0), all values are displayed correctly in the circle meter. However, in the broken version (v2.25.0), only the last value is rendered, leaving the rest of the circle empty."
+    }
+}

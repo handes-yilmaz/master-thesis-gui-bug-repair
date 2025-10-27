@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/render/template.ts//applyTemplatePatches",
+            "src/format/reveal/format-reveal.ts//revealHtmlPostprocessor"
+        ],
+        "bug_functions": [
+            "src/command/render/template.ts//applyTemplatePatches",
+            "src/format/reveal/format-reveal.ts//revealHtmlPostprocessor"
+        ],
+        "explanation": "The issue is likely related to how the template handles width and height values. The function `applyTemplatePatches` in `template.ts` is responsible for applying patches to the template, which may include handling of width and height attributes. The `revealHtmlPostprocessor` function in `format-reveal.ts` deals with post-processing HTML for reveal.js, which could involve handling or modifying the width and height settings. These functions are key to addressing the bug because they directly interact with the template and its rendering process.",
+        "bug_scenario": "The bug scenario involves using percentage values for width and height in a reveal.js presentation template, which results in a blank screen. When these values are replaced with pixel values, the presentation displays correctly."
+    }
+}

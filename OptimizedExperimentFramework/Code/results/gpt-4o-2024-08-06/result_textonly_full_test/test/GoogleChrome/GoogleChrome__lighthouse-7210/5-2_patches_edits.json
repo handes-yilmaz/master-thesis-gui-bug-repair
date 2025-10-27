@@ -1,0 +1,17 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/unused-css-rules.js": [
+            {
+                "SEARCH": [
+                    "const totalTransferredBytes = ByteEfficiencyAudit.estimateTransferSize(",
+                    "stylesheetInfo.networkRecord, totalUncompressedBytes, 'Stylesheet');"
+                ],
+                "REPLACE": [
+                    "    const totalTransferredBytes = stylesheetInfo.networkRecord.transferSize || ",
+                    "        ByteEfficiencyAudit.estimateTransferSize(",
+                    "            stylesheetInfo.networkRecord, totalUncompressedBytes, 'Stylesheet');"
+                ]
+            }
+        ]
+    }
+}

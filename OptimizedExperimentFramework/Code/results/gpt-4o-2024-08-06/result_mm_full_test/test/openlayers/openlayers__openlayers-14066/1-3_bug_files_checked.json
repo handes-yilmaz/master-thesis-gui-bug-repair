@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/Image.js"
+        ],
+        "explanation": "1. `src/ol/source/GeoTIFF.js`: This file is likely responsible for handling GeoTIFF sources. Implementing or modifying the `convertToRGB` option would require changes in this file to handle the new 'auto' setting and to call `image.readRGB()` appropriately.\n\n2. `src/ol/Image.js`: Since the bug report mentions using the `image.readRGB()` method, this file is relevant because it likely contains the definition or invocation of this method. Ensuring this method works with the new 'auto' setting is crucial to implementing the suggested feature.",
+        "bug_scenario": "The bug report suggests adding a new feature to support a `convertToRGB: 'auto'` option for GeoTIFF sources. This feature would automatically use the `image.readRGB()` method when a source has three samples per pixel and the photometric interpretation is CMYK, YCbCr, CIELab, or ICCLab."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/Image.js"
+        ],
+        "explanation": "The file `src/ol/source/GeoTIFF.js` is directly related to this bug as it is the main file handling GeoTIFF sources in the codebase. To implement the new `convertToRGB: 'auto'` feature, modifications will be necessary in this file to identify the photometric interpretation and apply the `image.readRGB()` method when appropriate.\n\nThe file `src/ol/Image.js` is likely involved because the `image.readRGB()` method mentioned in the bug report would be part of the image processing functionality, which is typically handled by image-related classes and functions. Therefore, `src/ol/Image.js` may need to be updated to support the new feature and ensure proper integration with the GeoTIFF handling logic.",
+        "bug_scenario": "The bug report suggests adding a new feature to support a `convertToRGB: 'auto'` option for GeoTIFF sources. The feature would automatically convert images to RGB if a GeoTIFF source has 3 samples per pixel and the photometric interpretation is CMYK, YCbCr, CIELab, or ICCLab."
+    }
+}

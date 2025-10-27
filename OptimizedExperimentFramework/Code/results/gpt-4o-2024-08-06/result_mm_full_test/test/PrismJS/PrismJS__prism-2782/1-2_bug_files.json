@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-basic.js"
+        ],
+        "explanation": "The problem seems to be with how the string patterns are defined in the syntax highlighting library. The '@' symbol is not being correctly handled within strings, leading to incorrect syntax highlighting. The pattern in 'prism-basic.js' needs to be adjusted to include the '@' symbol in the string pattern.",
+        "bug_scenario": "The issue is with the syntax highlighting in VB.NET where strings containing an '@' symbol are not correctly highlighted. In the example provided, the line with '@Code' is incorrectly highlighted compared to the one without '@'."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-basic.js",
+            "components/prism-vbnet.js"
+        ],
+        "explanation": "The issue is related to syntax highlighting rules for strings in VB.NET. The 'prism-basic.js' file contains the general string pattern used by various languages, including VB.NET. Modifying this pattern to correctly handle '@' symbols within strings may solve the issue, but care must be taken to avoid affecting other languages. The 'prism-vbnet.js' file is directly responsible for VB.NET syntax highlighting, and it might need adjustments to ensure proper handling of '@' symbols in strings.",
+        "bug_scenario": "The bug occurs when a string contains an '@' symbol within quotes in VB.NET code, causing incorrect syntax highlighting. The first example line with '@Code' fails to highlight correctly, while the second line without the '@' symbol highlights as expected."
+    }
+}

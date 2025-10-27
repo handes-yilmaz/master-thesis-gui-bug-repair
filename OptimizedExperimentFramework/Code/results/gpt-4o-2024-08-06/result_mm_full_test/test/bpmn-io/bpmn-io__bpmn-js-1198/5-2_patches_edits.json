@@ -1,0 +1,39 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js": [
+            {
+                "SEARCH": [
+                    "function isDefaultFlow(connection, source) {",
+                    "",
+                    "if (!is(connection, 'bpmn:SequenceFlow')) {",
+                    "return false;",
+                    "}",
+                    "",
+                    "var sourceBo = getBusinessObject(source),",
+                    "sequenceFlow = getBusinessObject(connection);",
+                    "",
+                    "return sourceBo.get('default') === sequenceFlow;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function isDefaultFlow(connection, source) {",
+                    "",
+                    "  if (!is(connection, 'bpmn:SequenceFlow')) {",
+                    "    return false;",
+                    "  }",
+                    "",
+                    "  var sourceBo = getBusinessObject(source),",
+                    "      sequenceFlow = getBusinessObject(connection);",
+                    "",
+                    "  // Preserve default attribute when a catch event is added",
+                    "  if (is(connection.target, 'bpmn:IntermediateCatchEvent')) {",
+                    "    return sourceBo.get('default') === sequenceFlow;",
+                    "  }",
+                    "",
+                    "  return sourceBo.get('default') === sequenceFlow;",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

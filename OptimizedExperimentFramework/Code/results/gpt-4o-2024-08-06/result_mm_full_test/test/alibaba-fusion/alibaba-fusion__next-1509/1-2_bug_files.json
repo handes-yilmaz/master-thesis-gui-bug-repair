@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/config-provider/config.jsx",
+            "src/dialog/dialog.jsx",
+            "src/dialog/index.jsx"
+        ],
+        "explanation": "The bug is related to the `popupContainer` configuration not being applied to the `Dialog` component. The `ConfigProvider` is likely responsible for setting global configurations, so `src/config-provider/config.jsx` might need adjustments to propagate settings correctly. The `src/dialog/dialog.jsx` and `src/dialog/index.jsx` files are directly related to the `Dialog` component and would need modifications to ensure that the `popupContainer` configuration is applied, ensuring correct rendering of popups within the dialog.",
+        "bug_scenario": "The issue is that the `popupContainer` configuration on `ConfigProvider` is not affecting the `Dialog` component as expected. This results in a display problem where elements such as date pickers or dropdowns are not rendered correctly within the dialog, as shown in the image where the calendar dropdown appears to overflow outside the dialog box."
+    },
+    "2": {
+        "bug_files": [
+            "src/config-provider/config.jsx",
+            "src/dialog/dialog.jsx",
+            "src/dialog/index.jsx",
+            "src/overlay/popup.jsx"
+        ],
+        "explanation": "1. `src/config-provider/config.jsx`: This file is likely responsible for providing configurations globally, including the `popupContainer` setting. Ensuring that the configuration is correctly passed to components like `Dialog` is crucial.\n\n2. `src/dialog/dialog.jsx` and `src/dialog/index.jsx`: These files manage the `Dialog` component. They need to correctly utilize the `popupContainer` configuration to ensure popups appear within the dialog.\n\n3. `src/overlay/popup.jsx`: This file likely handles the rendering of popups. It should respect the `popupContainer` setting to position elements correctly within the desired container.",
+        "bug_scenario": "The bug report indicates that the `popupContainer` configuration on `ConfigProvider` is not affecting the `Dialog` component as expected. The image shows a date picker dropdown appearing outside the dialog box, which suggests that the dropdown's container is not being set correctly, leading to layout issues."
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js",
+            "lighthouse-core/gather/gatherers/js-usage.js"
+        ],
+        "explanation": "The file `lighthouse-core/audits/byte-efficiency/unminified-javascript.js` is directly related to the bug as it handles the audit for unminified JavaScript, which is where the overestimation is occurring. Adjustments here could help in correctly calculating the minification status and savings. The `lighthouse-core/gather/gatherers/js-usage.js` file is likely involved because it gathers data about JavaScript usage, which may include details about minification status. Both files are crucial in the process of identifying and calculating the minification state and potential savings.",
+        "bug_scenario": "The bug report mentions an issue where the Lighthouse tool overestimates JavaScript minification savings due to an unminified copyright notice in a specific JavaScript file. This is affecting Lighthouse's performance reports by misidentifying this script as not being minified. The problem lies with how Lighthouse handles these white spaces and carriage returns in minified files, particularly when using Esprima for parsing."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js"
+        ],
+        "explanation": "The file 'lighthouse-core/audits/byte-efficiency/unminified-javascript.js' is related to the audit for identifying unminified JavaScript files. This audit is responsible for analyzing JavaScript files and reporting potential savings if they were minified. The bug likely lies in how this audit handles or fails to handle specific cases like non-minified copyright notices, leading to incorrect savings estimation.",
+        "bug_scenario": "The bug relates to Lighthouse incorrectly reporting a JavaScript file as not being minified due to the presence of a non-minified copyright notice in the file, leading to an overestimation of potential savings. The screenshot shows that the file '/v0/amp-date-picker-0.1.js' is listed with a significant estimated savings if minified, despite already being minified except for the copyright notice."
+    }
+}

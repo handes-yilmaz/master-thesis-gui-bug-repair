@@ -1,0 +1,26 @@
+diff --git a/src/command/render/render.ts b/src/command/render/render.ts
+index 2e8630a..94d24dd 100644
+--- a/src/command/render/render.ts
++++ b/src/command/render/render.ts
+@@ -159,6 +159,8 @@ export async function renderPandoc(
+     metadata: executeResult.metadata,
+     quiet,
+     flags: context.options.flags,
++    // Ensure single figure rendering
++    figSingle: true,
+   };
+ 
+   // add offset if we are in a project
+diff --git a/src/format/html/format-html.ts b/src/format/html/format-html.ts
+index 41fe9ea..d1a71a3 100644
+--- a/src/format/html/format-html.ts
++++ b/src/format/html/format-html.ts
+@@ -257,7 +257,7 @@ export async function htmlFormatExtras(
+   if (featureDefaults.figResponsive) {
+     options.figResponsive = format.metadata[kFigResponsive] !== false;
+   } else {
+-    options.figResponsive = format.metadata[kFigResponsive] || false;
++    options.figResponsive = format.metadata[kFigResponsive] || true; // Ensure figures are responsive by default
+   }
+   if (featureDefaults.codeAnnotations) {
+     options.codeAnnotations = format.metadata[kCodeAnnotations] || true;

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "resources/filters/crossref/crossref.lua",
+            "resources/filters/common/theorems.lua",
+            "resources/filters/common/list.lua"
+        ],
+        "explanation": "The file 'resources/filters/crossref/crossref.lua' is directly mentioned in the error traceback, indicating that the problem occurs within this Lua filter when processing theorems and proofs. The error is related to the insertion of elements into a table structure, which is likely due to missing headers or labels.\n\nThe 'resources/filters/common/theorems.lua' file is relevant because it deals with the processing and formatting of theorems, which are the primary elements affected by this bug. It's likely that adjustments to how theorems are handled, particularly when they lack headers or labels, would need to be made here.\n\n'list.lua' in 'resources/filters/common/' is involved as the issue is related to lists within theorems, where headings unexpectedly become part of the list. This file likely contains logic that interprets or formats list structures within theorems, contributing to the bug when combined with the missing headers or labels.",
+        "bug_scenario": "The bug involves an issue with rendering theorems and proofs in documents using Lua filters in Quarto, particularly when code blocks lack headers or labels. This results in a Lua error when attempting to process these elements, specifically due to a bad argument passed to a function in the crossref.lua filter."
+    },
+    "2": {
+        "bug_files": [
+            "resources/filters/crossref/crossref.lua",
+            "resources/filters/common/theorems.lua",
+            "src/render/crossref.ts"
+        ],
+        "explanation": "1. **resources/filters/crossref/crossref.lua**: This file is directly mentioned in the error message in the bug report, indicating that the issue arises during the execution of this Lua script. The error occurs because of incorrect handling of data structures when processing code blocks without headers or labels.\n\n2. **resources/filters/common/theorems.lua**: This file likely contains the logic for handling theorem environments and may be responsible for managing how theorems and proofs are parsed and formatted. Errors in managing these environments can lead to the issues described.\n\n3. **src/render/crossref.ts**: This TypeScript file is likely involved in the rendering process that interfaces with the Lua filters. It might manage or initiate the process that calls the Lua scripts and could be responsible for how data is passed to them, leading to the noted error.",
+        "bug_scenario": "The bug scenario involves using Theorems and Proofs within a markdown document that lacks a header or label, which causes a Lua filter error when processed by Pandoc. The error message indicates a problem in the 'crossref' Lua filter, specifically at line 97, where a bad argument is passed to a function expecting a table."
+    }
+}

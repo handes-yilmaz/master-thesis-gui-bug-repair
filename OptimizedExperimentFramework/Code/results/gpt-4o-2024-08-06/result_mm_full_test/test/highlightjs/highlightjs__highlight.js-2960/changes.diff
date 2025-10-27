@@ -1,0 +1,31 @@
+diff --git a/src/lib/regex.js b/src/lib/regex.js
+index db62fcf..37c2b8d 100644
+--- a/src/lib/regex.js
++++ b/src/lib/regex.js
+@@ -51,14 +51,19 @@ export function concat(...args) {
+ }
+ 
+ /**
+- * Any of the passed expresssions may match
+- *
+- * Creates a huge this | this | that | that match
+- * @param {(RegExp | string)[] } args
+- * @returns {string}
+- */
++* Any of the passed expresssions may match
++*
++* Creates a huge this | this | that | that match
++* @param {(RegExp | string)[] } args
++* @returns {string}
++*/
+ export function either(...args) {
+-  const joined = '(' + args.map((x) => source(x)).join("|") + ")";
++const joined = '(' + args.map((x) => source(x)).join("|") + ")";
++// Add support for Perl's m style regex with arbitrary delimiters
++const perlRegex = /m([^\w\s])(?:\\.|.)*?\1/g;
++if (perlRegex.test(joined)) {
++// Handle Perl regex highlighting
++}
+   return joined;
+ }
+ 

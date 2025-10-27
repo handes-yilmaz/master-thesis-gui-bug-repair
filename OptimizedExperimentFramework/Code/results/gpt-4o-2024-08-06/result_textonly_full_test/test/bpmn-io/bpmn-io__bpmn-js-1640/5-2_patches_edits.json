@@ -1,0 +1,46 @@
+{
+    "1/1": {
+        "lib/features/modeling/cmd/UpdatePropertiesHandler.js": [
+            {
+                "SEARCH": [
+                    "// update properties",
+                    "setProperties(element, properties);",
+                    "",
+                    "// store old values",
+                    "context.oldProperties = oldProperties;"
+                ],
+                "REPLACE": [
+                    "  // update properties",
+                    "  setProperties(element, properties);",
+                    "",
+                    "  // ensure multi-instance properties are preserved",
+                    "  if (businessObject.loopCharacteristics) {",
+                    "    properties.loopCharacteristics = businessObject.loopCharacteristics;",
+                    "  }",
+                    "",
+                    "  // store old values",
+                    "  context.oldProperties = oldProperties;"
+                ]
+            }
+        ],
+        "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js": [
+            {
+                "SEARCH": [
+                    "setModdleProperties(moddleElement, properties);",
+                    "",
+                    "context.oldProperties = oldProperties;"
+                ],
+                "REPLACE": [
+                    "  setModdleProperties(moddleElement, properties);",
+                    "",
+                    "  // ensure multi-instance properties are preserved",
+                    "  if (moddleElement.loopCharacteristics) {",
+                    "    properties.loopCharacteristics = moddleElement.loopCharacteristics;",
+                    "  }",
+                    "",
+                    "  context.oldProperties = oldProperties;"
+                ]
+            }
+        ]
+    }
+}

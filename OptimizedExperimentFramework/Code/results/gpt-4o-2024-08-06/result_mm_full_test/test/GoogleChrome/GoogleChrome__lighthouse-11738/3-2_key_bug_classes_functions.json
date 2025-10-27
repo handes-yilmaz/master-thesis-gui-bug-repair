@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/computed/load-simulator.js//LoadSimulator"
+        ],
+        "bug_functions": [
+            "lighthouse-core/computed/load-simulator.js//compute_",
+            "lighthouse-core/gather/driver/wait-for-condition.js//waitForFullyLoaded"
+        ],
+        "explanation": "The 'LoadSimulator' class in 'load-simulator.js' is responsible for simulating network conditions based on the throttling method. The 'compute_' function within this class handles the logic for different throttling methods, including 'simulate', which is directly related to the issue of not waiting long enough for CLS detection. Additionally, the 'waitForFullyLoaded' function in 'wait-for-condition.js' manages the conditions under which the page is considered fully loaded, including network and CPU idle states. Adjusting these functions could help ensure that Lighthouse waits appropriately for CLS to be accurately measured.",
+        "bug_scenario": "The bug scenario involves Lighthouse not waiting long enough to detect the Cumulative Layout Shift (CLS) when the throttling method is set to 'simulate'. This results in an inaccurate performance score, as the page may load later than expected, affecting the CLS measurement."
+    }
+}

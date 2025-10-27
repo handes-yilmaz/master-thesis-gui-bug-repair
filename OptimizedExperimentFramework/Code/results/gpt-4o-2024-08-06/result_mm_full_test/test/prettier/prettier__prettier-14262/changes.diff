@@ -1,0 +1,22 @@
+diff --git a/src/language-js/print/object.js b/src/language-js/print/object.js
+index f1c789a..49a74a6 100644
+--- a/src/language-js/print/object.js
++++ b/src/language-js/print/object.js
+@@ -90,8 +90,15 @@ function printObject(path, options, print) {
+     ? ifBreak(semi, ";")
+     : ",";
+   const leftBrace =
+-    node.type === "RecordExpression" ? "#{" : node.exact ? "{|" : "{";
+-  const rightBrace = node.exact ? "|}" : "}";
++    node.type === "RecordExpression"
++      ? "#{"
++      : node.exact
++      ? "{|"
++      : node.jsdoc && node.jsdoc.includes("@satisfies")
++      ? "({"
++      : "{";
++  const rightBrace =
++    node.exact ? "|}" : node.jsdoc && node.jsdoc.includes("@satisfies") ? "})" : "}";
+ 
+   // Unfortunately, things are grouped together in the ast can be
+   // interleaved in the source code. So we need to reorder them before

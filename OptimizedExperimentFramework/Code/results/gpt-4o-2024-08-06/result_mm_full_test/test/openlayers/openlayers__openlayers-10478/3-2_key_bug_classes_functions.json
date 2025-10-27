@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/reproj/Tile.js//ReprojTile"
+        ],
+        "bug_functions": [
+            "src/ol/reproj/Tile.js//reproject_",
+            "src/ol/reproj/Tile.js//load"
+        ],
+        "explanation": "The `ReprojTile` class in `src/ol/reproj/Tile.js` is responsible for handling reprojected tiles. The `reproject_` function is crucial as it manages the reprojection process and determines the state of the tile. If source tiles are not loaded correctly, it sets the state to ERROR, which could lead to the white areas observed. The `load` function is responsible for loading the tiles and managing their states. If tiles are disposed prematurely or not loaded correctly, it could result in the missing map pieces. These functions are directly related to the issue of tiles being disposed and not included in the reprojection process.",
+        "bug_scenario": "The bug scenario involves white areas appearing on a map when zooming in and out with a reprojected Tile layer. This occurs because the underlying Tile object is disposed and excluded from the stitching process, leading to missing map pieces."
+    }
+}

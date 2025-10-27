@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/ruby.js"
+        ],
+        "explanation": "The issue is related to the incorrect syntax highlighting of Ruby heredocs. Given that the problem is specific to Ruby language syntax, the most likely file responsible for handling Ruby syntax highlighting is 'src/languages/ruby.js'. This file would contain the logic for parsing and highlighting Ruby code, including heredocs. Therefore, any bugs with Ruby code highlighting, such as the incorrect handling of heredoc syntax without interpolation, would need to be addressed in this file. Changes in this file would enable the highlighter to correctly interpret and highlight non-interpolated heredocs as complete strings.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for Ruby heredocs without interpolation. In the provided example, a heredoc without interpolation is not highlighted correctly by the highlighter, causing the end of the heredoc to not be detected as a string."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/ruby.js",
+            "src/lib/regex.js",
+            "src/lib/mode_compiler.js"
+        ],
+        "explanation": "1. **src/languages/ruby.js**: This file is the most likely candidate for containing the logic related to syntax highlighting rules specific to Ruby. Since the bug is specifically related to Ruby heredocs, modifications or additions to this file would be necessary to correctly identify and highlight the heredoc syntax without interpolation.\n\n2. **src/lib/regex.js**: Regex patterns are often used in syntax highlighting to match specific code patterns. If the current regex patterns in this file do not account for the specific syntax of Ruby heredocs without interpolation, they would need to be updated to include these patterns to ensure correct highlighting.\n\n3. **src/lib/mode_compiler.js**: This file might contain the logic that compiles or interprets language modes, including how heredocs should be processed and highlighted. Any issues related to mode compilation that affect the rendering of Ruby code would be addressed here, particularly if there is a problem with recognizing or applying the correct mode for heredocs without interpolation.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting of Ruby heredocs without interpolation. In Ruby, a heredoc can be declared using either <<-\"DELIM\" (with interpolation) or <<-'DELIM' (without interpolation). The issue is that the latter is not being highlighted correctly as a string in the code editor, specifically when using the `highlight` function. The expected behavior is for the entire heredoc, including its ending delimiter, to be highlighted consistently as a string."
+    }
+}

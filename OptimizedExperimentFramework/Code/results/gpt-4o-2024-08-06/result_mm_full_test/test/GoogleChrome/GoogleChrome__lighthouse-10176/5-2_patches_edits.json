@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "lighthouse-core/lib/stack-collector.js": [
+            {
+                "SEARCH": [
+                    "return jsLibraries.map(lib => ({",
+                    "detector: /** @type {'js'} */ ('js'),",
+                    "id: lib.id,",
+                    "name: lib.name,",
+                    "version: lib.version || undefined,"
+                ],
+                "REPLACE": [
+                    "  return jsLibraries.map(lib => ({",
+                    "    detector: /** @type {'js'} */ ('js'),",
+                    "    id: lib.id || lib.name, // Ensure unique id",
+                    "    name: lib.name,",
+                    "    version: lib.version || undefined,"
+                ]
+            }
+        ],
+        "lighthouse-core/lib/stack-packs.js": [
+            {
+                "SEARCH": [
+                    "const stackPackToIncl = stackPacksToInclude.find(stackPackToIncl =>",
+                    "stackPackToIncl.requiredStacks.includes(`${pageStack.detector}:${pageStack.id}`));",
+                    "if (!stackPackToIncl) {",
+                    "continue;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const stackPackToIncl = stackPacksToInclude.find(stackPackToIncl =>",
+                    "      stackPackToIncl.requiredStacks.includes(`${pageStack.detector}:${pageStack.id}`) &&",
+                    "      !pageStack.id.includes('Fast Path')); // Exclude experimental entries",
+                    "    if (!stackPackToIncl) {",
+                    "      continue;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

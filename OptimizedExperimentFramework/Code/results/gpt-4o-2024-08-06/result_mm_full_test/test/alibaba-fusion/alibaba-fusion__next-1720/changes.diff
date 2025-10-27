@@ -1,0 +1,43 @@
+diff --git a/src/search/Search.jsx b/src/search/Search.jsx
+index 3f30b5b..d8cdb24 100644
+--- a/src/search/Search.jsx
++++ b/src/search/Search.jsx
+@@ -188,21 +188,25 @@ class Search extends React.Component {
+         return null;
+     }
+ 
+-    onChange = (value, ...argv) => {
+-        if (!('value' in this.props)) {
+-            this.setState({ value });
+-        }
++onChange = (value, ...argv) => {
++    if (!('value' in this.props)) {
++        this.setState({ value });
++    }
+ 
+-        this.props.onChange(value, ...argv);
+-    };
++    if (this.autoCompleteRef) {
++        this.autoCompleteRef.setState({ value });
++    }
+ 
+-    onSearch = () => {
+-        if (this.props.disabled) {
+-            return;
+-        }
+-        const selectedValue = this.autoCompleteRef && this.autoCompleteRef.state.value;
+-        this.props.onSearch(selectedValue || this.state.value, this.state.filterValue);
+-    };
++    this.props.onChange(value, ...argv);
++};
++
++onSearch = () => {
++    if (this.props.disabled) {
++        return;
++    }
++    const selectedValue = this.autoCompleteRef && this.autoCompleteRef.state.value;
++    this.props.onSearch(selectedValue || this.state.value, this.state.filterValue);
++};
+ 
+     onFilterChange = filterValue => {
+         if (!('filterValue' in this.props)) {

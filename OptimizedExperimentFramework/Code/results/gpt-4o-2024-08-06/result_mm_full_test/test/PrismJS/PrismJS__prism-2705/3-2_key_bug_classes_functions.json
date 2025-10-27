@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-javascript.js//Prism.languages.javascript",
+            "components/prism-js-templates.js//createTemplate"
+        ],
+        "bug_functions": [
+            "components/prism-js-templates.js//tokenizeEmbedded",
+            "components/prism-js-templates.js//tokenizeInterpolationExpression"
+        ],
+        "explanation": "The issue is related to how template literals are parsed and highlighted. In 'prism-javascript.js', the 'Prism.languages.javascript' object defines the language grammar, including template strings. The 'createTemplate' function in 'prism-js-templates.js' is responsible for creating patterns for template strings with special tags, which might be causing the incorrect parsing. The 'tokenizeEmbedded' and 'tokenizeInterpolationExpression' functions handle the tokenization of embedded code and interpolation expressions within template literals, which are crucial for correct syntax highlighting. These functions and classes are directly involved in the parsing and highlighting process, making them key elements related to the bug.",
+        "bug_scenario": "The bug involves incorrect parsing of template literals in JavaScript code. Initially, a regex with a single quote and a template literal renders correctly. However, after a comment with a template literal, subsequent template literals are parsed incorrectly, causing syntax highlighting issues."
+    }
+}

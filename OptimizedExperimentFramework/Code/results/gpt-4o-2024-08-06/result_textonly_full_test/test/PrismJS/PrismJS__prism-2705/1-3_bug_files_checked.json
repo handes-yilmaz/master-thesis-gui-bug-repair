@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-js-templates.js"
+        ],
+        "explanation": "The bug is related to how PrismJS parses JavaScript code, particularly template literals. The files 'components/prism-javascript.js' and 'components/prism-js-templates.js' are directly responsible for defining the syntax highlighting rules for JavaScript and JavaScript templates in PrismJS. These files likely contain the logic that parses template literals, regex patterns, and comments, which are mentioned in the bug report as causing the issue. Modifying these files would be necessary to fix the incorrect parsing and highlighting behavior described in the bug report.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting in JavaScript files when using PrismJS. Specifically, the issue arises when a certain sequence of template literals, regex patterns, and comments are present in the code. The sequence described in the bug report causes the template literals to be incorrectly parsed, leading to highlighting errors."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-typescript.js",
+            "components/prism-core.js",
+            "components/prism-js-templates.js"
+        ],
+        "explanation": "1. **components/prism-javascript.js**: This file is responsible for handling JavaScript syntax highlighting rules. The bug specifically occurs in JavaScript files, so any fixes for the template literal and regex parsing must be applied here.\n\n2. **components/prism-typescript.js**: Similar to the JavaScript file, TypeScript syntax highlighting rules are handled here. Since the issue also affects TypeScript files, changes should be made to ensure template literals and comments are parsed correctly.\n\n3. **components/prism-core.js**: This file likely contains core functionality shared across different language components, including handling of common patterns and parsing logic. Fixes related to the fundamental parsing of template literals might need to be applied here.\n\n4. **components/prism-js-templates.js**: This file is likely involved with the specific handling of JavaScript template literals. Given the issue with template tag parsing, a review and potential fix in this file are necessary to ensure the correct handling of JavaScript templates.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in JavaScript and TypeScript files using PrismJS. The problem arises when certain combinations of template literals and comments are present in the code. Specifically, a regex pattern containing a single quote followed by a template literal, a comment with a template literal, and then a normal template literal causes the syntax highlighting to break. The first template tag token is ignored, leading to incorrect parsing for the rest of the file."
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-ruby.js",
+            "components/prism-regex.js"
+        ],
+        "explanation": "The files likely related to this bug are `components/prism-ruby.js` and `components/prism-regex.js`. \n\n1. `components/prism-ruby.js`: This file is responsible for handling the syntax highlighting rules for the Ruby language. Since the issue is specific to Ruby's interpolation in regex, adjustments in this file might be necessary to correctly identify and highlight interpolations within regex patterns.\n\n2. `components/prism-regex.js`: This file deals with regex-related highlighting across different languages. If there's a generic issue with how regex patterns are parsed and highlighted when containing interpolations, modifications in this file could address the problem across all languages, including Ruby.\n\nBoth files would need to be reviewed and potentially altered to ensure that Ruby regex interpolations are highlighted correctly in both `/.../` and `%r{...}` forms.",
+        "bug_scenario": "The bug report describes an issue where interpolation in Ruby regular expressions using the syntax `/foo#{bar}/` is not highlighted properly. The correct behavior is observed when using the `%r{foo#{bar}}` syntax. The provided image supports this by showing how the syntax highlighting fails for the first case but works for the second."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-ruby.js",
+            "components/prism-ruby.min.js"
+        ],
+        "explanation": "The files `components/prism-ruby.js` and `components/prism-ruby.min.js` are responsible for defining the syntax highlighting rules for Ruby in Prism.js. Since the bug is related to incorrect highlighting of Ruby code, specifically with regex interpolation, these files are directly related to the issue. The bug fix would likely involve updating these files to correctly recognize and highlight the interpolation within regexes when using the slash delimiters.",
+        "bug_scenario": "The bug report describes an issue with syntax highlighting in Ruby code when using interpolation within a regular expression. The specific problem is that the interpolation inside a regex (e.g., `/foo#{bar}/`) is not highlighted correctly when using the slash delimiters. However, the interpolation is highlighted correctly when using the `%r{...}` notation."
+    }
+}

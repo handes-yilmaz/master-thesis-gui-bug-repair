@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/language-js/print/typescript.js": [
+            {
+                "SEARCH": [
+                    "case \"TSTupleType\":",
+                    "return printTupleType(path, options, print);"
+                ],
+                "REPLACE": [
+                    "case \"TSTupleType\":",
+                    "  const tupleElements = path.map(print, \"elementTypes\");",
+                    "  // Check if the tuple is empty and avoid adding a comma",
+                    "  if (tupleElements.length === 0) {",
+                    "    return \"[]\";",
+                    "  }",
+                    "  return group([",
+                    "    \"[\",",
+                    "    indent([softline, join([\", \", softline], tupleElements)]),",
+                    "    softline,",
+                    "    \"]\",",
+                    "  ]);"
+                ]
+            }
+        ]
+    }
+}

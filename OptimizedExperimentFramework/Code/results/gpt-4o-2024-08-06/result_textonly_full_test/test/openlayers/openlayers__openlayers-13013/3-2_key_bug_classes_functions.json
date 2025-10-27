@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/source/DataTile.js//DataTileSource",
+            "src/ol/webgl/TileTexture.js//TileTexture",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/webgl/TileTexture.js//uploadDataTexture",
+            "src/ol/webgl/TileTexture.js//uploadTile_",
+            "src/ol/source/DataTile.js//getTile",
+            "src/ol/layer/WebGLTile.js//parseStyle"
+        ],
+        "explanation": "The classes and functions identified are directly involved in the rendering process of WebGL tiles and the handling of data tiles. The `WebGLTileLayer` class in `src/ol/layer/WebGLTile.js` is responsible for managing the style and rendering of the tile layer, which is crucial for ensuring that the tiles are displayed correctly. The `DataTileSource` class in `src/ol/source/DataTile.js` is responsible for providing the data tiles, and any issues with data loading or tile grid configuration could lead to rendering problems. The `TileTexture` class in `src/ol/webgl/TileTexture.js` handles the WebGL texture operations, including uploading data to the GPU, which is directly related to the WebGL warning about insufficient data. The `WebGLTileLayerRenderer` class in `src/ol/renderer/webgl/TileLayer.js` is the renderer for the tile layer, and any issues in rendering logic could manifest as rendering errors. The functions `uploadDataTexture` and `uploadTile_` in `TileTexture` are responsible for uploading tile data to the GPU, which is where the mismatch in data size could occur. The `getTile` function in `DataTileSource` is responsible for retrieving tiles, and any issues in this process could lead to incorrect data being used for rendering. The `parseStyle` function in `WebGLTileLayer` is involved in generating shaders and uniforms, which are critical for rendering the tiles correctly.",
+        "bug_scenario": "The bug scenario involves the `ol.layer.WebGLTile` not rendering data loaded with `ol.source.DataTile` using a custom tile grid. The issue is accompanied by a WebGL warning indicating that the desired upload requires more data than is available, suggesting a mismatch in the expected and available data for rendering tiles."
+    }
+}

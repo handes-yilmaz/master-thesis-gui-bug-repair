@@ -1,0 +1,23 @@
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 07ec7e6..97d90da 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -426,7 +426,17 @@ class GeoTIFFSource extends DataTile {
+     /**
+      * @type {'readRasters' | 'readRGB'}
+      */
+-    this.readMethod_ = options.convertToRGB ? 'readRGB' : 'readRasters';
++    if (options.convertToRGB === 'auto') {
++      // Check if any source has 3 samples per pixel and a specific photometric interpretation
++      this.readMethod_ = this.sourceInfo_.some(source => {
++        const image = source.images[0]; // Assuming the first image is representative
++        const samplesPerPixel = image.getSamplesPerPixel();
++        const photometricInterpretation = image.getPhotometricInterpretation();
++        return samplesPerPixel === 3 && ['CMYK', 'YCbCr', 'CIELab', 'ICCLab'].includes(photometricInterpretation);
++      }) ? 'readRGB' : 'readRasters';
++    } else {
++      this.readMethod_ = options.convertToRGB ? 'readRGB' : 'readRasters';
++    }
+ 
+     this.setKey(this.sourceInfo_.map((source) => source.url).join(','));
+ 

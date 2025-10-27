@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/LabelBehavior.js": [
+            {
+                "SEARCH": [
+                    "export function getReferencePointDelta(referencePoint, oldBounds, newBounds) {",
+                    "",
+                    "var newReferencePoint = getNewAttachPoint(referencePoint, oldBounds, newBounds);",
+                    "",
+                    "return roundPoint(delta(newReferencePoint, referencePoint));",
+                    "}"
+                ],
+                "REPLACE": [
+                    "export function getReferencePointDelta(referencePoint, oldBounds, newBounds) {",
+                    "",
+                    "  var newReferencePoint = getNewAttachPoint(referencePoint, oldBounds, newBounds);",
+                    "",
+                    "  // Calculate the delta from the old reference point to the new reference point",
+                    "  var deltaPoint = delta(newReferencePoint, referencePoint);",
+                    "",
+                    "  // Adjust the reference point by the delta to ensure it moves with the element",
+                    "  return roundPoint({",
+                    "    x: referencePoint.x + deltaPoint.x,",
+                    "    y: referencePoint.y + deltaPoint.y",
+                    "  });",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

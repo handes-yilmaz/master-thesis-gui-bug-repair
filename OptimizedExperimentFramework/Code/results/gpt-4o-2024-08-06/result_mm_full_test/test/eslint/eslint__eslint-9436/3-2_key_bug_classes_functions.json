@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/no-constant-condition.js//module.exports"
+        ],
+        "bug_functions": [
+            "lib/rules/no-constant-condition.js//reportIfConstant"
+        ],
+        "explanation": "The issue is related to how the 'no-constant-condition' rule reports the location of constant conditions. The 'reportIfConstant' function is responsible for reporting constant conditions and currently reports the entire statement or expression. Adjusting this function to only report the location of the constant condition itself would address the bug. The module.exports object is the main export of the rule and contains the logic for creating the rule context, making it relevant to the bug.",
+        "bug_scenario": "The bug scenario involves the ESLint rule 'no-constant-condition' reporting error ranges that are too broad. Instead of highlighting just the constant condition, the entire statement or expression is underlined, as shown in the image where both the 'if (true)' statement and the 'true ? 1 : 0' expression are fully underlined."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//execute"
+        ],
+        "explanation": "The class 'DropOnFlowBehavior' in 'lib/features/modeling/behavior/DropOnFlowBehavior.js' is responsible for handling the behavior when an element is dropped on a flow. The function 'insertShape' within this class is likely involved in the process of inserting the intermediate event onto the sequence flow, which is where the expression might be getting removed.\n\nThe class 'UpdatePropertiesHandler' in 'lib/features/modeling/cmd/UpdatePropertiesHandler.js' is responsible for updating properties of BPMN elements. The function 'execute' within this class updates a BPMN element with new properties. This function might be involved in the process where the condition expression is being removed when the event type is changed to 'Timer Intermediate Catch Event'. These classes and functions are directly related to the manipulation and updating of BPMN elements and their properties, which is where the bug is occurring.",
+        "bug_scenario": "The bug scenario involves dropping an intermediate event on a sequence flow that has a condition type of expression. When this event is changed into a 'Timer Intermediate Catch Event', the expression is removed from the sequence flow, which is not the expected behavior. The expected behavior is that the expression should remain intact on the sequence flow."
+    }
+}

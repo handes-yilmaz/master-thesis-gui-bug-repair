@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/label-editing/LabelEditingProvider.js//LabelEditingProvider",
+            "lib/features/modeling/Modeling.js//Modeling",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//UpdateLabelHandler"
+        ],
+        "bug_functions": [
+            "lib/features/label-editing/LabelEditingProvider.js//activateDirectEdit",
+            "lib/features/label-editing/LabelEditingProvider.js//update",
+            "lib/features/modeling/Modeling.js//updateLabel",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//execute",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//revert"
+        ],
+        "explanation": "The bug is related to the direct editing and label updating functionalities. The 'LabelEditingProvider' class in 'lib/features/label-editing/LabelEditingProvider.js' is responsible for managing direct editing, including activation and completion, which is directly related to the bug scenario where direct editing is active during element deletion. The 'Modeling' class in 'lib/features/modeling/Modeling.js' includes the 'updateLabel' function, which is invoked during the label update process and is part of the command stack execution that triggers the exception. The 'UpdateLabelHandler' class in 'lib/features/label-editing/cmd/UpdateLabelHandler.js' handles the execution and reversion of label updates, which are critical in managing the label state during direct editing and element removal. These classes and functions are central to the operations that lead to the illegal invocation error when an element is deleted while being edited.",
+        "bug_scenario": "The bug scenario involves an 'illegal invocation' exception that occurs when an element is deleted while direct editing is active. This is demonstrated in the provided GIF image, where the user selects an element and removes it via the context pad, leading to the editor crashing with the mentioned exception."
+    }
+}

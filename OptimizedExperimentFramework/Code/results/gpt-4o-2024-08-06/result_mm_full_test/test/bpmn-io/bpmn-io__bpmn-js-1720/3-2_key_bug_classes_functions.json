@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/ResizeBehavior.js//ResizeBehavior",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js//SubProcessPlaneBehavior",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//ToggleElementCollapseBehaviour"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/ResizeBehavior.js//getParticipantResizeConstraints",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//expandedBounds",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//collapsedBounds"
+        ],
+        "explanation": "The `ResizeBehavior` class is responsible for setting minimum bounds and resize constraints, which is directly related to the issue of the shape not resizing correctly when transformed. The `SubProcessPlaneBehavior` class handles the creation and management of subprocess planes, which is relevant to the transformation process. The `ToggleElementCollapseBehaviour` class manages the toggling of element collapse states, affecting how elements are resized and displayed. The functions `getParticipantResizeConstraints`, `expandedBounds`, and `collapsedBounds` are involved in calculating and applying size constraints and bounds, which are crucial for fixing the resizing issue.",
+        "bug_scenario": "The bug occurs when transforming a Call Activity into a SubProcess in a BPMN diagram. The shape does not resize correctly, leading to a dead end where the user cannot revert the changes or proceed further. The wrench menu becomes confusing with additional entries, and the expected behavior of resizing and reverting is not met."
+    }
+}

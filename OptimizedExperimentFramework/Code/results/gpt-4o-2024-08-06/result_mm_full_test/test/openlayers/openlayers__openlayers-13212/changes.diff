@@ -1,0 +1,42 @@
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index f77b792..9112027 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -207,7 +207,8 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+     this.indices_ = new WebGLArrayBuffer(ELEMENT_ARRAY_BUFFER, STATIC_DRAW);
+     this.indices_.fromArray([0, 1, 3, 1, 2, 3]);
+ 
+-    const cacheSize = options.cacheSize !== undefined ? options.cacheSize : 512;
++    // Increase cache size for better handling of larger pyramids
++    const cacheSize = options.cacheSize !== undefined ? options.cacheSize : 1024;
+ 
+     /**
+      * @type {import("../../structs/LRUCache.js").default<import("../../webgl/TileTexture.js").default>}
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index caae328..38e0c1c 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -404,7 +404,8 @@ class GeoTIFFSource extends DataTile {
+      */
+     this.readMethod_ = options.convertToRGB ? 'readRGB' : 'readRasters';
+ 
+-    this.setKey(this.sourceInfo_.map((source) => source.url).join(','));
++    // Use a template string and tile grid object for pyramid support
++    this.setKey(this.sourceInfo_.map((source) => source.template).join(','));
+ 
+     const self = this;
+     const requests = new Array(numSources);
+diff --git a/src/ol/tilegrid/TileGrid.js b/src/ol/tilegrid/TileGrid.js
+index 019b67a..9a1c9d5 100644
+--- a/src/ol/tilegrid/TileGrid.js
++++ b/src/ol/tilegrid/TileGrid.js
+@@ -146,7 +146,8 @@ class TileGrid {
+      * @private
+      * @type {Array<number|import("../size.js").Size>}
+      */
+-    this.tileSizes_ = null;
++    // Adjust tile sizes for pyramid support
++    this.tileSizes_ = options.tileSizes || this.calculateTileSizesForPyramid();
+     if (options.tileSizes !== undefined) {
+       this.tileSizes_ = options.tileSizes;
+       assert(this.tileSizes_.length == this.resolutions_.length, 19); // Number of `tileSizes` and `resolutions` must be equal

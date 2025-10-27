@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/driver.js": [
+            {
+                "SEARCH": [
+                    "getUserAgent() {",
+                    "// FIXME: use Browser.getVersion instead",
+                    "return this.evaluateAsync('navigator.userAgent');",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  async getUserAgent() {",
+                    "    const version = await this.sendCommand('Browser.getVersion');",
+                    "    return version.userAgent;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

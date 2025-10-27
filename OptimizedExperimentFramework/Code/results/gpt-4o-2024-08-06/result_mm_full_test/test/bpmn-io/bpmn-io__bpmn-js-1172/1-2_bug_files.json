@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/import/BpmnImporter.js",
+            "lib/import/BpmnTreeWalker.js",
+            "lib/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/modeling/behavior/CreateBoundaryEventBehavior.js"
+        ],
+        "explanation": "1. **lib/draw/BpmnRenderer.js**: Responsible for rendering BPMN elements, likely missing logic to render boundary event associations.\n2. **lib/import/BpmnImporter.js**: Handles the import process, potential issues with loading boundary event associations.\n3. **lib/import/BpmnTreeWalker.js**: Traverses the BPMN model during import, may not correctly handle boundary event associations.\n4. **lib/modeling/behavior/BoundaryEventBehavior.js**: Manages behavior specific to boundary events, possibly missing implementation for associations.\n5. **lib/modeling/behavior/CreateBoundaryEventBehavior.js**: Manages creation logic for boundary events, might have issues with setting up associations correctly during creation.",
+        "bug_scenario": "The bug occurs when associations on `bpmn:BoundaryEvents` are created but not rendered upon import. In the first image, a boundary event is associated with a data object. However, in the second image, after exporting and re-importing, the association is missing."
+    },
+    "2": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/import/BpmnImporter.js",
+            "lib/import/BpmnTreeWalker.js",
+            "lib/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/modeling/behavior/CreateBoundaryEventBehavior.js"
+        ],
+        "explanation": "1. **BpmnRenderer.js**: Responsible for rendering BPMN elements, likely missing logic for rendering re-imported boundary event associations.\n2. **BpmnImporter.js**: Handles the import logic; may not correctly interpret boundary event associations on re-import.\n3. **BpmnTreeWalker.js**: Walks through BPMN elements during import; might overlook associations related to boundary events.\n4. **BoundaryEventBehavior.js**: Contains logic specific to boundary events, possibly missing code to handle associations.\n5. **CreateBoundaryEventBehavior.js**: Handles creation logic for boundary events; may not save associations correctly for export/import cycles.",
+        "bug_scenario": "The bug involves creating associations on BPMN boundary events that do not render upon re-import. The images show that a boundary event is connected to a data object, but after exporting, refreshing, and re-importing the diagram, the association line is missing."
+    }
+}

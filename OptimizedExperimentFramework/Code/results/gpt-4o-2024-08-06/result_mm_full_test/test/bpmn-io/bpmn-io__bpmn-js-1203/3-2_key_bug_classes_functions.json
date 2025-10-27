@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/copy-paste/ModdleCopy.js//ModdleCopy"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//removeProperties",
+            "lib/features/copy-paste/ModdleCopy.js//copyElement",
+            "lib/features/copy-paste/ModdleCopy.js//copyProperty"
+        ],
+        "explanation": "The issue is related to the copying and pasting of properties between elements. The `BpmnCopyPaste` class handles the copy-paste operations, including copying properties from the source to the target. The `copyProperties` and `removeProperties` functions are directly involved in managing these properties. The `ModdleCopy` class and its `copyElement` and `copyProperty` functions are responsible for copying model properties from the source element to the target element. The bug likely arises from these functions not correctly handling the properties when the element type changes from Intermediate to Boundary Event.",
+        "bug_scenario": "The bug occurs when an Intermediate Event is copied and pasted as a Boundary Event, resulting in the loss of its properties such as Async Continuations and Job Configurations. The GIF demonstrates this by showing the properties disappearing after the paste operation."
+    }
+}

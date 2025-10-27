@@ -1,0 +1,14 @@
+diff --git a/src/ol/interaction/Draw.js b/src/ol/interaction/Draw.js
+index 4ef5e4f..ab26e65 100644
+--- a/src/ol/interaction/Draw.js
++++ b/src/ol/interaction/Draw.js
+@@ -583,6 +583,9 @@ class Draw extends PointerInteraction {
+       this.finishCoordinate_ = null;
+       this.abortDrawing_();
+     }
++    // Reset shouldHandle_ to ensure other interactions can proceed
++    this.shouldHandle_ = false;
++    this.lastDragTime_ = undefined; // Reset last drag time
+     if (!pass && this.stopClick_) {
+       event.stopPropagation();
+     }

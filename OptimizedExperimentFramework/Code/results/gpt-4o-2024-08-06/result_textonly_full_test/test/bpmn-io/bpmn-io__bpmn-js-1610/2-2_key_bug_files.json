@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js"
+        ],
+        "explanation": "1. **lib/features/label-editing/LabelEditingProvider.js**: This file is responsible for handling direct editing within the BPMN diagram. The bug report indicates that direct editing remains active when switching planes, suggesting that the direct editing session is not being properly terminated or canceled when a plane switch occurs. The file contains logic for activating and completing direct editing, which is directly related to the issue described.\n\n2. **lib/features/modeling/behavior/SubProcessPlaneBehavior.js**: This file deals with the behavior of subprocess planes, including the creation and management of BPMNPlane elements. Since the bug involves switching between planes and the persistence of UI elements (like the direct editing box), this file likely contains logic that needs to be adjusted to ensure that UI elements are correctly updated or removed when a plane switch occurs. The behavior of moving elements between planes and handling visibility is crucial to resolving the issue.",
+        "bug_scenario": "The bug scenario involves a direct editing box that remains open even after switching planes in a BPMN diagram. This occurs when direct editing is active, and the user navigates to a different plane, leaving the editing box visible despite the element being edited no longer being visible."
+    }
+}

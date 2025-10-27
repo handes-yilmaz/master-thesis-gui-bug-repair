@@ -1,0 +1,21 @@
+{
+    "1/1": {
+        "src/ol/layer/Graticule.js": [
+            {
+                "SEARCH": [
+                    "const maxLon = validExtent[2];",
+                    "const minLon = validExtent[0];"
+                ],
+                "REPLACE": [
+                    "    let maxLon = validExtent[2];",
+                    "    let minLon = validExtent[0];",
+                    "",
+                    "    // Adjust for dateline crossing",
+                    "    if (minLon > maxLon) {",
+                    "      maxLon += 360;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

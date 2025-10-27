@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/Raster.js//RasterSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/Raster.js//processSources_",
+            "src/ol/source/Raster.js//onWorkerComplete_"
+        ],
+        "explanation": "The class `RasterSource` is responsible for handling raster operations, including managing webworkers. The function `processSources_` likely initiates the webworkers, and `onWorkerComplete_` handles the completion of tasks. The issue of not terminating webworkers suggests that these functions need to be reviewed to ensure that webworkers are properly terminated after their tasks are completed.",
+        "bug_scenario": "The bug scenario involves raster webworkers not being terminated, leading to high memory usage or a memory leak. The image shows multiple JavaScript VM instances with increasing memory usage, indicating that webworkers are not being properly terminated."
+    }
+}

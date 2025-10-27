@@ -1,0 +1,46 @@
+{
+    "1/1": {
+        "src/ol/layer/Group.js": [
+            {
+                "SEARCH": [
+                    "layerState.opacity *= ownLayerState.opacity;",
+                    "layerState.visible = layerState.visible && ownLayerState.visible;",
+                    "layerState.maxResolution = Math.min(",
+                    "layerState.maxResolution,",
+                    "ownLayerState.maxResolution",
+                    ");"
+                ],
+                "REPLACE": [
+                    "      layerState.opacity *= ownLayerState.opacity;",
+                    "      layerState.visible = layerState.visible && ownLayerState.visible;",
+                    "      layerState.maxResolution = Math.min(",
+                    "        layerState.maxResolution,",
+                    "        ownLayerState.maxResolution",
+                    "      );",
+                    "      // Ensure opacity is applied to vector tile labels",
+                    "      if (layer instanceof VectorTileLayer) {",
+                    "        layer.setOpacity(layerState.opacity);",
+                    "      }"
+                ]
+            }
+        ],
+        "src/ol/renderer/canvas/VectorTileLayer.js": [
+            {
+                "SEARCH": [
+                    "context.globalAlpha = layer.getOpacity();",
+                    "const replayTypes = VECTOR_REPLAYS[renderMode];",
+                    "const viewState = frameState.viewState;",
+                    "const rotation = viewState.rotation;"
+                ],
+                "REPLACE": [
+                    "    context.globalAlpha = layer.getOpacity();",
+                    "    const replayTypes = VECTOR_REPLAYS[renderMode];",
+                    "    const viewState = frameState.viewState;",
+                    "    const rotation = viewState.rotation;",
+                    "    // Apply group opacity to vector tile labels",
+                    "    context.globalAlpha *= this.getLayer().getOpacity();"
+                ]
+            }
+        ]
+    }
+}

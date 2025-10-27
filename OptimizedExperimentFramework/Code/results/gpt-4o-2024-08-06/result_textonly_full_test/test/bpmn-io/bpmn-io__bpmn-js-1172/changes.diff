@@ -1,0 +1,28 @@
+diff --git a/lib/import/BpmnImporter.js b/lib/import/BpmnImporter.js
+index 39862a7..322e4c0 100644
+--- a/lib/import/BpmnImporter.js
++++ b/lib/import/BpmnImporter.js
+@@ -131,6 +131,16 @@ BpmnImporter.prototype.add = function(semantic, parentElement) {
+ 
+     if (is(semantic, 'bpmn:BoundaryEvent')) {
+       this._attachBoundary(semantic, element);
++
++      // Ensure associations for boundary events are added
++      if (semantic.dataInputAssociations || semantic.dataOutputAssociations) {
++        (semantic.dataInputAssociations || []).forEach((association) => {
++          this.add(association, parentElement);
++        });
++        (semantic.dataOutputAssociations || []).forEach((association) => {
++          this.add(association, parentElement);
++        });
++      }
+     }
+ 
+     // insert lanes behind other flow nodes (cf. #727)
+@@ -330,4 +340,4 @@ function isPointInsideBBox(bbox, point) {
+     x <= bbox.x + bbox.width &&
+     y >= bbox.y &&
+     y <= bbox.y + bbox.height;
+-}
+\ No newline at end of file
++}

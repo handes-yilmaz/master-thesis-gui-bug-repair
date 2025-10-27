@@ -1,0 +1,28 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "detectLanguageWithAttributes",
+            "file_path": "src/language-markdown/parser-markdown.js",
+            "function_details": [
+                {
+                    "name": "detectLanguageWithAttributes",
+                    "start_line": 34,
+                    "end_line": 43
+                }
+            ],
+            "function_code": [
+                "function detectLanguageWithAttributes() {",
+                "  return ast => map(ast, node => {",
+                "    if (node.type === \"code\" && node.lang) {",
+                "      // Extract the language ignoring any attributes",
+                "      const [language] = node.lang.split(/TEST_CHANGE/);",
+                "      return Object.assign({}, node, { lang: language });",
+                "    }",
+                "    return node;",
+                "  });",
+                "}"
+            ]
+        }
+    }
+}

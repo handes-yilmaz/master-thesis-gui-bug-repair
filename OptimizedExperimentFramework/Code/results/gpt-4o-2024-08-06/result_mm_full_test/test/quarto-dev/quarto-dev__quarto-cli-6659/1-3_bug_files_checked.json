@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/cmd.ts",
+            "src/command/render/render.ts",
+            "src/resources/capabilities/knitr.R"
+        ],
+        "explanation": "The issue is related to rendering figures in Quarto documents with R code blocks. The files likely involved are responsible for rendering logic, especially when handling figure captions and interfacing with R through knitr. `cmd.ts` and `render.ts` in `src/command/render/` are likely handling the rendering process. The `knitr.R` file in `resources/capabilities/` is responsible for executing R code and handling R-specific rendering tasks.",
+        "bug_scenario": "The bug occurs when using Quarto to render a document where an R code block includes a figure with a caption that evaluates to a zero-length character vector. Instead of displaying the figure, the figure disappears when the caption is set to `character(0)`."
+    },
+    "2": {
+        "bug_files": [
+            "src/command/render/cmd.ts",
+            "src/command/render/render.ts",
+            "src/resources/capabilities/knitr.R",
+            "src/core/knitr.ts"
+        ],
+        "explanation": "The files likely related to the bug are those responsible for rendering figures and handling captions in Quarto documents. The `src/render/cmd.ts` and `src/render/render.ts` files manage the rendering process, which could be where the bug manifests when handling `fig-cap` as `character(0)`. The `resources/capabilities/knitr.R` file is directly related to R and knitr, which is part of the rendering process. The `src/core/knitr.ts` likely interacts with knitr settings and figure handling, making it relevant to this issue.",
+        "bug_scenario": "The bug occurs when rendering a Quarto document using an R code block where the `fig-cap` evaluates to `character(0)`, causing the figure to disappear from the output. This happens with specific versions of Quarto, quarto-r, and knitr on R 4.2.1."
+    }
+}

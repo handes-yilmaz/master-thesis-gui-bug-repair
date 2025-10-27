@@ -1,0 +1,22 @@
+diff --git a/src/ol/reproj/Tile.js b/src/ol/reproj/Tile.js
+index 909b125..93f838c 100644
+--- a/src/ol/reproj/Tile.js
++++ b/src/ol/reproj/Tile.js
+@@ -227,7 +227,7 @@ class ReprojTile extends Tile {
+   reproject_() {
+     const sources = [];
+     this.sourceTiles_.forEach(function(tile, i, arr) {
+-      if (tile && tile.getState() == TileState.LOADED) {
++      if (tile && (tile.getState() == TileState.LOADED || tile.getState() == TileState.ABORT)) {
+         sources.push({
+           extent: this.sourceTileGrid_.getTileCoordExtent(tile.tileCoord),
+           image: tile.getImage()
+@@ -271,7 +271,7 @@ class ReprojTile extends Tile {
+       this.sourcesListenerKeys_ = [];
+       this.sourceTiles_.forEach(function(tile, i, arr) {
+         const state = tile.getState();
+-        if (state == TileState.IDLE || state == TileState.LOADING) {
++        if (state == TileState.IDLE || state == TileState.LOADING || state == TileState.ABORT) {
+           leftToLoad++;
+ 
+           const sourceListenKey = listen(tile, EventType.CHANGE,

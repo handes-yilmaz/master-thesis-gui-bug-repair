@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/renderer/canvas/VectorLayer.js"
+        ],
+        "explanation": "1. **src/ol/render/canvas/Immediate.js**: This file contains the `CanvasImmediateRenderer` class, which is responsible for direct rendering of features and geometries to an HTML5 Canvas context. The issue with text rotation and offset likely stems from how this renderer handles text alignment and baseline settings, which differ from the vector layer renderer.\n\n2. **src/ol/render/canvas/TextBuilder.js**: This file includes the `CanvasTextBuilder` class, which is involved in building text instructions for rendering. The handling of text alignment, offset, and rotation in this builder could contribute to the inconsistency observed between different renderers.\n\n3. **src/ol/renderer/canvas/VectorLayer.js**: This file contains the `CanvasVectorLayerRenderer` class, which is the canvas renderer for vector layers. The vector layer renderer's method of handling text alignment and offset is part of the inconsistency issue, as it differs from the immediate renderer's approach.",
+        "bug_scenario": "The bug involves inconsistent rendering of offset and rotated text between vector layers and vector context. Specifically, the vector layer renderer rotates offset text around the feature from which it is offset, while the immediate renderer rotates it around its offset anchor point. This inconsistency is observed when offset and rotation are applied together to text, leading to different behaviors between vector layer and immediate renderers."
+    }
+}

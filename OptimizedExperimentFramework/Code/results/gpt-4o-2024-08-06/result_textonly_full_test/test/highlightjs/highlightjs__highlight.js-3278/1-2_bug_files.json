@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/typescript.js",
+            "src/lib/mode_compiler.js",
+            "src/lib/compiler_extensions.js"
+        ],
+        "explanation": "1. **src/languages/typescript.js**: This file is the most directly related to the issue because it contains the language definition for TypeScript within the highlight.js library. Given that the problem is specific to TypeScript syntax highlighting, any fixes or changes to improve the handling of TypeScript generics would likely occur here.\n\n2. **src/lib/mode_compiler.js**: This file is part of the core library that handles the compilation of language modes. Since the issue involves syntax highlighting breaking due to the use of generics, it's possible that changes or improvements to the mode compilation process could address the problem.\n\n3. **src/lib/compiler_extensions.js**: This file likely contains extensions or additional logic used during the compilation process. If there was a change to how TypeScript generics are processed, it might involve modifications to these extensions to ensure proper syntax highlighting.\n\nOverall, these files are related because they are integral to how highlight.js compiles and applies syntax highlighting rules, especially for TypeScript, which is where the reported issue resides.",
+        "bug_scenario": "The bug report indicates an issue with TypeScript generic types using the `extends` keyword, which breaks subsequent syntax highlighting in the highlight.js library starting from version 10.3.0. This issue affects the highlighting of code in various environments such as VSCode's markdown preview and is visible when using `hljs.highlightBlock` and `hljs.highlight`. The report mentions a possible related commit and provides sample TypeScript code that reproduces the problem. The expected behavior is correct highlighting, as seen when reverting to version 10.2.1."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/typescript.js"
+        ],
+        "explanation": "The file `src/languages/typescript.js` is directly responsible for defining how TypeScript code is highlighted in the library. Since the issue specifically affects TypeScript code, and the regression was noted between versions 10.2.1 and 10.3.0, it is likely that changes to this file introduced the bug. The bug report suggests that a commit related to TypeScript around that version change could be the cause, making this file a primary candidate for investigation and fixing the highlighting issue.",
+        "bug_scenario": "The bug scenario involves a regression in syntax highlighting for TypeScript code using generics with the `extends` keyword. The issue was introduced in version 10.3.0 of the highlight.js library, where the syntax highlighting breaks for code using TypeScript generics. Code that previously highlighted correctly in version 10.2.1 now fails, as evidenced by the bug report and the images provided. The problem seems to be related to changes made in the library's handling of TypeScript language highlighting in version 10.3.0."
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/common/util.js",
+            "src/main/options.js"
+        ],
+        "explanation": "1. **src/language-markdown/parser-markdown.js** and **src/language-markdown/printer-markdown.js**: These files likely handle the parsing and printing of markdown files, respectively. The issue involves improper formatting of markdown content, so changes might be required here to correctly handle nested code blocks and raw HTML.\n\n2. **src/common/util.js**: This file might contain utility functions used across different language parsers, including markdown. The incorrect indentation behavior could be influenced by functions here.\n\n3. **src/main/options.js**: This file deals with formatting options, which could include the 'format on save' behavior. Ensuring the correct handling of markdown-specific options might be necessary to resolve the bug.",
+        "bug_scenario": "The bug occurs when using the 'format on save' feature in VS Code with Prettier on markdown files. Specifically, when raw HTML or nested code blocks are present, each save increases the indentation, causing the format to break. This is particularly problematic with raw HTML, as it continues to shift with each save."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/main/options.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "1. **src/language-markdown/parser-markdown.js**: This file likely contains functions related to parsing Markdown syntax, which would be directly responsible for interpreting nested structures and could be misinterpreting indentation rules.\n\n2. **src/language-markdown/printer-markdown.js**: This file is responsible for printing or formatting Markdown, and any incorrect logic here could cause excessive indentation during saving.\n\n3. **src/main/options.js**: This file may contain configuration options for how Markdown is processed, including formatting and indentation settings.\n\n4. **src/main/parser.js**: This file likely deals with general parsing logic which could affect how nested structures are interpreted and formatted across different language types, including Markdown. Adjustments may be needed to ensure correct handling of nested elements.",
+        "bug_scenario": "The bug involves excessive indentation being added each time a Markdown file with nested code or raw HTML is saved in VS Code using Prettier. The issue becomes apparent in the GIF as the indentation grows with each save, disrupting the intended formatting."
+    }
+}

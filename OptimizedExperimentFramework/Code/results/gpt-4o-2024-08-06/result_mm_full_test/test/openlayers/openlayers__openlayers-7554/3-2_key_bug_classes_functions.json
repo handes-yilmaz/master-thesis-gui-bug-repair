@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/imagevector.js//ol.source.ImageVector",
+            "src/ol/interaction/draw.js//ol.interaction.Draw",
+            "src/ol/layer/vector.js//ol.layer.Vector",
+            "src/ol/renderer/canvas/vectorlayer.js//ol.renderer.canvas.VectorLayer"
+        ],
+        "bug_functions": [
+            "src/ol/source/imagevector.js//ol.source.ImageVector.prototype.canvasFunctionInternal_",
+            "src/ol/source/imagevector.js//ol.source.ImageVector.prototype.renderFeature_",
+            "src/ol/interaction/draw.js//ol.interaction.Draw.prototype.handleEvent",
+            "src/ol/interaction/draw.js//ol.interaction.Draw.prototype.modifyDrawing_",
+            "src/ol/renderer/canvas/vectorlayer.js//ol.renderer.canvas.VectorLayer.prototype.renderFeature"
+        ],
+        "explanation": "The 'ol.source.ImageVector' class is deprecated and its performance is affected in the new version. The 'canvasFunctionInternal_' and 'renderFeature_' methods in 'ol.source.ImageVector' are crucial for rendering vector features on a canvas, which is directly related to the performance issue. The 'ol.interaction.Draw' class and its methods like 'handleEvent' and 'modifyDrawing_' are responsible for handling drawing interactions, which are slow in the new version. The 'ol.layer.Vector' class is involved in rendering vector data, and its 'renderMode' setting is directly related to the performance issue. The 'ol.renderer.canvas.VectorLayer' class and its 'renderFeature' method are responsible for rendering vector layers on a canvas, which is a key part of the performance problem.",
+        "bug_scenario": "The image shows a map with a triangle being drawn over it. The issue is related to the performance of drawing interactions when upgrading from OpenLayers 4.4.2 to 4.6.2, specifically with the deprecation of 'ol.source.ImageVector' and the use of 'renderMode: image'. The performance is significantly slower in version 4.6.2 compared to 4.4.2."
+    }
+}

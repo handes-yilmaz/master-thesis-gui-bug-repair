@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/fsharp.js"
+        ],
+        "explanation": "The file `src/languages/fsharp.js` is directly related to the bug because it likely contains the syntax highlighting rules for F#. Since the issue is with the incorrect interpretation of the `Operators.(*)` function as a multi-line comment, the F# language syntax definitions need to be adjusted to correctly parse and highlight this operator without mistaking it for a comment. This requires changes in how the code is tokenized and recognized by the highlighter, which are typically defined in language-specific files like `fsharp.js`.",
+        "bug_scenario": "The bug scenario involves posting F# code using Discord's codeblock feature. The specific issue arises with using the `Operators.(*)` function in F#. The syntax highlighter incorrectly interprets the rest of the codeblock as a multi-line comment, as it mistakes the `(*)` for the opening of a comment block due to the similarity with F#'s multi-line comment syntax `(* Comment Here *)`. This leads to incorrect highlighting of the code, which is not expected behavior."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/fsharp.js"
+        ],
+        "explanation": "The issue is related to the syntax highlighting for F# language. The `fsharp.js` file within the `src/languages/` directory is responsible for defining the highlighting rules for F#. The problem with the `Operators.(*)` being misinterpreted as a multiline comment likely stems from incorrect parsing or tokenization rules in this file. Adjustments to the regular expressions or parsing logic in `fsharp.js` would be necessary to correctly handle the `Operators.(*)` function without mistaking it for a comment.",
+        "bug_scenario": "The bug occurs when using the `Operators.(*)` function within a codeblock in F# language. The highlighter mistakenly interprets the `(*)` as the start of a multiline comment, causing the rest of the codeblock to be incorrectly highlighted as a comment."
+    }
+}

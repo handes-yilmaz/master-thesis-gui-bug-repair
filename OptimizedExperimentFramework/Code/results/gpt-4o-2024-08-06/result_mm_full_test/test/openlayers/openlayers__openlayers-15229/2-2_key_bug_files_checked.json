@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLPoints.js",
+            "src/ol/renderer/webgl/PointsLayer.js",
+            "src/ol/webgl/styleparser.js"
+        ],
+        "explanation": "1. `src/ol/layer/WebGLPoints.js`: This file contains the `WebGLPointsLayer` class, which is responsible for handling the rendering of point datasets using WebGL. The issue likely stems from how the style properties, including `icon-rotate-with-view`, are parsed and applied, which is managed in this file.\n\n2. `src/ol/renderer/webgl/PointsLayer.js`: This file contains the `WebGLPointsLayerRenderer` class, which is responsible for rendering the points using WebGL. The distortion issue could be related to how the rendering calculations are performed, especially when handling rotation and scaling of icons in a non-square viewport.\n\n3. `src/ol/webgl/styleparser.js`: This file includes functions for parsing style properties into WebGL shaders. The distortion might be due to incorrect parsing or application of the `icon-rotate-with-view` property, which would affect how the icons are rendered in the shaders.",
+        "bug_scenario": "The bug scenario involves icon distortion on the `WebGLPoints` layer when the `icon-rotate-with-view` property is set to true and the viewport is non-square. The provided image shows icons that appear stretched or compressed, indicating a distortion issue when the map view is rotated."
+    }
+}

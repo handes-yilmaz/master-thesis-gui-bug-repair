@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/computed/metrics/lantern-metric.js",
+            "lighthouse-core/lib/dependency-graph/simulator/simulator.js",
+            "lighthouse-core/lib/dependency-graph/simulator/network-analyzer.js"
+        ],
+        "explanation": "The bug is related to how non-network URLs (data URIs) are handled in terms of connection setup and server response time calculation. The files identified are responsible for the simulation of network metrics and the handling of network requests: 1. `lighthouse-core/computed/metrics/lantern-metric.js` likely manages the calculation of metrics that are influenced by network requests. 2. `lighthouse-core/lib/dependency-graph/simulator/simulator.js` appears in the screenshot and is responsible for simulating network connections and response times, which is directly related to the issue of inappropriate server response time logging. 3. `lighthouse-core/lib/network-analyzer.js` is involved in analyzing network records and connections, which could be misidentifying or mishandling data URIs as network requests.",
+        "bug_scenario": "The bug involves non-network URLs being treated as actual network requests in the simulator, leading to incorrect server response times being logged for data URIs. The screenshot shows logging of 'rtt & server response' with values that should not be present for data URIs."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/computed/metrics/lantern-metric.js",
+            "lighthouse-core/lib/dependency-graph/simulator/simulator.js"
+        ],
+        "explanation": "The issue is likely within the Lantern simulation code that handles network requests. The files related to metrics and simulation are good candidates for investigation. Specifically, 'lantern-metric.js' is a key file for Lantern metrics, and 'simulator.js' in the dependency graph module handles the simulation of network requests. Both files might contain logic related to the calculation of server response time and RTT, which needs adjustment for data URIs.",
+        "bug_scenario": "The bug is related to the treatment of non-network URLs (data URIs) as actual network requests, which include server response time in the Lantern simulation. This is incorrect as data URIs should not have a server response time, although a small round-trip time (RTT) is reasonable for simulation purposes."
+    }
+}

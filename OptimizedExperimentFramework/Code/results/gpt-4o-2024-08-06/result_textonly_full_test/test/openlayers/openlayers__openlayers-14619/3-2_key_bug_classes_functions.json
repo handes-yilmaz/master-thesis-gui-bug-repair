@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Icon.js//Icon"
+        ],
+        "bug_functions": [
+            "src/ol/style/Icon.js//clone",
+            "src/ol/style/Icon.js//setScale",
+            "src/ol/style/Icon.js//updateScaleFromWidthAndHeight"
+        ],
+        "explanation": "The class 'Icon' in 'src/ol/style/Icon.js' is directly related to the bug as it handles the icon style, including scale settings. The 'clone' function is responsible for creating a copy of the icon, and the bug report indicates that the issue arises during the cloning process. The 'setScale' function is involved because it sets the scale of the icon, and the bug is related to how the scale is incorrectly set to an array during cloning. The 'updateScaleFromWidthAndHeight' function is also relevant as it recalculates the scale based on width and height, which is part of the problem described in the bug report where height and width are incorrectly used with scale.",
+        "bug_scenario": "The bug scenario involves an issue with the scale value of cloned icons. When an icon's scale is set as a number and the icon is cloned, the scale of the clone is incorrectly set to an array with different values. This occurs because the setScale() function is called with height and width, leading to a conflict where the scale is set to an array instead of maintaining the original number format. The expected behavior is for the cloned icon to retain the same scale and datatype as the original icon."
+    }
+}

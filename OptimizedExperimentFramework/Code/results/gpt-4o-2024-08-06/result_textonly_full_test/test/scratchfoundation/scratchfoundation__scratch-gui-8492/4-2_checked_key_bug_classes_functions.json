@@ -1,0 +1,106 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "Modal",
+            "file_path": "src/containers/modal.jsx",
+            "class_details": [
+                {
+                    "name": "Modal",
+                    "start_line": 8,
+                    "end_line": 47,
+                    "methods": [
+                        {
+                            "name": "constructor",
+                            "start_line": 9,
+                            "end_line": 18
+                        },
+                        {
+                            "name": "componentDidMount",
+                            "start_line": 19,
+                            "end_line": 23
+                        },
+                        {
+                            "name": "componentWillUnmount",
+                            "start_line": 24,
+                            "end_line": 26
+                        },
+                        {
+                            "name": "addEventListeners",
+                            "start_line": 27,
+                            "end_line": 29
+                        },
+                        {
+                            "name": "removeEventListeners",
+                            "start_line": 30,
+                            "end_line": 32
+                        },
+                        {
+                            "name": "handlePopState",
+                            "start_line": 33,
+                            "end_line": 36
+                        },
+                        {
+                            "name": "id",
+                            "start_line": 37,
+                            "end_line": 39
+                        },
+                        {
+                            "name": "pushHistory",
+                            "start_line": 40,
+                            "end_line": 43
+                        },
+                        {
+                            "name": "render",
+                            "start_line": 44,
+                            "end_line": 46
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class Modal extends React.Component {",
+                "    constructor (props) {",
+                "        super(props);",
+                "        bindAll(this, [",
+                "            'addEventListeners',",
+                "            'removeEventListeners',",
+                "            'handlePopState',",
+                "            'pushHistory'",
+                "        ]);",
+                "        this.addEventListeners();",
+                "    }",
+                "    componentDidMount () {",
+                "        // Add a history event only if it's not currently for our modal. This",
+                "        // avoids polluting the history with many entries. We only need one.",
+                "        this.pushHistory(this.id, (history.state === null || history.state !== this.id));",
+                "    }",
+                "    componentWillUnmount () {",
+                "        this.removeEventListeners();",
+                "    }",
+                "    addEventListeners () {",
+                "        window.addEventListener('popstate', this.handlePopState);",
+                "    }",
+                "    removeEventListeners () {",
+                "        window.removeEventListener('popstate', this.handlePopState);",
+                "    }",
+                "    handlePopState () {",
+                "        // Whenever someone navigates, we want to be closed",
+                "        this.props.onRequestClose();",
+                "    }",
+                "    get id () {",
+                "        return `modal-${this.props.id}`;",
+                "    }",
+                "    pushHistory (state, push) {",
+                "        if (push) return history.pushState(state, this.id);",
+                "        history.replaceState(state, this.id);",
+                "    }",
+                "    render () {",
+                "        return <ModalComponent {...this.props} />;",
+                "    }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

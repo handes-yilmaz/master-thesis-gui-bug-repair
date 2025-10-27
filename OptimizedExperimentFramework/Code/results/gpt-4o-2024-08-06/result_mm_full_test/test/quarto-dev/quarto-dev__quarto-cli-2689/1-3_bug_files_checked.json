@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/crossref.ts",
+            "src/resources/filters/crossref/crossref.lua",
+            "src/format/formats.ts"
+        ],
+        "explanation": "1. `src/render/crossref.ts`: This file likely contains the logic for handling cross-reference settings within the rendering process. Modifications here may be necessary to properly support `crossref: false`.\n2. `resources/filters/crossref/crossref.lua`: This script could be responsible for applying cross-referencing filters in document formats. It needs to implement a check for the `crossref: false` setting.\n3. `format/formats.ts`: This file might define the structure and parameters for format configurations, including cross-referencing options. Ensuring `crossref: false` is correctly interpreted here would be crucial.",
+        "bug_scenario": "The bug report indicates an issue with the `crossref: false` setting in the format configuration. The goal is to prevent cross-referencing when this setting is applied, but it's not functioning as expected."
+    },
+    "2": {
+        "bug_files": [
+            "src/command/render/crossref.ts",
+            "src/resources/filters/crossref/crossref.lua",
+            "src/config/format.ts"
+        ],
+        "explanation": "1. `src/render/crossref.ts`: This file likely handles the rendering logic for cross-references. Since the bug involves disabling cross-references, changes might be needed here to support `crossref: false`.\n2. `resources/filters/crossref/crossref.lua`: This Lua script probably manipulates cross-referencing during rendering. It would be directly affected by any configuration changes related to cross-references.\n3. `src/config/format.ts`: This file might define or parse the format configuration, including the `crossref` option, and needs to be updated to correctly process `crossref: false`. ",
+        "bug_scenario": "The bug involves the incorrect handling of the configuration option `crossref: false` in the format settings for HTML. This is depicted in the image showing a code snippet with a YAML configuration, where `crossref: false` is not functioning as expected, indicated by the red underline."
+    }
+}

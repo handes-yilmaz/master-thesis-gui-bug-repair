@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DetachEventBehavior.js",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js"
+        ],
+        "explanation": "1. **DetachEventBehavior.js**: This file contains logic for handling the detachment of Boundary Events from their host elements. The function `preExecute('elements.move', ...)` is responsible for replacing a Boundary Event with an Intermediate Event when it is detached from a shape. The bug report indicates that this conversion is not happening during a batch move, suggesting that this file's logic may not be correctly handling batch operations or multiple elements.\n\n2. **BoundaryEventBehavior.js**: This file manages the behavior of Boundary Events, including their removal under certain conditions. While it primarily deals with connections and gateways, any issues with the handling of Boundary Events could potentially affect their behavior during moves. It is possible that the logic here does not account for batch operations or the specific conditions under which Boundary Events should be converted to Intermediate Events when moved to the canvas.",
+        "bug_scenario": "The bug scenario involves a problem with Boundary Events in a BPMN diagram. When multiple Boundary Events are selected and moved to the canvas in a batch operation, they are not converted to Intermediate Events as expected. Instead, they remain as Boundary Events, which is not the desired behavior. The expected behavior is that such an operation should either be disallowed or the Boundary Events should be automatically converted to Intermediate Events when moved to the canvas."
+    }
+}

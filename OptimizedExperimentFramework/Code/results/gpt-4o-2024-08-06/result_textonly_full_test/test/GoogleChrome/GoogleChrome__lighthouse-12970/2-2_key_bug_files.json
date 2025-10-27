@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/byte-efficiency/render-blocking-resources.js**: This file is responsible for auditing a page to identify resources that block the first paint. The bug report indicates that local resources are incorrectly flagged as render-blocking, suggesting that the logic in this file needs to be adjusted to exclude local resources (file:///) from being considered as render-blocking.\n\n2. **lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js**: This file gathers information about tags that potentially block the first paint, including stylesheets and scripts. Since the issue involves incorrectly identifying local resources as blocking, the logic in this file that determines which resources are considered blocking may need to be updated to exclude local resources.",
+        "bug_scenario": "The bug scenario involves Lighthouse incorrectly identifying local resources (file:///) as render-blocking resources. This is a problem because local resources are blocked from loading, and thus should not be considered as render-blocking. The screenshot provided shows Lighthouse suggesting the removal of a local resource to improve the critical rendering path, which is incorrect behavior."
+    }
+}

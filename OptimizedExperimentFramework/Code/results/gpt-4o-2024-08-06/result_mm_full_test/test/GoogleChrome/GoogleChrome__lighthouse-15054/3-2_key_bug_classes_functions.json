@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "core/audits/bf-cache.js//BFCache",
+            "core/audits/no-unload-listeners.js//NoUnloadListeners",
+            "core/gather/driver/execution-context.js//ExecutionContext",
+            "core/gather/gatherers/global-listeners.js//GlobalListeners"
+        ],
+        "bug_functions": [
+            "core/audits/bf-cache.js//BFCache.audit",
+            "core/audits/no-unload-listeners.js//NoUnloadListeners.audit",
+            "core/gather/driver/execution-context.js//ExecutionContext._getOrCreateIsolatedContextId",
+            "core/gather/gatherers/global-listeners.js//GlobalListeners.getArtifact"
+        ],
+        "explanation": "The 'BFCache' class and its 'audit' function are responsible for checking back/forward cache issues, which are directly related to the bug. The 'NoUnloadListeners' class and its 'audit' function are supposed to detect 'unload' listeners but fail due to the isolated context. The 'ExecutionContext' class and its '_getOrCreateIsolatedContextId' function manage execution contexts, which is crucial for detecting listeners in isolated contexts. The 'GlobalListeners' class and its 'getArtifact' function gather global event listeners, which need to be adjusted to detect listeners in isolated contexts.",
+        "bug_scenario": "The bug involves an extension injecting an 'unload' listener into the main frame, causing the bfcache audit to fail. However, the 'no-unload-listeners' audit passes, and the listener is not visible in DevTools or through 'getEventListeners(window)'. This is because the listener is added in an isolated execution context, making it invisible to standard checks."
+    }
+}

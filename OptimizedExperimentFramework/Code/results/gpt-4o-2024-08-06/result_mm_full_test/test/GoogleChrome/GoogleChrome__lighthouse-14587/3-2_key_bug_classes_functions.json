@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "core/lib/emulation.js//parseUseragentIntoMetadata",
+            "core/lib/emulation.js//emulate"
+        ],
+        "bug_functions": [
+            "core/lib/emulation.js//parseUseragentIntoMetadata",
+            "core/lib/emulation.js//emulate"
+        ],
+        "explanation": "The issue is related to the incorrect display of the device being emulated rather than the real device being used. The `parseUseragentIntoMetadata` function in `core/lib/emulation.js` is responsible for setting the user agent metadata, which includes device details. It defaults to Moto G4 details when the form factor is mobile. The `emulate` function is responsible for setting the user agent and device metrics, which could be overriding the real device settings. These functions need to be adjusted to correctly reflect the use of a real device rather than an emulated one.",
+        "bug_scenario": "The bug scenario involves running Lighthouse on a physical Moto Power G device, but the report incorrectly states 'Emulated Moto G4 with Lighthouse 9.6.8'. The expectation was for the report to indicate testing on a real device."
+    }
+}

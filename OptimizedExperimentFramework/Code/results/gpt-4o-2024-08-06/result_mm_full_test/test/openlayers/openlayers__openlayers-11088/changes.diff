@@ -1,0 +1,29 @@
+diff --git a/src/ol/proj/Projection.js b/src/ol/proj/Projection.js
+index 5736327..3994c3f 100644
+--- a/src/ol/proj/Projection.js
++++ b/src/ol/proj/Projection.js
+@@ -93,7 +93,7 @@ class Projection {
+      * @type {string}
+      */
+     this.axisOrientation_ =
+-      options.axisOrientation !== undefined ? options.axisOrientation : 'enu';
++      options.axisOrientation !== undefined ? options.axisOrientation : 'neu';
+ 
+     /**
+      * @private
+diff --git a/src/ol/proj/transforms.js b/src/ol/proj/transforms.js
+index 7457736..d2c9da0 100644
+--- a/src/ol/proj/transforms.js
++++ b/src/ol/proj/transforms.js
+@@ -63,6 +63,11 @@ export function get(sourceCode, destinationCode) {
+   let transform;
+   if (sourceCode in transforms && destinationCode in transforms[sourceCode]) {
+     transform = transforms[sourceCode][destinationCode];
++  } else {
++    // Fallback to default axis order if not found
++    transform = (coords) => {
++      return [coords[1], coords[0]]; // Swap coordinates
++    };
+   }
+   return transform;
+ }

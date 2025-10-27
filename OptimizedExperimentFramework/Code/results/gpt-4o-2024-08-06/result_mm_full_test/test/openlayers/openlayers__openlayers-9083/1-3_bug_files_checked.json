@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/interaction/Draw.js",
+            "src/ol/events/condition.js",
+            "src/ol/interaction/DragPan.js",
+            "src/ol/MapBrowserEventHandler.js"
+        ],
+        "explanation": "1. **src/ol/interaction/Draw.js**: This file likely contains the logic for drawing interactions, which is directly related to the issue occurring after the 'drawend' event of polygons.\n2. **src/ol/events/condition.js**: Since the bug report mentions the use of the 'altKeyOnly' condition, this file might define the conditions under which events like drawing and dragging are activated or deactivated.\n3. **src/ol/interaction/DragPan.js**: This file would handle the panning interaction of the map, which is the action that fails after drawing ends.\n4. **src/ol/MapBrowserEventHandler.js**: This handler deals with browser events on the map, which includes interactions like drawing and dragging, and could be involved in the conflict occurring after 'drawend'.",
+        "bug_scenario": "The issue occurs when trying to drag the map after finishing drawing a polygon in OpenLayers 5.3.0. The map becomes unresponsive to drag actions, but the problem doesn't occur if the drawing isn't finished or if OpenLayers 4.6.5 is used. The setup involves the 'altKeyOnly' condition for drawing polygons."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/interaction/Draw.js",
+            "src/ol/events/condition.js",
+            "src/ol/MapBrowserEventHandler.js"
+        ],
+        "explanation": "1. **src/ol/interaction/Draw.js**: This file likely contains the logic for drawing interactions, including starting and ending a drawing. The issue occurs specifically at the end of drawing a polygon, so modifications here might affect the drag behavior.\n\n2. **src/ol/events/condition.js**: This file includes conditions that trigger certain events, such as dragging. The bug report mentions 'altKeyOnly' as a condition, which would be managed here.\n\n3. **src/ol/MapBrowserEventHandler.js**: This file handles browser events like dragging. Since the bug is related to map interactions after drawing ends, this file could be relevant for fixing the drag issue post-drawing.",
+        "bug_scenario": "The bug occurs when attempting to drag the map after completing a polygon drawing in OpenLayers 5.3.0. The map becomes undraggable after the drawing ends. However, dragging works if the drawing is not completed. The issue is specific to the 'drawend' event and does not occur in version 4.6.5."
+    }
+}

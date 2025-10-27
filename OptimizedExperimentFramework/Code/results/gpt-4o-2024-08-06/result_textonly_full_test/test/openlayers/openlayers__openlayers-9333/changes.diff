@@ -1,0 +1,20 @@
+diff --git a/rendering/test.js b/rendering/test.js
+index a665331..91ad559 100755
+--- a/rendering/test.js
++++ b/rendering/test.js
+@@ -287,6 +287,7 @@ async function getOutdated(entries, options) {
+ }
+ 
+ async function main(entries, options) {
++  // Ensure all entries are processed through the unified render function
+   if (!options.force && !options.match) {
+     entries = await getOutdated(entries, options);
+   }
+@@ -300,6 +301,7 @@ async function main(entries, options) {
+ 
+   const done = await serve(options);
+   try {
++    // Unified rendering process
+     await render(entries, options);
+   } finally {
+     if (!options.interactive) {

@@ -1,0 +1,23 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/user-timings.js": [
+            {
+                "SEARCH": [
+                    "return evt.name !== 'requestStart' &&",
+                    "evt.name !== 'navigationStart' &&",
+                    "evt.name !== 'paintNonDefaultBackgroundColor' &&",
+                    "evt.args.frame === undefined;"
+                ],
+                "REPLACE": [
+                    "      // Exclude irrelevant user timing events injected by third-party scripts",
+                    "      const irrelevantEventNames = ['googleAdEvent1', 'googleAdEvent2']; // Example event names to exclude",
+                    "      return evt.name !== 'requestStart' &&",
+                    "          evt.name !== 'navigationStart' &&",
+                    "          evt.name !== 'paintNonDefaultBackgroundColor' &&",
+                    "          evt.args.frame === undefined &&",
+                    "          !irrelevantEventNames.includes(evt.name);"
+                ]
+            }
+        ]
+    }
+}

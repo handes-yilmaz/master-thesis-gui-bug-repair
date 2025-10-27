@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Text.js//Text",
+            "src/ol/render/canvas/TextBuilder.js//CanvasTextBuilder"
+        ],
+        "bug_functions": [
+            "src/ol/style/Text.js//getTextAlign",
+            "src/ol/style/Text.js//setTextAlign",
+            "src/ol/render/canvas/TextBuilder.js//drawText",
+            "src/ol/render/canvas/TextBuilder.js//setTextStyle"
+        ],
+        "explanation": "The `Text` class in `src/ol/style/Text.js` is directly related to the bug because it defines the `textAlign` property, which is central to the issue. The `getTextAlign` and `setTextAlign` functions are responsible for retrieving and setting the text alignment, respectively, and are likely involved in the misalignment problem. The `CanvasTextBuilder` class in `src/ol/render/canvas/TextBuilder.js` is also relevant because it handles the rendering of text, including alignment. The `drawText` function is responsible for drawing text on the canvas, and any issues with alignment would manifest here. The `setTextStyle` function is involved in applying text styles, including alignment, to the text being rendered. These classes and functions are critical to diagnosing and fixing the alignment regression.",
+        "bug_scenario": "The bug scenario involves a regression in the text alignment feature of a text styling module. Specifically, the 'start' and 'end' values of the `textAlign` property in the `Text` style are not functioning correctly, leading to incorrect text alignment in rendering tests. This issue was identified when updating reference images for rendering tests, where texts like 'Small text' and 'negative offsetX' were aligned incorrectly."
+    }
+}

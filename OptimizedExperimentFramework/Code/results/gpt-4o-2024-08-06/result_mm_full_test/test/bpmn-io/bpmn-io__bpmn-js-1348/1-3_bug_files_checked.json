@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/rules/BpmnRules.js",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js"
+        ],
+        "explanation": "The `BpmnRules.js` file likely contains the logic that defines permissible connections for message flows in the modeler, including the current incorrect disallowance of connections to intermediate message catch boundary events. The `BoundaryEventBehavior.js` file manages the behavior of boundary events, which includes handling connections and might need adjustments to support message flows targeting intermediate message catch boundary events. Both files are critical in enforcing and potentially modifying the rules and behaviors related to message flows and boundary events.",
+        "bug_scenario": "The bug arises when attempting to connect a message flow from an activity to an intermediate message catch boundary event. The current implementation disallows this connection, contrary to the BPMN 2.0 specification, which states that such connections should be allowed. The images show the modeling tool preventing the connection and a table from the BPMN 2.0 spec indicating permissible message flow connections, supporting the claim that the current behavior is incorrect."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/rules/BpmnRules.js",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js"
+        ],
+        "explanation": "1. `lib/features/rules/BpmnRules.js`: This file likely contains the rules that determine whether certain connections are allowed or disallowed within a BPMN diagram. Modifying the rules to allow message flows to connect to intermediate message catch boundary events would involve changes in this file.\n\n2. `lib/features/modeling/behavior/BoundaryEventBehavior.js`: This file probably contains the logic specific to boundary events. Since the issue involves intermediate message catch boundary events, adjustments in how these events are handled would be necessary to conform to the BPMN 2.0 specification.",
+        "bug_scenario": "The bug report describes an issue where message flows targeting intermediate message catch boundary events are disallowed in the Camunda Modeler, despite being permitted by the BPMN 2.0 specification. The problem can be reproduced by attempting to connect a message flow from an activity to an intermediate message catch boundary event, which the modeler currently disallows. The expected behavior is to allow such connections, as specified in the BPMN 2.0 documentation. The provided images illustrate attempts to create these connections and document the relevant rules from the BPMN spec."
+    }
+}

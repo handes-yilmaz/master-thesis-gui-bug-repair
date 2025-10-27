@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-cli/performance-experiment/report/perf-x-report-generator.js",
+            "lighthouse-core/audits/first-meaningful-paint.js",
+            "lighthouse-core/gather/computed/speedline.js",
+            "lighthouse-core/lib/traces/tracing-processor.js"
+        ],
+        "explanation": "1. **lighthouse-cli/performance-experiment/report/perf-x-report-generator.js**: This file is likely responsible for generating performance reports, including 'First Meaningful Paint'.\n\n2. **lighthouse-core/audits/first-meaningful-paint.js**: This file directly relates to the calculation of 'First Meaningful Paint', where the error is manifested.\n\n3. **lighthouse-core/gather/computed/speedline.js**: Speedline is used to compute visual metrics like 'First Meaningful Paint', and the error might be originating from this computation.\n\n4. **lighthouse-core/lib/traces/tracing-processor.js**: This file processes trace events, which likely includes the 'ts' property (timestamp) that is undefined, causing the error.",
+        "bug_scenario": "The error 'Cannot read property 'ts' of undefined' occurs during the generation of a report by a Chrome extension. This error is specifically seen in the context of calculating the 'First Meaningful Paint', which suggests an issue with accessing a timestamp property that is expected but not defined."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/first-meaningful-paint.js",
+            "lighthouse-core/gather/computed/trace-of-tab.js",
+            "lighthouse-core/lib/traces/tracing-processor.js"
+        ],
+        "explanation": "The error is likely related to the 'First meaningful paint' audit, which is part of the performance metrics. The file 'lighthouse-core/audits/first-meaningful-paint.js' directly handles this audit. The file 'lighthouse-core/gather/computed/trace-of-tab.js' manages trace data and timestamps, which are crucial for determining meaningful paint. Additionally, 'lighthouse-core/lib/traces/tracing-processor.js' processes trace events, which might be where the undefined 'ts' property is accessed. These files are likely involved in the issue due to their roles in handling trace data and performance metrics.",
+        "bug_scenario": "The error 'Cannot read property 'ts' of undefined' occurs when attempting to generate a report after a Chrome extension update. This error is related to the 'First meaningful paint' metric, which indicates a problem in accessing a property within a JavaScript object that is not properly defined or initialized."
+    }
+}

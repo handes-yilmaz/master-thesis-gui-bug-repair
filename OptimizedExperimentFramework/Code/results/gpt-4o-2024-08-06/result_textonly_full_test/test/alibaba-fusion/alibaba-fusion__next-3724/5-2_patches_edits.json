@@ -1,0 +1,40 @@
+{
+    "1/1": {
+        "src/transfer/view/transfer.jsx": [
+            {
+                "SEARCH": [
+                    "searchProps: PropTypes.object,"
+                ],
+                "REPLACE": [
+                    "        searchProps: PropTypes.oneOfType([",
+                    "            PropTypes.object,",
+                    "            PropTypes.shape({",
+                    "                left: PropTypes.object,",
+                    "                right: PropTypes.object,",
+                    "            }),",
+                    "        ]),"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "searchProps,"
+                ],
+                "REPLACE": [
+                    "            searchProps: typeof searchProps === 'object' && ('left' in searchProps || 'right' in searchProps)",
+                    "                ? searchProps[position]",
+                    "                : searchProps,"
+                ]
+            }
+        ],
+        "src/transfer/view/transfer-panel.jsx": [
+            {
+                "SEARCH": [
+                    "const positionSpecificSearchProps = searchProps[position] || {};"
+                ],
+                "REPLACE": [
+                    "        const positionSpecificSearchProps = searchProps || {};"
+                ]
+            }
+        ]
+    }
+}

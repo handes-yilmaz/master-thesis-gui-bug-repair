@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/label-editing/LabelEditingProvider.js"
+        ],
+        "explanation": "1. **lib/draw/BpmnRenderer.js**: This file is responsible for rendering BPMN elements, including sub-processes and their labels. The issue with labels becoming visible and misaligned when a sub-process is collapsed likely involves rendering logic that fails to hide or correctly position these labels.\n\n2. **lib/features/modeling/behavior/LabelBehavior.js**: This file manages the behavior of labels, including their creation, update, and positioning. The problem with labels not being hidden or positioned correctly when a sub-process is collapsed suggests a bug in how label behavior is handled during the transition from expanded to collapsed states.\n\n3. **lib/features/label-editing/LabelEditingProvider.js**: This file deals with the direct editing of labels, including their activation and bounding box calculations. The misalignment of labels when a sub-process is collapsed may be due to incorrect calculations or updates to label positions during the editing process.",
+        "bug_scenario": "The bug scenario involves an issue with the visibility of labels in a BPMN diagram when a sub-process is collapsed. Specifically, after changing a sub-process to a collapsed state, the labels of the start, task, and end events inside the sub-process become visible and misaligned, with the start event label moving far outside its expected position. This issue occurs only when clicking through the steps, and not during import or export of the diagram."
+    }
+}

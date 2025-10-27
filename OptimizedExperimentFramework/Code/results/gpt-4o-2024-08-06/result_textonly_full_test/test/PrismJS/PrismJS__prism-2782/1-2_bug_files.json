@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-basic.js"
+        ],
+        "explanation": "The explanation suggests that the problem might be related to the regex pattern used for string recognition in the `prism-basic.js` file. The regex pattern for strings should correctly handle the '@' symbol within strings, but it seems it currently does not, leading to the incorrect syntax highlighting of VB.NET code that includes such symbols. Therefore, modifying the regex pattern in `prism-basic.js` to include '@' as a valid character within strings could resolve the issue, making this file directly related to the bug.",
+        "bug_scenario": "The bug report describes an issue where the syntax highlighting for VB.NET code fails to properly recognize strings containing an '@' symbol when quotes are used. In the example provided, the line with '@Code' is incorrectly highlighted compared to the line without it. This issue is visible in the image linked and the test page provided."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-basic.js",
+            "components/prism-vbnet.js"
+        ],
+        "explanation": "The bug is related to the syntax highlighting behavior of the Prism library, specifically for VB.NET code. The string pattern defined in `prism-basic.js` is not correctly handling the '@' symbol within strings, which is causing the incorrect highlighting. The file `prism-basic.js` contains the string pattern configuration that needs modification to include the '@' symbol as part of the string pattern. The `prism-vbnet.js` file is relevant because it is responsible for handling VB.NET syntax highlighting specifically, and any change to the string pattern should be reflected or tested here to ensure VB.NET code is highlighted correctly. Adjustments in these files would prevent regression issues and ensure proper syntax recognition in VB.NET language support.",
+        "bug_scenario": "The bug scenario involves an incorrect syntax highlighting when using an '@' symbol within a string in a VB.NET code snippet. In the provided example, the line `bob = new SqlCommand(\"Select * from test Where Code=@Code\");` is not highlighted correctly due to the presence of the '@' symbol, whereas a similar line without the '@' symbol is highlighted correctly."
+    }
+}

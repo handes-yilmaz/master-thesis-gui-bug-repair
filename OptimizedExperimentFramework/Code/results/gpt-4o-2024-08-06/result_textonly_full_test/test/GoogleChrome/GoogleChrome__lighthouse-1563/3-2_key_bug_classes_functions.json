@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/user-timings.js//UserTimings"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/user-timings.js//filterTrace"
+        ],
+        "explanation": "The class 'UserTimings' in 'lighthouse-core/audits/user-timings.js' is directly responsible for handling user timing marks and measures. The function 'filterTrace' within this class is specifically tasked with filtering trace events to identify relevant user timing events. The bug report indicates a need to filter out irrelevant user timing marks, which is precisely the role of the 'filterTrace' function. This function already contains logic to exclude certain events, such as those with frame data or specific names like 'requestStart'. Therefore, it is the key function that would need modification to address the bug by expanding its filtering criteria to exclude additional irrelevant events, such as those injected by Google Ads.",
+        "bug_scenario": "The bug scenario involves filtering out irrelevant user timing marks from performance traces. The issue arises because certain injected measurements, such as those from Google Ads, are cluttering the performance data with unnecessary user timing events."
+    }
+}

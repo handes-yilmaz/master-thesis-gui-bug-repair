@@ -1,0 +1,30 @@
+diff --git a/src/number-picker/number-picker.jsx b/src/number-picker/number-picker.jsx
+index b817680..f3535e4 100644
+--- a/src/number-picker/number-picker.jsx
++++ b/src/number-picker/number-picker.jsx
+@@ -511,6 +511,7 @@ class NumberPicker extends React.Component {
+                 </Button>
+             );
+         }
++        innerAfterClassName = `${prefixCls}-handler-after`;
+ 
+         const others = obj.pickOthers(NumberPicker.propTypes, this.props);
+         const dataAttrs = obj.pickAttrsWith(this.props, 'data-');
+diff --git a/src/overlay/utils/position.js b/src/overlay/utils/position.js
+index db8c3df..f4559be 100644
+--- a/src/overlay/utils/position.js
++++ b/src/overlay/utils/position.js
+@@ -39,11 +39,11 @@ function _getElementRect(elem) {
+     return {
+         top:
+             offsetTop -
+-            scrollTop -
++            scrollTop +
+             (document.documentElement.scrollTop || document.body.scrollTop),
+         left:
+             offsetLeft -
+-            scrollLeft -
++            scrollLeft +
+             (document.documentElement.scrollLeft || document.body.scrollLeft),
+         height: offsetHeight,
+         width: offsetWidth,

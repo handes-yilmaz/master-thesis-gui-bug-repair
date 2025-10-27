@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/uses-optimized-images.js": [
+            {
+                "SEARCH": [
+                    "const IGNORE_THRESHOLD_IN_BYTES = 4096;"
+                ],
+                "REPLACE": [
+                    "const IGNORE_THRESHOLD_IN_BYTES = 1024; // Lower the threshold to 1 KB"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js": [
+            {
+                "SEARCH": [
+                    "const MINIMUM_IMAGE_SIZE = 4096; // savings of <4 KB will be ignored in the audit anyway"
+                ],
+                "REPLACE": [
+                    "const MINIMUM_IMAGE_SIZE = 1024; // Lower the minimum image size to 1 KB"
+                ]
+            }
+        ]
+    }
+}

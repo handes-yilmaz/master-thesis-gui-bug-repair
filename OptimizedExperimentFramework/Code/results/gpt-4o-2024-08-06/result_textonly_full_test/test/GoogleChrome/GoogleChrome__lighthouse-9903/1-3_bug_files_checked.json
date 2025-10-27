@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/uses-rel-preconnect.js",
+            "lighthouse-core/gather/gatherers/link-elements.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/uses-rel-preconnect.js`: This file is directly related to the audit that checks for preconnect links. Any issues with the detection logic or criteria that determine whether a preconnect link is necessary or already present would likely be in this file.\n\n2. `lighthouse-core/gather/gatherers/link-elements.js`: This file likely handles the gathering of link elements from the page. If it fails to correctly identify existing preconnect links, it could lead to the audit suggesting unnecessary additions.\n\n3. `lighthouse-core/lib/network-recorder.js`: This file might be involved in recording network requests and responses. If there are issues with how it records or identifies connections that have been preconnected, it could lead to incorrect suggestions in the audit results.",
+        "bug_scenario": "The bug report describes an issue where the Lighthouse report continues to suggest adding preconnect links to certain origins even after they have already been added. This indicates a problem with the way Lighthouse is detecting or processing these preconnect links."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/uses-rel-preconnect.js",
+            "lighthouse-core/gather/gatherers/link-elements.js"
+        ],
+        "explanation": "The file `lighthouse-core/audits/uses-rel-preconnect.js` is directly related to the bug because it contains the logic for the audit that checks for preconnected origins. This file likely includes the criteria and logic that determine when and how preconnect suggestions are made, and would need to be examined to understand why suggestions persist despite preconnects being added.\\n\\nThe file `lighthouse-core/gather/gatherers/link-elements.js` is relevant because it gathers information about link elements on the page, including those with rel='preconnect'. This gathering process is crucial for the preconnect audit to function, as it determines which links are present and which may be suggested. If there are issues with how links are detected or recorded, this could lead to incorrect audit results.",
+        "bug_scenario": "The bug scenario involves the Lighthouse tool repeatedly suggesting the addition of preconnect links to certain origins, even after these links have been added. The user is confused as to why Lighthouse continues to recommend these additions, and questions the limit on the number of preconnects that can be added."
+    }
+}

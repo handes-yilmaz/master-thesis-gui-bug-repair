@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/audits/user-timings.js b/lighthouse-core/audits/user-timings.js
+index 981c9ef..af5baa4 100644
+--- a/lighthouse-core/audits/user-timings.js
++++ b/lighthouse-core/audits/user-timings.js
+@@ -116,7 +116,7 @@ class UserTimings extends Audit {
+         return {
+           name: item.name,
+           timingType: item.isMark ? 'Mark' : 'Measure',
+-          time: time.toLocaleString() + ' ms',
++          time: time.toLocaleString(undefined, {maximumFractionDigits: 2, minimumFractionDigits: 2}) + ' ms',
+           timeAsNumber: time,
+         };
+       }).sort((itemA, itemB) => {

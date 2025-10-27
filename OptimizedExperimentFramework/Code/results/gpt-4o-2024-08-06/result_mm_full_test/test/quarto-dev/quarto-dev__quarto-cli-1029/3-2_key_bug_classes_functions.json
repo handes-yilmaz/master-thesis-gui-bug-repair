@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/format/reveal/format-reveal.ts//applyStretch"
+        ],
+        "bug_functions": [
+            "src/format/reveal/format-reveal.ts//applyStretch"
+        ],
+        "explanation": "The `applyStretch` function in `format-reveal.ts` is responsible for adding the stretch class to images in slides with only one image. This function likely contains the logic that determines how images are stretched and positioned in relation to other elements like `aside`. Adjusting this function to account for the presence of `aside` and ensuring it takes priority over image stretching would address the reported issue.",
+        "bug_scenario": "The bug involves a conflict between the `aside` class and the `r-stretch` class in reveal.js slides. When a slide contains a single figure, the figure is stretched excessively, causing the `aside` content to overlap with the bottom of the figure. If the figure has a caption, it extends below the `aside` content. The desired behavior is for the `aside` content to take priority, occupying the bottom part of the slide, while the figure should be stretched only to the top of the `aside` block."
+    }
+}

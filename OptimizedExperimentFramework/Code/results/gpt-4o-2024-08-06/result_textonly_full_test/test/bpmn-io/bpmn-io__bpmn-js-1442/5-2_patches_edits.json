@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "lib/features/copy-paste/BpmnCopyPaste.js": [
+            {
+                "SEARCH": [
+                    "function copyProperties(source, target, properties) {",
+                    "if (!isArray(properties)) {",
+                    "properties = [ properties ];",
+                    "}",
+                    "",
+                    "forEach(properties, function(property) {",
+                    "if (!isUndefined(source[property])) {",
+                    "target[property] = source[property];",
+                    "}",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function copyProperties(source, target, properties) {",
+                    "  if (!isArray(properties)) {",
+                    "    properties = [ properties ];",
+                    "  }",
+                    "",
+                    "  forEach(properties, function(property) {",
+                    "    if (!isUndefined(source[property])) {",
+                    "      target[property] = source[property];",
+                    "    }",
+                    "  });",
+                    "",
+                    "  // Additional logic to handle multiple shapes",
+                    "  if (isArray(source) && source.length > 1) {",
+                    "    // Implement logic to handle multiple shapes being pasted",
+                    "    // This could involve checking the target type and adjusting connections",
+                    "    // appropriately to ensure logical connections",
+                    "  }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

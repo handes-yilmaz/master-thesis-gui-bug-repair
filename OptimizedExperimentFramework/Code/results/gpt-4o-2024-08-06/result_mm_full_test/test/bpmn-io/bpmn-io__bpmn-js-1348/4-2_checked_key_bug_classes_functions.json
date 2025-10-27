@@ -1,0 +1,84 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "canConnectMessageFlow",
+            "file_path": "lib/features/rules/BpmnRules.js",
+            "function_details": [
+                {
+                    "name": "canConnectMessageFlow",
+                    "start_line": 836,
+                    "end_line": 849
+                }
+            ],
+            "function_code": [
+                "function canConnectMessageFlow(source, target) {",
+                "",
+                "  // during connect user might move mouse out of canvas",
+                "  // https://github.com/bpmn-io/bpmn-js/issues/1033",
+                "  if (getRootElement(source) && !getRootElement(target)) {",
+                "    return false;",
+                "  }",
+                "",
+                "  return (",
+                "    isMessageFlowSource(source) &&",
+                "    isMessageFlowTarget(target) &&",
+                "    !isSameOrganization(source, target)",
+                "  );",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "canConnect",
+            "file_path": "lib/features/rules/BpmnRules.js",
+            "function_details": [
+                {
+                    "name": "canConnect",
+                    "start_line": 401,
+                    "end_line": 439
+                }
+            ],
+            "function_code": [
+                "function canConnect(source, target, connection) {",
+                "",
+                "  if (nonExistingOrLabel(source) || nonExistingOrLabel(target)) {",
+                "    return null;",
+                "  }",
+                "",
+                "  if (!is(connection, 'bpmn:DataAssociation')) {",
+                "",
+                "    if (canConnectMessageFlow(source, target)) {",
+                "      return { type: 'bpmn:MessageFlow' };",
+                "    }",
+                "",
+                "    if (canConnectSequenceFlow(source, target)) {",
+                "      return { type: 'bpmn:SequenceFlow' };",
+                "    }",
+                "  }",
+                "",
+                "  var connectDataAssociation = canConnectDataAssociation(source, target);",
+                "",
+                "  if (connectDataAssociation) {",
+                "    return connectDataAssociation;",
+                "  }",
+                "",
+                "  if (isCompensationBoundary(source) && isForCompensation(target)) {",
+                "    return {",
+                "      type: 'bpmn:Association',",
+                "      associationDirection: 'One'",
+                "    };",
+                "  }",
+                "",
+                "  if (canConnectAssociation(source, target)) {",
+                "",
+                "    return {",
+                "      type: 'bpmn:Association'",
+                "    };",
+                "  }",
+                "",
+                "  return false;",
+                "}"
+            ]
+        }
+    }
+}

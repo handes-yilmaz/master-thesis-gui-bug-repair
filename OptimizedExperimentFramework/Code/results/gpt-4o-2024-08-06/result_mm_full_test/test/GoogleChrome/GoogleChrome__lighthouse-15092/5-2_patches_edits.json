@@ -1,0 +1,44 @@
+{
+    "1/1": {
+        "core/audits/byte-efficiency/efficient-animated-content.js": [
+            {
+                "SEARCH": [
+                    "const GIF_BYTE_THRESHOLD = 100 * 1024;"
+                ],
+                "REPLACE": [
+                    "const GIF_BYTE_THRESHOLD = 50 * 1024; // Lowered threshold to flag more GIFs"
+                ]
+            }
+        ],
+        "core/audits/byte-efficiency/modern-image-formats.js": [
+            {
+                "SEARCH": [
+                    "const IGNORE_THRESHOLD_IN_BYTES = 8192;"
+                ],
+                "REPLACE": [
+                    "const IGNORE_THRESHOLD_IN_BYTES = 4096; // Lowered threshold to catch more inefficient images"
+                ]
+            }
+        ],
+        "core/audits/byte-efficiency/offscreen-images.js": [
+            {
+                "SEARCH": [
+                    "const ALLOWABLE_OFFSCREEN_IN_PX = 100;"
+                ],
+                "REPLACE": [
+                    "const ALLOWABLE_OFFSCREEN_IN_PX = 50; // Reduced to catch more offscreen images"
+                ]
+            }
+        ],
+        "core/audits/byte-efficiency/uses-responsive-images.js": [
+            {
+                "SEARCH": [
+                    "const IGNORE_THRESHOLD_IN_BYTES = 4096;"
+                ],
+                "REPLACE": [
+                    "const IGNORE_THRESHOLD_IN_BYTES = 2048; // Lowered to catch more non-responsive images"
+                ]
+            }
+        ]
+    }
+}

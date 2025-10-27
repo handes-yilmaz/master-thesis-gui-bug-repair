@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/menu/view/item.jsx",
+            "src/menu/view/menu.jsx",
+            "src/select/index.jsx",
+            "src/cascader/index.jsx",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "These files are related to the components where the title attribute is automatically set.\\n- `src/menu/view/item.jsx` and `src/menu/view/menu.jsx`: These files likely handle the rendering of Menu Items and the Menu itself, where the title attribute logic is applied.\\n- `src/select/index.jsx` and `src/cascader/index.jsx`: These components are mentioned in the report as having similar issues with title attributes.\\n- `src/config-provider/config.jsx`: This file might be related to the configuration options, potentially housing the API or function to toggle the title attribute functionality.",
+        "bug_scenario": "The bug is related to the automatic addition of the 'title' attribute to Menu Items. The current implementation shows the title when the user hovers over a menu item for 3 seconds. This is meant to help screen readers and display long, truncated text. However, this behavior can violate WCAG principles by duplicating text content and can be undesirable for some business users who do not want title tooltips on their pages."
+    },
+    "2": {
+        "bug_files": [
+            "src/menu/view/item.jsx",
+            "src/balloon/util.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "1. **src/menu/view/item.jsx**: This file likely handles the rendering of individual Menu Items where the 'title' attribute is being set. Adjustments here could control when and how the 'title' is applied.\n2. **src/menu/util.js**: Utility functions related to the Menu component might include logic for handling attributes like 'title'.\n3. **src/config-provider/config.jsx**: This file might manage configuration settings, such as the proposed 'showTitle' API, affecting how titles are handled across components.",
+        "bug_scenario": "The bug involves the automatic addition of the 'title' attribute to Menu Items, which appears when the user hovers over an item for 3 seconds. This behavior is intended for accessibility and to show truncated text but violates WCAG guidelines when the title and innerText are identical. Users are also impacted by unwanted tooltip pop-ups."
+    }
+}

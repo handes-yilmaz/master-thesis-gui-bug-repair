@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "lighthouse-core/computed/metrics/interactive.js": [
+            {
+                "SEARCH": [
+                    "throw new LHError(",
+                    "cpuCandidate",
+                    "? LHError.errors.NO_TTI_NETWORK_IDLE_PERIOD",
+                    ": LHError.errors.NO_TTI_CPU_IDLE_PERIOD",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    // If no overlapping quiet periods are found, check if the page is idle immediately after FCP",
+                    "    if (!cpuCandidate && !networkCandidate) {",
+                    "      const FcpTsInMs = traceOfTab.timestamps.firstContentfulPaint / 1000;",
+                    "      const traceEndTsInMs = traceOfTab.timestamps.traceEnd / 1000;",
+                    "      if (traceEndTsInMs - FcpTsInMs >= REQUIRED_QUIET_WINDOW) {",
+                    "        return {",
+                    "          cpuQuietPeriod: {start: FcpTsInMs, end: traceEndTsInMs},",
+                    "          networkQuietPeriod: {start: FcpTsInMs, end: traceEndTsInMs},",
+                    "          cpuQuietPeriods: [{start: FcpTsInMs, end: traceEndTsInMs}],",
+                    "          networkQuietPeriods: [{start: FcpTsInMs, end: traceEndTsInMs}],",
+                    "        };",
+                    "      }",
+                    "    }",
+                    "    throw new LHError(LHError.errors.NO_TTI_CPU_IDLE_PERIOD);"
+                ]
+            }
+        ]
+    }
+}

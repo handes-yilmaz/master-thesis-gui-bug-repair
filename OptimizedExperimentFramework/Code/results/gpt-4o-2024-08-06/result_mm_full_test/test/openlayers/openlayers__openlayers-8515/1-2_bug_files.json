@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/interaction/Select.js",
+            "src/ol/layer/Vector.js"
+        ],
+        "explanation": "The issue is related to the rendering order of layers, specifically how the select interaction affects layer zIndex. The `Select.js` file is responsible for the selection interaction, which likely handles the rendering order. The `Vector.js` file manages vector layers, which are being affected by the `Select` interaction. Adjustments in these files might be needed to ensure correct zIndex handling.",
+        "bug_scenario": "The feature `ol.select.Interaction` appears to always render above other layers, regardless of the zIndex settings. The expected behavior is for the red dots (simulating a 'hover' effect) to appear above the selected feature, but they are rendered below."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/interaction/Select.js",
+            "src/ol/layer/Vector.js"
+        ],
+        "explanation": "The file `src/ol/interaction/Select.js` is responsible for the selection interaction, which directly pertains to the behavior of selected features being displayed on top. Modifying this file could allow changes to the zIndex handling of selected features. The file `src/ol/layer/Vector.js` is related to vector layers, where zIndex settings might be managed, affecting the rendering order of layers and interactions.",
+        "bug_scenario": "The issue described involves the `ol.select.Interaction` feature in OpenLayers, where selected features are always displayed on top, regardless of zIndex settings. The desired behavior is to have the hover effect (represented by red dots) appear above the selected feature when using a custom SVG icon."
+    }
+}

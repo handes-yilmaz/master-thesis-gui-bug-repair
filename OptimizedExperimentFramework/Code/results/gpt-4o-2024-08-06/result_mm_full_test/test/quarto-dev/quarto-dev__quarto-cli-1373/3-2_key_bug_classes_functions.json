@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/render/codetools.ts//CodeTools",
+            "src/command/render/codetools.ts//resolveCodeTools"
+        ],
+        "bug_functions": [
+            "src/command/render/codetools.ts//resolveKeepSource",
+            "src/command/render/codetools.ts//codeToolsPostprocessor"
+        ],
+        "explanation": "The issue is related to how the `code-tools` feature processes the `source` attribute. The `resolveKeepSource` function is responsible for determining whether the source should be kept based on the `code-tools` configuration. The `codeToolsPostprocessor` function handles the post-processing of the document to add the code tools menu. The `CodeTools` interface and `resolveCodeTools` function are involved in resolving the configuration for code tools, including whether the source should be shown or toggled. These elements are crucial for ensuring the `code-tools` menu appears correctly when a URL is used for the `source`.",
+        "bug_scenario": "The `code-tools` menu does not appear when using a URL for the `source` in a Quarto document. It works correctly when `source: true` is used instead."
+    }
+}

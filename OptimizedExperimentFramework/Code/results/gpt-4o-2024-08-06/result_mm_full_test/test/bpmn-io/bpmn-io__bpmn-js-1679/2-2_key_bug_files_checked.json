@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/util/ModelUtil.js"
+        ],
+        "explanation": "1. **UpdateModdlePropertiesHandler.js**: This file handles the execution and reversion of moddle properties, which is crucial for updating the XML representation of BPMN elements when toggling between Parallel and Sequential.\n\n2. **UpdatePropertiesHandler.js**: This file is responsible for updating BPMN element properties, which includes handling changes to the multi-instance loop characteristics.\n\n3. **ModelUtil.js**: This utility file provides functions to interact with BPMN elements, such as checking types and getting business objects, which are essential for correctly updating the XML labels.",
+        "bug_scenario": "The bug involves toggling between Parallel and Sequential in a multi-instance loop without updating the XML label as expected. The XML should reflect the changes with <bpmn:multiInstanceLoopCharacteristics /> or <bpmn:multiInstanceLoopCharacteristics isSequential=\"true\" />."
+    }
+}

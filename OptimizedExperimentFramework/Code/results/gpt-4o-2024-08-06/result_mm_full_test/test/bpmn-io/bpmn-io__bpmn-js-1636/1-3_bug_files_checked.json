@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/modeling/behavior/CreateBehavior.js",
+            "lib/features/replace/BpmnReplace.js"
+        ],
+        "explanation": "1. **SubProcessStartEventBehavior.js**: This file likely handles the behavior specific to subprocesses and could contain logic to add a start event when a subprocess is created.\n2. **CreateBehavior.js**: This file is responsible for handling creation behaviors in the modeling process. It might include logic that could be modified to ensure a start event is added during the creation of an expanded subprocess.\n3. **BpmnReplace.js**: This file likely manages the replacement or morphing of elements. It might need adjustments to ensure the morphing process includes the addition of a start event when changing a call activity to an expanded subprocess.",
+        "bug_scenario": "The bug occurs when morphing a call activity to an expanded subprocess, where the subprocess is created without a start event, leading to a confusing user experience. The expected behavior is that the expanded subprocess should include a start event, similar to the behavior when morphing from a task."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "1. `SubProcessStartEventBehavior.js` is likely responsible for the behaviors related to subprocess start events. Adjusting this could ensure a start event is added when morphing.\n2. `ToggleElementCollapseBehaviour.js` may handle the transition from collapsed to expanded subprocesses, and ensuring this transition includes adding a start event is essential.\n3. `Modeling.js` generally manages modeling operations and transformations, including morphing activities. Modifications here might be necessary to integrate the desired behavior of including a start event during morphing.",
+        "bug_scenario": "When morphing a call activity to an expanded subprocess, the subprocess appears very small and resembles a task without a start event, which is confusing for the user. The expected behavior is to have the expanded subprocess include a start event, similar to the morphing behavior from a task to a subprocess."
+    }
+}

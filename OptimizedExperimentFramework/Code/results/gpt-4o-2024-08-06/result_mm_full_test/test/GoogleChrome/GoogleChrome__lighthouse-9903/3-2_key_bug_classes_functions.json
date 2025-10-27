@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/uses-rel-preconnect.js//UsesRelPreconnectAudit"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/uses-rel-preconnect.js//audit",
+            "lighthouse-core/audits/uses-rel-preconnect.js//hasValidTiming",
+            "lighthouse-core/audits/uses-rel-preconnect.js//hasAlreadyConnectedToOrigin",
+            "lighthouse-core/audits/uses-rel-preconnect.js//socketStartTimeIsBelowThreshold"
+        ],
+        "explanation": "The `UsesRelPreconnectAudit` class and its functions are responsible for determining which origins should be preconnected. The `audit` function performs the main logic of checking network records and determining if preconnect suggestions are necessary. The `hasValidTiming`, `hasAlreadyConnectedToOrigin`, and `socketStartTimeIsBelowThreshold` functions are used to filter and validate network requests, which directly affect the audit results. These elements are crucial in understanding why the preconnect suggestions keep appearing even after origins are added.",
+        "bug_scenario": "The bug scenario involves a Lighthouse report suggesting preconnect to certain origins even after they have been added. The user is confused about why new origins keep appearing and how to determine which are important for preconnect. The expectation is that once origins are added, the report should not suggest them again."
+    }
+}

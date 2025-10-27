@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/dart.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "1. **src/languages/dart.js**: This file is likely responsible for defining the syntax rules and highlighting patterns specific to Dart. The bug is related to how Dart code is highlighted, specifically with block comments, so adjustments in this file would be necessary to handle empty block comments correctly.\n\n2. **src/lib/modes.js**: This file might contain general logic for handling different language modes and could be responsible for how comments are processed across different languages. Since the issue involves breaking the syntax highlighting, there might be a need to adjust how modes handle block comments, particularly empty ones.",
+        "bug_scenario": "The issue is with Dart code syntax highlighting when empty block comments are used. The provided sample code shows that using /**/ for block comments in Dart causes a problem with syntax highlighting, as it breaks further highlighting of the code."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/dart.js",
+            "src/lib/modes.js",
+            "src/lib/html_renderer.js"
+        ],
+        "explanation": "1. **src/languages/dart.js**: This file is likely responsible for defining how Dart syntax is highlighted. Since the issue is specific to Dart, the logic handling Dart-specific comments and syntax needs to be inspected and potentially modified to ensure that empty block comments do not disrupt syntax highlighting.\n\n2. **src/lib/modes.js**: This file might handle the parsing and mode-switching logic for different languages. The bug involves how syntax modes are applied after encountering comments, so adjustments here might be needed to ensure proper continuation of highlighting after block comments.\n\n3. **src/lib/html_renderer.js**: This file is likely involved with rendering the highlighted syntax as HTML. If the problem is not solely with parsing but also with how the parsed tokens are displayed, changes here could correct the display issue after encountering comments.",
+        "bug_scenario": "The issue described is related to syntax highlighting in Dart code. The specific problem is that an empty block comment (i.e., `/**/`) in Dart breaks further syntax highlighting, which means that any code following such a comment is not highlighted correctly. This is demonstrated with a simple Dart program `/**/main(){print(\"Hello, World!\");}/**/`, where the expected behavior is that the code should be highlighted correctly despite the presence of empty block comments."
+    }
+}

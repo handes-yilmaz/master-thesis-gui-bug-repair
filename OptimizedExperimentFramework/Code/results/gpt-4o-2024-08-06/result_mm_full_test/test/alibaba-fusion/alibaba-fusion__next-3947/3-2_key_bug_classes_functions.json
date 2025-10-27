@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/form/form.jsx//Form",
+            "src/form/enhance.jsx//getRules"
+        ],
+        "bug_functions": [
+            "src/form/enhance.jsx//getRules",
+            "src/form/enhance.jsx//getFieldInitCfg"
+        ],
+        "explanation": "The Form class in 'src/form/form.jsx' is central to the form component and includes properties like useLabelForErrorMessage and errorMessageLabel, which are directly related to the bug. The getRules function in 'src/form/enhance.jsx' is responsible for generating validation rules, and it uses the labelForErrorMessage and errorMessageLabel properties to set alias names for error messages. This function needs to be updated to ensure the new API works correctly. Additionally, getFieldInitCfg in the same file uses getRules and is involved in initializing field configurations, making it relevant to the bug fix.",
+        "bug_scenario": "The bug scenario involves the form label being used as a validation message. The current API, useLabelForErrorMessage, does not work effectively when additional DOM structures are added at the business layer. The request is to introduce a new API, errorMessageLabel, to work alongside useLabelForErrorMessage to address this issue."
+    }
+}

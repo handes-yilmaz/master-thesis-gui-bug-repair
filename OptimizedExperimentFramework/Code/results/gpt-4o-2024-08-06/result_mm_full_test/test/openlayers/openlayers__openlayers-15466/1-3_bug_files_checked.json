@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Image.js",
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/Executor.js",
+            "src/ol/render/canvas/ExecutorGroup.js",
+            "src/ol/layer/Vector.js",
+            "src/ol/layer/VectorImage.js",
+            "src/ol/layer/VectorTile.js"
+        ],
+        "explanation": "The files identified are related to styling and rendering in the OpenLayers library, specifically concerning image and text handling, as well as decluttering logic. \n\n1. **src/ol/style/Image.js** and **src/ol/style/Text.js**: These files are directly related to the styling of images and text in the library. Modifications here would allow the introduction of a new 'ignorePlacement' option, which could control how images and text are decluttered.\n\n2. **src/ol/render/canvas/Executor.js** and **src/ol/render/canvas/ExecutorGroup.js**: These files handle the rendering process on the canvas. Adjustments here are necessary to apply the new declutter logic during rendering, ensuring that the new options ('none', 'text', 'geometry', 'both') are respected.\n\n3. **src/ol/layer/Vector.js**, **src/ol/layer/VectorImage.js**, and **src/ol/layer/VectorTile.js**: These files manage vector layers, images, and tiles that could be affected by the decluttering logic. Changes in these files would ensure that the decluttering options are applied correctly for different types of vector data in the map layers. \n\nThese files together form the basis for handling image and text rendering with decluttering in the OpenLayers library, and are crucial to implementing the proposed enhancement.",
+        "bug_scenario": "The bug is related to the decluttering of map elements in the OpenLayers library. The current implementation of the declutter mode, introduced in version 4.5.0, allows for decluttering of both images and text. However, the enhancement request is to have an option to declutter only text, not images, which is a common requirement. The proposed solution is to change the 'declutter' option from a boolean to an enumerated type with values like 'none', 'text', 'geometry', and 'both'. This change aims to provide more granular control over decluttering in map styling."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/style/Image.js",
+            "src/ol/style/Text.js",
+            "src/ol/style/Style.js"
+        ],
+        "explanation": "The files identified as related to the bug are within the 'src/ol/style/' directory, which contains the style-related classes for the OpenLayers library. Specifically, the files 'Image.js' and 'Text.js' are directly mentioned in the bug report as needing an 'ignorePlacement' option, which suggests changes are required in these files to implement the proposed enhancement. Additionally, 'Style.js' may be involved as it handles the overall styling logic and might need adjustments to incorporate the new decluttering options and behaviors.",
+        "bug_scenario": "The bug report describes an issue with the handling of image and text combinations when the declutterMode is set to something other than 'declutter'. The problem is related to rendering order and decluttering behavior in the OpenLayers library, where there is a need for a more flexible way to handle the decluttering of images and labels separately. The proposed solution includes adding an 'ignorePlacement' option to the ol.style.Image and ol.style.Text classes to better manage decluttering scenarios."
+    }
+}

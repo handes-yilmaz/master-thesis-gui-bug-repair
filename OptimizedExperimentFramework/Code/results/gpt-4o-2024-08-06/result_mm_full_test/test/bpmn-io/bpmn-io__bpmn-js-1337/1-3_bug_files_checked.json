@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/replace/BpmnReplace.js",
+            "lib/features/replace/ReplaceOptions.js",
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/SubProcessStartEventBehavior.js**: This file likely handles behaviors related to start events within sub-processes. Modifications here could enforce the restriction on typed start events.\n2. **lib/features/replace/BpmnReplace.js** & **lib/features/replace/ReplaceOptions.js**: These files manage element replacement options and behaviors, crucial for controlling morphing of start events to ensure they cannot morph into typed events within sub-processes.\n3. **lib/features/rules/BpmnRules.js**: Rules governing BPMN elements are defined here. This file would need updates to enforce the restriction of typed start events inside sub-processes.",
+        "bug_scenario": "The bug involves disallowing typed start events inside non-event based sub-processes. The goal is to ensure that when a start event is moved into a sub-process, it becomes untyped, and morphing to a typed start event is prevented."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/replace/ReplaceOptions.js",
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "explanation": "1. `SubProcessStartEventBehavior.js` is likely responsible for the behavior of start events within sub-processes, a key area related to preventing typed start events.\n2. `ReplaceOptions.js` might define the options available for replacing elements, which would include the morphing of start events.\n3. `BpmnRules.js` is probably where the rules for what is allowed or disallowed in terms of BPMN element interactions are defined, such as preventing typed start events inside sub-processes.",
+        "bug_scenario": "The bug report describes an issue where typed start events are incorrectly allowed inside non-event based sub-processes in a BPMN modeler. The tasks outlined involve disallowing the morphing to typed start events inside sub-processes and dropping the event type when moving start events to sub-processes. The provided image likely shows a part of the user interface where this morphing or dropping functionality is being controlled."
+    }
+}

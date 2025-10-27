@@ -1,0 +1,52 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1409a69..16734d1 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -325,7 +325,19 @@ class WebGLTileLayer extends BaseTileLayer {
+    */
+   getSourceBandCount_() {
+     const source = this.getSource();
+-    return source && 'bandCount' in source ? source.bandCount : 4;
++    if (!source) {
++      return 4; // Default band count
++    }
++    if ('bandCount' in source) {
++      return source.bandCount;
++    }
++    if (source.getTileGrid) {
++      const tileGrid = source.getTileGrid();
++      if (tileGrid) {
++        return tileGrid.getBandCount();
++      }
++    }
++    return 4; // Default band count
+   }
+ 
+   createRenderer() {
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index ec85963..f068c9a 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -294,11 +294,17 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+     const tileSource = tileLayer.getSource();
+     const tileGrid = tileSource.getTileGridForProjection(viewState.projection);
+     const tileTextureCache = this.tileTextureCache_;
+-    const tileRange = tileGrid.getTileRangeForExtentAndZ(
+-      extent,
+-      z,
+-      this.tempTileRange_
+-    );
++    let tileRange;
++    if (tileGrid) {
++      tileRange = tileGrid.getTileRangeForExtentAndZ(
++        extent,
++        z,
++        this.tempTileRange_
++      );
++    } else {
++      // Handle case where tileGrid is not available
++      tileRange = new TileRange(0, 0, 0, 0);
++    }
+ 
+     const tileSourceKey = getUid(tileSource);
+     if (!(tileSourceKey in frameState.wantedTiles)) {

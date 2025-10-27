@@ -1,0 +1,30 @@
+diff --git a/src/ol/reproj/DataTile.js b/src/ol/reproj/DataTile.js
+index 3d1aa88..6e75f26 100644
+--- a/src/ol/reproj/DataTile.js
++++ b/src/ol/reproj/DataTile.js
+@@ -133,6 +133,12 @@ class ReprojDataTile extends DataTile {
+       ? getIntersection(targetExtent, maxTargetExtent)
+       : targetExtent;
+ 
++    if (options.wrapX) {
++      // Adjust the limitedTargetExtent to respect wrapX
++      limitedTargetExtent[0] = Math.max(limitedTargetExtent[0], maxTargetExtent[0]);
++      limitedTargetExtent[2] = Math.min(limitedTargetExtent[2], maxTargetExtent[2]);
++    }
++
+     if (getArea(limitedTargetExtent) === 0) {
+       // Tile is completely outside range -> EMPTY
+       // TODO: is it actually correct that the source even creates the tile ?
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index fcdb50c..d48d51a 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -388,7 +388,7 @@ class GeoTIFFSource extends DataTile {
+       opaque: options.opaque,
+       transition: options.transition,
+       interpolate: options.interpolate !== false,
+-      wrapX: options.wrapX,
++      wrapX: options.wrapX !== undefined ? options.wrapX : false,
+     });
+ 
+     /**

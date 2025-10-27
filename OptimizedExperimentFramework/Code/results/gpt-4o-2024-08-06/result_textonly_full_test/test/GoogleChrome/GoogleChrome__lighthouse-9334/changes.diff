@@ -1,0 +1,37 @@
+diff --git a/lighthouse-core/lib/i18n/i18n.js b/lighthouse-core/lib/i18n/i18n.js
+index d3da92e..aeba2ba 100644
+--- a/lighthouse-core/lib/i18n/i18n.js
++++ b/lighthouse-core/lib/i18n/i18n.js
+@@ -348,17 +348,21 @@ function replaceIcuMessageInstanceIds(inputObject, locale) {
+       // Check to see if the value in the LHR looks like a string reference. If it is, replace it.
+       if (typeof value === 'string' && isIcuMessage(value)) {
+         const {icuMessageInstance, formattedString} = _resolveIcuMessageInstanceId(value, locale);
+-        const messageInstancesInLHR = icuMessagePaths[icuMessageInstance.icuMessageId] || [];
+-        const currentPathAsString = _formatPathAsString(currentPathInLHR);
+-
+-        messageInstancesInLHR.push(
+-          icuMessageInstance.values ?
+-            {values: icuMessageInstance.values, path: currentPathAsString} :
+-            currentPathAsString
+-        );
+-
+-        subObject[property] = formattedString;
+-        icuMessagePaths[icuMessageInstance.icuMessageId] = messageInstancesInLHR;
++        if (formattedString) {
++          const messageInstancesInLHR = icuMessagePaths[icuMessageInstance.icuMessageId] || [];
++          const currentPathAsString = _formatPathAsString(currentPathInLHR);
++
++          messageInstancesInLHR.push(
++            icuMessageInstance.values ?
++              {values: icuMessageInstance.values, path: currentPathAsString} :
++              currentPathAsString
++          );
++
++          subObject[property] = formattedString;
++          icuMessagePaths[icuMessageInstance.icuMessageId] = messageInstancesInLHR;
++        } else {
++          console.warn(`Missing translation for message ID: ${icuMessageInstance.icuMessageId}`);
++        }
+       } else {
+         replaceInObject(value, icuMessagePaths, currentPathInLHR);
+       }

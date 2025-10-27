@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-json.js",
+            "components/prism-json.min.js",
+            "prism.js"
+        ],
+        "explanation": "The bug is related to JSON tokenization, which is likely handled in the `prism-json.js` file, responsible for JSON syntax highlighting. The issue is with how `/*` within JSON strings is interpreted. The `prism.js` file could also play a role as it might contain core logic for handling tokenization across all languages.",
+        "bug_scenario": "The bug involves incorrect JSON tokenization when logging a server response. The HTTP header `Accept: */*` triggers the problem, causing JSON strings to be tokenized incorrectly. The issue is demonstrated with a JSON object, where the string containing `/*` is not handled properly, potentially being interpreted as a comment start."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-json.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The issue is related to JSON syntax highlighting, so 'components/prism-json.js' is directly involved since it handles JSON language definitions. Additionally, 'components/prism-core.js' might be involved as it manages the core tokenization logic, which could be misinterpreting '/*' as a comment.",
+        "bug_scenario": "The bug is related to JSON tokenization where the string '/*' is incorrectly highlighted. This is likely due to the tokenizer misinterpreting '/*' as the start of a comment, which is not applicable in JSON."
+    }
+}

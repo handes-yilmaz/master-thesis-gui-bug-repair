@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/typescript.js",
+            "src/lib/modes.js",
+            "src/languages/lib/ecmascript.js"
+        ],
+        "explanation": "1. **src/languages/typescript.js**: This file is responsible for defining the TypeScript language syntax highlighting rules. It imports ECMAScript identifiers and extends JavaScript highlighting, which is crucial for handling TypeScript-specific syntax like type parameters. The issue with camel-case type parameters likely stems from how identifiers are defined and processed in this file.\n\n2. **src/lib/modes.js**: This file contains common regex patterns and modes used across different language definitions, including TypeScript. The IDENT_RE and related patterns are defined here, which are used to match identifiers in the code. If camel-case identifiers are not being highlighted correctly, adjustments in these regex patterns might be necessary.\n\n3. **src/languages/lib/ecmascript.js**: This file provides the base ECMAScript (JavaScript) syntax rules that TypeScript builds upon. It includes definitions for identifiers, keywords, and other language constructs. Since TypeScript is a superset of JavaScript, any issues with identifier recognition could originate from this base file, affecting how TypeScript identifiers are parsed and highlighted.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in TypeScript code where camel-case type parameters are not highlighted consistently. Specifically, in the type parameter 'OutT', the 'Out' part is highlighted differently from the 'T' part. This issue is observed in the context of using a syntax highlighting library, possibly on platforms like StackOverflow or JSFiddle, where the highlighting behavior is inconsistent with the expected behavior seen in GitHub's markdown code fences."
+    }
+}

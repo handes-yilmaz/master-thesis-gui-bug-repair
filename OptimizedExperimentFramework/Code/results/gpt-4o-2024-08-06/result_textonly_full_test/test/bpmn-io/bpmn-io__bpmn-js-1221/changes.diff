@@ -1,0 +1,14 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index 8c77819..4025c19 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -157,6 +157,9 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+     ]);
+ 
+     removeProperties(descriptor, 'oldBusinessObject');
++
++    // Apply AdaptiveLabelPositioningBehavior
++    eventBus.fire('elements.changed', { elements: [ descriptor ] });
+   });
+ 
+ }

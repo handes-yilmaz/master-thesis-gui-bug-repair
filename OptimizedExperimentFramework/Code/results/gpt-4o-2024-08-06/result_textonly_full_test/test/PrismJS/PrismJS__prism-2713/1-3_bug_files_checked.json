@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-javascript.min.js",
+            "prism.js"
+        ],
+        "explanation": "Given the bug report, the issue pertains to how JavaScript syntax is being rendered, specifically concerning the destructuring of objects. The repository contains multiple files for syntax highlighting for different languages, with 'prism-javascript.js' being responsible for JavaScript syntax. This file is likely where the lexing and parsing rules for JavaScript syntax are defined, including how keywords and variables are identified. Since the bug involves incorrect recognition of constants as keywords, this file needs to be checked and possibly modified to ensure that destructuring syntax is handled correctly. Additionally, 'prism.js', which is a core file potentially involved in the overall rendering process, might also be relevant to ensuring the correct functioning of syntax highlighting across the application. Finally, the minified versions of these files ('prism-javascript.min.js') will also need updating to ensure any changes are consistent across both development and production environments.",
+        "bug_scenario": "The bug report describes a JavaScript syntax rendering error where the destructured object \"const { $from, $from } = selection;\" is incorrectly rendered, causing constants to be recognized as keywords."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The issue is related to syntax highlighting for JavaScript code, which is likely handled by the `prism-javascript.js` file in the `components` directory. This file is responsible for defining the syntax rules specific to JavaScript. Additionally, `prism-core.js` is involved as it contains the core functionality of the Prism library, which includes the logic for parsing and rendering syntax across different languages. Fixing the issue would involve modifying these files to ensure that JavaScript constants are correctly identified and highlighted without being mistaken for keywords.",
+        "bug_scenario": "The bug report describes a syntax rendering issue where JavaScript constants are misrecognized as keywords. Specifically, in the given example `const { $from, $from } = selection;`, the constants are not being correctly highlighted or parsed, which results in erroneous syntax highlighting."
+    }
+}

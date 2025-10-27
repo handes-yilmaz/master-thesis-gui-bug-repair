@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/resources/filters/crossref/crossref.lua",
+            "src/resources/filters/common/theorems.lua"
+        ],
+        "explanation": "The file `resources/filters/crossref/crossref.lua` is responsible for handling cross-references in documents. The error message indicates a problem within this file, specifically related to the handling of arguments in the Lua filter. The file `resources/filters/common/theorems.lua` is likely handling the formatting and processing of theorems and proofs, which is where the unexpected list item behavior is occurring. Both files are directly related to the outlined bug scenarios.",
+        "bug_scenario": "The bug occurs when theorems and proofs are used without headers or labels, causing the Lua filter to error out. This is platform/IDE independent and likely related to recent changes in the versioning. The error is linked to the `crossref.lua` filter, where it fails due to a bad argument passed to a function. Additionally, when using lists inside theorem divs, the caption is unexpectedly included as an item in the list, which should not happen."
+    },
+    "2": {
+        "bug_files": [
+            "src/resources/filters/crossref/crossref.lua",
+            "src/resources/filters/common/theorems.lua"
+        ],
+        "explanation": "The file `resources/filters/crossref/crossref.lua` is directly mentioned in the error message, indicating a problem with a Lua filter used for cross-referencing. The file `resources/filters/common/theorems.lua` likely handles theorems and proofs, where the list and caption issue seems to reside, as it would be responsible for managing theorem formatting and structure.",
+        "bug_scenario": "When using a Lua filter with Quarto, theorems and proofs without labels or headers cause errors. Additionally, headings in theorem blocks are erroneously included as list items, leading to formatting issues where captions become part of the list."
+    }
+}

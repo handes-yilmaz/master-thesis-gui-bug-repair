@@ -1,0 +1,29 @@
+diff --git a/src/ol/renderer/canvas/Layer.js b/src/ol/renderer/canvas/Layer.js
+index 6edcbe4..12cb4fb 100644
+--- a/src/ol/renderer/canvas/Layer.js
++++ b/src/ol/renderer/canvas/Layer.js
+@@ -108,6 +108,7 @@ class CanvasLayerRenderer extends LayerRenderer {
+       this.container = target;
+       this.context = context;
+       this.containerReused = true;
++      this.container.style.opacity = cssOpacity(opacity);
+     } else if (this.containerReused) {
+       // Previously reused container cannot be used any more.
+       this.container = null;
+diff --git a/src/ol/renderer/canvas/TileLayer.js b/src/ol/renderer/canvas/TileLayer.js
+index 3485fdd..f10694e 100644
+--- a/src/ol/renderer/canvas/TileLayer.js
++++ b/src/ol/renderer/canvas/TileLayer.js
+@@ -452,11 +452,8 @@ class CanvasTileLayerRenderer extends CanvasLayerRenderer {
+     if (canvasTransform !== canvas.style.transform) {
+       canvas.style.transform = canvasTransform;
+     }
+-    const opacity = cssOpacity(layerState.opacity);
+     const container = this.container;
+-    if (opacity !== container.style.opacity) {
+-      container.style.opacity = opacity;
+-    }
++    container.style.opacity = cssOpacity(layerState.opacity);
+ 
+     return this.container;
+   }

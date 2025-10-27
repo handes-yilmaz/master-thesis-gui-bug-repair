@@ -1,0 +1,53 @@
+diff --git a/src/ol/reproj/DataTile.js b/src/ol/reproj/DataTile.js
+index 3d427e1..38a9161 100644
+--- a/src/ol/reproj/DataTile.js
++++ b/src/ol/reproj/DataTile.js
+@@ -321,9 +321,10 @@ class ReprojDataTile extends DataTile {
+     } else {
+       const z = this.wrappedTileCoord_[0];
+       const size = this.targetTileGrid_.getTileSize(z);
+-      const targetWidth = typeof size === 'number' ? size : size[0];
+-      const targetHeight = typeof size === 'number' ? size : size[1];
+-      const targetResolution = this.targetTileGrid_.getResolution(z);
++      const targetResolutionX = this.targetTileGrid_.getResolution(z);
++      const targetResolutionY = targetResolutionX * (getHeight(targetExtent) / getWidth(targetExtent));
++      const targetWidth = getWidth(targetExtent) / targetResolutionX;
++      const targetHeight = getHeight(targetExtent) / targetResolutionY;
+       const sourceResolution = this.sourceTileGrid_.getResolution(
+         this.sourceZ_
+       );
+diff --git a/src/ol/reproj/Image.js b/src/ol/reproj/Image.js
+index 58e9690..45a258f 100644
+--- a/src/ol/reproj/Image.js
++++ b/src/ol/reproj/Image.js
+@@ -186,8 +186,10 @@ class ReprojImage extends ImageWrapper {
+   reproject_() {
+     const sourceState = this.sourceImage_.getState();
+     if (sourceState == ImageState.LOADED) {
+-      const width = getWidth(this.targetExtent_) / this.targetResolution_;
+-      const height = getHeight(this.targetExtent_) / this.targetResolution_;
++      const targetResolutionX = this.targetResolution_;
++      const targetResolutionY = this.targetResolution_ * (getHeight(this.targetExtent_) / getWidth(this.targetExtent_));
++      const width = getWidth(this.targetExtent_) / targetResolutionX;
++      const height = getHeight(this.targetExtent_) / targetResolutionY;
+       this.canvas_ = renderReprojected(
+         width,
+         height,
+diff --git a/src/ol/reproj/Tile.js b/src/ol/reproj/Tile.js
+index 32f0d35..619790e 100644
+--- a/src/ol/reproj/Tile.js
++++ b/src/ol/reproj/Tile.js
+@@ -256,9 +256,10 @@ class ReprojTile extends Tile {
+     } else {
+       const z = this.wrappedTileCoord_[0];
+       const size = this.targetTileGrid_.getTileSize(z);
+-      const width = typeof size === 'number' ? size : size[0];
+-      const height = typeof size === 'number' ? size : size[1];
+-      const targetResolution = this.targetTileGrid_.getResolution(z);
++      const targetResolutionX = this.targetTileGrid_.getResolution(z);
++      const targetResolutionY = targetResolutionX * (getHeight(targetExtent) / getWidth(targetExtent));
++      const width = getWidth(targetExtent) / targetResolutionX;
++      const height = getHeight(targetExtent) / targetResolutionY;
+       const sourceResolution = this.sourceTileGrid_.getResolution(
+         this.sourceZ_
+       );

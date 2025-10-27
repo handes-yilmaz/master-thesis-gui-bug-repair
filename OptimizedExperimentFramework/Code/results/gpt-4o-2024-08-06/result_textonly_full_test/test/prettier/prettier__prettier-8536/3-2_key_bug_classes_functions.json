@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/document/doc-printer.js//printDocToString"
+        ],
+        "bug_functions": [
+            "src/document/doc-printer.js//trim"
+        ],
+        "explanation": "The issue described in the bug report is related to how Prettier handles newlines after comments. The function `printDocToString` in `src/document/doc-printer.js` is responsible for converting the document to a string, and it includes logic for handling newlines and comments. The comment in the compressed file mentions removing extra newlines if the document ends with a comment, which directly relates to the bug. Additionally, the `trim` function is likely involved in managing whitespace at the end of lines, which is crucial for addressing the extra newline issue. These functions are key to resolving the bug as they handle the formatting logic that is currently producing the incorrect output.",
+        "bug_scenario": "The bug scenario involves a formatting issue in Prettier where a directive followed by a comment results in an extra trailing newline. This is specifically observed when using the babylon parser. The expected behavior is to have a single newline after the comment, but the actual output includes two newlines."
+    }
+}

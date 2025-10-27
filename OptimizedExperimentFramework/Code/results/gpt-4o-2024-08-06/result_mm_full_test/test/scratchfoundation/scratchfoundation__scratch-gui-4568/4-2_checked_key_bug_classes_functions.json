@@ -1,0 +1,77 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "SliderMonitor",
+            "file_path": "src/containers/slider-monitor.jsx",
+            "class_details": [
+                {
+                    "name": "SliderMonitor",
+                    "start_line": 10,
+                    "end_line": 45,
+                    "methods": [
+                        {
+                            "name": "constructor",
+                            "start_line": 11,
+                            "end_line": 20
+                        },
+                        {
+                            "name": "componentWillReceiveProps",
+                            "start_line": 21,
+                            "end_line": 25
+                        },
+                        {
+                            "name": "handleSliderUpdate",
+                            "start_line": 26,
+                            "end_line": 30
+                        },
+                        {
+                            "name": "render",
+                            "start_line": 31,
+                            "end_line": 44
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class SliderMonitor extends React.Component {",
+                "    constructor (props) {",
+                "        super(props);",
+                "        bindAll(this, [",
+                "            'handleSliderUpdate'",
+                "        ]);",
+                "",
+                "        this.state = {",
+                "            value: props.value",
+                "        };",
+                "    }",
+                "    componentWillReceiveProps (nextProps) {",
+                "        if (this.state.value !== nextProps.value) {",
+                "            this.setState({value: nextProps.value});",
+                "        }",
+                "    }",
+                "    handleSliderUpdate (e) {",
+                "        this.setState({value: Number(e.target.value)});",
+                "        const {vm, targetId, id: variableId} = this.props;",
+                "        setVariableValue(vm, targetId, variableId, Number(e.target.value));",
+                "    }",
+                "    render () {",
+                "        const {",
+                "            vm, // eslint-disable-line no-unused-vars",
+                "            value, // eslint-disable-line no-unused-vars",
+                "            ...props",
+                "        } = this.props;",
+                "        return (",
+                "            <SliderMonitorComponent",
+                "                {...props}",
+                "                value={this.state.value}",
+                "                onSliderUpdate={this.handleSliderUpdate}",
+                "            />",
+                "        );",
+                "    }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

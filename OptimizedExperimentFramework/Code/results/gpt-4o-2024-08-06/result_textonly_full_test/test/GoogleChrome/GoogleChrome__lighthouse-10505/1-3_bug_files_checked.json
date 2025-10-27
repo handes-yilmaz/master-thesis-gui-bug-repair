@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/first-cpu-idle.js",
+            "lighthouse-core/audits/metrics/interactive.js",
+            "lighthouse-core/computed/metrics/first-cpu-idle.js",
+            "lighthouse-core/computed/metrics/interactive.js",
+            "lighthouse-core/computed/trace-of-tab.js",
+            "lighthouse-cli/index.js"
+        ],
+        "explanation": "The bug report mentions an issue with the NO_TTI_CPU_IDLE_PERIOD error, which is directly related to the calculation of Time to Interactive (TTI) and CPU idle metrics in Lighthouse. The files involved in auditing and computing these metrics are likely sources of the bug:\n\n1. **lighthouse-core/audits/metrics/first-cpu-idle.js** and **lighthouse-core/audits/metrics/interactive.js**: These files contain the audits for first CPU idle and time to interactive metrics, which are related to the issue described.\n\n2. **lighthouse-core/computed/metrics/first-cpu-idle.js** and **lighthouse-core/computed/metrics/interactive.js**: These files contain the logic for computing the metrics related to first CPU idle and time to interactive, which are directly related to the NO_TTI_CPU_IDLE_PERIOD error.\n\n3. **lighthouse-core/computed/trace-of-tab.js**: This file deals with the trace of the tab, which is crucial for understanding when the page becomes interactive and CPU idle periods start and stop.\n\n4. **lighthouse-cli/index.js**: This file is responsible for handling the CLI commands and may need to be checked for how it handles timings and configurations that lead to the bug scenario.\n\nThese files are directly related to the computation and display of performance metrics, which are at the core of the reported issue.",
+        "bug_scenario": "The bug scenario involves the Lighthouse tool in Google Chrome's DevTools reporting a NO_TTI_CPU_IDLE_PERIOD error when generating performance reports. This error appears to be linked to a specific timing issue related to the First Contentful Paint (FCP) delay, which can be adjusted using the 'delayFcpMs' query parameter. The error results in Lighthouse not providing a performance score. The expected behavior is that the performance report is generated without errors regardless of the FCP delay."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/first-cpu-idle.js",
+            "lighthouse-core/computed/metrics/first-cpu-idle.js",
+            "lighthouse-core/computed/metrics/interactive.js",
+            "lighthouse-core/audits/metrics/interactive.js",
+            "lighthouse-cli/index.js"
+        ],
+        "explanation": "The files related to 'first-cpu-idle.js' and 'interactive.js' in both the 'audits/metrics' and 'computed/metrics' directories are likely involved because the error 'NO_TTI_CPU_IDLE_PERIOD' suggests a problem with detecting Time to Interactive (TTI) and CPU idle periods, which are closely related to these metrics. These files are responsible for calculating and auditing these performance metrics. The 'lighthouse-cli/index.js' file is related because the issue also manifests when running Lighthouse via the CLI, indicating a potential problem in the command execution or report generation logic.",
+        "bug_scenario": "The bug occurs when using Lighthouse in Chrome DevTools with the 'Simulated throttling' option disabled. The error 'NO_TTI_CPU_IDLE_PERIOD' is reported when there's a slow First Contentful Paint (FCP) followed by an immediate idle period. The report generation fails to produce a performance score due to this error. This scenario is reproducible via a specific URL with a delay in FCP and is intermittently reproducible via the CLI as well. The bug is mitigated by introducing a delay loop after setting the body HTML, suggesting a timing issue in performance measurement."
+    }
+}

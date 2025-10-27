@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "1. **UnsetDefaultFlowBehavior.js**: Since this file likely handles behaviors related to default flows, it might contain logic that inadvertently removes the default attribute when a catch event is added.\n2. **AttachEventBehavior.js**: This file may deal with the attachment of events to flows, potentially affecting the properties of the flow and gateway.\n3. **UpdatePropertiesHandler.js**: This file is responsible for updating properties of elements, which might include the default attribute of a gateway when an event is attached.",
+        "bug_scenario": "The bug occurs when adding a Timer Intermediate Catch Event to a non-default flow of an exclusive gateway. This action incorrectly removes the default attribute from the gateway while still rendering the default flow."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "The issue involves modifying the properties of an exclusive gateway when a Timer Intermediate Catch Event is added. The 'UnsetDefaultFlowBehavior.js' likely handles behavior related to unsetting default flows, which is central to this bug. The 'UpdatePropertiesHandler.js' is responsible for updating properties, which would include the 'default' attribute of the gateway. These files would need to be examined and possibly modified to prevent the removal of the 'default' attribute when adding the intermediate event.",
+        "bug_scenario": "The bug occurs when adding a Timer Intermediate Catch Event to a non-default flow of an exclusive gateway, which removes the 'default' attribute from the gateway but keeps the default flow visually intact."
+    }
+}

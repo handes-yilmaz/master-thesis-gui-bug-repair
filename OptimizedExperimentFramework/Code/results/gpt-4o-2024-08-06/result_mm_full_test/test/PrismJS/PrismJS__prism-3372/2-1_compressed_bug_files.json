@@ -1,0 +1,9 @@
+{
+    "1": {
+        "bug_file": "components/index.js",
+        "compressed": "NO",
+        "line_numbers": 56,
+        "compressed_line_numbers": 56,
+        "compressed_bug_file_content": "const components = require('../components.js');\nconst getLoader = require('../dependencies');\n\n\n/**\n * The set of all languages which have been loaded using the below function.\n *\n * @type {Set<string>}\n */\nconst loadedLanguages = new Set();\n\n/**\n * Loads the given languages and adds them to the current Prism instance.\n *\n * If no languages are provided, __all__ Prism languages will be loaded.\n *\n * @param {string|string[]} [languages]\n * @returns {void}\n */\nfunction loadLanguages(languages) {\n\tif (languages === undefined) {\n\t\tlanguages = Object.keys(components.languages).filter(l => l != 'meta');\n\t} else if (!Array.isArray(languages)) {\n\t\tlanguages = [languages];\n\t}\n\n\t// the user might have loaded languages via some other way or used `prism.js` which already includes some\n\t// we don't need to validate the ids because `getLoader` will ignore invalid ones\n\tconst loaded = [...loadedLanguages, ...Object.keys(Prism.languages)];\n\n\tgetLoader(components, languages, loaded).load(lang => {\n\t\tif (!(lang in components.languages)) {\n\t\t\tif (!loadLanguages.silent) {\n\t\t\t\tconsole.warn('Language does not exist: ' + lang);\n\t\t\t}\n\t\t\treturn;\n\t\t}\n\n\t\tconst pathToLanguage = './prism-' + lang;\n\n\t\t// remove from require cache and from Prism\n\t\tdelete require.cache[require.resolve(pathToLanguage)];\n\t\tdelete Prism.languages[lang];\n\n\t\trequire(pathToLanguage);\n\n\t\tloadedLanguages.add(lang);\n\t});\n}\n\n/**\n * Set this to `true` to prevent all warning messages `loadLanguages` logs.\n */\nloadLanguages.silent = false;\n\nmodule.exports = loadLanguages;"
+    }
+}

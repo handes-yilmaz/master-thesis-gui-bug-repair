@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/draw/BpmnRenderUtil.js",
+            "lib/features/modeling/behavior/IsHorizontalFix.js",
+            "lib/util/DiUtil.js"
+        ],
+        "explanation": "1. **BpmnRenderer.js**: This file is likely responsible for rendering BPMN elements, including pools and lanes. Since the issue is related to rendering vertical pools, modifications in this file may be required to handle the orientation of pools correctly.\n\n2. **BpmnRenderUtil.js**: Utilities related to rendering are typically found here. The bug may involve calculations or methods within this file that don't correctly process the 'isHorizontal' attribute, thus affecting how pools are drawn.\n\n3. **IsHorizontalFix.js**: This file seems directly related to handling the orientation of elements, as suggested by its name. It may contain logic to determine how the 'isHorizontal' property affects rendering, and may require updates to ensure vertical pools are handled correctly.\n\n4. **DiUtil.js**: Utility functions for handling Diagram Interchange (DI) elements, which include attributes like 'isHorizontal'. This file likely contains helpers that parse or apply DI attributes, which are crucial for ensuring vertical pools are rendered with the correct orientation.",
+        "bug_scenario": "The bug scenario involves the incorrect rendering of pool or lane labels in a BPMN diagram when vertical pools are used. The issue arises because the rendering logic does not account for the direction of the pool, which is specified by the 'isHorizontal' attribute set to 'false'. As a result, the labels are not properly aligned or displayed when the pool is vertical."
+    },
+    "2": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/draw/BpmnRenderUtil.js",
+            "lib/modeling/behavior/IsHorizontalFix.js"
+        ],
+        "explanation": "1. **lib/draw/BpmnRenderer.js**: This file is responsible for rendering BPMN elements. The bug involves the incorrect rendering of vertical pools, likely requiring changes in how this renderer handles pool orientation based on the `isHorizontal` property.\n\n2. **lib/draw/BpmnRenderUtil.js**: This utility file is likely used by the renderer to apply various rendering rules. It might need adjustments to account for the `isHorizontal` property when determining how to draw pool elements.\n\n3. **lib/modeling/behavior/IsHorizontalFix.js**: This file suggests a focus on handling the horizontal/vertical orientation of elements. Given the issue is directly related to whether a pool is marked as horizontal or not, this file might already address or need to address issues related to this property.",
+        "bug_scenario": "The bug report describes an issue where vertical pools (lanes) in BPMN diagrams are not rendered correctly. Vertical pools should be rendered based on the property `isHorizontal=\"false\"`, but the current implementation does not take this property into account, resulting in incorrect rendering. The provided images in the bug report illustrate how diagrams currently look incorrect when vertical pools are not handled properly."
+    }
+}

@@ -1,0 +1,21 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index 0060df8..1ae4a7e 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -141,6 +141,9 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+       'name'
+     ]);
+ 
++    // Ensure direct editing is not activated
++    descriptor.directEditing = false;
++
+     removeProperties(descriptor, 'oldBusinessObject');
+   });
+ 
+@@ -157,4 +160,4 @@ BpmnCopyPaste.$inject = [
+ 
+ function isLabel(element) {
+   return !!element.labelTarget;
+-}
+\ No newline at end of file
++}

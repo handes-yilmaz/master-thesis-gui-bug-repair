@@ -1,0 +1,45 @@
+diff --git a/src/ol/format/KML.js b/src/ol/format/KML.js
+index 27c00fd..3db2fbe 100644
+--- a/src/ol/format/KML.js
++++ b/src/ol/format/KML.js
+@@ -1270,23 +1270,23 @@ function iconStyleParser(node, objectStack) {
+   } else if (drawIcon) {
+     src = DEFAULT_IMAGE_STYLE_SRC;
+   }
+-  let anchor, anchorXUnits, anchorYUnits;
+-  let anchorOrigin = IconOrigin.BOTTOM_LEFT;
+-  const hotSpot = /** @type {Vec2|undefined} */ (object['hotSpot']);
+-  if (hotSpot) {
+-    anchor = [hotSpot.x, hotSpot.y];
+-    anchorXUnits = hotSpot.xunits;
+-    anchorYUnits = hotSpot.yunits;
+-    anchorOrigin = hotSpot.origin;
+-  } else if (src === DEFAULT_IMAGE_STYLE_SRC) {
+-    anchor = DEFAULT_IMAGE_STYLE_ANCHOR;
+-    anchorXUnits = DEFAULT_IMAGE_STYLE_ANCHOR_X_UNITS;
+-    anchorYUnits = DEFAULT_IMAGE_STYLE_ANCHOR_Y_UNITS;
+-  } else if (/^http:\/\/maps\.(?:google|gstatic)\.com\//.test(src)) {
+-    anchor = [0.5, 0];
+-    anchorXUnits = IconAnchorUnits.FRACTION;
+-    anchorYUnits = IconAnchorUnits.FRACTION;
+-  }
++let anchor, anchorXUnits, anchorYUnits;
++let anchorOrigin = IconOrigin.CENTER;
++const hotSpot = /** @type {Vec2|undefined} */ (object['hotSpot']);
++if (hotSpot) {
++  anchor = [hotSpot.x, hotSpot.y];
++  anchorXUnits = hotSpot.xunits;
++  anchorYUnits = hotSpot.yunits;
++  anchorOrigin = hotSpot.origin;
++} else if (src === DEFAULT_IMAGE_STYLE_SRC) {
++  anchor = [0.5, 0.5];
++  anchorXUnits = IconAnchorUnits.FRACTION;
++  anchorYUnits = IconAnchorUnits.FRACTION;
++} else if (/^http:\/\/maps\.(?:google|gstatic)\.com\//.test(src)) {
++  anchor = [0.5, 0.5];
++  anchorXUnits = IconAnchorUnits.FRACTION;
++  anchorYUnits = IconAnchorUnits.FRACTION;
++}
+ 
+   let offset;
+   const x = /** @type {number|undefined} */ (IconObject['x']);

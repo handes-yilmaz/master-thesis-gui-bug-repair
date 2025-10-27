@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parse/typescript.js",
+            "src/language-js/print/type-parameters.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "1. `src/language-js/parse/typescript.js`: This file is likely responsible for parsing TypeScript code. Since the issue involves TypeScript syntax (generic arguments with a trailing comma), the parsing logic in this file may need adjustments to handle the comma correctly.\n2. `src/language-js/print/type-parameters.js`: This file is related to printing or formatting type parameters, which include generic arguments. The bug may originate here if the logic for maintaining or formatting trailing commas is incorrect.\n3. `src/language-js/printer-estree.js`: This file is involved in printing the ESTree (the standard tree format for representing JavaScript code) back to code. If the bug involves incorrect code output (removing the trailing comma), this printer logic likely needs revision to ensure the trailing comma is preserved in the output.",
+        "bug_scenario": "The bug relates to the handling of trailing commas in generic argument lists in TypeScript (.mts) files, specifically when using the Prettier code formatter. The expected behavior is that the trailing comma should be preserved, as it is a requirement from the compiler. However, the current output from Prettier removes this trailing comma."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/parse/typescript.js",
+            "src/language-js/print/type-parameters.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "1. **src/language-js/parse/typescript.js**: This file is responsible for parsing TypeScript files. The parsing logic needs to correctly interpret TypeScript generics and commas.\n\n2. **src/language-js/print/type-parameters.js**: This file likely handles the printing of TypeScript type parameters, which would include logic for adding or removing trailing commas. Adjusting this logic could ensure that trailing commas are retained as expected.\n\n3. **src/language-js/printer-estree.js**: This file is responsible for converting the parsed AST back to source code. It might contain logic affecting how generics and trailing commas are printed, which is directly related to the bug.",
+        "bug_scenario": "The bug occurs when Prettier removes a trailing comma from the generic arguments list in a TypeScript file (.mts). The expected behavior is to retain the trailing comma, as it is a requirement from the compiler. The provided image shows a screenshot of the Prettier playground demonstrating the removal of the trailing comma and the mismatch with the expected behavior."
+    }
+}

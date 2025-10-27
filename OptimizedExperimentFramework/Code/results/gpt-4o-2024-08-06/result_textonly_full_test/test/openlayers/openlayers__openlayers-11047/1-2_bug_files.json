@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/Raster.js",
+            "src/ol/worker/webgl.js",
+            "src/ol/Disposable.js"
+        ],
+        "explanation": "1. **src/ol/source/Raster.js**: This file is likely responsible for managing raster data sources and the creation of webworkers. Since the bug is related to raster webworkers not being terminated, this file would need to be examined and potentially modified to ensure that webworkers are properly terminated when they are no longer needed.\n\n2. **src/ol/worker/webgl.js**: This file is related to the management of workers, possibly including webworkers. It might include functions related to the creation and termination of webworkers, which is central to fixing the memory leak issue described in the bug report.\n\n3. **src/ol/Disposable.js**: This file may contain utility functions for disposing of objects, including workers, properly. Ensuring that webworkers are disposed of when they are no longer in use is key to preventing memory leaks, making this file potentially relevant to the bug. \n\nThese files are critical as they likely contain the logic for managing the lifecycle of raster webworkers, which are not being terminated properly, resulting in the memory leak issue described.",
+        "bug_scenario": "The bug scenario involves a memory leak due to raster webworkers not being terminated properly. When the number in the input is changed multiple times on the provided URL, multiple webworkers are created and are not destroyed, leading to high memory usage as evidenced by the Chrome DevTools memory tab showing multiple workers (UUIDs)."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/Raster.js",
+            "src/ol/worker/webgl.js"
+        ],
+        "explanation": "The bug is related to the raster source creating and not terminating web workers. The most relevant file in the repository for this issue is `src/ol/source/Raster.js` because this is where the raster source logic, including the creation and management of web workers, would be implemented. Additionally, `src/ol/worker/webgl.js` is included as it might involve the setup or interfacing with the web workers, especially in context of rendering operations that utilize web workers. Changes in these files could address the issue by ensuring that web workers are properly terminated when they are no longer needed, thus preventing memory leaks.",
+        "bug_scenario": "The bug scenario involves the raster source in the application creating web workers using the pixelworks library that are not terminated properly, leading to high memory usage or a memory leak. When the number in the input field is changed multiple times, multiple web workers are created as observed in the Chrome DevTools memory tab, but these workers are not terminated, causing the memory to not be freed as expected."
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/number-picker/number-picker.jsx"
+        ],
+        "explanation": "The issue is directly related to the NumberPicker component, specifically its behavior when the input value exceeds the maximum limit. The file 'number-picker.jsx' in the 'src/number-picker/' directory is the most likely candidate for containing the logic responsible for handling onChange and onBlur events, as these would control how input changes are managed and corrected. Modifying this file to properly trigger an onChange event or prevent input beyond the maximum value would address the bug.",
+        "bug_scenario": "The bug report describes an issue with the NumberPicker component where entering a value beyond the maximum allowed does not trigger an onChange event. Instead, it automatically corrects the value onBlur, causing confusion as the displayed data seems to increase without affecting the associated price."
+    },
+    "2": {
+        "bug_files": [
+            "src/number-picker/number-picker.jsx",
+            "src/number-picker/index.jsx",
+            "src/number-picker/style.js"
+        ],
+        "explanation": "The bug is related to the behavior of the NumberPicker component when handling maximum values. The relevant files include:\n\n1. `src/number-picker/number-picker.jsx`: This is likely where the core logic of the NumberPicker component resides, including handling inputs and managing the onChange and onBlur events.\n\n2. `src/number-picker/index.jsx`: This file likely serves as the main entry point for the NumberPicker component and might include setup or export logic that could affect how the component is used or initialized.\n\n3. `src/number-picker/style.js`: Although primarily involved in styling, this file may contain logic that affects the visual feedback related to the bug, such as disabling inputs when the maximum is reached.\n\nThese files need to be reviewed and modified to ensure that the NumberPicker correctly prevents input beyond the maximum value and provides appropriate feedback to the user.",
+        "bug_scenario": "The bug occurs in the NumberPicker component, where the expectation is that once the maximum value is reached, no further input should be allowed. Currently, when the value exceeds the maximum, the onChange event does not get triggered, and an automatic correction is applied during the onBlur event. This causes confusion for the user as the data appears to increase, but the price remains unchanged."
+    }
+}

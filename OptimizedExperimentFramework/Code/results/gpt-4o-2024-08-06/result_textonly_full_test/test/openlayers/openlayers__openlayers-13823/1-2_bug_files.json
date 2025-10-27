@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/renderer/canvas/ImageLayer.js",
+            "src/ol/source/ImageWMS.js"
+        ],
+        "explanation": "The issue is related to the rendering of image layers, particularly those loaded from a WMS (Web Map Service) source, which suggests that the rendering logic within the `ImageLayer.js` file of the canvas renderer is not correctly handling the pixel ratio. This file is likely responsible for the logic that determines the size of the rendering canvas. Additionally, the `ImageWMS.js` file is relevant because it deals with the source of the images from a WMS, and adjustments here might be needed to ensure the correct image pixel ratio is used instead of the display pixel ratio. These files are involved in the creation and handling of image layers, which directly relates to the bug of excessive memory usage in high-resolution displays.",
+        "bug_scenario": "The bug described in the report indicates that the image layer renderer is using more memory than necessary because it creates a canvas with a size based on the display pixel ratio instead of the image pixel ratio. This leads to excessive memory usage, especially on HiDPI devices where the canvas ends up being larger than needed, consuming four times the memory."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/renderer/canvas/ImageLayer.js",
+            "src/ol/source/ImageWMS.js"
+        ],
+        "explanation": "The bug is related to the rendering of image layers, specifically when dealing with image sources like WMS (Web Map Service). The file `src/ol/renderer/canvas/ImageLayer.js` is responsible for the canvas rendering of image layers, thus it is directly involved in how canvases are created and managed in terms of size and pixel ratios. This file would need to be checked and possibly modified to ensure that canvases are created with the correct size based on the image ratio rather than the display pixel ratio. \n\nFurthermore, `src/ol/source/ImageWMS.js` is involved because the bug report specifically mentions WMS as an example of an image source affected by this issue. This file likely contains logic related to how WMS images are handled and rendered, including pixel and display ratio calculations. Adjustments here might be necessary to ensure image sources are properly optimized for memory usage.",
+        "bug_scenario": "The issue is that the image layer renderer is using more memory than necessary. For image sources, a canvas is being created with the size for the display pixel ratio rather than the image ratio of the source. This results in excessive memory usage, particularly on HiDPI devices, where the canvas ends up being larger than needed, thus consuming four times the necessary memory."
+    }
+}

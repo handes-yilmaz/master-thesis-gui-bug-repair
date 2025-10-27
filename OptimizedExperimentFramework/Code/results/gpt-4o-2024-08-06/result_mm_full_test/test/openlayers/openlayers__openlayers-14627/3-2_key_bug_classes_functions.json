@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/proj/epsg3857.js//EPSG3857Projection"
+        ],
+        "bug_functions": [
+            "src/ol/proj/epsg3857.js//fromEPSG4326"
+        ],
+        "explanation": "The `fromEPSG4326` function in `src/ol/proj/epsg3857.js` is responsible for transforming coordinates from EPSG:4326 to EPSG:3857. The transformation involves a calculation using `Math.tan`, which can produce NaN when the input is `Infinity`. This is the root cause of the error when handling empty extents. The `EPSG3857Projection` class is relevant because it defines the projection parameters and transformations, including `fromEPSG4326`. Adjustments in this function or class are necessary to handle empty extents correctly and prevent NaN values.",
+        "bug_scenario": "The bug occurs when applying a transformation to an empty extent, resulting in NaN values. This causes an error when trying to fit the view using this extent. The issue is traced back to the `fromEPSG4326` function, where `Math.tan` transforms `Infinity` to `NaN`."
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//UpdateLabelHandler"
+        ],
+        "bug_functions": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//ensureInternalLabelDi",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//setText"
+        ],
+        "explanation": "The `UpdateLabelHandler` class is responsible for updating the text of a BPMN element. The `ensureInternalLabelDi` function within this class is directly involved in setting the `di.label` to null when the label is removed. However, the bug is that the `di.label` should be completely removed instead of being set to null. The `setText` function calls `ensureInternalLabelDi` and is responsible for setting the label text, making it relevant to the bug as well.",
+        "bug_scenario": "The bug occurs when a label is removed from a task in a BPMN diagram, but the diagram information (di) still retains a 'label: null' property. This causes issues with other tools, such as linting, which expect the label property to be completely absent if it is not set."
+    }
+}

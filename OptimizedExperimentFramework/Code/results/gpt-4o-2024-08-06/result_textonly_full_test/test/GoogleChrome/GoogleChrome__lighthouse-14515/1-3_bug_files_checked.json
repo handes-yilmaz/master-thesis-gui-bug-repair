@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "report/renderer/report-renderer.js",
+            "report/renderer/util.js",
+            "core/config/constants.js"
+        ],
+        "explanation": "1. **report/renderer/report-renderer.js**: The bug report directly references this file as the location where the devices tooltip is defined. Modifications to include emulated screen dimensions and deviceScaleFactor would likely need to be made here to alter the tooltip content.\n\n2. **report/renderer/util.js**: This file is likely involved in rendering processes and utility functions that support report generation and might assist in fetching or displaying the new metrics.\n\n3. **core/config/constants.js**: This file might define constants used across the report generation, including device-related information. It is plausible that new constants for emulated screen dimensions and deviceScaleFactor need to be defined here to be utilized in the report renderer.",
+        "bug_scenario": "The bug report requests the inclusion of emulated screen dimensions and deviceScaleFactor in the report meta block of Lighthouse. The request suggests that this information could be added to the devices tooltip alongside CPU/Memory power, as shown in the provided image of the current meta information display. The request originates from a user on Twitter, highlighting a potential user need for this feature."
+    },
+    "2": {
+        "bug_files": [
+            "report/renderer/report-renderer.js"
+        ],
+        "explanation": "The bug report directly references the file `report/renderer/report-renderer.js` as the location where the device tooltip is defined and where the emulated screen dimensions and deviceScaleFactor should be added. This file is responsible for rendering the report, including the meta information that appears in tooltips. Therefore, any changes to include additional device information would need to be implemented in this file.",
+        "bug_scenario": "The bug report indicates an issue with the Lighthouse report's meta information. Specifically, it requests the addition of emulated screen dimensions and deviceScaleFactor in the report meta block, potentially within the devices tooltip. This is suggested to be alongside existing CPU/Memory power details in the report renderer."
+    }
+}

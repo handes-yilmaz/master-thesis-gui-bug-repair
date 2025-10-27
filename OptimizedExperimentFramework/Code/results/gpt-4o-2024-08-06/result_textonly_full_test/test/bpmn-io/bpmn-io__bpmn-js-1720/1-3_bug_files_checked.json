@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/Modeling.js",
+            "lib/features/replace/BpmnReplace.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/ResizeBehavior.js**: This file likely contains logic related to resizing elements when their types are changed. Given that the bug involves an issue with resizing when transforming a call activity into a subprocess, this file is a prime candidate for containing the bug.\n\n2. **lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js**: Since the bug involves the transformation of a call activity into a subprocess and the subsequent options (or lack thereof) in the wrench menu, this file may handle the toggling of element types and their UI states, which directly relates to the issue.\n\n3. **lib/features/modeling/Modeling.js**: This file is central to the modeling features and would include operations for changing the types of BPMN elements, which is at the heart of the reported bug.\n\n4. **lib/features/replace/BpmnReplace.js**: The replace logic is crucial when converting one type of BPMN element into another. Since the bug involves changing a call activity to a subprocess and issues with the available options, this file is likely involved in handling these transformations.",
+        "bug_scenario": "The bug scenario involves a sequence of editing actions in a BPMN diagram where transforming a call activity into a subprocess does not resize the shape appropriately. The user can follow certain steps to reproduce this issue, starting with creating a Camunda 8 BPMN diagram, adding a task, converting it into a call activity, and subsequently transforming it into an expanded subprocess. However, this results in a visual appearance of a task, while the options to convert it back into a call activity are missing, leading to a 'dead end'."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/features/modeling/behavior/util/ResizeUtil.js",
+            "lib/features/replace/BpmnReplace.js",
+            "lib/features/replace/ReplaceOptions.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/ResizeBehavior.js** and **lib/features/modeling/behavior/ResizeUtil.js**: These files are likely responsible for handling resize operations of BPMN elements within the modeler. Since the bug involves the subprocess not resizing correctly, these files would be directly related to the issue.\n\n2. **lib/features/replace/BpmnReplace.js** and **lib/features/replace/ReplaceOptions.js**: These files are related to the replacement logic for BPMN elements. The bug involves changing a task to a call activity and then to a subprocess, which falls under element replacement operations. These files likely manage the options available in the wrench menu and the behavior when switching between different BPMN element types.",
+        "bug_scenario": "The bug occurs when transforming a BPMN task into a Call Activity and then into a SubProcess using the wrench tool in the Camunda modeler. The subprocess does not resize properly, and the wrench menu options become limited, leading to a dead-end where the user cannot revert back to a Call Activity. This is confusing and not expected behavior."
+    }
+}

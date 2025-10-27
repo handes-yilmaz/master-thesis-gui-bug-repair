@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/uses-request-compression.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.js"
+        ],
+        "explanation": "The issue is likely related to the logic used to determine whether compression is enabled. The file `lighthouse-core/audits/byte-efficiency/uses-request-compression.js` is directly related to auditing the use of request compression, which is precisely what the bug is about. Additionally, `lighthouse-core/gather/gatherers/dobetterweb/response-compression.js` is responsible for gathering data about response compression, which may contribute to the erroneous audit results.",
+        "bug_scenario": "The bug report indicates an issue where the audit erroneously recommends enabling text compression, despite gzip compression being correctly enabled and verified through other tools like curl. The screenshot confirms this by showing that the audit lists resources under 'Enable text compression' with potential gzip savings, even though gzip is already in use."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/uses-request-compression.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.js"
+        ],
+        "explanation": "The files related to `uses-request-compression.js` and `response-compression.js` are likely responsible for analyzing and reporting on the compression status of resources. These files would need to be checked and potentially modified to ensure accurate detection and reporting of gzip compression, addressing the erroneous feedback in the audit.",
+        "bug_scenario": "The bug report describes an error where the audit tool incorrectly reports that text compression is not enabled, even though gzip compression is confirmed to be active via Dev Tool's Network panel and a curl command."
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-cli/run.js",
+            "lighthouse-cli/cli-flags.js",
+            "lighthouse-core/lib/i18n/i18n.js",
+            "lighthouse-core/lib/i18n/locales.js",
+            "lighthouse-core/lib/i18n/swap-locale.js"
+        ],
+        "explanation": "1. `lighthouse-cli/run.js` - This file is likely responsible for executing the Lighthouse CLI commands. If i18n text is not being translated during the CLI run, the issue might originate from how the command execution is set up or how it integrates with the i18n system.\n\n2. `lighthouse-cli/cli-flags.js` - This file handles command-line flags and options. If there are any flags related to language or locale settings, they would be parsed here. Incorrect parsing or missing flags could lead to untranslated text.\n\n3. `lighthouse-core/lib/i18n/i18n.js` - This file is central to the internationalization functionality. It contains the logic for loading and applying translations, so any bugs in translation application may be traced back here.\n\n4. `lighthouse-core/lib/i18n/locales.js` - This file likely manages the available locales and their corresponding translation files. If the locale is not correctly set or if the translations are not found, this would be a relevant file to inspect.\n\n5. `lighthouse-core/lib/i18n/swap-locale.js` - This file probably handles the switching of locales at runtime. If the system fails to switch to the correct locale, translations might not be applied, resulting in untranslated text in the CLI output.",
+        "bug_scenario": "The bug report indicates that when running the command `node lighthouse-cli www.example.com --view`, the i18n text is not being translated in the CLI output. The provided image would display untranslated text where translations are expected, likely showing placeholders or untranslated strings."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-cli/index.js",
+            "lighthouse-cli/cli-flags.js",
+            "lighthouse-cli/run.js",
+            "lighthouse-core/lib/i18n/i18n.js",
+            "lighthouse-core/lib/i18n/locales.js",
+            "lighthouse-core/lib/i18n/swap-locale.js"
+        ],
+        "explanation": "1. `lighthouse-cli/index.js`: This is likely the entry point of the CLI where command-line arguments are processed. It might contain logic related to setting up and running the CLI commands, including handling i18n.\n2. `lighthouse-cli/cli-flags.js`: This file typically defines the command-line flags and options, which may include language or locale settings that need to be correctly interpreted for i18n.\n3. `lighthouse-cli/run.js`: This file is likely responsible for executing the main CLI logic. It might invoke functions or modules that should handle i18n correctly.\n4. `lighthouse-core/lib/i18n/i18n.js`: This file likely contains the core logic for handling internationalization across the application. Any issues in this file could directly affect the translation of text.\n5. `lighthouse-core/lib/i18n/locales.js`: This file might manage the available locales and their corresponding translations. Ensuring the correct locale is selected is key to resolving the i18n issue.\n6. `lighthouse-core/lib/i18n/swap-locale.js`: This file likely handles the process of switching between locales, which is essential for displaying the correct translations based on user settings or command-line options.",
+        "bug_scenario": "The bug report indicates that when running the command `node lighthouse-cli www.example.com --view`, some internationalization (i18n) text is not being translated in the CLI output, as shown in the attached image. This suggests that the text strings displayed in the CLI are not being correctly localized according to the user's language settings."
+    }
+}

@@ -1,0 +1,16 @@
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index c0f2c34..c27ec22 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -138,6 +138,11 @@ class WebGLTileLayerRenderer extends WebGLBaseTileLayerRenderer {
+         this.fragmentShader_,
+         this.vertexShader_,
+       );
++      // Re-initialize palette textures to ensure they are bound to the current context
++      for (let i = 0; i < this.paletteTextures_.length; i++) {
++        const paletteTexture = this.paletteTextures_[i];
++        paletteTexture.initialize(this.helper.getGL());
++      }
+     }
+   }
+ 

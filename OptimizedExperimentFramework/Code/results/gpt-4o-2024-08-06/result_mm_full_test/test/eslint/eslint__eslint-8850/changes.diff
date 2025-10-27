@@ -1,0 +1,16 @@
+diff --git a/lib/rules/indent.js b/lib/rules/indent.js
+index 41bdd79..99e1e5c 100644
+--- a/lib/rules/indent.js
++++ b/lib/rules/indent.js
+@@ -299,7 +299,10 @@ class OffsetStorage {
+         if (offsetFrom && token.loc.start.line === offsetFrom.loc.start.line) {
+             this.matchIndentOf(offsetFrom, token);
+         } else {
+-            this.desiredOffsets[token.range[0]] = { offset, from: offsetFrom };
++            // Adjust for JSX binary expressions with parentheses
++            const isParenthesizedJSX = token.type === "Punctuator" && token.value === "(";
++            const adjustedOffset = isParenthesizedJSX ? offset + 1 : offset;
++            this.desiredOffsets[token.range[0]] = { offset: adjustedOffset, from: offsetFrom };
+         }
+     }
+ 

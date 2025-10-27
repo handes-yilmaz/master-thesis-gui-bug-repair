@@ -1,0 +1,55 @@
+{
+    "1/1": {
+        "lib/import/BpmnImporter.js": [
+            {
+                "SEARCH": [
+                    "// SHAPE",
+                    "else if (is(di, 'bpmndi:BPMNShape')) {",
+                    "",
+                    "var collapsed = !isExpanded(semantic, di),",
+                    "isFrame = isFrameElement(semantic);",
+                    "",
+                    "hidden = parentElement && (parentElement.hidden || parentElement.collapsed);",
+                    "",
+                    "var bounds = di.bounds;",
+                    "",
+                    "element = this._elementFactory.createShape(elementData(semantic, di, {",
+                    "collapsed: collapsed,",
+                    "hidden: hidden,",
+                    "x: Math.round(bounds.x),",
+                    "y: Math.round(bounds.y),",
+                    "width: Math.round(bounds.width),",
+                    "height: Math.round(bounds.height),",
+                    "isFrame: isFrame",
+                    "}));"
+                ],
+                "REPLACE": [
+                    "  // SHAPE",
+                    "  else if (is(di, 'bpmndi:BPMNShape')) {",
+                    "",
+                    "    var collapsed = !isExpanded(semantic, di),",
+                    "        isFrame = isFrameElement(semantic);",
+                    "",
+                    "    hidden = parentElement && (parentElement.hidden || parentElement.collapsed);",
+                    "",
+                    "    var bounds = di.bounds;",
+                    "",
+                    "    // Handle groups within collapsed sub-processes",
+                    "    if (is(semantic, 'bpmn:Group') && parentElement && parentElement.collapsed) {",
+                    "      hidden = true;",
+                    "    }",
+                    "",
+                    "    element = this._elementFactory.createShape(elementData(semantic, di, {",
+                    "      collapsed: collapsed,",
+                    "      hidden: hidden,",
+                    "      x: Math.round(bounds.x),",
+                    "      y: Math.round(bounds.y),",
+                    "      width: Math.round(bounds.width),",
+                    "      height: Math.round(bounds.height),",
+                    "      isFrame: isFrame",
+                    "    }));"
+                ]
+            }
+        ]
+    }
+}

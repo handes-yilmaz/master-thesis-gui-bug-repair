@@ -1,0 +1,66 @@
+diff --git a/src/number-picker/index.jsx b/src/number-picker/index.jsx
+index f4cf30e..3c94918 100644
+--- a/src/number-picker/index.jsx
++++ b/src/number-picker/index.jsx
+@@ -298,37 +298,33 @@ class NumberPicker extends React.Component {
+         return Math.pow(10, precision);
+     }
+ 
+-    upStep(val) {
+-        const {step, min} = this.props;
+-        const precisionFactor = this.getPrecisionFactor();
+-        let result;
+-        if (typeof val === 'number') {
+-            result = (precisionFactor * val + precisionFactor * step) / precisionFactor;
+-            const precision = this.getPrecision();
+-            if (precision > 0) {
+-                result = Number(result.toFixed(precision));
+-            }
+-        } else {
+-            result = min === -Infinity ? step : min;
+-        }
+-        return result;
++upStep(val) {
++    const {step, min} = this.props;
++    const precisionFactor = this.getPrecisionFactor();
++    let result;
++    if (typeof val === 'number') {
++        result = (precisionFactor * val + precisionFactor * step) / precisionFactor;
++        const precision = this.getPrecision();
++        result = Number(result.toFixed(precision)); // Ensure rounding to precision
++    } else {
++        result = min === -Infinity ? step : min;
+     }
++    return result;
++}
+ 
+-    downStep(val) {
+-        const {step, min} = this.props;
+-        const precisionFactor = this.getPrecisionFactor();
+-        let result;
+-        if (typeof val === 'number') {
+-            result = (precisionFactor * val - precisionFactor * step) / precisionFactor;
+-            const precision = this.getPrecision();
+-            if (precision > 0) {
+-                result = Number(result.toFixed(precision));
+-            }
+-        } else {
+-            result = min === -Infinity ? -step : min;
+-        }
+-        return result;
++downStep(val) {
++    const {step, min} = this.props;
++    const precisionFactor = this.getPrecisionFactor();
++    let result;
++    if (typeof val === 'number') {
++        result = (precisionFactor * val - precisionFactor * step) / precisionFactor;
++        const precision = this.getPrecision();
++        result = Number(result.toFixed(precision)); // Ensure rounding to precision
++    } else {
++        result = min === -Infinity ? -step : min;
+     }
++    return result;
++}
+ 
+     step(type, e) {
+         if (e) {

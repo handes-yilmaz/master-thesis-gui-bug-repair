@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/Tile.js//TileSource",
+            "src/ol/source/TileWMS.js//TileWMS",
+            "src/ol/source/XYZ.js//XYZ",
+            "src/ol/source/DataTile.js//DataTileSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/Tile.js//getGutterForProjection",
+            "src/ol/source/TileWMS.js//getGutter",
+            "src/ol/source/TileWMS.js//tileUrlFunction",
+            "src/ol/source/XYZ.js//constructor",
+            "src/ol/source/DataTile.js//constructor"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they are responsible for handling tile sources and their configurations, including the gutter option. The TileSource class in 'src/ol/source/Tile.js' is a base class for tile sources, and its method 'getGutterForProjection' is directly related to the gutter functionality. The TileWMS class in 'src/ol/source/TileWMS.js' already implements a gutter option, and its methods 'getGutter' and 'tileUrlFunction' manage how tiles are fetched and displayed, including handling the gutter. The XYZ class in 'src/ol/source/XYZ.js' and the DataTileSource class in 'src/ol/source/DataTile.js' are other tile sources mentioned in the bug report that need to support the gutter option. Their constructors are key to initializing these sources with the necessary options, including any new gutter functionality.",
+        "bug_scenario": "The bug scenario involves the need to extend the gutter (buffer) option, which is currently only available for TileWMS, to other tile sources such as XYZ and DataTile. This is to address tile edge effects when interpolating, which can be seen in some OpenLayers examples. The gutter option helps avoid these edge effects by providing a buffer around image tiles."
+    }
+}

@@ -1,0 +1,19 @@
+diff --git a/lib/features/space-tool/BpmnSpaceTool.js b/lib/features/space-tool/BpmnSpaceTool.js
+index 905d17c..1bc3a51 100644
+--- a/lib/features/space-tool/BpmnSpaceTool.js
++++ b/lib/features/space-tool/BpmnSpaceTool.js
+@@ -37,10 +37,10 @@ inherits(BpmnSpaceTool, SpaceTool);
+ BpmnSpaceTool.prototype.calculateAdjustments = function(elements, axis, delta, start) {
+   var adjustments = SpaceTool.prototype.calculateAdjustments.call(this, elements, axis, delta, start);
+ 
+-  // do not resize text annotations
++  // do not resize text annotations or empty pools
+   adjustments.resizingShapes = adjustments.resizingShapes.filter(function(shape) {
+-    return !is(shape, 'bpmn:TextAnnotation');
++    return !is(shape, 'bpmn:TextAnnotation') && !isEmptyPool(shape);
+   });
+ 
+   return adjustments;
+-};
+\ No newline at end of file
++};

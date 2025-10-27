@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/interaction/Pointer.js//PointerInteraction",
+            "src/ol/MapBrowserEventHandler.js//MapBrowserEventHandler"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Pointer.js//handleEvent",
+            "src/ol/interaction/Pointer.js//handleMoveEvent",
+            "src/ol/MapBrowserEventHandler.js//handlePointerMove_"
+        ],
+        "explanation": "The PointerInteraction class in 'src/ol/interaction/Pointer.js' handles pointer events, including move events, which are central to the performance issue. The handleEvent and handleMoveEvent functions are directly involved in processing pointermove events. The MapBrowserEventHandler class in 'src/ol/MapBrowserEventHandler.js' manages browser events, including pointermove, and the handlePointerMove_ function is responsible for handling these events, making them key areas to investigate for performance improvements.",
+        "bug_scenario": "The bug scenario involves a performance issue with the pointermove event in version 6.4.0 compared to 6.3.1. The performance degradation affects operations like zoom and panning, with noticeable lag in cursor changes. The images show a map with numerous features, where the interaction is slower in 6.4.0 than in 6.3.1."
+    }
+}

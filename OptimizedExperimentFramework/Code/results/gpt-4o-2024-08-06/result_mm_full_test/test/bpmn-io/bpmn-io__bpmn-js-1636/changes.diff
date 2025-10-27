@@ -1,0 +1,21 @@
+diff --git a/lib/features/modeling/behavior/SubProcessStartEventBehavior.js b/lib/features/modeling/behavior/SubProcessStartEventBehavior.js
+index 4ebf977..1d15d0d 100644
+--- a/lib/features/modeling/behavior/SubProcessStartEventBehavior.js
++++ b/lib/features/modeling/behavior/SubProcessStartEventBehavior.js
+@@ -47,3 +47,16 @@ function getStartEventPosition(shape) {
+     y: shape.y + shape.height / 2
+   };
+ }
++
++function ensureStartEventExists(subProcessShape, modeling) {
++  const startEventPosition = getStartEventPosition(subProcessShape);
++  modeling.createShape({ type: 'bpmn:StartEvent' }, startEventPosition, subProcessShape);
++}
++
++// Modify the behavior to include a start event when morphing
++SubProcessStartEventBehavior.prototype.execute = function(context) {
++  const { shape } = context;
++  if (shape.type === 'bpmn:SubProcess' && shape.isExpanded) {
++    ensureStartEventExists(shape, this._modeling);
++  }
++};

@@ -1,0 +1,52 @@
+{
+    "1/1": {
+        "lib/features/copy-paste/BpmnCopyPaste.js": [
+            {
+                "SEARCH": [
+                    "if (isLabel(descriptor)) {",
+                    "return descriptor;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (isLabel(descriptor)) {",
+                    "      descriptor.businessObject = getBusinessObject(cache[ descriptor.labelTarget ]);",
+                    "      setLabel(descriptor, oldBusinessObject.name || '', true);",
+                    "      return descriptor;",
+                    "    }"
+                ]
+            }
+        ],
+        "lib/features/label-editing/LabelUtil.js": [
+            {
+                "SEARCH": [
+                    "} else {",
+                    "semantic[attr] = text;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    } else {",
+                    "      semantic[attr] = text;",
+                    "    }",
+                    "    element.labelTarget = element.labelTarget || element;"
+                ]
+            }
+        ],
+        "lib/features/label-editing/cmd/UpdateLabelHandler.js": [
+            {
+                "SEARCH": [
+                    "if (!isLabelExternal(element) && !is(element, 'bpmn:TextAnnotation')) {",
+                    "return;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (!isLabelExternal(element) && !is(element, 'bpmn:TextAnnotation')) {",
+                    "      return;",
+                    "    }",
+                    "    if (isLabel(element) && !element.labelTarget) {",
+                    "      element.labelTarget = element;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

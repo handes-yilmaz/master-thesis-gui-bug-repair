@@ -1,0 +1,17 @@
+diff --git a/src/js/components/Data/Data.js b/src/js/components/Data/Data.js
+index 8cc31e1..22eea32 100644
+--- a/src/js/components/Data/Data.js
++++ b/src/js/components/Data/Data.js
+@@ -142,6 +142,12 @@ export const Data = ({
+         {(toolbar === true || toolbar === 'search') && <DataSearch />}
+         {(toolbar === true || toolbar === 'view') && <DataView />}
+         {(toolbar === true || toolbar === 'filters') && <DataFilters drop />}
++        {toolbarKeys.length > 0 && (
++          <Button
++            label="Clear Filters"
++            onClick={() => contextValue.clearFilters()}
++          />
++        )}
+       </Toolbar>,
+       <DataSummary key="summary" />,
+     ];

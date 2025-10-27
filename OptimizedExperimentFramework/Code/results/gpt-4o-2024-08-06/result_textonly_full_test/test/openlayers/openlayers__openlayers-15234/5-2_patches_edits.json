@@ -1,0 +1,23 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/PointsLayer.js": [
+            {
+                "SEARCH": [
+                    "const projectionTransform = createTransform();",
+                    "this.helper.makeProjectionTransform(frameState, projectionTransform);"
+                ],
+                "REPLACE": [
+                    "    const projectionTransform = createTransform();",
+                    "    const viewState = frameState.viewState;",
+                    "    const projection = viewState.projection;",
+                    "    if (projection.getCode() === 'EPSG:4326') {",
+                    "      // Apply geographic transformation if useGeographic is enabled",
+                    "      this.helper.makeGeographicProjectionTransform(frameState, projectionTransform);",
+                    "    } else {",
+                    "      this.helper.makeProjectionTransform(frameState, projectionTransform);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

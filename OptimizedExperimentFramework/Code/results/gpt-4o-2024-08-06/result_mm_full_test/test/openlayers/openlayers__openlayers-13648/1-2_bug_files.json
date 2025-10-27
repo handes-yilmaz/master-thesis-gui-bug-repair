@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/source/GeoTIFF.js",
+            "src/ol/format/GeoJSON.js",
+            "src/ol/source/Image.js",
+            "src/ol/reproj/Image.js"
+        ],
+        "explanation": "1. **src/source/GeoTIFF.js**: This file is likely responsible for handling the GeoTIFF images, which are affected by the bug. The issue could stem from how the image data is being processed or loaded, especially if non-square pixels are not being handled correctly.\n   \n2. **src/ol/format/GeoJSON.js**: This file deals with the GeoJSON format, which might interact with the COG data. If the problem involves spatial data not being rendered correctly, this could be relevant.\n\n3. **src/ol/source/Image.js**: Responsible for image data sources, this file could be involved if the issue is related to how images are fetched or displayed.\n\n4. **src/ol/reproj/Image.js**: If the image is being reprojected incorrectly (which might cause only part of it to display), this file could be relevant.",
+        "bug_scenario": "The bug involves loading a Cloud Optimized GeoTIFF (COG) where only the upper part of the image is displayed instead of the entire image. The expected behavior is for the full image to display as it does in tools like geotiff.io or QGIS."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/format/GeoJSON.js",
+            "src/ol/reproj/common.js"
+        ],
+        "explanation": "The issue is related to the rendering of a COG, which involves handling GeoTIFF files. The files in the 'src/ol/source/' directory include 'GeoTIFF.js', which is directly related to handling GeoTIFF images. Additionally, reprojection issues might involve 'src/ol/reproj/common.js', as reprojection could affect how images are displayed. The 'src/ol/format/GeoJSON.js' might also be involved if there are format-specific issues affecting the display of the image.",
+        "bug_scenario": "The bug involves a COG (Cloud Optimized GeoTIFF) that is not displaying properly, only showing the upper part when loaded in a specific example using OpenLayers. The expected behavior is for the entire image to display, similar to how it appears in software like QGIS or geotiff.io, as shown in the provided image."
+    }
+}

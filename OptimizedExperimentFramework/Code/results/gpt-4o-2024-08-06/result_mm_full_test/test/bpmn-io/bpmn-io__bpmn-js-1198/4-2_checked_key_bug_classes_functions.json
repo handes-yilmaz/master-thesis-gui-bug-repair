@@ -1,0 +1,29 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "isDefaultFlow",
+            "file_path": "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "function_details": [
+                {
+                    "name": "isDefaultFlow",
+                    "start_line": 47,
+                    "end_line": 57
+                }
+            ],
+            "function_code": [
+                "function isDefaultFlow(connection, source) {",
+                "",
+                "  if (!is(connection, 'bpmn:SequenceFlow')) {",
+                "    return false;",
+                "  }",
+                "",
+                "  var sourceBo = getBusinessObject(source),",
+                "      sequenceFlow = getBusinessObject(connection);",
+                "",
+                "  return sourceBo.get('default') === sequenceFlow;",
+                "}"
+            ]
+        }
+    }
+}

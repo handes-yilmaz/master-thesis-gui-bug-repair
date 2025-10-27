@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/language-js/index.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "The issue is related to parsing JavaScript syntax, specifically the pipeline operator. The 'src/language-js/parser-babel.js' file likely handles JavaScript parsing, and changes would be needed here to support additional pipeline proposals. 'src/language-js/index.js' might manage language-specific configurations and integrations. 'src/main/parser.js' handles the parsing logic, and modifications would be necessary to incorporate the 'Smart' proposal handling.",
+        "bug_scenario": "The bug involves the Prettier parser throwing a syntax error when encountering the '#' character in a pipeline operation using the 'Smart' proposal. The current implementation only supports the 'Minimal' proposal, not the 'Smart' or 'F#' proposals, causing the error when trying to parse input using the 'Smart' proposal syntax."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/main/core.js",
+            "src/language-js/options.js"
+        ],
+        "explanation": "The files are related to parsing JavaScript and handling options:\n- `src/language-js/parser-babel.js`: This file is likely responsible for parsing JavaScript code with Babel, which includes handling syntax like the pipeline operator.\n- `src/main/core.js`: This file could be managing core functionalities and needs to ensure correct parser usage or option handling.\n- `src/language-js/options.js`: This file probably manages language-specific options, including enabling or disabling pipeline proposals.",
+        "bug_scenario": "The bug is related to the pipeline operator proposal in Prettier. The code `5 |> # * 2` throws a syntax error due to the unexpected character `#`. The proposal's expected behavior is to support both 'minimal' and 'smart' implementations, but only 'minimal' is currently supported. The bug report indicates that the smart proposal should also be supported, leading to the syntax error."
+    }
+}

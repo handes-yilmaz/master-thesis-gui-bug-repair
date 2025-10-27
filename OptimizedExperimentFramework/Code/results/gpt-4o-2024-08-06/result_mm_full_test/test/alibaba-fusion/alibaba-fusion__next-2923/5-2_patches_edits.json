@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "src/config-provider/index.jsx": [
+            {
+                "SEARCH": [
+                    "componentWillUnmount() {",
+                    "childContextCache.remove(this);",
+                    "}",
+                    "",
+                    "/**",
+                    "* Manually clear the cache to prevent memory leaks in SSR scenarios.",
+                    "*/",
+                    "static clearCache() {",
+                    "childContextCache._store.clear();",
+                    "childContextCache._root = null;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    componentWillUnmount() {",
+                    "        childContextCache.remove(this);",
+                    "    }",
+                    "",
+                    "    /**",
+                    "     * Manually clear the cache to prevent memory leaks in SSR scenarios.",
+                    "     */",
+                    "    static clearCache() {",
+                    "        childContextCache._store.clear();",
+                    "        childContextCache._root = null;",
+                    "    }",
+                    "",
+                    "    /**",
+                    "     * Expose a method to clear cache manually in SSR.",
+                    "     */",
+                    "    static clearCacheManually() {",
+                    "        ConfigProvider.clearCache();",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

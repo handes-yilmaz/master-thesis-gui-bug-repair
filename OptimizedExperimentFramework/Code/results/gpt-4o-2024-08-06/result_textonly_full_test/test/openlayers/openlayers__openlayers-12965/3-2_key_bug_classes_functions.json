@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//parseStyle",
+            "src/ol/layer/WebGLTile.js//createRenderer"
+        ],
+        "explanation": "The class `WebGLTileLayer` in `src/ol/layer/WebGLTile.js` is directly responsible for managing WebGL TileLayers, which are currently each using a separate WebGL context. The `createRenderer` function within this class is crucial as it creates the renderer for the layer, which is where the WebGL context is likely being assigned. Modifying this function to allow context sharing would address the bug.\n\nThe `WebGLTileLayerRenderer` class in `src/ol/renderer/webgl/TileLayer.js` is the renderer for these tile layers. It is responsible for rendering the layers using WebGL, and any changes to how contexts are managed would need to be implemented here. This class likely contains logic for managing WebGL contexts and rendering, making it a key element in addressing the bug.\n\nThe `parseStyle` function in `src/ol/layer/WebGLTile.js` is involved in setting up shaders and uniforms for rendering, which are part of the WebGL context setup. While not directly responsible for context management, changes to how styles are parsed and applied could be necessary if context sharing affects rendering logic.",
+        "bug_scenario": "The bug scenario involves the limitation of WebGL contexts in browsers, which typically allow only 16 contexts at a time. This limitation affects applications using OpenLayers with multiple WebGL TileLayers, as each TileLayer currently requires its own WebGL context. When the limit is reached, older contexts are removed, causing the application to malfunction. The proposal is to allow WebGL TileLayers within a single OpenLayers map to share a WebGL context, reducing the likelihood of hitting the context limit."
+    }
+}

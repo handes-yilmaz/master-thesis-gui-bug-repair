@@ -1,0 +1,44 @@
+{
+    "1/1": {
+        "lib/features/copy-paste/BpmnCopyPaste.js": [
+            {
+                "SEARCH": [
+                    "function copyProperties(source, target, properties) {",
+                    "if (!isArray(properties)) {",
+                    "properties = [ properties ];",
+                    "}",
+                    "",
+                    "forEach(properties, function(property) {",
+                    "if (!isUndefined(source[property])) {",
+                    "target[property] = source[property];",
+                    "}",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function copyProperties(source, target, properties) {",
+                    "  if (!isArray(properties)) {",
+                    "    properties = [ properties ];",
+                    "  }",
+                    "",
+                    "  forEach(properties, function(property) {",
+                    "    if (!isUndefined(source[property])) {",
+                    "      // Ensure unique ID for copied elements",
+                    "      if (property === 'id' && source[property] === target[property]) {",
+                    "        target[property] = generateUniqueId(source[property]);",
+                    "      } else {",
+                    "        target[property] = source[property];",
+                    "      }",
+                    "    }",
+                    "  });",
+                    "}",
+                    "",
+                    "function generateUniqueId(baseId) {",
+                    "  // Generate a unique ID based on the base ID",
+                    "  return baseId + '_' + Math.random().toString(36).substr(2, 9);",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

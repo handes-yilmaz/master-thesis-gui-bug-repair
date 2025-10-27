@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/cli-engine/cli-engine.js//CLIEngine",
+            "lib/linter/linter.js//Linter"
+        ],
+        "bug_functions": [
+            "lib/cli-engine/cli-engine.js//getFormatter",
+            "lib/linter/linter.js//verify"
+        ],
+        "explanation": "The 'CLIEngine' class in 'lib/cli-engine/cli-engine.js' is a core component of ESLint that handles the execution of linting processes, including formatting. The 'getFormatter' function within this class is directly responsible for retrieving the formatter, which is the part of the system that needs to support asynchronous operations. Therefore, modifications to this function are necessary to allow for async formatters.\n\nThe 'Linter' class in 'lib/linter/linter.js' is another core component that handles the verification of code against rules. The 'verify' function is crucial because it processes the code and applies the rules, which may include formatting rules. To support async operations, this function may need to be adapted to handle asynchronous formatters or results from async operations. These classes and functions are directly related to the bug because they are responsible for the parts of the system that need to be modified to support asynchronous formatters.",
+        "bug_scenario": "The bug scenario involves a request to support an asynchronous formatter in ESLint. The current formatter does not support asynchronous operations, which is necessary for integrating with the 'shiki' highlighter that provides better code highlighting but operates asynchronously."
+    }
+}

@@ -1,0 +1,23 @@
+diff --git a/lib/features/modeling/cmd/UpdatePropertiesHandler.js b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+index 19cb3d8..158ff70 100644
+--- a/lib/features/modeling/cmd/UpdatePropertiesHandler.js
++++ b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+@@ -96,6 +96,11 @@ UpdatePropertiesHandler.prototype.execute = function(context) {
+     }
+   }
+ 
++  // Ensure the default attribute is not removed when adding catch events
++  if (businessObject[DEFAULT_FLOW] && !properties[DEFAULT_FLOW]) {
++    properties[DEFAULT_FLOW] = businessObject[DEFAULT_FLOW];
++  }
++
+   // update properties
+   setProperties(businessObject, properties);
+ 
+@@ -232,4 +237,4 @@ function unwrapBusinessObjects(properties) {
+   });
+ 
+   return unwrappedProps;
+-}
+\ No newline at end of file
++}

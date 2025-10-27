@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/label-editing/LabelEditingProvider.js//LabelEditingProvider"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/label-editing/LabelEditingProvider.js//activateDirectEdit"
+        ],
+        "explanation": "The issue is related to the activation of direct editing when pasting elements. The `BpmnCopyPaste` class handles the pasting of elements, and the `LabelEditingProvider` class manages direct editing. The `activateDirectEdit` function in `LabelEditingProvider` is responsible for activating direct editing, which is triggered incorrectly in this scenario. Adjustments in these classes and functions are necessary to prevent direct editing from being activated when pasting elements with a task in the first position.",
+        "bug_scenario": "After pasting elements with a task in the first position, direct editing is activated for the task element, which is not the expected behavior. The bug does not occur if a non-task element is in the first position."
+    }
+}

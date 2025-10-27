@@ -1,0 +1,25 @@
+diff --git a/lighthouse-core/computed/load-simulator.js b/lighthouse-core/computed/load-simulator.js
+index af34f9d..c299540 100644
+--- a/lighthouse-core/computed/load-simulator.js
++++ b/lighthouse-core/computed/load-simulator.js
+@@ -41,6 +41,7 @@ class LoadSimulator {
+         options.throughput = networkAnalysis.throughput;
+         options.cpuSlowdownMultiplier = 1;
+         options.layoutTaskMultiplier = 1;
++        options.layoutTaskMultiplier = throttling.layoutTaskMultiplier || 1;
+         break;
+       case 'devtools':
+         if (throttling) {
+diff --git a/lighthouse-core/gather/driver/wait-for-condition.js b/lighthouse-core/gather/driver/wait-for-condition.js
+index 252ea28..aae5482 100644
+--- a/lighthouse-core/gather/driver/wait-for-condition.js
++++ b/lighthouse-core/gather/driver/wait-for-condition.js
+@@ -345,7 +345,7 @@ async function waitForFullyLoaded(session, networkMonitor, options) {
+   // Listener for onload. Resolves pauseAfterLoadMs ms after load.
+   const resolveOnLoadEvent = waitForLoadEvent(session, pauseAfterLoadMs);
+   // Network listener. Resolves when the network has been idle for networkQuietThresholdMs.
+-  const resolveOnNetworkIdle = waitForNetworkIdle(session, networkMonitor, networkQuietThresholdMs);
++  const resolveOnNetworkIdle = waitForNetworkIdle(session, networkMonitor, networkQuietThresholdMs * 1.5);
+   // CPU listener. Resolves when the CPU has been idle for cpuQuietThresholdMs after network idle.
+   let resolveOnCPUIdle = waitForNothing();
+ 

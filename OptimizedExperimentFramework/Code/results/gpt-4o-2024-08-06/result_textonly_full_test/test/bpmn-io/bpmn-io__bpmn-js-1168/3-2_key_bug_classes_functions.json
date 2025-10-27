@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/label-editing/LabelEditingProvider.js//LabelEditingProvider"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//removeProperties",
+            "lib/features/label-editing/LabelEditingProvider.js//activateDirectEdit"
+        ],
+        "explanation": "The bug is related to the activation of direct editing after pasting elements, specifically when a task is the first element. The `BpmnCopyPaste` class in `BpmnCopyPaste.js` is responsible for handling the copy-paste operations, including copying properties and resolving references, which are crucial for ensuring elements are pasted correctly without triggering unwanted behaviors like direct editing. The `LabelEditingProvider` class in `LabelEditingProvider.js` manages direct editing activation, and its `activateDirectEdit` function is directly involved in determining when direct editing should be activated. The issue likely stems from how these classes handle the state of elements during and after the paste operation, particularly for tasks, which are a specific type of element in BPMN diagrams.",
+        "bug_scenario": "The bug occurs when pasting elements in a BPMN diagram where a task is the first element. After pasting, direct editing is incorrectly activated for the task element, which should not happen. This issue persists despite previous attempts to fix it by selecting all elements after pasting. The bug does not occur if a non-task element is in the first position."
+    }
+}

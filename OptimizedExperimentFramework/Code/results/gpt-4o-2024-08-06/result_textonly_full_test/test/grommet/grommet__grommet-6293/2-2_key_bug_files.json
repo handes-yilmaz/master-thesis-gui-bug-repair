@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/Meter/Meter.js",
+            "src/js/components/Meter/Circle.js"
+        ],
+        "explanation": "1. **src/js/components/Meter/Meter.js**: This file contains the main Meter component logic, including the handling of different meter types such as 'bar', 'circle', 'pie', and 'semicircle'. The issue likely stems from how the 'circle' type is processed, particularly in the useMemo hook that normalizes values and calculates the maximum value. Any miscalculation or incorrect handling of the 'circle' type could lead to the observed bug where only the last value is rendered.\n\n2. **src/js/components/Meter/Circle.js**: This file specifically handles the rendering logic for the 'circle' type of the Meter component. It includes the calculation of angles and the creation of SVG paths for each value. The bug is likely due to incorrect calculations or logic in this file that results in only the last value being rendered. The logic for determining start and end angles for each segment, as well as the handling of paths, is crucial for rendering all values correctly.",
+        "bug_scenario": "The bug scenario involves a Meter component with type set to 'circle' that fails to render all data points. Instead, it only renders the last data point. This issue was introduced in version 2.25.0, whereas it worked correctly in version 2.24.0. The provided code snippet and screenshots illustrate the problem, showing that the circle meter should display multiple segments corresponding to different values, but it only displays one segment for the last value."
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "lighthouse-core/report/v2/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "this._dom.find('.lh-env__item__ua', header).textContent = report.userAgent;",
+                    "",
+                    "const env = this._dom.find('.lh-env__items', header);"
+                ],
+                "REPLACE": [
+                    "    this._dom.find('.lh-env__item__ua', header).textContent = report.userAgent;",
+                    "",
+                    "    // Add warning for headless Chrome",
+                    "    if (report.userAgent.includes('HeadlessChrome')) {",
+                    "      const warning = this._dom.createElement('div', 'lh-headless-warning');",
+                    "      warning.textContent = 'Warning: This report was generated using headless Chrome. Performance numbers may be affected.';",
+                    "      header.insertBefore(warning, header.firstChild);",
+                    "    }",
+                    "",
+                    "    const env = this._dom.find('.lh-env__items', header);"
+                ]
+            }
+        ]
+    }
+}

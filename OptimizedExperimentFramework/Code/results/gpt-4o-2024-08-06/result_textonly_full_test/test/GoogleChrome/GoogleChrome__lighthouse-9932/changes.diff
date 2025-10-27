@@ -1,0 +1,22 @@
+diff --git a/lighthouse-core/lib/dependency-graph/simulator/simulator.js b/lighthouse-core/lib/dependency-graph/simulator/simulator.js
+index f16dd04..0408a88 100644
+--- a/lighthouse-core/lib/dependency-graph/simulator/simulator.js
++++ b/lighthouse-core/lib/dependency-graph/simulator/simulator.js
+@@ -87,7 +87,7 @@ class Simulator {
+     /** @type {LH.Artifacts.NetworkRequest[]} */
+     const records = [];
+     graph.getRootNode().traverse(node => {
+-      if (node.type === BaseNode.TYPES.NETWORK) {
++      if (node.type === BaseNode.TYPES.NETWORK && !node.record.url.startsWith('data:')) {
+         records.push(node.record);
+       }
+     });
+@@ -299,7 +299,7 @@ class Simulator {
+       // @see http://norvig.com/21-days.html#answers
+       const sizeInMb = (record.resourceSize || 0) / 1024 / 1024;
+       timeElapsed = 8 + 20 * sizeInMb - timingData.timeElapsed;
+-    } else {
++    } else if (!record.url.startsWith('data:')) {
+       const connection = this._connectionPool.acquireActiveConnectionFromRecord(record);
+       const dnsResolutionTime = this._dns.getTimeUntilResolution(record, {
+         requestedAt: timingData.startTime,

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-markdown.js//Prism.languages.markdown"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the handling of Markdown syntax in the Prism library, specifically within the `Prism.languages.markdown` object. This object contains the patterns and rules for parsing Markdown syntax, including italic and bold text. The issue arises from the regular expressions used to match these patterns, which are too greedy and match more than intended. The `italic` and `bold` properties within this object define the patterns for matching italic and bold text, respectively. These patterns need to be adjusted to correctly handle the punctuation and prevent greedy matching, which is why this class is directly related to the bug.",
+        "bug_scenario": "The bug scenario involves incorrect handling of italic and bold text in Markdown using the Prism library. The issue is that the punctuation for italic text with `*` and `_` matches any number of leading `*`s and `_`s, which is too greedy. This also affects bold text with similar patterns. The provided code snippet demonstrates the problem with examples like `*__foo__*` or `_**bar**_`, where the styling is not applied correctly due to the greedy matching."
+    }
+}

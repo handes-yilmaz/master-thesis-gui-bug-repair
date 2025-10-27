@@ -1,0 +1,60 @@
+{
+    "1/1": {
+        "src/ol/geom/MultiPolygon.js": [
+            {
+                "SEARCH": [
+                    "const endss = deflateMultiCoordinatesArray(",
+                    "this.flatCoordinates,",
+                    "0,",
+                    "coordinates,",
+                    "this.stride,",
+                    "this.endss_",
+                    ");",
+                    "if (endss.length === 0) {",
+                    "this.flatCoordinates.length = 0;",
+                    "} else {",
+                    "const lastEnds = endss[endss.length - 1];",
+                    "this.flatCoordinates.length =",
+                    "lastEnds.length === 0 ? 0 : lastEnds[lastEnds.length - 1];",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (!coordinates || coordinates.length === 0) {",
+                    "      this.flatCoordinates.length = 0;",
+                    "      this.endss_ = [];",
+                    "    } else {",
+                    "      const endss = deflateMultiCoordinatesArray(",
+                    "        this.flatCoordinates,",
+                    "        0,",
+                    "        coordinates,",
+                    "        this.stride,",
+                    "        this.endss_",
+                    "      );",
+                    "      if (endss.length === 0) {",
+                    "        this.flatCoordinates.length = 0;",
+                    "      } else {",
+                    "        const lastEnds = endss[endss.length - 1];",
+                    "        this.flatCoordinates.length =",
+                    "          lastEnds.length === 0 ? 0 : lastEnds[lastEnds.length - 1];",
+                    "      }",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/format/GeoJSON.js": [
+            {
+                "SEARCH": [
+                    "const geometry = readGeometry(geoJSONFeature['geometry'], opt_options);",
+                    "const feature = new Feature();"
+                ],
+                "REPLACE": [
+                    "    let geometry = null;",
+                    "    if (geoJSONFeature['geometry']) {",
+                    "      geometry = readGeometry(geoJSONFeature['geometry'], opt_options);",
+                    "    }",
+                    "    const feature = new Feature();"
+                ]
+            }
+        ]
+    }
+}

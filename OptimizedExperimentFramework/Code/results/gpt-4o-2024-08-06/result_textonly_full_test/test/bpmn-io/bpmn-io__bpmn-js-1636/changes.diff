@@ -1,0 +1,21 @@
+diff --git a/lib/features/modeling/behavior/SubProcessStartEventBehavior.js b/lib/features/modeling/behavior/SubProcessStartEventBehavior.js
+index 4ebf977..f975b48 100644
+--- a/lib/features/modeling/behavior/SubProcessStartEventBehavior.js
++++ b/lib/features/modeling/behavior/SubProcessStartEventBehavior.js
+@@ -39,6 +39,16 @@ SubProcessStartEventBehavior.$inject = [
+ 
+ inherits(SubProcessStartEventBehavior, CommandInterceptor);
+ 
++SubProcessStartEventBehavior.prototype.execute = function(context) {
++  var shape = context.shape;
++
++  if (shape.type === 'bpmn:SubProcess' && shape.isExpanded) {
++    var startEventPosition = getStartEventPosition(shape);
++    var startEvent = this._modeling.createShape({ type: 'bpmn:StartEvent' }, startEventPosition, shape);
++    this._modeling.updateProperties(startEvent, { name: 'Start' });
++  }
++};
++
+ // helpers //////////
+ 
+ function getStartEventPosition(shape) {

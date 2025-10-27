@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//detectLanguageWithAttributes"
+        ],
+        "explanation": "The issue is related to the detection of the language in fenced code blocks when attributes are present. The function `detectLanguageWithAttributes` in `parser-markdown.js` is responsible for extracting the language from the code block, ignoring any attributes. This function is directly related to the bug as it needs to correctly parse the language identifier by ignoring the attributes. The `parse` function uses `detectLanguageWithAttributes` as part of its processing pipeline, making it a key element in addressing the bug.",
+        "bug_scenario": "The bug involves Prettier failing to detect the language of a fenced code block in markdown when attributes are present after the language identifier. The expected behavior is for Prettier to ignore any text after the language identifier and correctly format the code block, similar to how it handles blocks without attributes."
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const tileGrid = tileSource.getTileGridForProjection(viewState.projection);",
+                    "const tileTextureCache = this.tileTextureCache_;",
+                    "const tileRange = tileGrid.getTileRangeForExtentAndZ(",
+                    "extent,",
+                    "z,",
+                    "this.tempTileRange_",
+                    ");"
+                ],
+                "REPLACE": [
+                    "const tileGrid = tileSource.getTileGridForProjection(viewState.projection);",
+                    "const tileTextureCache = this.tileTextureCache_;",
+                    "let tileRange;",
+                    "if (tileGrid) {",
+                    "  tileRange = tileGrid.getTileRangeForExtentAndZ(",
+                    "    extent,",
+                    "    z,",
+                    "    this.tempTileRange_",
+                    "  );",
+                    "} else {",
+                    "  // Handle sources without a tile grid",
+                    "  tileRange = new TileRange(0, 0, 0, 0); // Default to a single tile",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

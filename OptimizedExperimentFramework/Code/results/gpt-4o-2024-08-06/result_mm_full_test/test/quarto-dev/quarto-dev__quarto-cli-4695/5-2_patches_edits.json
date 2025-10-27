@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/publish/confluence/confluence-helper.ts": [
+            {
+                "SEARCH": [
+                    "const linkFullFileName = `${linkFileName}.qmd`;",
+                    "",
+                    "let siteFilePath = linkFullFileName;",
+                    "const isAbsolute = siteFilePath.startsWith(\"/\");",
+                    "if (!isAbsolute && docFileNamePathList.length > 1) {",
+                    "const relativePath = docFileNamePathList",
+                    ".slice(0, docFileNamePathList.length - 1)",
+                    ".join(\"/\");",
+                    "",
+                    "if (siteFilePath.startsWith(\"./\")) {",
+                    "siteFilePath = siteFilePath.replace(\"./\", `${relativePath}/`);",
+                    "} else {",
+                    "siteFilePath = `${relativePath}/${linkFullFileName}`;",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "      const linkFullFileName = linkFileName.endsWith('.qmd') ? linkFileName : `${linkFileName}.qmd`;",
+                    "",
+                    "      let siteFilePath = linkFullFileName;",
+                    "      const isAbsolute = siteFilePath.startsWith(\"/\");",
+                    "      if (!isAbsolute && docFileNamePathList.length > 1) {",
+                    "        const relativePath = docFileNamePathList",
+                    "          .slice(0, docFileNamePathList.length - 1)",
+                    "          .join(\"/\");",
+                    "",
+                    "        if (siteFilePath.startsWith(\"./\")) {",
+                    "          siteFilePath = siteFilePath.replace(\"./\", `${relativePath}/`);",
+                    "        } else {",
+                    "          siteFilePath = `${relativePath}/${linkFullFileName}`;",
+                    "        }",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

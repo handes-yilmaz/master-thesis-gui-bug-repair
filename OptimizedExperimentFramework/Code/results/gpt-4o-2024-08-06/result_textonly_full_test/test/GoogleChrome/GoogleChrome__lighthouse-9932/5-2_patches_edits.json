@@ -1,0 +1,98 @@
+{
+    "1/1": {
+        "lighthouse-core/lib/dependency-graph/simulator/simulator.js": [
+            {
+                "SEARCH": [
+                    "_initializeConnectionPool(graph) {",
+                    "/** @type {LH.Artifacts.NetworkRequest[]} */",
+                    "const records = [];",
+                    "graph.getRootNode().traverse(node => {",
+                    "if (node.type === BaseNode.TYPES.NETWORK) {",
+                    "records.push(node.record);",
+                    "}",
+                    "});",
+                    "",
+                    "this._connectionPool = new ConnectionPool(records, this._options);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  _initializeConnectionPool(graph) {",
+                    "    /** @type {LH.Artifacts.NetworkRequest[]} */",
+                    "    const records = [];",
+                    "    graph.getRootNode().traverse(node => {",
+                    "      if (node.type === BaseNode.TYPES.NETWORK && !node.record.url.startsWith('data:')) {",
+                    "        records.push(node.record);",
+                    "      }",
+                    "    });",
+                    "",
+                    "    this._connectionPool = new ConnectionPool(records, this._options);",
+                    "  }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "_estimateNetworkTimeRemaining(networkNode) {",
+                    "const record = networkNode.record;",
+                    "const timingData = this._getTimingData(networkNode);",
+                    "",
+                    "let timeElapsed = 0;",
+                    "if (networkNode.fromDiskCache) {",
+                    "// Rough access time for seeking to location on disk and reading sequentially = 8ms + 20ms/MB",
+                    "// @see http://norvig.com/21-days.html#answers",
+                    "const sizeInMb = (record.resourceSize || 0) / 1024 / 1024;",
+                    "timeElapsed = 8 + 20 * sizeInMb - timingData.timeElapsed;",
+                    "} else {",
+                    "const connection = this._connectionPool.acquireActiveConnectionFromRecord(record);",
+                    "const dnsResolutionTime = this._dns.getTimeUntilResolution(record, {",
+                    "requestedAt: timingData.startTime,",
+                    "shouldUpdateCache: true,",
+                    "});",
+                    "const timeAlreadyElapsed = timingData.timeElapsed;",
+                    "const calculation = connection.simulateDownloadUntil(",
+                    "record.transferSize - timingData.bytesDownloaded,",
+                    "{timeAlreadyElapsed, dnsResolutionTime, maximumTimeToElapse: Infinity}",
+                    ");",
+                    "",
+                    "timeElapsed = calculation.timeElapsed;",
+                    "}",
+                    "",
+                    "const estimatedTimeElapsed = timeElapsed + timingData.timeElapsedOvershoot;",
+                    "this._setTimingData(networkNode, {estimatedTimeElapsed});",
+                    "return estimatedTimeElapsed;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  _estimateNetworkTimeRemaining(networkNode) {",
+                    "    const record = networkNode.record;",
+                    "    const timingData = this._getTimingData(networkNode);",
+                    "",
+                    "    let timeElapsed = 0;",
+                    "    if (networkNode.fromDiskCache) {",
+                    "      // Rough access time for seeking to location on disk and reading sequentially = 8ms + 20ms/MB",
+                    "      // @see http://norvig.com/21-days.html#answers",
+                    "      const sizeInMb = (record.resourceSize || 0) / 1024 / 1024;",
+                    "      timeElapsed = 8 + 20 * sizeInMb - timingData.timeElapsed;",
+                    "    } else if (!record.url.startsWith('data:')) {",
+                    "      const connection = this._connectionPool.acquireActiveConnectionFromRecord(record);",
+                    "      const dnsResolutionTime = this._dns.getTimeUntilResolution(record, {",
+                    "        requestedAt: timingData.startTime,",
+                    "        shouldUpdateCache: true,",
+                    "      });",
+                    "      const timeAlreadyElapsed = timingData.timeElapsed;",
+                    "      const calculation = connection.simulateDownloadUntil(",
+                    "        record.transferSize - timingData.bytesDownloaded,",
+                    "        {timeAlreadyElapsed, dnsResolutionTime, maximumTimeToElapse: Infinity}",
+                    "      );",
+                    "",
+                    "      timeElapsed = calculation.timeElapsed;",
+                    "    }",
+                    "",
+                    "    const estimatedTimeElapsed = timeElapsed + timingData.timeElapsedOvershoot;",
+                    "    this._setTimingData(networkNode, {estimatedTimeElapsed});",
+                    "    return estimatedTimeElapsed;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

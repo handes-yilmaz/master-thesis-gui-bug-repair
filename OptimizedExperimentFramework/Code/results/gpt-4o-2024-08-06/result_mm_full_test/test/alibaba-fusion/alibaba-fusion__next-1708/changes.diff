@@ -1,0 +1,19 @@
+diff --git a/src/tree-select/tree-select.jsx b/src/tree-select/tree-select.jsx
+index a764687..1839c00 100644
+--- a/src/tree-select/tree-select.jsx
++++ b/src/tree-select/tree-select.jsx
+@@ -265,9 +265,11 @@ updateCache(props) {
+     this._p2n = {};
+     this._v2n = {};
+ 
+-    const generateUniqueKey = (item, pos) => {
+-        return item.key || `${pos}-${item.value}`;
+-    };
++import { v4 as uuidv4 } from 'uuid';
++
++const generateUniqueKey = (item, pos) => {
++    return item.key || `${pos}-${item.value}-${uuidv4()}`;
++};
+ 
+     if ('dataSource' in props) {
+         const loop = (data, prefix = '0') =>

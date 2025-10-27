@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-cpp.js",
+            "components/prism-c.js",
+            "tests/languages/cpp/separating_single_quotes_feature.test"
+        ],
+        "explanation": "1. **components/prism-cpp.js**: This file is directly mentioned in the bug report as a place where changes were attempted. The file is responsible for syntax highlighting C++ code, and the issue lies within how it interprets numeric literals with single quotes.\n\n2. **components/prism-c.js**: The bug report mentions using a regex pattern from `prism-c.js` and adapting it for `prism-cpp.js`. Since the regex pattern is crucial for detecting numeric literals, this file is relevant as it might contain the original regex pattern that needs modification or reference for C++.\n\n3. **tests/languages/cpp/separating_single_quotes_feature.test**: This test file was created to verify the functionality after implementing changes. It's directly related to the bug as it contains the test cases that fail due to the incorrect handling of single quotes in numeric literals. Modifying the regex pattern and ensuring this test passes is key to resolving the issue.",
+        "bug_scenario": "The bug report describes an issue with the Prism syntax highlighter not correctly handling C++ literals that include single quotes as thousands separators. The problem is evident in the provided images where the syntax highlighting fails to recognize numbers like `1'048'576` and treats parts of them as strings instead of numbers. The correct behavior should highlight these as complete numeric literals."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-cpp.js",
+            "components/prism-c.js",
+            "tests/languages/cpp/separating_single_quotes_feature.test"
+        ],
+        "explanation": "1. **components/prism-cpp.js**: This file is directly related to the handling and highlighting of C++ code. The bug report mentions modifying the regex in this file to support single quotes in number literals, indicating that this is where the highlighting logic for C++ numbers is implemented.\n\n2. **components/prism-c.js**: The regex pattern used to attempt the fix was derived from `prism-c.js`. Since C++ is a superset of C, changes in C's number handling might also need to reflect in C++ handling, making this file relevant for understanding the original regex logic.\n\n3. **tests/languages/cpp/separating_single_quotes_feature.test**: This test file was mentioned in the bug report as a way to verify the fix for the issue. It contains test cases that check the highlighting of literals with single quotes, which currently fail, indicating the need for a fix in the related components.",
+        "bug_scenario": "The bug involves the incorrect highlighting of C++ literals that use single quotes as separators. In C++, literals like `1'048'576` or `0x10'0000` should be valid and highlighted as numbers, but currently, they are not highlighted correctly, as shown in the provided images. The top part of the images shows the current incorrect highlight, while the bottom part shows the expected correct highlight."
+    }
+}

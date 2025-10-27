@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "src/cascader/cascader.jsx": [
+            {
+                "SEARCH": [
+                    "showTitle: true,"
+                ],
+                "REPLACE": [
+                    "        showTitle: PropTypes.bool,"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "itemRender: item => {",
+                    "const title = this.props.showTitle ? item.label : undefined;",
+                    "return <span title={title}>{item.label}</span>;",
+                    "},"
+                ],
+                "REPLACE": [
+                    "        itemRender: item => {",
+                    "            const title = this.props.showTitle !== false ? item.label : undefined;",
+                    "            return <span title={title}>{item.label}</span>;",
+                    "        },"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/parser-babel.js",
+            "src/language-js/parser-espree.js",
+            "src/language-js/parser-flow.js",
+            "src/language-js/parser-meriyah.js"
+        ],
+        "explanation": "The issue is related to the handling and formatting of JSX elements, specifically when dealing with special characters like the Japanese space \\u3000. The files related to the JavaScript language and the printing processes (such as `printer-estree.js`), as well as the various JavaScript parsers (like `parser-babel.js`, `parser-espree.js`, `parser-flow.js`, `parser-meriyah.js`), are relevant because they are responsible for parsing and printing the JavaScript/JSX code. These components need to handle the formatting of JSX elements correctly, ensuring stable outputs regardless of the presence of special characters. Adjustments or fixes in these files will likely address the inconsistency in formatting observed in the bug scenario.",
+        "bug_scenario": "The bug involves unstable JSX formatting when using the Japanese space character \\u3000 in the Prettier tool version 1.19.1. The formatting changes unexpectedly when Prettier is run multiple times, resulting in inconsistent output. The expected behavior is for the JSX formatting to remain stable and consistent across runs."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/print/jsx.js"
+        ],
+        "explanation": "The bug is related to JSX formatting, which is handled by the JavaScript language support within Prettier. Specifically, the files responsible for printing and formatting JSX code are likely involved. The file `src/language-js/printer-estree.js` is central to how Prettier prints JavaScript code, including JSX, by traversing the abstract syntax tree (AST) and generating formatted code. Additionally, `src/language-js/jsx.js` is directly related to handling JSX syntax, which would include how whitespace and special characters like \\u3000 are managed during the formatting process. These files are key candidates for investigation and modification to address the unstable formatting behavior observed in the bug report.",
+        "bug_scenario": "The bug involves unstable JSX formatting when using the Unicode character \\u3000, which is an ideographic space. When the JSX code is formatted using Prettier, the formatting becomes inconsistent, particularly affecting the whitespace around JSX elements. The given inputs and outputs show that the formatting changes unexpectedly between different runs of Prettier, indicating instability in handling the special space character."
+    }
+}

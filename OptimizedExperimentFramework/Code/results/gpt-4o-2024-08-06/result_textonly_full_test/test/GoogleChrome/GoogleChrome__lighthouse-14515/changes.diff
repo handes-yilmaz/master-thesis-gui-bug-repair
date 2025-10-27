@@ -1,0 +1,24 @@
+diff --git a/report/renderer/report-renderer.js b/report/renderer/report-renderer.js
+index b50d0ed..1f62f0d 100644
+--- a/report/renderer/report-renderer.js
++++ b/report/renderer/report-renderer.js
+@@ -119,7 +119,8 @@ export class ReportRenderer {
+    */
+   _renderMetaBlock(report, footer) {
+     const envValues = Util.getEmulationDescriptions(report.configSettings || {});
+-
++    const screenDimensions = report.configSettings.screenEmulation || {};
++    const deviceScaleFactor = screenDimensions.deviceScaleFactor || 'unknown';
+ 
+     const match = report.userAgent.match(/(\w*Chrome\/[\d.]+)/); // \w* to include 'HeadlessChrome'
+     const chromeVer = Array.isArray(match)
+@@ -137,6 +138,9 @@ export class ReportRenderer {
+         `${envValues.deviceEmulation} with Lighthouse ${report.lighthouseVersion}`,
+         `${Util.i18n.strings.runtimeSettingsBenchmark}: ${benchmarkIndex}` +
+             `\n${Util.i18n.strings.runtimeSettingsCPUThrottling}: ${envValues.cpuThrottling}` +
++            (axeVersion ? `\n${Util.i18n.strings.runtimeSettingsAxeVersion}: ${axeVersion}` : '') +
++            `\nScreen Dimensions: ${screenDimensions.width}x${screenDimensions.height}` +
++            `\nDevice Scale Factor: ${deviceScaleFactor}`],
+             (axeVersion ? `\n${Util.i18n.strings.runtimeSettingsAxeVersion}: ${axeVersion}` : '')],
+       ['samples-one',
+         Util.i18n.strings.runtimeSingleLoad,

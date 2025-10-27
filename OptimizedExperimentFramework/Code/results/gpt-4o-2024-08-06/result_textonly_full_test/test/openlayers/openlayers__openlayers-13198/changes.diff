@@ -1,0 +1,18 @@
+diff --git a/src/ol/renderer/canvas/VectorLayer.js b/src/ol/renderer/canvas/VectorLayer.js
+index c83441b..55e7695 100644
+--- a/src/ol/renderer/canvas/VectorLayer.js
++++ b/src/ol/renderer/canvas/VectorLayer.js
+@@ -233,11 +233,12 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+ 
+     const canvasTransform = transformToString(this.pixelTransform);
+ 
++    const background = this.getBackground(frameState);
+     this.useContainer(
+       target,
+       canvasTransform,
+       layerState.opacity,
+-      this.getBackground(frameState)
++      background !== undefined ? background : null
+     );
+     const context = this.context;
+     const canvas = context.canvas;

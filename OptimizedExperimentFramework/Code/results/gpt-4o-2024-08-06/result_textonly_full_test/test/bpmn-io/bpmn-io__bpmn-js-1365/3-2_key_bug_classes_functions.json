@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/CreateDataObjectBehavior.js//CreateDataObjectBehavior",
+            "lib/features/modeling/Modeling.js//Modeling",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/CreateDataObjectBehavior.js//CreateDataObjectBehavior",
+            "lib/features/modeling/Modeling.js//Modeling.prototype.updateProperties",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler.prototype.execute"
+        ],
+        "explanation": "The 'CreateDataObjectBehavior' class in 'CreateDataObjectBehavior.js' is responsible for creating data objects when a DataObjectReference is created. This is directly related to the bug as it involves the creation and management of data objects, which need to support the 'isCollection' marker.\n\nThe 'Modeling' class in 'Modeling.js' includes a method 'updateProperties' that is used to update properties of elements, which is crucial for implementing the ability to toggle 'isCollection'. This method will likely need to be modified to handle the new 'isCollection' property.\n\nThe 'UpdatePropertiesHandler' class in 'UpdatePropertiesHandler.js' is a handler for updating BPMN 2.0 properties. Its 'execute' method is responsible for applying property changes to elements, making it a key function for implementing the 'isCollection' toggle functionality. This method will need to be updated to recognize and apply changes to the 'isCollection' property.",
+        "bug_scenario": "The bug scenario involves the inability to toggle the 'isCollection' marker on data objects in a BPMN 2.0 model. The feature request is to implement this functionality, allowing users to set 'isCollection = true' on data objects, similar to how multiple/ad-hoc modifiers work on user tasks."
+    }
+}

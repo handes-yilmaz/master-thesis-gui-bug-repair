@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/VectorContext.js//VectorContext",
+            "src/ol/render/canvas/Immediate.js//CanvasImmediateRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/render/VectorContext.js//drawFeature",
+            "src/ol/render/VectorContext.js//drawCircle",
+            "src/ol/render/VectorContext.js//drawGeometry",
+            "src/ol/render/canvas/Immediate.js//drawFeature",
+            "src/ol/render/canvas/Immediate.js//drawGeometry",
+            "src/ol/render/canvas/Immediate.js//drawCircle"
+        ],
+        "explanation": "The `VectorContext` class in `src/ol/render/VectorContext.js` is directly related to the bug because it contains the `drawFeature` and `drawCircle` methods, which are mentioned in the bug report as having issues with extent comparison. The `drawGeometry` method is also relevant as it is suggested as a workaround in the bug report. The `CanvasImmediateRenderer` class in `src/ol/render/canvas/Immediate.js` is a subclass of `VectorContext` and implements direct rendering of features and geometries, including the `drawFeature`, `drawGeometry`, and `drawCircle` methods. These methods are crucial for rendering features correctly on the map, and any issues with extent comparison in these methods would directly affect the visibility of animations and features, as described in the bug report.",
+        "bug_scenario": "The bug scenario involves the `drawFeature()` function not working correctly with geographic coordinates when Null Island (the point at 0\u00b0N 0\u00b0E) is not in view. The issue is due to an incorrect extent comparison that stops the function from working properly. The problem can be reproduced by animating a marker on a polyline near Null Island and panning the map so that Null Island goes out of view, causing the animation to become invisible. However, if `drawFeature` is replaced by `setStyle`/`drawGeometry`, the animation remains visible. The expected behavior is that the extent comparison should be corrected or removed as it seems redundant, and the comparison in `drawCircle` also needs fixing."
+    }
+}

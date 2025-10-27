@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Graticule.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/reproj/common.js",
+            "src/ol/reproj/Triangulation.js"
+        ],
+        "explanation": "The issue described in the bug report is primarily related to the rendering of graticules when a map projection crosses the dateline. The following files are likely involved in this issue:\n\n1. **src/ol/layer/Graticule.js**: This file is directly related to rendering graticules on the map. Any issues with the appearance or positioning of graticules, especially in complex projection scenarios, would likely involve this file.\n\n2. **src/ol/proj/proj4.js**: This file involves the use of the Proj4 library, which handles map projections and transformations. Given that the bug involves projections crossing the dateline, any normalization or transformation issues would likely involve this file.\n\n3. **src/ol/proj/Projection.js**: This file deals with setting up map projections. Since the bug involves the behavior of projections, this file could contain logic that needs adjusting to handle dateline crossing.\n\n4. **src/ol/reproj/common.js**: This file could be involved as it deals with common reprojection tasks, which might include handling edge cases like crossing the dateline.\n\n5. **src/ol/reproj/Triangulation.js**: This file might be related if the rendering of graticules involves triangulation processes that are not correctly handling dateline crossings.\n\nThese files collectively manage projection and rendering tasks, directly influencing how graticules are displayed when projections cross complex boundaries like the dateline.",
+        "bug_scenario": "The bug involves the incorrect display of graticules (grid lines, like latitude and longitude) when the map projection crosses the dateline. In such cases, most meridians do not appear, and parallels are incorrectly positioned, starting at the dateline or extending too far. This results in a distorted or incomplete representation of the geographical grid on maps."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/Graticule.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/reproj/Triangulation.js"
+        ],
+        "explanation": "The issue described in the bug report relates to the rendering of graticules (lines of latitude and longitude) on a map when the projection crosses the dateline. This suggests that the problem might be in the implementation of the graticule rendering logic and how projections are handled across the dateline. The files src/ol/layer/Graticule.js is directly related to the rendering of graticules, which is the core of the problem. The files src/ol/proj/proj4.js and src/ol/proj/Projection.js are involved in handling map projections and could cause issues when dealing with dateline crossing if normalization of longitudes results in improper handling of coordinates. Additionally, src/ol/reproj/Triangulation.js could be involved as it deals with the triangulation needed for proper rendering across different projections, which can be a source of error when projections cross the dateline.",
+        "bug_scenario": "The bug scenario involves a graticule not displaying correctly when the view projection crosses the dateline. The issue is that most meridians do not appear, and parallels begin at the dateline or extend too far. The expected behavior is for all meridians and parallels within the projection extent to appear properly."
+    }
+}

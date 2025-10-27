@@ -1,0 +1,33 @@
+{
+    "1/1": {
+        "lib/features/label-editing/LabelEditingProvider.js": [
+            {
+                "SEARCH": [
+                    "LabelEditingProvider.prototype.activate = function(element) {",
+                    "// text",
+                    "var text = getLabel(element);",
+                    "",
+                    "if (text === undefined) {",
+                    "return;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "LabelEditingProvider.prototype.activate = function(element) {",
+                    "  var self = this;",
+                    "",
+                    "  // Cancel direct editing on plane switch",
+                    "  this._eventBus.on('plane.switch', function() {",
+                    "    self._directEditing.cancel();",
+                    "  });",
+                    "",
+                    "  // text",
+                    "  var text = getLabel(element);",
+                    "",
+                    "  if (text === undefined) {",
+                    "    return;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

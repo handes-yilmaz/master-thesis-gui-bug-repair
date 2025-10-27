@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/driver.js//Driver",
+            "lighthouse-core/gather/gather-runner.js//GatherRunner"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/driver.js//_waitForFullyLoaded",
+            "lighthouse-core/gather/driver.js//gotoURL",
+            "lighthouse-core/gather/gather-runner.js//loadPage",
+            "lighthouse-core/gather/gather-runner.js//run"
+        ],
+        "explanation": "The classes and functions identified are related to the process of loading pages and managing network and CPU idle states, which are directly involved in the 'Loading page & waiting for onload' step where the hang occurs. The 'Driver' class in 'driver.js' contains methods like '_waitForFullyLoaded' and 'gotoURL', which are responsible for waiting for the page to fully load and navigating to URLs, respectively. These are critical in ensuring that the page load process completes successfully. Similarly, the 'GatherRunner' class in 'gather-runner.js' includes 'loadPage' and 'run' methods, which handle the loading of pages and the execution of the audit process. These methods are likely involved in the hanging issue as they manage the sequence of actions that lead to the 'onload' event.",
+        "bug_scenario": "The bug scenario involves Lighthouse hanging indefinitely on the 'Loading page & waiting for onload' step during the 'Progressive Web App' test. This occurs both in the native audit and the Lighthouse extension, affecting all pages of the user's site. The issue persists despite previous reports and fixes related to HSTS, and the user suspects it is not related to server failures, HTTP offerings, about:blank, or missing document requests."
+    }
+}

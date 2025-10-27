@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Image.js",
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/ImageBuilder.js",
+            "src/ol/render/canvas/TextBuilder.js"
+        ],
+        "explanation": "1. **src/ol/style/Image.js**: This file defines the ImageStyle class, which includes a declutterMode property. The bug report suggests adding an ignorePlacement option, which would likely involve changes to how declutterMode is handled in this class.\n\n2. **src/ol/style/Text.js**: Similar to Image.js, this file defines the Text style class, which would also need to accommodate the new declutter options. The handling of text placement and decluttering is central to the issue described.\n\n3. **src/ol/render/canvas/ImageBuilder.js**: This file is responsible for rendering images on the canvas. It includes logic for handling declutterMode, which would need to be updated to support the new options and ensure images are rendered correctly without overlap.\n\n4. **src/ol/render/canvas/TextBuilder.js**: This file handles the rendering of text on the canvas. It would need to be updated to support the new declutter options, particularly to allow decluttering only for text as requested in the bug report.",
+        "bug_scenario": "The bug scenario involves an issue with the rendering of image and label combinations in OpenLayers when the declutterMode is set to something other than 'declutter'. The problem is that the current implementation does not handle different declutter modes properly, leading to incorrect rendering order and potential overlap of images and text labels. The enhancement request is to allow decluttering only for text, which requires changing the declutter option from a boolean to a more flexible setting that can handle 'none', 'text', 'geometry', and 'both'."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//BoundaryEventBehavior",
+            "lib/features/rules/BpmnRules.js//BpmnRules"
+        ],
+        "bug_functions": [
+            "lib/features/rules/BpmnRules.js//canConnect",
+            "lib/features/rules/BpmnRules.js//canConnectMessageFlow"
+        ],
+        "explanation": "The class `BoundaryEventBehavior` in `BoundaryEventBehavior.js` is responsible for handling behaviors specific to boundary events in BPMN diagrams. It includes logic for managing connections involving boundary events, which is directly related to the bug where message flows are incorrectly allowed to connect to boundary events. The `BpmnRules` class in `BpmnRules.js` defines the rules for BPMN modeling, including connection rules. The functions `canConnect` and `canConnectMessageFlow` within this class are likely responsible for determining whether a connection is permissible, and thus need to be modified to ensure that message flows cannot connect to boundary events, aligning with the expected behavior described in the bug report.",
+        "bug_scenario": "The bug scenario involves a BPMN diagram where a message flow is incorrectly allowed to connect to a boundary event, which is against BPMN semantics. The expected behavior is that such connections should be disallowed by the rules governing the diagram."
+    }
+}

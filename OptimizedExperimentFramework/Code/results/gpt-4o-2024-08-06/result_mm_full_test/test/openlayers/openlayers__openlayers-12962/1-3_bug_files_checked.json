@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Layer.js",
+            "src/ol/renderer/canvas/Layer.js",
+            "src/ol/renderer/canvas/TileLayer.js"
+        ],
+        "explanation": "The bug is related to layer opacity and rendering, which suggests the issue lies in the layer rendering logic. The files in the 'src/ol/layer/' directory, especially 'Layer.js', handle layer properties including opacity. The 'src/ol/renderer/canvas/' directory contains files like 'Layer.js' and 'TileLayer.js', which are responsible for rendering layers on the canvas. These files likely contain the logic that has changed between versions, affecting how layers are rendered with opacity.",
+        "bug_scenario": "The bug involves a change in how layer opacity is handled after updating to OL version 6.9.0. The top-most layer becomes opaque when all layers have the same opacity value, making it difficult to see through to layers beneath. This issue is specific to OL versions 6.8.1 and above and seems to be related to the rendering of layers in the canvas element."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/Layer.js",
+            "src/ol/renderer/canvas/Layer.js",
+            "src/ol/render/canvas.js"
+        ],
+        "explanation": "The issue is related to layer opacity and rendering. Files in the `src/ol/layer` and `src/ol/renderer/canvas` directories likely manage how layers are displayed and interact with each other, especially regarding opacity settings. Adjustments to these files could resolve how opacity is calculated and applied. Additionally, rendering issues are typically handled in the `render` directory, specifically `canvas.js`, which may control how layers are drawn on the canvas.",
+        "bug_scenario": "After updating to OL 6.9.0, the layer opacity for independent layers causes the top-most layer to become opaque relative to other OL layers, though basemaps display correctly. This issue appears in version 6.8.1 and later. The problem seems related to how layers are rendered in the canvas element, as adjusting opacity values slightly resolves the issue."
+    }
+}

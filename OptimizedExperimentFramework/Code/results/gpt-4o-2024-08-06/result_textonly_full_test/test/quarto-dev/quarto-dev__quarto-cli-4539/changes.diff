@@ -1,0 +1,33 @@
+diff --git a/src/command/render/pandoc-html.ts b/src/command/render/pandoc-html.ts
+index ef4e919..16c90e8 100644
+--- a/src/command/render/pandoc-html.ts
++++ b/src/command/render/pandoc-html.ts
+@@ -289,7 +289,7 @@ async function resolveQuartoSyntaxHighlighting(
+             defaults: "",
+             functions: "",
+             mixins: "",
+-            rules: rules.join("\n"),
++            rules: rules.join("\n") + "\n.table-caption { text-align: center; }",
+           },
+         }],
+         temp,
+diff --git a/src/format/html/format-html.ts b/src/format/html/format-html.ts
+index bd78cf5..73654af 100644
+--- a/src/format/html/format-html.ts
++++ b/src/format/html/format-html.ts
+@@ -817,6 +817,15 @@ function processCodeAnnotations(format: Format, doc: Document) {
+     Object.values(definitionLists).forEach((dl) => {
+       dl.classList.add(kCodeAnnotationGridClz);
+     });
++
++    // Ensure captions are correctly aligned with spanners
++    const tables = doc.querySelectorAll("table");
++    tables.forEach((table) => {
++      const caption = table.querySelector("caption");
++      if (caption) {
++        caption.style.textAlign = "center";
++      }
++    });
+   }
+ }
+ 

@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//DeleteLaneBehavior",
+            "lib/features/modeling/util/LaneUtil.js//getChildLanes",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js//ResizeLaneHandler"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js//compensateLaneDelete",
+            "lib/features/modeling/util/LaneUtil.js//collectLanes",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js//resizeBalanced",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js//resizeSpace"
+        ],
+        "explanation": "The issue arises when a lane is deleted and the pool's structure is not properly adjusted, affecting the ability to connect message flows. The `DeleteLaneBehavior` class and its `compensateLaneDelete` function handle lane deletion and adjustments, which are crucial for maintaining pool integrity. The `LaneUtil.js` file contains functions like `getChildLanes` and `collectLanes` that manage lane collections and are essential for understanding the pool's current state. The `ResizeLaneHandler` class and its methods `resizeBalanced` and `resizeSpace` are responsible for resizing lanes and making space, which directly impacts how connections can be made after lane adjustments.",
+        "bug_scenario": "The bug involves difficulty in connecting a message flow to the boundary of a pool that previously had more than one lane. The connection is only possible at the pool's header, not within the single lane."
+    }
+}

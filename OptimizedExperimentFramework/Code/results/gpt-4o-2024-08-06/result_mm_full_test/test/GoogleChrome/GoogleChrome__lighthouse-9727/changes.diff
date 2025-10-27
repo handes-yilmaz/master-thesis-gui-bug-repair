@@ -1,0 +1,32 @@
+diff --git a/lighthouse-core/audits/metrics.js b/lighthouse-core/audits/metrics.js
+index 8179ed8..1b03a88 100644
+--- a/lighthouse-core/audits/metrics.js
++++ b/lighthouse-core/audits/metrics.js
+@@ -32,8 +32,10 @@ class Metrics extends Audit {
+     const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
+     const summary = await ComputedTimingSummary
+       .request({trace, devtoolsLog}, context);
+-    const metrics = summary.metrics;
+-    const debugInfo = summary.debugInfo;
++    const iframeSummary = await ComputedTimingSummary
++      .request({trace: artifacts.traces['iframe'], devtoolsLog: artifacts.devtoolsLogs['iframe']}, context);
++    const metrics = {...summary.metrics, ...iframeSummary.metrics};
++    const debugInfo = {...summary.debugInfo, ...iframeSummary.debugInfo};
+ 
+     for (const [name, value] of Object.entries(metrics)) {
+       const key = /** @type {keyof LH.Artifacts.TimingSummary} */ (name);
+diff --git a/lighthouse-core/gather/gatherers/iframe-elements.js b/lighthouse-core/gather/gatherers/iframe-elements.js
+index 97aea7d..3ad1850 100644
+--- a/lighthouse-core/gather/gatherers/iframe-elements.js
++++ b/lighthouse-core/gather/gatherers/iframe-elements.js
+@@ -48,7 +48,9 @@ class IFrameElements extends Gatherer {
+ 
+     /** @type {LH.Artifacts['IFrameElements']} */
+     const iframeElements = await driver.evaluateAsync(expression, {useIsolation: true});
+-    return iframeElements;
++    // Gather additional performance data for iframes
++    const iframeMetrics = await driver.evaluateAsync('collectIframeMetrics()', {useIsolation: true});
++    return {iframeElements, iframeMetrics};
+   }
+ }
+ 

@@ -1,0 +1,13 @@
+diff --git a/src/lib/regex.js b/src/lib/regex.js
+index db62fcf..c3e9a69 100644
+--- a/src/lib/regex.js
++++ b/src/lib/regex.js
+@@ -3,7 +3,7 @@
+  * @returns {RegExp}
+  * */
+ export function escape(value) {
+-  return new RegExp(value.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'), 'm');
++return new RegExp(value.replace(/[-/\\\\^$*+?.()|[\\]{}]/g, '\\$&').replace(/\\\//g, '/'), 'm');
+ }
+ 
+ /**

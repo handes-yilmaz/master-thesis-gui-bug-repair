@@ -1,0 +1,13 @@
+diff --git a/src/ol/renderer/canvas/Layer.js b/src/ol/renderer/canvas/Layer.js
+index 6edcbe4..010435c 100644
+--- a/src/ol/renderer/canvas/Layer.js
++++ b/src/ol/renderer/canvas/Layer.js
+@@ -95,7 +95,7 @@ class CanvasLayerRenderer extends LayerRenderer {
+     let container, context;
+     if (
+       target &&
+-      target.style.opacity === cssOpacity(opacity) &&
++      parseFloat(target.style.opacity) === parseFloat(cssOpacity(opacity)) &&
+       target.className === layerClassName
+     ) {
+       const canvas = target.firstElementChild;

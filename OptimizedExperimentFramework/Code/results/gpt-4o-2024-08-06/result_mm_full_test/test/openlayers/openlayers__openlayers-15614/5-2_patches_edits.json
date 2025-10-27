@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "renderDeclutter(frameState) {",
+                    "const declutter = this.getLayer().getDeclutter();",
+                    "if (!declutter) {",
+                    "return;",
+                    "}",
+                    "this.setupCompositionContext_(); //FIXME Check if this works, or if we need to defer something.",
+                    "this.renderWorlds(this.replayGroup_, frameState, true);",
+                    "this.releaseCompositionContext_();",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  renderDeclutter(frameState) {",
+                    "    const declutter = this.getLayer().getDeclutter();",
+                    "    if (!declutter) {",
+                    "      return;",
+                    "    }",
+                    "    this.setupCompositionContext_();",
+                    "    this.compositionContext_.globalAlpha = this.opacity_; // Apply opacity to decluttered items",
+                    "    this.renderWorlds(this.replayGroup_, frameState, true);",
+                    "    this.releaseCompositionContext_();",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

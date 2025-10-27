@@ -1,0 +1,56 @@
+diff --git a/src/ol/format/GeoJSON.js b/src/ol/format/GeoJSON.js
+index d7cd119..f7759e3 100644
+--- a/src/ol/format/GeoJSON.js
++++ b/src/ol/format/GeoJSON.js
+@@ -112,7 +112,10 @@ class GeoJSON extends JSONFeature {
+       };
+     }
+ 
+-    const geometry = readGeometry(geoJSONFeature['geometry'], opt_options);
++    let geometry = null;
++    if (geoJSONFeature['geometry']) {
++      geometry = readGeometry(geoJSONFeature['geometry'], opt_options);
++    }
+     const feature = new Feature();
+     if (this.geometryName_) {
+       feature.setGeometryName(this.geometryName_);
+diff --git a/src/ol/geom/MultiPolygon.js b/src/ol/geom/MultiPolygon.js
+index 0bf35c1..ea53a42 100644
+--- a/src/ol/geom/MultiPolygon.js
++++ b/src/ol/geom/MultiPolygon.js
+@@ -458,19 +458,24 @@ class MultiPolygon extends SimpleGeometry {
+     if (!this.flatCoordinates) {
+       this.flatCoordinates = [];
+     }
+-    const endss = deflateMultiCoordinatesArray(
+-      this.flatCoordinates,
+-      0,
+-      coordinates,
+-      this.stride,
+-      this.endss_
+-    );
+-    if (endss.length === 0) {
++    if (!coordinates || coordinates.length === 0) {
+       this.flatCoordinates.length = 0;
++      this.endss_ = [];
+     } else {
+-      const lastEnds = endss[endss.length - 1];
+-      this.flatCoordinates.length =
+-        lastEnds.length === 0 ? 0 : lastEnds[lastEnds.length - 1];
++      const endss = deflateMultiCoordinatesArray(
++        this.flatCoordinates,
++        0,
++        coordinates,
++        this.stride,
++        this.endss_
++      );
++      if (endss.length === 0) {
++        this.flatCoordinates.length = 0;
++      } else {
++        const lastEnds = endss[endss.length - 1];
++        this.flatCoordinates.length =
++          lastEnds.length === 0 ? 0 : lastEnds[lastEnds.length - 1];
++      }
+     }
+     this.changed();
+   }

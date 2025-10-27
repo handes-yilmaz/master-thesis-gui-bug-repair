@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js",
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js",
+            "lib/features/modeling/cmd/UpdateFlowNodeRefsHandler.js",
+            "lib/features/modeling/BpmnLayouter.js"
+        ],
+        "explanation": "The bug is related to the layout of connections when reconnecting them to form loops. The following files are identified as relevant based on the repository structure and the description of the issue:\n\n1. **lib/features/modeling/behavior/LayoutConnectionBehavior.js**: This file likely contains logic related to how connections are laid out during modeling activities, including reconnecting actions.\n\n2. **lib/features/modeling/behavior/ReplaceConnectionBehavior.js**: This file is potentially involved in handling the behavior when a connection is replaced or reconnected, which is directly related to the bug scenario where connections are reconnected to form loops.\n\n3. **lib/features/modeling/cmd/UpdateFlowNodeRefsHandler.js**: This file might handle updates to flow node references when connections are manipulated, which could affect how connections are laid out when reconnected.\n\n4. **lib/features/draw/BpmnLayouter.js**: This file is likely responsible for the overall layout of BPMN elements, including connections. It may need adjustment to ensure connections are laid out correctly when forming loops.\n\nThese files are related to the bug due to their involvement in connection layout and behavior handling, which are critical when addressing issues of incorrect connection layouts in complex scenarios.",
+        "bug_scenario": "The bug scenario involves a broken connection layout when reconnecting to form a loop in diagrams with connections that have more than two waypoints. The issue is particularly evident when the start/end of a connection is reconnected to form a loop, resulting in an incorrect layout. This problem persists across different versions of the bpmn-js library. The bug manifests in scenarios where complex connections are involved, and the expected behavior is for the connection to layout as if the loop was created from scratch."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js",
+            "lib/features/modeling/BpmnLayouter.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/ReplaceConnectionBehavior.js**: This file likely handles behaviors related to replacing connections, which includes reconnecting start/end nodes. Since the bug involves incorrect connection layouts during reconnection, this file would be crucial in analyzing and fixing the reconnection logic.\n\n2. **lib/features/modeling/behavior/LayoutConnectionBehavior.js**: This file is responsible for the layout behavior of connections. Given that the bug involves incorrect connection layouts, this file would likely contain the logic that needs adjustment to correct the layout when forming a loop.\n\n3. **lib/features/modeling/BpmnLayouter.js**: As the name suggests, this file is involved in laying out BPMN elements. The bug specifically deals with layout issues when connections form a loop, which means this file would contain relevant code that needs to be examined and potentially modified to solve the layout issues.",
+        "bug_scenario": "The bug scenario involves a broken connection layout when reconnecting nodes to form a loop in a BPMN diagram. This occurs particularly with connections that have more than two waypoints. When users try to reconnect the start or end of a connection to form a loop, the connection layout becomes incorrect. The issue is reproducible across different versions of the bpmn-js library used in the Camunda Modeler."
+    }
+}

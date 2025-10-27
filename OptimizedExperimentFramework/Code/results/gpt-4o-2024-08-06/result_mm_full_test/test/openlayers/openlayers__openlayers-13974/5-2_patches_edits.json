@@ -1,0 +1,18 @@
+{
+    "1/1": {
+        "src/ol/source/DataTile.js": [
+            {
+                "SEARCH": [
+                    "this.bandCount = options.bandCount === undefined ? 4 : options.bandCount; // assume RGBA if undefined"
+                ],
+                "REPLACE": [
+                    "    this.bandCount = options.bandCount === undefined ? 4 : options.bandCount; // assume RGBA if undefined",
+                    "    // Adjust for even bandCount >= 6 to handle alpha channel correctly",
+                    "    if (this.bandCount >= 6 && this.bandCount % 2 === 0) {",
+                    "      this.bandCount += 1; // Add an extra band for alpha channel",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

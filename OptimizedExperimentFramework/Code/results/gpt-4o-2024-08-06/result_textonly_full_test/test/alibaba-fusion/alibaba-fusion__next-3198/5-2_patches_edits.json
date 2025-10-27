@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "src/date-picker2/index.jsx": [
+            {
+                "SEARCH": [
+                    "} else if (typeof props.showTime === 'object') {",
+                    "deprecated('showTime: object', 'showTime && timePanelProps', 'DatePicker');",
+                    "newProps.timePanelProps = props.showTime;",
+                    "newProps.showTime = true;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    } else if (typeof props.showTime === 'object') {",
+                    "        deprecated('showTime: object', 'showTime && timePanelProps', 'DatePicker');",
+                    "        newProps.timePanelProps = {",
+                    "            ...props.showTime,",
+                    "            defaultValue: props.timePanelProps?.defaultValue || props.showTime.defaultValue",
+                    "        };",
+                    "        newProps.showTime = true;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

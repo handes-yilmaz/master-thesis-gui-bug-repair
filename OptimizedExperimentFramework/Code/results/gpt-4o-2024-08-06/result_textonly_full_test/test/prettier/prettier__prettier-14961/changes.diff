@@ -1,0 +1,18 @@
+diff --git a/src/language-html/embed/angular-interpolation.js b/src/language-html/embed/angular-interpolation.js
+index 29f9307..2ca3c84 100644
+--- a/src/language-html/embed/angular-interpolation.js
++++ b/src/language-html/embed/angular-interpolation.js
+@@ -32,7 +32,12 @@ async function printAngularInterpolation(text, textToDoc) {
+     }
+   }
+ 
+-  return parts;
++  return parts.map(part => {
++    if (typeof part === 'string' || typeof part === 'number') {
++      return part;
++    }
++    return ` ${part} `;
++  });
+ }
+ 
+ export { interpolationRegex, printAngularInterpolation };

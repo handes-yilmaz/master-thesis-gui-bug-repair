@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "src/field/index.js": [
+            {
+                "SEARCH": [
+                    "this.values = JSON.parse(JSON.stringify(options.values || {}));"
+                ],
+                "REPLACE": [
+                    "        this.values = options.values ? structuredClone(options.values) : {};"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.values = Object.assign({}, this.values, fieldsValue);"
+                ],
+                "REPLACE": [
+                    "            this.values = structuredClone(this.values);",
+                    "            Object.keys(fieldsValue).forEach(name => {",
+                    "                this.values = setIn(this.values, name, fieldsValue[name]);",
+                    "            });"
+                ]
+            }
+        ]
+    }
+}

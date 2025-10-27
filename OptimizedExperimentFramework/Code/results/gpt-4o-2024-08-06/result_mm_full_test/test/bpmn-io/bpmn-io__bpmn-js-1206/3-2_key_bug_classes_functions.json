@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DetachEventBehavior.js//DetachEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DetachEventBehavior.js//preExecute"
+        ],
+        "explanation": "The `DetachEventBehavior` class in `DetachEventBehavior.js` is responsible for handling the behavior of detaching boundary events. The `preExecute` function within this class is specifically designed to replace a boundary event with an intermediate event when it is detached from a shape. The bug is likely related to this function not executing correctly during a batch move, which is why the boundary events are not being converted to intermediate events as expected.",
+        "bug_scenario": "The bug scenario involves moving multiple Boundary Events to the canvas in a batch operation. The expected behavior is that these events should either be disallowed from moving or should be converted to Intermediate Events. However, this conversion is not happening, leading to incorrect behavior."
+    }
+}

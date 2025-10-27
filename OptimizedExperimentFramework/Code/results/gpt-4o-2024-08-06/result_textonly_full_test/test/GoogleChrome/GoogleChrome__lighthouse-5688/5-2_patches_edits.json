@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/uses-webp-images.js": [
+            {
+                "SEARCH": [
+                    "description: 'Image formats like JPEG 2000, JPEG XR, and WebP often provide better ' +"
+                ],
+                "REPLACE": [
+                    "      description: 'Image formats like JPEG 2000, JPEG XR, WebP, and BMP often provide better ' +"
+                ]
+            }
+        ],
+        "lighthouse-core/audits/byte-efficiency/uses-optimized-images.js": [
+            {
+                "SEARCH": [
+                    "} else if (/(jpeg|bmp)/.test(image.mimeType) === false ||"
+                ],
+                "REPLACE": [
+                    "      } else if (/(jpeg|bmp|bmp)/.test(image.mimeType) === false ||"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js": [
+            {
+                "SEARCH": [
+                    "/image\\/(png|bmp|jpeg)/.test(record.mimeType);"
+                ],
+                "REPLACE": [
+                    "        /image\\/(png|bmp|jpeg|bmp)/.test(record.mimeType);"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/ol/webgl/TileTexture.js": [
+            {
+                "SEARCH": [
+                    "gl.texImage2D(",
+                    "gl.TEXTURE_2D,",
+                    "0,",
+                    "format,",
+                    "size[0],",
+                    "size[1],",
+                    "0,",
+                    "format,",
+                    "textureType,",
+                    "data",
+                    ");"
+                ],
+                "REPLACE": [
+                    "  const paddedWidth = Math.ceil(size[0] / 4) * 4;",
+                    "  const paddedHeight = Math.ceil(size[1] / 4) * 4;",
+                    "  gl.texImage2D(",
+                    "    gl.TEXTURE_2D,",
+                    "    0,",
+                    "    format,",
+                    "    paddedWidth,",
+                    "    paddedHeight,",
+                    "    0,",
+                    "    format,",
+                    "    textureType,",
+                    "    data",
+                    "  );"
+                ]
+            }
+        ]
+    }
+}

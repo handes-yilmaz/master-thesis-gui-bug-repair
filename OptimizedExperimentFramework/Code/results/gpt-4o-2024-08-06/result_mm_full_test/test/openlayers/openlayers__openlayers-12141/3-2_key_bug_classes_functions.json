@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/featureloader.js//loadFeaturesXhr"
+        ],
+        "bug_functions": [
+            "src/ol/featureloader.js//xhr"
+        ],
+        "explanation": "The issue is related to the order of operations in the xhr function. The features are added to the source after the success callback is called, which might lead to the extent being calculated before the features are actually added. This results in an incorrect extent value. By adding features before calling the success callback, the extent can be correctly calculated when the featuresloadend event is triggered.",
+        "bug_scenario": "The bug occurs when trying to get the extent of a VectorSource inside the featuresloadend callback function. The result is [Infinity,Infinity,-Infinity,-Infinity], which is incorrect. The issue seems to be related to the order of operations in the xhr function in src/ol/featureloader.js, where features should be added before calling the success callback."
+    }
+}

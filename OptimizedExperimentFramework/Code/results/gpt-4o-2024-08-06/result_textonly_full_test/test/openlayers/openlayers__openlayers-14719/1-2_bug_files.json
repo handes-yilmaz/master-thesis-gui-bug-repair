@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/source/ImageWMS.js",
+            "src/source/TileWMS.js"
+        ],
+        "explanation": "The files likely related to the bug are `src/source/ImageWMS.js` and `src/source/TileWMS.js`. These files are responsible for handling WMS image sources in the application. Given that the issue is about WMS images becoming blurry, it is probable that the problem lies within the logic that manages how these images are fetched, scaled, or rendered. Adjustments to image scaling or rendering calculations would likely need to be made in these files to ensure the images maintain a pixel-perfect appearance regardless of the map's dimensions.",
+        "bug_scenario": "The bug occurs when the WMS (Web Map Service) image becomes blurry if the ratio of the map size is not a round integer or if the map's width or height is not even. This results in a map display that is not pixel-perfect as expected. This issue can be witnessed by visiting the provided URL and observing the map display, which appears slightly blurry."
+    },
+    "2": {
+        "bug_files": [
+            "src/source/TileWMS.js",
+            "src/source/ImageWMS.js",
+            "src/render/canvas/ImageLayer.js",
+            "src/proj/transforms.js"
+        ],
+        "explanation": "1. **src/source/TileWMS.js** and **src/source/ImageWMS.js**: These files are responsible for handling WMS tile and image sources. Since the issue is related to the rendering of WMS images, these files are likely involved in fetching and processing the image tiles from the WMS server, which could be contributing to the blurriness.\n\n2. **src/render/canvas/ImageLayer.js**: This file handles the rendering of image layers on the canvas. If there's a problem with how images are being drawn or scaled on the canvas, it might result in blurriness, especially if the dimensions are not even or the aspect ratio is not maintained correctly.\n\n3. **src/proj/transforms.js**: This file deals with coordinate transformations. If there is an issue with how coordinates or image dimensions are being transformed, it might affect the rendering of images, leading to potential blurriness.\n\nThese files are critical in the flow of how WMS images are requested, processed, and rendered, making them prime suspects for the cause of the bug.",
+        "bug_scenario": "The bug scenario indicates that when viewing a map using WMS (Web Map Service) in the application, the image becomes blurry if the width or height of the map is not even or the ratio is not a round integer. This is evident when visiting the provided URL and observing the map display."
+    }
+}

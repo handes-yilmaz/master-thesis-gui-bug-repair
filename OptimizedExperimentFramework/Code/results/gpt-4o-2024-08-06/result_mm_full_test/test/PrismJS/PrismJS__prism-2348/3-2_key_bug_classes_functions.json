@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-cpp.js",
+            "components/prism-cpp.min.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the pattern used for identifying class names in C++ within the PrismJS library. The files 'components/prism-cpp.js' and 'components/prism-cpp.min.js' contain the logic for extending the C language highlighting to C++. The 'class-name' pattern in these files is responsible for detecting class names, and it seems to be missing cases where class names are used in inheritance or method definitions, such as 'QMainWindow' and 'MainWindow::changeWindowTitle'. Adjusting the regex pattern in these files should address the highlighting issue.",
+        "bug_scenario": "The bug involves PrismJS not highlighting class names in C++ code. Specifically, class names like 'QMainWindow' and 'MainWindow' are not highlighted as expected in the provided code snippet."
+    }
+}

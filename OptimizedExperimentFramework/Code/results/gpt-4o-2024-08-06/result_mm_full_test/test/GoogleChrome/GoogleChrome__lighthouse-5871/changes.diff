@@ -1,0 +1,17 @@
+diff --git a/lighthouse-core/gather/driver.js b/lighthouse-core/gather/driver.js
+index ec05189..b4aca35 100644
+--- a/lighthouse-core/gather/driver.js
++++ b/lighthouse-core/gather/driver.js
+@@ -102,9 +102,9 @@ class Driver {
+   /**
+    * @return {Promise<string>}
+    */
+-  getUserAgent() {
+-    // FIXME: use Browser.getVersion instead
+-    return this.evaluateAsync('navigator.userAgent');
++  async getUserAgent() {
++    const version = await this.sendCommand('Browser.getVersion');
++    return version.userAgent;
+   }
+ 
+   /**

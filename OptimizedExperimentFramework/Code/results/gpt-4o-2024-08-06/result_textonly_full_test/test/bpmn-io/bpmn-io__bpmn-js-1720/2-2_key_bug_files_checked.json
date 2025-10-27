@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/replace/BpmnReplace.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/ResizeBehavior.js**: This file handles the resizing behavior of BPMN elements, including subprocesses. The issue of not resizing the shape when transforming a call activity into a subprocess likely stems from this file, as it sets the minimum dimensions and constraints for resizing.\n\n2. **lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js**: This file manages the behavior of toggling elements between collapsed and expanded states. The bug involves transforming a call activity into an expanded subprocess, which should trigger a resize. This file's logic might not be correctly handling the transition, leading to the shape not resizing as expected.\n\n3. **lib/features/replace/BpmnReplace.js**: This file is responsible for replacing BPMN elements, including handling the properties and states of elements during replacement. The bug involves changing the type of an element, which should include resizing it appropriately. This file might not be correctly applying the necessary changes to the element's dimensions when it is replaced or transformed into a subprocess.",
+        "bug_scenario": "The bug scenario involves a sequence of actions in a BPMN diagram where transforming a Call Activity into a SubProcess does not resize the shape as expected. The user creates a task, converts it into a call activity, and then into an expanded subprocess. However, the shape does not resize appropriately, leading to a dead end where the user cannot revert the changes or resize the shape back to a call activity."
+    }
+}

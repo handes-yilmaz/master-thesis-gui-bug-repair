@@ -1,0 +1,15 @@
+diff --git a/src/cascader-select/cascader-select.jsx b/src/cascader-select/cascader-select.jsx
+index 03a0db3..aa0db82 100644
+--- a/src/cascader-select/cascader-select.jsx
++++ b/src/cascader-select/cascader-select.jsx
+@@ -321,8 +321,8 @@ class CascaderSelect extends Component {
+     }
+ 
+     updateCache(dataSource) {
+-        this._v2n = {};
+-        this._p2n = {};
++        this._v2n = Object.assign({}, this._v2n);
++        this._p2n = Object.assign({}, this._p2n);
+         const loop = (data, prefix = '0') =>
+             data.forEach((item, index) => {
+                 const { value, children } = item;

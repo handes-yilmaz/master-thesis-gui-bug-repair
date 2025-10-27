@@ -1,0 +1,16 @@
+diff --git a/src/command/render/render.ts b/src/command/render/render.ts
+index 05b8773..d3a3e6a 100644
+--- a/src/command/render/render.ts
++++ b/src/command/render/render.ts
+@@ -452,6 +452,11 @@ export function renderResultFinalOutput(
+   let finalInput = result.input;
+   let finalOutput = result.file;
+ 
++  // Ensure figures are rendered even if caption is empty
++  if (!finalOutput && result.figure && result.figure.length > 0) {
++    finalOutput = result.figure[0];
++  }
++
+   if (renderResults.baseDir) {
+     finalInput = join(renderResults.baseDir, finalInput);
+     if (renderResults.outputDir) {

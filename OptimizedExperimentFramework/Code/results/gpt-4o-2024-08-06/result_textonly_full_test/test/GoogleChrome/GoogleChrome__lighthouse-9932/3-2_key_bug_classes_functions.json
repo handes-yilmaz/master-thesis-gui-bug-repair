@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/computed/metrics/lantern-metric.js//LanternMetricArtifact",
+            "lighthouse-core/lib/dependency-graph/simulator/simulator.js//Simulator",
+            "lighthouse-core/computed/load-simulator.js//LoadSimulator"
+        ],
+        "bug_functions": [
+            "lighthouse-core/computed/metrics/lantern-metric.js//computeMetricWithGraphs",
+            "lighthouse-core/lib/dependency-graph/simulator/simulator.js//simulate",
+            "lighthouse-core/computed/load-simulator.js//compute_"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they are involved in the simulation and computation of network metrics, which is where the issue of treating non-network URLs as network requests arises. The `LanternMetricArtifact` class in `lantern-metric.js` contains methods for computing metrics using graphs, which likely includes handling URLs and their associated timings. The `Simulator` class in `simulator.js` is responsible for simulating network conditions, and its `simulate` function is directly involved in processing network requests, which is where the incorrect handling of non-network URLs could occur. The `LoadSimulator` class in `load-simulator.js` is responsible for computing simulation options, including server response times, which are incorrectly being applied to non-network URLs. These elements are central to the bug because they handle the logic that determines how URLs are processed and timed in the simulation.",
+        "bug_scenario": "The bug scenario involves the simulator treating non-network URLs as actual network requests, which results in an incorrect server response time being recorded. The expected behavior is that non-network URLs should not have a server response time, although a small round-trip time (RTT) might be reasonable."
+    }
+}

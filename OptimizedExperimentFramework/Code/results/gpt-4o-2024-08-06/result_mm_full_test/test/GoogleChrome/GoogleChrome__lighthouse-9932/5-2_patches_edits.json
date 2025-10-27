@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "lighthouse-core/lib/dependency-graph/simulator/simulator.js": [
+            {
+                "SEARCH": [
+                    "graph.getRootNode().traverse(node => {",
+                    "if (node.type === BaseNode.TYPES.NETWORK) {",
+                    "records.push(node.record);",
+                    "}",
+                    "});"
+                ],
+                "REPLACE": [
+                    "    graph.getRootNode().traverse(node => {",
+                    "      if (node.type === BaseNode.TYPES.NETWORK && !node.record.url.startsWith('data:')) {",
+                    "        records.push(node.record);",
+                    "      }",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/render/output.ts//OutputRecipe",
+            "src/command/render/pandoc-html.ts//resolveSassBundles",
+            "src/core/image.ts//imageContentType"
+        ],
+        "bug_functions": [
+            "src/command/render/output.ts//outputRecipe",
+            "src/core/image.ts//imageSize"
+        ],
+        "explanation": "The 'outputRecipe' function in 'output.ts' is responsible for determining the output file paths and handling URLs, which could affect how images are displayed in different contexts. The 'resolveSassBundles' function in 'pandoc-html.ts' might be involved in processing CSS that affects image display. The 'imageContentType' and 'imageSize' functions in 'image.ts' are directly related to handling image files and their types, which could be crucial for resolving the display issue in the grid view.",
+        "bug_scenario": "The bug involves non-standard URLs displaying correctly inline within a blog post but not appearing in the image grid view. The issue is likely related to how URLs with special characters are handled in different contexts."
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_files": [
+            "features/auto-resize/BpmnAutoResize.js",
+            "features/auto-resize/BpmnAutoResizeProvider.js",
+            "features/modeling/behavior/LayoutConnectionBehavior.js",
+            "features/modeling/behavior/ResizeBehavior.js",
+            "features/modeling/util/ConnectionLayoutUtil.js",
+            "features/modeling/util/LabelLayoutUtil.js"
+        ],
+        "explanation": "1. **features/auto-resize/BpmnAutoResize.js** and **features/auto-resize/BpmnAutoResizeProvider.js**: These files are likely responsible for handling the auto-resizing of elements. The issue involves the resizing of subprocesses, so any logic handling auto-resize might need adjustments to ensure labels and associations are repositioned correctly.\n\n2. **features/modeling/behavior/LayoutConnectionBehavior.js**: This file likely deals with the layout of connections. Since the problem involves connections not adjusting their labels and associations upon resizing, this behavior might need to be revised to include label repositioning.\n\n3. **features/modeling/behavior/ResizeBehavior.js**: This is directly linked to resizing behavior, and modifications here may be necessary to ensure that labels and associations stay correctly attached to connections when resized.\n\n4. **features/modeling/util/ConnectionLayoutUtil.js** and **features/modeling/util/LabelLayoutUtil.js**: These utility files probably contain functions for calculating the layout of connections and labels. Adjustments here may be essential to correctly calculate and apply the new positions for labels when the subprocess is resized.",
+        "bug_scenario": "The bug involves the failure of labels and associations to move with a connection when a connected shape is resized. This is visually demonstrated in the provided GIF, where after resizing a subprocess, the labels and associations remain in their original position instead of moving along with the repositioned sequence flow."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/util/ConnectionLayoutUtil.js",
+            "lib/features/modeling/util/LabelLayoutUtil.js"
+        ],
+        "explanation": "1. **lib/features/label-editing/LabelUtil.js**: This file likely contains utility functions related to managing labels, which are not moving correctly when the connection layout changes.\n\n2. **lib/features/modeling/behavior/LayoutConnectionBehavior.js**: This file likely handles the layout behavior of connections, which is directly related to how connections are adjusted when a connected shape is resized.\n\n3. **lib/features/modeling/behavior/LabelBehavior.js**: This behavior file could manage how labels are updated when the model changes, which is crucial for ensuring labels move with their associated connections.\n\n4. **lib/features/modeling/util/ConnectionLayoutUtil.js**: This utility file might contain functions that determine how connections are laid out, which could affect how and if labels are repositioned correctly.\n\n5. **lib/features/modeling/util/LabelLayoutUtil.js**: This utility file likely deals with the layout and positioning of labels specifically, and any issues here could result in the labels not following the connection lines.",
+        "bug_scenario": "The bug occurs when a connection is re-laid out after a connected shape is resized. In this scenario, the labels and associations that should move along with the connection remain in their original positions, causing them to appear disconnected from the sequence flow. The bug report provides a GIF demonstrating this behavior, showing the connection and label left hanging after a subprocess is resized."
+    }
+}

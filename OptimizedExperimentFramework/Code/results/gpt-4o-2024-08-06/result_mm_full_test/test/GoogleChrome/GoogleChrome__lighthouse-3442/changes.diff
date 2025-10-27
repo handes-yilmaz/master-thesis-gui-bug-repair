@@ -1,0 +1,15 @@
+diff --git a/lighthouse-core/report/v2/renderer/report-renderer.js b/lighthouse-core/report/v2/renderer/report-renderer.js
+index 732fc99..24411fc 100644
+--- a/lighthouse-core/report/v2/renderer/report-renderer.js
++++ b/lighthouse-core/report/v2/renderer/report-renderer.js
+@@ -33,6 +33,10 @@ class ReportRenderer {
+    * @param {!Element} container Parent element to render the report into.
+    */
+   renderReport(report, container) {
++    if (!report || !report.generatedTime) {
++      console.error('Invalid report object:', report);
++      return;
++    }
+     container.textContent = ''; // Remove previous report.
+     const element = container.appendChild(this._renderReport(report));
+ 

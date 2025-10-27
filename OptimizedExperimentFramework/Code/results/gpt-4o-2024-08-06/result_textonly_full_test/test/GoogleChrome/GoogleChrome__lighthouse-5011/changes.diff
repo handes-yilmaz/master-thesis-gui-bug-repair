@@ -1,0 +1,14 @@
+diff --git a/lighthouse-core/gather/computed/critical-request-chains.js b/lighthouse-core/gather/computed/critical-request-chains.js
+index da226a8..628e50c 100644
+--- a/lighthouse-core/gather/computed/critical-request-chains.js
++++ b/lighthouse-core/gather/computed/critical-request-chains.js
+@@ -37,7 +37,8 @@ class CriticalRequestChains extends ComputedArtifact {
+     ];
+     if (nonCriticalResourceTypes.includes(resourceTypeCategory) ||
+         isIframe ||
+-        request.mimeType && request.mimeType.startsWith('image/')) {
++        request.mimeType && request.mimeType.startsWith('image/') ||
++        request._isLinkPreload) { // Exclude preload links
+       return false;
+     }
+ 

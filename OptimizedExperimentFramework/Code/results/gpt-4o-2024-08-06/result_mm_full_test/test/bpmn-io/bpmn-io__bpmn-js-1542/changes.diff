@@ -1,0 +1,15 @@
+diff --git a/lib/features/modeling/behavior/util/LabelLayoutUtil.js b/lib/features/modeling/behavior/util/LabelLayoutUtil.js
+index 6ae5cc1..0a0def3 100644
+--- a/lib/features/modeling/behavior/util/LabelLayoutUtil.js
++++ b/lib/features/modeling/behavior/util/LabelLayoutUtil.js
+@@ -118,6 +118,10 @@ export function getLabelAdjustment(label, newWaypoints, oldWaypoints, hints) {
+     return { x: x, y: y };
+   }
+ 
++  if (!attachment) {
++    return { x: x, y: y };
++  }
++
+   var oldLabelLineIndex = attachment.segmentIndex,
+       newLabelLineIndex = findNewLabelLineStartIndex(oldWaypoints, newWaypoints, attachment, hints);
+ 

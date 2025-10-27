@@ -1,0 +1,15 @@
+diff --git a/src/ol/renderer/canvas/VectorTileLayer.js b/src/ol/renderer/canvas/VectorTileLayer.js
+index 5661c32..aa8ede8 100644
+--- a/src/ol/renderer/canvas/VectorTileLayer.js
++++ b/src/ol/renderer/canvas/VectorTileLayer.js
+@@ -793,8 +793,8 @@ class CanvasVectorTileLayerRenderer extends CanvasTileLayerRenderer {
+     const resolution = tileGrid.getResolution(z);
+     const context = tile.getContext(layer);
+ 
+-    // Increase tile size when overzooming for low pixel ratio, to avoid blurry tiles
+-    pixelRatio = Math.max(pixelRatio, renderPixelRatio / pixelRatio);
++    // Adjust pixel ratio to account for browser zoom level
++    pixelRatio = Math.max(pixelRatio, renderPixelRatio);
+     const size = source.getTilePixelSize(z, pixelRatio, projection);
+     context.canvas.width = size[0];
+     context.canvas.height = size[1];

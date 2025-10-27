@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "core/gather/driver/execution-context.js",
+            "core/gather/driver/network-monitor.js",
+            "core/gather/driver/navigation.js",
+            "core/gather/gatherers/devtools-log.js",
+            "core/gather/gatherers/console-messages.js",
+            "core/lib/network-recorder.js",
+            "core/lib/network-request.js"
+        ],
+        "explanation": "The files identified are related to the bug because they are involved in managing and monitoring network requests, capturing console messages, and handling execution contexts within the Lighthouse process. The error is related to the misidentification of process IDs during the event handling of 'FrameCommittedInBrowser', which likely involves the execution context and network monitoring. Files like 'execution-context.js', 'network-monitor.js', and 'navigation.js' are responsible for managing the execution environment and network events in the Lighthouse gather process. Additionally, 'devtools-log.js' and 'console-messages.js' are involved in recording and processing logs that could capture the problematic event. 'network-recorder.js' and 'network-request.js' are critical in capturing and analyzing network requests and responses, which are pertinent to the issue of process ID handling in renderer processes.",
+        "bug_scenario": "The bug scenario involves an error where the 'FrameCommittedInBrowser' event has a 'processPseudoId' instead of a 'processId', leading to undefined entries in 'mainFramePids' and causing Lighthouse to return an error: \"Unable to determine tid for renderer process.\" The issue is reported to occur in Lighthouse version 10.0.1 and across various Chrome versions, including Canary."
+    },
+    "2": {
+        "bug_files": [
+            "core/gather/driver/network-monitor.js",
+            "core/gather/driver/network.js",
+            "core/gather/driver/target-manager.js"
+        ],
+        "explanation": "The bug is related to the process identification and tracking within Lighthouse when handling events from the browser. The files 'network-monitor.js', 'network.js', and 'target-manager.js' in the 'core/gather/driver/' directory are likely involved in managing network events and process IDs. These files would handle the communication and identification of processes, making them relevant to the issue of incorrectly identifying the process ID ('processPseudoId' instead of 'processId') and causing 'mainFramePids' to be undefined.",
+        "bug_scenario": "The bug occurs when running Lighthouse and receiving the error message 'Unable to determine tid for renderer process'. The problem arises because the 'FrameCommittedInBrowser' event contains a 'processPseudoId' instead of a 'processId', which results in 'mainFramePids' being undefined and causing the error."
+    }
+}

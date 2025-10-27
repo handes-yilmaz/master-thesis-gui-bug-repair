@@ -1,0 +1,13 @@
+diff --git a/src/lib/mode_compiler.js b/src/lib/mode_compiler.js
+index dc51d0e..b416bcb 100644
+--- a/src/lib/mode_compiler.js
++++ b/src/lib/mode_compiler.js
+@@ -327,7 +327,7 @@ export function compileLanguage(language) {
+       keywordPattern = mode.keywords.$pattern;
+       delete mode.keywords.$pattern;
+     }
+-    keywordPattern = keywordPattern || /\w+/;
++keywordPattern = keywordPattern || /\b\w+\b/;
+ 
+     if (mode.keywords) {
+       mode.keywords = compileKeywords(mode.keywords, language.case_insensitive);

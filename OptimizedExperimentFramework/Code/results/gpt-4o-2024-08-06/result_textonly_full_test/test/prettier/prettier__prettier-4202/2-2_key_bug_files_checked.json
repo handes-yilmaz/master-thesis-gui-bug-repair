@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/printer-markdown.js",
+            "src/doc/doc-printer.js"
+        ],
+        "explanation": "1. **src/language-markdown/printer-markdown.js**: This file contains functions related to printing markdown elements, including tables. The function `printTable` is specifically mentioned in the compressed content, which checks if any row exceeds the maximum allowed length. This directly relates to the bug of excessively long lines in markdown tables, making it a key file to address the issue.\n\n2. **src/doc/doc-printer.js**: This file is responsible for the document printing logic in Prettier. The function `printDocToString` is involved in handling how documents are printed, including managing line breaks and fitting content within specified widths. The comments in the compressed content indicate handling of line breaks and whitespace, which are crucial for addressing the issue of long lines in markdown tables. This makes it another key file to modify for fixing the bug.",
+        "bug_scenario": "The bug scenario involves the Prettier tool excessively lengthening lines when formatting markdown tables, particularly those containing HTML, such as all-contributors tables. The issue is that the formatted lines become excessively long, which is undesirable. The goal is to detect such cases and revert to a simpler table format with three-dash separators to avoid long lines."
+    }
+}

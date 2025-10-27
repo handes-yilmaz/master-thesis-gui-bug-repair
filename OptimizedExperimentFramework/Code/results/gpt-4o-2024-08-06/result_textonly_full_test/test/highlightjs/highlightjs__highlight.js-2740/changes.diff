@@ -1,0 +1,75 @@
+diff --git a/src/highlight.js b/src/highlight.js
+index 21c53a0..1486c0f 100644
+--- a/src/highlight.js
++++ b/src/highlight.js
+@@ -152,37 +152,39 @@ const HLJS = function(hljs) {
+       return Object.prototype.hasOwnProperty.call(mode.keywords, matchText) && mode.keywords[matchText];
+     }
+ 
+-    function processKeywords() {
+-      if (!top.keywords) {
+-        emitter.addText(modeBuffer);
+-        return;
+-      }
+-
+-      let lastIndex = 0;
+-      top.keywordPatternRe.lastIndex = 0;
+-      let match = top.keywordPatternRe.exec(modeBuffer);
+-      let buf = "";
+-
+-      while (match) {
+-        buf += modeBuffer.substring(lastIndex, match.index);
+-        const data = keywordData(top, match);
+-        if (data) {
+-          const [kind, keywordRelevance] = data;
+-          emitter.addText(buf);
+-          buf = "";
+-
+-          relevance += keywordRelevance;
+-          const cssClass = language.classNameAliases[kind] || kind;
+-          emitter.addKeyword(match[0], cssClass);
+-        } else {
+-          buf += match[0];
+-        }
+-        lastIndex = top.keywordPatternRe.lastIndex;
+-        match = top.keywordPatternRe.exec(modeBuffer);
+-      }
+-      buf += modeBuffer.substr(lastIndex);
+-      emitter.addText(buf);
+-    }
++function processKeywords() {
++if (!top.keywords) {
++emitter.addText(modeBuffer);
++return;
++}
++
++let lastIndex = 0;
++top.keywordPatternRe.lastIndex = 0;
++let match = top.keywordPatternRe.exec(modeBuffer);
++let buf = "";
++
++while (match) {
++buf += modeBuffer.substring(lastIndex, match.index);
++const data = keywordData(top, match);
++if (data) {
++const [kind, keywordRelevance] = data;
++emitter.addText(buf);
++buf = "";
++
++relevance += keywordRelevance;
++const cssClass = language.classNameAliases[kind] || kind;
++emitter.addKeyword(match[0], cssClass);
++} else {
++buf += match[0];
++}
++lastIndex = top.keywordPatternRe.lastIndex;
++match = top.keywordPatternRe.exec(modeBuffer);
++}
++buf += modeBuffer.substr(lastIndex);
++// Handle escape sequences in SQL strings
++buf = buf.replace(/''/g, "'");
++emitter.addText(buf);
++}
+ 
+     function processSubLanguage() {
+       if (modeBuffer === "") return;

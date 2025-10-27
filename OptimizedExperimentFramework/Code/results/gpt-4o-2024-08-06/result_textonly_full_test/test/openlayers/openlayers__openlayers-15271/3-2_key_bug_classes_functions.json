@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/expr/expression.js//CallExpression",
+            "src/ol/format/GeoJSON.js//GeoJSON"
+        ],
+        "bug_functions": [
+            "src/ol/expr/expression.js//parse",
+            "src/ol/expr/expression.js//parseCallExpression",
+            "src/ol/format/GeoJSON.js//readFeatureFromObject",
+            "src/ol/format/GeoJSON.js//writeFeatureObject"
+        ],
+        "explanation": "The `CallExpression` class in `src/ol/expr/expression.js` is likely involved because it handles expressions with operators, which would include the `get` operator used to fetch properties. The `parse` and `parseCallExpression` functions are responsible for parsing encoded expressions, which is where support for fetching the `id` would need to be added.\n\nIn `src/ol/format/GeoJSON.js`, the `GeoJSON` class is directly related to handling GeoJSON data, which is the format in question. The `readFeatureFromObject` and `writeFeatureObject` functions are involved in reading and writing features, respectively, and would need to be modified to handle the `id` property correctly without requiring duplication in the GeoJSON structure.",
+        "bug_scenario": "The bug scenario involves the inability to fetch the `id` property of a feature using style expressions in a GeoJSON context. The current implementation supports fetching feature properties using `['get', 'attributeName']`, but does not support fetching the `id` property directly, which is typically accessed via `feature.getId()`. The user wants to avoid duplicating the `id` in both the root and properties collection of the GeoJSON."
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "1/1": {
+        "lib/features/modeling/Modeling.js": [
+            {
+                "SEARCH": [
+                    "Modeling.prototype.connect = function(source, target, attrs, hints) {",
+                    "",
+                    "var bpmnRules = this._bpmnRules;",
+                    "",
+                    "if (!attrs) {",
+                    "attrs = bpmnRules.canConnect(source, target);",
+                    "}",
+                    "",
+                    "if (!attrs) {",
+                    "return;",
+                    "}",
+                    "",
+                    "return this.createConnection(source, target, attrs, source.parent, hints);",
+                    "};"
+                ],
+                "REPLACE": [
+                    "Modeling.prototype.connect = function(source, target, attrs, hints) {",
+                    "",
+                    "  var bpmnRules = this._bpmnRules;",
+                    "",
+                    "  if (!attrs) {",
+                    "    attrs = bpmnRules.canConnect(source, target);",
+                    "  }",
+                    "",
+                    "  if (!attrs) {",
+                    "    return;",
+                    "  }",
+                    "",
+                    "  // Ensure the pool's state is reset correctly after lane modifications",
+                    "  if (source.type === 'bpmn:Participant' && source.lanes && source.lanes.length === 0) {",
+                    "    source = source.parent;",
+                    "  }",
+                    "",
+                    "  return this.createConnection(source, target, attrs, source.parent, hints);",
+                    "};"
+                ]
+            }
+        ]
+    }
+}

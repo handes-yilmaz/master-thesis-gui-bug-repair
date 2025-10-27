@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/proj/projections.js",
+            "src/ol/proj/Units.js"
+        ],
+        "explanation": "1. `src/ol/proj/proj4.js`: This file likely handles the integration with proj4js and contains the `register` function that is causing the issue.\n2. `src/ol/proj/Projection.js`: This file manages projection objects, which are directly affected by the bug (such as setting units and axisOrientation).\n3. `src/ol/proj/projections.js`: This file may deal with the management and retrieval of projections, which is directly related to the bug.\n4. `src/ol/proj/Units.js`: This file likely defines units used in projections and might be missing the default 'degrees' unit, leading to the undefined state.",
+        "bug_scenario": "The bug involves broken projections when using specific proj4js definitions with OpenLayers. The issue occurs when using the `register` function of `ol.proj.proj4`, which leads to an invalid projection. Key parameters such as `units` are undefined and `axisOrientation` is incorrectly set to 'enu' instead of 'neu'. This results in the map display/projection being broken."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/proj/projections.js"
+        ],
+        "explanation": "The issue is related to the integration between OpenLayers and proj4js, specifically when registering projections using ol.proj.proj4. The file 'src/ol/proj/proj4.js' is directly related as it handles the registration and interaction between proj4js and OpenLayers. The 'src/ol/proj/Projection.js' and 'src/ol/proj/projections.js' files are relevant because they define and manage projection objects and their properties, which are central to resolving issues with undefined units and incorrect axis orientations.",
+        "bug_scenario": "The bug involves broken projections in OpenLayers when using proj4js definitions. This occurs when adding a new definition in proj4js and registering it with ol.proj.proj4, leading to an invalid projection where parameters like 'units' are undefined and 'axisOrientation' is incorrect."
+    }
+}

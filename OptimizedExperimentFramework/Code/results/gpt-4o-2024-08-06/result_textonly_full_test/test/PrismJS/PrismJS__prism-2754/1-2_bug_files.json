@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-jsx.js",
+            "components/prism-jsx.min.js",
+            "components/prism-javascript.js",
+            "components/prism-javascript.min.js",
+            "components/prism-core.js",
+            "components/prism-core.min.js"
+        ],
+        "explanation": "The bug is related to syntax highlighting of JSX components, which suggests that the relevant files would be those handling JSX and JavaScript syntax in the Prism library. Specifically, `prism-jsx.js` and `prism-jsx.min.js` are responsible for JSX syntax highlighting, while `prism-javascript.js` and `prism-javascript.min.js` are crucial for JavaScript syntax support. Additionally, `prism-core.js` and `prism-core.min.js` are involved as they likely contain the core logic for syntax parsing and tokenization, which could affect how props spreading is interpreted and highlighted.",
+        "bug_scenario": "The bug scenario involves JSX components where spreading props using the syntax `{...{onClick, disabled}}` breaks syntax highlighting when using Prism through React Markdown and React Syntax Highlighter. The issue is illustrated by two images: one showing incorrect color highlighting when props are spread, and the other showing correct highlighting when props are not spread. This issue seems related to how nested objects inside props are handled, as seen in related issues."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-jsx.js",
+            "components/prism-jsx.min.js",
+            "components/prism-core.js",
+            "components/prism-core.min.js"
+        ],
+        "explanation": "The bug is related to syntax highlighting in JSX components when using the spread operator. Given the repository structure, the files likely related to this issue are `prism-jsx.js` and `prism-jsx.min.js` as these files would directly handle JSX syntax highlighting. Additionally, the core functionality for syntax parsing and highlighting might be impacted by `prism-core.js` and `prism-core.min.js`, which are fundamental to how the syntax highlighting operates across different languages and plugins. These files would need to be examined and potentially modified to fix the issue with JSX spread operator handling.",
+        "bug_scenario": "The bug scenario described in the report is related to syntax highlighting issues when using spread props in JSX components. The code snippet provided demonstrates that syntax highlighting breaks when using the spread operator on props, where the code snippet using `...{onClick, disabled}` results in incorrect highlighting, whereas separating them as `onClick={onClick} disabled={disabled}` works correctly. The screenshots provided illustrate this issue: the first image shows the broken syntax highlighting with incorrect coloring in the first component, while the second image shows correct highlighting in a different environment (Github)."
+    }
+}

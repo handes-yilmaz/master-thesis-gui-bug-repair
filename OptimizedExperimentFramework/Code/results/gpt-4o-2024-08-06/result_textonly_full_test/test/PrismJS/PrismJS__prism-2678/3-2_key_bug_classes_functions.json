@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-markdown.js//Prism.languages.markdown"
+        ],
+        "bug_functions": [
+            "components/prism-markdown.js//createInline"
+        ],
+        "explanation": "The `Prism.languages.markdown` class is responsible for defining the syntax highlighting rules for Markdown, including how different elements like tables, code blocks, and URLs are parsed and styled. To support image tokens, modifications are likely needed in this class to recognize and correctly process the `![alt text](url)` syntax.\n\nThe `createInline` function is used to create regular expressions for inline elements like bold, italic, and URLs. Since images are also inline elements in Markdown, this function may need to be updated to handle the image syntax, ensuring that it is not backslash-escaped and is correctly parsed as an image token.",
+        "bug_scenario": "The bug scenario involves adding support for image tokens in Markdown. The provided Markdown syntax for an image is `![emoji](https://content.markdowner.net/emoji/g/64/1f44d.png)`, which should render an image of an emoji. However, the current implementation does not support this syntax, leading to the need for a fix."
+    }
+}

@@ -1,0 +1,26 @@
+diff --git a/src/command/render/latexmk/latex.ts b/src/command/render/latexmk/latex.ts
+index 72a23a7..3b95bb1 100644
+--- a/src/command/render/latexmk/latex.ts
++++ b/src/command/render/latexmk/latex.ts
+@@ -214,7 +214,7 @@ async function runLatexCommand(
+   const fullLatexCmd = texLiveCmd(latexCmd, context.texLive);
+ 
+   const runOptions: Deno.RunOptions = {
+-    cmd: [fullLatexCmd.fullPath, ...args],
++    cmd: [fullLatexCmd.fullPath, ...args.map(arg => decodeURIComponent(arg))],
+     stdout: "piped",
+     stderr: "piped",
+   };
+diff --git a/src/command/render/latexmk/pdf.ts b/src/command/render/latexmk/pdf.ts
+index 10c06cf..2d144dc 100644
+--- a/src/command/render/latexmk/pdf.ts
++++ b/src/command/render/latexmk/pdf.ts
+@@ -158,7 +158,7 @@ async function initialCompileLatex(
+   while (true) {
+     // Run the pdf engine
+     const response = await runPdfEngine(
+-      input,
++      decodeURIComponent(input),
+       engine,
+       texLive,
+       outputDir,

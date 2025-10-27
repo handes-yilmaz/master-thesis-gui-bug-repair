@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/crossref.ts",
+            "src/config/format.ts",
+            "src/resources/filters/crossref/crossref.lua"
+        ],
+        "explanation": "1. **src/render/crossref.ts**: This file is likely responsible for managing cross-referencing during the rendering process. If cross-references are not being disabled as expected, this file would be a primary suspect for containing logic that needs adjustment.\n\n2. **src/config/format.ts**: Configuration files often dictate how features like cross-referencing are enabled or disabled. If there is a configuration setting for 'crossref: false', it would be managed or interpreted here.\n\n3. **resources/filters/crossref/crossref.lua**: Filters are typically used to transform or manipulate content. Since the issue is with cross-referencing, this Lua filter might be responsible for handling cross-referencing in documents, and it may not be respecting the 'crossref: false' setting correctly.",
+        "bug_scenario": "The bug report indicates that there is an issue with the 'crossref: false' functionality in the formats. The provided image URL suggests that this is a visual representation of the bug, but the image itself is not available for viewing, so we can only infer that the problem is related to the incorrect or undesired handling of cross-references in some format outputs. The expectation is that cross-referencing should be disabled, but it seems to be occurring anyway."
+    },
+    "2": {
+        "bug_files": [
+            "src/command/render/crossref.ts",
+            "src/config/format.ts",
+            "src/resources/filters/crossref/index.lua",
+            "src/resources/filters/crossref/preprocess.lua"
+        ],
+        "explanation": "The bug is related to the handling of cross-references in specific formats. The file `src/render/crossref.ts` is likely responsible for rendering cross-references, so any issue with cross-reference logic would involve this file. The `src/config/format.ts` file might define configuration options for formats, including whether cross-references should be enabled or disabled. Additionally, the Lua scripts in `resources/filters/crossref/` are likely responsible for the preprocessing and management of cross-references in document rendering. The `index.lua` and `preprocess.lua` files could be handling the logic that mistakenly allows cross-references to appear when they should be suppressed. These files need to be examined and possibly modified to fix the issue.",
+        "bug_scenario": "The bug scenario involves the software not supporting the `crossref: false` option in certain formats, leading to undesired cross-referencing behavior. The screenshot indicates that the cross-reference is being generated even when it should be suppressed."
+    }
+}

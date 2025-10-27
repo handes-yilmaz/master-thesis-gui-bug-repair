@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/draw/TextRenderer.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js"
+        ],
+        "explanation": "1. **lib/draw/BpmnRenderer.js**: This file is responsible for rendering BPMN elements, including sub processes and their labels. It likely handles the visibility and positioning of labels, which are directly related to the bug.\n\n2. **lib/draw/TextRenderer.js**: As this file deals with rendering text elements in the diagram, it is relevant to how labels are displayed and positioned, which is crucial for addressing the visibility issue of labels in collapsed sub processes.\n\n3. **lib/features/modeling/behavior/LabelBehavior.js**: This file manages label behavior during modeling. It might contain logic that affects label visibility and positioning when elements are collapsed or expanded.\n\n4. **lib/features/label-editing/LabelEditingProvider.js**: As the bug involves label visibility and potential misalignment, this file, which provides functionalities for editing labels, is relevant for ensuring labels are correctly handled when a sub process is collapsed.\n\n5. **lib/features/modeling/behavior/SubProcessStartEventBehavior.js**: This file likely handles specific behaviors related to start events within sub processes. Given the bug affects the label of the start event when the sub process is collapsed, this file is crucial for understanding and fixing the issue.",
+        "bug_scenario": "The bug occurs when a sub process is collapsed in a BPMN diagram. The labels of the start, task, and end events inside the sub process become visible and misaligned, specifically with the start event label moving far outside its expected position. This misalignment is only observed when interacting with the diagram through specific steps, and does not affect diagram import/export functionality."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/drilldown/SubprocessCompatibility.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/label-editing/LabelUtil.js"
+        ],
+        "explanation": "1. **SubprocessCompatibility.js**: This file likely manages how subprocesses behave when they are collapsed or expanded. Since the bug is related to the collapsing behavior of a subprocess, this file would be directly related.\n\n2. **SubProcessStartEventBehavior.js**: This file likely controls the behavior of start events within a subprocess. Given the issue with the start event label moving unexpectedly, changes or issues in this file could be responsible.\n\n3. **LabelBehavior.js**: This file is likely responsible for the general behavior of labels within the BPMN diagrams. Since the bug involves label visibility and positioning, any logic governing label display and interactions when elements are collapsed will be relevant.\n\n4. **LabelUtil.js**: A utility file for label-related operations, this file might include functions for calculating label positions, determining visibility, or managing label states that could be malfunctioning when subprocesses are collapsed.",
+        "bug_scenario": "The bug involves issues with label visibility when a subprocess is collapsed in a BPMN diagram. When a subprocess containing a start, task, and end event is collapsed, the labels of these elements do not behave as expected - they do not hide, and the start event label moves outside its boundaries."
+    }
+}

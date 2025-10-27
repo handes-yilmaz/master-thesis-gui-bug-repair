@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-typescript.js",
+            "components/prism-tsx.js",
+            "prism.js"
+        ],
+        "explanation": "1. `components/prism-typescript.js`: This file is likely responsible for defining the syntax highlighting rules for TypeScript within the Prism library. Since the bug is specifically about TypeScript keyword highlighting, this file will need to be examined and potentially updated to ensure that keywords are only recognized when they are standalone.\n\n2. `components/prism-tsx.js`: Given that the bug also occurs in TypeScript JSX (TSX) files, this file, which would handle the TSX language specifics, may also contain relevant logic that needs to be adjusted for correct keyword recognition.\n\n3. `prism.js`: This is the core file of the Prism syntax highlighting library. Changes to the way keywords are parsed or styled could be implemented here, affecting all language definitions. General fixes to keyword detection may need to be addressed in this core file to apply across all languages, including TypeScript.",
+        "bug_scenario": "The bug report describes an issue with TypeScript keyword highlighting in a code editor or syntax highlighter. Specifically, certain TypeScript keywords like `infer` and `type` are not highlighted correctly when followed by alphabetic characters. The expected behavior is that only the keyword itself should be highlighted, but the actual behavior incorrectly highlights the word even when it is part of a longer identifier (e.g., `inference` or `typeDefs`)."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-typescript.js",
+            "components/prism-tsx.js",
+            "components/prism-core.js",
+            "plugins/highlight-keywords/prism-highlight-keywords.js"
+        ],
+        "explanation": "1. **components/prism-typescript.js**: This file is likely responsible for the syntax highlighting rules specific to TypeScript. Given that the bug involves TypeScript keywords, modifications here could address how these keywords are identified and highlighted.\n\n2. **components/prism-tsx.js**: Since the bug report includes TypeScript syntax within a TSX context (TypeScript + JSX), this file is relevant as it handles the syntax rules for TSX files, which involve parsing TypeScript code within a JSX structure.\n\n3. **components/prism-core.js**: This file is responsible for the core functionality of Prism, which includes defining how the language components interact with the syntax highlighting engine. Any changes to keyword recognition across multiple languages might require adjustments in the core logic.\n\n4. **plugins/highlight-keywords/prism-highlight-keywords.js**: This plugin might be involved in enhancing or altering keyword highlighting behavior. Given that the issue is related to keyword recognition and highlighting, this plugin could be relevant in ensuring that keywords followed by alphabetic characters are correctly parsed and displayed.",
+        "bug_scenario": "The bug pertains to the incorrect syntax highlighting of TypeScript keywords such as `infer` and `type` when they are followed by an alphabetic character in a code environment. Instead of treating these as separate identifiers, the highlighting incorrectly treats them as keywords, leading to visual confusion in the code editor."
+    }
+}

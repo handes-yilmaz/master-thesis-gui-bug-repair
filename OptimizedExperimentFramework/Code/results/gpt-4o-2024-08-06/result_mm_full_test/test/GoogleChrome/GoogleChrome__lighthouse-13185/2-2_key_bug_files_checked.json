@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "flow-report/src/summary/summary.tsx",
+            "lighthouse-core/audits/full-page-screenshot.js",
+            "report/renderer/report-renderer.js"
+        ],
+        "explanation": "1. **flow-report/src/summary/summary.tsx**: This file handles the rendering of summary components, including thumbnails. It likely needs modification to replace hotlinked images with full-page screenshots.\n\n2. **lighthouse-core/audits/full-page-screenshot.js**: This file is responsible for handling full-page screenshots. It may require updates to ensure full-page screenshots are used instead of hotlinked images.\n\n3. **report/renderer/report-renderer.js**: This file deals with rendering reports, including handling images. It may need changes to incorporate full-page screenshots in place of hotlinked images.",
+        "bug_scenario": "The bug involves removing image hotlinking from reports. Currently, thumbnail items create `<img>` elements that hotlink images from remote servers. The goal is to use a full-page screenshot asset instead, simplifying CSP/mixed content issues in HTTPS reports."
+    }
+}

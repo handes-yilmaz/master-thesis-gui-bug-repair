@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/javascript.js",
+            "src/languages/typescript.js"
+        ],
+        "explanation": "The files 'src/languages/javascript.js' and 'src/languages/typescript.js' are key to the bug because they define the syntax highlighting rules for JavaScript and TypeScript, respectively. The issue described in the bug report is related to how template literals and embedded expressions are parsed and highlighted. The 'javascript.js' file contains the logic for handling JavaScript syntax, including template literals and expressions, while 'typescript.js' extends this logic for TypeScript. The problem likely lies in the handling of the 'SUBST' and 'TEMPLATE_STRING' constructs, which are responsible for parsing and highlighting template literals and their embedded expressions. Adjustments in these files are necessary to correctly handle cases where right curly braces appear within expressions, ensuring that the highlighter does not prematurely terminate the expression parsing.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in JavaScript and TypeScript code when using template literals with embedded expressions. Specifically, the highlighter incorrectly interprets a right curly brace '}' inside a template literal expression as the end of the expression, leading to incorrect highlighting of the subsequent code as a string. This issue is particularly problematic when the expression includes nested template literals, as it causes the highlighter to treat the nested template literal as the end of the parent template literal."
+    }
+}

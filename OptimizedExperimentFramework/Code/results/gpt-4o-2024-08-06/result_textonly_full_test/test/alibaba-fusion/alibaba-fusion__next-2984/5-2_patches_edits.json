@@ -1,0 +1,96 @@
+{
+    "1/1": {
+        "src/cascader-select/cascader-select.jsx": [
+            {
+                "SEARCH": [
+                    "updateCache(dataSource) {",
+                    "this._v2n = {};",
+                    "this._p2n = {};",
+                    "const loop = (data, prefix = '0') =>",
+                    "data.forEach((item, index) => {",
+                    "const { value, children } = item;",
+                    "const pos = `${prefix}-${index}`;",
+                    "this._v2n[value] = this._p2n[pos] = { ...item, pos };",
+                    "",
+                    "if (children && children.length) {",
+                    "loop([...children], pos); // Use a copy of children",
+                    "}",
+                    "});",
+                    "",
+                    "loop([...dataSource]); // Use a copy of dataSource",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    updateCache(dataSource) {",
+                    "        this._v2n = {};",
+                    "        this._p2n = {};",
+                    "        const loop = (data, prefix = '0') =>",
+                    "            data.forEach((item, index) => {",
+                    "                const { value, children } = item;",
+                    "                const pos = `${prefix}-${index}`;",
+                    "                this._v2n[value] = this._p2n[pos] = { ...item, pos };",
+                    "",
+                    "                if (children && children.length) {",
+                    "                    loop([...children], pos); // Use a copy of children",
+                    "                }",
+                    "            });",
+                    "",
+                    "        loop(dataSource.map(item => ({ ...item }))); // Create a deep copy of dataSource",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "flatValue(value) {",
+                    "const getDepth = v => {",
+                    "const pos = this.getPos(v);",
+                    "if (!pos) {",
+                    "return 0;",
+                    "}",
+                    "return pos.split('-').length;",
+                    "};",
+                    "const newValue = value.slice(0).sort((prev, next) => {",
+                    "return getDepth(prev) - getDepth(next);",
+                    "});",
+                    "",
+                    "for (let i = 0; i < newValue.length; i++) {",
+                    "for (let j = 0; j < newValue.length; j++) {",
+                    "if (i !== j && this.isDescendantOrSelf(this.getPos(newValue[i]), this.getPos(newValue[j]))) {",
+                    "newValue.splice(j, 1);",
+                    "j--;",
+                    "}",
+                    "}",
+                    "}",
+                    "",
+                    "return newValue;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    flatValue(value) {",
+                    "        const getDepth = v => {",
+                    "            const pos = this.getPos(v);",
+                    "            if (!pos) {",
+                    "                return 0;",
+                    "            }",
+                    "            return pos.split('-').length;",
+                    "        };",
+                    "        const newValue = [...value].sort((prev, next) => {",
+                    "            return getDepth(prev) - getDepth(next);",
+                    "        });",
+                    "",
+                    "        for (let i = 0; i < newValue.length; i++) {",
+                    "            for (let j = 0; j < newValue.length; j++) {",
+                    "                if (i !== j && this.isDescendantOrSelf(this.getPos(newValue[i]), this.getPos(newValue[j]))) {",
+                    "                    newValue.splice(j, 1);",
+                    "                    j--;",
+                    "                }",
+                    "            }",
+                    "        }",
+                    "",
+                    "        return newValue;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

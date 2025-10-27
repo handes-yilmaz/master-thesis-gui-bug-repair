@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/language-html/parser-parse5.js",
+            "src/language-html/printer-htmlparser2.js"
+        ],
+        "explanation": "These files are related to the Markdown and HTML formatting functionality within the Prettier codebase, which directly relates to the bug described. The issue is with the way the Prettier formats nested code blocks and raw HTML in Markdown files, suggesting that there might be a problem with either the parsing or printing logic in these files:\n\n1. **src/language-markdown/parser-markdown.js**: This file likely contains logic related to parsing Markdown files. If the parser incorrectly interprets the structure of the Markdown content, it could lead to incorrect formatting.\n\n2. **src/language-markdown/printer-markdown.js**: This file would handle the printing (or formatting) of the parsed Markdown structure. If there is a bug in the printing logic, it could cause the excessive indentation problem described.\n\n3. **src/language-html/parser-parse5.js**: Since the issue involves raw HTML within Markdown, this parser might be responsible for interpreting the HTML structure. Any issues here could propagate incorrect formatting instructions.\n\n4. **src/language-html/printer-htmlparser2.js**: Similar to the Markdown printer, this file would be responsible for outputting the HTML structure. Bugs here could lead to incorrect indentation of HTML blocks.\n\nThese files are directly related to the parsing and printing processes for Markdown and HTML, which are the core components affected by the bug described in the report.",
+        "bug_scenario": "The bug scenario involves a formatting issue with Markdown files where nested code blocks or raw HTML become increasingly indented each time the file is saved using Prettier in VS Code. This leads to incorrect indentation over multiple saves, with the spacing being added unnecessarily. The user observes that this happens with both code blocks and raw HTML, but more consistently with raw HTML. The expected behavior is for the indentation to remain consistent and not increase with each save."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/language-html/printer-htmlparser2.js",
+            "src/main/options.js"
+        ],
+        "explanation": "The files identified are related to the handling and formatting of markdown and HTML content within the Prettier repository.\\n1. **src/language-markdown/parser-markdown.js**: This file is likely responsible for parsing markdown content. Since the issue is related to markdown files, any bugs in parsing can affect how the content is interpreted and subsequently formatted.\\n2. **src/language-markdown/printer-markdown.js**: This file handles the printing or formatting of markdown content. The bug relates to incorrect indentation adjustments on save, suggesting a potential issue in how this file manages whitespace and indentation for nested elements.\\n3. **src/language-html/printer-htmlparser2.js**: As the issue involves raw HTML nested within markdown, this file might be responsible for formatting HTML content. Incorrect handling here could contribute to the additional and incorrect indentation seen on saves.\\n4. **src/main/options.js**: This file deals with various configuration options for Prettier, including formatting rules and behaviors. Issues in how options are defined or applied could lead to unexpected formatting results, such as those described in the bug report.",
+        "bug_scenario": "The bug report describes an issue with the 'format on save' feature in markdown files when using Prettier in VS Code. Specifically, when nesting code blocks or raw HTML, the feature adds additional indentation each time the file is saved, disrupting the intended formatting. This issue is intermittent with code blocks but consistently problematic with raw HTML, leading to misalignment and formatting issues unless the feature is disabled or markdown files are ignored."
+    }
+}

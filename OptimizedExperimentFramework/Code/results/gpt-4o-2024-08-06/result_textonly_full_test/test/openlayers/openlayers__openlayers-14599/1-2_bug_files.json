@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Group.js",
+            "src/ol/layer/Layer.js",
+            "src/ol/source/TileWMS.js",
+            "src/ol/control/Attribution.js"
+        ],
+        "explanation": "1. **src/ol/layer/Group.js**: This file likely manages how group layers are handled, including visibility settings. The bug describes an issue with group-layer visibility affecting attribution display, making this file relevant.\n\n2. **src/ol/layer/Layer.js**: As a general layer management class, this file could handle visibility logic for individual layers, including group layers and their children.\n\n3. **src/ol/source/TileWMS.js**: This file is directly related to the WMS source, which is responsible for fetching tiles and managing their attributions. The issue is with WMS layer attributions, so this file is crucial.\n\n4. **src/ol/control/Attribution.js**: Given that the problem involves attribution display in popups, the Attribution control file may contain logic for rendering or managing attribution displays, which is malfunctioning in this scenario.",
+        "bug_scenario": "The bug is related to the display of attributions from a WMS layer in an info popup when a group-layer's visibility is set to false, but a sub-layer's visibility is true. The issue is that attributions are displayed despite the group layer being invisible, which should not happen according to the expected behavior."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/control/Attribution.js",
+            "src/ol/layer/Group.js",
+            "src/ol/source/TileWMS.js"
+        ],
+        "explanation": "1. **src/ol/control/Attribution.js**: This file is likely responsible for handling the display of attributions. Given that the bug involves attributions showing up incorrectly, the logic in this file may need to be adjusted to account for the visibility of the group layer.\n\n2. **src/ol/layer/Group.js**: This file handles group layers, including their visibility settings. If the group layer logic does not correctly propagate visibility settings to its sub-layers or does not correctly check visibility before displaying attributions, it could lead to the observed bug.\n\n3. **src/ol/source/TileWMS.js**: The bug involves a WMS layer, and this file handles the WMS source. The code here might need to check the visibility state of the parent group layer before allowing attributions to be displayed.",
+        "bug_scenario": "The bug occurs when a group layer is set to be invisible, but a sub-layer within it is visible. Despite the group layer being invisible, attributions from a WMS layer are displayed in the info popup when clicking the 'i' icon. This behavior is unexpected because the attributions should not appear if the group layer is not visible."
+    }
+}

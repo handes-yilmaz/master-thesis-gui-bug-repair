@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/DataChart/DataChart.js",
+            "src/js/components/DataChart/utils.js",
+            "src/js/components/DataChart/XAxis.js",
+            "src/js/components/DataChart/YAxis.js"
+        ],
+        "explanation": "The issue is specific to the DataChart component when handling negative values. The main file likely responsible is `DataChart.js`, which processes the data and renders the chart. The `utils.js` file might handle calculations or transformations related to chart rendering, including managing axes, which are crucial when dealing with positive and negative values.\n\nThe `XAxis.js` and `YAxis.js` files are relevant because they manage the axes rendering, which would need to handle the zero line guide and any adjustments for negative values. Ensuring these axes can handle and display negative values correctly is vital for resolving this issue.",
+        "bug_scenario": "The bug relates to the DataChart component failing to render bars when data includes a negative value. In the images, the chart does not display any bars when the data has a negative value, whereas it displays correctly for positive values."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/DataChart/DataChart.js",
+            "src/js/components/DataChart/utils.js",
+            "src/js/components/DataChart/__tests__/DataChart-test.js"
+        ],
+        "explanation": "The issue is related to the DataChart component, which is why the `DataChart.js` file is relevant. This file likely contains the rendering logic for the DataChart, including how it handles data input and visualization. The `utils.js` file may contain utility functions used for calculations or rendering in the DataChart, particularly related to handling data points and values. The `DataChart-test.js` file is important for ensuring that tests are updated or added to cover cases involving negative values, ensuring the component behaves as expected after the fix.",
+        "bug_scenario": "The bug report indicates that a DataChart is unable to render bars when the data includes a negative value. The expected behavior is that the chart should have a zero line guide and allow customization of attributes for negative values. However, the actual behavior is that the chart shows nothing when negative values are present. The provided images show the chart not rendering when the data contains a negative value and rendering correctly when only positive values are present."
+    }
+}

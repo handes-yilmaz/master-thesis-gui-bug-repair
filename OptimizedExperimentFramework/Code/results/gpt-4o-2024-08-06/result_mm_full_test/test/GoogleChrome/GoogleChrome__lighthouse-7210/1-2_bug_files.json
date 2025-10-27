@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js",
+            "lighthouse-core/gather/gatherers/css-usage.js",
+            "lighthouse-core/lib/minification-estimator.js"
+        ],
+        "explanation": "The issue is related to the calculation and reporting of unused CSS, which falls under the 'byte-efficiency' audits. The file `unused-css-rules.js` directly handles the audit for unused CSS rules, making it a primary suspect. Additionally, `css-usage.js` is involved in gathering CSS usage data which could contribute to incorrect calculations. The `minification-estimator.js` is involved in estimating potential savings, which is also relevant to the misreported savings in the bug scenario.",
+        "bug_scenario": "The bug scenario involves a miscalculation in the reported size of CSS resources when using Google Pagespeed. The tool is fetching CSS via gzipped JSON, and the Pagespeed report shows an inflated size and potential savings under 'Defer unused CSS'. The actual size is around 20KB gzipped, but Pagespeed is reporting 80KB with potential savings of 70KB."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js",
+            "lighthouse-core/gather/gatherers/css-usage.js",
+            "lighthouse-core/report/html/renderer/performance-category-renderer.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/byte-efficiency/unused-css-rules.js`: This file likely contains the logic for determining unused CSS rules, which is directly related to the misreported potential savings.\n2. `lighthouse-core/gather/gatherers/css-usage.js`: This gatherer might be responsible for collecting data on CSS usage, which could be inaccurately reflected in the audit.\n3. `lighthouse-core/report/html/renderer/performance-category-renderer.js`: This file could be involved in rendering the performance metrics and could be where the miscalculation is represented in the report.",
+        "bug_scenario": "The bug involves a miscalculation of the potential savings reported by Google Pagespeed for CSS compression. The Pagespeed report suggests a significant unused CSS savings of 70KB when the actual size fetched is only around 20KB gzipped. The issue is with the calculation of 'Defer unused CSS', which does not accurately reflect the actual data fetched."
+    }
+}

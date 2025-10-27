@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/modeling/behavior/ResizeBehavior.js",
+            "lib/draw/BpmnRenderer.js"
+        ],
+        "explanation": "1. **lib/modeling/behavior/ToggleElementCollapseBehaviour.js**: This file likely handles the behavior of toggling the collapse state of elements, including Sub Processes. The bug involves collapsing a Sub Process, so this file may contain logic that improperly adjusts dimensions during this operation.\n\n2. **lib/modeling/behavior/ResizeBehavior.js**: This file deals with the resizing behavior of elements. Since the bug report mentions unexpected dimension changes, it's possible that this file has code that inadvertently modifies the size of the Sub Process when it is collapsed or changed to an Ad Hoc Sub Process.\n\n3. **lib/draw/BpmnRenderer.js**: This file is responsible for rendering BPMN elements. Given that dimension changes are a visual issue, the renderer might be involved in incorrectly calculating or applying dimensions when drawing the Ad Hoc Sub Process after collapse.",
+        "bug_scenario": "The bug occurs when a user creates an expanded Sub Process with a child element, collapses the Sub Process, and then turns it into an Ad Hoc Sub Process. The dimensions of the Sub Process are expected to remain the same, but they change unexpectedly. The attached GIF in the bug report demonstrates this behavior, showing the Sub Process changing size when it is turned into an Ad Hoc Sub Process after being collapsed."
+    },
+    "2": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/draw/BpmnRenderUtil.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js"
+        ],
+        "explanation": "The files related to the drawing and rendering of BPMN elements (such as `BpmnRenderer.js` and `BpmnRenderUtil.js`) are likely involved because they handle the visual representation of elements, including dimensions. Incorrect rendering logic could cause dimension changes when elements are transformed.\n\nThe `ToggleElementCollapseBehaviour.js` file is relevant as it manages the collapse and expand actions of subprocesses. This behavior directly affects the dimensions of the subprocess when it's toggled.\n\n`ResizeBehavior.js` may be involved because it handles the resizing logic of elements. If the dimensions are not maintained as expected during the conversion to an Ad Hoc subprocess, there might be an issue with how resizing is handled during this process.\n\nFinally, `SubProcessStartEventBehavior.js` could be relevant as it might include logic specific to subprocesses, particularly when they are initiated or transformed, which could affect their dimensions.",
+        "bug_scenario": "The bug described involves the dimensions of an Ad Hoc Collapsed Subprocess changing unexpectedly when certain actions are performed in the BPMN modeler. Specifically, the issue arises when a user creates an expanded subprocess, collapses it, and then converts it into an Ad Hoc subprocess. The expected behavior is that the dimensions of the subprocess should remain unchanged during these transformations."
+    }
+}

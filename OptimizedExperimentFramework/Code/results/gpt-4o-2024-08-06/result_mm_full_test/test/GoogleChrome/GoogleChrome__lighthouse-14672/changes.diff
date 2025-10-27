@@ -1,0 +1,15 @@
+diff --git a/clients/devtools/devtools-entry.js b/clients/devtools/devtools-entry.js
+index 3cbd6db..944ec3d 100644
+--- a/clients/devtools/devtools-entry.js
++++ b/clients/devtools/devtools-entry.js
+@@ -39,8 +39,8 @@ function createConfig(categoryIDs, device) {
+   const settings = {
+     onlyCategories: categoryIDs,
+     // In DevTools, emulation is applied _before_ Lighthouse starts (to deal with viewport emulation bugs). go/xcnjf
+-    // As a result, we don't double-apply viewport emulation.
+-    screenEmulation: {disabled: true},
++    // Adjust screenEmulation based on device type.
++    screenEmulation: device === 'desktop' ? {disabled: true} : {disabled: false},
+   };
+   if (device === 'desktop') {
+     settings.throttling = constants.throttling.desktopDense4G;

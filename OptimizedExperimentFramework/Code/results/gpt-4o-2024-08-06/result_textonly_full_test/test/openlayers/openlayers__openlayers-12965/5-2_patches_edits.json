@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "constructor(opt_options) {",
+                    "const options = opt_options ? assign({}, opt_options) : {};"
+                ],
+                "REPLACE": [
+                    "  constructor(opt_options, sharedContext) {",
+                    "    const options = opt_options ? assign({}, opt_options) : {};",
+                    "    this.sharedContext_ = sharedContext;"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "constructor(tileLayer, options) {",
+                    "super(tileLayer, {",
+                    "uniforms: options.uniforms,",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  constructor(tileLayer, options) {",
+                    "    const sharedContext = tileLayer.sharedContext_;",
+                    "    super(tileLayer, {",
+                    "      uniforms: options.uniforms,",
+                    "      context: sharedContext || undefined,",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

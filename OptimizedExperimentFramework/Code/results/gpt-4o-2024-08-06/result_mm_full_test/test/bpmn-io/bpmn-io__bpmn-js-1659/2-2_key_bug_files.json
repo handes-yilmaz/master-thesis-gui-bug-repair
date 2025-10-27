@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js"
+        ],
+        "explanation": "1. **LabelBehavior.js**: This file handles the behavior of labels during various operations like creation, deletion, and movement. The issue likely involves the failure to update label positions when a connected shape is resized.\n\n2. **LayoutConnectionBehavior.js**: This file ensures that associations connected to connections are updated with the connection. The bug may involve not updating the waypoints or positions of labels and associations when the connection layout changes.\n\n3. **LabelUtil.js**: This utility file manages label attributes and values. It might be involved if the label's properties are not being correctly updated or retrieved during the resize operation.\n\n4. **LabelLayoutUtil.js**: This file calculates label adjustments after connection waypoints are updated. The bug could be due to incorrect calculations or adjustments not being applied when the shape is resized.",
+        "bug_scenario": "The bug occurs when a connection is re-laid out after a connected shape is resized. Labels and associations do not move with the connection, leaving them hanging and disconnected from the sequence flow."
+    }
+}

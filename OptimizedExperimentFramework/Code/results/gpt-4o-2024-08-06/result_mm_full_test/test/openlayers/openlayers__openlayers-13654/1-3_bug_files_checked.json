@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/transforms.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/layer/WebGLTile.js"
+        ],
+        "explanation": "1. **src/ol/proj/proj4.js**: This file is likely involved in the problem because it handles the integration of proj4js, which is used for coordinate transformations. Since the issue involves reprojection, any bugs or missing features in this file could affect the ability to display the COG.\n\n2. **src/ol/proj/transforms.js**: This file is relevant because it manages transformations between different projections. If transformations between EPSG:32636 (UTM) and EPSG:4326 or EPSG:3857 are not correctly defined or registered, the COG will not display properly.\n\n3. **src/ol/source/GeoTIFF.js**: This file is responsible for handling GeoTIFF sources. Since the bug report is about displaying a COG, any issues with how the GeoTIFF source is implemented could prevent the COG from being displayed.\n\n4. **src/ol/layer/WebGLTile.js**: This file is relevant because it deals with rendering tile layers using WebGL. If there is a bug in how WebGL layers are rendered, it might cause the COG not to display even if the source is correctly defined.",
+        "bug_scenario": "The issue described is related to projecting a UTM Cloud Optimized GeoTIFF (COG) onto a map using the EPSG:3857 or EPSG:4326 coordinate reference system (CRS) in a web application. The user reports that the COG is not displayed, although other map layers work, indicating a potential problem with reprojecting or displaying the COG data correctly when using different CRSs."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/reproj/Tile.js",
+            "src/ol/View.js"
+        ],
+        "explanation": "1. **src/ol/source/GeoTIFF.js**: This file is likely responsible for handling GeoTIFF data sources. Since the issue involves displaying a COG file, any problems with GeoTIFF handling or projection transformations would be relevant.\n\n2. **src/ol/layer/WebGLTile.js**: The bug specifically mentions issues with the WebGLTile layer. This file would handle how WebGLTile layers are rendered and interact with projections, making it a key component in troubleshooting the display issue.\n\n3. **src/ol/proj/proj4.js**: This file deals with projection definitions and transformations using the proj4 library. The reprojection issue suggests that there might be an error or missing feature in transforming coordinates from the COG's UTM projection to the map's projection.\n\n4. **src/ol/reproj/Tile.js**: Given that the bug involves reprojection and tile rendering, this file would be critical as it likely handles the reprojection of tile data, ensuring that it matches the map's projection.\n\n5. **src/ol/View.js**: The View component manages the map's view settings, including its projection. Any issues with setting or transforming the view's projection could lead to the symptoms described in the bug report.",
+        "bug_scenario": "The issue described in the bug report revolves around displaying a Cloud Optimized GeoTIFF (COG) file on an EPSG:3857 or EPSG:4326 map projection using the OpenLayers library. The user is attempting to show a UTM COG on a map but is facing issues with the COG not displaying, suggesting potential problems with the reprojection from UTM to EPSG:4326 or EPSG:3857. The example provided indicates that while other layers such as OSM fit and display correctly, the COG does not, implying a problem with the automatic reprojection capability or its implementation for WebGLTile layers."
+    }
+}

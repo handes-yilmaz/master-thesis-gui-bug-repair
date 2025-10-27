@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/crossref.ts",
+            "src/resources/filters/crossref/crossref.lua"
+        ],
+        "explanation": "1. **src/command/render/crossref.ts**: This file contains functions related to cross-referencing, such as `crossrefFilterActive` and `crossrefFilterParams`. The function `crossrefFilterActive` specifically checks if cross-referencing should be active based on the options provided. The bug likely resides here because the function should respect the `crossref: false` setting, but it seems to be failing to do so, leading to the unwanted cross-references.\n\n2. **src/resources/filters/crossref/crossref.lua**: This Lua script is part of the cross-referencing filter chain. It imports various modules and initializes cross-referencing options. The issue might be in how the cross-referencing options are initialized or processed, particularly if the `crossref: false` setting is not being correctly interpreted or applied in the filter chain. This file is crucial because it directly handles the cross-referencing logic that should be disabled when `crossref: false` is set.",
+        "bug_scenario": "The bug scenario involves an issue with cross-referencing in document formats. The images provided in the bug report show an unwanted behavior where cross-references are being generated or displayed incorrectly, despite the intention to disable them using a `crossref: false` setting. This suggests that the cross-referencing functionality is not respecting the configuration to disable cross-references, leading to incorrect document output."
+    }
+}

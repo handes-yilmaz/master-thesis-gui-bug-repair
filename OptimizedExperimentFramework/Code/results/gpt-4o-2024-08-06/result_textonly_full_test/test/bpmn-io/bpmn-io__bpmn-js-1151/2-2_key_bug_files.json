@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "explanation": "1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file handles the copy-paste functionality for BPMN elements. It includes logic for copying properties and resolving references, which is crucial for ensuring that labels are correctly copied and pasted along with their elements.\n\n2. **lib/features/label-editing/LabelUtil.js**: This file provides utility functions for getting and setting labels on BPMN elements. It is directly involved in handling label data, which is essential for ensuring labels are preserved during copy-paste operations.\n\n3. **lib/features/label-editing/cmd/UpdateLabelHandler.js**: This file contains the logic for updating labels on BPMN elements. It includes functions for setting text on labels and handling label creation, which are critical for maintaining label integrity during copy-paste operations.\n\n4. **lib/features/modeling/behavior/LabelBehavior.js**: This file manages the behavior of labels, ensuring they are added and updated correctly during modeling operations. It includes logic for creating and updating labels, which is necessary for ensuring labels are not lost during the copy-paste process.",
+        "bug_scenario": "The bug scenario involves a process where users attempt to extract participant contents into a process diagram. During this process, labels associated with the elements are lost when the contents are copied and pasted within a single diagram instance. The expected behavior is that labels should be pasted along with the elements, but currently, they are missing after the paste operation."
+    }
+}

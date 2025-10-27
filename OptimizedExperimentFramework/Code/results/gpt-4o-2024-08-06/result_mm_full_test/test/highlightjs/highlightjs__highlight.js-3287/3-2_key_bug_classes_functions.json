@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/verilog.js//meta"
+        ],
+        "bug_functions": [
+            "src/languages/verilog.js//export default function"
+        ],
+        "explanation": "The issue is related to the handling of the `meta` scope in the Verilog language definition. The `meta` class in the `verilog.js` file incorrectly treats text from a backquote to the end of the line as `meta`, which affects syntax highlighting. The `export default function` is responsible for defining the language rules, including how `meta` is processed. Adjusting these elements will correct the highlighting behavior.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting in Verilog code. Specifically, text following backquotes (`` ` ``) is incorrectly treated as `meta` scope, affecting comments and defined values. The expected behavior is similar to C, where comments and defined values are highlighted correctly."
+    }
+}

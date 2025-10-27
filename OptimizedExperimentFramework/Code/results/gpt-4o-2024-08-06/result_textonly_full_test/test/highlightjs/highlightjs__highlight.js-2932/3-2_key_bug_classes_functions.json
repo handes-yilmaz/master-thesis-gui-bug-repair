@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [
+            "src/languages/properties.js//export default function"
+        ],
+        "explanation": "The function `export default function(hljs)` in `src/languages/properties.js` is responsible for defining the syntax highlighting rules for `.properties` files. The issue described in the bug report relates to how these files handle multi-line values and escaped backslashes. The function contains logic for parsing keys and values, including handling delimiters and backslashes. The specific problem with trailing escaped backslashes suggests that the logic within this function, particularly around the `DELIM_AND_VALUE` object and its `end` and `contains` properties, needs to be adjusted to correctly handle cases where a value ends with an escaped backslash. This makes the function a key element related to the bug.",
+        "bug_scenario": "The bug scenario involves incorrect handling of trailing escaped backslashes in properties files. Specifically, when a property value ends with an escaped backslash (e.g., `b = b\\\\`), it is not processed correctly, which is problematic for cases like Windows paths."
+    }
+}

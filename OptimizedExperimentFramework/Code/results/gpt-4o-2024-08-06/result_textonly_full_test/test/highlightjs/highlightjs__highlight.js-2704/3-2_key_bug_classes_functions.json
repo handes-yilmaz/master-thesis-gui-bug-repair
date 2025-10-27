@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/fsharp.js//export default function"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the syntax highlighting rules defined in the `src/languages/fsharp.js` file. The function exported by this module is responsible for defining how F# code is parsed and highlighted. The issue arises because the highlighter incorrectly interprets the `(*)` operator as the start of a multi-line comment. This is likely due to the `illegal: /\\/\\*/` rule or the comment handling logic `hljs.COMMENT('\\\\(\\\\*', '\\\\*\\\\)')` within the function, which needs to be adjusted to correctly differentiate between the `(*)` operator and actual multi-line comments in F#.",
+        "bug_scenario": "The bug scenario involves the incorrect detection of the F# `(*)` operator as the start of a multi-line comment in a code highlighter. This causes the rest of the code block to be incorrectly highlighted as a comment, which is not the intended behavior. The issue arises when using the `Operators.(*)` function in F# code, which is mistakenly interpreted by the highlighter as a multi-line comment due to the syntax `(* ... *)` used for comments in F#."
+    }
+}

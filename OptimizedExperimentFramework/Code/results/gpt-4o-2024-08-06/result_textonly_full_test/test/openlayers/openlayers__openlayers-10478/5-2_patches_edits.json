@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/ol/reproj/Tile.js": [
+            {
+                "SEARCH": [
+                    "this.sourceTiles_.forEach(function(tile, i, arr) {",
+                    "if (tile && tile.getState() == TileState.LOADED) {",
+                    "sources.push({",
+                    "extent: this.sourceTileGrid_.getTileCoordExtent(tile.tileCoord),",
+                    "image: tile.getImage()",
+                    "});",
+                    "}",
+                    "}.bind(this));"
+                ],
+                "REPLACE": [
+                    "    this.sourceTiles_.forEach(function(tile, i, arr) {",
+                    "      if (tile && (tile.getState() == TileState.LOADED || tile.getState() == TileState.ABORT)) {",
+                    "        sources.push({",
+                    "          extent: this.sourceTileGrid_.getTileCoordExtent(tile.tileCoord),",
+                    "          image: tile.getImage()",
+                    "        });",
+                    "      }",
+                    "    }.bind(this));"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (state == TileState.IDLE || state == TileState.LOADING) {"
+                ],
+                "REPLACE": [
+                    "        if (state == TileState.IDLE || state == TileState.LOADING || state == TileState.ABORT) {"
+                ]
+            }
+        ]
+    }
+}

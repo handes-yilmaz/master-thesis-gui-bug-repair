@@ -1,0 +1,64 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "WebGLTileLayer.prototype.dispose;"
+                ],
+                "REPLACE": [
+                    "/**",
+                    " * Clean up underlying WebGL resources.",
+                    " * @function",
+                    " * @api",
+                    " */",
+                    "WebGLTileLayer.prototype.dispose = function() {",
+                    "  if (this.hasRenderer()) {",
+                    "    this.getRenderer().disposeInternal();",
+                    "  }",
+                    "};"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "disposeInternal() {",
+                    "const helper = this.helper;",
+                    "if (helper) {",
+                    "const gl = helper.getGL();",
+                    "gl.deleteProgram(this.program_);",
+                    "delete this.program_;",
+                    "helper.deleteBuffer(this.indices_);",
+                    "}",
+                    "super.disposeInternal();",
+                    "delete this.indices_;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "disposeInternal() {",
+                    "  const helper = this.helper;",
+                    "  if (helper) {",
+                    "    const gl = helper.getGL();",
+                    "    if (this.program_) {",
+                    "      gl.deleteProgram(this.program_);",
+                    "      delete this.program_;",
+                    "    }",
+                    "    if (this.indices_) {",
+                    "      helper.deleteBuffer(this.indices_);",
+                    "      delete this.indices_;",
+                    "    }",
+                    "    this.paletteTextures_.forEach((paletteTexture) => {",
+                    "      const texture = paletteTexture.getTexture(gl);",
+                    "      if (texture) {",
+                    "        gl.deleteTexture(texture);",
+                    "      }",
+                    "    });",
+                    "    this.paletteTextures_ = [];",
+                    "  }",
+                    "  super.disposeInternal();",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

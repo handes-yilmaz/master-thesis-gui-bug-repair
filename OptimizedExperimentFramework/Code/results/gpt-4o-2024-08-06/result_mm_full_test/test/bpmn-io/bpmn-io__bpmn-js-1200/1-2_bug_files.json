@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "1. **DropOnFlowBehavior.js**: This file likely contains logic related to how elements are dropped onto sequence flows. Since the bug involves changing the event type that results in the removal of a condition expression, this behavior file is a probable location for handling such changes.\n\n2. **UpdatePropertiesHandler.js**: This file is involved in updating properties of elements. Since the bug involves the removal of a property (condition expression), this handler might be responsible for altering the sequence flow properties when the event is changed.\n\n3. **Modeling.js**: This file manages modeling actions, including changes and updates to BPMN elements. Given that the bug involves a transformation in the model (removal of expression when changing event type), this file might play a role in executing or coordinating such changes.",
+        "bug_scenario": "The bug occurs when a 'Timer Intermediate Catch Event' is applied to a sequence flow with a condition expression, and the expression is removed unexpectedly. This is observed in a BPMN diagram where a condition expression is linked to a sequence flow and gets deleted when the event is applied."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "1. **DropOnFlowBehavior.js**: This file likely handles the behavior when an element is dropped on a flow in the BPMN model. The bug relates to an interaction where an event is placed on a sequence flow, so this behavior would need to ensure that existing properties like 'conditionExpression' are preserved.\n\n2. **UpdatePropertiesHandler.js**: Responsible for updating properties of BPMN elements, this file would need to handle the preservation of the 'conditionExpression' when changes are made to sequence flows, particularly when changing the type of an event.\n\n3. **Modeling.js**: As a key file in handling modeling operations, it may coordinate between various commands and behaviors that modify the BPMN diagram. It should ensure that property changes, such as preserving 'conditionExpression', are correctly managed when updating the model.",
+        "bug_scenario": "The bug occurs when an intermediate event is placed on a sequence flow that has a condition expression. Changing this event into a 'Timer Intermediate Catch Event' removes the condition expression from the sequence flow, as shown in the attached GIF image. The sequence flow initially has a 'conditionExpression', which disappears after the event change."
+    }
+}

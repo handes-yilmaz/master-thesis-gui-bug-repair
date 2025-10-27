@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/large-javascript-libraries.js//LargeJavascriptLibraries",
+            "lighthouse-core/report/html/renderer/details-renderer.js//DetailsRenderer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/large-javascript-libraries.js//LargeJavascriptLibraries.audit",
+            "lighthouse-core/report/html/renderer/details-renderer.js//DetailsRenderer._renderBytes"
+        ],
+        "explanation": "The 'LargeJavascriptLibraries' class and its 'audit' function are responsible for auditing and displaying JavaScript library sizes, which is directly related to the issue of displaying decimal places. The 'DetailsRenderer' class and its '_renderBytes' function are involved in rendering the size details in the report, which would need modification to ensure decimal places are always shown.",
+        "bug_scenario": "The bug scenario involves the display of JavaScript library sizes in a table, where the 'Transfer size' column omits decimal places for round sizes, making it difficult for users with vision impairments to compare numbers across rows. The request is to always display a digit after the decimal place, even if it is zero, to improve accessibility."
+    }
+}

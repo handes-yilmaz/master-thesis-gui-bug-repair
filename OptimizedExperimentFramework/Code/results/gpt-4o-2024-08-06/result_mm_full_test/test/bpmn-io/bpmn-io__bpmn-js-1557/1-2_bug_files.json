@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "1. **BpmnUpdater.js**: This file is directly mentioned in the error stack trace, indicating that a function in this file is trying to access properties of an undefined object. Specifically, lines 408 and 339 are involved in updating the diagram's parent elements.\n\n2. **UpdateSemanticParentHandler.js**: This file likely handles changes to the semantic structure of the BPMN model when elements are morphed. It needs to ensure elements outside of pools are handled correctly.\n\n3. **UpdatePropertiesHandler.js**: This file deals with updating properties of BPMN elements, which would be relevant when morphing one type of reference to another. Ensuring the proper handling of properties during morphing is crucial to prevent errors.",
+        "bug_scenario": "The bug occurs when a DataStoreReference is morphed to a DataObjectReference outside of a pool in a BPMN (Business Process Model and Notation) diagram. This action throws an error due to undefined properties being accessed in the BpmnUpdater.js file, as shown by the stack trace in the error message. The expected behavior is either to prevent morphing outside of a pool or to allow it without causing errors."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/behavior/DataStoreBehavior.js",
+            "lib/features/replace/BpmnReplace.js"
+        ],
+        "explanation": "The error stack trace in the bug report points directly to the BpmnUpdater.js file where the undefined property is being accessed. This indicates that the issue likely resides in the logic handling updates during morphing operations. The DataStoreBehavior.js is relevant as it might be responsible for managing the behavior specific to data stores, including morphing capabilities. Additionally, BpmnReplace.js could be involved as it handles replacement logic, which is directly related to morphing elements within the BPMN model.",
+        "bug_scenario": "The bug occurs when attempting to morph a DataStoreReference to a DataObjectReference outside of a pool in a BPMN model. An error is thrown indicating an undefined property being accessed during the update process, specifically within the BpmnUpdater.js file. The video shows the steps to reproduce the error, where after adding a DataStoreReference and trying to morph it, an uncaught TypeError is logged in the console."
+    }
+}

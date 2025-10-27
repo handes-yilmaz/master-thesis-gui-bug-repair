@@ -1,0 +1,19 @@
+diff --git a/src/ol/control/Attribution.js b/src/ol/control/Attribution.js
+index 0ca804a..b325120 100644
+--- a/src/ol/control/Attribution.js
++++ b/src/ol/control/Attribution.js
+@@ -194,7 +194,13 @@ class Attribution extends Control {
+       new Set(
+         this.getMap()
+           .getAllLayers()
+-          .flatMap((layer) => layer.getAttributions(frameState))
++          .flatMap((layer) => {
++            const layerState = layer.getLayerState();
++            if (layerState.visible) {
++              return layer.getAttributions(frameState);
++            }
++            return [];
++          })
+       )
+     );
+ 

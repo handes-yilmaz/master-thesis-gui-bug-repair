@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/Tile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "1. **src/ol/layer/WebGLTile.js**: This file likely contains the logic for handling WebGL tile layers. Since the issue is with WebGL tile layers not updating cached textures properly, the problem might originate here.\n2. **src/ol/source/Tile.js**: This file manages tile sources, and the bug report mentions issues with changing tile sources using `setSource()`. Thus, any logic related to source replacement and cache invalidation may need to be adjusted here.\n3. **src/ol/renderer/webgl/TileLayer.js**: As the issue involves rendering WebGL tiles, this file, which handles the rendering of tile layers in WebGL, could be responsible for ensuring tiles are correctly updated when sources or projections change.\n4. **src/ol/webgl/TileTexture.js**: This file deals with tile textures in WebGL. Since the bug pertains to cached tile textures not being invalidated or updated correctly, examining the logic in this file for managing tile textures is essential. It may contain code that needs modification to support cache invalidation when sources or projections change.",
+        "bug_scenario": "The bug involves WebGL tile layers which do not correctly update their cached textures when the source is replaced using `setSource()` or when the view projection changes. This results in incorrect tiles being shown when panning or zooming after such changes. The expected behavior is that the cache should be cleared and updated for the new source or projection to prevent showing outdated tiles."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/source/Tile.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "1. **src/ol/layer/WebGLTile.js**: This file likely contains the implementation of the WebGL tile layer, where handling of cached textures in response to changes like `setSource()` or projection changes should be managed.\n2. **src/ol/renderer/webgl/TileLayer.js**: This file is responsible for rendering the WebGL tiles. The issue with cache invalidation would directly affect how tiles are rendered after source or projection changes.\n3. **src/ol/source/Tile.js**: As this file deals with tile sources, any changes to source management, like invalidating and updating cache, would need to be addressed here.\n4. **src/ol/webgl/TileTexture.js**: This file likely manages the textures used by the WebGL tiles. The bug relates to texture caching, so ensuring the cache is correctly invalidated and updated would involve changes in this file.",
+        "bug_scenario": "The bug occurs when the WebGL tile layers use incorrect cached textures after the source is replaced using `setSource()` or when the view projection changes. The cached tile textures are not updated, leading to the display of incorrect tiles when panning or zooming back to previous locations."
+    }
+}

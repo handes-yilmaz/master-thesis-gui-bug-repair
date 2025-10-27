@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/interaction/Select.js//Select",
+            "src/ol/layer/Vector.js//VectorLayer"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Select.js//handleEvent",
+            "src/ol/interaction/Select.js//getLayer"
+        ],
+        "explanation": "The `Select` class in `src/ol/interaction/Select.js` is responsible for handling the selection of features and their rendering order. The `handleEvent` function manages the selection logic, which may need adjustments to respect zIndex settings. The `getLayer` function is involved in associating features with layers, which could affect rendering order. The `VectorLayer` class in `src/ol/layer/Vector.js` manages layer properties, including zIndex, which is crucial for rendering order. Adjustments in these classes and functions could resolve the issue of rendering order not respecting zIndex.",
+        "bug_scenario": "The bug scenario involves the `ol.select.Interaction` feature in a mapping application, where selected features are always displayed on top of other layers, regardless of the zIndex setting. The user expects the red dots (representing a hover effect) to appear above the selected feature, but they are rendered below it."
+    }
+}

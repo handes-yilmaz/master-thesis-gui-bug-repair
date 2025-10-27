@@ -1,0 +1,20 @@
+diff --git a/src/ol/source/TileDebug.js b/src/ol/source/TileDebug.js
+index 36353da..414e93a 100644
+--- a/src/ol/source/TileDebug.js
++++ b/src/ol/source/TileDebug.js
+@@ -134,13 +134,14 @@ class TileDebug extends XYZ {
+       const textTileCoord = this.getTileCoordForTileUrlFunction(tileCoord);
+       let text;
+       if (textTileCoord) {
++        const invertedY = -textTileCoord[2] - 1; // Invert Y coordinate
+         text =
+           'z:' +
+           textTileCoord[0] +
+           ' x:' +
+           textTileCoord[1] +
+           ' y:' +
+-          textTileCoord[2];
++          invertedY;
+       } else {
+         text = 'none';
+       }

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/SetColorHandler.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/draw/BpmnRenderer.js"
+        ],
+        "explanation": "1. **lib/features/modeling/cmd/SetColorHandler.js**: This file likely handles the logic for setting colors, including labels, which directly relates to the issue of incorrectly setting the label color.\n\n2. **lib/features/label-editing/LabelUtil.js**: This file may contain utility functions for managing label properties, including their colors.\n\n3. **lib/features/draw/BpmnRenderer.js**: As rendering is involved in how colors are displayed, this file is relevant for ensuring that the stroke color is correctly applied to labels during rendering.",
+        "bug_scenario": "The bug report describes an issue where the external label color is set to the 'fill' color instead of the 'stroke' color when using the `modeling.setColor` API. This creates a UX issue as the color appears too light. The provided image shows a diagram with labels that are too light, indicating they are using the fill color instead of the stroke color."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/cmd/SetColorHandler.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/util/LabelUtil.js"
+        ],
+        "explanation": "The bug is related to how colors are applied to external labels when using the `modeling.setColor` API. The `SetColorHandler.js` file is likely responsible for handling color changes, so it should be modified to ensure the stroke color is applied to external labels. The `LabelUtil.js` files in both `label-editing` and `util` directories may contain utility functions for label manipulation and color settings, which need to be adjusted to set the correct colors for external labels.",
+        "bug_scenario": "The image shows a diagram where the external labels of the elements are set to a light fill color instead of the intended stroke color. This mismatch raises a UX concern as the labels are difficult to read due to the light color."
+    }
+}

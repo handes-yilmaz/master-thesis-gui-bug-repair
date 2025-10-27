@@ -1,0 +1,34 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 5aca739..86f9ff3 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -394,6 +394,7 @@ class WebGLTileLayer extends BaseTileLayer {
+   handleSourceUpdate_() {
+     if (this.getSource()) {
+       this.setStyle(this.style_);
++      this.getRenderer().clearCache(); // Clear the cache when the source is updated
+     }
+   }
+ 
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index 5de570b..765de4b 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -78,7 +78,16 @@ const empty = {};
+  */
+ function depthForZ(z) {
+   return 2 * (1 - 1 / (z + 1)) - 1;
+-}
++  }
++
++  /**
++   * Clear the tile texture cache.
++   */
++  clearCache() {
++    const tileTextureCache = this.tileTextureCache_;
++    tileTextureCache.forEach((tileTexture) => tileTexture.dispose());
++    tileTextureCache.clear();
++  }
+ 
+ /**
+  * Add a tile texture to the lookup.

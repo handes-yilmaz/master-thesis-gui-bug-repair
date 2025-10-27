@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js//LayoutConnectionBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js//snapMiddleSegments"
+        ],
+        "explanation": "The 'LayoutConnectionBehavior' class and its 'snapMiddleSegments' function are directly related to the bug because they handle the snapping and layout of connection waypoints. The bug report indicates that the issue arises when there is a middle segment in the connection, which is precisely what the 'snapMiddleSegments' function is designed to handle. The function attempts to snap the middle segments of a connection to a grid, which could be causing the waypoints to be improperly serialized as '[object Object]'. Therefore, this class and function are key elements in addressing the bug.",
+        "bug_scenario": "The bug scenario involves the serialization of waypoints in a BPMN diagram. When a new task is created from an existing one, the resulting diagram contains an illegal 'waypoints' property on a 'sequenceFlow'. The waypoints are incorrectly serialized as '[object Object],[object Object],...' instead of proper coordinate values. This issue occurs when the connection has a middle segment, as shown in the provided GIF image."
+    }
+}

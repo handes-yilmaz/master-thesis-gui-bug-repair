@@ -1,0 +1,37 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "this.setKey(this.sourceInfo_.map((source) => source.url).join(','));"
+                ],
+                "REPLACE": [
+                    "    // Use a template string and tile grid object for pyramid support",
+                    "    this.setKey(this.sourceInfo_.map((source) => source.template).join(','));"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const cacheSize = options.cacheSize !== undefined ? options.cacheSize : 512;"
+                ],
+                "REPLACE": [
+                    "    // Increase cache size for better handling of larger pyramids",
+                    "    const cacheSize = options.cacheSize !== undefined ? options.cacheSize : 1024;"
+                ]
+            }
+        ],
+        "src/ol/tilegrid/TileGrid.js": [
+            {
+                "SEARCH": [
+                    "this.tileSizes_ = null;"
+                ],
+                "REPLACE": [
+                    "    // Adjust tile sizes for pyramid support",
+                    "    this.tileSizes_ = options.tileSizes || this.calculateTileSizesForPyramid();"
+                ]
+            }
+        ]
+    }
+}

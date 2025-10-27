@@ -1,0 +1,22 @@
+diff --git a/src/number-picker/index.jsx b/src/number-picker/index.jsx
+index dcd8027..882160b 100644
+--- a/src/number-picker/index.jsx
++++ b/src/number-picker/index.jsx
+@@ -311,7 +311,7 @@ upStep(val) {
+     } else {
+         result = min === -Infinity ? step : min;
+     }
+-    return result;
++    return Number(result.toFixed(this.props.precision));
+ }
+ 
+ downStep(val) {
+@@ -327,7 +327,7 @@ downStep(val) {
+     } else {
+         result = min === -Infinity ? -step : min;
+     }
+-    return result;
++    return Number(result.toFixed(this.props.precision));
+ }
+ 
+     step(type, e) {

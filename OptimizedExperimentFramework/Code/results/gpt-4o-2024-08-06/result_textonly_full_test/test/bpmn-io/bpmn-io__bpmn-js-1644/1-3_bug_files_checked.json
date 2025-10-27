@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/util/ModelingUtil.js"
+        ],
+        "explanation": "The identified files are related to the bug as they deal with updating and handling properties and behaviors of BPMN elements, which includes handling multi-instance properties:\n\n1. **lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js**: This file is directly involved in updating the moddle (i.e., the in-memory BPMN model representation) properties. It is likely responsible for persisting changes when multi-instance properties are modified.\n\n2. **lib/features/modeling/cmd/UpdatePropertiesHandler.js**: This handles updates to a BPMN element's properties, including those for multi-instances. If properties are lost, this handler might be incorrectly applying or omitting updates during the change from parallel to sequential.\n\n3. **lib/features/modeling/behavior/ReplaceElementBehaviour.js**: This file manages the behavior when BPMN elements are replaced. Switching between parallel and sequential instances involves element replacement, which could cause the properties to be lost if not handled correctly.\n\n4. **lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js**: While not directly related to multi-instances, toggling behaviors could indirectly affect how element properties are retained or lost during operations.\n\n5. **lib/features/modeling/util/ModelingUtil.js**: Provides utility functions used throughout the modeling feature, which could include functions that manage or manipulate element properties during updates.",
+        "bug_scenario": "The bug scenario involves a loss of multi-instance properties when a user changes between parallel and sequential multi-instances in a sub-process within a BPMN modeler. The user expects these properties to remain intact, but they are lost during the switch."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/Modeling.js",
+            "lib/features/modeling/index.js"
+        ],
+        "explanation": "The problem involves updating properties related to multi-instance configurations in the modeling process. The identified files are responsible for handling property updates and modifications within the BPMN model:\n\n1. **features/modeling/cmd/UpdateModdlePropertiesHandler.js**: This file likely handles the updating of moddle properties, which include BPMN-specific extensions like multi-instance properties. Any issues with retaining these properties during changes in multi-instance settings would be managed here.\n\n2. **features/modeling/cmd/UpdatePropertiesHandler.js**: Similar to the above, this handler deals with general property updates. If multi-instance properties are not being retained correctly, this file might require modifications to ensure those properties persist through different configurations.\n\n3. **features/modeling/Modeling.js**: This file could contain logic pertaining to the updating and manipulation of modeling elements. It might coordinate the application of property changes when the multi-instance type is switched.\n\n4. **features/modeling/index.js**: This acts as the entry point for modeling features and would incorporate or export the functionalities of the above command handlers, ensuring that updates to properties are correctly propagated across the model.\n\nThese files are directly involved in managing and updating properties of BPMN elements, making them relevant for the bug fix focused on preserving multi-instance properties.",
+        "bug_scenario": "The bug occurs when a user changes a multi-instance sub-process from parallel to sequential, resulting in the loss of multi-instance properties, such as loop cardinality. The expected behavior is that these properties should be retained regardless of the type of multi-instance configuration."
+    }
+}

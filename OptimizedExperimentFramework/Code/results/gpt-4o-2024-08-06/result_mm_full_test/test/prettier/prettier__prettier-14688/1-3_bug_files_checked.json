@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parse/typescript.js",
+            "src/language-js/print/type-parameters.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "1. **src/language-js/parse/typescript.js**: This file likely deals with parsing TypeScript files. The issue with the trailing comma in generics should be addressed during the parsing phase.\n2. **src/language-js/print/type-parameters.js**: This file is responsible for printing TypeScript type parameters. Ensuring that a trailing comma is correctly handled during the print process is crucial.\n3. **src/language-js/printer-estree.js**: This file handles printing of the ESTree, which is the abstract syntax tree format used by Prettier. Adjustments may be needed here to ensure the trailing comma is preserved in the output for .mts files.",
+        "bug_scenario": "The bug is related to the removal of a required trailing comma in TypeScript generics within .mts files. The Prettier formatter removes the trailing comma in generic arguments, which is necessary for the compiler. The error message suggests that in .mts or .cts files, a trailing comma or explicit constraint is required for the syntax to be valid."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/print/type-parameters.js",
+            "src/language-js/printer-estree.js",
+            "src/language-js/parse/typescript.js"
+        ],
+        "explanation": "These files are likely involved in the parsing and printing of TypeScript code in Prettier. The issue involves TypeScript generics, and since the bug involves the handling of trailing commas in generics within .mts files, the files related to TypeScript parsing and printing are relevant. 'type-parameters.js' specifically deals with printing TypeScript type parameters, which is where the issue arises. 'printer-estree.js' and 'typescript.js' are involved in the processing of TypeScript syntax, which includes handling file extensions and ensuring correct syntax formatting.",
+        "bug_scenario": "The bug report describes an issue with Prettier removing a trailing comma in TypeScript generics when the file extension is .mts. The trailing comma is necessary for TypeScript syntax in .mts files, but Prettier is removing it, causing a syntax error. The error message suggests adding a trailing comma or explicit constraint as the syntax is reserved in files with .mts or .cts extensions."
+    }
+}

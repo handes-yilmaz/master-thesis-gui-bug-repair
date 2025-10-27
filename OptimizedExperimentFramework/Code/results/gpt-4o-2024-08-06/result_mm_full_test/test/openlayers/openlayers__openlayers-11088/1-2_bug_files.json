@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/proj4.js",
+            "src/ol/View.js",
+            "src/ol/layer/Layer.js"
+        ],
+        "explanation": "The issue arises due to changes in axis order interpretation in proj4js 2.6.1, affecting coordinate transformations in OpenLayers. The files likely involved are 'proj4.js' for handling proj4js integration, 'View.js' for managing map projections, and 'Layer.js' for rendering the layers which are affected by projection transformations.",
+        "bug_scenario": "The bug occurs when OpenLayers 6.3.2-dev is used with proj4js 2.6.1, where map layers are incorrectly rotated. This behavior is seen when using Mercator projection with a WMTS layer (EPSG:2180), and vice versa, causing the images to appear rotated."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/proj/transforms.js"
+        ],
+        "explanation": "The bug is related to the integration of the proj4js library with OpenLayers, specifically in how projections are handled. The relevant files are likely to be under the 'proj' directory, where projection logic is implemented. The file 'proj4.js' is directly related to the proj4js integration. 'Projection.js' and 'transforms.js' are also involved in defining and applying the transformations and projections, which may account for the incorrect rendering behavior observed in the images.",
+        "bug_scenario": "The bug report describes an issue with OpenLayers (OL) 6.3.2-dev when used with proj4js version 2.6.1. The problem arises specifically when rendering maps with specific projections. With proj4js 2.6.0, maps render correctly with both Mercator and EPSG:2180 projections. However, when upgrading to proj4js 2.6.1, the maps display incorrectly: WMTS layers appear rotated when using the Mercator projection, and OSM layers appear rotated when using the EPSG:2180 projection. The images illustrate these rotations, showing how the map layers are improperly aligned or rotated in these scenarios."
+    }
+}

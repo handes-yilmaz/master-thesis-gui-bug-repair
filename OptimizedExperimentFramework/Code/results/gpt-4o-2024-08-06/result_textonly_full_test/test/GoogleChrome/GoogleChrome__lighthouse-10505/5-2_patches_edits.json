@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "lighthouse-core/computed/metrics/interactive.js": [
+            {
+                "SEARCH": [
+                    "if (longTasks.length === 0) {",
+                    "return [{start: 0, end: traceEndTsInMs}];",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (longTasks.length === 0) {",
+                    "      // If there are no long tasks, consider the entire trace as a quiet period",
+                    "      return [{start: 0, end: traceEndTsInMs}];",
+                    "    }",
+                    "",
+                    "    // Ensure that we consider immediate idleness after FCP",
+                    "    if (longTasks[0].start > FcpTsInMs + REQUIRED_QUIET_WINDOW) {",
+                    "      quietPeriods.push({",
+                    "        start: FcpTsInMs,",
+                    "        end: longTasks[0].start + navStartTsInMs,",
+                    "      });",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

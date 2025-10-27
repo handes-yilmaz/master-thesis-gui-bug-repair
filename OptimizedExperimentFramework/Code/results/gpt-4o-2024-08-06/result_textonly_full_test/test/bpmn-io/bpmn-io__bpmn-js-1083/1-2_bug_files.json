@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/snapping/BpmnConnectSnapping.js",
+            "lib/features/snapping/BpmnCreateMoveSnapping.js",
+            "lib/features/snapping/BpmnSnappingUtil.js",
+            "lib/modeling/behavior/ImportDockingFix.js"
+        ],
+        "explanation": "The files identified are likely related to the bug because they are part of the snapping feature of the library, which directly relates to the functionality described in the bug report. Specifically:\n\n1. `lib/features/snapping/BpmnConnectSnapping.js` and `lib/features/snapping/BpmnCreateMoveSnapping.js` are responsible for handling snapping logic during different types of element interactions (connecting and creating/moving elements, respectively). A regression affecting snapping would likely involve changes in these files.\n\n2. `lib/features/snapping/BpmnSnappingUtil.js` might contain utility functions that assist in the snapping process. If these utilities are malfunctioning or have changed, it could explain the loss of snapping functionality.\n\n3. `lib/modeling/behavior/ImportDockingFix.js` might be relevant if the snapping issue arises due to changes in how elements are imported or initially positioned, as docking points are related to element positioning.",
+        "bug_scenario": "The bug scenario presented in the images shows a functionality regression from version `v3.x` to `v4-beta`. In version `v3.x`, elements in a diagram snap to docking points when moved, as illustrated in the first image. However, in `v4-beta`, this snapping behavior is absent, as shown in the second image."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/snapping/BpmnConnectSnapping.js",
+            "lib/features/snapping/BpmnCreateMoveSnapping.js",
+            "lib/features/snapping/BpmnSnappingUtil.js",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js",
+            "lib/features/grid-snapping/BpmnGridSnapping.js"
+        ],
+        "explanation": "The files identified are related to the snapping functionality which is central to the reported bug. Specifically:\n\n1. **lib/features/snapping/BpmnConnectSnapping.js**: This file likely handles the snapping behavior when connecting elements, which is directly related to the reported issue.\n\n2. **lib/features/snapping/BpmnCreateMoveSnapping.js**: This file deals with snapping during creation and movement of elements, which could be integral to fixing the snapping issue.\n\n3. **lib/features/snapping/BpmnSnappingUtil.js**: Utility files for snapping often contain helper functions that are used throughout the snapping feature, making this file relevant.\n\n4. **lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js**: Since the bug involves layout issues when moving elements, this file might contain behavior definitions that affect snapping.\n\n5. **lib/features/grid-snapping/BpmnGridSnapping.js**: This file likely manages the grid-based snapping logic, which could influence how elements snap to docking points.\n\nThese files collectively represent the core components of the snapping feature in the BPMN editor's codebase, making them critical to investigate and modify to resolve the reported bug.",
+        "bug_scenario": "The bug scenario is about the snapping feature of docking points in a BPMN diagram editor. In version 3.x of the library, connected elements would snap to their respective docking points, facilitating easier alignment and positioning. However, in the 4.0.0-beta.1 version, this snapping functionality is no longer working, as demonstrated by the attached GIF images. The expected behavior is for the snapping functionality to be restored to its previous working state in version 3.x."
+    }
+}

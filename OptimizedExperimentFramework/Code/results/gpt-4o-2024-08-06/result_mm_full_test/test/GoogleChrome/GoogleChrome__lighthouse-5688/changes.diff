@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/audits/byte-efficiency/uses-webp-images.js b/lighthouse-core/audits/byte-efficiency/uses-webp-images.js
+index 1b9a290..da46f7a 100644
+--- a/lighthouse-core/audits/byte-efficiency/uses-webp-images.js
++++ b/lighthouse-core/audits/byte-efficiency/uses-webp-images.js
+@@ -53,7 +53,7 @@ class UsesWebPImages extends ByteEfficiencyAudit {
+       if (image.failed) {
+         warnings.push(`Unable to decode ${URL.getURLDisplayName(image.url)}`);
+         continue;
+-      } else if (image.originalSize < image.webpSize + IGNORE_THRESHOLD_IN_BYTES) {
++      } else if (/(jpeg|bmp)/.test(image.mimeType) === false || image.originalSize < image.webpSize + IGNORE_THRESHOLD_IN_BYTES) {
+         continue;
+       }
+ 

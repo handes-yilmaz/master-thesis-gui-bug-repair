@@ -1,0 +1,13 @@
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index ed48cc2..8d1a2e4 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -106,6 +106,8 @@ function getRenderExtent(frameState, extent) {
+       extent = getIntersection(extent, gridExtent);
+     }
+   }
++  // Ensure the extent is within the frame's extent
++  extent = getIntersection(extent, frameState.extent);
+   return extent;
+ }
+ 

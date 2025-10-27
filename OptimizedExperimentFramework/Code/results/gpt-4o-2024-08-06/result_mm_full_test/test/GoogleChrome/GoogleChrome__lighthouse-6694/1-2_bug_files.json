@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/uses-rel-preconnect.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/doctype.js",
+            "lighthouse-core/report/html/renderer/util.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/uses-rel-preconnect.js`: This file likely contains the logic for the audit that checks for the use of `rel=preconnect` and `dns-prefetch`. It needs to correctly identify existing implementations in the DOM.\n\n2. `lighthouse-core/gather/gatherers/dobetterweb/doctype.js`: This file might be involved in gathering the necessary DOM elements and metadata required for the audit. It should accurately detect `link rel=preconnect` tags already present.\n\n3. `lighthouse-core/report/html/renderer/util.js`: This utility file may assist in rendering the audit report and could be responsible for filtering out false positives in audit recommendations.",
+        "bug_scenario": "The bug report describes a false positive issue where the Lighthouse audit suggests using `dns-prefetch` or `preconnect` to reduce RTTs to origins, even though these are already implemented in the HTML. The audit fails to acknowledge existing `preconnect` links for certain domains, leading to unnecessary suggestions for improvement."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/uses-rel-preconnect.js",
+            "lighthouse-core/audits/uses-rel-preload.js",
+            "lighthouse-core/gather/gatherers/seo/canonical.js"
+        ],
+        "explanation": "The file `lighthouse-core/audits/uses-rel-preconnect.js` is directly related to the `preconnect` audit and likely contains logic that checks for `preconnect` links. It might need enhancements to accurately detect existing links. The `uses-rel-preload.js` file may contain similar logic for link detection and could be useful for cross-referencing or ensuring consistency across similar audits. The `gatherers/seo/canonical.js` might be involved in gathering DOM elements, including `link` tags, and could require updates to ensure the correct detection of `preconnect` links.",
+        "bug_scenario": "The bug report indicates a false positive in the Lighthouse audit regarding the use of `preconnect` hints. The audit suggests adding `dns-prefetch` or `preconnect` to reduce round-trip times (RTTs) even though the user has already implemented `preconnect` for the specified origins. The issue arises because the audit does not correctly recognize existing `preconnect` links in the DOM, leading to incorrect performance improvement suggestions."
+    }
+}

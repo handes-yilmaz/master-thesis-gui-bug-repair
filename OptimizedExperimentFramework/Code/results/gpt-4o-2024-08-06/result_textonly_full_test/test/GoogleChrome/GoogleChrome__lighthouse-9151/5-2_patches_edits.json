@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "lighthouse-core/report/html/renderer/pwa-category-renderer.js": [
+            {
+                "SEARCH": [
+                    "if (passingGroupIds.size === allGroups.size) {",
+                    "wrapper.classList.add('lh-badged--all');",
+                    "} else {",
+                    "for (const passingGroupId of passingGroupIds) {",
+                    "wrapper.classList.add(`lh-badged--${passingGroupId}`);",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (passingGroupIds.size === allGroups.size) {",
+                    "      wrapper.classList.add('lh-badged--all');",
+                    "    } else {",
+                    "      for (const passingGroupId of passingGroupIds) {",
+                    "        if (allGroups.has(passingGroupId)) {",
+                    "          wrapper.classList.add(`lh-badged--${passingGroupId}`);",
+                    "        }",
+                    "      }",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

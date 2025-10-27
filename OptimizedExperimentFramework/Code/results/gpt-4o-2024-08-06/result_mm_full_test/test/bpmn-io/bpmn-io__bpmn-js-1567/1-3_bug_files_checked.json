@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/util/DrilldownUtil.js",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js"
+        ],
+        "explanation": "1. `lib/features/drilldown/DrilldownBreadcrumbs.js`: This file is directly mentioned in the error stack trace, indicating it is involved in handling drilldown navigation.\n2. `lib/features/drilldown/DrilldownOverlayBehavior.js`: This file likely manages the overlay behavior of drilldown processes, which is related to the issue described.\n3. `lib/util/DrilldownUtil.js`: Utilities for drilldown operations could be affecting how root changes are handled.\n4. `lib/modeling/cmd/UpdateCanvasRootHandler.js`: This file may be responsible for handling root element updates, which could be related to the error when root changes occur.",
+        "bug_scenario": "The bug occurs when attempting to navigate back to the parent process after wrapping a collapsed sub-process with a pool and moving into it. An error is thrown indicating that the drilldown overlay is unaware of root element changes."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/util/DrilldownUtil.js"
+        ],
+        "explanation": "The error message mentions a problem with the root element in Canvas.js, which is likely triggered by drilldown features. The files in 'lib/features/drilldown/' are directly related to drilldown functionality, specifically 'DrilldownBreadcrumbs.js' and 'DrilldownOverlayBehavior.js', which manage drilldown interactions and overlays. 'DrilldownUtil.js' is part of the utility functions that may handle root element changes and interactions, making it relevant for fixing the root element awareness issue.",
+        "bug_scenario": "The bug occurs when attempting to navigate back to the parent process after wrapping a subprocess with a pool and drilling into it. An error is thrown due to the overlay not recognizing changes in the root element."
+    }
+}

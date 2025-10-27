@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "src/ol/format/KML.js": [
+            {
+                "SEARCH": [
+                    "feature.setProperties(object, true);"
+                ],
+                "REPLACE": [
+                    "    // Decode HTML entities in the name property if it exists",
+                    "    if (object['name']) {",
+                    "      object['name'] = decodeHtmlEntities(object['name']);",
+                    "    }",
+                    "    feature.setProperties(object, true);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "class KML extends XMLFeature {"
+                ],
+                "REPLACE": [
+                    "function decodeHtmlEntities(text) {",
+                    "  const textarea = document.createElement('textarea');",
+                    "  textarea.innerHTML = text;",
+                    "  return textarea.value;",
+                    "}",
+                    "",
+                    "class KML extends XMLFeature {"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/xml.js",
+            "src/lib/modes.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "1. **src/languages/xml.js**: This file likely handles the syntax rules specific to XML, including namespace prefixes. The issue with single-letter prefixes suggests that the rules here need adjustment.\n\n2. **src/lib/modes.js**: This file might define modes that determine how different parts of the code are highlighted. Since the highlighting fails for a specific pattern, this file may need updates to include patterns for single-letter namespace prefixes.\n\n3. **src/lib/regex.js**: Regular expressions used for matching patterns in the code might be defined here. Adjusting these could fix the issue by recognizing single-letter prefixes correctly.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting for XML lines with a single letter namespace prefix. While multi-letter prefixes are highlighted correctly, single-letter prefixes are not."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/xml.js",
+            "src/lib/regex.js",
+            "src/lib/mode_compiler.js"
+        ],
+        "explanation": "1. **src/languages/xml.js**: This file likely contains the logic for XML syntax highlighting, which would directly relate to how namespace prefixes are parsed and highlighted.\n\n2. **src/lib/regex.js**: Regular expressions used for matching syntax elements, such as XML tags, might need adjustment to correctly identify and highlight single-letter namespace prefixes.\n\n3. **src/lib/mode_compiler.js**: This file might handle the compilation of modes or themes for highlighting, affecting how XML namespaces are processed.",
+        "bug_scenario": "The bug involves XML syntax highlighting where tags with a single-letter namespace prefix are not highlighted correctly since version 10.4.0. The scenario shows that tags with multi-letter prefixes are highlighted, but single-letter ones are not."
+    }
+}

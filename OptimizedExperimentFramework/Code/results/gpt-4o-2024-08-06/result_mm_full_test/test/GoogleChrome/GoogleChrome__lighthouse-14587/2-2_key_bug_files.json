@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "core/lib/emulation.js",
+            "core/gather/gatherers/network-user-agent.js"
+        ],
+        "explanation": "1. **core/lib/emulation.js**: This file handles the emulation settings, including user agent and device metrics. The issue likely stems from incorrect handling of the `--no-emulatedUserAgent` flag, which should prevent emulation but is not working as expected.\n\n2. **core/gather/gatherers/network-user-agent.js**: This file is responsible for gathering the network user agent. It may not be correctly identifying or setting the user agent when the `--no-emulatedUserAgent` flag is used, leading to the incorrect report of an emulated device.",
+        "bug_scenario": "The bug scenario involves running Lighthouse on a real mobile device (Moto Power G) but the report incorrectly states that the test was conducted on an \"Emulated Moto G4\". The expectation was for the report to indicate testing on a real device."
+    }
+}

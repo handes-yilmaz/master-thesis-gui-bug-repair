@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/DateInput/DateInput.js",
+            "src/js/components/Calendar/Calendar.js",
+            "src/js/components/Calendar/utils.js"
+        ],
+        "explanation": "The files identified as bug-related include DateInput.js and Calendar.js within the components directory. The DateInput.js file is relevant because it's directly responsible for handling date input functionality, and the issue described involves the inability to enforce calendar bounds properly. The Calendar.js file is also pertinent because it deals with the calendar's display logic, including what dates are enabled or disabled. The utils.js file within the Calendar directory might contain utility functions that manage or calculate date ranges and bounds, which are crucial to fixing the described bug of selecting dates outside the allowed range.",
+        "bug_scenario": "The bug scenario involves a DateInput component where a user can select a day from the previous month, which should be disabled based on the specified bounds of the calendar properties. The bounds in the example are set between '2020-07-01' and '2020-07-31', yet it's possible to select a date outside this range, specifically from the previous month."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/DateInput/DateInput.js",
+            "src/js/components/Calendar/utils.js",
+            "src/js/components/Calendar/Calendar.js"
+        ],
+        "explanation": "The bug is related to a DateInput component's calendarProps not correctly restricting selectable dates as per the defined bounds. The DateInput.js file is likely responsible for the configuration and logic of the date input component, which includes handling bounds and date selection. The Calendar.js file is responsible for rendering the calendar and handling the display of selectable and non-selectable dates. The utils.js file in the Calendar directory may contain utility functions that handle date calculations and validations, which could be involved in enforcing the bounds. Together, these files are critical to addressing the incorrect behavior of selecting dates outside the specified bounds.",
+        "bug_scenario": "The bug is related to a DateInput component that allows users to select a day from the previous month, even when it is outside the defined bounds of the calendarProps. The expected behavior is for the DateInput to restrict selection to only those days within the specified bounds, which in this case are between '2020-07-01' and '2020-07-31'. However, the actual behavior allows selection of a day from the previous month, which is considered incorrect."
+    }
+}

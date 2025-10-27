@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js"
+        ],
+        "explanation": "1. **lib/features/modeling/cmd/UpdatePropertiesHandler.js**: This file handles property updates for BPMN elements. The issue likely involves incorrect serialization of the `waypoints` property, which should be addressed in the property update logic.\n\n2. **lib/features/modeling/behavior/ReplaceConnectionBehavior.js**: This file deals with connection behaviors, including replacing connections. The bug might be related to how connections and their properties, like `waypoints`, are managed or replaced, leading to incorrect serialization.",
+        "bug_scenario": "The bug involves an illegal `waypoints` property being serialized as `[object Object],[object Object],...` in the XML of a BPMN diagram when a new task is created from an existing one. This occurs when the resulting connection has a middle segment."
+    }
+}

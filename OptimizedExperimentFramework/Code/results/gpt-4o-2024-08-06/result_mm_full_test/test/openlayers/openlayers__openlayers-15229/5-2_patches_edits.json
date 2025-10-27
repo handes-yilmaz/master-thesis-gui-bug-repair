@@ -1,0 +1,21 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/PointsLayer.js": [
+            {
+                "SEARCH": [
+                    "this.helper.makeProjectionTransform(frameState, this.currentTransform_);",
+                    "translateTransform(this.currentTransform_, world * worldWidth, 0);",
+                    "multiplyTransform(this.currentTransform_, this.invertRenderTransform_);"
+                ],
+                "REPLACE": [
+                    "    this.helper.makeProjectionTransform(frameState, this.currentTransform_);",
+                    "    // Adjust for aspect ratio",
+                    "    const aspectRatio = frameState.size[0] / frameState.size[1];",
+                    "    scaleTransform(this.currentTransform_, 1, aspectRatio);",
+                    "    translateTransform(this.currentTransform_, world * worldWidth, 0);",
+                    "    multiplyTransform(this.currentTransform_, this.invertRenderTransform_);"
+                ]
+            }
+        ]
+    }
+}

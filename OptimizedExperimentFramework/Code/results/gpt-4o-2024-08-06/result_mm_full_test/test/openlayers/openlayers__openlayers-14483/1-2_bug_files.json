@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/layer/Vector.js",
+            "src/ol/renderer/canvas/VectorLayer.js"
+        ],
+        "explanation": "1. **src/ol/render/canvas/TextBuilder.js**: This file likely handles the rendering of text styles, including rotation and translation, which are central to the issue described.\n\n2. **src/ol/layer/Vector.js**: This file deals with vector layer properties and rendering logic, which would be affected by translation and rotation issues.\n\n3. **src/ol/renderer/canvas/VectorLayer.js**: Responsible for rendering vector layers on the canvas, this file would be key in handling the translation and rotation of vector layer text styles.",
+        "bug_scenario": "The bug involves vector layer text styles with rotation not displaying at the correct translated location when the context is clipped and translated. This issue occurs when the rotation value is non-zero, causing the styled text to appear at the original location instead of the translated one."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/style/Text.js",
+            "src/ol/layer/Vector.js"
+        ],
+        "explanation": "1. **src/ol/renderer/canvas/VectorLayer.js**: This file likely handles the rendering logic for vector layers, including positioning and transforming text styles. The translation and rotation calculations would be implemented here.\n\n2. **src/ol/style/Text.js**: This file manages the text style properties. Any issues with how rotation affects positioning may be rooted in how styles are applied or calculated.\n\n3. **src/ol/layer/Vector.js**: This file is responsible for managing vector layers, which includes how they are rendered and displayed. It may need adjustments to ensure the correct handling of transformations involving rotation and translation.",
+        "bug_scenario": "The bug involves rotated vector layer text styles not displaying at the correct translated location when the context is clipped and translated. The green '3' text style with a non-zero rotation appears at the original location instead of the translated location, unlike the blue '1' and non-rotated red '2'."
+    }
+}

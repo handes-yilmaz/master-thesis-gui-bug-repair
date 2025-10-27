@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/behavior/ResizeLaneBehavior.js",
+            "lib/features/modeling/cmd/AddLaneHandler.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "1. **DeleteLaneBehavior.js**: This file handles the behavior when a lane is deleted. The bug report mentions issues arising after adding and then removing a lane, which suggests that the logic in this file might not correctly handle the transition back to a single-lane pool.\n\n2. **ResizeLaneBehavior.js**: This file deals with resizing lanes and participants. Since the bug involves connecting message flows to a pool boundary after lane modifications, the resizing logic might be affecting the pool's boundary recognition.\n\n3. **AddLaneHandler.js**: This file is responsible for adding lanes. The bug involves adding and then removing lanes, so the logic here might not correctly update the pool's state after these operations, leading to the connection issue.\n\n4. **Modeling.js**: This file contains the core modeling logic, including methods for connecting elements. The issue with connecting message flows to the pool boundary might be rooted in how connections are handled after lane modifications, which would be managed in this file.",
+        "bug_scenario": "The bug scenario involves an issue with connecting message flows to the boundary of a pool in a BPMN diagram. When a pool that initially had more than one lane is modified to have only one lane, the message flow can only be connected to the pool's header, not within the single lane itself. This behavior is unexpected and differs from the initial connection capability when the pool had multiple lanes."
+    }
+}

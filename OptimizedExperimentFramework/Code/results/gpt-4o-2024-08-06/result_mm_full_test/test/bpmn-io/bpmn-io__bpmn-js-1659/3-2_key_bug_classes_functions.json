@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js//LayoutConnectionBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/LabelBehavior.js//getVisibleLabelAdjustment",
+            "lib/features/modeling/behavior/LabelBehavior.js//postExecute",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js//getnewAnchorPoint",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js//postExecute"
+        ],
+        "explanation": "The issue is related to the movement and layout of labels and connections. The `LabelBehavior` class handles the updating and positioning of labels when elements are moved or resized. The `getVisibleLabelAdjustment` function is responsible for calculating the label's new position when the connection's waypoints change. Similarly, the `LayoutConnectionBehavior` class ensures that connections and their associated elements are updated together. The `getnewAnchorPoint` function calculates new anchor points for connections, which is crucial for maintaining the correct layout when connections are moved or resized. The `postExecute` functions in both classes are responsible for executing these adjustments after the relevant commands, such as layout or move, are executed.",
+        "bug_scenario": "The bug occurs when a connection is re-laid out after a connected shape is resized. Labels and associations do not move with the connection, leaving them hanging and disconnected from the sequence flow."
+    }
+}

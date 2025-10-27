@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/object.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "1. **src/language-js/print/object.js**: This file likely contains logic related to how objects are printed in JavaScript code. The bug involves incorrect formatting of an object when JSDoc comments are used, so changes here could fix how Prettier handles the parentheses around objects.\n\n2. **src/language-js/printer-estree.js**: This file might involve the overall printing logic for JavaScript and could contain code that determines how to output JSDoc comments and associated structures. Modifications here could address the issue of parentheses being removed around objects.",
+        "bug_scenario": "The bug is related to the handling of parentheses in JSDoc comments when using Prettier. The parentheses are removed, which breaks Intellisense functionality. The expected behavior is to keep the parentheses around the object to maintain proper Intellisense support."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/print/object.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "The problem is related to how Prettier formats JavaScript code, specifically with object literals and JSDoc comments. The files in the language-js/print and printer-estree directories handle the printing logic for JavaScript objects and syntax trees. These files are likely responsible for the logic that removes or maintains parentheses around object literals, and thus need to be examined and potentially modified to preserve parentheses when `@satisfies` is used.",
+        "bug_scenario": "The issue is with Prettier removing parentheses around object literals when using JSDoc's `@satisfies` comment, which breaks TypeScript intellisense. The expected behavior is to maintain the parentheses to ensure proper intellisense functionality."
+    }
+}

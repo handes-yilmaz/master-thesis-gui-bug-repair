@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/input/textarea.jsx",
+            "types/input/index.d.ts"
+        ],
+        "explanation": "The issue is rooted in a type mismatch for the `onBlur` event handler. This necessitates inspecting the component code where `onBlur` is used to ensure the event handler matches the expected signature. The file `src/input/textarea.jsx` likely contains the implementation of the `Input` component, while `types/input/index.d.ts` defines the TypeScript types, including the `onBlur` event type definition.",
+        "bug_scenario": "The bug is related to a TypeScript type mismatch for the `onBlur` event in the `Input` component. The error message indicates that the `onBlur` property is expected to be of type `() => void`, but an event handler with the signature `(event: MouseEvent<Element, MouseEvent>) => void` is being assigned instead."
+    },
+    "2": {
+        "bug_files": [
+            "src/input/textarea.jsx",
+            "types/input/index.d.ts"
+        ],
+        "explanation": "The bug is related to the `onBlur` event type definition and its implementation in the `Input.TextArea` component. The relevant files are likely in the `input` directory. The file `textarea.jsx` is the probable location of the `Input.TextArea` component's implementation where the `onBlur` event is used. The file `index.d.ts` in the `types/input` directory is likely where the TypeScript type definitions for the `Input` components are declared, including the `onBlur` event type.",
+        "bug_scenario": "The issue is related to a TypeScript type mismatch for the `onBlur` event in the `Input.TextArea` component. The error message indicates that the `onBlur` property expects a function of type `() => void`, but it is receiving a function of type `(event: MouseEvent<Element, MouseEvent>) => void`. This mismatch leads to a type error."
+    }
+}

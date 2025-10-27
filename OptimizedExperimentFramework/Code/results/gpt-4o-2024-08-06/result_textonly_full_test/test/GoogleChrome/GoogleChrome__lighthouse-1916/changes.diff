@@ -1,0 +1,26 @@
+diff --git a/lighthouse-core/audits/byte-efficiency/offscreen-images.js b/lighthouse-core/audits/byte-efficiency/offscreen-images.js
+index 20b1673..fe0abb7 100644
+--- a/lighthouse-core/audits/byte-efficiency/offscreen-images.js
++++ b/lighthouse-core/audits/byte-efficiency/offscreen-images.js
+@@ -104,7 +104,7 @@ class OffscreenImages extends Audit {
+ 
+     let debugString;
+     const resultsMap = images.reduce((results, image) => {
+-      if (!image.networkRecord) {
++      if (!image.networkRecord || image.networkRecord.mimeType === 'image/svg+xml') {
+         return results;
+       }
+ 
+diff --git a/lighthouse-core/gather/gatherers/image-usage.js b/lighthouse-core/gather/gatherers/image-usage.js
+index 8c5e10d..541bef4 100644
+--- a/lighthouse-core/gather/gatherers/image-usage.js
++++ b/lighthouse-core/gather/gatherers/image-usage.js
+@@ -82,7 +82,7 @@ class ImageUsage extends Gatherer {
+   afterPass(options, traceData) {
+     const driver = this.driver = options.driver;
+     const indexedNetworkRecords = traceData.networkRecords.reduce((map, record) => {
+-      if (/^image/.test(record._mimeType)) {
++      if (/^image/.test(record._mimeType) && record._mimeType !== 'image/svg+xml') {
+         map[record._url] = {
+           url: record.url,
+           resourceSize: record.resourceSize,

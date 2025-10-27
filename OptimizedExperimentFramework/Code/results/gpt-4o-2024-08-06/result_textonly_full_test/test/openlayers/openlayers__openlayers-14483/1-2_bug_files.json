@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/render/canvas/Executor.js",
+            "src/ol/layer/Vector.js",
+            "src/ol/style/Text.js"
+        ],
+        "explanation": "1. **src/ol/render/canvas/TextBuilder.js**: This file is likely responsible for constructing the text elements in the canvas, handling their positioning and rotation. Any issues with text rotation and translation could be linked to this file.\n\n2. **src/ol/render/canvas/Executor.js**: This file handles the execution of rendering instructions, including rendering vector layers and their text. It may be responsible for applying the transformations correctly or incorrectly.\n\n3. **src/ol/layer/Vector.js**: As the layer responsible for vector data, this file could contain logic related to how vector layers are rendered, including transformations such as translation and rotation.\n\n4. **src/ol/style/Text.js**: This file deals with the styling of text elements, including setting rotation values. Any misconfiguration or mishandling of rotation options could originate here.\n\nThese files are related to the rendering and styling of vector layers and text, specifically concerning their position and rotation, which is where the bug manifests.",
+        "bug_scenario": "The bug occurs when trying to display vector layers with rotated text styles in a translated and clipped context. The rotated text styles are not appearing at the correct translated position, unlike non-rotated text styles. This issue is evident when the translated context is supposed to display the green \"3\" on top of the red \"2\", but it appears in the original location due to a rotation flaw."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/render/canvas/Executor.js",
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/layer/Vector.js"
+        ],
+        "explanation": "1. **src/ol/render/canvas/Executor.js**: This file likely handles the rendering of vector layers on the canvas, including applying transformations like rotation and translation. The bug involves incorrect positioning of rotated text styles, indicating a potential issue in how transformations are applied during rendering.\n\n2. **src/ol/render/canvas/TextBuilder.js**: This file is responsible for building and styling text on the canvas. As the bug specifically involves text styles, this file could contain code related to the application of rotation and translation to text, which might be malfunctioning.\n\n3. **src/ol/layer/Vector.js**: This file manages vector layer properties and rendering logic. Since the bug affects how vector layers are displayed after translation, this file may need adjustments to ensure transformations are correctly applied to all types of text styles, including those with rotation.",
+        "bug_scenario": "The bug occurs when vector layers with rotated text styles are displayed in a clipped and translated context, causing the text to appear at the original location rather than the translated location. Non-rotated text styles display correctly, but any non-zero rotation value causes an issue with translation."
+    }
+}

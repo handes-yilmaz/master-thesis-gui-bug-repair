@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/manifest-short-name-length.js",
+            "lighthouse-core/audits/manifest-short-name.js",
+            "lighthouse-core/lib/manifest-parser.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/manifest-short-name-length.js`: This file likely contains the logic for auditing the length of the manifest's short name. The false positive could be due to a check that does not account for the absence of the short name.\n2. `lighthouse-core/audits/manifest-short-name.js`: This file might be responsible for handling aspects of the manifest short name, including its existence and properties.\n3. `lighthouse-core/lib/manifest-parser.js`: This file likely includes the parsing logic for the manifest, which should correctly handle the absence of the short name property.",
+        "bug_scenario": "The bug relates to a false positive in checking the length of the manifest's 'short_name'. The system is incorrectly reporting that the short name is missing, although it should not be evaluated when absent."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/manifest-short-name-length.js",
+            "lighthouse-core/lib/manifest-parser.js"
+        ],
+        "explanation": "The file 'lighthouse-core/audits/manifest-short-name-length.js' is directly related to the audit for checking the manifest's short name length, which is where the false positive is reported. The file 'lighthouse-core/lib/manifest-parser.js' likely handles the parsing of the manifest file and should be checked to ensure it correctly interprets the presence or absence of the short name before passing this information to the audit.",
+        "bug_scenario": "The bug involves a false positive report regarding the manifest's short name length. The report incorrectly claims that the short name is missing, stating that the length is 0 characters when it should check whether the short name exists before assessing its length."
+    }
+}

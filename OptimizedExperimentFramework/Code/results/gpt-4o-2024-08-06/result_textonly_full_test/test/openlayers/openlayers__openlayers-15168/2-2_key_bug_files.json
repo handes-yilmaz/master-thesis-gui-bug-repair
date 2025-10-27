@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/reproj/Image.js",
+            "src/ol/reproj/Tile.js",
+            "src/ol/reproj/Triangulation.js"
+        ],
+        "explanation": "1. **src/ol/reproj/Image.js**: This file contains the `ReprojImage` class, which handles the reprojection of single images. The issue likely stems from how the target resolution and pixel ratio are calculated and applied, leading to the assumption of square pixels.\n\n2. **src/ol/reproj/Tile.js**: This file contains the `ReprojTile` class, which deals with the reprojection of tiles. Similar to the `ReprojImage`, the reprojection logic here might also assume square pixels, affecting how tiles are rendered and aligned.\n\n3. **src/ol/reproj/Triangulation.js**: This file is responsible for the triangulation process during reprojection. It might be contributing to the issue by not correctly handling non-square pixel dimensions during the triangulation and reprojection process.",
+        "bug_scenario": "The bug scenario involves a raster reprojection issue where the target pixels are assumed to be square, leading to misalignments. The source image is projected from Lambert Conformal Conic to Web Mercator, and the expected behavior is that the destination pixels should stretch to match the source image's pixel count, which is not happening. This results in horizontal misalignment and an incorrect number of projected pixels."
+    }
+}

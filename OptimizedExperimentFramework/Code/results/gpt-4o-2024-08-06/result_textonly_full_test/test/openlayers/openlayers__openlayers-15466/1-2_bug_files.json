@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Image.js",
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/style.js",
+            "src/ol/render/canvas/ImageBuilder.js",
+            "src/ol/render/canvas/TextBuilder.js"
+        ],
+        "explanation": "1. **src/ol/style/Image.js** and **src/ol/style/Text.js**: These files are directly related to styling images and text in the OpenLayers library. Since the bug involves decluttering images and text, modifications to these files are necessary to implement the proposed 'ignorePlacement' option and enhance the decluttering functionality.\n\n2. **src/ol/render/canvas/style.js**: This file likely manages the rendering styles on the canvas, which would include the declutter logic. Adjustments here will be necessary to handle the new declutter options for images and text.\n\n3. **src/ol/render/canvas/ImageBuilder.js** and **src/ol/render/canvas/TextBuilder.js**: These files are involved in the construction of image and text elements for rendering. The bug and its fix would involve altering how these builders handle decluttering to respect the new decluttering modes and potentially the 'ignorePlacement' option.",
+        "bug_scenario": "The bug report describes an issue with decluttering image and label combinations in a map rendering context when using a declutter mode other than 'declutter'. The request is to enhance the functionality by allowing decluttering only for text or other specific elements, rather than a blanket approach. The problem is observed in the OpenLayers library, particularly affecting rendering order and the new 'declutter' option introduced in version 4.5.0."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/style/Image.js",
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/Builder.js",
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/render/canvas/Executor.js"
+        ],
+        "explanation": "The files identified are related to the styling and rendering of images and text on the map, which are directly impacted by the decluttering functionality:\n\n1. **src/ol/style/Image.js** and **src/ol/style/Text.js**: These files are responsible for defining the styles for images and text. Adding a new option like 'ignorePlacement' for decluttering would likely require changes in these files to handle the new option and its logic.\n\n2. **src/ol/render/canvas/Builder.js** and **src/ol/render/canvas/TextBuilder.js**: These files manage the rendering instructions for canvas elements. Changes in decluttering logic need to be reflected here to ensure that text is rendered according to the new decluttering rules.\n\n3. **src/ol/render/canvas/Executor.js**: This file executes the rendering instructions on a canvas. It would require updates to properly apply the decluttering logic during the rendering process, ensuring that the new options for decluttering are respected.\n\nThese files are integral to implementing the requested enhancement to declutter images and text separately or together.",
+        "bug_scenario": "The bug relates to fixing the decluttering behavior in the OpenLayers library when using the 'declutter' option. Currently, the behavior affects both images and labels, but the enhancement request is to allow decluttering specifically for text only. This situation arises when a style function returns both point markers (imagery) and labels (text), and the user wants to declutter only the labels for better clarity on the map. The goal is to change the 'declutter' from a boolean to a more flexible option that can distinguish between text, geometry, or both for decluttering."
+    }
+}

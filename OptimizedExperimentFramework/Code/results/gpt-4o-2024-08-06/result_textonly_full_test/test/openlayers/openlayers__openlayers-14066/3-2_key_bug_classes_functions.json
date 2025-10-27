@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource.constructor"
+        ],
+        "explanation": "The class 'GeoTIFFSource' in 'src/ol/source/GeoTIFF.js' is directly related to the bug because it is responsible for handling GeoTIFF data sources. The constructor of this class is where options for handling GeoTIFF data are set, including the 'convertToRGB' option. To implement the 'auto' feature, modifications would likely be needed in this class and its constructor to check for the number of samples per pixel and the photometric interpretation, and then decide whether to use the 'image.readRGB()' method automatically.",
+        "bug_scenario": "The bug scenario involves adding a new feature to support a 'convertToRGB: auto' option for GeoTIFF sources. This feature would automatically use the 'image.readRGB()' method when a source has 3 samples per pixel and the photometric interpretation is CMYK, YCbCr, CIELab, or ICCLab."
+    }
+}

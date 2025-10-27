@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "src/ol/render/webgl/VectorStyleRenderer.js": [
+            {
+                "SEARCH": [
+                    "const polygonInstructions = this.hasFill_",
+                    "? generatePolygonRenderInstructions(",
+                    "geometryBatch.polygonBatch,",
+                    "new Float32Array(0),",
+                    "this.customAttributes_,",
+                    "transform",
+                    ")",
+                    ": null;"
+                ],
+                "REPLACE": [
+                    "    const polygonInstructions = this.hasFill_",
+                    "      ? generatePolygonRenderInstructions(",
+                    "          geometryBatch.polygonBatch,",
+                    "          new Float32Array(0),",
+                    "          this.customAttributes_,",
+                    "          transform,",
+                    "          true // Ensure right-hand rule is followed",
+                    "        )",
+                    "      : null;"
+                ]
+            }
+        ]
+    }
+}

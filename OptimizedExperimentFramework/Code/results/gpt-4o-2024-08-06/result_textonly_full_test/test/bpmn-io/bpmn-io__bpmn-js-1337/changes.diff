@@ -1,0 +1,23 @@
+diff --git a/lib/features/modeling/cmd/UpdatePropertiesHandler.js b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+index b9d3553..841f36d 100644
+--- a/lib/features/modeling/cmd/UpdatePropertiesHandler.js
++++ b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+@@ -96,6 +96,11 @@ UpdatePropertiesHandler.prototype.execute = function(context) {
+     }
+   }
+ 
++  // disallow typed start events inside non-event based sub-processes
++  if (isTypedStartEvent(businessObject) && isInsideSubProcess(element)) {
++    throw new Error(translate('Typed start events are not allowed inside sub-processes'));
++  }
++
+   // update properties
+   setProperties(businessObject, properties);
+ 
+@@ -232,4 +237,4 @@ function unwrapBusinessObjects(properties) {
+   });
+ 
+   return unwrappedProps;
+-}
+\ No newline at end of file
++}

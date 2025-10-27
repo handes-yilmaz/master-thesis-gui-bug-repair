@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/format/KML.js//KML",
+            "src/ol/style/Icon.js//Icon"
+        ],
+        "bug_functions": [
+            "src/ol/format/KML.js//readPlacemark_",
+            "src/ol/format/KML.js//iconStyleParser",
+            "src/ol/style/Icon.js//getAnchor"
+        ],
+        "explanation": "The bug is related to the alignment and size of KML symbols, which are likely handled by the KML format and icon styling classes and functions. The `KML` class in `src/ol/format/KML.js` is responsible for reading and writing KML data, including handling placemarks and styles, which directly affects how symbols are displayed. The `readPlacemark_` function is involved in reading placemark data, which includes symbol positioning. The `iconStyleParser` function is likely involved in parsing icon styles, which could affect symbol alignment and size. The `Icon` class in `src/ol/style/Icon.js` manages icon styles, including anchor points, which are crucial for correct symbol placement. The `getAnchor` function specifically calculates the anchor point for icons, which is directly related to the reported issue of incorrect symbol anchoring.",
+        "bug_scenario": "The bug scenario involves a KML layer where point symbols are not correctly aligned or sized when displayed. Specifically, the anchor point for some symbols is incorrect, causing them to be anchored at the center-bottom instead of the intended position. This misalignment is particularly noticeable with star symbols that should be centered within red circles. Additionally, the point symbols appear larger than expected compared to their display in Google Earth."
+    }
+}

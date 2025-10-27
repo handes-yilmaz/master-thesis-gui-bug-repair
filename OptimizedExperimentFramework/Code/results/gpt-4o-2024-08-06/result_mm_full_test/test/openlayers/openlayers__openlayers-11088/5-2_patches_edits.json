@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "src/ol/proj/Projection.js": [
+            {
+                "SEARCH": [
+                    "this.axisOrientation_ =",
+                    "options.axisOrientation !== undefined ? options.axisOrientation : 'enu';"
+                ],
+                "REPLACE": [
+                    "    this.axisOrientation_ =",
+                    "      options.axisOrientation !== undefined ? options.axisOrientation : 'neu';"
+                ]
+            }
+        ],
+        "src/ol/proj/transforms.js": [
+            {
+                "SEARCH": [
+                    "if (sourceCode in transforms && destinationCode in transforms[sourceCode]) {",
+                    "transform = transforms[sourceCode][destinationCode];",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (sourceCode in transforms && destinationCode in transforms[sourceCode]) {",
+                    "    transform = transforms[sourceCode][destinationCode];",
+                    "  } else {",
+                    "    // Fallback to default axis order if not found",
+                    "    transform = (coords) => {",
+                    "      return [coords[1], coords[0]]; // Swap coordinates",
+                    "    };",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

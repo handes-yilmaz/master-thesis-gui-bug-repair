@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "let min = source.min;",
+                    "let max = source.max;",
+                    "let gain, bias;",
+                    "if (normalize) {",
+                    "if (min === undefined) {",
+                    "min = getMinForDataType(sourceSamples[sourceIndex][0]);",
+                    "}",
+                    "if (max === undefined) {",
+                    "max = getMaxForDataType(sourceSamples[sourceIndex][0]);",
+                    "}",
+                    "",
+                    "gain = 255 / (max - min);",
+                    "bias = -min * gain;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "          let min = source.min;",
+                    "          let max = source.max;",
+                    "          let gain, bias;",
+                    "          if (normalize) {",
+                    "            const image = this.sourceImagery_[sourceIndex][z];",
+                    "            const metadata = image.getGDALMetadata();",
+                    "            if (metadata.STATISTICS_MINIMUM !== undefined) {",
+                    "              min = parseFloat(metadata.STATISTICS_MINIMUM);",
+                    "            }",
+                    "            if (metadata.STATISTICS_MAXIMUM !== undefined) {",
+                    "              max = parseFloat(metadata.STATISTICS_MAXIMUM);",
+                    "            }",
+                    "            if (min === undefined) {",
+                    "              min = getMinForDataType(sourceSamples[sourceIndex][0]);",
+                    "            }",
+                    "            if (max === undefined) {",
+                    "              max = getMaxForDataType(sourceSamples[sourceIndex][0]);",
+                    "            }",
+                    "",
+                    "            gain = 255 / (max - min);",
+                    "            bias = -min * gain;",
+                    "          }"
+                ]
+            }
+        ]
+    }
+}

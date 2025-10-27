@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js//ReportRenderer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js//_renderCategory"
+        ],
+        "explanation": "The issue is related to the rendering of the report when there are no passing audits. The `ReportRenderer` class is responsible for rendering the report, and the `_renderCategory` function specifically handles the rendering of audit categories, including the logic for displaying passed audits. The presence of a dropdown for 0 passed items suggests that the logic in `_renderCategory` does not correctly handle the case where there are no passing audits, leading to the unnecessary display of the dropdown.",
+        "bug_scenario": "The bug report indicates that when there are 0 passing audits, the details dropdown should not be shown. The image shows a list of failed audits with a dropdown option to view 0 passed items, which should not be present."
+    }
+}

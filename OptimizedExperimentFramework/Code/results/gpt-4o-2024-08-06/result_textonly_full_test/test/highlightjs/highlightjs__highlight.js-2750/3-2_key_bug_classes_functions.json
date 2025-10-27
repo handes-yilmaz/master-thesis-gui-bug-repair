@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/javascript.js//SUBST",
+            "src/languages/javascript.js//TEMPLATE_STRING",
+            "src/languages/typescript.js//tsLanguage"
+        ],
+        "bug_functions": [
+            "src/languages/javascript.js//hasClosingTag",
+            "src/languages/typescript.js//swapMode"
+        ],
+        "explanation": "The classes and functions identified are related to the handling of template literals and syntax highlighting in JavaScript and TypeScript. The 'SUBST' and 'TEMPLATE_STRING' classes in 'src/languages/javascript.js' are directly involved in defining how template literals and their substitutions are parsed and highlighted. The 'hasClosingTag' function is responsible for checking if a tag has a corresponding closing tag, which is relevant to correctly identifying the boundaries of template literals. In 'src/languages/typescript.js', the 'tsLanguage' object extends JavaScript highlighting to TypeScript, and the 'swapMode' function is used to modify the highlighting rules, which could be relevant for addressing the incorrect handling of template literals in TypeScript.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in JavaScript and TypeScript code when using template literals. Specifically, the highlighter incorrectly interprets right curly braces inside template literal expressions as the end of the expression, leading to incorrect highlighting of the remaining code as a string. This issue is particularly problematic when the expression includes nested template literals, as it causes the highlighter to treat the nested template literal as the end of the parent template literal."
+    }
+}

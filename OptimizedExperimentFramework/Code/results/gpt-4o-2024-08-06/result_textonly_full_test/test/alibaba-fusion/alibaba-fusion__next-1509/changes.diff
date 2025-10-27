@@ -1,0 +1,13 @@
+diff --git a/src/dialog/dialog.jsx b/src/dialog/dialog.jsx
+index 1b20eb2..02a105b 100644
+--- a/src/dialog/dialog.jsx
++++ b/src/dialog/dialog.jsx
+@@ -378,7 +378,7 @@ export default class Dialog extends Component {
+             rtl,
+             maskClass: useCSS ? `${prefix}dialog-container` : '',
+             isChildrenInMask: useCSS && hasMask,
+-            container: this.props.popupContainer || overlayProps.container,
++            container: this.props.popupContainer || this.context.nextPopupContainer || overlayProps.container,
+         };
+         if (!useCSS) {
+             newOverlayProps.beforePosition = this.beforePosition;

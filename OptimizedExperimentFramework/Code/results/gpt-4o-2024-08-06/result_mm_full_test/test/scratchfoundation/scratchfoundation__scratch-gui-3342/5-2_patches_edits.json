@@ -1,0 +1,52 @@
+{
+    "1/1": {
+        "src/components/sprite-info/sprite-info.jsx": [
+            {
+                "SEARCH": [
+                    "render () {",
+                    "const {",
+                    "stageSize",
+                    "} = this.props;"
+                ],
+                "REPLACE": [
+                    "    render () {",
+                    "        const {",
+                    "            stageSize,",
+                    "            selectedSpriteImage // Assuming this prop provides the image URL",
+                    "        } = this.props;",
+                    "",
+                    "        const watermarkStyle = {",
+                    "            position: 'absolute',",
+                    "            top: '20px',",
+                    "            right: '20px',",
+                    "            width: '48px',",
+                    "            height: '48px',",
+                    "            opacity: 0.35,",
+                    "            zIndex: -1 // Below blocks",
+                    "        };",
+                    "",
+                    "        const watermark = (",
+                    "            <img",
+                    "                src={selectedSpriteImage}",
+                    "                alt=\"Watermark\"",
+                    "                style={watermarkStyle}",
+                    "            />",
+                    "        );"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (stageSize === STAGE_DISPLAY_SIZES.small) {",
+                    "return (",
+                    "<Box className={styles.spriteInfo}>"
+                ],
+                "REPLACE": [
+                    "        if (stageSize === STAGE_DISPLAY_SIZES.small) {",
+                    "            return (",
+                    "                <Box className={styles.spriteInfo}>",
+                    "                    {watermark}"
+                ]
+            }
+        ]
+    }
+}

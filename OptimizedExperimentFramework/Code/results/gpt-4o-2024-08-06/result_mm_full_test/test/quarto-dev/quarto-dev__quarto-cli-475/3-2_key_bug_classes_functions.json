@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/callout.lua//function calloutLatex",
+            "src/resources/filters/quarto-pre/callout.lua//function latexCalloutBoxDefault"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/callout.lua//function calloutLatex",
+            "src/resources/filters/quarto-pre/callout.lua//function latexCalloutBoxDefault"
+        ],
+        "explanation": "The functions `calloutLatex` and `latexCalloutBoxDefault` are responsible for handling the LaTeX rendering of callout blocks. The issue arises because captions are not processed correctly for LaTeX output, leading to errors when special characters are present. The proposed changes involve modifying how captions are handled, specifically by wrapping them in brackets and using `pandoc.write()` for markdown processing.",
+        "bug_scenario": "The bug involves rendering markdown callout block captions to PDF, where special characters in captions cause errors. The captions are not processed as markdown, leading to incorrect LaTeX output. The image shows a callout with text that should be formatted in bold and code, but it is not rendered correctly."
+    }
+}

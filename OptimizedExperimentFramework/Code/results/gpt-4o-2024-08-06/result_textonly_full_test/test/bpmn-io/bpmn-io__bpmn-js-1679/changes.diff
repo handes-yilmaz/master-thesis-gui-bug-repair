@@ -1,0 +1,17 @@
+diff --git a/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js b/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js
+index 023f13c..735c4ed 100644
+--- a/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js
++++ b/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js
+@@ -28,6 +28,12 @@ UpdateModdlePropertiesHandler.prototype.execute = function(context) {
+   var changed = context.changed || this.getVisualReferences(moddleElement).concat(element);
+   var oldProperties = context.oldProperties || getModdleProperties(moddleElement, keys(properties));
+ 
++  // Check if the properties include multiInstanceLoopCharacteristics
++  if (properties.hasOwnProperty('isSequential')) {
++    // Update the moddleElement with the correct isSequential value
++    moddleElement.set('isSequential', properties.isSequential);
++  }
++
+   setModdleProperties(moddleElement, properties);
+ 
+   context.oldProperties = oldProperties;

@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "src/ol/render/canvas/TextBuilder.js": [
+            {
+                "SEARCH": [
+                    "textState.textAlign = textStyle.getTextAlign();"
+                ],
+                "REPLACE": [
+                    "const textAlign = textStyle.getTextAlign();",
+                    "if (textAlign === 'start' || textAlign === 'end') {",
+                    "  const isRtl = document.dir === 'rtl'; // Assuming document direction is set",
+                    "  textState.textAlign = (textAlign === 'start') ? (isRtl ? 'right' : 'left') : (isRtl ? 'left' : 'right');",
+                    "} else {",
+                    "  textState.textAlign = textAlign;",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

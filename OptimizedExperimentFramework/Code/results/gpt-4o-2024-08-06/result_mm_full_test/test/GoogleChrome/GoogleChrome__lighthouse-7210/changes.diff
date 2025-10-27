@@ -1,0 +1,16 @@
+diff --git a/lighthouse-core/audits/byte-efficiency/unused-css-rules.js b/lighthouse-core/audits/byte-efficiency/unused-css-rules.js
+index 475d865..23dd39b 100644
+--- a/lighthouse-core/audits/byte-efficiency/unused-css-rules.js
++++ b/lighthouse-core/audits/byte-efficiency/unused-css-rules.js
+@@ -90,8 +90,9 @@ class UnusedCSSRules extends ByteEfficiencyAudit {
+       usedUncompressedBytes += usedRule.endOffset - usedRule.startOffset;
+     }
+ 
+-    const totalTransferredBytes = ByteEfficiencyAudit.estimateTransferSize(
+-        stylesheetInfo.networkRecord, totalUncompressedBytes, 'Stylesheet');
++    const totalTransferredBytes = stylesheetInfo.networkRecord.transferSize || 
++        ByteEfficiencyAudit.estimateTransferSize(
++            stylesheetInfo.networkRecord, totalUncompressedBytes, 'Stylesheet');
+     const percentUnused = (totalUncompressedBytes - usedUncompressedBytes) / totalUncompressedBytes;
+     const wastedBytes = Math.round(percentUnused * totalTransferredBytes);
+ 

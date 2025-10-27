@@ -1,0 +1,21 @@
+{
+    "1/1": {
+        "src/ol/render/canvas/Immediate.js": [
+            {
+                "SEARCH": [
+                    "if (context.setLineDash) {",
+                    "context.setLineDash(strokeState.lineDash);",
+                    "context.lineDashOffset = strokeState.lineDashOffset;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "if (context.setLineDash) {",
+                    "    const scaledLineDash = strokeState.lineDash.map(value => value * this.pixelRatio_);",
+                    "    context.setLineDash(scaledLineDash);",
+                    "    context.lineDashOffset = strokeState.lineDashOffset * this.pixelRatio_;",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

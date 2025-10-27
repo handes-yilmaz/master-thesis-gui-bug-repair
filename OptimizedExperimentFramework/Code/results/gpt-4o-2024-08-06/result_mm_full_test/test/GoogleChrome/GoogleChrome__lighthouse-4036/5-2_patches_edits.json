@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js": [
+            {
+                "SEARCH": [
+                    ".filter(anchor => {",
+                    "// Ignore href's that are not real links",
+                    "return !anchor.href || !anchor.href.toLowerCase().startsWith('javascript:');",
+                    "})"
+                ],
+                "REPLACE": [
+                    "      .filter(anchor => {",
+                    "        // Ignore href's that are not real links or are mailto links",
+                    "        return !anchor.href || anchor.href.toLowerCase().startsWith('mailto:') || anchor.href.toLowerCase().startsWith('javascript:');",
+                    "      })"
+                ]
+            }
+        ]
+    }
+}

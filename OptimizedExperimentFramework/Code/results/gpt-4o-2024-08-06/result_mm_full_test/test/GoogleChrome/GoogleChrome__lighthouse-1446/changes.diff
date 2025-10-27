@@ -1,0 +1,39 @@
+diff --git a/lighthouse-core/audits/speed-index-metric.js b/lighthouse-core/audits/speed-index-metric.js
+index 31b2364..81e6c05 100644
+--- a/lighthouse-core/audits/speed-index-metric.js
++++ b/lighthouse-core/audits/speed-index-metric.js
+@@ -53,17 +53,10 @@ class SpeedIndexMetric extends Audit {
+ 
+     // run speedline
+     return artifacts.requestSpeedline(trace).then(speedline => {
+-      if (speedline.frames.length === 0) {
++      if (speedline.frames.length === 0 || speedline.speedIndex === 0) {
+         return SpeedIndexMetric.generateAuditResult({
+           rawValue: -1,
+-          debugString: 'Trace unable to find visual progress frames.'
+-        });
+-      }
+-
+-      if (speedline.speedIndex === 0) {
+-        return SpeedIndexMetric.generateAuditResult({
+-          rawValue: -1,
+-          debugString: 'Error in Speedline calculating Speed Index (speedIndex of 0).'
++          debugString: 'Missing or invalid visual progress frames or Speed Index.'
+         });
+       }
+ 
+diff --git a/lighthouse-core/audits/time-to-interactive.js b/lighthouse-core/audits/time-to-interactive.js
+index 725c389..1719d02 100644
+--- a/lighthouse-core/audits/time-to-interactive.js
++++ b/lighthouse-core/audits/time-to-interactive.js
+@@ -70,8 +70,8 @@ class TTIMetric extends Audit {
+     return Promise.all([pendingSpeedline, pendingFMP]).then(results => {
+       const speedline = results[0];
+       const fmpResult = results[1];
+-      if (fmpResult.rawValue === -1) {
+-        return generateError(fmpResult.debugString);
++      if (fmpResult.rawValue === -1 || !speedline.frames) {
++        return generateError('Missing essential metrics for TTI calculation.');
+       }
+ 
+       // Process the trace

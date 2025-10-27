@@ -1,0 +1,23 @@
+diff --git a/src/ol/renderer/canvas/TileLayer.js b/src/ol/renderer/canvas/TileLayer.js
+index a57967c..80466ac 100644
+--- a/src/ol/renderer/canvas/TileLayer.js
++++ b/src/ol/renderer/canvas/TileLayer.js
+@@ -368,6 +368,9 @@ class CanvasTileLayerRenderer extends CanvasLayerRenderer {
+     const canvasScale =
+       ((tileResolution / viewResolution) * pixelRatio) / tilePixelRatio;
+ 
++    // Adjust scale for rotation close to 90 and 270 degrees
++    const adjustedRotation = Math.abs(rotation % (Math.PI / 2)) < 0.01 ? 0 : rotation;
++
+     // set forward and inverse pixel transforms
+     composeTransform(
+       this.pixelTransform,
+@@ -375,7 +378,7 @@ class CanvasTileLayerRenderer extends CanvasLayerRenderer {
+       frameState.size[1] / 2,
+       1 / pixelRatio,
+       1 / pixelRatio,
+-      rotation,
++      adjustedRotation,
+       -width / 2,
+       -height / 2
+     );

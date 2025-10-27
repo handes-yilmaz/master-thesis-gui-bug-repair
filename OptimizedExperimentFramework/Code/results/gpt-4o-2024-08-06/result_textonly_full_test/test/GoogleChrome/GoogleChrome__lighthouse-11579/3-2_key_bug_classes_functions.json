@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/driver.js//Driver",
+            "lighthouse-core/gather/gather-runner.js//GatherRunner",
+            "lighthouse-core/computed/trace-of-tab.js//TraceOfTab"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/driver.js//_waitForFcp",
+            "lighthouse-core/gather/gather-runner.js//loadPage",
+            "lighthouse-core/computed/trace-of-tab.js//compute_"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they are involved in the process of loading a page and capturing performance metrics, including the First Contentful Paint (FCP). The `Driver` class in `driver.js` contains the `_waitForFcp` function, which is directly responsible for waiting for the FCP event. The `GatherRunner` class in `gather-runner.js` has the `loadPage` function, which handles page loading and navigation errors, including NO_FCP. The `TraceOfTab` class in `trace-of-tab.js` has the `compute_` function, which processes trace events and checks for the presence of FCP. These components are critical in the sequence of operations that lead to the NO_FCP error when the tab is in the background, making them key elements to investigate and modify to fix the bug.",
+        "bug_scenario": "The bug scenario involves running Lighthouse (LH) on any URL, such as https://www.google.com/, and encountering a NO_FCP (No First Contentful Paint) error when the tab is in the background. This prevents the performance measurement from being completed, regardless of whether the server is remote or local. The issue persists even with a new clean Chrome profile, although the CLI version works fine. The expected behavior is for LH to evaluate performance and check the PWA checklist."
+    }
+}

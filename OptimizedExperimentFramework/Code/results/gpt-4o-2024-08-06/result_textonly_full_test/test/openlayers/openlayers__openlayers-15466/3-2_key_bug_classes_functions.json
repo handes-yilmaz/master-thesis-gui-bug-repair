@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Image.js//ImageStyle",
+            "src/ol/style/Text.js//Text",
+            "src/ol/render/canvas/ImageBuilder.js//CanvasImageBuilder",
+            "src/ol/render/canvas/TextBuilder.js//CanvasTextBuilder"
+        ],
+        "bug_functions": [
+            "src/ol/render/canvas/ImageBuilder.js//setImageStyle",
+            "src/ol/render/canvas/TextBuilder.js//setTextStyle"
+        ],
+        "explanation": "The classes and functions identified are directly related to the styling and rendering of images and text in the OpenLayers library. The ImageStyle and Text classes in 'src/ol/style/Image.js' and 'src/ol/style/Text.js' respectively, define the properties and methods for handling image and text styles, including declutterMode, which is central to the bug. The CanvasImageBuilder and CanvasTextBuilder classes in 'src/ol/render/canvas/ImageBuilder.js' and 'src/ol/render/canvas/TextBuilder.js' are responsible for rendering images and text on the canvas, and they include methods like setImageStyle and setTextStyle that manage the application of styles, including decluttering options. These elements are crucial for addressing the bug because they control how images and text are rendered and decluttered, which is the core issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves an issue with the rendering of image and label combinations when the declutterMode is set to something other than 'declutter'. The problem is related to the rendering order and decluttering options in the OpenLayers library, specifically when a layer's style function returns both imagery and text. The enhancement request is to allow decluttering only for text, which is a common requirement for map styling."
+    }
+}

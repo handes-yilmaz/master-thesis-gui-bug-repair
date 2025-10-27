@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/format/reveal/format-reveal.ts",
+            "src/core/handlers/embed.ts"
+        ],
+        "bug_functions": [
+            "src/format/reveal/format-reveal.ts//revealjsFormat",
+            "src/core/handlers/embed.ts//embedHandler"
+        ],
+        "explanation": "The issue is related to the embedding of code in a revealjs presentation, which suggests that the problem lies in how the embed directive is handled and how the revealjs format processes the embedded content. The 'embedHandler' in 'src/core/handlers/embed.ts' is responsible for handling embed directives, which directly relates to the problem of embedding code. The 'revealjsFormat' function in 'src/format/reveal/format-reveal.ts' is likely involved in processing the revealjs format and could be responsible for how embedded content is rendered in the HTML output. These classes and functions are key to understanding and fixing the bug because they handle the core logic for embedding content and rendering it in the revealjs format.",
+        "bug_scenario": "The bug scenario involves using Quarto to render a document with the revealjs format and the knitr engine. The issue is that when embedding code from an external file (code.R) into a revealjs presentation, the embedded code does not appear in the generated HTML output. Instead, the HTML contains an empty block where the code should be. This problem does not occur when rendering to a non-HTML format, where the embedded code is displayed correctly."
+    }
+}

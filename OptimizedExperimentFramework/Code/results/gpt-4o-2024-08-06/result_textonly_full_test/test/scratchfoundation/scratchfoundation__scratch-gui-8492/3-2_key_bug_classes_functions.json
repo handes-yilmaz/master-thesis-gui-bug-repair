@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/components/modal/modal.jsx//ModalComponent",
+            "src/containers/modal.jsx//Modal"
+        ],
+        "bug_functions": [
+            "src/containers/modal.jsx//handlePopState",
+            "src/containers/modal.jsx//addEventListeners",
+            "src/containers/modal.jsx//removeEventListeners"
+        ],
+        "explanation": "The bug is related to the behavior of the modal when interacting with mouse events. The `ModalComponent` in `src/components/modal/modal.jsx` is responsible for rendering the modal and handling its properties, including the `onRequestClose` function which is triggered when the modal should close. The `Modal` class in `src/containers/modal.jsx` manages the modal's lifecycle and event listeners. The `handlePopState` function is directly responsible for closing the modal when a navigation event occurs, which is likely related to the issue of the modal closing when the mouse is dragged outside. Additionally, the `addEventListeners` and `removeEventListeners` functions manage the event listeners that could be improperly handling mouse events, leading to the modal closing unexpectedly. These elements are key to understanding and fixing the bug because they control the modal's response to user interactions and navigation events.",
+        "bug_scenario": "The bug scenario involves a sound recording modal where dragging the mouse outside the modal causes it to close unexpectedly, resulting in the loss of the user's work. The expected behavior is that the modal should remain open even if the mouse is dragged outside its boundaries."
+    }
+}

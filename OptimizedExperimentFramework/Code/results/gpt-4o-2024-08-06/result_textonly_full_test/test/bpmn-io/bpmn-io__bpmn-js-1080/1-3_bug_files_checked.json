@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/behavior/ResizeLaneBehavior.js",
+            "lib/features/modeling/cmd/AddLaneHandler.js",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js"
+        ],
+        "explanation": "1. **CreateParticipantBehavior.js**: This file might be involved in managing how participants (pools) are created and interacted with, which is central to the issue of connecting message flows to pools.\n\n2. **DeleteLaneBehavior.js**: Since the bug appears after a lane is removed, this behavior could be mishandling the deletion process, resulting in the connector issue.\n\n3. **ResizeLaneBehavior.js**: Changes in the layout or resizing of lanes might affect how message flows are connected. This file likely handles resizing operations that could contribute to the bug.\n\n4. **AddLaneHandler.js**: This command handles the addition of lanes, which is a precursor action that triggers the bug. Any issue in this process could propagate and affect subsequent behavior.\n\n5. **ResizeLaneHandler.js**: Similar to the ResizeLaneBehavior, this handler manages resizing commands, where incorrect handling could lead to layout issues, affecting connector placements.",
+        "bug_scenario": "The bug involves an issue where connecting a message flow to the boundary of a pool is only possible by dropping the connector at the header of the pool, rather than inside the single lane of the pool, after performing certain actions. Specifically, the issue occurs when a lane is added and then immediately removed from a pool."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/behavior/ResizeLaneBehavior.js",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js",
+            "lib/features/modeling/util/LaneUtil.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "The bug is related to the handling of pool boundaries and lanes in the modeling feature of the Camunda Modeler. The files identified are involved in operations related to lane manipulation and pool boundary adjustments:\n\n1. **DeleteLaneBehavior.js**: This file likely contains logic for handling the deletion of lanes, which is directly related to the bug where removing the lane affects the connectivity behavior.\n\n2. **ResizeLaneBehavior.js** and **ResizeLaneHandler.js**: These files handle resizing operations for lanes, which might include recalculating boundary positions and ensuring that connectors behave normally after a resize operation.\n\n3. **LaneUtil.js**: This utility file likely contains helper functions used across different behaviors and commands that manipulate lanes, potentially affecting the connectivity logic when lanes are added or removed.\n\n4. **Modeling.js**: This central file might coordinate various modeling behaviors and commands, including those that manage lanes and boundaries. It likely interacts with the above files to implement the overall logic for handling pools and lanes.\n\nThese files collectively manage the creation, deletion, and resizing of lanes, as well as the overall behavior of pool boundaries, which are central to resolving the described bug.",
+        "bug_scenario": "In the provided bug scenario, the user experiences difficulty in connecting a message flow to the boundary of a pool after it has been modified to add and then remove a lane. Initially, connecting the message flow between two pools is straightforward, but after the modification, the connector can only be dropped at the header of the pool rather than inside the single lane, indicating a regression or a bug in how the pool's boundaries are recognized post-modification."
+    }
+}

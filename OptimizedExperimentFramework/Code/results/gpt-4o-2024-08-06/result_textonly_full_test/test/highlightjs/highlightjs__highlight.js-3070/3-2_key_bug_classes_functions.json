@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/php.js//PREPROCESSOR",
+            "src/lib/html_renderer.js//HTMLRenderer"
+        ],
+        "bug_functions": [
+            "src/lib/html_renderer.js//expandClassName",
+            "src/lib/html_renderer.js//openNode"
+        ],
+        "explanation": "The 'PREPROCESSOR' in 'src/languages/php.js' is directly related to handling PHP tags, which is where the extra PHP tag issue is likely originating. The 'HTMLRenderer' class in 'src/lib/html_renderer.js' is responsible for rendering HTML, including handling class names, which is central to the issue of incorrect class application. The 'expandClassName' function is involved in prefixing class names, which could be contributing to the incorrect application of the 'javascript' class. The 'openNode' function is responsible for opening nodes with the correct class names, and any issues here could lead to the incorrect application of classes, such as the extra PHP tag being added.",
+        "bug_scenario": "The bug scenario involves the incorrect application of class names when using the Highlight.js library for syntax highlighting. Specifically, when the 'language-php' class is added to a code element, it results in an extra PHP tag being added, which is not the expected behavior. The issue seems to be isolated to PHP, as other languages do not exhibit this problem. The expected behavior is that adding the 'language-php' class should not result in an extra PHP tag being added."
+    }
+}

@@ -1,0 +1,25 @@
+diff --git a/src/ol/render/canvas/Executor.js b/src/ol/render/canvas/Executor.js
+index 3da9d5f..4ca644c 100644
+--- a/src/ol/render/canvas/Executor.js
++++ b/src/ol/render/canvas/Executor.js
+@@ -854,13 +854,13 @@ class Executor {
+             backgroundStroke = false;
+           }
+ 
+-          if (rotateWithView && viewRotationFromTransform) {
+-            // Canvas is expected to be rotated to reverse view rotation.
+-            rotation += viewRotation;
+-          } else if (!rotateWithView && !viewRotationFromTransform) {
+-            // Canvas is not rotated, images need to be rotated back to be north-up.
+-            rotation -= viewRotation;
+-          }
++if (rotateWithView) {
++  // Apply view rotation directly if text should rotate with view
++  rotation += viewRotation;
++} else {
++  // Adjust rotation to account for translation
++  rotation -= viewRotationFromTransform;
++}
+           let widthIndex = 0;
+           for (; d < dd; d += 2) {
+             if (

@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/regex.js",
+            "src/lib/mode_compiler.js"
+        ],
+        "explanation": "1. `src/languages/python.js`: This file likely contains the syntax rules and patterns specific to Python. The bug relates to how numbers and keywords are highlighted, an issue that would be addressed by modifying the language-specific rules for Python.\n\n2. `src/lib/regex.js`: This file is probably involved in defining regular expressions used across different languages to detect patterns, such as numbers and keywords. Adjustments here could allow the correct separation of numbers from keywords based on the context.\n\n3. `src/lib/mode_compiler.js`: This file might compile the language modes, which includes parsing and tokenizing the code for highlighting. Changes here could ensure the correct application of rules that distinguish between numbers and keywords when they appear together without spaces.",
+        "bug_scenario": "The bug scenario involves the Python syntax highlighting feature, which fails to properly separate numbers and keywords when they appear consecutively without a space. The sample code provided demonstrates this with '1if', which is not correctly highlighted as '1' (number) and 'if' (keyword). The expected behavior is for the syntax highlighter to treat them as separate entities, as shown in GitHub's highlighting example. The issue is specific to the Python language highlighting within the application."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "1. **src/languages/python.js**: This file is likely responsible for defining how Python syntax is highlighted. It would contain the rules for tokenizing Python code, identifying keywords, numbers, and other syntax elements. Since the issue is with Python syntax highlighting, this file is directly related to the bug.\n\n2. **src/lib/regex.js**: Given that the problem involves detecting and separating numbers and keywords, the issue might lie in the regular expressions used to tokenized these elements in the code. This file likely contains utility functions or definitions for regular expressions used across different language definitions, including Python.\n\nThe issue in question is related to how tokens are parsed and recognized, particularly involving numbers and keywords, which are core parts of syntax highlighting logic implemented in these files.",
+        "bug_scenario": "The bug report describes an issue with syntax highlighting in Python, where numbers are not correctly separated from keywords when highlighted. Specifically, keywords and numbers are concatenated without a space in syntax highlighting, which is incorrect in Python as keywords cannot directly follow a number without a space. The provided images show that numbers and keywords are highlighted as a single token instead of separately, creating incorrect syntax highlighting."
+    }
+}

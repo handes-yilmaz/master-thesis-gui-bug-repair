@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/ol/style/Image.js": [
+            {
+                "SEARCH": [
+                    "this.declutterMode_ = options.declutterMode;"
+                ],
+                "REPLACE": [
+                    "    this.declutterMode_ = options.declutterMode;",
+                    "    this.ignorePlacement_ = options.ignorePlacement || false;"
+                ]
+            }
+        ],
+        "src/ol/style/Text.js": [
+            {
+                "SEARCH": [
+                    "this.padding_ = options.padding === undefined ? null : options.padding;"
+                ],
+                "REPLACE": [
+                    "    this.padding_ = options.padding === undefined ? null : options.padding;",
+                    "    this.ignorePlacement_ = options.ignorePlacement || false;"
+                ]
+            }
+        ],
+        "src/ol/render/canvas/ImageBuilder.js": [
+            {
+                "SEARCH": [
+                    "this.declutterImageWithText_ = undefined;"
+                ],
+                "REPLACE": [
+                    "    this.declutterImageWithText_ = undefined;",
+                    "    this.ignorePlacement_ = false;"
+                ]
+            }
+        ],
+        "src/ol/render/canvas/TextBuilder.js": [
+            {
+                "SEARCH": [
+                    "this.declutterImageWithText_ = sharedData;"
+                ],
+                "REPLACE": [
+                    "    this.declutterImageWithText_ = sharedData;",
+                    "    this.ignorePlacement_ = textStyle.getIgnorePlacement();"
+                ]
+            }
+        ]
+    }
+}

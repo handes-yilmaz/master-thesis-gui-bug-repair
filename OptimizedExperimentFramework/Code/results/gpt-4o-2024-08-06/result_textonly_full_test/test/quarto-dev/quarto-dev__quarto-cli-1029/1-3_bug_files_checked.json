@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "src/format/reveal/format-reveal.ts",
+            "src/format/reveal/constants.ts",
+            "src/resources/filters/layout/layout.lua",
+            "src/resources/formats/revealjs/plugins/chalkboard/plugin.js"
+        ],
+        "explanation": "1. `src/format/reveal/format-reveal.ts`: This file likely handles the core functionality and layout for Reveal.js presentations. Any modifications to the handling of `aside` and `r-stretch` classes would need to be implemented here.\n\n2. `src/format/reveal/constants.ts`: This file might define constants used in the Reveal.js format, including those related to layout and styling. Adjustments to the default behavior of classes like `aside` and `r-stretch` would be relevant here.\n\n3. `src/resources/filters/layout/layout.lua`: This Lua script is likely involved in processing layout-related aspects of the document. It could be responsible for managing the positioning and stretching behavior of elements, including figures and side content.\n\n4. `src/resources/formats/revealjs/plugins/chalkboard/plugin.js`: This JavaScript file might be part of a plugin system for additional features in Reveal.js. If the `aside` issue involves plugin functionality, this file could be relevant for debugging or adjustments.",
+        "bug_scenario": "The bug occurs when using the `aside` class on a slide with a single figure in Reveal.js presentations. The issue is a clash between the `aside` and `r-stretch` classes, causing the figure to be stretched too much and the `aside` content to overlap the bottom of the figure. When a caption is present, it goes below the `aside` content. The desired behavior is for `aside` content to take priority and for figures to stretch only to the top of the `aside` block."
+    },
+    "2": {
+        "bug_files": [
+            "src/format/reveal/format-reveal-plugin.ts",
+            "src/format/reveal/format-reveal.ts",
+            "src/resources/formats/revealjs/plugins/menu/menu.js",
+            "src/resources/formats/revealjs/plugins/line-highlight/line-highlight.js",
+            "src/resources/formats/revealjs/plugins/multiplex/multiplex.js"
+        ],
+        "explanation": "1. **src/format/reveal/format-reveal-plugin.ts and src/format/reveal/format-reveal.ts**: These files are likely responsible for defining how revealjs presentations are formatted, including the handling of `aside` components and figure stretching. Adjustments in these files could ensure proper layout handling of figures and `aside` elements.\n\n2. **resources/formats/revealjs/plugins/menu/menu.js, resources/formats/revealjs/plugins/line-highlight/line-highlight.js, resources/formats/revealjs/plugins/multiplex/multiplex.js**: These JavaScript files are part of the plugins used by revealjs, potentially affecting how content is displayed on the slides, including the interactive or layout aspects that may influence how `aside` and figures interact on the slides. Modifications here might be necessary to resolve conflicts between `aside` and figure elements.",
+        "bug_scenario": "The bug arises when using the `aside` class on revealjs slides. When a single figure is present on a slide along with `aside`, the figure gets overly stretched, and the `aside` content overlaps the bottom of the figure. Additionally, if there is a caption, it extends below the `aside` content, thus disrupting the layout."
+    }
+}

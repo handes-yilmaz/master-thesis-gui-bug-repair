@@ -1,0 +1,16 @@
+diff --git a/lib/rules/prefer-const.js b/lib/rules/prefer-const.js
+index 697380d..6db57fd 100644
+--- a/lib/rules/prefer-const.js
++++ b/lib/rules/prefer-const.js
+@@ -249,6 +249,11 @@ function getIdentifierIfShouldBeConst(variable, ignoreReadBeforeAssign) {
+         return variable.defs[0].name;
+     }
+ 
++    // Retain 'undefined' initialization for variables initialized with 'undefined'
++    if (writer && writer.identifier && writer.identifier.parent && writer.identifier.parent.init && writer.identifier.parent.init.type === 'Identifier' && writer.identifier.parent.init.name === 'undefined') {
++        return writer.identifier.parent;
++    }
++
+     return writer.identifier;
+ }
+ 

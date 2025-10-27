@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/ResizeBehavior.js//ResizeBehavior",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//ToggleElementCollapseBehaviour",
+            "lib/features/replace/BpmnReplace.js//BpmnReplace"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/ResizeBehavior.js//getParticipantResizeConstraints",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//expandedBounds",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//collapsedBounds",
+            "lib/features/replace/BpmnReplace.js//replaceElement"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they handle the resizing and transformation of BPMN elements, which is central to the issue described. The `ResizeBehavior` class in `ResizeBehavior.js` sets minimum bounds and resize constraints, which is directly related to the shape not resizing as expected when transformed. The `ToggleElementCollapseBehaviour` class in `ToggleElementCollapseBehaviour.js` manages the collapse and expansion of elements, which is relevant to the transformation process described in the bug. The `BpmnReplace` class in `BpmnReplace.js` handles the replacement of BPMN elements, including the logic for toggling between collapsed and expanded states, which is crucial for addressing the inability to revert the transformation.",
+        "bug_scenario": "The bug scenario involves transforming a Call Activity into a SubProcess in a BPMN diagram, which does not resize the shape as expected. The user encounters a dead end when trying to revert the transformation, as the wrench menu does not provide the option to change it back to a Call Activity. This issue is reproducible in the current web modeler and desktop modeler 5.0.0, but not on demo.bpmn.io."
+    }
+}

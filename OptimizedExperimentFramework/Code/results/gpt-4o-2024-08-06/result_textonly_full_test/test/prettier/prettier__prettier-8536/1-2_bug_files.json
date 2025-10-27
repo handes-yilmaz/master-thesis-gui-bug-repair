@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/document/doc-printer.js",
+            "src/index.js"
+        ],
+        "explanation": "The bug is related to how Prettier handles trailing newlines in certain scenarios, specifically when a directive is followed by a comment. The file `src/document/doc-printer.js` is likely responsible for the printing logic of documents, including handling of newlines, which is directly related to the bug. Furthermore, `src/index.js` is the main entry point for Prettier's functionality, which integrates various modules, including the printer logic that might contribute to the issue. The bug report also hints at `addAlignmentSize` trim logic, which might relate to how newlines are processed and adjusted, possibly found in these files.",
+        "bug_scenario": "The bug occurs when the Prettier formatter ends a file with two newlines instead of a single newline when the file contains only a directive followed by a comment. This behavior is observed when using the Babylon parser. The problem is demonstrated with the following example: the input code `\"use strict\"; // comment` is expected to be formatted with a single newline after the comment, but Prettier outputs two newlines instead."
+    },
+    "2": {
+        "bug_files": [
+            "src/document/doc-printer.js",
+            "src/language-js/printer-estree.js",
+            "src/language-js/index.js"
+        ],
+        "explanation": "The problem described in the bug report relates to how Prettier handles trailing newlines in JavaScript files. The issue arises in the context of the Babylon parser, likely involving how the document is printed and how the AST (Abstract Syntax Tree) is handled for JavaScript files. \n\n1. `src/document/doc-printer.js`: This file is responsible for printing the document, which involves handling whitespace and newlines. The bug likely involves extra newlines being added during this process.\n\n2. `src/language-js/printer-estree.js`: This file handles the printing logic for JavaScript files using the ESTree format. Since the issue is specific to JavaScript files, this file is a potential source of the problem.\n\n3. `src/language-js/index.js`: This is the entry point for the JavaScript language support in Prettier. It likely configures or invokes the printer logic, which is crucial for determining why the extra newline is being added.",
+        "bug_scenario": "The bug involves Prettier's formatting behavior, specifically when a file contains only a directive, followed by a newline and a comment. Instead of ending with a single newline, Prettier outputs two newlines. This issue appears to only occur with the Babylon parser."
+    }
+}

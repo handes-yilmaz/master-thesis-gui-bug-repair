@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/report-generator.js//ReportGenerator"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/report-generator.js//generateHTML",
+            "lighthouse-core/report/report-generator.js//_registerFormatters"
+        ],
+        "explanation": "The issue is related to how markdown syntax is being processed and rendered in the report. The `generateHTML` function in `ReportGenerator` is responsible for generating the HTML report, which includes rendering code snippets. If markdown characters are not handled correctly, they can be converted into HTML markup, causing rendering issues. The `_registerFormatters` function is also relevant as it deals with registering formatters that might be responsible for processing markdown syntax. Ensuring that markdown is correctly escaped or processed is crucial to fixing the rendering bug.",
+        "bug_scenario": "The bug involves rendering issues in code snippets due to markdown syntax being incorrectly converted into markup. This results in malformed code snippets, as shown in the images where markdown characters are improperly rendered."
+    }
+}

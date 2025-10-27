@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js"
+        ],
+        "explanation": "The files identified are related to auditing external anchor links for the presence of `rel=\"noopener\"`. The file `lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js` likely contains logic that enforces or checks the presence of `rel=\"noopener\"` on anchor tags, including `mailto:` links. The file `lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js` gathers data about anchor elements that do not have `rel=\"noopener\"`, which might include logic that incorrectly applies this audit to `mailto:` links. Modifying these files is essential to exclude `mailto:` links from this audit, thereby resolving the issue.",
+        "bug_scenario": "The bug scenario involves an issue where adding the `rel=\"noopener\"` attribute to `mailto:` links in HTML causes these links to malfunction on Chrome for Android and iOS Safari. Specifically, the `mailto:` link with `rel=\"noopener\"` fails to open the email client as expected, which is demonstrated by the screenshot showing a failure message. The sales link without the `rel` attribute functions correctly, indicating that the issue is directly related to the presence of the `rel=\"noopener\"` attribute on `mailto:` links."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js"
+        ],
+        "explanation": "The files `lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js` and `lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js` are likely related to the bug because they deal with the auditing and gathering of anchors (links) that use `rel=\"noopener\"`. Given that the bug report specifically mentions an issue with `rel=\"noopener\"` on `mailto:` links, these files are responsible for handling similar scenarios and would need to be reviewed and potentially modified to address the bug. The audit file likely contains logic that enforces or checks for `rel=\"noopener\"` on links, while the gatherer file may be responsible for collecting data on such links, which could be where the incorrect handling of `mailto:` links is occurring.",
+        "bug_scenario": "The bug scenario involves an issue where `mailto:` links with the attribute `rel=\"noopener\"` break on Chrome for Android and iOS Safari. The issue is demonstrated with a reproduction HTML snippet showing that the `mailto:` link for support fails to launch the mail application when `rel=\"noopener\"` is included, whereas the sales link without this attribute works correctly."
+    }
+}

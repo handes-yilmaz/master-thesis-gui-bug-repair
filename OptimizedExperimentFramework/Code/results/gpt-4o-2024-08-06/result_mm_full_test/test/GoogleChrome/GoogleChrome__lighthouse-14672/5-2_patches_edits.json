@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "clients/devtools/devtools-entry.js": [
+            {
+                "SEARCH": [
+                    "// In DevTools, emulation is applied _before_ Lighthouse starts (to deal with viewport emulation bugs). go/xcnjf",
+                    "// As a result, we don't double-apply viewport emulation.",
+                    "screenEmulation: {disabled: true},",
+                    "};",
+                    "if (device === 'desktop') {",
+                    "settings.throttling = constants.throttling.desktopDense4G;"
+                ],
+                "REPLACE": [
+                    "    // In DevTools, emulation is applied _before_ Lighthouse starts (to deal with viewport emulation bugs). go/xcnjf",
+                    "    // Adjust screenEmulation based on device type.",
+                    "    screenEmulation: device === 'desktop' ? {disabled: true} : {disabled: false},",
+                    "  };",
+                    "  if (device === 'desktop') {",
+                    "    settings.throttling = constants.throttling.desktopDense4G;"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/imagevector.js",
+            "src/ol/interaction/draw.js",
+            "src/ol/layer/vector.js",
+            "src/ol/renderer/canvas/vectorlayer.js"
+        ],
+        "explanation": "1. **src/ol/source/imagevector.js**: This file contains the deprecated `ol.source.ImageVector` class, which is directly related to the performance issue when using 'renderMode: image'.\n\n2. **src/ol/interaction/draw.js**: This file handles the drawing interaction, which is slow in the newer version. The drawing logic might need optimization.\n\n3. **src/ol/layer/vector.js**: This file manages vector layers, which are crucial for rendering vector data efficiently. The transition from `ImageVector` to `Vector` with 'renderMode: image' could be causing performance issues.\n\n4. **src/ol/renderer/canvas/vectorlayer.js**: This file is responsible for rendering vector layers on a canvas. Inefficiencies in rendering logic could contribute to the slow performance observed.",
+        "bug_scenario": "The image shows a map with a triangle being drawn over it. The performance issue is related to the slow rendering of this drawing interaction in version 4.6.2 compared to 4.4.2, particularly when using 'renderMode: image'."
+    }
+}

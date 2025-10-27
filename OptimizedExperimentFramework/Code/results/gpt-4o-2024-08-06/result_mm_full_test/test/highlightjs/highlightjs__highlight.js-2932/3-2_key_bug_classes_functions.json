@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/properties.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to how the properties file is parsed, specifically the handling of backslashes at the end of a line. The `src/languages/properties.js` file contains the logic for parsing properties files, including the handling of delimiters and values. The `DELIM_AND_VALUE` object and its `end` property, which uses a regular expression to determine the end of a value, are likely responsible for the incorrect handling of trailing backslashes. Adjusting this logic to correctly interpret escaped backslashes at the end of a line should resolve the issue.",
+        "bug_scenario": "The bug involves incorrect handling of trailing escaped backslashes in properties files. When a property value ends with an escaped backslash (e.g., `b = b\\\\`), it is not processed correctly, leading to parsing errors. This is particularly problematic for Windows paths where backslashes are common."
+    }
+}

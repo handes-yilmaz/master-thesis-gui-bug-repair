@@ -1,0 +1,72 @@
+{
+    "1/1": {
+        "src/ol/layer/Graticule.js": [
+            {
+                "SEARCH": [
+                    "centerLon = Math.floor(centerLon / interval) * interval;",
+                    "lon = clamp(centerLon, this.minLon_, this.maxLon_);",
+                    "",
+                    "idx = this.addMeridian_(lon, minLat, maxLat, squaredTolerance, extent, 0);",
+                    "",
+                    "cnt = 0;",
+                    "if (wrapX) {",
+                    "while ((lon -= interval) >= minLon && cnt++ < maxLines) {",
+                    "idx = this.addMeridian_(",
+                    "lon,",
+                    "minLat,",
+                    "maxLat,",
+                    "squaredTolerance,",
+                    "extent,",
+                    "idx",
+                    ");",
+                    "}",
+                    "} else {",
+                    "while (lon != this.minLon_ && cnt++ < maxLines) {",
+                    "lon = Math.max(lon - interval, this.minLon_);",
+                    "idx = this.addMeridian_(",
+                    "lon,",
+                    "minLat,",
+                    "maxLat,",
+                    "squaredTolerance,",
+                    "extent,",
+                    "idx",
+                    ");",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    centerLon = Math.round(centerLon / interval) * interval;",
+                    "    lon = clamp(centerLon, this.minLon_, this.maxLon_);",
+                    "",
+                    "    idx = this.addMeridian_(lon, minLat, maxLat, squaredTolerance, extent, 0);",
+                    "",
+                    "    cnt = 0;",
+                    "    if (wrapX) {",
+                    "      while ((lon -= interval) >= minLon && cnt++ < maxLines) {",
+                    "        idx = this.addMeridian_(",
+                    "          lon,",
+                    "          minLat,",
+                    "          maxLat,",
+                    "          squaredTolerance,",
+                    "          extent,",
+                    "          idx",
+                    "        );",
+                    "      }",
+                    "    } else {",
+                    "      while (lon > this.minLon_ && cnt++ < maxLines) {",
+                    "        lon = Math.max(lon - interval, this.minLon_);",
+                    "        idx = this.addMeridian_(",
+                    "          lon,",
+                    "          minLat,",
+                    "          maxLat,",
+                    "          squaredTolerance,",
+                    "          extent,",
+                    "          idx",
+                    "        );",
+                    "      }",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

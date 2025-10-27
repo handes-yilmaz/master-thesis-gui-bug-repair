@@ -1,0 +1,49 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/driver.js": [
+            {
+                "SEARCH": [
+                    "const waitForLoadEvent = this._waitForLoadEvent(pauseAfterLoadMs);",
+                    "const waitForNetworkIdle = this._waitForNetworkIdle(networkQuietThresholdMs);",
+                    "let waitForCPUIdle = null;",
+                    "",
+                    "const loadPromise = Promise.all([",
+                    "waitForLoadEvent.promise,",
+                    "waitForNetworkIdle.promise,",
+                    "]).then(() => {",
+                    "waitForCPUIdle = this._waitForCPUIdle(cpuQuietThresholdMs);",
+                    "return waitForCPUIdle.promise;",
+                    "}).then(() => {",
+                    "return function() {",
+                    "log.verbose('Driver', 'loadEventFired and network considered idle');",
+                    "clearTimeout(maxTimeoutHandle);",
+                    "};",
+                    "});"
+                ],
+                "REPLACE": [
+                    "    const waitForLoadEvent = this._waitForLoadEvent(pauseAfterLoadMs);",
+                    "    const waitForNetworkIdle = this._waitForNetworkIdle(networkQuietThresholdMs);",
+                    "    let waitForCPUIdle = null;",
+                    "",
+                    "    const loadPromise = Promise.all([",
+                    "      waitForLoadEvent.promise,",
+                    "      waitForNetworkIdle.promise,",
+                    "    ]).then(() => {",
+                    "      waitForCPUIdle = this._waitForCPUIdle(cpuQuietThresholdMs);",
+                    "      return waitForCPUIdle.promise;",
+                    "    }).then(() => {",
+                    "      return function() {",
+                    "        log.verbose('Driver', 'loadEventFired and network considered idle');",
+                    "        clearTimeout(maxTimeoutHandle);",
+                    "      };",
+                    "    }).catch(err => {",
+                    "      log.warn('Driver', 'Error waiting for page load: ', err);",
+                    "      waitForLoadEvent.cancel();",
+                    "      waitForNetworkIdle.cancel();",
+                    "      waitForCPUIdle && waitForCPUIdle.cancel();",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

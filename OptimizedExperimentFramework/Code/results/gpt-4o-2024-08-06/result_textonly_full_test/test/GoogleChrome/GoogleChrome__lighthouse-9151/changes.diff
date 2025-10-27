@@ -1,0 +1,15 @@
+diff --git a/lighthouse-core/report/html/renderer/pwa-category-renderer.js b/lighthouse-core/report/html/renderer/pwa-category-renderer.js
+index 0c96c60..3da41a4 100644
+--- a/lighthouse-core/report/html/renderer/pwa-category-renderer.js
++++ b/lighthouse-core/report/html/renderer/pwa-category-renderer.js
+@@ -69,7 +69,9 @@ class PwaCategoryRenderer extends CategoryRenderer {
+       wrapper.classList.add('lh-badged--all');
+     } else {
+       for (const passingGroupId of passingGroupIds) {
+-        wrapper.classList.add(`lh-badged--${passingGroupId}`);
++        if (allGroups.has(passingGroupId)) {
++          wrapper.classList.add(`lh-badged--${passingGroupId}`);
++        }
+       }
+     }
+ 

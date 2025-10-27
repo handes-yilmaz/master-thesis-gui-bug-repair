@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js",
+            "lib/features/modeling/behavior/ResizeBehavior.js"
+        ],
+        "explanation": "The files related to the rendering and behavior of the BPMN elements are likely causing the issue. 'BpmnRenderer.js' is responsible for drawing elements, which might be involved in the rendering glitches causing the jump. 'SubProcessPlaneBehavior.js' and 'ResizeBehavior.js' are related to subprocess and resizing behaviors, which might affect how elements are displayed or wrapped in a pool, leading to the unexpected jump.",
+        "bug_scenario": "The diagram unexpectedly jumps when a process is wrapped in a pool. This can be seen in the provided GIF where the viewport shifts, causing the diagram to move out of the current view."
+    },
+    "2": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js"
+        ],
+        "explanation": "1. **lib/draw/BpmnRenderer.js**: This file is responsible for rendering BPMN diagrams. The issue with the diagram jumping could be related to how elements are rendered or re-rendered when wrapped in a pool.\n\n2. **lib/features/modeling/behavior/ResizeBehavior.js**: Since the bug involves the diagram jumping during a resizing or wrapping action, this file might be handling some of the resize logic causing the viewport to shift.\n\n3. **lib/features/modeling/behavior/SubProcessPlaneBehavior.js**: This file likely deals with subprocesses and their behavior in the diagram. Given that the issue arises when wrapping a process in a pool, adjustments in the subprocess behavior could lead to the observed jumping. \n\nThese files are likely involved because they handle rendering and resizing behaviors directly affecting how elements are displayed and managed when modifications occur within the diagram.",
+        "bug_scenario": "The bug occurs when a process is wrapped in a pool, causing the diagram to jump unexpectedly. The expected behavior is for the diagram to remain in the current viewport, but instead, the viewport shifts, disrupting the user's view."
+    }
+}

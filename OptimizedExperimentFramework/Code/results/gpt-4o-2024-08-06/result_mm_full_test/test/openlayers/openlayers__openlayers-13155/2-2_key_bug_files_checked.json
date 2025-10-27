@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/TileImage.js",
+            "src/ol/webgl/TileTexture.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "1. **src/ol/layer/WebGLTile.js**: This file defines the WebGLTileLayer class, which is responsible for creating the renderer. The renderer needs to be updated to respect the imageSmoothing setting by passing it to the TileTexture.\n\n2. **src/ol/source/TileImage.js**: This file contains the TileImage class, which currently supports the imageSmoothing option. The logic here needs to be extended to ensure that the imageSmoothing setting is correctly passed to the WebGLTile renderer.\n\n3. **src/ol/webgl/TileTexture.js**: This file handles the configuration of WebGL textures. The bindAndConfigure function needs to be updated to use gl.NEAREST instead of gl.LINEAR when imageSmoothing is set to false.\n\n4. **src/ol/renderer/webgl/TileLayer.js**: This file contains the WebGLTileLayerRenderer class, which manages the rendering of tile layers. It needs to be modified to ensure that the imageSmoothing setting is respected during the rendering process.",
+        "bug_scenario": "The bug scenario involves a WebGLTile renderer not respecting the imageSmoothing setting of a tile source. When zoomed in, the Sea Level example shows pixelated edges due to the lack of image smoothing, which distorts pixel values and creates thin lines of 'sea' along some contours. The issue is more noticeable with exaggerated sea level values, where a row of pixels can appear above the sea when the map is panned. The solution involves passing the imageSmoothing setting to the TileTexture, which can then use gl.NEAREST instead of gl.LINEAR for its gl.TEXTURE_MIN_FILTER and gl.TEXTURE_MAX_FILTER configuration."
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/rules/BpmnRules.js//BpmnRules",
+            "lib/features/modeling/behavior/AttachEventBehavior.js//AttachEventBehavior",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//BoundaryEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/rules/BpmnRules.js//canConnectMessageFlow",
+            "lib/features/rules/BpmnRules.js//canConnect",
+            "lib/features/modeling/behavior/AttachEventBehavior.js//replaceShape",
+            "lib/features/modeling/behavior/AttachEventBehavior.js//shouldReplace"
+        ],
+        "explanation": "The classes and functions identified are related to the rules and behaviors governing the connection of elements in a BPMN model. The `BpmnRules` class in `BpmnRules.js` likely contains logic that disallows the connection of message flows to boundary events, which is the core issue described in the bug report. The `canConnectMessageFlow` and `canConnect` functions within this class are directly responsible for determining the validity of such connections, making them key areas to investigate and modify.\n\nThe `AttachEventBehavior` class in `AttachEventBehavior.js` handles the behavior of attaching events, including boundary events, which are central to the bug. The `replaceShape` and `shouldReplace` functions within this class are responsible for replacing intermediate events with boundary events and determining when such replacements should occur, respectively. These functions are crucial for ensuring that the correct event types are used and connected properly.\n\nThe `BoundaryEventBehavior` class in `BoundaryEventBehavior.js` manages the behavior of boundary events, which are directly involved in the bug scenario. This class likely contains logic that needs to be adjusted to allow message flows to target intermediate message catch boundary events as specified by BPMN 2.0.",
+        "bug_scenario": "The bug scenario involves the inability to connect a message flow from an activity in one participant to an intermediate message catch boundary event in a BPMN modeler. According to the BPMN 2.0 specification, this should be allowed, but the current implementation disallows it. The bug report includes steps to reproduce the issue and references to the BPMN 2.0 specification that support the expected behavior."
+    }
+}

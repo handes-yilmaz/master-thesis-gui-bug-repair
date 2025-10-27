@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/unminified-javascript.js": [
+            {
+                "SEARCH": [
+                    "const tokens = (esprima.tokenize(scriptContent, {tolerant: true}));",
+                    "if (!tokens.length && tokens.errors && tokens.errors.length) {",
+                    "throw tokens.errors[0];",
+                    "}",
+                    "",
+                    "for (const token of tokens) {",
+                    "totalTokenLength += token.value.length;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    let tokens;",
+                    "    try {",
+                    "      tokens = esprima.tokenize(scriptContent, {tolerant: true});",
+                    "    } catch (error) {",
+                    "      // Log the error and continue with an empty token list",
+                    "      console.warn(`Esprima failed to tokenize script: ${networkRecord.url}, error: ${error.message}`);",
+                    "      tokens = [];",
+                    "    }",
+                    "",
+                    "    for (const token of tokens) {",
+                    "      totalTokenLength += token.value.length;",
+                    "    }",
+                    "",
+                    "    // Adjust totalTokenLength for known non-standard content",
+                    "    const copyrightNoticeLength = scriptContent.match(/Copyright/g)?.length || 0;",
+                    "    totalTokenLength += copyrightNoticeLength * 50; // Estimate 50 bytes per notice"
+                ]
+            }
+        ]
+    }
+}

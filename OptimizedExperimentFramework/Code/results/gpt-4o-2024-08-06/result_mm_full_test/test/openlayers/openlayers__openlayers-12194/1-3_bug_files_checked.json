@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/render/canvas.js",
+            "src/ol/style/Stroke.js",
+            "src/ol/render/VectorContext.js"
+        ],
+        "explanation": "1. `src/ol/render/canvas/Immediate.js`: This file is likely responsible for the immediate mode rendering context where the bug is observed. Since the issue is with `lineDash` not scaling with `pixelRatio`, the rendering logic in this file needs to be reviewed and adjusted to apply the `pixelRatio` to `lineDash` values.\n\n2. `src/ol/render/canvas.js`: This file probably contains the core canvas rendering operations, which should include logic for scaling visual properties according to the `pixelRatio`. It's crucial to ensure that all drawing operations, including `lineDash`, are correctly scaled.\n\n3. `src/ol/style/Stroke.js`: This file defines the `Stroke` style properties, including `lineDash`. Modifications here might be necessary to handle `pixelRatio` adjustments or to provide a mechanism for scaling `lineDash` values.\n\n4. `src/ol/render/VectorContext.js`: This context might be used for vector rendering operations, including canvas immediate rendering. It should be checked to ensure that style properties are appropriately applied and scaled according to the `pixelRatio` when rendering geometries.",
+        "bug_scenario": "The bug report describes an issue with the `lineDash` property not being correctly scaled when using the `ol.render.toContext` method with a specified `pixelRatio` in OpenLayers. This results in dashed lines appearing blurred or as continuous lines on high device pixel ratio displays. The discrepancy is due to the `lineDash` not being scaled proportionally to the `pixelRatio`, unlike other rendering scenarios such as map rendering where this scaling is applied automatically."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/render/canvas.js",
+            "src/ol/render/VectorContext.js",
+            "src/ol/has.js"
+        ],
+        "explanation": "1. **src/ol/render/canvas/Immediate.js**: This file likely contains the implementation for rendering geometry immediately to canvas. The bug is specifically about Canvas Immediate rendering not scaling `lineDash` correctly, so any modifications to adjust the `lineDash` for `pixelRatio` would be made here.\n\n2. **src/ol/render/canvas.js**: This file might contain base functions or utilities for rendering to canvas which could be involved in managing styles such as `lineDash` for the canvas rendering context.\n\n3. **src/ol/render/VectorContext.js**: This file likely manages how vector styles are applied during rendering. Since the issue involves applying a style with `lineDash`, changes might be needed here to ensure styles take `pixelRatio` into account.\n\n4. **src/ol/has.js**: This file probably contains feature detection utilities, such as detecting the device's pixel ratio (`ol.has.DEVICE_PIXEL_RATIO`). Ensuring the correct `pixelRatio` is used and applied could involve checks or constants defined here.",
+        "bug_scenario": "The bug report describes an issue with the `lineDash` pattern not being properly scaled in relation to the `pixelRatio` when rendering using the OpenLayers `ol/render.toContext()` function for Canvas Immediate. This results in dashed lines appearing incorrectly (often as continuous lines) on high DPI displays, due to the `lineDash` not being adjusted for the device's pixel ratio, whereas other elements are scaled correctly."
+    }
+}

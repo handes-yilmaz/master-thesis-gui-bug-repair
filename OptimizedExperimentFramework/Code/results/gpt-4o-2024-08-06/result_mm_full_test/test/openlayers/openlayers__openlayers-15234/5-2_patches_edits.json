@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/PointsLayer.js": [
+            {
+                "SEARCH": [
+                    "const projectionTransform = createTransform();",
+                    "this.helper.makeProjectionTransform(frameState, projectionTransform);"
+                ],
+                "REPLACE": [
+                    "    const projectionTransform = createTransform();",
+                    "    if (frameState.viewState.projection.getCode() === 'EPSG:4326') {",
+                    "      makeInverseTransform(projectionTransform, frameState.coordinateToPixelTransform);",
+                    "    } else {",
+                    "      this.helper.makeProjectionTransform(frameState, projectionTransform);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

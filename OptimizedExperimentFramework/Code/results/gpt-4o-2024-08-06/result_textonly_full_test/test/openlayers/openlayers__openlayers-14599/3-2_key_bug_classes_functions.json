@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Group.js//LayerGroup",
+            "src/ol/layer/Layer.js//Layer",
+            "src/ol/source/TileWMS.js//TileWMS",
+            "src/ol/control/Attribution.js//Attribution"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Group.js//LayerGroup.getLayerStatesArray",
+            "src/ol/layer/Layer.js//Layer.getAttributions",
+            "src/ol/control/Attribution.js//Attribution.collectSourceAttributions_"
+        ],
+        "explanation": "The bug is related to the visibility and attribution handling of layers in a map application. The `LayerGroup` class in `src/ol/layer/Group.js` is responsible for managing the visibility of group layers and their sub-layers. The `getLayerStatesArray` function in this class is crucial as it determines the visibility state of layers, which is directly related to the bug where attributions are shown despite the group layer being invisible.\n\nThe `Layer` class in `src/ol/layer/Layer.js` has a method `getAttributions` that retrieves the attributions for a layer. This function is relevant because it is responsible for providing the attributions that are incorrectly displayed in the popup.\n\nThe `TileWMS` class in `src/ol/source/TileWMS.js` is the source of the WMS layer, and its configuration, including attributions, affects how attributions are handled and displayed.\n\nFinally, the `Attribution` class in `src/ol/control/Attribution.js` manages the display of attributions on the map. The `collectSourceAttributions_` function in this class gathers attributions from visible layers, and its logic needs to ensure that attributions from invisible group layers are not collected or displayed. This function is directly related to the bug as it determines which attributions are shown in the UI.",
+        "bug_scenario": "The bug scenario involves a map application where attributions from a WMS layer are displayed in an info popup even when the group layer containing the WMS layer is set to invisible. The expected behavior is that attributions should not be displayed if the group layer is invisible, regardless of the visibility of the sub-layer."
+    }
+}

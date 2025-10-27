@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/jsx.js",
+            "src/language-js/printer-estree.js",
+            "src/main/core.js"
+        ],
+        "explanation": "The bug is likely related to how JSX formatting is handled. The files in 'src/language-js/print/jsx.js' and 'src/language-js/printer-estree.js' are responsible for parsing and printing JSX, which directly relates to the formatting issue. The core functionality of Prettier that manages formatting across languages is in 'src/main/core.js'. These files are critical to understanding and fixing the unstable formatting when special characters are involved.",
+        "bug_scenario": "The bug is related to unstable JSX formatting when using a specific Unicode character (\\u3000). The output formatting changes between runs, which is not expected behavior. The issue arises in how JSX is parsed and printed, leading to inconsistent whitespace handling."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/print/jsx.js",
+            "src/main/core.js",
+            "src/language-js/utils.js"
+        ],
+        "explanation": "1. **src/language-js/print/jsx.js**: This file is likely responsible for handling the printing logic of JSX elements. Since the issue is with the formatting of JSX, this file needs to be examined for how it handles whitespace and JSX formatting.\n\n2. **src/main/core.js**: This file is central to the core functionality of the Prettier tool, which includes formatting logic. It might contain logic related to handling different character inputs, including Unicode.\n\n3. **src/language-js/utils.js**: Utility functions dealing with strings and characters in JavaScript files might be responsible for managing how whitespace characters like \\u3000 are interpreted and processed. This file could contain logic that affects the formatting output.",
+        "bug_scenario": "The bug report describes an issue with unstable JSX formatting when using the Unicode character \\u3000 (ideographic space) in a JSX element. The formatting changes unexpectedly between runs of Prettier, leading to inconsistent output."
+    }
+}

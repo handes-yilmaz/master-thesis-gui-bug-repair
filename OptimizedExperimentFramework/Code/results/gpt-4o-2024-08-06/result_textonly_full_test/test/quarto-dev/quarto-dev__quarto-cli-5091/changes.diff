@@ -1,0 +1,41 @@
+diff --git a/src/core/image.ts b/src/core/image.ts
+index d0bc4e8..7c3efb7 100644
+--- a/src/core/image.ts
++++ b/src/core/image.ts
+@@ -8,12 +8,14 @@
+ import { existsSync } from "fs/exists.ts";
+ import { extname } from "path/mod.ts";
+ import PngImage from "./png.ts";
++import { decodeURIComponent } from "url";
+ 
+ export function imageSize(path: string) {
+   if (path !== undefined) {
+-    if (path.endsWith(".png")) {
+-      if (existsSync(path)) {
+-        const imageData = Deno.readFileSync(path);
++    const decodedPath = decodeURIComponent(path);
++    if (decodedPath.endsWith(".png")) {
++      if (existsSync(decodedPath)) {
++        const imageData = Deno.readFileSync(decodedPath);
+         try {
+           const png = new PngImage(imageData);
+           return {
+@@ -21,7 +23,7 @@ export function imageSize(path: string) {
+             width: png.width,
+           };
+         } catch (error) {
+-          throw new Error(`Error reading file ${path}\n${error.message}`);
++          throw new Error(`Error reading file ${decodedPath}\n${error.message}`);
+         }
+       }
+     }
+@@ -29,7 +31,8 @@ export function imageSize(path: string) {
+ }
+ 
+ export function imageContentType(path: string) {
+-  const ext = extname(path);
++  const decodedPath = decodeURIComponent(path);
++  const ext = extname(decodedPath);
+   return kimageTypes[ext];
+ }
+ 

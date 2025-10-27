@@ -1,0 +1,35 @@
+diff --git a/src/js/components/DataFilters/DataFilters.js b/src/js/components/DataFilters/DataFilters.js
+index 5c1b4a2..309048d 100644
+--- a/src/js/components/DataFilters/DataFilters.js
++++ b/src/js/components/DataFilters/DataFilters.js
+@@ -106,10 +106,19 @@ export const DataFilters = ({ drop, layer, children, heading, ...rest }) => {
+     </DataForm>
+   );
+ 
+-  if (!controlled) return layer ? <Layer>{content}</Layer> : content;
++  if (!controlled) return content;
+ 
+-  // drop
+-  const control = (
++  const control = layer ? (
++    <Button
++      aria-label={format({
++        id: 'dataFilters.open',
++        messages: messages?.dataFilters,
++      })}
++      kind="toolbar"
++      icon={<Filter />}
++      onClick={() => setShowContent(true)}
++    />
++  ) : (
+     <DropButton
+       aria-label={format({
+         id: 'dataFilters.open',
+@@ -130,6 +139,7 @@ export const DataFilters = ({ drop, layer, children, heading, ...rest }) => {
+     <Box flex={false} direction="row" gap="small" {...rest}>
+       {control}
+       {clearControl}
++      {layer && showContent && <Layer onEsc={() => setShowContent(false)} onClickOutside={() => setShowContent(false)}>{content}</Layer>}
+     </Box>
+   );
+ };

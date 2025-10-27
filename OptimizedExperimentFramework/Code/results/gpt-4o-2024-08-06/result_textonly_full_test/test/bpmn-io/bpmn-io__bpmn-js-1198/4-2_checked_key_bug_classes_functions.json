@@ -1,0 +1,89 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "isDefaultFlow",
+            "file_path": "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "function_details": [
+                {
+                    "name": "isDefaultFlow",
+                    "start_line": 47,
+                    "end_line": 57
+                }
+            ],
+            "function_code": [
+                "function isDefaultFlow(connection, source) {",
+                "",
+                "  if (!is(connection, 'bpmn:SequenceFlow')) {",
+                "    return false;",
+                "  }",
+                "",
+                "  var sourceBo = getBusinessObject(source),",
+                "      sequenceFlow = getBusinessObject(connection);",
+                "",
+                "  return sourceBo.get('default') === sequenceFlow;",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "UpdatePropertiesHandler.prototype.execute",
+            "file_path": "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "function_details": [
+                {
+                    "name": "UpdatePropertiesHandler.prototype.execute",
+                    "start_line": 62,
+                    "end_line": 108
+                }
+            ],
+            "function_code": [
+                "UpdatePropertiesHandler.prototype.execute = function(context) {",
+                "",
+                "  var element = context.element,",
+                "      changed = [ element ],",
+                "      translate = this._translate;",
+                "",
+                "  if (!element) {",
+                "    throw new Error(translate('element required'));",
+                "  }",
+                "",
+                "  var elementRegistry = this._elementRegistry,",
+                "      ids = this._moddle.ids;",
+                "",
+                "  var businessObject = element.businessObject,",
+                "      properties = unwrapBusinessObjects(context.properties),",
+                "      oldProperties = context.oldProperties || getProperties(businessObject, properties);",
+                "",
+                "  if (isIdChange(properties, businessObject)) {",
+                "    ids.unclaim(businessObject[ID]);",
+                "",
+                "    elementRegistry.updateId(element, properties[ID]);",
+                "",
+                "    ids.claim(properties[ID], businessObject);",
+                "  }",
+                "",
+                "  // correctly indicate visual changes on default flow updates",
+                "  if (DEFAULT_FLOW in properties) {",
+                "",
+                "    if (properties[DEFAULT_FLOW]) {",
+                "      changed.push(elementRegistry.get(properties[DEFAULT_FLOW].id));",
+                "    }",
+                "",
+                "    if (businessObject[DEFAULT_FLOW]) {",
+                "      changed.push(elementRegistry.get(businessObject[DEFAULT_FLOW].id));",
+                "    }",
+                "  }",
+                "",
+                "  // update properties",
+                "  setProperties(businessObject, properties);",
+                "",
+                "  // store old values",
+                "  context.oldProperties = oldProperties;",
+                "  context.changed = changed;",
+                "",
+                "  // indicate changed on objects affected by the update",
+                "  return changed;",
+                "};"
+            ]
+        }
+    }
+}

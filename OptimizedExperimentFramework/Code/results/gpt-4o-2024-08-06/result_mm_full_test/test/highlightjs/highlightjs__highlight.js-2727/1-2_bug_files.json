@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/lib/ecmascript.js",
+            "src/javascript.js",
+            "src/lib/utils.js",
+            "src/highlight.js"
+        ],
+        "explanation": "The issue is likely related to how highlight.js is processing JavaScript code, specifically ES6 class syntax. The file `src/languages/lib/ecmascript.js` is responsible for defining the syntax highlighting rules for ECMAScript, which includes JavaScript. This file may need adjustments to correctly highlight ES6 class methods. The `src/javascript.js` file is a possible entry point for JavaScript language support, and it might define additional rules or configurations for highlighting. The `src/lib/utils.js` could contain utility functions that affect how highlighting is applied or processed. Finally, `src/highlight.js` is the main file for highlight.js functionality, which may need changes to ensure proper integration with React and marked.js for rendering highlighted code.",
+        "bug_scenario": "The bug report indicates that member functions in ES6 classes are not being highlighted when using highlight.js in conjunction with marked.js in a React component. The provided code snippet shows a React component rendering markdown using marked, but the functions within the ES6 class are not highlighted as expected. The image shows a rendered component where the syntax highlighting is not applied to the class methods."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/javascript.js",
+            "src/lib/html_renderer.js",
+            "src/lib/utils.js",
+            "src/highlight.js"
+        ],
+        "explanation": "1. **src/languages/javascript.js**: This file likely contains the definition and configuration for JavaScript syntax highlighting within highlight.js. Any issues with recognizing ES6 class syntax could be due to incomplete or missing patterns in this file.\n\n2. **src/lib/html_renderer.js**: This file is responsible for rendering the highlighted code into HTML. If the rendering is not correctly applying styles to functions, this file might need adjustments.\n\n3. **src/lib/utils.js**: Utility functions used in parsing and rendering might not be correctly handling ES6 class functions. It's a common place for bugs related to processing logic.\n\n4. **src/highlight.js**: The core library file where the main logic for highlighting is implemented. It might need changes to better support ES6 syntax.",
+        "bug_scenario": "The member functions in ES6 classes are not being highlighted in the rendered markdown when using highlight.js with marked in a React component. The provided image shows the rendered output where the JavaScript class functions are not highlighted as expected."
+    }
+}

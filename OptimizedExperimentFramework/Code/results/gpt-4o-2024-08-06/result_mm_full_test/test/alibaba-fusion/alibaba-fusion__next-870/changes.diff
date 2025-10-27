@@ -1,0 +1,37 @@
+diff --git a/src/number-picker/number-picker.jsx b/src/number-picker/number-picker.jsx
+index b817680..e976c5f 100644
+--- a/src/number-picker/number-picker.jsx
++++ b/src/number-picker/number-picker.jsx
+@@ -459,7 +459,7 @@ class NumberPicker extends React.Component {
+                     {...downBtnProps}
+                     onMouseDown={this.handleMouseDown}
+                     disabled={disabled}
+-                    className={`${downBtnProps.className || ''} ${
++                    className={`${prefixCls}-handler ${downBtnProps.className || ''} ${
+                         downDisabled ? 'disabled' : ''
+                     }`}
+                     onClick={this.down.bind(this, downDisabled)}
+@@ -473,7 +473,7 @@ class NumberPicker extends React.Component {
+                     {...upBtnProps}
+                     onMouseDown={this.handleMouseDown}
+                     disabled={disabled}
+-                    className={`${upBtnProps.className || ''} ${
++                    className={`${prefixCls}-handler ${upBtnProps.className || ''} ${
+                         upDisabled ? 'disabled' : ''
+                     }`}
+                     onClick={this.up.bind(this, upDisabled)}
+diff --git a/src/overlay/position.jsx b/src/overlay/position.jsx
+index 0b6f97a..71f4aff 100644
+--- a/src/overlay/position.jsx
++++ b/src/overlay/position.jsx
+@@ -97,8 +97,8 @@ export default class Position extends Component {
+                 needAdjust,
+                 isRtl: rtl,
+             });
+-            const top = getStyle(contentNode, 'top');
+-            const left = getStyle(contentNode, 'left');
++            const top = parseFloat(getStyle(contentNode, 'top')) || 0;
++            const left = parseFloat(getStyle(contentNode, 'left')) || 0;
+ 
+             // Adjust position based on scroll
+             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;

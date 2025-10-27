@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/features/drilldown/index.js",
+            "lib/modeling/cmd/UpdateCanvasRootHandler.js",
+            "lib/util/DrilldownUtil.js"
+        ],
+        "explanation": "The bug is related to the drilldown feature and the management of root elements. Based on the error message and the bug scenario, the following files are relevant:\n\n1. **DrilldownBreadcrumbs.js**: This file is directly referenced in the error stack trace. It likely handles the navigation logic that fails when the root element changes.\n\n2. **DrilldownOverlayBehavior.js**: This file might contain logic for managing the overlay behavior during drilldown operations. Since the overlay is not aware of root changes, this file would be crucial to investigate.\n\n3. **index.js (drilldown)**: This file likely serves as the entry point for the drilldown feature, orchestrating various components and behaviors.\n\n4. **UpdateCanvasRootHandler.js**: As the bug is related to root element changes, this file likely handles updates to the canvas root, which is critical for ensuring that drilldown operations are aware of such changes.\n\n5. **DrilldownUtil.js**: This utility might provide functions that are used across the drilldown feature to manage navigation and state, potentially including root element awareness.",
+        "bug_scenario": "The bug occurs when attempting to drill out of a sub-process after a root change. The error thrown is \"rootElement required\" indicating that the system is not handling the change of the root element correctly, particularly in the context of drilldown overlays. The error arises specifically when trying to navigate back to the parent process after wrapping a sub-process with a pool and then drilling into it."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js",
+            "lib/features/drilldown/index.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js"
+        ],
+        "explanation": "1. **lib/features/drilldown/DrilldownBreadcrumbs.js**: The error stack trace points to this file, indicating an issue with handling drilldown navigation when the root element changes. This file likely manages the breadcrumb navigation in the drilldown feature.\n\n2. **lib/features/drilldown/index.js**: This file is the entry point for the drilldown feature, and any root element handling logic or registration of behaviors related to the drilldown would be centralized here.\n\n3. **lib/features/drilldown/DrilldownOverlayBehavior.js**: This file probably controls the behavior of the overlay that appears during drilldown. The bug report mentions an issue with the overlay not being aware of root changes, making this file a likely candidate for containing the bug.\n\n4. **lib/features/modeling/cmd/UpdateCanvasRootHandler.js**: This file seems to handle updates to the canvas root element, which is directly related to the error message indicating a missing root element. Any issues with updating or notifying the drilldown when the root changes would need to be addressed here.",
+        "bug_scenario": "The bug occurs when attempting to navigate back to a parent process after wrapping a collapsed sub-process within a pool. An error is thrown indicating that a root element is required, suggesting that the drilldown overlay is not properly handling changes to the root element during navigation."
+    }
+}

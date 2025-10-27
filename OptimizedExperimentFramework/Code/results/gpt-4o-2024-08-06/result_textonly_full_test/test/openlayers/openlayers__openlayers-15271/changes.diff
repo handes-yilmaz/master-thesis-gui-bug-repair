@@ -1,0 +1,27 @@
+diff --git a/src/ol/expr/expression.js b/src/ol/expr/expression.js
+index 44550b4..6ec1088 100644
+--- a/src/ol/expr/expression.js
++++ b/src/ol/expr/expression.js
+@@ -193,6 +193,7 @@ export const Ops = {
+   Concat: 'concat',
+   GeometryType: 'geometry-type',
+   Any: 'any',
++  GetId: 'get-id', // New operator for fetching the id
+   All: 'all',
+   Not: '!',
+   Resolution: 'resolution',
+@@ -774,6 +775,14 @@ function createParser(returnType, ...argValidators) {
+ function parseCallExpression(encoded, context, typeHint) {
+   const operator = encoded[0];
+ 
++  if (operator === Ops.GetId) {
++    // Handle the 'get-id' operator
++    if (encoded.length !== 1) {
++      throw new Error('The "get-id" operator does not take any arguments');
++    }
++    return new CallExpression(StringType, operator);
++  }
++
+   const parser = parsers[operator];
+   if (!parser) {
+     throw new Error(`Unknown operator: ${operator}`);

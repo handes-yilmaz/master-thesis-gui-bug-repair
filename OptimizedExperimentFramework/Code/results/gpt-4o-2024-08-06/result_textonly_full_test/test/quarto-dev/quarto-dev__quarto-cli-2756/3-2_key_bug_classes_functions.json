@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/crossref/crossref.lua",
+            "src/resources/filters/common/theorems.lua"
+        ],
+        "bug_functions": [
+            "src/resources/filters/crossref/crossref.lua//preprocessTheorems",
+            "src/resources/filters/common/theorems.lua//hasTheoremRef"
+        ],
+        "explanation": "The 'crossref.lua' file is directly involved in the error as it is the Lua filter being executed when the error occurs. The 'preprocessTheorems' function within this file is likely responsible for handling theorem processing, which is where the error is triggered. The 'theorems.lua' file contains definitions and functions related to theorem types, such as 'hasTheoremRef', which checks for theorem references. This function could be involved in the error if it fails to correctly identify or handle theorem references, leading to the nil value being passed where a table is expected. These elements are critical to the bug as they are directly involved in the processing and referencing of theorems, which is where the error arises.",
+        "bug_scenario": "The bug scenario involves a Lua filter error when processing Theorems and Proofs in a document without a header or label. This error occurs during the conversion of documents to HTML using Pandoc, specifically when the Lua filter 'crossref.lua' is applied. The error message indicates a problem with the 'insert' function, expecting a table but receiving nil, which suggests an issue with how theorems are being processed or referenced in the Lua script."
+    }
+}

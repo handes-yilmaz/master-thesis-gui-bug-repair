@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/critical-request-chains.js//CriticalRequestChains",
+            "lighthouse-core/audits/uses-rel-preload.js//UsesRelPreloadAudit",
+            "lighthouse-core/gather/computed/critical-request-chains.js//CriticalRequestChains"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/critical-request-chains.js//audit",
+            "lighthouse-core/audits/uses-rel-preload.js//audit",
+            "lighthouse-core/gather/computed/critical-request-chains.js//isCritical"
+        ],
+        "explanation": "The `CriticalRequestChains` class in `lighthouse-core/audits/critical-request-chains.js` is responsible for identifying and auditing critical request chains, which is directly related to the issue. The `audit` function in this class performs the analysis that flags the stylesheet as critical. Similarly, the `UsesRelPreloadAudit` class in `lighthouse-core/audits/uses-rel-preload.js` deals with the use of `rel=preload` and its impact on performance, which is relevant to understanding why the stylesheet is flagged. The `isCritical` function in `lighthouse-core/gather/computed/critical-request-chains.js` determines the criticality of requests, which is central to the problem of why the stylesheet is considered critical.",
+        "bug_scenario": "The bug scenario involves a page using `link[rel=preload]` to fetch a stylesheet asynchronously. Lighthouse flags this stylesheet as part of a 'critical request chain,' even though it doesn't block page rendering and contains no CSS styles. The issue is about understanding why Lighthouse considers it critical and whether it's due to the `rel=preload` priority."
+    }
+}

@@ -1,0 +1,21 @@
+diff --git a/src/format/reveal/format-reveal.ts b/src/format/reveal/format-reveal.ts
+index 9db1e30..8d21c62 100644
+--- a/src/format/reveal/format-reveal.ts
++++ b/src/format/reveal/format-reveal.ts
+@@ -171,7 +171,7 @@ export function revealjsFormat() {
+           partials: partials.map((partial) => join(templateDir, partial)),
+         };
+ 
+-        // start with html format extras and our standard  & plugin extras
++        // Ensure embedded content is processed for revealjs
+         let extras = mergeConfigs(
+           // extras for all html formats
+           await htmlFormatExtras(
+@@ -187,6 +187,7 @@ export function revealjsFormat() {
+               hoverCitations: true,
+               hoverFootnotes: true,
+               figResponsive: false,
++              embedContent: true, // Ensure embedded content is included
+             }, // tippy options
+             {
+               parent: "section.slide",

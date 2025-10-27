@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/gather/connections/cri.js"
+        ],
+        "explanation": "1. `lighthouse-core/gather/driver.js`: This file contains the `Driver` class, which is responsible for interacting with the browser using the DevTools protocol. It includes methods for sending commands and receiving events, which are crucial for handling network requests and target discovery. The lack of OOPIF handling might be due to missing logic in this file to discover and interact with iframe targets.\n\n2. `lighthouse-core/gather/gather-runner.js`: This file manages the lifecycle of gathering data from a page, including setting up the driver and running passes. It is responsible for loading pages and collecting artifacts, which may not be correctly handling OOPIFs if the target discovery is not implemented.\n\n3. `lighthouse-core/gather/connections/cri.js`: This file handles the connection to the Chrome Remote Interface (CRI), which is used to communicate with the browser. Proper handling of OOPIFs would require the ability to connect to and manage multiple targets, including iframes, which might be missing or incomplete in this file.",
+        "bug_scenario": "The bug scenario involves Lighthouse not handling Out-of-Process iframes (OOPIFs) correctly. The user observed that Chrome DevTools uses `Target.sendMessageToTarget` to send `Network.enable` to a discovered target and receives data in `Target.receivedMessageFromTarget` event. However, the user could not find similar target discovery logic in the Lighthouse source code, specifically in the `lighthouse/lighthouse-core/gather` folder. This raises the question of whether Lighthouse can only see and analyze requests from the main frame, potentially missing data from iframes."
+    }
+}

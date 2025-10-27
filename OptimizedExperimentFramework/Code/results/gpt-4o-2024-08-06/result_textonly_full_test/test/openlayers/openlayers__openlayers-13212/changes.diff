@@ -1,0 +1,37 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1409a69..06cc6dc 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -337,6 +337,7 @@ class WebGLTileLayer extends BaseTileLayer {
+       uniforms: parsedStyle.uniforms,
+       cacheSize: this.cacheSize_,
+       paletteTextures: parsedStyle.paletteTextures,
++      useSingleContext: true, // Use a single WebGL context per layer
+     });
+   }
+ 
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index f77b792..94dcfe5 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -138,6 +138,7 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+   constructor(tileLayer, options) {
+     super(tileLayer, {
+       uniforms: options.uniforms,
++      useSingleContext: options.useSingleContext || false,
+     });
+ 
+     /**
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index caae328..1b83b3e 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -413,7 +413,7 @@ class GeoTIFFSource extends DataTile {
+     }
+     Promise.all(requests)
+       .then(function (sources) {
+-        self.configure_(sources);
++        self.configurePyramid_(sources);
+       })
+       .catch(function (error) {
+         console.error(error); // eslint-disable-line no-console

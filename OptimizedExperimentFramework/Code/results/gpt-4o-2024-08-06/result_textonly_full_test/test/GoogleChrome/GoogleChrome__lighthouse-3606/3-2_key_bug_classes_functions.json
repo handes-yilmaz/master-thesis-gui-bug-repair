@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/uses-request-compression.js//ResponsesAreCompressed",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.js//ResponseCompression"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/uses-request-compression.js//audit_",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.js//filterUnoptimizedResponses"
+        ],
+        "explanation": "The class `ResponsesAreCompressed` in `uses-request-compression.js` is responsible for auditing whether resources are served with compression. The `audit_` function within this class processes the artifacts to determine if resources are uncompressed and calculates potential savings. This is directly related to the bug as it is the component that reports the compression status.\n\nThe class `ResponseCompression` in `response-compression.js` is tasked with determining the optimized file sizes for responses by checking the content-encoding header. The `filterUnoptimizedResponses` function filters out responses that are not compressed based on the headers. This function is crucial because it identifies which resources are considered uncompressed, which is the core of the reported issue. If this function incorrectly identifies compressed resources as uncompressed, it would lead to the erroneous audit report.",
+        "bug_scenario": "The bug scenario involves a Chrome audit incorrectly reporting that compression is missing for resources, even though gzip compression is enabled. The user has verified through the Dev Tool's Network panel and a curl command that gzip compression is indeed active, yet the audit still suggests enabling compression."
+    }
+}

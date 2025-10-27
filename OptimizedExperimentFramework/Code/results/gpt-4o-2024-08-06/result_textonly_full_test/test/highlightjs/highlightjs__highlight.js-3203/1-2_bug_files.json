@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/powershell.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "1. `src/languages/powershell.js`: This file is likely responsible for the syntax highlighting rules specific to PowerShell. Since the issue is with the incorrect highlighting of PowerShell flags, the logic or patterns in this file might need to be updated to correctly highlight both single and double hyphen flags.\n\n2. `src/lib/regex.js`: This file might contain utility functions for constructing or managing regular expressions used across different language files. If the highlighting issue involves incorrect regex patterns, adjustments might be required here to ensure that the PowerShell file uses the correct patterns for flag detection.",
+        "bug_scenario": "The issue is with the syntax highlighting in PowerShell scripts where a double hyphen flag (`--flag`) is incorrectly highlighted. The correct highlighting should occur for single hyphen flags (`-flag`), but the expectation is that both should be highlighted due to the common use of double hyphen flags in PowerShell, despite the standard library using single hyphen flags."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/powershell.js"
+        ],
+        "explanation": "The file `src/languages/powershell.js` is responsible for defining the syntax highlighting rules for PowerShell scripts. Since the bug is related to how flags are highlighted in PowerShell, this file likely contains the relevant logic that needs to be adjusted to correctly highlight double hyphen flags. Adjustments or additions to the regular expressions or parsing logic within this file would be necessary to fix the issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for PowerShell command flags in a code highlighter. Specifically, the issue is that double hyphen flags (e.g., `--flag`) are not highlighted correctly while single hyphen flags (e.g., `-flag`) are highlighted as expected. The first image shows the current incorrect highlighting, where the double hyphen flag is not highlighted. The second image shows the expected behavior, where both single and double hyphen flags are highlighted, as seen in PowerShell Core 7.1.3."
+    }
+}

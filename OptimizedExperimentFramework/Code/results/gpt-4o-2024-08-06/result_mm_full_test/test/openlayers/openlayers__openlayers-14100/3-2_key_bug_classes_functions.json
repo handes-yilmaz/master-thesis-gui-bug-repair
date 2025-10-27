@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Group.js//LayerGroup",
+            "src/ol/TileQueue.js//TileQueue"
+        ],
+        "bug_functions": [
+            "src/ol/TileQueue.js//loadMoreTiles",
+            "src/ol/renderer/canvas/TileLayer.js//manageTilePyramid"
+        ],
+        "explanation": "The `LayerGroup` class in `src/ol/layer/Group.js` is responsible for managing collections of layers, which is directly related to how tile requests are handled in a group. The `TileQueue` class in `src/ol/TileQueue.js` manages the queue of tile requests, and its `loadMoreTiles` function controls the number of tiles loaded simultaneously, which is crucial for concurrent loading. The `manageTilePyramid` function in `src/ol/renderer/canvas/TileLayer.js` is involved in managing tile loading at different zoom levels, which can affect the loading behavior observed in the bug scenario.",
+        "bug_scenario": "The bug scenario involves a change in tile loading behavior after upgrading from version 6.1 to 7.0. In version 6.1, tile requests for layers in a LayerGroup were sent concurrently, resulting in faster imagery loading. However, in version 7.0, the requests are sent sequentially, causing slower load times. The images show the difference in request timing between the two versions, with the first image showing concurrent requests and the second image showing sequential requests."
+    }
+}

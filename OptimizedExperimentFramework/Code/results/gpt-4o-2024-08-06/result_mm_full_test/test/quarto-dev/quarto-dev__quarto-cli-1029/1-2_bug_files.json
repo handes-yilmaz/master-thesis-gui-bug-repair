@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/format/reveal/format-reveal.ts",
+            "resources/formats/revealjs/plugins/",
+            "resources/formats/revealjs/reveal/css/theme/"
+        ],
+        "explanation": "The files related to the reveal.js format are likely responsible for handling the layout and styling of the slides. Specifically, `format-reveal.ts` in `src/format/reveal/` is a potential location for the logic dictating layout behavior. The resources in `resources/formats/revealjs/plugins/` and `resources/formats/revealjs/reveal/css/theme/` are likely to contain CSS or plugins affecting how `aside` and `r-stretch` classes are applied and interact on the slides.",
+        "bug_scenario": "The bug involves the `aside` class clashing with the `r-stretch` class when used on a slide with a single figure. The figure is stretched too much, causing the `aside` content to overlap with the bottom of the figure. The caption of the figure also goes below the `aside` content. The desired behavior is for the `aside` content to take priority and occupy the bottom part of the slide, with the figure stretched to the top of the `aside` block."
+    },
+    "2": {
+        "bug_files": [
+            "src/format/reveal/format-reveal.ts",
+            "src/format/reveal/format-reveal-theme.ts",
+            "src/format/reveal/constants.ts"
+        ],
+        "explanation": "The bug is related to how figures and `aside` classes are rendered in reveal.js presentations. The files under `src/format/reveal/` are likely responsible for handling the layout and rendering logic for reveal.js slides. These files may define styles, themes, and constants that affect how elements are displayed on the slides, including handling of `aside` and figure interactions.",
+        "bug_scenario": "The bug occurs when using the `aside` class with a single figure on a slide in reveal.js. The issue is that the figure is stretched too much, and the `aside` content overlaps the bottom of the figure. If there is a caption, it goes below the `aside` content. The desired behavior is for the `aside` content to take priority and for the figure to be adjusted accordingly."
+    }
+}

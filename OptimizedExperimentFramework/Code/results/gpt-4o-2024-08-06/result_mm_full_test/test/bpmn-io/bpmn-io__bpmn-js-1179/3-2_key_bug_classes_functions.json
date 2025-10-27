@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//preExecute",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//postExecuted"
+        ],
+        "explanation": "The issue is related to how elements are inserted and connected to sequence flows. The `insertShape` function handles the reconnection of sequence flows when an element is dropped, which is directly related to the bug. The `preExecute` and `postExecuted` functions manage the context and execution of element movements, which are crucial for ensuring the correct docking and layout of sequence flows. These functions need to be examined and potentially modified to fix the docking issue and maintain the correct layout.",
+        "bug_scenario": "The bug occurs when an element is dropped onto a sequence flow, causing the layout to break. The new incoming sequence flow docks at the top left corner, disrupting the intended flow layout."
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/output.ts",
+            "src/command/render/pandoc-html.ts",
+            "src/command/render/layout.ts"
+        ],
+        "explanation": "These files are related to rendering and output, which are likely responsible for managing how URLs and images are displayed. The `output.ts` and `pandoc-html.ts` files handle rendering and converting markdown to HTML, which is where URL parsing issues might occur. The `layout.ts` file could be involved in how images are arranged in the grid view, making it relevant to the issue of images not displaying properly in the grid.",
+        "bug_scenario": "The bug report describes an issue where images with non-standard URLs (containing commas and other punctuation) display correctly inline in a blog post but not in the image grid view. This indicates a potential problem with how URLs are parsed or rendered in different contexts within the application."
+    },
+    "2": {
+        "bug_files": [
+            "src/command/render/output.ts",
+            "src/command/render/pandoc-html.ts",
+            "src/command/render/pandoc.ts",
+            "src/core/image.ts"
+        ],
+        "explanation": "The problem likely lies in how URLs are handled when rendering images in different contexts. The files related to rendering output and handling HTML via Pandoc are relevant because they manage how content is displayed. The 'image.ts' file could be responsible for the logic related to image sources, including URL validation and processing.",
+        "bug_scenario": "The bug involves non-standard URLs (e.g., containing commas or special punctuation) displaying correctly when inline but not displaying correctly in an image grid format. This is observed in a blog post where an image from a non-standard URL appears correctly in the post but not in the grid view."
+    }
+}

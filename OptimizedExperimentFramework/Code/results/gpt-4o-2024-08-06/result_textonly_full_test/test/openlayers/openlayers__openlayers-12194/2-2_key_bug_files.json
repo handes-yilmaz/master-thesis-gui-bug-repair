@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/style/Stroke.js",
+            "src/ol/render.js"
+        ],
+        "explanation": "1. `src/ol/render/canvas/Immediate.js`: This file contains the `CanvasImmediateRenderer` class, which is responsible for rendering geometries directly to a canvas. The issue with the lineDash pattern not being scaled correctly likely originates here, as this is where the immediate rendering logic is implemented.\n\n2. `src/ol/style/Stroke.js`: This file defines the `Stroke` class, which includes properties for lineDash patterns. The problem might be related to how the lineDash is set or retrieved, especially in relation to pixel ratio adjustments.\n\n3. `src/ol/render.js`: This file includes the `toContext` function, which binds a Canvas Immediate API to a canvas context. The pixel ratio is set here, and any issues with applying this ratio to the lineDash pattern could be rooted in this function.",
+        "bug_scenario": "The bug scenario involves rendering dashed lines on a canvas using the OpenLayers library. When setting a pixel ratio in the `ol/render.toContext()` function to achieve sharp images on high device pixel ratio displays, the lineDash pattern is not scaled correctly. This results in dashed lines appearing blurred or as continuous lines, especially on devices with a pixel ratio greater than 1.0. The issue is that while pixel coordinates are scaled correctly, the lineDash pattern is not, leading to inconsistencies in rendering between map and canvas immediate rendering."
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/font-display.js",
+            "lighthouse-core/gather/gatherers/css-usage.js",
+            "lighthouse-core/gather/gather-runner.js"
+        ],
+        "explanation": "The file 'lighthouse-core/audits/font-display.js' is directly related to the audit that checks for the 'font-display' property. The 'lighthouse-core/gather/gatherers/css-usage.js' file is likely responsible for collecting CSS data, which might include 'font-display' properties. 'lighthouse-core/gather/gather-runner.js' manages the gathering of artifacts, including CSS usage, which could affect the recognition of stylesheets that use these fonts.",
+        "bug_scenario": "The bug relates to Lighthouse being unable to automatically check the 'font-display' CSS property for specific web font URLs, as indicated in the warnings. This issue likely stems from the 'CSSUsage' artifact not recognizing stylesheets that reference these fonts."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/font-display.js",
+            "lighthouse-core/gather/gatherers/css-usage.js"
+        ],
+        "explanation": "The file 'font-display.js' in 'lighthouse-core/audits/' is likely responsible for audits related to font-display values, which are directly mentioned in the warnings. The 'css-usage.js' gatherer in 'lighthouse-core/gather/gatherers/' collects CSS usage data and is crucial for identifying which stylesheets reference specific fonts. If this data is missing or incorrect, it could lead to the inability to check 'font-display' values properly.",
+        "bug_scenario": "The bug report indicates that Lighthouse is unable to automatically check the 'font-display' value for certain webfont URLs, leading to audit warnings. This suggests that the CSSUsage artifact might not include stylesheets referencing these fonts, which is crucial for optimizing text visibility during webfont loads."
+    }
+}

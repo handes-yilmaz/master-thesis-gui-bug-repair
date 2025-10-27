@@ -1,0 +1,19 @@
+diff --git a/lighthouse-core/audits/user-timings.js b/lighthouse-core/audits/user-timings.js
+index 45acbf6..b083bc5 100644
+--- a/lighthouse-core/audits/user-timings.js
++++ b/lighthouse-core/audits/user-timings.js
+@@ -55,10 +55,13 @@ class UserTimings extends Audit {
+ 
+       // reject these "userTiming" events that aren't really UserTiming, by nuking ones with frame data (or requestStart)
+       // https://cs.chromium.org/search/?q=trace_event.*?user_timing&sq=package:chromium&type=cs
++      // Exclude irrelevant user timing events injected by third-party scripts
++      const irrelevantEventNames = ['googleAdEvent1', 'googleAdEvent2']; // Example event names to exclude
+       return evt.name !== 'requestStart' &&
+           evt.name !== 'navigationStart' &&
+           evt.name !== 'paintNonDefaultBackgroundColor' &&
+-          evt.args.frame === undefined;
++          evt.args.frame === undefined &&
++          !irrelevantEventNames.includes(evt.name);
+     })
+     .forEach(ut => {
+       // Mark events fall under phases R and I (or i)

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/html_renderer.js"
+        ],
+        "explanation": "The file `src/languages/python.js` is likely responsible for defining the syntax highlighting rules for Python code. Since the issue involves Python comment formatting, this file would need to be reviewed and potentially updated to correctly apply the 'hljs-comment' class to comments following decorators. The `src/lib/html_renderer.js` file is responsible for rendering the syntax-highlighted code into HTML, applying the appropriate CSS classes to different parts of the code. If there is a bug in how classes are assigned to comments in particular scenarios, such as when they are on the same line as decorators, this file might need adjustments to ensure that comments receive the correct class.",
+        "bug_scenario": "The bug scenario involves the incorrect syntax highlighting of comments in Python code when they appear on the same line as a decorator. Specifically, the highlight.js library assigns the 'hljs-meta' class to the entire line, including the comment, instead of applying the 'hljs-comment' class to the comment portion of the line. This results in the comment not being greyed out as expected, which is inconsistent with the expected behavior as seen on platforms like GitHub."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/html_renderer.js"
+        ],
+        "explanation": "The issue described in the bug report pertains to the incorrect classification of comments in Python code when using decorators. \n\n1. `src/languages/python.js`: This file is likely responsible for defining the syntax rules for highlighting Python code. Since the issue is specific to Python and involves decorators, the logic for parsing and classifying Python-specific syntax would be implemented here. Modifications to correctly identify and classify inline comments on decorator lines would be necessary in this file.\n\n2. `src/lib/html_renderer.js`: This file could be responsible for rendering the highlighted syntax into HTML, applying the appropriate CSS classes (`hljs-meta`, `hljs-comment`, etc.). If there is a bug in how these classes are applied, especially for mixed content lines (decorators and comments), this file might need changes to ensure comments are rendered with the correct class.",
+        "bug_scenario": "In the provided bug scenario, there is an issue with the syntax highlighting for Python decorators in the `highlight.js` library. Specifically, when a comment appears on the same line as a decorator, the entire line is incorrectly categorized with the `hljs-meta` class, instead of applying the `hljs-comment` class to the comment portion of the line. This affects the visual representation of code, as comments should appear in a different color to distinguish them from code, aiding readability and understanding."
+    }
+}

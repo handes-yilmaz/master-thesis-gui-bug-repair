@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/gather/connections/cri.js",
+            "lighthouse-core/gather/connections/connection.js"
+        ],
+        "explanation": "These files are relevant because they are involved in the process of connecting to the browser, managing network requests, and gathering data.\n\n1. **lighthouse-core/gather/driver.js**: This file is likely responsible for driving the interactions with the browser tabs, including handling network requests and possibly interacting with iFrames.\n\n2. **lighthouse-core/gather/gather-runner.js**: This file coordinates the gathering of all resources and network data used for generating the Lighthouse report. It may need to handle multiple frames or targets to properly capture all network activity.\n\n3. **lighthouse-core/gather/connections/cri.js**: CRI (Chrome Remote Interface) is used for direct communication with Chrome. Adjustments here might be needed to ensure that connections are made to all relevant targets, including OOPIFs.\n\n4. **lighthouse-core/gather/connections/connection.js**: This file manages the low-level details of the connection to the Chrome Debugger Protocol. Properly handling target discovery and message routing for OOPIFs would likely involve changes here.\n\nThese files are central to the core functionality that would need to be modified to discover and handle network data from all frames, including out-of-process ones.",
+        "bug_scenario": "The bug report discusses an issue where Lighthouse, a tool used in Chrome DevTools, does not properly handle Out-of-Process iFrames (OOPIFs). This is evident from the observation that while Chrome DevTools uses the 'Target.sendMessageToTarget' to enable network data collection for discovered targets (i.e., iframes), the Lighthouse code in 'lighthouse/lighthouse-core/gather' does not perform similar target discovery and handling. As a result, Lighthouse might only be capturing and analyzing network requests from the main frame, neglecting those from nested or out-of-process frames."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/gather/connections/cri.js",
+            "lighthouse-core/lib/network-recorder.js",
+            "lighthouse-core/lib/network-request.js"
+        ],
+        "explanation": "The identified files are likely related to the bug because:\n\n1. `lighthouse-core/gather/driver.js`: This file is crucial as it interacts with the Chrome DevTools Protocol to collect data, which includes network data. If there's an issue with handling multiple targets or frames, it might originate here.\n\n2. `lighthouse-core/gather/gather-runner.js`: This file coordinates the gathering of data during a Lighthouse run. It may need modifications to ensure that it handles data from all frames, not just the main frame.\n\n3. `lighthouse-core/gather/connections/cri.js`: This file handles the connection to Chrome using the Chrome Remote Interface. If there's a problem with target discovery for OOPIFs, this file may require updates to correctly establish communication with all targets.\n\n4. `lighthouse-core/lib/network-recorder.js` and `lighthouse-core/lib/network-request.js`: These files handle the recording and managing of network requests. If requests from iframes are not being captured, these files might need changes to ensure that all network traffic is recorded and analyzed, regardless of the frame.",
+        "bug_scenario": "The provided bug report highlights an issue where Lighthouse does not handle Out Of Process Iframes (OOPIFs) correctly. The user noticed that while Chrome DevTools can discover iframe targets using `Target.sendMessageToTarget` for network requests, Lighthouse's source code in the `lighthouse/lighthouse-core/gather` folder does not seem to perform similar target discovery. This suggests that Lighthouse might only be analyzing requests from the main frame, and not from iframes, which could indicate a limitation or bug in its handling of OOPIFs."
+    }
+}

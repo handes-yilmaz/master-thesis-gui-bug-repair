@@ -1,0 +1,42 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "trim",
+            "file_path": "src/document/doc-printer.js",
+            "function_details": [
+                {
+                    "name": "trim",
+                    "start_line": 113,
+                    "end_line": 136
+                }
+            ],
+            "function_code": [
+                "function trim(out) {",
+                "  if (out.length === 0) {",
+                "    return 0;",
+                "  }",
+                "",
+                "  let trimCount = 0;",
+                "",
+                "  // Trim whitespace at the end of line",
+                "  while (",
+                "    out.length > 0 &&",
+                "    typeof out[out.length - 1] === \"string\" &&",
+                "    out[out.length - 1].match(/^[\\t ]*$/)",
+                "  ) {",
+                "    trimCount += out.pop().length;",
+                "  }",
+                "",
+                "  if (out.length && typeof out[out.length - 1] === \"string\") {",
+                "    const trimmed = out[out.length - 1].replace(/[\\t ]*$/, \"\");",
+                "    trimCount += out[out.length - 1].length - trimmed.length;",
+                "    out[out.length - 1] = trimmed;",
+                "  }",
+                "",
+                "  return trimCount;",
+                "}"
+            ]
+        }
+    }
+}

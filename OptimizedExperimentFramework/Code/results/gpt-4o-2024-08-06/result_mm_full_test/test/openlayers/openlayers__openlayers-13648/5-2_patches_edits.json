@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "sourceResolutions[level] = getResolution(image, images[0]);"
+                ],
+                "REPLACE": [
+                    "        const pixelWidth = image.getResolutionX();",
+                    "        const pixelHeight = image.getResolutionY();",
+                    "        sourceResolutions[level] = getResolution(image, images[0]) * (pixelWidth / pixelHeight);"
+                ]
+            }
+        ],
+        "src/ol/reproj/Image.js": [
+            {
+                "SEARCH": [
+                    "const width = getWidth(this.targetExtent_) / this.targetResolution_;",
+                    "const height = getHeight(this.targetExtent_) / this.targetResolution_;"
+                ],
+                "REPLACE": [
+                    "      const pixelWidth = this.sourceImage_.getResolutionX();",
+                    "      const pixelHeight = this.sourceImage_.getResolutionY();",
+                    "      const width = getWidth(this.targetExtent_) / (this.targetResolution_ * (pixelWidth / pixelHeight));",
+                    "      const height = getHeight(this.targetExtent_) / this.targetResolution_;"
+                ]
+            }
+        ]
+    }
+}

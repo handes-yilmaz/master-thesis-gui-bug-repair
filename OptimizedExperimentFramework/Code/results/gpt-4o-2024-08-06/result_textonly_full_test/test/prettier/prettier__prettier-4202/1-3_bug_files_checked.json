@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/printer-markdown.js",
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/options.js"
+        ],
+        "explanation": "1. **src/language-markdown/printer-markdown.js**: This file is likely responsible for printing or formatting markdown documents. Since the bug is about the way tables are formatted, any changes to the prettying logic would be made here.\n\n2. **src/language-markdown/parser-markdown.js**: This file is responsible for parsing markdown files. If there are special cases where the parser needs to signal the printer to treat certain markdown tables differently, modifications would be required here.\n\n3. **src/language-markdown/options.js**: If new options or configurations need to be added to control this behavior (e.g., enabling or disabling this feature), they would be declared in this file. This would be necessary if users need to toggle the new behavior on or off or if there are different formatting styles to choose from.",
+        "bug_scenario": "The bug is related to the excessively long lines generated when prettying markdown tables, particularly those containing HTML. This can be problematic for readability and maintainability of the code. The goal is to implement a feature to detect such cases and revert to a simpler table formatting."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/doc/doc-printer.js",
+            "src/doc/doc-utils.js"
+        ],
+        "explanation": "The bug is related to how markdown tables are parsed and printed, which is managed by the markdown parser and printer. Therefore, 'src/language-markdown/parser-markdown.js' and 'src/language-markdown/printer-markdown.js' are directly related to this functionality as they handle the parsing and formatting of markdown content. Additionally, 'src/doc/doc-printer.js' and 'src/doc/doc-utils.js' are likely involved as they are responsible for the document printing process, which includes formatting decisions like line length and table formatting. These files together handle the logic that needs to be adjusted to implement a fallback to a simpler table formatting style when excessive line lengths are detected.",
+        "bug_scenario": "The bug report describes an issue where Prettier, a code formatting tool, is creating excessively long lines in markdown tables when processing them, particularly those containing HTML, such as all-contributors tables. The example provided shows a markdown table with long lines, which is not being formatted ideally by Prettier. The desired behavior is for Prettier to detect these cases and switch to a simpler formatting style with three-dash separators (':---:') to avoid the creation of long lines."
+    }
+}

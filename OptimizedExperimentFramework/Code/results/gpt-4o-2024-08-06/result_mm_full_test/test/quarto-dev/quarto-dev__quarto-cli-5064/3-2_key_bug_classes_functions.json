@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/code-annotation.lua//kLangCommentChars"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/code-annotation.lua//annoteProvider",
+            "src/resources/filters/quarto-pre/code-annotation.lua//resolveCellAnnotes"
+        ],
+        "explanation": "The issue is related to how the code annotations are processed for different languages. The `kLangCommentChars` class defines the comment characters for each language, which is crucial for identifying annotations. The `annoteProvider` function is responsible for creating the annotation processing logic based on these comment characters. The `resolveCellAnnotes` function handles the actual processing of code blocks to identify and replace annotations. These elements are directly involved in the annotation handling logic and are likely where the bug resides, as they determine how annotations are detected and processed for each language.",
+        "bug_scenario": "The bug involves incorrect handling of code annotations for C/C++ and VHDL in a documentation tool. While annotations work correctly for R and Python, they fail to replace the annotation markers with circle numbering in C/C++ and VHDL code blocks."
+    }
+}

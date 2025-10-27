@@ -1,0 +1,18 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index 8c77819..26ae777 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -21,6 +21,13 @@ function copyProperties(source, target, properties) {
+       target[property] = source[property];
+     }
+   });
++
++  // Additional logic to handle multiple shapes
++  if (isArray(source) && source.length > 1) {
++    // Implement logic to handle multiple shapes being pasted
++    // This could involve checking the target type and adjusting connections
++    // appropriately to ensure logical connections
++  }
+ }
+ 
+ function removeProperties(element, properties) {

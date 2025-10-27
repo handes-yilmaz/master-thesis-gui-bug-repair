@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/SubprocessCompatibility.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/label-editing/index.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js"
+        ],
+        "explanation": "The bug is related to the direct editing of elements within a sub-process in a BPMN diagram and the transition between different planes. Therefore, the files that are likely related to this issue are those that handle direct editing and plane switching:\n\n1. **lib/features/drilldown/SubprocessCompatibility.js**: This file might contain logic related to compatibility checks for sub-processes during plane switching.\n\n2. **lib/features/drilldown/DrilldownOverlayBehavior.js**: As part of the drilldown feature, this file might manage overlay behaviors which could interfere with or affect direct editing views when switching planes.\n\n3. **lib/features/label-editing/LabelEditingProvider.js** and **lib/features/label-editing/index.js**: These files are directly involved in the label editing feature, which includes direct editing functionality.\n\n4. **lib/modeling/behavior/SubProcessPlaneBehavior.js**: This file likely contains behaviors specific to sub-processes, including what should happen when switching between process planes, making it relevant for ensuring the direct editing session is closed properly.\n\nThese files are suspected because they involve direct editing and drilldown (plane switching) features, which are central to the issue described in the bug report.",
+        "bug_scenario": "The bug occurs when a user is using the direct editing feature on a sub-process in a BPMN diagram, and then switches planes (diagrams) without canceling the direct editing mode. The expected behavior is for the direct editing session to close when switching planes, but instead, the editing box remains open even though the element being edited is no longer visible."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/drilldown/SubprocessCompatibility.js",
+            "lib/features/label-editing/index.js",
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js"
+        ],
+        "explanation": "1. **lib/features/drilldown/SubprocessCompatibility.js**: This file likely handles the logic related to switching between different planes or views within the BPMN diagram. Since the bug is related to plane switching, this file is a suspect for not properly managing the state of the direct editing when a plane switch occurs.\n\n2. **lib/features/label-editing/index.js** and **lib/features/label-editing/LabelEditingProvider.js**: These files are part of the label editing feature, which is directly involved in managing the lifecycle of the direct editing box. If the editing box remains open after switching planes, it suggests that the label editing logic is not being notified of the plane switch or is not handling it correctly.\n\n3. **lib/features/modeling/behavior/SubProcessPlaneBehavior.js**: Given that the issue arises when switching sub-process planes, this file likely contains behavior logic for managing subprocess planes and their interactions, including what should occur when a user navigates away from a plane. It may need to be adjusted to ensure that all editing sessions are terminated upon plane switch.",
+        "bug_scenario": "The bug occurs when a user is using the direct editing feature within a sub-process plane in a BPMN diagram. Typically, direct editing allows users to edit text directly on the diagram elements. However, when the user switches from one plane to another, the direct editing box remains visible even though the element being edited is no longer visible. This indicates that the editing session is not being properly terminated on plane switch, leading to a visual bug where the editing box is floating on the screen without context."
+    }
+}

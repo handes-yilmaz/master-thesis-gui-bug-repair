@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "1. **src/language-markdown/parser-markdown.js**: This file likely contains the logic for parsing Markdown files and detecting code block languages. Given the bug report, it seems that the language detection logic is not correctly handling the presence of additional attributes after the language identifier. Fixing this would require modifying the parser to ignore these attributes when identifying the language.\n\n2. **src/language-markdown/printer-markdown.js**: This file is responsible for printing or formatting Markdown content. If the parser is modified to detect languages correctly, the printer might also need adjustments to ensure that the formatted output meets the expected behavior, particularly in how it handles code block attributes.\n\n3. **src/main/parser.js**: This file may contain shared parsing logic or infrastructure used across different language parsers, including Markdown. Changes or additions here could be necessary if the issue with detecting languages in code blocks involves the core parsing logic that applies to multiple languages or the integration of Markdown parsing within the broader Prettier architecture.",
+        "bug_scenario": "The bug report describes an issue with the Prettier tool, where it fails to correctly detect the language of fenced code blocks in Markdown files if there are additional attributes following the language identifier. This issue affects the syntax highlighting and formatting of code blocks in Markdown documents, particularly when attributes like `{cmd=node .line-numbers}` are used to specify additional instructions or styling. The expected behavior is that Prettier should format such code blocks the same way it formats a plain language identifier, ignoring any additional attributes."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/language-markdown/index.js"
+        ],
+        "explanation": "The bug is related to Prettier's handling of Markdown fenced code blocks, particularly those with attributes following the language specifier. The files in the `language-markdown` directory are responsible for parsing and printing Markdown content. Specifically:\n\n1. **src/language-markdown/parser-markdown.js**: This file likely contains the logic for parsing Markdown, including recognizing fenced code blocks and their language specifiers. Modifications here would allow Prettier to correctly parse and ignore attributes following the language specifier.\n\n2. **src/language-markdown/printer-markdown.js**: This file is responsible for printing or formatting the parsed Markdown. Ensuring that it formats code blocks correctly, regardless of attributes, would be part of resolving the issue.\n\n3. **src/language-markdown/index.js**: This file generally serves as an entry point for Markdown handling in Prettier, linking together parsers and printers. Changes here may be necessary to ensure that the entire process from parsing to printing supports code block attributes correctly.\n\nThese files are directly related to how Prettier processes and formats Markdown files, making them relevant for addressing the described bug.",
+        "bug_scenario": "The bug scenario involves Prettier's failure to properly detect the language of a fenced code block in Markdown when additional attributes are present after the language specifier. The expected behavior is that Prettier should ignore these attributes and format the code block as if only the language specifier was present."
+    }
+}

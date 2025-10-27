@@ -1,0 +1,77 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "collectStacks",
+            "file_path": "lighthouse-core/lib/stack-collector.js",
+            "function_details": [
+                {
+                    "name": "collectStacks",
+                    "start_line": 73,
+                    "end_line": 89
+                }
+            ],
+            "function_code": [
+                "async function collectStacks(passContext) {",
+                "  const expression = `(function () {",
+                "    ${libDetectorSource};",
+                "    return (${detectLibraries.toString()}());",
+                "  })()`;",
+                "",
+                "  /** @type {JSLibrary[]} */",
+                "  const jsLibraries = await passContext.driver.evaluateAsync(expression);",
+                "",
+                "  return jsLibraries.map(lib => ({",
+                "    detector: /** @type {'js'} */ ('js'),",
+                "    id: lib.id,",
+                "    name: lib.name,",
+                "    version: lib.version || undefined,",
+                "    npm: lib.npm || undefined,",
+                "  }));",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "getStackPacks",
+            "file_path": "lighthouse-core/lib/stack-packs.js",
+            "function_details": [
+                {
+                    "name": "getStackPacks",
+                    "start_line": 44,
+                    "end_line": 72
+                }
+            ],
+            "function_code": [
+                "function getStackPacks(pageStacks) {",
+                "  /** @type {Array<LH.Result.StackPack>} */",
+                "  const packs = [];",
+                "",
+                "  for (const pageStack of pageStacks) {",
+                "    const stackPackToIncl = stackPacksToInclude.find(stackPackToIncl =>",
+                "      stackPackToIncl.requiredStacks.includes(`${pageStack.detector}:${pageStack.id}`));",
+                "    if (!stackPackToIncl) {",
+                "      continue;",
+                "    }",
+                "",
+                "    // Grab the full pack definition",
+                "    const matchedPack = stackPacks.find(pack => pack.id === stackPackToIncl.packId);",
+                "    if (!matchedPack) {",
+                "      log.warn('StackPacks',",
+                "        `'${stackPackToIncl.packId}' stack pack was matched but is not found in stack-packs lib`);",
+                "      continue;",
+                "    }",
+                "",
+                "    packs.push({",
+                "      id: matchedPack.id,",
+                "      title: matchedPack.title,",
+                "      iconDataURL: matchedPack.iconDataURL,",
+                "      descriptions: matchedPack.descriptions,",
+                "    });",
+                "  }",
+                "",
+                "  return packs;",
+                "}"
+            ]
+        }
+    }
+}

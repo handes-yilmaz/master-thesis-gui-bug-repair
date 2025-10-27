@@ -1,0 +1,83 @@
+{
+    "1/1": {
+        "src/command/render/pandoc-html.ts": [
+            {
+                "SEARCH": [
+                    "// Compile the scss",
+                    "const highlightCssPath = await compileSass(",
+                    "[{",
+                    "key: cssFileName,",
+                    "quarto: {",
+                    "uses: \"\",",
+                    "defaults: \"\",",
+                    "functions: \"\",",
+                    "mixins: \"\",",
+                    "rules: rules.join(\"\\n\"),",
+                    "},",
+                    "}],",
+                    "temp,",
+                    "false,",
+                    ");"
+                ],
+                "REPLACE": [
+                    "      // Compile the scss",
+                    "      const highlightCssPath = await compileSass(",
+                    "        [{",
+                    "          key: cssFileName,",
+                    "          quarto: {",
+                    "            uses: \"\",",
+                    "            defaults: \"\",",
+                    "            functions: \"\",",
+                    "            mixins: \"\",",
+                    "            rules: rules.join(\"\\n\") + \"\\n.table-caption { text-align: center; }\",",
+                    "          },",
+                    "        }],",
+                    "        temp,",
+                    "        false,",
+                    "      );"
+                ]
+            }
+        ],
+        "src/format/html/format-html.ts": [
+            {
+                "SEARCH": [
+                    "} else {",
+                    "const definitionLists = processCodeBlockAnnotation(",
+                    "doc,",
+                    "false,",
+                    "\"start\",",
+                    "replaceLineNumberWithAnnote,",
+                    ");",
+                    "",
+                    "Object.values(definitionLists).forEach((dl) => {",
+                    "dl.classList.add(kCodeAnnotationGridClz);",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  } else {",
+                    "    const definitionLists = processCodeBlockAnnotation(",
+                    "      doc,",
+                    "      false,",
+                    "      \"start\",",
+                    "      replaceLineNumberWithAnnote,",
+                    "    );",
+                    "",
+                    "    Object.values(definitionLists).forEach((dl) => {",
+                    "      dl.classList.add(kCodeAnnotationGridClz);",
+                    "    });",
+                    "",
+                    "    // Ensure captions are correctly aligned with spanners",
+                    "    const tables = doc.querySelectorAll(\"table\");",
+                    "    tables.forEach((table) => {",
+                    "      const caption = table.querySelector(\"caption\");",
+                    "      if (caption) {",
+                    "        caption.style.textAlign = \"center\";",
+                    "      }",
+                    "    });",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

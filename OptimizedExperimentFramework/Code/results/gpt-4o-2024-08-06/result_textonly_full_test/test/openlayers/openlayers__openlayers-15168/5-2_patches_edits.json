@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/ol/reproj/Image.js": [
+            {
+                "SEARCH": [
+                    "const width = getWidth(this.targetExtent_) / this.targetResolution_;",
+                    "const height = getHeight(this.targetExtent_) / this.targetResolution_;"
+                ],
+                "REPLACE": [
+                    "      const sourceWidth = getWidth(this.sourceImage_.getExtent());",
+                    "      const sourceHeight = getHeight(this.sourceImage_.getExtent());",
+                    "      const targetWidth = getWidth(this.targetExtent_);",
+                    "      const targetHeight = getHeight(this.targetExtent_);",
+                    "      const width = targetWidth / this.targetResolution_;",
+                    "      const height = (targetHeight / targetWidth) * (sourceHeight / sourceWidth) * width;"
+                ]
+            }
+        ],
+        "src/ol/reproj/Tile.js": [
+            {
+                "SEARCH": [
+                    "const width = typeof size === 'number' ? size : size[0];",
+                    "const height = typeof size === 'number' ? size : size[1];"
+                ],
+                "REPLACE": [
+                    "      const sourceWidth = getWidth(this.sourceTileGrid_.getTileCoordExtent(this.sourceTiles_[0].tileCoord));",
+                    "      const sourceHeight = getHeight(this.sourceTileGrid_.getTileCoordExtent(this.sourceTiles_[0].tileCoord));",
+                    "      const targetWidth = typeof size === 'number' ? size : size[0];",
+                    "      const targetHeight = typeof size === 'number' ? size : size[1];",
+                    "      const width = targetWidth;",
+                    "      const height = (targetHeight / targetWidth) * (sourceHeight / sourceWidth) * width;"
+                ]
+            }
+        ]
+    }
+}

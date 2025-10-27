@@ -1,0 +1,44 @@
+{
+    "1/1": {
+        "src/cascader-select/cascader-select.jsx": [
+            {
+                "SEARCH": [
+                    "updateCache(dataSource) {",
+                    "this._v2n = {};",
+                    "this._p2n = {};",
+                    "const loop = (data, prefix = '0') =>",
+                    "data.forEach((item, index) => {",
+                    "const { value, children } = item;",
+                    "const pos = `${prefix}-${index}`;",
+                    "this._v2n[value] = this._p2n[pos] = { ...item, pos };",
+                    "",
+                    "if (children && children.length) {",
+                    "loop([...children], pos); // Use a copy of children",
+                    "}",
+                    "});",
+                    "",
+                    "loop([...dataSource]); // Use a copy of dataSource",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    updateCache(dataSource) {",
+                    "        this._v2n = Object.assign({}, this._v2n);",
+                    "        this._p2n = Object.assign({}, this._p2n);",
+                    "        const loop = (data, prefix = '0') =>",
+                    "            data.forEach((item, index) => {",
+                    "                const { value, children } = item;",
+                    "                const pos = `${prefix}-${index}`;",
+                    "                this._v2n[value] = this._p2n[pos] = { ...item, pos };",
+                    "",
+                    "                if (children && children.length) {",
+                    "                    loop([...children], pos); // Use a copy of children",
+                    "                }",
+                    "            });",
+                    "",
+                    "        loop([...dataSource]); // Use a copy of dataSource",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "handleSourceUpdate_() {",
+                    "if (this.getSource()) {",
+                    "this.setStyle(this.style_);",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  handleSourceUpdate_() {",
+                    "    if (this.getSource()) {",
+                    "      this.setStyle(this.style_);",
+                    "      this.getRenderer().clearCache(); // Clear the cache when the source is updated",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "}"
+                ],
+                "REPLACE": [
+                    "  }",
+                    "",
+                    "  /**",
+                    "   * Clear the tile texture cache.",
+                    "   */",
+                    "  clearCache() {",
+                    "    const tileTextureCache = this.tileTextureCache_;",
+                    "    tileTextureCache.forEach((tileTexture) => tileTexture.dispose());",
+                    "    tileTextureCache.clear();",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

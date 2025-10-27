@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/html/renderer/report-renderer.js//ReportRenderer",
+            "lighthouse-core/report/html/renderer/performance-category-renderer.js//PerformanceCategoryRenderer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/html/renderer/report-renderer.js//renderReport",
+            "lighthouse-core/report/html/renderer/performance-category-renderer.js//_renderOpportunity"
+        ],
+        "explanation": "The `ReportRenderer` class in `report-renderer.js` is responsible for rendering the entire Lighthouse report, including the layout and structure of the report sections. The `renderReport` function is a key function that handles the rendering of the report into the container element, which includes setting up the layout for different sections of the report. Any issues with the overall layout, such as the squished opportunity section, could originate from this function.\n\nThe `PerformanceCategoryRenderer` class in `performance-category-renderer.js` specifically handles the rendering of the performance category, which includes opportunities. The `_renderOpportunity` function is responsible for rendering individual opportunities within the performance category. If the opportunity section is visually squished, it could be due to how this function calculates and sets the layout properties for the opportunity elements, such as width and positioning. Therefore, these classes and functions are directly related to the bug and need to be examined for potential layout issues.",
+        "bug_scenario": "The bug scenario involves a visual issue in the Lighthouse report where the opportunity section is squished, as shown in the provided image. This could be a layout or rendering problem in the report's HTML structure."
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "src/ol/style/Icon.js": [
+            {
+                "SEARCH": [
+                    "const scale = options.scale !== undefined ? options.scale : 1;"
+                ],
+                "REPLACE": [
+                    "    const scale = options.scale !== undefined ? Math.abs(options.scale) : 1;"
+                ]
+            }
+        ],
+        "src/ol/render/canvas/hitdetect.js": [
+            {
+                "SEARCH": [
+                    "iconContext.drawImage(img, 0, 0);"
+                ],
+                "REPLACE": [
+                    "        if (image.getScale() < 0) {",
+                    "          iconContext.scale(-1, 1); // Mirror the image horizontally for negative scale",
+                    "          iconContext.drawImage(img, -img.width, 0);",
+                    "        } else {",
+                    "          iconContext.drawImage(img, 0, 0);",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

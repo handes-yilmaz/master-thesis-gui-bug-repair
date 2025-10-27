@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/panel-tabset.lua//quarto.Tab",
+            "src/resources/filters/quarto-pre/panel-tabset.lua//quarto.Tabset"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/panel-tabset.lua//render_tabset",
+            "src/resources/filters/quarto-pre/panel-tabset.lua//parse_tabset_contents",
+            "src/resources/filters/quarto-pre/panel-tabset.lua//bootstrapTabs"
+        ],
+        "explanation": "The classes and functions identified are directly related to the rendering and parsing of tabsets in Quarto. The 'quarto.Tab' and 'quarto.Tabset' classes are responsible for creating and managing the tab structures, which are central to the issue described. The 'render_tabset' function is crucial as it handles the rendering of the tabset, which is where the bug manifests. The 'parse_tabset_contents' function is involved in parsing the tabset contents, which could be affected by the order of classes. The 'bootstrapTabs' function is relevant because it defines the attributes for rendering tabs using Bootstrap, which is directly related to the 'nav-fill' class mentioned in the bug report.",
+        "bug_scenario": "The bug scenario involves the incorrect rendering of a combination of 'panel-tabset' and 'nav-fill' in the Quarto pre-release version 1.3.146, which previously worked in version 1.2.335. The issue is demonstrated with two screenshots showing the difference in rendering between the two versions. The problem is resolved by changing the order of the classes in the markdown syntax."
+    }
+}

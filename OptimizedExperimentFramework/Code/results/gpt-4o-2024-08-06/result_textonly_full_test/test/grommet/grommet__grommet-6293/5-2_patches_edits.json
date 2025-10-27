@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/js/components/Meter/Meter.js": [
+            {
+                "SEARCH": [
+                    "// Assuming the issue is in the rendering loop for circle type",
+                    "values.forEach((value, index) => {",
+                    "if (type === 'circle') {",
+                    "// Logic that renders the circle segments",
+                    "// Potentially incorrect logic that only renders the last value",
+                    "renderCircleSegment(value, index);",
+                    "}",
+                    "});"
+                ],
+                "REPLACE": [
+                    "values.forEach((value, index) => {",
+                    "  if (type === 'circle') {",
+                    "    // Corrected logic to render each value as a separate segment",
+                    "    renderCircleSegment(value, index);",
+                    "  }",
+                    "});"
+                ]
+            }
+        ]
+    }
+}

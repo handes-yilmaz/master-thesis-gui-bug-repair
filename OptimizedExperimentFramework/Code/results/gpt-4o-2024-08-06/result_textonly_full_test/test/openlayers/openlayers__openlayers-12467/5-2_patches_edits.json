@@ -1,0 +1,46 @@
+{
+    "1/1": {
+        "src/ol/render/canvas/Immediate.js": [
+            {
+                "SEARCH": [
+                    "const dx = pixelCoordinates[2] - pixelCoordinates[0];",
+                    "const dy = pixelCoordinates[3] - pixelCoordinates[1];",
+                    "const radius = Math.sqrt(dx * dx + dy * dy);",
+                    "const context = this.context_;",
+                    "context.beginPath();",
+                    "context.arc(",
+                    "pixelCoordinates[0],",
+                    "pixelCoordinates[1],",
+                    "radius,",
+                    "0,",
+                    "2 * Math.PI",
+                    ");"
+                ],
+                "REPLACE": [
+                    "      const dx = pixelCoordinates[2] - pixelCoordinates[0];",
+                    "      const dy = pixelCoordinates[3] - pixelCoordinates[1];",
+                    "      const radius = Math.sqrt(dx * dx + dy * dy);",
+                    "      const context = this.context_;",
+                    "      context.beginPath();",
+                    "      context.arc(",
+                    "        pixelCoordinates[0] + 0.5, // Adjust for sub-pixel rendering",
+                    "        pixelCoordinates[1] + 0.5, // Adjust for sub-pixel rendering",
+                    "        radius,",
+                    "        0,",
+                    "        2 * Math.PI",
+                    "      );"
+                ]
+            }
+        ],
+        "src/ol/render/canvas/Builder.js": [
+            {
+                "SEARCH": [
+                    "this.pixelRatio = pixelRatio;"
+                ],
+                "REPLACE": [
+                    "    this.pixelRatio = pixelRatio !== undefined ? pixelRatio : 1;"
+                ]
+            }
+        ]
+    }
+}

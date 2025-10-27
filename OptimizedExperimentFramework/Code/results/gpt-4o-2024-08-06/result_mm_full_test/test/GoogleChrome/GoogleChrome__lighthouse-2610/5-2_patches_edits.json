@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/critical-request-chains.js": [
+            {
+                "SEARCH": [
+                    "chainTransferSize: (transferSize + child.request.transferSize)"
+                ],
+                "REPLACE": [
+                    "          chainTransferSize: transferSize + (child.request.transferSize || 0)"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "displayValue: Util.formatNumber(chainCount),"
+                ],
+                "REPLACE": [
+                    "        displayValue: `Chains: ${Util.formatNumber(chainCount)}, Longest Chain Transfer Size: ${Util.formatBytes(longestChain.transferSize)}`,"
+                ]
+            }
+        ]
+    }
+}

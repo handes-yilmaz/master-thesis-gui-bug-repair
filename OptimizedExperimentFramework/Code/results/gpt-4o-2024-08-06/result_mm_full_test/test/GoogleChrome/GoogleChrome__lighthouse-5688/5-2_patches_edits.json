@@ -1,0 +1,14 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/uses-webp-images.js": [
+            {
+                "SEARCH": [
+                    "} else if (image.originalSize < image.webpSize + IGNORE_THRESHOLD_IN_BYTES) {"
+                ],
+                "REPLACE": [
+                    "      } else if (/(jpeg|bmp)/.test(image.mimeType) === false || image.originalSize < image.webpSize + IGNORE_THRESHOLD_IN_BYTES) {"
+                ]
+            }
+        ]
+    }
+}

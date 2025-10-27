@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "let min = source.min;",
+                    "let max = source.max;",
+                    "let gain, bias;",
+                    "if (normalize) {",
+                    "if (min === undefined) {",
+                    "min = getMinForDataType(sourceSamples[sourceIndex][0]);",
+                    "}",
+                    "if (max === undefined) {",
+                    "max = getMaxForDataType(sourceSamples[sourceIndex][0]);",
+                    "}",
+                    "",
+                    "gain = 255 / (max - min);",
+                    "bias = -min * gain;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "          let min = source.min;",
+                    "          let max = source.max;",
+                    "          let gain, bias;",
+                    "          if (normalize) {",
+                    "            const imageMetadata = this.sourceImagery_[sourceIndex][z].getGDALMetadata();",
+                    "            if (min === undefined) {",
+                    "              min = imageMetadata.STATISTICS_MINIMUM !== undefined ? parseFloat(imageMetadata.STATISTICS_MINIMUM) : getMinForDataType(sourceSamples[sourceIndex][0]);",
+                    "            }",
+                    "            if (max === undefined) {",
+                    "              max = imageMetadata.STATISTICS_MAXIMUM !== undefined ? parseFloat(imageMetadata.STATISTICS_MAXIMUM) : getMaxForDataType(sourceSamples[sourceIndex][0]);",
+                    "            }",
+                    "",
+                    "            gain = 255 / (max - min);",
+                    "            bias = -min * gain;",
+                    "          }"
+                ]
+            }
+        ]
+    }
+}

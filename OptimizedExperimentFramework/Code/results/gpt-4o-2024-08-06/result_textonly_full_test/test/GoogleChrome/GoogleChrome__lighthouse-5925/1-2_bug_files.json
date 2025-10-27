@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js",
+            "lighthouse-core/lib/i18n/i18n.js",
+            "lighthouse-core/lib/lh-error.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/byte-efficiency/unminified-javascript.js`: This file is directly related to the analysis of JavaScript files for minification. The issue described in the bug report pertains to how this audit evaluates and reports on the minification status of JavaScript files. Modifications might be needed here to adjust how the audit handles specific cases like the presence of non-minifiable content such as copyright notices.\n\n2. `lighthouse-core/lib/i18n/i18n.js`: This file manages internationalization for error messages and may need updates to ensure that any error or warning messages related to minification issues are correctly localized. Adjustments to how errors are reported might be necessary if the handling of minification checks is altered.\n\n3. `lighthouse-core/lib/lh-error.js`: This file defines error handling for Lighthouse. Since the bug report indicates that Lighthouse is \"being too picky,\" there might be a need to adjust how errors related to minification are classified or reported, potentially requiring updates to this file to refine error handling logic.",
+        "bug_scenario": "The bug scenario involves Lighthouse incorrectly reporting a minified JavaScript file as unminified due to the inclusion of a copyright notice that contains carriage returns and whitespace. This affects the calculation of potential savings from minification in Lighthouse reports."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js",
+            "lighthouse-core/audits/byte-efficiency/unused-javascript.js",
+            "lighthouse-core/report/html/renderer/crc-details-renderer.js"
+        ],
+        "explanation": "The issue pertains to the way Lighthouse evaluates JavaScript files for minification and unused code. The file `unminified-javascript.js` is directly involved in assessing whether JavaScript files are minified, which is the core issue in the bug report. The `unused-javascript.js` file could also be related as it deals with analyzing JavaScript usage, which may intersect with how minification is evaluated. Additionally, `crc-details-renderer.js` in the report generation module could be relevant because it handles the rendering of details in the report, including information about JavaScript efficiency and minification.",
+        "bug_scenario": "The bug report describes an issue with Lighthouse misreporting a minified JavaScript file as not being minified due to the presence of a hardcoded copyright notice containing carriage returns and whitespace. This affects the accuracy of the byte efficiency audits, specifically the estimation of savings from minification."
+    }
+}

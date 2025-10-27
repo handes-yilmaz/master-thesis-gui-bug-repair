@@ -1,0 +1,56 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "validateForm",
+            "file_path": "src/js/components/Form/Form.js",
+            "function_details": [
+                {
+                    "name": "validateForm",
+                    "start_line": 120,
+                    "end_line": 157
+                }
+            ],
+            "function_code": [
+                "const validateForm = (",
+                "  validationRules,",
+                "  formValue,",
+                "  format,",
+                "  messages,",
+                "  omitValid,",
+                ") => {",
+                "  const nextErrors = {};",
+                "  const nextInfos = {};",
+                "  validationRules.forEach(([name, { field, input }]) => {",
+                "    if (!omitValid) {",
+                "      nextErrors[name] = undefined;",
+                "      nextInfos[name] = undefined;",
+                "    }",
+                "",
+                "    let result;",
+                "    if (input) {",
+                "      // input() a validation function supplied through useFormInput()",
+                "      result = input(name, formValue, format, messages);",
+                "    }",
+                "    if (field && !result) {",
+                "      // field() a validation function supplied through useFormField()",
+                "      result = field(name, formValue, format, messages);",
+                "    }",
+                "    // typeof error === 'object' is implied for both cases of error with",
+                "    // a status message and for an error object that is a react node",
+                "    if (typeof result === 'object') {",
+                "      if (result.status === 'info') {",
+                "        nextInfos[name] = result.message;",
+                "      } else {",
+                "        nextErrors[name] = result.message || result; // could be a node",
+                "      }",
+                "    } else if (typeof result === 'string') {",
+                "      nextErrors[name] = result;",
+                "    }",
+                "  });",
+                "  return [nextErrors, nextInfos];",
+                "};"
+            ]
+        }
+    }
+}

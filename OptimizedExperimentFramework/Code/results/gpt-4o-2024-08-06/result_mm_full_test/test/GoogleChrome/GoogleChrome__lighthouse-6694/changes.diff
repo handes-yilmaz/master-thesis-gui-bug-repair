@@ -1,0 +1,19 @@
+diff --git a/lighthouse-core/audits/uses-rel-preconnect.js b/lighthouse-core/audits/uses-rel-preconnect.js
+index f17d1ba..2ca8b71 100644
+--- a/lighthouse-core/audits/uses-rel-preconnect.js
++++ b/lighthouse-core/audits/uses-rel-preconnect.js
+@@ -97,6 +97,14 @@ class UsesRelPreconnectAudit extends Audit {
+ 
+     const {rtt, additionalRttByOrigin} = loadSimulator.getOptions();
+ 
++    // Check for existing preconnect or dns-prefetch links in the DOM
++    const existingLinks = new Set();
++    const document = artifacts.devtoolsLogs[UsesRelPreconnectAudit.DEFAULT_PASS].document;
++    const linkElements = document.querySelectorAll('link[rel="preconnect"], link[rel="dns-prefetch"]');
++    linkElements.forEach(link => {
++      existingLinks.add(link.href);
++    });
++
+     /** @type {Map<string, LH.Artifacts.NetworkRequest[]>}  */
+     const origins = new Map();
+     networkRecords

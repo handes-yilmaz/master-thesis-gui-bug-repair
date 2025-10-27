@@ -1,0 +1,13 @@
+diff --git a/src/ol/renderer/canvas/VectorTileLayer.js b/src/ol/renderer/canvas/VectorTileLayer.js
+index 5661c32..a04b690 100644
+--- a/src/ol/renderer/canvas/VectorTileLayer.js
++++ b/src/ol/renderer/canvas/VectorTileLayer.js
+@@ -789,7 +789,7 @@ class CanvasVectorTileLayerRenderer extends CanvasTileLayerRenderer {
+     const tileGrid = source.getTileGridForProjection(projection);
+     const tileResolution = tileGrid.getResolution(tile.tileCoord[0]);
+     const renderPixelRatio =
+-      (frameState.pixelRatio / tile.wantedResolution) * tileResolution;
++      (frameState.pixelRatio * window.devicePixelRatio / tile.wantedResolution) * tileResolution;
+     const resolution = tileGrid.getResolution(z);
+     const context = tile.getContext(layer);
+ 

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Icon.js//Icon",
+            "src/ol/render/canvas/ImageBuilder.js//CanvasImageBuilder"
+        ],
+        "bug_functions": [
+            "src/ol/style/Icon.js//Icon.getOrigin",
+            "src/ol/render/canvas/ImageBuilder.js//CanvasImageBuilder.setImageStyle"
+        ],
+        "explanation": "The `Icon` class in `src/ol/style/Icon.js` is directly related to the bug because it handles the icon style settings, including displacement, which is mentioned in the bug report. The `getOrigin` function within this class is responsible for calculating the origin of the icon, which is affected by displacement and could lead to clipping if not handled correctly.\n\nThe `CanvasImageBuilder` class in `src/ol/render/canvas/ImageBuilder.js` is also relevant because it deals with rendering images on the canvas. The `setImageStyle` function within this class sets various parameters for the image, including anchor and origin, which are crucial for positioning the icon correctly on the canvas. If these parameters do not account for displacement properly, it could result in the icon being clipped.",
+        "bug_scenario": "The bug scenario involves an icon style in OpenLayers where the icon gets clipped when a displacement is set. The issue can be observed in a forked example where a green cross icon is clipped due to the displacement setting."
+    }
+}

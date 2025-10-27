@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/offline-start-url.js",
+            "lighthouse-core/audits/works-offline.js",
+            "lighthouse-core/gather/gatherers/service-worker.js",
+            "lighthouse-core/gather/gatherers/offline.js"
+        ],
+        "explanation": "The files are related to the offline capabilities and service worker audits in Lighthouse. The `offline-start-url.js` audit checks if the start URL can load offline. The `works-offline.js` ensures the application can function offline. The `service-worker.js` gatherer collects information about service workers, and `offline.js` handles offline functionality. These components are likely involved in determining and verifying offline behavior.",
+        "bug_scenario": "The bug occurs when the Lighthouse tool runs an offline audit and incorrectly reports the start URL as not loading offline, despite the page being accessible. The expected offline page should display a message indicating offline status, as shown in the image, but instead, the desktop version loads. The issue seems related to network request flags `fromServiceWorker` and `fromDiskCache` being false when offline."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/offline-start-url.js",
+            "lighthouse-core/audits/works-offline.js",
+            "lighthouse-core/gather/gatherers/offline.js",
+            "lighthouse-core/gather/gatherers/service-worker.js"
+        ],
+        "explanation": "The files are related to offline functionality and service worker auditing.\\n1. `lighthouse-core/audits/offline-start-url.js`: This file is likely responsible for auditing whether the start URL loads offline correctly.\\n2. `lighthouse-core/audits/works-offline.js`: This file might be responsible for checking if the site works offline, which is directly related to the reported issue.\\n3. `lighthouse-core/gather/gatherers/offline.js`: Gathers data related to offline status, essential for detecting if the page is offline.\\n4. `lighthouse-core/gather/gatherers/service-worker.js`: Related to handling service workers, which are crucial for offline functionality.",
+        "bug_scenario": "The bug report indicates that the Lighthouse tool is not correctly identifying when a page is offline. The expected behavior is that the tool should report the start URL as loading offline, displaying a specific offline page instead of the desktop version of the site. The image provided shows the expected offline page which should appear when offline, but currently, the tool loads the desktop page, indicating the offline detection isn't functioning correctly."
+    }
+}

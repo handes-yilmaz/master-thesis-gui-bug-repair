@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/typescript.js",
+            "src/lib/compiler_extensions.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "1. **src/languages/typescript.js**: This file is likely responsible for defining the syntax highlighting rules for TypeScript. Since the issue is specific to how TypeScript type parameters are highlighted, changes here could directly address the problem.\n\n2. **src/lib/compiler_extensions.js**: This file might contain utilities or extensions used by the language compilers to process and apply syntax highlighting rules. If the highlighting logic for type parameters involves compiler extensions, this file could be relevant.\n\n3. **src/lib/modes.js**: This file might define the modes or patterns used for syntax highlighting across different languages. If there's a generic pattern affecting camel-case tokens, adjustments here might be necessary to ensure correct highlighting of TypeScript type parameters.",
+        "bug_scenario": "The bug involves an issue with syntax highlighting in TypeScript code, where type parameters in camel-case are not fully highlighted. Specifically, only the first component of a camel-case type parameter (e.g., 'Out' in 'OutT') is highlighted, while the rest (e.g., 'T') is not."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/lib/ecmascript.js",
+            "src/languages/typescript.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "1. **src/languages/lib/ecmascript.js**: This file likely contains the base rules for syntax highlighting of ECMAScript languages including JavaScript and TypeScript. Since the issue is related to TypeScript highlighting, this file may need adjustments to correctly apply uniform highlighting to type parameters.\n\n2. **src/languages/typescript.js**: This file is specifically for TypeScript language support. It will contain the logic and rules for highlighting TypeScript code, including type parameters. Modifications here could address the specific highlighting issue observed with camel-case type parameters.\n\n3. **src/lib/regex.js**: Highlighting often relies on regular expressions to identify and style code elements. If the issue stems from how type parameters are matched, this file might require changes to the regex patterns used for detecting type parameters to ensure the entire parameter is uniformly highlighted.",
+        "bug_scenario": "The bug is related to the syntax highlighting of TypeScript code, specifically the type parameters in camel-case format. In the provided bug scenario images, it is observed that the highlighting differentiates the first component (\"Out\") from the rest (\"T\") in the type parameter \"OutT\". This is an issue because it should be highlighted uniformly according to the expected behavior, as seen in GitHub's highlighting which treats the entire type parameter uniformly without distinction between components."
+    }
+}

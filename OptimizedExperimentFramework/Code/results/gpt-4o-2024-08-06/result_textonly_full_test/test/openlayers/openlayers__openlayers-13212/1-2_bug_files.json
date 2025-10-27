@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/source/WebGLTile.js",
+            "src/ol/source/Tile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/tilegrid/TileGrid.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "1. **src/ol/source/GeoTIFF.js**: This file is likely involved because the issue suggests creating a new source that handles GeoTIFF pyramids, which is similar to the existing GeoTIFF source implementation.\n2. **src/ol/source/WebGLTile.js**: Since the issue is with WebGLTileLayers, this file is likely relevant as it deals with the WebGL tile source.\n3. **src/ol/source/Tile.js**: As the bug is related to the tile rendering and performance issues, the core tile source file may need updates to integrate the new pyramid handling logic.\n4. **src/ol/renderer/webgl/TileLayer.js**: The rendering issues are related to WebGL contexts, so the WebGL TileLayer renderer is likely responsible for managing the rendering of tile layers and would need adjustments to handle larger pyramids more efficiently.\n5. **src/ol/tilegrid/TileGrid.js**: Tile grids are crucial for determining how tiles are organized and fetched. The new pyramid source might require custom tile grid logic, making this file relevant.\n6. **src/ol/webgl/TileTexture.js**: This file likely deals with the WebGL textures used for tiles, which are directly affected by how tiles are managed and rendered, especially when dealing with large data sets like pyramids.",
+        "bug_scenario": "The bug scenario involves using WebGLTileLayers with a large pyramid of layers, which leads to lost WebGL contexts and poor performance due to too many layers. The current system does not handle larger pyramids well, resulting in tiles not rendering and significant performance drops."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/source/Tile.js",
+            "src/ol/source/TileImage.js",
+            "src/ol/source/WMTS.js",
+            "src/ol/tilegrid/TileGrid.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "The files identified are related to the handling of tile sources and rendering within the application.\\n\\n1. **src/ol/source/GeoTIFF.js**: This file is directly related to the handling of GeoTIFF sources, which is central to the bug report. The existing handling of GeoTIFFs would need to be adjusted to manage pyramids and template strings.\\n\\n2. **src/ol/source/Tile.js**: This is likely involved because it relates to the general handling of tile sources, crucial for implementing changes to tile management and ensuring compatibility with the proposed pyramid structure.\\n\\n3. **src/ol/source/TileImage.js**: This file deals with image-based tile sources, which would be relevant when adjusting how images are loaded and rendered from GeoTIFF pyramids.\\n\\n4. **src/ol/source/WMTS.js**: The WMTS source is mentioned in the bug report as being similar to what is needed, suggesting that this file could provide useful reference points or code structures that might be adapted for the new GeoTIFF pyramid source.\\n\\n5. **src/ol/tilegrid/TileGrid.js**: Since the proposal includes using a tile grid object (similar to WMTS), this file is important for defining or modifying the grid logic used with the new source.\\n\\n6. **src/ol/renderer/webgl/TileLayer.js**: Since the issue involves WebGL contexts and the rendering of tile layers, this file is relevant for ensuring that the WebGL rendering logic is modified to handle the new source structure efficiently.",
+        "bug_scenario": "The bug scenario involves the use of WebGLTileLayers for rendering a pyramid of GeoTIFFs, which does not scale well with larger pyramids due to WebGL context losses. This leads to unrendered tiles and poor performance, dropping the frame rate significantly. To address the issue, the proposal is to create a separate source for handling a pyramid of GeoTIFFs using a template string and a tile grid object, which would reduce the number of WebGL contexts needed and improve performance."
+    }
+}

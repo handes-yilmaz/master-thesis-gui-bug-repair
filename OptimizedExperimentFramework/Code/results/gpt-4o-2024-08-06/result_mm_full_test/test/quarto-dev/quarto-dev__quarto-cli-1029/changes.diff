@@ -1,0 +1,17 @@
+diff --git a/src/format/reveal/format-reveal.ts b/src/format/reveal/format-reveal.ts
+index b955ecf..9ab2ae5 100644
+--- a/src/format/reveal/format-reveal.ts
++++ b/src/format/reveal/format-reveal.ts
+@@ -680,6 +680,12 @@ function applyStretch(doc: Document, autoStretch: boolean) {
+           el.classList.contains("r-stretch");
+       };
+ 
++      // Check for aside content and adjust image position
++      const asideContent = slideEl.querySelector(".aside");
++      if (asideContent) {
++        imageEl.style.marginBottom = `${asideContent.clientHeight}px`;
++      }
++
+       // Only apply auto stretch on specific known structures
+       // and avoid applying automatically on custom divs
+       if (

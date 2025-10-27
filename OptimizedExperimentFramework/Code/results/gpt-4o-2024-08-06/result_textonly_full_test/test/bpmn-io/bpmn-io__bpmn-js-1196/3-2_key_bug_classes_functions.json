@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js//CreateBoundaryEventBehavior",
+            "lib/features/modeling/behavior/AttachEventBehavior.js//AttachEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences",
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//removeProperties",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js//preExecute",
+            "lib/features/modeling/behavior/AttachEventBehavior.js//preExecute"
+        ],
+        "explanation": "The classes and functions identified are directly involved in the copy-paste and event attachment behaviors within the BPMN model. The `BpmnCopyPaste` class in `BpmnCopyPaste.js` handles the copying of elements, including boundary events, and the `resolveReferences`, `copyProperties`, and `removeProperties` functions are crucial for managing the properties and references of copied elements. The `CreateBoundaryEventBehavior` and `AttachEventBehavior` classes in their respective files manage the creation and attachment of boundary events to tasks. The `preExecute` functions in these classes are responsible for setting up the boundary event correctly when it is created or moved, which is directly related to the bug where the boundary event is not attaching to the copied task.",
+        "bug_scenario": "The bug scenario involves a boundary event that is not correctly attached to its corresponding task when both are copied. The expected behavior is that the boundary event should automatically attach to the copied task, but this is not happening as shown in the provided GIF image."
+    }
+}

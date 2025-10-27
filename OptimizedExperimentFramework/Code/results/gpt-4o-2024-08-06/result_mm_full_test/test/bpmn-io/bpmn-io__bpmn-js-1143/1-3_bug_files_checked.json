@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/GroupBehavior.js",
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/GroupBehavior.js**: This file likely handles the behavior of groups within the modeling context. Since the bug is related to adding a group, this file is a probable cause of the issue.\n\n2. **lib/features/modeling/behavior/CreateParticipantBehavior.js**: This relates to the creation of participants (e.g., pools) in the diagram. As the bug occurs when adding a pool after a group, this file may contain logic or interactions that contribute to the crash.\n\n3. **lib/features/modeling/Modeling.js**: This file is central to the modeling functionality and could be involved in how elements are managed and interact with one another. Modifications or errors in this core file might lead to the observed issues when combining groups and other elements.",
+        "bug_scenario": "The bug occurs when a user adds a group to an empty diagram, followed by adding another element like a pool. This sequence causes the editor to crash and display errors in the console."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/GroupBehavior.js",
+            "lib/features/modeling/index.js",
+            "lib/features/modeling/behavior/AppendBehavior.js"
+        ],
+        "explanation": "The bug involves adding groups and pools, which are handled by the modeling behaviors. `GroupBehavior.js` likely manages group-specific logic, which seems to trigger the error. `AppendBehavior.js` might be involved in appending elements like pools to the diagram. Additionally, `index.js` in the modeling feature could be orchestrating these behaviors, making it relevant for the issue.",
+        "bug_scenario": "After adding a group to an empty diagram, attempting to add other elements like a pool causes the editor to crash and throw errors in the console. The GIF shows the sequence leading to this error: starting with an empty diagram, deleting the start event, adding a group, and then adding a pool, resulting in errors and a frozen editor."
+    }
+}

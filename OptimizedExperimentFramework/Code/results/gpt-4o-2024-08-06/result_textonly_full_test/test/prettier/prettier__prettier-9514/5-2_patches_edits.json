@@ -1,0 +1,33 @@
+{
+    "1/1": {
+        "src/language-js/parser-babel.js": [
+            {
+                "SEARCH": [
+                    "if (opts.parser === \"babel\" && isFlowFile(text, opts)) {",
+                    "opts.parser = \"babel-flow\";",
+                    "return parseFlow(text, parsers, opts);",
+                    "}",
+                    "",
+                    "// Inline the require to avoid loading all the JS if we don't use it",
+                    "const cherow = require(\"cherow\");"
+                ],
+                "REPLACE": [
+                    "    if (opts.parser === \"babel\" && isFlowFile(text, opts)) {",
+                    "      opts.parser = \"babel-flow\";",
+                    "      return parseFlow(text, parsers, opts);",
+                    "    }",
+                    "",
+                    "    // Use Cherow for non-Flow files",
+                    "    if (opts.parser === \"babel\") {",
+                    "      return cherow.parse(text, {",
+                    "        module: true,",
+                    "        ranges: true,",
+                    "        loc: true,",
+                    "        tokens: true,",
+                    "      });",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

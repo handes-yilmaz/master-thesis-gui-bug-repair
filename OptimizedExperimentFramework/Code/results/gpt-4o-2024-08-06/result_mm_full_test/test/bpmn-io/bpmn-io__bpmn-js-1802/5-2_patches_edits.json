@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "lib/features/context-pad/ContextPadProvider.js": [
+            {
+                "SEARCH": [
+                    "if (is(businessObject, 'bpmn:FlowNode')) {",
+                    "",
+                    "if (is(businessObject, 'bpmn:EventBasedGateway')) {",
+                    "",
+                    "assign(actions, {",
+                    "'append.receive-task': appendAction(",
+                    "'bpmn:ReceiveTask',",
+                    "'bpmn-icon-receive-task',",
+                    "translate('Append ReceiveTask')",
+                    "),"
+                ],
+                "REPLACE": [
+                    "  if (is(businessObject, 'bpmn:FlowNode')) {",
+                    "",
+                    "    // Add \"append anything\" entry",
+                    "    assign(actions, {",
+                    "      'append.anything': {",
+                    "        group: 'model',",
+                    "        className: 'bpmn-icon-append-anything',",
+                    "        title: translate('Append Anything'),",
+                    "        action: {",
+                    "          click: function(event, element) {",
+                    "            var position = assign(getReplaceMenuPosition(element), {",
+                    "              cursor: { x: event.x, y: event.y }",
+                    "            });",
+                    "",
+                    "            popupMenu.open(element, 'bpmn-append-anything', position, {",
+                    "              title: translate('Append element'),",
+                    "              width: 300,",
+                    "              search: true",
+                    "            });",
+                    "          }",
+                    "        }",
+                    "      }",
+                    "    });",
+                    "",
+                    "    if (is(businessObject, 'bpmn:EventBasedGateway')) {",
+                    "",
+                    "      assign(actions, {",
+                    "        'append.receive-task': appendAction(",
+                    "          'bpmn:ReceiveTask',",
+                    "          'bpmn-icon-receive-task',",
+                    "          translate('Append ReceiveTask')",
+                    "        ),"
+                ]
+            }
+        ]
+    }
+}

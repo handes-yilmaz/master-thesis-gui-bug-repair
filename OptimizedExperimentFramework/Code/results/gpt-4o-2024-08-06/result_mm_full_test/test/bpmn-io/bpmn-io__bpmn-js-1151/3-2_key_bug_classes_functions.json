@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/label-editing/LabelUtil.js//getLabel",
+            "lib/features/label-editing/LabelUtil.js//setLabel",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//UpdateLabelHandler"
+        ],
+        "explanation": "The issue is related to the handling of labels during the copy-paste process. The `BpmnCopyPaste` function in `BpmnCopyPaste.js` is responsible for copying and pasting elements, but it seems to mishandle label data. The `getLabel` and `setLabel` functions in `LabelUtil.js` are crucial for retrieving and setting label text, which might not be correctly integrated into the copy-paste logic. The `UpdateLabelHandler` in `UpdateLabelHandler.js` manages label updates and might not be correctly invoked or functioning during the paste operation, leading to labels not being restored.",
+        "bug_scenario": "The bug involves losing labels when copying and pasting participant contents in a BPMN diagram. The image shows a simple BPMN diagram with labeled elements 'A' and 'B'. When these elements are copied and pasted, their labels are not retained, leading to missing labels in the new diagram."
+    }
+}

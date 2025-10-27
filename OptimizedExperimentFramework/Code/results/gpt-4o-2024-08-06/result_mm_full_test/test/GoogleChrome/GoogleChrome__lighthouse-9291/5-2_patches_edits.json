@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "lighthouse-cli/run.js": [
+            {
+                "SEARCH": [
+                    "async function runLighthouse(url, flags, config) {",
+                    "/** @param {any} reason */",
+                    "async function handleTheUnhandled(reason) {",
+                    "process.stderr.write(`Unhandled Rejection. Reason: ${reason}\\n`);"
+                ],
+                "REPLACE": [
+                    "async function runLighthouse(url, flags, config) {",
+                    "  // Ensure the URL has a protocol",
+                    "  if (!/^https?:\\/\\//i.test(url)) {",
+                    "    url = `http://${url}`;",
+                    "  }",
+                    "  /** @param {any} reason */",
+                    "  async function handleTheUnhandled(reason) {",
+                    "    process.stderr.write(`Unhandled Rejection. Reason: ${reason}\\n`);"
+                ]
+            }
+        ]
+    }
+}

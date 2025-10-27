@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/gather/connections/cri.js",
+            "lighthouse-core/gather/connections/extension.js",
+            "lighthouse-core/gather/connections/raw.js",
+            "lighthouse-core/audits/first-meaningful-paint.js",
+            "lighthouse-core/audits/first-interactive.js"
+        ],
+        "explanation": "The files pinpointed are likely involved in the bug due to their roles in the loading process and the execution of audits within the Lighthouse tool:\n\n1. **lighthouse-core/gather/driver.js**: This file is responsible for driving the collection of data from the browser. It manages the communication with the browser to initiate and track page loads, which is directly related to the bug where the tool hangs during page loading.\n\n2. **lighthouse-core/gather/gather-runner.js**: This component orchestrates the gathering of data required for audits. If the gathering process is stuck, it can lead to the behavior described in the bug report.\n\n3. **lighthouse-core/gather/connections/cri.js**, **extension.js**, **raw.js**: These files handle different types of connections to the browser (Chrome Remote Interface, extension, and raw connections). Since the problem is observed in both the native audit and extension, issues in these files could affect the communication stability or the data flow necessary for the audit to proceed.\n\n4. **lighthouse-core/audits/first-meaningful-paint.js** and **first-interactive.js**: These files pertain to audits that measure page load performance metrics. If these audits are not correctly receiving the necessary data or are misconfigured, they might not progress past the loading phase, contributing to the hanging issue.",
+        "bug_scenario": "The bug scenario involves a hanging issue in the Lighthouse tool during the 'Loading page & waiting for onload' step when performing a Progressive Web App audit. This occurs in both the native audit tool within Chrome and the Lighthouse extension, and it affects all pages of the specified site."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/lib/network-recorder.js",
+            "lighthouse-core/gather/connections/connection.js"
+        ],
+        "explanation": "1. **lighthouse-core/gather/driver.js**: This file is likely responsible for controlling the browser automation part of Lighthouse. Since the issue is related to hanging during page loading, the driver might be failing to correctly manage or detect the page load event.\n\n2. **lighthouse-core/gather/gather-runner.js**: This file handles the gathering of information from the browser, which includes waiting for the page to load. If the process hangs, it could be due to logic in this runner that isn't handling certain states or events properly.\n\n3. **lighthouse-core/lib/network-recorder.js**: This file manages network events and traffic during the Lighthouse audit. A hang at 'waiting for onload' might occur if network events are not being recorded or processed correctly, indicating a potential issue here.\n\n4. **lighthouse-core/gather/connections/connection.js**: This file establishes and manages connections to the browser. If there is a hang during loading, it might be due to issues in how connections are managed or monitored for events like onload.",
+        "bug_scenario": "The bug occurs when running a Lighthouse audit on a web page using either the native audit in Chrome or the Lighthouse extension. The process gets stuck on the 'Loading page & waiting for onload' step, and it appears to hang indefinitely without proceeding further."
+    }
+}

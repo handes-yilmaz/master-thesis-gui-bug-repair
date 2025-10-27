@@ -1,0 +1,15 @@
+diff --git a/lighthouse-extension/app/src/lighthouse-background.js b/lighthouse-extension/app/src/lighthouse-background.js
+index e18bfa0..2d5b1e6 100644
+--- a/lighthouse-extension/app/src/lighthouse-background.js
++++ b/lighthouse-extension/app/src/lighthouse-background.js
+@@ -112,7 +112,9 @@ window.runLighthouseForConnection = function(connection, url, options, aggregati
+     .then(result => {
+       lighthouseIsRunning = false;
+       updateBadgeUI();
+-      filterOutArtifacts(result);
++      if (result && result.artifacts) {
++        filterOutArtifacts(result);
++      }
+       return result;
+     })
+     .catch(err => {

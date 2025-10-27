@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "src/ol/source/ImageWMS.js": [
+            {
+                "SEARCH": [
+                    "const imageResolution = resolution / pixelRatio;"
+                ],
+                "REPLACE": [
+                    "    const imageResolution = Math.round(resolution / pixelRatio);"
+                ]
+            }
+        ],
+        "src/ol/source/TileWMS.js": [
+            {
+                "SEARCH": [
+                    "if (pixelRatio != 1 && (!this.hidpi_ || this.serverType_ === undefined)) {",
+                    "pixelRatio = 1;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (pixelRatio != 1 && (!this.hidpi_ || this.serverType_ === undefined)) {",
+                    "      pixelRatio = Math.round(pixelRatio);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

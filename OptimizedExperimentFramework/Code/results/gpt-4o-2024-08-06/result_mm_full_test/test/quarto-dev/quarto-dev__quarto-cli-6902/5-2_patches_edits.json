@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "src/command/render/crossref.ts": [
+            {
+                "SEARCH": [
+                    "const kCrossrefFilterParams = [kListings, kNumberSections, kNumberOffset];"
+                ],
+                "REPLACE": [
+                    "  const kCrossrefFilterParams = [kListings, kNumberSections, kNumberOffset, kSubfigureLabels];"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "// always create crossref index for projects"
+                ],
+                "REPLACE": [
+                    "  // handle subfigure labels",
+                    "  if (metadata?.subfigureLabels) {",
+                    "    params[kSubfigureLabels] = metadata.subfigureLabels;",
+                    "  }",
+                    "",
+                    "  // always create crossref index for projects"
+                ]
+            }
+        ]
+    }
+}

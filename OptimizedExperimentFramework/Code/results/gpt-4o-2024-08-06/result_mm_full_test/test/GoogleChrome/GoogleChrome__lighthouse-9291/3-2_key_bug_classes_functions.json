@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/lib/lh-error.js//LighthouseError",
+            "lighthouse-core/lib/i18n/i18n.js"
+        ],
+        "bug_functions": [
+            "lighthouse-core/index.js//lighthouse",
+            "lighthouse-cli/run.js//runLighthouse"
+        ],
+        "explanation": "The issue is related to the translation of error messages and URL validation. The `LighthouseError` class in `lh-error.js` is responsible for handling errors, including i18n translations. The `i18n.js` file is crucial for managing internationalization, which is directly related to the problem of untranslated text. The `lighthouse` function in `index.js` and `runLighthouse` in `run.js` are involved in executing the Lighthouse run and handling errors, making them relevant to the bug.",
+        "bug_scenario": "The bug scenario involves running a Lighthouse CLI command where the i18n text is not translated during a fatal CLI run. The error message displayed is 'Runtime error encountered: lighthouse-core/lib/lh-error.js | urlInvalid # 0', indicating an issue with URL validation or translation of error messages."
+    }
+}

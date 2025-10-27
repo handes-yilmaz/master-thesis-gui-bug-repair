@@ -1,0 +1,24 @@
+diff --git a/lib/import/BpmnImporter.js b/lib/import/BpmnImporter.js
+index 39862a7..1496a46 100644
+--- a/lib/import/BpmnImporter.js
++++ b/lib/import/BpmnImporter.js
+@@ -164,10 +164,10 @@ BpmnImporter.prototype.add = function(semantic, parentElement) {
+       waypoints: getWaypoints(semantic, source, target)
+     }));
+ 
+-    if (is(semantic, 'bpmn:DataAssociation')) {
++    if (is(semantic, 'bpmn:DataAssociation') || is(semantic, 'bpmn:Association')) {
+ 
+       // render always on top; this ensures DataAssociations
+-      // are rendered correctly across different "hacks" people
++      // and Associations are rendered correctly across different "hacks" people
+       // love to model such as cross participant / sub process
+       // associations
+       parentElement = null;
+@@ -330,4 +330,4 @@ function isPointInsideBBox(bbox, point) {
+     x <= bbox.x + bbox.width &&
+     y >= bbox.y &&
+     y <= bbox.y + bbox.height;
+-}
+\ No newline at end of file
++}

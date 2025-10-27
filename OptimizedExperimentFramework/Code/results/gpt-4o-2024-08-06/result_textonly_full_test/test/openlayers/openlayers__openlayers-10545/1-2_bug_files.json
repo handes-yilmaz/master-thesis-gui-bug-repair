@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/format/XML.js",
+            "src/ol/format/XMLFeature.js",
+            "src/ol/style/Text.js"
+        ],
+        "explanation": "1. **src/ol/format/XML.js**: This file is likely responsible for handling XML data parsing. Since the issue relates to character codes in labels, ensuring that XML parsers decode entities correctly is crucial.\n\n2. **src/ol/format/XMLFeature.js**: This file deals with parsing XML features. Given that the issue arises from KML (a type of XML), adjustments here might be necessary to ensure proper decoding.\n\n3. **src/ol/style/Text.js**: This file is involved in styling text labels. If the text is being set or rendered without proper decoding, changes here might be needed to ensure that text content is displayed correctly without HTML or XML entities.",
+        "bug_scenario": "The bug report describes an issue where character codes (e.g., HTML entities) appear in labels instead of being properly decoded. The image in the bug report shows a label displaying \"Andy&amp;apos;s\" instead of \"Andy's\", suggesting that text parsing or rendering is not correctly handling HTML or XML character entities."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/format/KML.js",
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/TextBuilder.js"
+        ],
+        "explanation": "1. **src/ol/format/KML.js**: This file likely handles the parsing of KML files. Since the issue is related to KML data not being decoded properly, this file might need to ensure that character entities within KML data are decoded correctly.\n\n2. **src/ol/style/Text.js**: This file is responsible for handling text styles in the application. It might be necessary to add a decoding step for text labels here to ensure that they are displayed correctly after styling.\n\n3. **src/ol/render/canvas/TextBuilder.js**: This file deals with the rendering of text on canvas. If the text is not decoded before rendering, it will display incorrectly. Therefore, this file may need adjustments to decode character entities before drawing the text.",
+        "bug_scenario": "The bug involves character codes appearing in labels, specifically in XML-based formats such as KML. The issue is that encoded characters, like `&amp;apos;`, are not being decoded when displayed, resulting in labels showing as 'Andy&amp;apos;s' instead of 'Andy's'."
+    }
+}

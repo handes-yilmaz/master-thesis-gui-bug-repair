@@ -1,0 +1,28 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "BpmnSpaceTool.prototype.calculateAdjustments",
+            "file_path": "lib/features/space-tool/BpmnSpaceTool.js",
+            "function_details": [
+                {
+                    "name": "BpmnSpaceTool.prototype.calculateAdjustments",
+                    "start_line": 37,
+                    "end_line": 46
+                }
+            ],
+            "function_code": [
+                "BpmnSpaceTool.prototype.calculateAdjustments = function(elements, axis, delta, start) {",
+                "  var adjustments = SpaceTool.prototype.calculateAdjustments.call(this, elements, axis, delta, start);",
+                "",
+                "  // do not resize text annotations",
+                "  adjustments.resizingShapes = adjustments.resizingShapes.filter(function(shape) {",
+                "    return !is(shape, 'bpmn:TextAnnotation');",
+                "  });",
+                "",
+                "  return adjustments;",
+                "};"
+            ]
+        }
+    }
+}

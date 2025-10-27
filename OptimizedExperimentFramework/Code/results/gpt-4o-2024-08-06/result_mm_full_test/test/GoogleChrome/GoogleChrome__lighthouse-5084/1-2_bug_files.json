@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js",
+            "lighthouse-core/gather/computed/network-records.js",
+            "lighthouse-core/gather/computed/page-dependency-graph.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js`: This file is involved in computing byte efficiency and is likely where the `computeWasteWithTTIGraph` function is implemented or used.\n2. `lighthouse-core/audits/byte-efficiency/efficient-animated-content.js`: This file deals specifically with animated content and its efficiency, making it relevant for the GIF to video conversion scenario.\n3. `lighthouse-core/gather/computed/network-records.js`: This file gathers network records, crucial for analyzing the network requests and their impacts, which are relevant to determining byte savings.\n4. `lighthouse-core/gather/computed/page-dependency-graph.js`: This file is involved in computing the page dependency graph, which is likely used in calculating the savings impact beyond just the TTI, as suggested by the bug report.",
+        "bug_scenario": "The bug is that the ByteEfficiency report is not reflecting the expected savings when converting animated GIFs to video formats. The report inaccurately shows a savings score of 100, despite the presence of a substantial potential savings of almost 5MB. The issue lies in how the `computeWasteWithTTIGraph` function calculates savings, as it does not account for the end of each network request graph but instead focuses on the estimated Time to Interactive (TTI) without considering long tasks or the final graph impact."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js",
+            "lighthouse-core/gather/computed/page-dependency-graph.js"
+        ],
+        "explanation": "1. `byte-efficiency-audit.js`: This file is directly related to the ByteEfficiency audit, which is responsible for reporting potential savings. Any bug in this logic could lead to inaccurate savings reports.\n2. `efficient-animated-content.js`: This file likely handles the specifics of evaluating animated content like GIFs, making it crucial for fixing the savings calculation.\n3. `page-dependency-graph.js`: Since the issue involves the calculation of load times and network requests, this file, which deals with page dependencies, might be crucial for adjusting the calculation logic to more accurately reflect savings.",
+        "bug_scenario": "The bug report indicates that the ByteEfficiency audit does not report savings for animated GIF to video conversions. Despite a large potential savings, the report inaccurately shows a perfect score of 100. The issue is due to the `computeWasteWithTTIGraph` method, which reports zero savings because only one network request is affected and no long tasks are touched. The difference in load times is significant, suggesting a need to calculate impact on the end of the graph or use onload times when few requests are involved."
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/template.ts",
+            "src/config/format.ts",
+            "resources/formats/reveal/format-reveal.ts"
+        ],
+        "explanation": "1. `src/command/render/template.ts`: This file likely handles the rendering of templates, including the conversion of configuration settings into the final presentation format. Issues with quoting or interpreting the `width` and `height` settings could originate here.\n2. `src/config/format.ts`: This file may define the configuration schema or parsing logic for different formats, including `revealjs`. Incorrect handling of percentage values might be rooted in the configuration parsing.\n3. `resources/formats/reveal/format-reveal.ts`: As this is directly related to the `revealjs` format, it is likely responsible for applying the width and height settings. Any misinterpretation of percentage values could be addressed here.",
+        "bug_scenario": "The bug report indicates an issue with the `revealjs` configuration where specifying `width` and `height` in percentage causes the presentation to not appear, resulting in a blank screen. This occurs because the percentage values are not properly quoted in the template, causing them to be misinterpreted. When pixel values are used, the presentation displays correctly, as shown in the images."
+    },
+    "2": {
+        "bug_files": [
+            "src/command/render/template.ts",
+            "src/command/render/layout.ts",
+            "formats/reveal/format-reveal.ts"
+        ],
+        "explanation": "The issue is likely related to how the `width` and `height` properties are being processed when set as percentages. The file `formats/reveal/format-reveal.ts` is responsible for the revealjs format, which would handle these properties. The `src/command/render/template.ts` and `src/command/render/layout.ts` files might be involved in rendering and layout processes, where the handling of these dimensions is implemented. Fixing the bug would likely involve ensuring that percentage values are correctly interpreted and applied.",
+        "bug_scenario": "The bug occurs when using percentages for width and height in the revealjs presentation format, resulting in a blank screen, as shown in the first image. When using pixel values, the presentation appears correctly, as shown in the second image."
+    }
+}

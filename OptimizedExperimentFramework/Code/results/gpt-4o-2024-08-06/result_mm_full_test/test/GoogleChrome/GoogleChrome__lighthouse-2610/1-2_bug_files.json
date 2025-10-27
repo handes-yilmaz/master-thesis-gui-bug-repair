@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/critical-request-chains.js",
+            "lighthouse-core/gather/computed/critical-request-chains.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "The bug is related to the reporting of incorrect sizes in the Critical Request Chains, which is likely managed by the code responsible for calculating and displaying these chains. The file `lighthouse-core/audits/critical-request-chains.js` is directly responsible for auditing these request chains. The file `lighthouse-core/gather/computed/critical-request-chains.js` likely deals with the computation or gathering of data related to these chains. Additionally, `lighthouse-core/lib/network-recorder.js` is involved in recording network requests, which might affect the data used to display request sizes.",
+        "bug_scenario": "The Critical Request Chain sizes are incorrectly reported as the same size across all entries, which does not match the actual sizes of the resources. This issue is observed in the built-in Lighthouse for Chrome Canary and the Lighthouse Chrome Extension."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/critical-request-chains.js",
+            "lighthouse-core/gather/computed/critical-request-chains.js"
+        ],
+        "explanation": "The files `critical-request-chains.js` in both the `audits` and `gather/computed` directories are directly related to the functionality of calculating and displaying the Critical Request Chains. These components are responsible for gathering and auditing the resource request data, including their sizes, which are displayed in Lighthouse reports. Any issues with incorrect size reporting would likely originate from these files.",
+        "bug_scenario": "The images show a list of resources in the Critical Request Chains with incorrect size information. All resources are listed with the same size, 38.18KB, which is not accurate. This issue is observed in the Lighthouse tool within Chrome Canary and its extension, affecting performance analysis."
+    }
+}

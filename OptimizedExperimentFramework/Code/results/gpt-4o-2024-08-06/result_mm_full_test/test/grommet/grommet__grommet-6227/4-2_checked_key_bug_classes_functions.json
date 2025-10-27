@@ -1,0 +1,63 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "validate",
+            "file_path": "src/js/components/Form/Form.js",
+            "function_details": [
+                {
+                    "name": "validate",
+                    "start_line": 64,
+                    "end_line": 77
+                }
+            ],
+            "function_code": [
+                "const validate = (rule, fieldValue, formValue, format, messages) => {",
+                "  let result;",
+                "  if (typeof rule === 'function') {",
+                "    result = rule(fieldValue, formValue);",
+                "  } else if (rule.regexp) {",
+                "    if (!rule.regexp.test(fieldValue)) {",
+                "      result = rule.message || format({ id: 'form.invalid', messages });",
+                "      if (rule.status) {",
+                "        result = { message: result, status: rule.status };",
+                "      }",
+                "    }",
+                "  }",
+                "  return result;",
+                "};"
+            ]
+        },
+        "2": {
+            "function_name": "setFieldValue",
+            "file_path": "src/js/components/Form/Form.js",
+            "function_details": [
+                {
+                    "name": "setFieldValue",
+                    "start_line": 44,
+                    "end_line": 61
+                }
+            ],
+            "function_code": [
+                "const setFieldValue = (name, componentValue, prevValue) => {",
+                "  const nextValue = { ...prevValue };",
+                "  const isArrayField = stringToArray(name);",
+                "  if (isArrayField) {",
+                "    const { indexOfArray, arrayName, arrayObjName } = isArrayField;",
+                "    if (!nextValue[arrayName]) nextValue[arrayName] = [];",
+                "    if (arrayObjName) {",
+                "      if (!nextValue[arrayName][indexOfArray])",
+                "        nextValue[arrayName][indexOfArray] = {",
+                "          [arrayObjName]: componentValue,",
+                "        };",
+                "      nextValue[arrayName][indexOfArray][arrayObjName] = componentValue;",
+                "    } else nextValue[arrayName][indexOfArray] = componentValue;",
+                "  } else {",
+                "    nextValue[name] = componentValue;",
+                "  }",
+                "  return nextValue;",
+                "};"
+            ]
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/components/record-modal/record-modal.jsx",
+            "src/components/modal/modal.jsx",
+            "src/containers/record-modal.jsx"
+        ],
+        "explanation": "The issue is related to the closing behavior of the modal when interacting with elements inside it. The file `record-modal.jsx` in `src/components/record-modal/` is directly responsible for the sound recording modal. The `modal.jsx` in `src/components/modal/` likely contains the base modal logic, including event handling that might be responsible for closing the modal. The `record-modal.jsx` in `src/containers/` connects the modal to the application state and could also play a role in handling its behavior.",
+        "bug_scenario": "The bug occurs when dragging the mouse outside of the sound recording modal causes it to close unexpectedly, resulting in the loss of unsaved work."
+    },
+    "2": {
+        "bug_files": [
+            "src/components/record-modal/record-modal.jsx",
+            "src/components/modal/modal.jsx",
+            "src/reducers/modals.js"
+        ],
+        "explanation": "1. `src/components/record-modal/record-modal.jsx`: This file likely contains the implementation of the record sound modal. The issue of closing the modal when dragging outside might be linked to how the modal's state is managed or how mouse events are handled.\n\n2. `src/components/modal/modal.jsx`: This file is responsible for the general modal functionality. It might contain logic related to closing modals and could be responsible for the behavior when dragging outside the modal bounds.\n\n3. `src/reducers/modals.js`: This reducer manages the state of modals across the application. If the modal state is incorrectly updated during the drag event, it could cause the modal to close unexpectedly.",
+        "bug_scenario": "The bug occurs when a user is dragging the mouse outside of a sound recording modal. The expected behavior is for the modal to remain open, allowing the user to continue their work. However, the actual behavior is that the modal closes unexpectedly, causing the user to lose their work."
+    }
+}

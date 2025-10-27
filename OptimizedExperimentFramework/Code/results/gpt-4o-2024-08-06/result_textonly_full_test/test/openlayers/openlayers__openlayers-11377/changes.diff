@@ -1,0 +1,38 @@
+diff --git a/src/ol/MapBrowserEventHandler.js b/src/ol/MapBrowserEventHandler.js
+index dd950f0..a5872ca 100644
+--- a/src/ol/MapBrowserEventHandler.js
++++ b/src/ol/MapBrowserEventHandler.js
+@@ -318,9 +318,11 @@ class MapBrowserEventHandler extends EventTarget {
+   relayEvent_(pointerEvent) {
+     this.originalPointerMoveEvent_ = pointerEvent;
+     const dragging = !!(this.down_ && this.isMoving_(pointerEvent));
+-    this.dispatchEvent(
+-      new MapBrowserEvent(pointerEvent.type, this.map_, pointerEvent, dragging)
+-    );
++    if (!dragging || pointerEvent.type !== MapBrowserEventType.POINTERMOVE) {
++      this.dispatchEvent(
++        new MapBrowserEvent(pointerEvent.type, this.map_, pointerEvent, dragging)
++      );
++    }
+   }
+ 
+   /**
+diff --git a/src/ol/interaction/Pointer.js b/src/ol/interaction/Pointer.js
+index 9a488af..367318f 100644
+--- a/src/ol/interaction/Pointer.js
++++ b/src/ol/interaction/Pointer.js
+@@ -150,9 +150,11 @@ class PointerInteraction extends Interaction {
+         const handled = this.handleDownEvent(mapBrowserEvent);
+         this.handlingDownUpSequence = handled;
+         stopEvent = this.stopDown(handled);
+-      } else if (mapBrowserEvent.type == MapBrowserEventType.POINTERMOVE) {
+-        this.handleMoveEvent(mapBrowserEvent);
+-      }
++    } else if (mapBrowserEvent.type == MapBrowserEventType.POINTERMOVE) {
++        if (!this.handlingDownUpSequence) {
++            this.handleMoveEvent(mapBrowserEvent);
++        }
++    }
+     }
+     return !stopEvent;
+   }

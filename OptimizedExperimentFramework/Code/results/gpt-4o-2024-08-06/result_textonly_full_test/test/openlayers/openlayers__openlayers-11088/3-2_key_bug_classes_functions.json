@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/proj/proj4.js//register",
+            "src/ol/proj/Projection.js//Projection"
+        ],
+        "bug_functions": [
+            "src/ol/proj/transforms.js//get"
+        ],
+        "explanation": "The `register` function in `src/ol/proj/proj4.js` is responsible for making projections defined in proj4 available in OpenLayers. It handles the registration of projections and their transformations, which is directly related to the issue of incorrect layer rendering due to projection transformations.\n\nThe `Projection` class in `src/ol/proj/Projection.js` defines the properties and methods for handling projections in OpenLayers. It includes attributes like `axisOrientation` and `metersPerUnit`, which are crucial for correctly interpreting and applying projections. Changes in proj4js 2.6.1 related to axis order interpretation could affect how these properties are used, leading to the observed issues.\n\nThe `get` function in `src/ol/proj/transforms.js` retrieves transformation functions between projections. If the transformations are not correctly defined or retrieved, it could result in the incorrect rendering of map layers, as seen in the bug scenario. This function is critical for ensuring that the correct transformations are applied between different projections.",
+        "bug_scenario": "The bug scenario involves a compatibility issue between OpenLayers (OL) and proj4js when using version 2.6.1 of proj4js. The issue manifests as incorrect rendering of map layers when certain projections are used. Specifically, when using proj4js 2.6.1, the WMTS layer (EPSG:2180) is rotated when viewed with a Mercator projection, and the OSM layer (Mercator) is rotated when viewed with an EPSG:2180 projection. This problem does not occur with proj4js version 2.6.0, indicating a regression or change in behavior introduced in proj4js 2.6.1."
+    }
+}

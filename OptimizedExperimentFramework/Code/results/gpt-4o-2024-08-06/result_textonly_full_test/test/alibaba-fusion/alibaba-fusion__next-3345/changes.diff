@@ -1,0 +1,18 @@
+diff --git a/src/dialog/dialog.jsx b/src/dialog/dialog.jsx
+index 5e02796..59c187d 100644
+--- a/src/dialog/dialog.jsx
++++ b/src/dialog/dialog.jsx
+@@ -341,11 +341,12 @@ export default class Dialog extends Component {
+         } = this.props;
+         const others = pickOthers(Object.keys(Dialog.propTypes), this.props);
+ 
++        const adjustedTitle = title || <div style={{ height: '20px' }}></div>; // Reserve space for close button
+         return (
+             <Inner
+                 prefix={prefix}
+                 className={className}
+-                title={title}
++                title={adjustedTitle}
+                 footer={footer}
+                 footerAlign={footerAlign}
+                 footerActions={footerActions}

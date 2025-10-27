@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/html/renderer/report-renderer.js",
+            "lighthouse-core/report/html/renderer/util.js",
+            "lighthouse-core/report/report-generator.js"
+        ],
+        "explanation": "The files related to this bug are likely within the 'report' directory, specifically those responsible for rendering the report and its sections. \n1. **lighthouse-core/report/html/renderer/report-renderer.js**: This file is probably responsible for rendering the overall report, including the 'Passed Audits' section. Any change to display warnings alongside this section would involve this file.\n2. **lighthouse-core/report/html/renderer/util.js**: Utility functions used across the report rendering might need adjustments to handle the new warning display logic.\n3. **lighthouse-core/report/report-generator.js**: This file likely handles the generation of the report structure and could require changes to include warnings in the 'Passed Audits' section.\n\nThese files are central to the report generation and rendering logic, which would be directly impacted by changes to display warnings within the 'Passed Audits' section.",
+        "bug_scenario": "The bug is about ensuring that warnings within the 'Passed Audits' section of the Lighthouse report are visible. The discussion and plan mention a graphical change where a block of warnings should be displayed after the 'Passed Audits' section. The provided image illustrates a concept where warnings are shown inline, providing a visual cue for users to see warnings associated with passed audits."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/report/html/renderer/category-renderer.js",
+            "lighthouse-core/report/html/renderer/details-renderer.js",
+            "lighthouse-core/report/html/renderer/report-renderer.js",
+            "lighthouse-core/report/report-generator.js"
+        ],
+        "explanation": "1. **lighthouse-core/report/html/renderer/category-renderer.js**: This file is responsible for rendering the various categories in the HTML report. Since the 'Passed Audits' section is part of these categories, modifications here may be necessary to include additional logic for displaying warnings.\n\n2. **lighthouse-core/report/html/renderer/details-renderer.js**: This file handles the rendering of detailed information within the report sections. It is relevant for adjusting how warnings are presented within the 'Passed Audits' section.\n\n3. **lighthouse-core/report/html/renderer/report-renderer.js**: As the main file that handles the rendering of the report, changes here are crucial to adjust the layout and visibility of the 'Passed Audits' warnings.\n\n4. **lighthouse-core/report/report-generator.js**: This file generates the full report, including assembling all the pieces rendered by the aforementioned renderer files. Adjustments here might be needed to integrate a new section for warnings in the 'Passed Audits'.",
+        "bug_scenario": "The bug report and accompanying image suggest an issue with how warnings within the 'Passed Audits' section are displayed in a Lighthouse report. The goal is to ensure that warnings are visible and clear to the user, likely by adding a block of warnings following the 'Passed Audits' section in the report."
+    }
+}

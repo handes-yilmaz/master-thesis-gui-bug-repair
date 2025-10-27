@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLPoints.js//WebGLPointsLayer",
+            "src/ol/renderer/webgl/PointsLayer.js//WebGLPointsLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLPoints.js//WebGLPointsLayer.createRenderer",
+            "src/ol/renderer/webgl/PointsLayer.js//WebGLPointsLayerRenderer.rebuildBuffers_"
+        ],
+        "explanation": "The `WebGLPointsLayer` class in `src/ol/layer/WebGLPoints.js` is directly responsible for handling the rendering of large point datasets using WebGL. The constructor and `createRenderer` method are crucial as they set up the rendering context and shaders, which are likely where the projection handling should be configured. The `WebGLPointsLayerRenderer` class in `src/ol/renderer/webgl/PointsLayer.js` is responsible for the actual rendering process, including buffer management and rendering logic. The `rebuildBuffers_` method is particularly relevant as it deals with the transformation of world coordinates to screen space, which is where the projection discrepancy might be occurring. These classes and methods are directly involved in the rendering pipeline where the bug manifests, making them key elements to investigate and modify to ensure the correct projection is used.",
+        "bug_scenario": "The bug scenario involves the `WebGLPointsLayer` not respecting the `featureProjection` specified at the Vector source, such as EPSG:4326, and instead creating features with geometry in the projection of EPSG:3857. This results in points being plotted at incorrect locations when `useGeographic()` is enabled, as observed in the provided example where points appear near Africa instead of their intended locations."
+    }
+}

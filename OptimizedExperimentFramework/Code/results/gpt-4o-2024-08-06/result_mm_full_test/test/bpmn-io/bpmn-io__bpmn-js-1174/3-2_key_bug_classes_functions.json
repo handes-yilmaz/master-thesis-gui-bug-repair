@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js//ReplaceConnectionBehavior",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js//LayoutConnectionBehavior",
+            "lib/features/modeling/BpmnLayouter.js//BpmnLayouter"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js//replaceReconnectedConnection",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js//snapMiddleSegments",
+            "lib/features/modeling/BpmnLayouter.js//layoutConnection"
+        ],
+        "explanation": "The classes and functions identified are responsible for handling the layout and reconnection of connections in BPMN diagrams. The `ReplaceConnectionBehavior` class and its `replaceReconnectedConnection` function manage the reconnection logic, which is directly related to the bug of incorrect layout when forming loops. The `LayoutConnectionBehavior` class and its `snapMiddleSegments` function deal with snapping connections to a grid, which can affect the layout of connections. The `BpmnLayouter` class and its `layoutConnection` function are responsible for the overall layout of connections, including handling waypoints and ensuring connections are laid out correctly. These elements are crucial for addressing the layout issues described in the bug report.",
+        "bug_scenario": "The bug involves incorrect layout of connections when reconnecting start/end to form a loop in BPMN diagrams. This issue occurs with connections having more than two waypoints, affecting both older and newer versions of bpmn-js. The expected behavior is for the layout to appear as if the loop was created from scratch, but instead, the connection is laid out incorrectly."
+    }
+}

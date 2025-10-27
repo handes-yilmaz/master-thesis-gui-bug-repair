@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "report/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "const envValues = Util.getEmulationDescriptions(report.configSettings || {});",
+                    "",
+                    "const match = report.userAgent.match(/(\\w*Chrome\\/[\\d.]+)/); // \\w* to include 'HeadlessChrome'",
+                    "const chromeVer = Array.isArray(match)",
+                    "? match[1].replace('/', ' ').replace('Chrome', 'Chromium')",
+                    ": 'Chromium';",
+                    "const channel = report.configSettings.channel;",
+                    "const benchmarkIndex = report.environment.benchmarkIndex.toFixed(0);",
+                    "const axeVersion = report.environment.credits?.['axe-core'];",
+                    "",
+                    "// [CSS icon class, textContent, tooltipText]",
+                    "const metaItems = [",
+                    "['date',",
+                    "`Captured at ${Util.i18n.formatDateTime(report.fetchTime)}`],",
+                    "['devices',",
+                    "`${envValues.deviceEmulation} with Lighthouse ${report.lighthouseVersion}`,",
+                    "`${Util.i18n.strings.runtimeSettingsBenchmark}: ${benchmarkIndex}` +",
+                    "`\\n${Util.i18n.strings.runtimeSettingsCPUThrottling}: ${envValues.cpuThrottling}` +",
+                    "(axeVersion ? `\\n${Util.i18n.strings.runtimeSettingsAxeVersion}: ${axeVersion}` : '')],"
+                ],
+                "REPLACE": [
+                    "    const envValues = Util.getEmulationDescriptions(report.configSettings || {});",
+                    "    const screenDimensions = report.configSettings.screenEmulation || {};",
+                    "    const deviceScaleFactor = screenDimensions.deviceScaleFactor || 'unknown';",
+                    "",
+                    "    const match = report.userAgent.match(/(\\w*Chrome\\/[\\d.]+)/); // \\w* to include 'HeadlessChrome'",
+                    "    const chromeVer = Array.isArray(match)",
+                    "      ? match[1].replace('/', ' ').replace('Chrome', 'Chromium')",
+                    "      : 'Chromium';",
+                    "    const channel = report.configSettings.channel;",
+                    "    const benchmarkIndex = report.environment.benchmarkIndex.toFixed(0);",
+                    "    const axeVersion = report.environment.credits?.['axe-core'];",
+                    "",
+                    "    // [CSS icon class, textContent, tooltipText]",
+                    "    const metaItems = [",
+                    "      ['date',",
+                    "        `Captured at ${Util.i18n.formatDateTime(report.fetchTime)}`],",
+                    "      ['devices',",
+                    "        `${envValues.deviceEmulation} with Lighthouse ${report.lighthouseVersion}`,",
+                    "        `${Util.i18n.strings.runtimeSettingsBenchmark}: ${benchmarkIndex}` +",
+                    "            `\\n${Util.i18n.strings.runtimeSettingsCPUThrottling}: ${envValues.cpuThrottling}` +",
+                    "            (axeVersion ? `\\n${Util.i18n.strings.runtimeSettingsAxeVersion}: ${axeVersion}` : '') +",
+                    "            `\\nScreen Dimensions: ${screenDimensions.width}x${screenDimensions.height}` +",
+                    "            `\\nDevice Scale Factor: ${deviceScaleFactor}`],"
+                ]
+            }
+        ]
+    }
+}

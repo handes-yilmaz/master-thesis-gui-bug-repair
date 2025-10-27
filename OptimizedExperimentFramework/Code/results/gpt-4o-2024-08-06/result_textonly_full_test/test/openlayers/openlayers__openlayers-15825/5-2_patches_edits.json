@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "this.helper.setUniformFloatValue(",
+                    "Uniforms.TEXTURE_ORIGIN_X,",
+                    "tileOrigin[0] +",
+                    "tileCenterI * tileSize[0] * tileResolution -",
+                    "gutter * tileResolution,",
+                    ");",
+                    "this.helper.setUniformFloatValue(",
+                    "Uniforms.TEXTURE_ORIGIN_Y,",
+                    "tileOrigin[1] -",
+                    "tileCenterJ * tileSize[1] * tileResolution +",
+                    "gutter * tileResolution,",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const adjustedTileOriginX = (tileOrigin[0] + tileCenterI * tileSize[0] * tileResolution - gutter * tileResolution) % 360;",
+                    "    const adjustedTileOriginY = tileOrigin[1] - tileCenterJ * tileSize[1] * tileResolution + gutter * tileResolution;",
+                    "",
+                    "    this.helper.setUniformFloatValue(",
+                    "      Uniforms.TEXTURE_ORIGIN_X,",
+                    "      adjustedTileOriginX,",
+                    "    );",
+                    "    this.helper.setUniformFloatValue(",
+                    "      Uniforms.TEXTURE_ORIGIN_Y,",
+                    "      adjustedTileOriginY,",
+                    "    );"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/BaseVector.js//BaseVectorLayer",
+            "src/ol/renderer/canvas/VectorLayer.js//CanvasVectorLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/BaseVector.js//renderDeclutter",
+            "src/ol/renderer/canvas/VectorLayer.js//renderFrame"
+        ],
+        "explanation": "The class `BaseVectorLayer` in `src/ol/layer/BaseVector.js` is responsible for handling vector data rendered client-side, including properties and methods that affect how the vector layer is displayed. The `renderDeclutter` function within this class is particularly relevant as it deals with rendering declutter items, which could be related to how the vector layer is cropped during rotation.\n\nThe class `CanvasVectorLayerRenderer` in `src/ol/renderer/canvas/VectorLayer.js` is the canvas renderer for vector layers. The `renderFrame` function is crucial as it handles the rendering of the layer, including setting transforms and resizing, which are directly related to how the layer is displayed when the map is rotated. Any issues with the rendering logic here could lead to the observed cropping problem.",
+        "bug_scenario": "The bug scenario involves a vector layer canvas being incorrectly cropped when the map is rotated. This issue has been observed since version 9.1.0 of the software, likely due to changes introduced in a specific pull request. The problem can be reproduced by creating a large polygon on the map and rotating the map using specific key combinations, resulting in the polygon being cut off unexpectedly."
+    }
+}

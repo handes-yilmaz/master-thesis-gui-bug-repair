@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js//ReportRenderer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js//_renderCategory"
+        ],
+        "explanation": "The bug is related to the rendering of audit details in the report. The `ReportRenderer` class is responsible for rendering the report, and within it, the `_renderCategory` function handles the rendering of categories, including the passed audits. The function creates a details element for passed audits, which is where the dropdown is being incorrectly shown. The logic within `_renderCategory` needs to be adjusted to ensure that the details dropdown is not shown when there are no passing audits, which directly addresses the issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves a report where audits that have a score of 0 should not display a details dropdown. The image provided shows a UI element with a dropdown that should not be visible when there are no passing audits."
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "lib/features/copy-paste/BpmnCopyPaste.js": [
+            {
+                "SEARCH": [
+                    "eventBus.on('copyPaste.copyElement', LOW_PRIORITY, function(context) {",
+                    "var descriptor = context.descriptor,",
+                    "element = context.element;",
+                    ""
+                ],
+                "REPLACE": [
+                    "  eventBus.on('copyPaste.copyElement', LOW_PRIORITY, function(context) {",
+                    "    var descriptor = context.descriptor,",
+                    "        element = context.element;",
+                    "",
+                    "    // Check if the element is a Boundary Event and has an attachedTo property",
+                    "    if (is(element, 'bpmn:BoundaryEvent') && element.attachedToRef) {",
+                    "      // Ensure the copied descriptor maintains the attachment relationship",
+                    "      descriptor.attachedToRef = element.attachedToRef;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

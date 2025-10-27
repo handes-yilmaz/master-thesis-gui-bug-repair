@@ -1,0 +1,22 @@
+diff --git a/lighthouse-core/audits/critical-request-chains.js b/lighthouse-core/audits/critical-request-chains.js
+index 0a0e3d3..55e809b 100644
+--- a/lighthouse-core/audits/critical-request-chains.js
++++ b/lighthouse-core/audits/critical-request-chains.js
+@@ -47,7 +47,7 @@ class CriticalRequestChains extends Audit {
+           id,
+           node: child,
+           chainDuration: (child.request.endTime - startTime) * 1000,
+-          chainTransferSize: (transferSize + child.request.transferSize)
++          chainTransferSize: transferSize + (child.request.transferSize || 0)
+         });
+ 
+         // Carry on walking.
+@@ -116,7 +116,7 @@ class CriticalRequestChains extends Audit {
+ 
+       return {
+         rawValue: chainCount <= this.meta.optimalValue,
+-        displayValue: Util.formatNumber(chainCount),
++        displayValue: `Chains: ${Util.formatNumber(chainCount)}, Longest Chain Transfer Size: ${Util.formatBytes(longestChain.transferSize)}`,
+         optimalValue: this.meta.optimalValue,
+         extendedInfo: {
+           formatter: Formatter.SUPPORTED_FORMATS.CRITICAL_REQUEST_CHAINS,

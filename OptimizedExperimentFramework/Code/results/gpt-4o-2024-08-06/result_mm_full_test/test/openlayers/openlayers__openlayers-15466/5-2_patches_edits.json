@@ -1,0 +1,136 @@
+{
+    "1/1": {
+        "src/ol/style/Image.js": [
+            {
+                "SEARCH": [
+                    "/**",
+                    "* @private",
+                    "* @type {\"declutter\"|\"obstacle\"|\"none\"|undefined}",
+                    "*/",
+                    "this.declutterMode_ = options.declutterMode;"
+                ],
+                "REPLACE": [
+                    "    /** ",
+                    "     * @private",
+                    "     * @type {\"declutter\"|\"obstacle\"|\"none\"|undefined}",
+                    "     */",
+                    "    this.declutterMode_ = options.declutterMode;",
+                    "",
+                    "    /**",
+                    "     * @private",
+                    "     * @type {boolean}",
+                    "     */",
+                    "    this.ignorePlacement_ = options.ignorePlacement || false;"
+                ]
+            }
+        ],
+        "src/ol/style/Text.js": [
+            {
+                "SEARCH": [
+                    "/**",
+                    "* @private",
+                    "* @type {Array<number>|null}",
+                    "*/",
+                    "this.padding_ = options.padding === undefined ? null : options.padding;"
+                ],
+                "REPLACE": [
+                    "    /** ",
+                    "     * @private",
+                    "     * @type {Array<number>|null}",
+                    "     */",
+                    "    this.padding_ = options.padding === undefined ? null : options.padding;",
+                    "",
+                    "    /**",
+                    "     * @private",
+                    "     * @type {boolean}",
+                    "     */",
+                    "    this.ignorePlacement_ = options.ignorePlacement || false;"
+                ]
+            }
+        ],
+        "src/ol/render/canvas/Executor.js": [
+            {
+                "SEARCH": [
+                    "if (declutterTree) {",
+                    "if (declutterMode === 'none') {",
+                    "// not rendered in declutter group",
+                    "continue;",
+                    "} else if (declutterMode === 'obstacle') {",
+                    "// will always be drawn, thus no collision detection, but insert as obstacle",
+                    "declutterTree.insert(dimensions.declutterBox);",
+                    "continue;",
+                    "} else {",
+                    "let imageArgs;",
+                    "let imageDeclutterBox;",
+                    "if (declutterImageWithText) {",
+                    "const index = dd - d;",
+                    "if (!declutterImageWithText[index]) {",
+                    "// We now have the image for an image+text combination.",
+                    "declutterImageWithText[index] = args;",
+                    "// Don't render anything for now, wait for the text.",
+                    "continue;",
+                    "}",
+                    "imageArgs = declutterImageWithText[index];",
+                    "delete declutterImageWithText[index];",
+                    "imageDeclutterBox = getDeclutterBox(imageArgs);",
+                    "if (declutterTree.collides(imageDeclutterBox)) {",
+                    "continue;",
+                    "}",
+                    "}",
+                    "if (declutterTree.collides(dimensions.declutterBox)) {",
+                    "continue;",
+                    "}",
+                    "if (imageArgs) {",
+                    "// We now have image and text for an image+text combination.",
+                    "declutterTree.insert(imageDeclutterBox);",
+                    "// Render the image before we render the text.",
+                    "this.replayImageOrLabel_.apply(this, imageArgs);",
+                    "}",
+                    "declutterTree.insert(dimensions.declutterBox);",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "            if (declutterTree) {",
+                    "              if (declutterMode === 'none' || (feature.ignorePlacement_ && declutterMode !== 'declutter')) {",
+                    "                // not rendered in declutter group",
+                    "                continue;",
+                    "              } else if (declutterMode === 'obstacle') {",
+                    "                // will always be drawn, thus no collision detection, but insert as obstacle",
+                    "                declutterTree.insert(dimensions.declutterBox);",
+                    "                continue;",
+                    "              } else {",
+                    "                let imageArgs;",
+                    "                let imageDeclutterBox;",
+                    "                if (declutterImageWithText) {",
+                    "                  const index = dd - d;",
+                    "                  if (!declutterImageWithText[index]) {",
+                    "                    // We now have the image for an image+text combination.",
+                    "                    declutterImageWithText[index] = args;",
+                    "                    // Don't render anything for now, wait for the text.",
+                    "                    continue;",
+                    "                  }",
+                    "                  imageArgs = declutterImageWithText[index];",
+                    "                  delete declutterImageWithText[index];",
+                    "                  imageDeclutterBox = getDeclutterBox(imageArgs);",
+                    "                  if (declutterTree.collides(imageDeclutterBox)) {",
+                    "                    continue;",
+                    "                  }",
+                    "                }",
+                    "                if (declutterTree.collides(dimensions.declutterBox)) {",
+                    "                  continue;",
+                    "                }",
+                    "                if (imageArgs) {",
+                    "                  // We now have image and text for an image+text combination.",
+                    "                  declutterTree.insert(imageDeclutterBox);",
+                    "                  // Render the image before we render the text.",
+                    "                  this.replayImageOrLabel_.apply(this, imageArgs);",
+                    "                }",
+                    "                declutterTree.insert(dimensions.declutterBox);",
+                    "              }",
+                    "            }"
+                ]
+            }
+        ]
+    }
+}

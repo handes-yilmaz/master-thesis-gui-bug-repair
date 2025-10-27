@@ -1,0 +1,71 @@
+{
+    "1/1": {
+        "src/js/components/Data/Data.js": [
+            {
+                "SEARCH": [
+                    "let toolbarContent;",
+                    "if (toolbar) {",
+                    "toolbarContent = [",
+                    "<Toolbar key=\"toolbar\">",
+                    "{(toolbar === true || toolbar === 'search') && <DataSearch />}",
+                    "{(toolbar === true || toolbar === 'view') && <DataView />}",
+                    "{(toolbar === true || toolbar === 'filters') && <DataFilters drop />}",
+                    "</Toolbar>,",
+                    "<DataSummary key=\"summary\" />,",
+                    "];",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  let toolbarContent;",
+                    "  if (toolbar) {",
+                    "    toolbarContent = [",
+                    "      <Toolbar key=\"toolbar\">",
+                    "        {(toolbar === true || toolbar === 'search') && <DataSearch />}",
+                    "        {(toolbar === true || toolbar === 'view') && <DataView />}",
+                    "        {(toolbar === true || toolbar === 'filters') && <DataFilters drop />}",
+                    "        {toolbar === true && <Button label=\"Clear Filters\" onClick={contextValue.clearFilters} />}",
+                    "      </Toolbar>,",
+                    "      <DataSummary key=\"summary\" />,",
+                    "    ];",
+                    "  }"
+                ]
+            }
+        ],
+        "src/js/components/DataFilters/DataFilters.js": [
+            {
+                "SEARCH": [
+                    "const clearControl = badge && (",
+                    "<Box flex={false} margin={{ start: 'small' }}>",
+                    "<Button",
+                    "label={format({",
+                    "id: 'dataFilters.clear',",
+                    "messages: messages?.dataFilters,",
+                    "})}",
+                    "onClick={() => {",
+                    "setTouched({});",
+                    "clearFilters();",
+                    "}}",
+                    "/>",
+                    "</Box>",
+                    ");"
+                ],
+                "REPLACE": [
+                    "  const clearControl = (",
+                    "    <Box flex={false} margin={{ start: 'small' }}>",
+                    "      <Button",
+                    "        label={format({",
+                    "          id: 'dataFilters.clear',",
+                    "          messages: messages?.dataFilters,",
+                    "        })}",
+                    "        onClick={() => {",
+                    "          setTouched({});",
+                    "          clearFilters();",
+                    "        }}",
+                    "      />",
+                    "    </Box>",
+                    "  );"
+                ]
+            }
+        ]
+    }
+}

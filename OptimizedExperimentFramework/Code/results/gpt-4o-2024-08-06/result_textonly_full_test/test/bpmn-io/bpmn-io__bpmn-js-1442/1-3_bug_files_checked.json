@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/copy-paste/BpmnCopyPaste.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/DropOnFlowBehavior.js**: This file is directly mentioned in the bug report and is responsible for handling the behavior when elements are dropped on a flow. The issue seems to be related to this behavior not functioning correctly with multiple elements.\n\n2. **lib/features/copy-paste/BpmnCopyPaste.js**: This file deals with the copy-paste functionality in the BPMN editor. Since the bug involves copying and pasting tasks, it is likely that this module contributes to the issue, especially in how it handles multiple elements being pasted.",
+        "bug_scenario": "The bug occurs when multiple shapes (tasks) are copied and then pasted onto a sequence flow in a BPMN diagram. The expected behavior is that either the DropOnFlowBehavior does not activate for multiple shapes, or it connects them in a logical manner. However, the current behavior results in unexpected connections being created when multiple shapes are pasted onto a sequence flow."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/copy-paste/BpmnCopyPaste.js"
+        ],
+        "explanation": "The 'DropOnFlowBehavior.js' file is directly mentioned in the bug report, suggesting that the issue likely originates from the logic within this behavior. This script is responsible for handling how elements are dropped onto flows, and any misalignment in its logic could lead to unexpected connections when multiple elements are pasted.\n\nAdditionally, the 'BpmnCopyPaste.js' file could be involved since the issue arises during the copy-paste operation of elements. This file likely contains the logic that determines how elements are copied and pasted, including their final placement and connection behavior after being pasted onto a sequence flow.\n\nBy examining and potentially modifying these files, one could address the root cause of the bug, ensuring that pasted elements either do not engage the DropOnFlowBehavior or connect in a manner that aligns with user expectations.",
+        "bug_scenario": "The bug scenario involves an issue with the bpmn-js library where pasting multiple shapes onto a sequence flow results in unexpected connections. In the provided GIF, when two tasks are copied and pasted onto a sequence flow, the expected behavior is that they either do not trigger the DropOnFlowBehavior or connect in a sensible manner. However, the current behavior does not meet these expectations, leading to the bug report."
+    }
+}

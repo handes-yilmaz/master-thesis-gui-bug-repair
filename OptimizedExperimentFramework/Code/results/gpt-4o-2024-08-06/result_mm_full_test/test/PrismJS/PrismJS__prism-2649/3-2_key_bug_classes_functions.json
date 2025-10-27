@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-shell-session.js//Prism.languages['shell-session']"
+        ],
+        "bug_functions": [
+            "components/prism-shell-session.js//Prism.languages['shell-session'].command"
+        ],
+        "explanation": "The issue arises from the incorrect identification of the `#` symbol as a shell-symbol token. In the `prism-shell-session.js` file, the `Prism.languages['shell-session']` object defines the syntax highlighting rules for shell sessions. Within this object, the `command` pattern is responsible for identifying shell commands and symbols. The pattern `/^[$#]/` within the `shell-symbol` inside the `command` pattern is likely causing the `#` to be misidentified. Adjusting this pattern to correctly differentiate between comment symbols and shell-symbols will resolve the issue.",
+        "bug_scenario": "The image shows a code snippet where the `#` symbol is incorrectly highlighted as a shell-symbol token. This leads to improper syntax highlighting in a shell session, affecting the readability and understanding of the code."
+    }
+}

@@ -1,0 +1,48 @@
+diff --git a/src/ol/render/canvas/ImageBuilder.js b/src/ol/render/canvas/ImageBuilder.js
+index cb498e4..9e7ea25 100644
+--- a/src/ol/render/canvas/ImageBuilder.js
++++ b/src/ol/render/canvas/ImageBuilder.js
+@@ -104,6 +104,7 @@ class CanvasImageBuilder extends CanvasBuilder {
+      * @type {import("../canvas.js").DeclutterImageWithText}
+      */
+     this.declutterImageWithText_ = undefined;
++    this.ignorePlacement_ = false;
+   }
+ 
+   /**
+diff --git a/src/ol/render/canvas/TextBuilder.js b/src/ol/render/canvas/TextBuilder.js
+index 9a4fb9a..e073248 100644
+--- a/src/ol/render/canvas/TextBuilder.js
++++ b/src/ol/render/canvas/TextBuilder.js
+@@ -657,6 +657,7 @@ class CanvasTextBuilder extends CanvasBuilder {
+           : '';
+     }
+     this.declutterImageWithText_ = sharedData;
++    this.ignorePlacement_ = textStyle.getIgnorePlacement();
+   }
+ }
+ 
+diff --git a/src/ol/style/Image.js b/src/ol/style/Image.js
+index be788cd..3de35c4 100644
+--- a/src/ol/style/Image.js
++++ b/src/ol/style/Image.js
+@@ -67,6 +67,7 @@ class ImageStyle {
+      * @type {"declutter"|"obstacle"|"none"|undefined}
+      */
+     this.declutterMode_ = options.declutterMode;
++    this.ignorePlacement_ = options.ignorePlacement || false;
+   }
+ 
+   /**
+diff --git a/src/ol/style/Text.js b/src/ol/style/Text.js
+index d76110b..edbc6d5 100644
+--- a/src/ol/style/Text.js
++++ b/src/ol/style/Text.js
+@@ -204,6 +204,7 @@ class Text {
+      * @type {Array<number>|null}
+      */
+     this.padding_ = options.padding === undefined ? null : options.padding;
++    this.ignorePlacement_ = options.ignorePlacement || false;
+   }
+ 
+   /**

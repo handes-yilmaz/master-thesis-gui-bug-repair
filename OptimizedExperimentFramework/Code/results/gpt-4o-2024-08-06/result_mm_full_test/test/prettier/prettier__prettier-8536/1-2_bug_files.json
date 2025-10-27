@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/document/doc-printer.js",
+            "src/index.js"
+        ],
+        "explanation": "The file `src/document/doc-printer.js` is related because it likely handles the printing logic that leads to the extra newline being added. The `src/index.js` file is relevant as it might contain the main logic or entry point for processing the formatting options and directing them to the printer. These files would need to be adjusted to ensure the correct number of newlines are printed.",
+        "bug_scenario": "The bug occurs when Prettier adds an extra newline at the end of a file when it consists of a directive followed by a comment. The expected behavior is for the file to end with a single newline. This issue is reproducible using the Babylon parser and is evident in the difference between the expected and actual output, where the actual output contains an extra newline."
+    },
+    "2": {
+        "bug_files": [
+            "src/printer.js",
+            "index.js"
+        ],
+        "explanation": "1. `src/printer.js`: The bug report suggests that the issue might be related to logic in this file responsible for handling newlines, such as the `addAlignmentSize` function or other formatting logic.\n2. `index.js`: This file might include top-level logic that influences how files are parsed and formatted, especially since it is mentioned in the bug report details. The change might need to be made here to ensure correct newline handling after directives and comments.",
+        "bug_scenario": "The bug occurs when Prettier is used to format a file containing only a directive followed by a newline and a comment. The expected behavior is that the file should end with a single newline, but Prettier ends it with two newlines instead."
+    }
+}

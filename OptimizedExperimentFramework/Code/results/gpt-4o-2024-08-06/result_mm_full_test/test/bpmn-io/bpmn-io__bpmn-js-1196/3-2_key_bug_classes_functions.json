@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/modeling/behavior/AttachEventBehavior.js//AttachEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences",
+            "lib/features/modeling/behavior/AttachEventBehavior.js//preExecute"
+        ],
+        "explanation": "The issue is related to the copying and pasting of elements, specifically the attachment of Boundary Events to tasks. The `BpmnCopyPaste` class handles the copying and pasting logic, including resolving references, which is crucial for maintaining attachments. The `resolveReferences` function is responsible for ensuring that references like Boundary Events are correctly reassigned during the paste operation. The `AttachEventBehavior` class and its `preExecute` function handle the behavior of attaching events to shapes, which is directly related to ensuring that Boundary Events remain attached to their respective tasks after being copied.",
+        "bug_scenario": "The bug involves copying a Boundary Event along with the task it is attached to. When copied, the Boundary Event is not attached to the new task, which is not the expected behavior. The expected behavior is for the Boundary Event to remain attached to the copied task."
+    }
+}

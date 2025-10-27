@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/first-meaningful-paint.js",
+            "lighthouse-core/gather/computed/trace-of-tab.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/first-meaningful-paint.js**: This file contains logic related to calculating the 'First Meaningful Paint' metric. The error message indicates a problem with accessing the 'ts' (timestamp) property, which is likely related to the events used in this calculation.\n\n2. **lighthouse-core/gather/computed/trace-of-tab.js**: This file is responsible for parsing trace events and extracting key events like 'firstContentfulPaint' and 'firstMeaningfulPaint'. If these events are not found or are undefined, it could lead to the error observed. The logic here directly affects the availability of the 'ts' property for these events.",
+        "bug_scenario": "The error 'Cannot read property 'ts' of undefined' occurs when trying to generate a report using a Chrome extension. This issue does not appear when running the application in a regular browser environment."
+    }
+}

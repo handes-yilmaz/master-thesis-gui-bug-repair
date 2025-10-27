@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/reproj/Image.js//ReprojImage",
+            "src/ol/reproj/Tile.js//ReprojTile"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//getImagesForSource",
+            "src/ol/reproj/Image.js//reproject_",
+            "src/ol/reproj/Tile.js//reproject_"
+        ],
+        "explanation": "The bug is related to the handling and rendering of GeoTIFF images, particularly in how they are loaded and reprojected. The `GeoTIFFSource` class in `src/ol/source/GeoTIFF.js` is responsible for managing GeoTIFF data, and the `getImagesForSource` function is crucial for retrieving images from the source, which might be failing to load the entire image correctly. The `ReprojImage` and `ReprojTile` classes in `src/ol/reproj/Image.js` and `src/ol/reproj/Tile.js` respectively, handle the reprojection of images and tiles. The `reproject_` functions in these classes are likely involved in transforming the image data to fit the target projection, and any issues here could result in only part of the image being displayed. These classes and functions are key to diagnosing and fixing the bug because they directly manage the image data and its transformation, which is where the problem of incomplete image display is occurring.",
+        "bug_scenario": "The bug scenario involves loading a Cloud Optimized GeoTIFF (COG) image, but only the upper part of the image is displayed. The expected behavior is for the entire image to be shown, similar to how it appears in other applications like geotiff.io or QGIS."
+    }
+}

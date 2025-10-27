@@ -1,0 +1,51 @@
+{
+    "1/1": {
+        "core/audits/no-unload-listeners.js": [
+            {
+                "SEARCH": [
+                    "const unloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload');"
+                ],
+                "REPLACE": [
+                    "    const unloadListeners = [];",
+                    "    for (const context of artifacts.ExecutionContexts) {",
+                    "      const contextUnloadListeners = context.GlobalListeners.filter(l => l.type === 'unload');",
+                    "      unloadListeners.push(...contextUnloadListeners);",
+                    "    }"
+                ]
+            }
+        ],
+        "core/gather/driver/execution-context.js": [
+            {
+                "SEARCH": [
+                    "/** @param {LH.Gatherer.FRProtocolSession} session */",
+                    "constructor(session) {",
+                    "this._session = session;"
+                ],
+                "REPLACE": [
+                    "  /** @param {LH.Gatherer.FRProtocolSession} session */",
+                    "  constructor(session) {",
+                    "    this._session = session;",
+                    "    this._executionContexts = [];",
+                    "    session.on('Runtime.executionContextCreated', event => {",
+                    "      this._executionContexts.push(event.context);",
+                    "    });"
+                ]
+            }
+        ],
+        "core/gather/gatherers/global-listeners.js": [
+            {
+                "SEARCH": [
+                    "const {listeners} = await session.sendCommand('DOMDebugger.getEventListeners', {objectId});"
+                ],
+                "REPLACE": [
+                    "    const executionContexts = await session.sendCommand('Runtime.executionContexts');",
+                    "    const listeners = [];",
+                    "    for (const context of executionContexts) {",
+                    "      const {listeners: contextListeners} = await session.sendCommand('DOMDebugger.getEventListeners', {objectId: context.id});",
+                    "      listeners.push(...contextListeners);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

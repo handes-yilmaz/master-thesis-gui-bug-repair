@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/rules/no-constant-condition.js"
+        ],
+        "explanation": "The issue is directly related to the ESLint rule `no-constant-condition`. This rule is responsible for identifying constant conditions in code, such as `if (true)` or `something(true ? 1 : 0)`. The reported problem is that the error range for these constant conditions is too broad, including more than just the constant itself. Therefore, the file `lib/rules/no-constant-condition.js` is the most likely candidate for containing the logic that determines the error range for constant conditions. Modifying this file to adjust the range of the reported error to be more precise would address the bug described in the report.",
+        "bug_scenario": "The bug is about the ESLint rule `no-constant-condition` reporting error ranges that are too broad, including the entire statement or expression rather than just the constant condition itself. The expectation is that only the constant parts, such as the word `true`, should be underlined, but the current behavior underlines much more than that."
+    },
+    "2": {
+        "bug_files": [
+            "lib/rules/no-constant-condition.js"
+        ],
+        "explanation": "The file 'lib/rules/no-constant-condition.js' is directly related to the bug because it contains the implementation of the 'no-constant-condition' ESLint rule. This rule is responsible for detecting constant conditions in JavaScript code and generating error messages. The issue described in the bug report involves the incorrect reporting of error ranges by this rule, which means that the logic within this specific file needs to be reviewed and potentially modified to fix the problem.",
+        "bug_scenario": "The bug scenario involves the ESLint rule 'no-constant-condition', which is incorrectly reporting error ranges that are too broad. The error messages include entire statements or expressions, rather than just the constant conditions themselves (e.g., 'true'). This is visually represented by underlined sections in a screenshot, indicating the incorrect error range."
+    }
+}

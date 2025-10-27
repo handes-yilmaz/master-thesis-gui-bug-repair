@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/cpp.js",
+            "src/languages/arduino.js",
+            "CHANGES.md"
+        ],
+        "explanation": "1. `src/languages/cpp.js`: This file is likely responsible for defining the syntax highlighting rules for C++. The bug report explicitly mentions changes in the way C++ primitive types are highlighted, which would be controlled by this file.\n2. `src/languages/arduino.js`: Arduino is mentioned in the bug report as a superset of C++. If there are specific changes related to Arduino types being treated as keywords, this file would need to be updated as well.\n3. `CHANGES.md`: The bug report indicates that the changelog was updated. This file would contain a record of the changes made, possibly including the change in how keywords and types are highlighted, providing context or confirmation of the changes made in version 11.0.0.",
+        "bug_scenario": "The bug report describes an issue with the highlighting of primitive types in C++ after a change in version 11.0.0 of the syntax highlighter. Previously, primitive types like 'int' and 'char' were highlighted as keywords, but after the update, they are highlighted separately, leading to an unnatural and confusing appearance in the code. The images illustrate this change: before the update, primitive types are highlighted as keywords similar to IDEs like Visual Studio Code, CLion, XCode, and Notepad++. After the update, they are not, which seems to deviate from the expected behavior in most popular C++ editors."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/cpp.js",
+            "src/languages/arduino.js"
+        ],
+        "explanation": "The bug report specifically mentions changes to the highlighting of primitive types in C++ and Arduino. In the repository structure, the files `src/languages/cpp.js` and `src/languages/arduino.js` are responsible for the syntax highlighting rules of C++ and Arduino respectively. The report discusses moving primitive types back to `RESERVED_KEYWORDS`, which would require modifications in these files to adjust how the types are categorized and highlighted. Thus, these files are directly related to the bug and need to be edited to implement the desired changes.",
+        "bug_scenario": "The bug scenario involves the highlighting of C++ primitive types in code editors. Previously, primitive types like `int` and `char` were highlighted as keywords, which is consistent with most C++ IDEs and editors. However, a change in hljs 11.0.0 split primitive types and keywords, causing them to be highlighted differently, which users found unnatural and confusing. The images show different IDEs (Visual Studio Code, CLion, XCode, and Notepad++) highlighting primitive types as keywords, suggesting a preference for reverting to the previous behavior where primitive types are highlighted as keywords."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "1. **lighthouse-core/gather/driver.js**: This file contains methods related to page loading and network status monitoring, such as `_waitForFullyLoaded`, `_waitForNetworkIdle`, and `_waitForLoadEvent`. These methods are crucial for determining when the page has fully loaded, which is directly related to the issue of hanging on 'Loading page & waiting for onload'.\n\n2. **lighthouse-core/gather/gather-runner.js**: This file manages the sequence of actions during a Lighthouse run, including loading the page and waiting for the onload event. The `loadPage` and `beforePass` methods are particularly relevant as they handle navigation and setup before the audit, which could be causing the hang.\n\n3. **lighthouse-core/lib/network-recorder.js**: This file is responsible for tracking network activity and determining when the network is idle. The methods `findNetworkQuietPeriods` and `_emitNetworkStatus` are involved in assessing network activity, which is essential for resolving the 'waiting for onload' issue.",
+        "bug_scenario": "The bug scenario involves Lighthouse hanging indefinitely on the 'Loading page & waiting for onload' step during a Progressive Web App audit. This occurs both in the native audit and the Lighthouse extension, as shown in the images where the audit process is stuck at the loading stage."
+    }
+}

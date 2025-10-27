@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/php.js",
+            "src/lib/ext/multi_class.js",
+            "src/lib/html_renderer.js"
+        ],
+        "explanation": "1. **src/languages/php.js**: This file defines the PHP language highlighting rules. The issue of adding an extra PHP tag when the \"language-php\" class is used likely originates from how PHP tags are processed in this file. The `PREPROCESSOR` variant in this file includes patterns for PHP tags, which might be causing the extra tag issue.\n\n2. **src/lib/ext/multi_class.js**: This file deals with handling multiple classes in a single element. The problem might be related to how classes are applied when multiple classes are involved, especially since the issue involves class names and their application.\n\n3. **src/lib/html_renderer.js**: This file is responsible for rendering HTML with the appropriate classes. The problem with the extra PHP tag might be related to how classes are expanded and applied to nodes, particularly in the `openNode` and `expandClassName` functions, which handle class name prefixes and application.",
+        "bug_scenario": "The bug scenario involves an issue with the Highlight.js library where adding the \"language-php\" class to a code element results in an extra PHP tag being added. This behavior is inconsistent with other languages and is causing problems with themes that require un-prefixed class names to work properly. The issue is specific to PHP and does not occur with other languages."
+    }
+}

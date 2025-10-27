@@ -1,0 +1,32 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "collectLanes",
+            "file_path": "lib/features/modeling/util/LaneUtil.js",
+            "function_details": [
+                {
+                    "name": "collectLanes",
+                    "start_line": 41,
+                    "end_line": 54
+                }
+            ],
+            "function_code": [
+                "export function collectLanes(shape, collectedShapes) {",
+                "",
+                "  collectedShapes = collectedShapes || [];",
+                "",
+                "  shape.children.filter(function(s) {",
+                "    if (is(s, 'bpmn:Lane')) {",
+                "      collectLanes(s, collectedShapes);",
+                "",
+                "      collectedShapes.push(s);",
+                "    }",
+                "  });",
+                "",
+                "  return collectedShapes;",
+                "}"
+            ]
+        }
+    }
+}

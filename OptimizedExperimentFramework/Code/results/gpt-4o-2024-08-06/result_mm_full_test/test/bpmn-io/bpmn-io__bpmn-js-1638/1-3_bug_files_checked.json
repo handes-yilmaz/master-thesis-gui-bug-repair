@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/util/DiUtil.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "explanation": "1. `UpdateLabelHandler.js`: This file likely contains the logic for updating or removing labels. Since the bug involves the presence of a `label` property being `null` instead of removed, this is a key area to investigate.\n\n2. `DiUtil.js`: Utilities related to diagram interchange (di) may contain functions that handle or manipulate `di` properties, including labels. Adjustments here might be necessary to ensure `label` is removed, not just set to `null`.\n\n3. `LabelBehavior.js`: This file likely manages label behavior within the modeling process. It may need adjustments to handle the removal of label properties correctly, ensuring that they are absent rather than `null`. This could involve event listeners or hooks that trigger on label changes.",
+        "bug_scenario": "The bug occurs when the label of a task is removed, yet the `di` object still contains a property `label` set to `null`. This causes issues with tools like linters, as they expect the `label` property to be completely absent if it's not in use."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "explanation": "1. `lib/features/label-editing/cmd/UpdateLabelHandler.js`: This file likely handles the updates to labels, and should contain logic to remove the `di.label` property when a label is cleared.\n2. `lib/features/label-editing/LabelUtil.js`: This utility file might have functions related to label manipulation and could be involved in setting or clearing the label property.\n3. `lib/modeling/behavior/LabelBehavior.js`: This file handles the behavior of labels in the application and could contain logic related to the presence of the `di.label` property. It may need to ensure that the property is removed when not needed.",
+        "bug_scenario": "The bug occurs when a label is removed from a task, but the `di.label` property remains as `null` instead of being removed. This causes issues with other tools, such as linting, as shown in the image where errors are reported due to the presence of this `null` label property."
+    }
+}

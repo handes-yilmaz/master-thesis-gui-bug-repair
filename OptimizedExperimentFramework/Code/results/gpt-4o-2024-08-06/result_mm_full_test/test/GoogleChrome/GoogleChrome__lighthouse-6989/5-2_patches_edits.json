@@ -1,0 +1,21 @@
+{
+    "1/1": {
+        "lighthouse-core/report/html/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "const reportSection = container.appendChild(this._dom.createElement('div', 'lh-report'));",
+                    "",
+                    "reportSection.appendChild(this._renderReportWarnings(report));"
+                ],
+                "REPLACE": [
+                    "    const reportSection = container.appendChild(this._dom.createElement('div', 'lh-report'));",
+                    "",
+                    "    // Ensure warnings are displayed after the \"Passed Audits\" section",
+                    "    const passedAuditsSection = this._dom.createElement('div', 'lh-passed-audits');",
+                    "    passedAuditsSection.appendChild(this._renderReportWarnings(report));",
+                    "    reportSection.appendChild(passedAuditsSection);"
+                ]
+            }
+        ]
+    }
+}

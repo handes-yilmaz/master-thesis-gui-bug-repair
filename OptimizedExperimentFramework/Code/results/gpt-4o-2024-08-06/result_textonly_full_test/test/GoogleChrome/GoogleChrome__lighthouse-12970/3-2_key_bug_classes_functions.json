@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js//RenderBlockingResources",
+            "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js//TagsBlockingFirstPaint"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js//computeResults",
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js//getNodesAndTimingByUrl",
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js//computeStackSpecificTiming",
+            "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js//findBlockingTags",
+            "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js//_filteredAndIndexedByUrl"
+        ],
+        "explanation": "The classes and functions identified are responsible for determining which resources are considered render-blocking. The `RenderBlockingResources` class in `render-blocking-resources.js` is directly related to the audit that identifies render-blocking resources. The `computeResults` function within this class calculates which resources are considered render-blocking, and `getNodesAndTimingByUrl` and `computeStackSpecificTiming` are involved in processing the timing and network nodes to determine blocking status. Similarly, the `TagsBlockingFirstPaint` class in `tags-blocking-first-paint.js` is responsible for identifying tags that block the first paint, and the `findBlockingTags` and `_filteredAndIndexedByUrl` functions are involved in filtering and identifying these tags. These elements are crucial to the bug because they are part of the logic that incorrectly flags local resources as render-blocking.",
+        "bug_scenario": "The bug scenario involves Lighthouse incorrectly identifying local resources (file:///) as render-blocking resources. This is a wrong suggestion because local resources are blocked from loading, and thus should not be considered as render-blocking."
+    }
+}

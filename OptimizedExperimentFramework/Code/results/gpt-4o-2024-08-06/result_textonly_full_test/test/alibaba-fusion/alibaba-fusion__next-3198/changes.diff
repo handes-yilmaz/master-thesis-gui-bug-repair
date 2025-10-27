@@ -1,0 +1,16 @@
+diff --git a/src/date-picker2/index.jsx b/src/date-picker2/index.jsx
+index 8734b4a..78317b1 100644
+--- a/src/date-picker2/index.jsx
++++ b/src/date-picker2/index.jsx
+@@ -41,7 +41,10 @@ const transform = (props, deprecated) => {
+         delete newProps.showTime;
+     } else if (typeof props.showTime === 'object') {
+         deprecated('showTime: object', 'showTime && timePanelProps', 'DatePicker');
+-        newProps.timePanelProps = props.showTime;
++        newProps.timePanelProps = {
++            ...props.showTime,
++            defaultValue: props.timePanelProps?.defaultValue || props.showTime.defaultValue
++        };
+         newProps.showTime = true;
+     }
+ 

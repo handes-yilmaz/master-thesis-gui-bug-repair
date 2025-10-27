@@ -1,0 +1,33 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/driver.js": [
+            {
+                "SEARCH": [
+                    "await this.sendCommand('Page.setLifecycleEventsEnabled', {enabled: true});"
+                ],
+                "REPLACE": [
+                    "    await this.sendCommand('Page.setLifecycleEventsEnabled', {enabled: true});",
+                    "    await this.sendCommand('Page.setVisibilityState', {visibilityState: 'visible'});"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gather-runner.js": [
+            {
+                "SEARCH": [
+                    "const {finalUrl, timedOut} = await driver.gotoURL(passContext.url, {",
+                    "waitForFcp: passContext.passConfig.recordTrace,",
+                    "waitForLoad: true,",
+                    "passContext,",
+                    "});"
+                ],
+                "REPLACE": [
+                    "      const {finalUrl, timedOut} = await driver.gotoURL(passContext.url, {",
+                    "        waitForFcp: true,",
+                    "        waitForLoad: true,",
+                    "        passContext,",
+                    "      });"
+                ]
+            }
+        ]
+    }
+}

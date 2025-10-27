@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/uses-rel-preconnect.js//UsesRelPreconnectAudit",
+            "lighthouse-core/gather/gatherers/link-elements.js//LinkElements"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/uses-rel-preconnect.js//audit",
+            "lighthouse-core/audits/uses-rel-preconnect.js//hasValidTiming",
+            "lighthouse-core/audits/uses-rel-preconnect.js//hasAlreadyConnectedToOrigin",
+            "lighthouse-core/audits/uses-rel-preconnect.js//socketStartTimeIsBelowThreshold"
+        ],
+        "explanation": "The bug is related to the Lighthouse audit for preconnect links. The `UsesRelPreconnectAudit` class in `lighthouse-core/audits/uses-rel-preconnect.js` is responsible for auditing the use of preconnect links. The `audit` function within this class performs the main logic of checking which origins need preconnects and which have already been connected. The functions `hasValidTiming`, `hasAlreadyConnectedToOrigin`, and `socketStartTimeIsBelowThreshold` are used to determine the validity and necessity of preconnect links. Additionally, the `LinkElements` class in `lighthouse-core/gather/gatherers/link-elements.js` is responsible for gathering link elements, which includes preconnect links, from the page and headers. These classes and functions are directly involved in the logic that determines which preconnect suggestions are made, and thus are key to understanding and fixing the bug.",
+        "bug_scenario": "The bug scenario involves a Lighthouse audit suggesting preconnect links to origins that have already been added. The user is confused as to why the audit continues to suggest these origins even after they have been added, and is seeking clarification on how to determine which third-party origins are important and how many preconnects can be added."
+    }
+}

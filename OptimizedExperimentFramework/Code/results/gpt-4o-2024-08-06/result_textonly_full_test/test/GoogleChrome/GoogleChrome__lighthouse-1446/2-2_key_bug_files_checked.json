@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/asset-saver.js",
+            "lighthouse-core/lib/traces/tracing-processor.js",
+            "lighthouse-core/gather/computed/trace-of-tab.js"
+        ],
+        "explanation": "1. `lighthouse-core/lib/asset-saver.js`: This file is responsible for saving trace and screenshot data to disk. The bug report mentions injecting metrics into the trace before saving, which is likely handled here. Any issues with saving the modified trace data would be relevant to this file.\n\n2. `lighthouse-core/lib/traces/tracing-processor.js`: This file processes trace data, which includes handling trace events. Since the bug involves creating and injecting fake trace events for performance metrics, this file is crucial for ensuring those events are correctly processed and integrated into the timeline.\n\n3. `lighthouse-core/gather/computed/trace-of-tab.js`: This file extracts key events from a trace, such as 'firstContentfulPaint' and 'firstMeaningfulPaint'. The bug involves ensuring these events are correctly identified and marked in the timeline, making this file relevant to the issue.",
+        "bug_scenario": "The bug scenario involves integrating performance metrics into a timeline view using Lighthouse traces. The goal is to inject performance metrics as trace events and visualize them in the timeline for better analysis. The provided image shows a timeline with various performance metrics like 'First contentful paint', 'First meaningful paint', etc., marked on it. The issue seems to be related to the process of saving these metrics as trace events and ensuring they are correctly visualized in the timeline."
+    }
+}

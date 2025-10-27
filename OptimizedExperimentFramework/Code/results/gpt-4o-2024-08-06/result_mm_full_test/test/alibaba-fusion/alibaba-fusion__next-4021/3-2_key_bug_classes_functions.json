@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/number-picker/number-picker.jsx//NumberPicker"
+        ],
+        "bug_functions": [
+            "src/number-picker/number-picker.jsx//onBlur",
+            "src/number-picker/number-picker.jsx//shouldFireOnChange",
+            "src/number-picker/number-picker.jsx//correctValue"
+        ],
+        "explanation": "The NumberPicker class is central to the issue as it handles the input and display logic. The onBlur function is responsible for correcting the value when it exceeds boundaries, but it does not trigger onChange, which is necessary for updating the price. The shouldFireOnChange function determines when onChange should be triggered, and it currently does not account for boundary corrections. The correctValue function handles value corrections, which is crucial for ensuring the input does not exceed the maximum limit.",
+        "bug_scenario": "The bug scenario involves a NumberPicker component where users can input values exceeding the maximum limit. Although the input is corrected onBlur, it does not trigger onChange, leading to a discrepancy where the displayed number increases but the price remains unchanged."
+    }
+}

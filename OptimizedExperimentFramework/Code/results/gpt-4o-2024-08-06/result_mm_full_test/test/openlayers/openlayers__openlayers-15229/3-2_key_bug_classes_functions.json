@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLPoints.js//WebGLPointsLayer",
+            "src/ol/renderer/webgl/PointsLayer.js//WebGLPointsLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/webgl/styleparser.js//parseLiteralStyle"
+        ],
+        "explanation": "The `WebGLPointsLayer` class in `src/ol/layer/WebGLPoints.js` is directly responsible for handling the style and rendering of the points layer, including the icon properties. The `WebGLPointsLayerRenderer` class in `src/ol/renderer/webgl/PointsLayer.js` is responsible for rendering the points using WebGL, which includes handling transformations and rendering logic that could affect icon distortion. The `parseLiteralStyle` function in `src/ol/webgl/styleparser.js` is involved in parsing the style properties, including those related to icons, and could be responsible for misinterpreting or incorrectly applying the `icon-rotate-with-view` property, leading to distortion.",
+        "bug_scenario": "The bug scenario involves icon distortion on the `WebGLPoints` layer when the `icon-rotate-with-view` property is set to true and the viewport is non-square. The expected behavior is that icons should be displayed without distortion, but currently, they are distorted when the viewport is not square."
+    }
+}

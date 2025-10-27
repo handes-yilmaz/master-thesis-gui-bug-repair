@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/replace/BpmnReplace.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/SubProcessStartEventBehavior.js**: This file likely contains logic related to the behavior of start events in sub-processes. Since the bug involves adding a start event to an expanded sub-process, this file could be responsible for handling or triggering the correct behavior when an element is morphed into a sub-process.\n\n2. **lib/features/replace/BpmnReplace.js**: This file likely handles the logic for replacing one BPMN element with another, such as morphing a call activity into a sub-process. It would need to ensure that the correct elements, like a start event, are included when the morphing occurs.\n\n3. **lib/features/modeling/Modeling.js**: This file is probably responsible for the overall modeling logic, which would include morphing operations. It may need to coordinate between different behaviors and ensure that when a sub-process is expanded, it includes necessary components like a start event.",
+        "bug_scenario": "The bug scenario involves morphing a `call activity` into an expanded `sub-process` within a BPMN diagram. The issue arises because the morphing process does not automatically include a start event, leading to a sub-process that visually resembles a task rather than a sub-process. This is a user experience issue and makes the result of the morphing operation unclear or misleading to the user."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/CreateBehavior.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/replace/BpmnReplace.js",
+            "lib/features/replace/ReplaceOptions.js"
+        ],
+        "explanation": "The issue described in the bug report is related to the behavior and representation of BPMN elements during morphing. The relevant files for this bug fix are likely:\n\n1. **lib/features/modeling/behavior/CreateBehavior.js**: This file likely handles the creation logic for BPMN elements, including how a subprocess is instantiated and displayed when morphed. Modifying this file could help ensure that a start event is added when a sub-process is created.\n\n2. **lib/features/modeling/behavior/SubProcessStartEventBehavior.js**: This specific file suggests it handles the behavior related to start events in subprocesses. It would be directly relevant to ensuring that a start event is included when morphing a call activity to a subprocess.\n\n3. **lib/features/replace/BpmnReplace.js**: This file likely manages the replacement or morphing logic between different BPMN elements, including call activities and subprocesses. Adjusting the morphing logic here could be necessary to ensure the correct elements (like a start event) are added during the process.\n\n4. **lib/features/replace/ReplaceOptions.js**: This file might define the options available for replacing or morphing elements. Ensuring the options correctly include the addition of a start event when morphing to a subprocess could also require changes here.\n\nBy examining these files and adjusting the relevant logic, we can address the problem of a subprocess appearing without a necessary start event, aligning with user expectations and improving the user interface.",
+        "bug_scenario": "The bug involves the morphing of a 'call activity' to an expanded 'sub-process' which should include a start event. Currently, the expanded sub-process is created without a start event, making it appear like a task, which is confusing from a user experience perspective."
+    }
+}

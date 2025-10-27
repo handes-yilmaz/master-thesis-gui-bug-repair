@@ -1,0 +1,30 @@
+diff --git a/src/ol/reproj/Image.js b/src/ol/reproj/Image.js
+index 4cec8c8..28bd809 100644
+--- a/src/ol/reproj/Image.js
++++ b/src/ol/reproj/Image.js
+@@ -171,7 +171,9 @@ class ReprojImage extends ImageBase {
+   reproject_() {
+     const sourceState = this.sourceImage_.getState();
+     if (sourceState == ImageState.LOADED) {
+-      const width = getWidth(this.targetExtent_) / this.targetResolution_;
++      const pixelWidth = this.sourceImage_.getResolutionX();
++      const pixelHeight = this.sourceImage_.getResolutionY();
++      const width = getWidth(this.targetExtent_) / (this.targetResolution_ * (pixelWidth / pixelHeight));
+       const height = getHeight(this.targetExtent_) / this.targetResolution_;
+ 
+       this.canvas_ = renderReprojected(
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 65d960d..e1dd896 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -490,7 +490,9 @@ class GeoTIFFSource extends DataTile {
+           sourceOrigin = getOrigin(image);
+         }
+ 
+-        sourceResolutions[level] = getResolution(image, images[0]);
++        const pixelWidth = image.getResolutionX();
++        const pixelHeight = image.getResolutionY();
++        sourceResolutions[level] = getResolution(image, images[0]) * (pixelWidth / pixelHeight);
+         sourceTileSizes[level] = [image.getTileWidth(), image.getTileHeight()];
+       }
+ 

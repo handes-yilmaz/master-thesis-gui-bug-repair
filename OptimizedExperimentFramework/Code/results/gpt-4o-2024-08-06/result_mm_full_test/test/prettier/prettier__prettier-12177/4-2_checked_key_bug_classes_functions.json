@@ -1,0 +1,33 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "printSwitchCaseConsequent",
+            "file_path": "src/language-js/print/statement.js",
+            "function_details": [
+                {
+                    "name": "printSwitchCaseConsequent",
+                    "start_line": 163,
+                    "end_line": 177
+                }
+            ],
+            "function_code": [
+                "function printSwitchCaseConsequent(path, options, print) {",
+                "  const node = path.getValue();",
+                "  const parts = [];",
+                "",
+                "  if (node.consequent.length === 0) {",
+                "    // Handle comments after case/default",
+                "    const comments = path.getComments();",
+                "    if (comments && comments.length > 0) {",
+                "      parts.push(\" \", printDanglingComments(path, options, true));",
+                "    }",
+                "  }",
+                "",
+                "  parts.push(printStatementSequence(path, options, print, \"consequent\"));",
+                "  return parts;",
+                "}"
+            ]
+        }
+    }
+}

@@ -1,0 +1,27 @@
+diff --git a/src/ol/render/canvas/hitdetect.js b/src/ol/render/canvas/hitdetect.js
+index eeddd24..02031fb 100644
+--- a/src/ol/render/canvas/hitdetect.js
++++ b/src/ol/render/canvas/hitdetect.js
+@@ -82,6 +82,9 @@ export function createHitDetectionImageData(
+         if (!imgSize) {
+           continue;
+         }
++        if (image.getScale() < 0) {
++          imgContext.scale(-1, 1); // Flip the image horizontally for negative scale
++        }
+ 
+         const canvas = document.createElement('canvas');
+         canvas.width = imgSize[0];
+diff --git a/src/ol/style/Icon.js b/src/ol/style/Icon.js
+index 540c936..300d33d 100644
+--- a/src/ol/style/Icon.js
++++ b/src/ol/style/Icon.js
+@@ -71,7 +71,7 @@ class Icon extends ImageStyle {
+     /**
+      * @type {number|import("../size.js").Size}
+      */
+-    const scale = options.scale !== undefined ? options.scale : 1;
++    const scale = options.scale !== undefined ? Math.abs(options.scale) : 1;
+ 
+     /**
+      * @type {boolean}

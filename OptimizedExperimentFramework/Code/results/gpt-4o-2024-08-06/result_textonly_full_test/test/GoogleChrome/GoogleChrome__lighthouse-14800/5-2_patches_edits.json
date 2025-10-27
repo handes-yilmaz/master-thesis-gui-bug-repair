@@ -1,0 +1,33 @@
+{
+    "1/1": {
+        "core/gather/driver/network-monitor.js": [
+            {
+                "SEARCH": [
+                    "this._onFrameNavigated = event => this._frameNavigations.push(event.frame);"
+                ],
+                "REPLACE": [
+                    "    this._onFrameNavigated = event => {",
+                    "      if (event.frame.processId) {",
+                    "        this._frameNavigations.push(event.frame);",
+                    "      } else {",
+                    "        console.warn('Frame navigated without a valid processId');",
+                    "      }",
+                    "    };"
+                ]
+            }
+        ],
+        "core/gather/driver/navigation.js": [
+            {
+                "SEARCH": [
+                    "const navigationUrls = await networkMonitor.getNavigationUrls();"
+                ],
+                "REPLACE": [
+                    "  const navigationUrls = await networkMonitor.getNavigationUrls();",
+                    "  if (!navigationUrls.requestedUrl) {",
+                    "    throw new Error('Unable to determine the requested URL due to missing processId');",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

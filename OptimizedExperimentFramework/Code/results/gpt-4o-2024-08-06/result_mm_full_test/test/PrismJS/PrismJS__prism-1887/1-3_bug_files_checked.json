@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-cpp.js"
+        ],
+        "explanation": "The file `components/prism-cpp.js` is responsible for defining the syntax highlighting rules for C++ in the Prism library. The issue is with the regular expression used to match numbers in C++, which needs to be modified to correctly handle single quotes within numeric literals. The provided regex pattern in the bug report is intended to address this issue by allowing single quotes in numbers, but it is not functioning correctly, leading to the incorrect highlighting observed in the screenshots.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting of C++ numbers that use single quotes as separators. The images show the current incorrect highlighting on the left and the desired correct highlighting on the right. In C++, numbers like `1'048'576` should be treated as a single number, but they are being incorrectly interpreted as separate tokens, causing highlighting issues."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-cpp.js",
+            "components/prism-c.js"
+        ],
+        "explanation": "1. **components/prism-cpp.js**: This file is responsible for the C++ language syntax highlighting. The issue described involves adding regex to handle single quotes in literals, which would be implemented here.\n2. **components/prism-c.js**: The regex modification mentioned in the bug report suggests it's adapted from this file. Ensuring consistent changes across related files is crucial.\n3. **tests/languages/cpp/separating_single_quotes_feature.test**: This test file was mentioned in the bug report as a validation attempt for the feature. It contains test cases that check if single quotes in literals are correctly recognized and highlighted.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting for C++ floating point and integer literals that use single quotes as separators. The images show the incorrect highlighting on the left and the correct highlighting on the right. Numbers with single quotes are not being identified properly, causing them to be partially interpreted as strings instead of numbers."
+    }
+}

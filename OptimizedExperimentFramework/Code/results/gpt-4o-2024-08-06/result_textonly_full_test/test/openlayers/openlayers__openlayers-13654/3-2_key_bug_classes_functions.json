@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/reproj/Tile.js//ReprojTile"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//getProjection",
+            "src/ol/reproj/Tile.js//reproject_"
+        ],
+        "explanation": "The classes and functions identified are related to the handling and rendering of GeoTIFF data and reprojection, which are central to the issue described in the bug report. The `GeoTIFFSource` class in `src/ol/source/GeoTIFF.js` is responsible for managing GeoTIFF data sources, and its `getProjection` function is likely involved in determining the projection of the GeoTIFF, which is crucial for reprojection. The `WebGLTileLayer` class in `src/ol/layer/WebGLTile.js` is responsible for rendering tile layers using WebGL, which includes handling different projections. The `ReprojTile` class in `src/ol/reproj/Tile.js` is specifically designed to handle reprojection of tiles, and its `reproject_` function is directly involved in the reprojection process, making it a key area to investigate for issues related to reprojection not working as expected.",
+        "bug_scenario": "The bug scenario involves attempting to display a Cloud Optimized GeoTIFF (COG) on a map using the EPSG:3857 or EPSG:4326 projection, but the COG does not appear on the map. The issue seems to be related to the lack of automatic reprojection support for the COG, which is in a UTM projection (EPSG:32636). The user is trying to fit the map view to the COG extent, but it does not display, suggesting a problem with reprojection handling."
+    }
+}

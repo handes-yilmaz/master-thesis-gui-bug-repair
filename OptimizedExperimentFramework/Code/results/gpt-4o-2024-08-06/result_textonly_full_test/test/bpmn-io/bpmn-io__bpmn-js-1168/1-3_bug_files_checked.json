@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/label-editing/LabelUtil.js"
+        ],
+        "explanation": "1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file likely contains the logic for handling the copy-paste functionality of BPMN elements. Since the bug is related to pasting elements and involves the activation of direct editing, this file is directly relevant as it would include or interact with the logic that triggers actions post-pasting.\n\n2. **lib/features/label-editing/LabelEditingProvider.js**: This file is responsible for managing label editing, which includes activating direct editing. The bug specifically mentions an unwanted activation of direct editing, making this file a probable location for the code that needs adjustment.\n\n3. **lib/features/label-editing/LabelUtil.js**: Utilities related to label editing might contribute to the activation behavior. This file may contain helper functions that facilitate direct editing or determine when it should be activated, thus making it relevant to the bug fix. By understanding how labels are handled, developers can ensure that direct editing is only activated when intended.",
+        "bug_scenario": "The bug occurs when a task element is pasted in the first position among a group of elements, which then activates direct editing for that task. This behavior contradicts the expected outcome, where direct editing should not activate automatically after pasting."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/modeling/behavior/CreateBehavior.js"
+        ],
+        "explanation": "1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file is likely responsible for handling the copy-paste operations in the BPMN editor. Since the bug involves pasting elements and the incorrect activation of direct editing, this file would be directly involved in the process flow where the issue arises.\n\n2. **lib/features/label-editing/LabelEditingProvider.js**: This file provides functionality related to label editing. Given that the bug involves unintended direct editing of a task's label upon pasting, this component would be relevant in addressing the behavior of label activation.\n\n3. **lib/modeling/behavior/CreateBehavior.js**: This file may contain logic for the creation and initialization of elements, including tasks. Since the bug manifests upon the creation (or pasting) of elements, particularly tasks, modifications here may be necessary to ensure that direct editing is not mistakenly activated.",
+        "bug_scenario": "The bug occurs when a task is pasted as the first element, resulting in direct editing being activated for that task element. This issue persists despite previous attempts to resolve it by selecting all elements after pasting, as referenced in the linked issue #1152. The bug does not appear if a non-task element is in the first position."
+    }
+}

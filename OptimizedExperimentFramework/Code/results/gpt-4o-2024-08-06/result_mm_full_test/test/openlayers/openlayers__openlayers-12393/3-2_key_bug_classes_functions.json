@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageStatic.js//Static"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageStatic.js//Static.handleImageChange"
+        ],
+        "explanation": "The `Static` class in `src/ol/source/ImageStatic.js` is responsible for handling static images, including their scaling and rendering. The `handleImageChange` function within this class is directly involved in the image scaling process, where the rounding error occurs. This function uses `Math.ceil` to calculate the target width of the image, which is suspected to cause the unnecessary stretching of the image. Modifying this function to avoid using `Math.ceil` and instead rounding to the nearest pixel could resolve the bug.",
+        "bug_scenario": "The bug scenario involves a rounding error when scaling a perfectly square image to fit within a square tile extent in the OpenLayers library. The issue arises due to floating point calculations that result in the image being unnecessarily stretched. The use of `Math.ceil` in the scaling process is suspected to be a contributing factor, potentially used to prevent zero width when scaling is negative. The expected behavior is to scale up the dimension that needs it, avoiding the use of `.ceil()` and rounding to the nearest pixel instead."
+    }
+}

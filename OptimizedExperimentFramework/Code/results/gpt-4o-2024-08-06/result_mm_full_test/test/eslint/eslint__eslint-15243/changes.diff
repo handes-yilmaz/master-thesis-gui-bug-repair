@@ -1,0 +1,18 @@
+diff --git a/lib/cli-engine/cli-engine.js b/lib/cli-engine/cli-engine.js
+index c02202e..5756e56 100644
+--- a/lib/cli-engine/cli-engine.js
++++ b/lib/cli-engine/cli-engine.js
+@@ -1026,8 +1026,11 @@ class CLIEngine {
+             }
+ 
+             try {
+-                const formatter = require(formatterPath);
+-                return typeof formatter === 'function' ? formatter : await formatter;
++                let formatter = require(formatterPath);
++                if (typeof formatter !== 'function' && typeof formatter.then === 'function') {
++                    formatter = await formatter;
++                }
++                return formatter;
+             } catch (ex) {
+                 if (format === "table" || format === "codeframe") {
+                     ex.message = `The ${format} formatter is no longer part of core ESLint. Install it manually with \`npm install -D eslint-formatter-${format}\``;

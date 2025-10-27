@@ -1,0 +1,39 @@
+diff --git a/lib/features/label-editing/LabelUtil.js b/lib/features/label-editing/LabelUtil.js
+index 25f75bd..00532f7 100644
+--- a/lib/features/label-editing/LabelUtil.js
++++ b/lib/features/label-editing/LabelUtil.js
+@@ -46,6 +46,11 @@ export function getLabel(element) {
+ 
+     return semantic[attr] || '';
+   }
++
++  // Handle message elements
++  if (is(semantic, 'bpmn:Message')) {
++    return semantic.name || '';
++  }
+ }
+ 
+ 
+@@ -64,4 +69,4 @@ export function setLabel(element, text, isExternal) {
+   }
+ 
+   return element;
+-}
+\ No newline at end of file
++}
+diff --git a/lib/features/modeling/behavior/LabelBehavior.js b/lib/features/modeling/behavior/LabelBehavior.js
+index 43241c6..d63a3b1 100644
+--- a/lib/features/modeling/behavior/LabelBehavior.js
++++ b/lib/features/modeling/behavior/LabelBehavior.js
+@@ -134,6 +134,11 @@ export default function LabelBehavior(
+       width: labelDimensions.width,
+       height: labelDimensions.height
+     });
++
++    // Ensure message elements have labels
++    if (is(element, 'bpmn:Message')) {
++      modeling.updateLabel(element, getLabel(element));
++    }
+   });
+ 
+   // update label after label shape was deleted

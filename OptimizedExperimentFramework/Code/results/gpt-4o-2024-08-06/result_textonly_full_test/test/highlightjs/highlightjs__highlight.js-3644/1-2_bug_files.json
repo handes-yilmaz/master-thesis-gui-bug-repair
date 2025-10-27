@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/cmake.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "1. **src/languages/cmake.js**: This is the primary file responsible for defining the syntax highlighting rules for CMake in the highlight.js library. The incorrect handling of multi-line comments is likely due to the absence or misconfiguration of the rules responsible for recognizing and processing these comment blocks. Modifications to this file would be necessary to include the correct regex patterns and logic to properly identify multi-line comments.\n\n2. **src/lib/modes.js**: This file likely contains utility functions or definitions for handling different syntax modes, which include comments. If multi-line comments are not being handled correctly, it could be due to a broader issue with how comment modes are processed in the library. Adjustments in this file might be needed to ensure that multi-line comments are recognized across different languages, including CMake.",
+        "bug_scenario": "The bug is related to the incorrect handling of multi-line comments in CMake files when using the highlight.js library. The multi-line comments in CMake, which should be enclosed between `#[[` and `]]`, are being treated as if they were single-line comments. This results in the entire multi-line comment block not being correctly greyed out as expected."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/cmake.js"
+        ],
+        "explanation": "The file `src/languages/cmake.js` is likely responsible for defining the syntax highlighting rules for CMake files in the highlight.js library. Since the issue pertains to how multi-line comments are being parsed and highlighted, this file would need to be examined and possibly modified to correctly handle the `#[[` and `]]` comment delimiters as multi-line comments. The fix would involve adjusting the grammar rules in this file to recognize and properly highlight multi-line comments in CMake syntax, ensuring that the entire comment block is treated as a single entity and displayed in the expected color.",
+        "bug_scenario": "The bug scenario describes an issue with multi-line comments in CMake files. Specifically, the highlight.js library, which is used for syntax highlighting, is incorrectly treating multi-line comments that begin with `#[[` and end with `]]` as single-line comments. This results in incorrect syntax highlighting, as the multi-line comment is expected to be grayed out entirely but isn't."
+    }
+}

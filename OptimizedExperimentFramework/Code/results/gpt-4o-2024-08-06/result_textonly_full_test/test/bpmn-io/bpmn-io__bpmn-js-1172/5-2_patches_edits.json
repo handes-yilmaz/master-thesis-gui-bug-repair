@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "lib/import/BpmnImporter.js": [
+            {
+                "SEARCH": [
+                    "if (is(semantic, 'bpmn:BoundaryEvent')) {",
+                    "this._attachBoundary(semantic, element);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (is(semantic, 'bpmn:BoundaryEvent')) {",
+                    "      this._attachBoundary(semantic, element);",
+                    "",
+                    "      // Ensure associations for boundary events are added",
+                    "      if (semantic.dataInputAssociations || semantic.dataOutputAssociations) {",
+                    "        (semantic.dataInputAssociations || []).forEach((association) => {",
+                    "          this.add(association, parentElement);",
+                    "        });",
+                    "        (semantic.dataOutputAssociations || []).forEach((association) => {",
+                    "          this.add(association, parentElement);",
+                    "        });",
+                    "      }",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,22 @@
+diff --git a/src/table/fixed/header.jsx b/src/table/fixed/header.jsx
+index a91de18..6c13bf0 100644
+--- a/src/table/fixed/header.jsx
++++ b/src/table/fixed/header.jsx
+@@ -32,6 +32,17 @@ export default class FixedHeader extends React.Component {
+                     </table>
+                 </div>
+             </div>
++            {/* Ensure the header size is recalculated when both fixedHeader and resizable are used */}
++            {this.props.fixedHeader && this.props.resizable && (
++                <style>
++                    {`
++                        .table-header {
++                            position: relative;
++                            overflow: visible;
++                        }
++                    `}
++                </style>
++            )}
+         );
+     }
+ }

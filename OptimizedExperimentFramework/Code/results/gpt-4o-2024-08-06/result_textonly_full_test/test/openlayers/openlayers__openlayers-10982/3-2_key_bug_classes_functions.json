@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/VectorTile.js//VectorTileLayer",
+            "src/ol/renderer/canvas/VectorTileLayer.js//CanvasVectorTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/VectorTile.js//createRenderer",
+            "src/ol/layer/VectorTile.js//getRenderMode",
+            "src/ol/renderer/canvas/VectorTileLayer.js//renderFrame"
+        ],
+        "explanation": "The bug is related to the rendering of vector tiles when the browser is zoomed in. The 'VectorTileLayer' class in 'src/ol/layer/VectorTile.js' is responsible for handling vector tile data and rendering it client-side. The 'createRenderer' function within this class creates a renderer for the layer, which is crucial for how the tiles are displayed. The 'getRenderMode' function retrieves the current render mode, which is directly related to the issue since the problem occurs with renderMode: 'image'.\n\nThe 'CanvasVectorTileLayerRenderer' class in 'src/ol/renderer/canvas/VectorTileLayer.js' is the canvas renderer for vector tile layers. The 'renderFrame' function in this class is responsible for rendering the layer, and any issues with how tiles are clipped or displayed would likely be addressed here. These classes and functions are key to understanding and fixing the bug because they directly handle the rendering process that is malfunctioning when the browser is zoomed.",
+        "bug_scenario": "The bug scenario involves clipped VectorTile rendering when the browser is zoomed in, specifically when using renderMode: 'image'. This issue does not occur when the browser is at 100% zoom or when the renderMode is set to 'hybrid'. The problem is visually represented by tiles appearing clipped at their boundaries when the browser is zoomed in, as shown in the provided animation."
+    }
+}

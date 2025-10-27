@@ -1,0 +1,42 @@
+diff --git a/src/components/sprite-info/sprite-info.jsx b/src/components/sprite-info/sprite-info.jsx
+index e9090bfe..d60de09b 100644
+--- a/src/components/sprite-info/sprite-info.jsx
++++ b/src/components/sprite-info/sprite-info.jsx
+@@ -46,9 +46,28 @@ class SpriteInfo extends React.Component {
+     }
+     render () {
+         const {
+-            stageSize
++            stageSize,
++            selectedSpriteImage // Assuming this prop provides the image URL
+         } = this.props;
+ 
++        const watermarkStyle = {
++            position: 'absolute',
++            top: '20px',
++            right: '20px',
++            width: '48px',
++            height: '48px',
++            opacity: 0.35,
++            zIndex: -1 // Below blocks
++        };
++
++        const watermark = (
++            <img
++                src={selectedSpriteImage}
++                alt="Watermark"
++                style={watermarkStyle}
++            />
++        );
++
+         const sprite = (
+             <FormattedMessage
+                 defaultMessage="Sprite"
+@@ -147,6 +166,7 @@ class SpriteInfo extends React.Component {
+         if (stageSize === STAGE_DISPLAY_SIZES.small) {
+             return (
+                 <Box className={styles.spriteInfo}>
++                    {watermark}
+                     <div className={classNames(styles.row, styles.rowPrimary)}>
+                         <div className={styles.group}>
+                             {spriteNameInput}

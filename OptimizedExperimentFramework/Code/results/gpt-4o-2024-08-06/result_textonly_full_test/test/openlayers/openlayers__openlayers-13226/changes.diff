@@ -1,0 +1,31 @@
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index ec85963..7ba89f9 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -292,13 +292,19 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+     const viewState = frameState.viewState;
+     const tileLayer = this.getLayer();
+     const tileSource = tileLayer.getSource();
+-    const tileGrid = tileSource.getTileGridForProjection(viewState.projection);
+-    const tileTextureCache = this.tileTextureCache_;
+-    const tileRange = tileGrid.getTileRangeForExtentAndZ(
+-      extent,
+-      z,
+-      this.tempTileRange_
+-    );
++const tileGrid = tileSource.getTileGridForProjection(viewState.projection);
++const tileTextureCache = this.tileTextureCache_;
++let tileRange;
++if (tileGrid) {
++  tileRange = tileGrid.getTileRangeForExtentAndZ(
++    extent,
++    z,
++    this.tempTileRange_
++  );
++} else {
++  // Handle sources without a tile grid
++  tileRange = new TileRange(0, 0, 0, 0); // Default to a single tile
++}
+ 
+     const tileSourceKey = getUid(tileSource);
+     if (!(tileSourceKey in frameState.wantedTiles)) {

@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/ol/source/ImageWMS.js": [
+            {
+                "SEARCH": [
+                    "const imageResolution = resolution / pixelRatio;"
+                ],
+                "REPLACE": [
+                    "    const imageResolution = Math.round(resolution / pixelRatio);"
+                ]
+            }
+        ],
+        "src/ol/renderer/canvas/ImageLayer.js": [
+            {
+                "SEARCH": [
+                    "const scale =",
+                    "(pixelRatio * imageResolution) / (viewResolution * imagePixelRatio);"
+                ],
+                "REPLACE": [
+                    "    const scale =",
+                    "      Math.round((pixelRatio * imageResolution) / (viewResolution * imagePixelRatio));"
+                ]
+            }
+        ]
+    }
+}

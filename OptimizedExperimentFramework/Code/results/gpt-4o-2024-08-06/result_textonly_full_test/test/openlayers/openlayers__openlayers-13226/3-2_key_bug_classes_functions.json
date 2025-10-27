@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer",
+            "src/ol/tilegrid/TileGrid.js//TileGrid"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//parseStyle",
+            "src/ol/layer/WebGLTile.js//handleSourceUpdate_",
+            "src/ol/layer/WebGLTile.js//getSourceBandCount_",
+            "src/ol/renderer/webgl/TileLayer.js//enqueueTiles",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame",
+            "src/ol/tilegrid/TileGrid.js//getTileGridForProjection"
+        ],
+        "explanation": "The 'WebGLTileLayer' class in 'src/ol/layer/WebGLTile.js' is directly related to the bug as it is responsible for handling WebGL tile layers, which are not behaving as expected when 'wrapX' is false. The 'parseStyle', 'handleSourceUpdate_', and 'getSourceBandCount_' functions within this class are crucial for setting up the style and handling source updates, which might be affected by the incorrect tile grid expectations.\n\nThe 'WebGLTileLayerRenderer' class in 'src/ol/renderer/webgl/TileLayer.js' is responsible for rendering the WebGL tile layers. Functions like 'enqueueTiles' and 'renderFrame' are involved in the rendering process and might be impacted by the incorrect assumptions about the tile grid.\n\nThe 'TileGrid' class in 'src/ol/tilegrid/TileGrid.js' is relevant because it manages the tile grid, which is central to the issue. The 'getTileGridForProjection' function is particularly important as it retrieves the tile grid for a given projection, and any misconfiguration here could lead to the renderer expecting a tile grid when it shouldn't.",
+        "bug_scenario": "The bug scenario involves a WebGL renderer that incorrectly expects the source to have a tile grid when using view projection with wrapX set to false. This issue arises when changing from 'ol/layer/Tile' to 'ol/layer/WebGLTile', resulting in unexpected behavior compared to the expected behavior of 'ol/layer/Tile'."
+    }
+}

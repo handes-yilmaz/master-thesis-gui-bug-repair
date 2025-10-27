@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/config/constants.js//defaultSettings",
+            "lighthouse-core/lib/dependency-graph/simulator/simulator.js//Simulator",
+            "lighthouse-core/computed/load-simulator.js//LoadSimulator"
+        ],
+        "bug_functions": [
+            "lighthouse-core/computed/load-simulator.js//compute_"
+        ],
+        "explanation": "1. **lighthouse-core/config/constants.js//defaultSettings**: This class contains the default settings for Lighthouse, including the throttling method and the associated parameters. The issue is related to the 'simulate' throttling method, which is defined here, making it a key element in the bug.\n\n2. **lighthouse-core/lib/dependency-graph/simulator/simulator.js//Simulator**: The Simulator class is responsible for simulating network and CPU conditions. Since the bug is about the simulation not waiting long enough, this class is directly involved in the problem.\n\n3. **lighthouse-core/computed/load-simulator.js//LoadSimulator**: This class uses the Simulator to compute the load simulation based on the provided settings. It is directly responsible for setting up the simulation parameters, including the throttling method.\n\n4. **lighthouse-core/computed/load-simulator.js//compute_**: This function within the LoadSimulator class is responsible for computing the simulation based on the throttling method. It directly handles the 'simulate' method, which is the source of the bug, as it does not wait long enough to capture the full page load.",
+        "bug_scenario": "The bug scenario involves Lighthouse not waiting long enough to detect the Cumulative Layout Shift (CLS) when the throttling method is set to 'simulate'. This results in an inaccurate CLS score because the page load is not fully captured, leading to a higher than expected score."
+    }
+}

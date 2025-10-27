@@ -1,0 +1,63 @@
+{
+    "1/1": {
+        "src/js/components/DataTable/DataTable.js": [
+            {
+                "SEARCH": [
+                    "import {",
+                    "StyledContainer,",
+                    "StyledDataTable,",
+                    "StyledPlaceholder,",
+                    "} from './StyledDataTable';",
+                    "import { DataTablePropTypes } from './propTypes';",
+                    "import { PlaceholderBody } from './PlaceholderBody';"
+                ],
+                "REPLACE": [
+                    "import {",
+                    "  StyledContainer,",
+                    "  StyledDataTable,",
+                    "  StyledPlaceholder,",
+                    "} from './StyledDataTable';",
+                    "import { DataTablePropTypes } from './propTypes';",
+                    "import { PlaceholderBody } from './PlaceholderBody';",
+                    "import DataTableGroup from './DataTableGroup'; // Import the new component"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const DataTable = ({",
+                    "background,",
+                    "border,",
+                    "columns: columnsProp,",
+                    "data: dataProp,",
+                    "disabled,",
+                    "fill,",
+                    "groupBy,",
+                    "onClickRow, // removing unknown DOM attributes"
+                ],
+                "REPLACE": [
+                    "const DataTable = ({",
+                    "  background,",
+                    "  border,",
+                    "  columns: columnsProp,",
+                    "  data: dataProp,",
+                    "  disabled,",
+                    "  fill,",
+                    "  groupBy,",
+                    "  onClickRow, // removing unknown DOM attributes",
+                    "  ...props",
+                    "}) => {",
+                    "  // Add the DataTableGroup component",
+                    "  return (",
+                    "    <StyledContainer>",
+                    "      <DataTableGroup groupBy={groupBy} onChange={setGroupBy} />",
+                    "      <StyledDataTable>",
+                    "        {/* Existing DataTable implementation */}",
+                    "      </StyledDataTable>",
+                    "    </StyledContainer>",
+                    "  );",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

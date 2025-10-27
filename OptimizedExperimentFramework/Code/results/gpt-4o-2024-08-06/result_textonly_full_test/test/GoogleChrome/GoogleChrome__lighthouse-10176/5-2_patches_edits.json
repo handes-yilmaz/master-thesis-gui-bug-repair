@@ -1,0 +1,52 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/dobetterweb/js-libraries.js": [
+            {
+                "SEARCH": [
+                    "const libDetails = artifacts.Stacks",
+                    ".filter(stack => stack.detector === 'js')"
+                ],
+                "REPLACE": [
+                    "    const libDetails = artifacts.Stacks",
+                    "      .filter(stack => stack.detector === 'js' && !stack.experimental)"
+                ]
+            }
+        ],
+        "lighthouse-core/lib/stack-collector.js": [
+            {
+                "SEARCH": [
+                    "return jsLibraries.map(lib => ({",
+                    "detector: /** @type {'js'} */ ('js'),",
+                    "id: lib.id,",
+                    "name: lib.name,",
+                    "version: lib.version || undefined,",
+                    "npm: lib.npm || undefined,",
+                    "}));"
+                ],
+                "REPLACE": [
+                    "  return jsLibraries.map(lib => ({",
+                    "    detector: /** @type {'js'} */ ('js'),",
+                    "    id: lib.id || `${lib.name}-${lib.version}`, // Ensure unique id",
+                    "    name: lib.name,",
+                    "    version: lib.version || undefined,",
+                    "    npm: lib.npm || undefined,",
+                    "    experimental: lib.experimental || false, // Mark experimental entries",
+                    "  }));"
+                ]
+            }
+        ],
+        "lighthouse-core/lib/stack-packs.js": [
+            {
+                "SEARCH": [
+                    "const stackPackToIncl = stackPacksToInclude.find(stackPackToIncl =>",
+                    "stackPackToIncl.requiredStacks.includes(`${pageStack.detector}:${pageStack.id}`));"
+                ],
+                "REPLACE": [
+                    "    const stackPackToIncl = stackPacksToInclude.find(stackPackToIncl =>",
+                    "      stackPackToIncl.requiredStacks.includes(`${pageStack.detector}:${pageStack.id}`) &&",
+                    "      !pageStack.experimental); // Exclude experimental stacks"
+                ]
+            }
+        ]
+    }
+}

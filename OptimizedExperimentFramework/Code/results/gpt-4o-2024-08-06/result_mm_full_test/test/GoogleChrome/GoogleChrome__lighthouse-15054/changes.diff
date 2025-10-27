@@ -1,0 +1,50 @@
+diff --git a/core/audits/no-unload-listeners.js b/core/audits/no-unload-listeners.js
+index 069fe70..cde106b 100644
+--- a/core/audits/no-unload-listeners.js
++++ b/core/audits/no-unload-listeners.js
+@@ -39,7 +39,11 @@ class NoUnloadListeners extends Audit {
+    * @return {Promise<LH.Audit.Product>}
+    */
+   static async audit(artifacts, context) {
+-    const unloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload');
++    const unloadListeners = [];
++    for (const context of artifacts.ExecutionContexts) {
++      const contextUnloadListeners = context.GlobalListeners.filter(l => l.type === 'unload');
++      unloadListeners.push(...contextUnloadListeners);
++    }
+     if (!unloadListeners.length) {
+       return {
+         score: 1,
+diff --git a/core/gather/driver/execution-context.js b/core/gather/driver/execution-context.js
+index 0f08f66..6701be9 100644
+--- a/core/gather/driver/execution-context.js
++++ b/core/gather/driver/execution-context.js
+@@ -13,6 +13,10 @@ class ExecutionContext {
+   /** @param {LH.Gatherer.FRProtocolSession} session */
+   constructor(session) {
+     this._session = session;
++    this._executionContexts = [];
++    session.on('Runtime.executionContextCreated', event => {
++      this._executionContexts.push(event.context);
++    });
+ 
+     /** @type {number|undefined} */
+     this._executionContextId = undefined;
+diff --git a/core/gather/gatherers/global-listeners.js b/core/gather/gatherers/global-listeners.js
+index 38f5eb4..34604a9 100644
+--- a/core/gather/gatherers/global-listeners.js
++++ b/core/gather/gatherers/global-listeners.js
+@@ -71,7 +71,12 @@ class GlobalListeners extends FRGatherer {
+     }
+ 
+     // And get all its listeners of interest.
+-    const {listeners} = await session.sendCommand('DOMDebugger.getEventListeners', {objectId});
++    const executionContexts = await session.sendCommand('Runtime.executionContexts');
++    const listeners = [];
++    for (const context of executionContexts) {
++      const {listeners: contextListeners} = await session.sendCommand('DOMDebugger.getEventListeners', {objectId: context.id});
++      listeners.push(...contextListeners);
++    }
+     const filteredListeners = listeners.filter(GlobalListeners._filterForAllowlistedTypes)
+     .map(listener => {
+       const {type, scriptId, lineNumber, columnNumber} = listener;

@@ -1,0 +1,99 @@
+{
+    "1/1": {
+        "lib/features/snapping/BpmnConnectSnapping.js": [
+            {
+                "SEARCH": [
+                    "function snapInsideTarget(event, target) {",
+                    "",
+                    "AXES.forEach(function(axis) {",
+                    "var matchingTargetDimension = getDimensionForAxis(axis, target),",
+                    "newCoordinate;",
+                    "",
+                    "if (event[axis] < target[axis] + TARGET_BOUNDS_PADDING) {",
+                    "newCoordinate = target[axis] + TARGET_BOUNDS_PADDING;",
+                    "} else if (event[axis] > target[axis] + matchingTargetDimension - TARGET_BOUNDS_PADDING) {",
+                    "newCoordinate = target[axis] + matchingTargetDimension - TARGET_BOUNDS_PADDING;",
+                    "}",
+                    "",
+                    "if (newCoordinate) {",
+                    "setSnapped(event, axis, newCoordinate);",
+                    "}",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function snapInsideTarget(event, target) {",
+                    "",
+                    "  AXES.forEach(function(axis) {",
+                    "    var matchingTargetDimension = getDimensionForAxis(axis, target),",
+                    "        targetCenter = target[axis] + matchingTargetDimension / 2,",
+                    "        newCoordinate;",
+                    "",
+                    "    if (Math.abs(event[axis] - targetCenter) < TARGET_BOUNDS_PADDING) {",
+                    "      newCoordinate = targetCenter;",
+                    "    } else if (event[axis] < target[axis] + TARGET_BOUNDS_PADDING) {",
+                    "      newCoordinate = target[axis] + TARGET_BOUNDS_PADDING;",
+                    "    } else if (event[axis] > target[axis] + matchingTargetDimension - TARGET_BOUNDS_PADDING) {",
+                    "      newCoordinate = target[axis] + matchingTargetDimension - TARGET_BOUNDS_PADDING;",
+                    "    }",
+                    "",
+                    "    if (newCoordinate) {",
+                    "      setSnapped(event, axis, newCoordinate);",
+                    "    }",
+                    "  });",
+                    "}"
+                ]
+            }
+        ],
+        "lib/features/snapping/BpmnCreateMoveSnapping.js": [
+            {
+                "SEARCH": [
+                    "function snapBoundaryEvent(event, target) {",
+                    "var targetTRBL = asTRBL(target);",
+                    "",
+                    "var direction = getBoundaryAttachment(event, target);",
+                    "",
+                    "if (/top/.test(direction)) {",
+                    "setSnapped(event, 'y', targetTRBL.top);",
+                    "} else",
+                    "if (/bottom/.test(direction)) {",
+                    "setSnapped(event, 'y', targetTRBL.bottom);",
+                    "}",
+                    "",
+                    "if (/left/.test(direction)) {",
+                    "setSnapped(event, 'x', targetTRBL.left);",
+                    "} else",
+                    "if (/right/.test(direction)) {",
+                    "setSnapped(event, 'x', targetTRBL.right);",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function snapBoundaryEvent(event, target) {",
+                    "  var targetTRBL = asTRBL(target),",
+                    "      targetCenterX = (targetTRBL.left + targetTRBL.right) / 2,",
+                    "      targetCenterY = (targetTRBL.top + targetTRBL.bottom) / 2;",
+                    "",
+                    "  var direction = getBoundaryAttachment(event, target);",
+                    "",
+                    "  if (/top/.test(direction)) {",
+                    "    setSnapped(event, 'y', targetTRBL.top);",
+                    "  } else if (/bottom/.test(direction)) {",
+                    "    setSnapped(event, 'y', targetTRBL.bottom);",
+                    "  } else {",
+                    "    setSnapped(event, 'y', targetCenterY);",
+                    "  }",
+                    "",
+                    "  if (/left/.test(direction)) {",
+                    "    setSnapped(event, 'x', targetTRBL.left);",
+                    "  } else if (/right/.test(direction)) {",
+                    "    setSnapped(event, 'x', targetTRBL.right);",
+                    "  } else {",
+                    "    setSnapped(event, 'x', targetCenterX);",
+                    "  }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

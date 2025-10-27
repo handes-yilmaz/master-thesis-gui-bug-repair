@@ -1,0 +1,33 @@
+diff --git a/core/gather/driver/navigation.js b/core/gather/driver/navigation.js
+index a7baf6e..e1e101b 100644
+--- a/core/gather/driver/navigation.js
++++ b/core/gather/driver/navigation.js
+@@ -127,6 +127,9 @@ async function gotoURL(driver, requestor, options) {
+   const waitConditions = await Promise.all(waitConditionPromises);
+   const timedOut = waitConditions.some(condition => condition.timedOut);
+   const navigationUrls = await networkMonitor.getNavigationUrls();
++  if (!navigationUrls.requestedUrl) {
++    throw new Error('Unable to determine the requested URL due to missing processId');
++  }
+ 
+   let requestedUrl = navigationUrls.requestedUrl;
+   if (typeof requestor === 'string') {
+diff --git a/core/gather/driver/network-monitor.js b/core/gather/driver/network-monitor.js
+index a4679e6..2a495b6 100644
+--- a/core/gather/driver/network-monitor.js
++++ b/core/gather/driver/network-monitor.js
+@@ -42,7 +42,13 @@ class NetworkMonitor extends NetworkMonitorEventEmitter {
+     this._session = targetManager.rootSession();
+ 
+     /** @param {LH.Crdp.Page.FrameNavigatedEvent} event */
+-    this._onFrameNavigated = event => this._frameNavigations.push(event.frame);
++    this._onFrameNavigated = event => {
++      if (event.frame.processId) {
++        this._frameNavigations.push(event.frame);
++      } else {
++        console.warn('Frame navigated without a valid processId');
++      }
++    };
+ 
+     /** @param {LH.Protocol.RawEventMessage} event */
+     this._onProtocolMessage = event => {

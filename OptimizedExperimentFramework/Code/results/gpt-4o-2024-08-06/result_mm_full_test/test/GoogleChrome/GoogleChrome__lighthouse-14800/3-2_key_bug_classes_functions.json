@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "core/lib/tracehouse/trace-processor.js//TraceProcessor"
+        ],
+        "bug_functions": [
+            "core/lib/tracehouse/trace-processor.js//findMainFramePidTids"
+        ],
+        "explanation": "The issue is related to the handling of the 'FrameCommittedInBrowser' event in the 'TraceProcessor' class. The 'findMainFramePidTids' function is responsible for mapping process IDs to thread IDs. The bug arises because the function expects a 'processId' but receives a 'processPseudoId', leading to an undefined 'mainFramePids'. This is why the error 'Unable to determine tid for renderer process' is thrown.",
+        "bug_scenario": "The bug occurs when the 'FrameCommittedInBrowser' event has a 'processPseudoId' instead of a 'processId', causing 'mainFramePids' to contain 'undefined'. This results in Lighthouse returning an error: 'Unable to determine tid for renderer process'."
+    }
+}

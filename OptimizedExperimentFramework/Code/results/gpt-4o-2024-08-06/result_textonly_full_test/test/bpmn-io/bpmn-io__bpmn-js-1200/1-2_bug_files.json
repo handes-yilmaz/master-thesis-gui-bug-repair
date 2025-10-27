@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "1. **DropOnFlowBehavior.js**: This file likely contains logic related to handling behaviors when elements are dropped on a flow. Since the issue specifically occurs when a 'Timer Intermediate Catch Event' is dropped on a sequence flow, this behavior file would be responsible for managing the event of dropping an element and adjusting the properties of the sequence flow accordingly.\n\n2. **UpdatePropertiesHandler.js**: Given that the bug involves the removal of an expression from a sequence flow, this file is relevant because it likely handles the updating of properties for BPMN elements. The erroneous behavior of removing the 'conditionExpression' property when updating the sequence flow properties is likely managed here.",
+        "bug_scenario": "The bug scenario involves dropping a 'Timer Intermediate Catch Event' on a sequence flow that has a condition type of expression, which leads to the removal of the condition expression from the sequence flow. This behavior is unexpected, as the condition expression should remain intact when such an event is dropped on the sequence flow."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/replace/ReplaceOptions.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/DropOnFlowBehavior.js**: This file likely handles the behavior when elements are dropped onto a flow. Given that the bug involves changing an element on a sequence flow, this file is a prime candidate for where the behavior is being incorrectly altered.\n\n2. **lib/features/modeling/cmd/UpdatePropertiesHandler.js**: This file deals with updating properties of model elements. Since the bug involves the removal of a condition expression (a property of the sequence flow), this handler could be responsible for improperly updating or removing the conditionExpression property.\n\n3. **lib/features/replace/ReplaceOptions.js**: This file likely contains logic for replacing elements within the model. Given that the transformation into a 'Timer Intermediate Catch Event' alters the sequence flow properties, this file could contain logic that unintentionally removes the condition expression during such a replacement.",
+        "bug_scenario": "The bug scenario involves a sequence flow with a condition type of expression being altered when a 'Timer Intermediate Catch Event' is applied. Specifically, the condition expression value is removed from the sequence flow, which is not the expected behavior."
+    }
+}

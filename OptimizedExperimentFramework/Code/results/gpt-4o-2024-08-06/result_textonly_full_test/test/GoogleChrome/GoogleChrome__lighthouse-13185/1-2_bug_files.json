@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_files": [
+            "flow-report/src/summary/summary.tsx",
+            "flow-report/src/common.tsx",
+            "flow-report/src/util.ts",
+            "report/generator/report-generator.js",
+            "report/renderer/details-renderer.js"
+        ],
+        "explanation": "1. **flow-report/src/summary/summary.tsx**: This file likely handles the rendering of the summary section of the report, where thumbnail images are currently hotlinked. Modifications will be needed to replace the hotlinked images with local assets.\n\n2. **flow-report/src/common.tsx**: This file might contain common utilities or components used across the report rendering process, including image handling logic that needs adjustment.\n\n3. **flow-report/src/util.ts**: Utility functions that deal with image processing or asset management would be in this file, requiring modifications to handle full-page screenshots instead of thumbnails.\n\n4. **report/generator/report-generator.js**: As a central file for generating reports, changes here would ensure the correct assets are used during report creation, replacing hotlinked images with local resources.\n\n5. **report/renderer/details-renderer.js**: This file likely includes logic for rendering detailed sections of the report, such as images, and would need updates to ensure it utilizes the full-page screenshots instead of remote thumbnails. \n\nThese files are related to the bug because they are involved in the rendering and generation of reports, which currently use hotlinked images. They need to be updated to use local screenshots to resolve the CSP and mixed content issues.",
+        "bug_scenario": "The bug report describes an issue where the current implementation of the report uses image tags that hotlink to remote servers. This is causing content security policy (CSP) and mixed content issues when reports are accessed over HTTPS. Instead of hotlinking, the report should use full-page screenshots that are already available as assets, which will simplify the CSP and mixed content handling."
+    },
+    "2": {
+        "bug_files": [
+            "flow-report/src/summary/summary.tsx",
+            "flow-report/src/wrappers/report.tsx",
+            "report/renderer/report-renderer.js",
+            "report/generator/report-generator.js",
+            "lighthouse-core/audits/full-page-screenshot.js",
+            "lighthouse-core/audits/screenshot-thumbnails.js"
+        ],
+        "explanation": "The files identified are likely involved in rendering or generating reports, which is where the problematic hotlinking of images is taking place. \n1. `flow-report/src/summary/summary.tsx` and `flow-report/src/wrappers/report.tsx`: These files are part of the report summary and wrappers, suggesting they handle the inclusion of images or thumbnails in the report layout.\n2. `report/renderer/report-renderer.js`: As a renderer, this would be involved in creating the visual output of the report, including any images or thumbnails.\n3. `report/generator/report-generator.js`: This file is likely responsible for generating the report, possibly determining how images are included or sourced.\n4. `lighthouse-core/audits/full-page-screenshot.js` and `lighthouse-core/audits/screenshot-thumbnails.js`: These files are directly related to handling full-page screenshots and thumbnails, which are central to the bug report's suggested solution of using full-page screenshots instead of hotlinked thumbnails.",
+        "bug_scenario": "The bug report indicates that there is an issue with image hotlinking in reports, specifically with `type=thumbnail` items. These items currently hotlink images from remote servers, which causes issues with CSP (Content Security Policy) and mixed content when the report is shown over HTTPS. The suggestion is to use a full-page screenshot (fpss) asset instead to avoid these issues."
+    }
+}

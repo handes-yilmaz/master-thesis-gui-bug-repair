@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "src/ol/source/Raster.js": [
+            {
+                "SEARCH": [
+                    "if (seed) {",
+                    "seed = seed.map(Math.round);",
+                    "const seedIdx = (seed[1] * width + seed[0]) * 4;",
+                    "console.log(\"Value: \" + inputData[seedIdx]);",
+                    "}",
+                    "",
+                    "return { data: image.data, width: width, height: height };"
+                ],
+                "REPLACE": [
+                    "  if (seed) {",
+                    "    seed = seed.map(Math.round);",
+                    "    const seedIdx = (seed[1] * width + seed[0]) * 4;",
+                    "    console.log(\"Value: \" + inputData[seedIdx]);",
+                    "",
+                    "    // Update pixel data based on the current level",
+                    "    for (let y = 0; y < height; y++) {",
+                    "      for (let x = 0; x < width; x++) {",
+                    "        const idx = (y * width + x) * 4;",
+                    "        if (inputData[idx + 1] <= data.level) {",
+                    "          inputData[idx] = 255; // Set R value to 255 for white",
+                    "          inputData[idx + 1] = 255; // Set G value to 255 for white",
+                    "          inputData[idx + 2] = 255; // Set B value to 255 for white",
+                    "          inputData[idx + 3] = 255; // Set A value to 255 for opaque",
+                    "        } else {",
+                    "          inputData[idx + 3] = 0; // Set A value to 0 for transparent",
+                    "        }",
+                    "      }",
+                    "    }",
+                    "  }",
+                    "",
+                    "  return { data: image.data, width: width, height: height };"
+                ]
+            }
+        ]
+    }
+}

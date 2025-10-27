@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "src/command/render/output-tex.ts": [
+            {
+                "SEARCH": [
+                    "// Example of LaTeX environment generation",
+                    "function generateLatexEnvironment(envType, content, label) {",
+                    "return `\\\\leavevmode\\\\vadjust pre{\\\\hypertarget{${label}}{}}%\\\\begin{${envType}}[]\\\\label{${label}}\\n${content}\\n\\\\end{${envType}}`;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function generateLatexEnvironment(envType, content, label) {",
+                    "  return `\\\\begin{${envType}}[]\\\\label{${label}}\\n${content}\\n\\\\end{${envType}}`;",
+                    "}"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "// Example of proof environment generation",
+                    "function generateProofEnvironment(content) {",
+                    "return `\\\\begin{proof}\\n\\n${content}\\n\\n\\\\end{proof}`;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function generateProofEnvironment(content) {",
+                    "  return `\\\\begin{proof}\\n\\n${content}\\n\\\\end{proof}`;",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

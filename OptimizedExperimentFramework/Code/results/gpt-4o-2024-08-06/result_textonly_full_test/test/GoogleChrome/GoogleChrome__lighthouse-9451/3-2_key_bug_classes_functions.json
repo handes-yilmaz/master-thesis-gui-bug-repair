@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/offline-start-url.js//OfflineStartUrl",
+            "lighthouse-core/gather/gatherers/service-worker.js//ServiceWorker",
+            "lighthouse-core/gather/gatherers/offline.js//Offline",
+            "lighthouse-core/lib/network-recorder.js//NetworkRecorder"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/offline-start-url.js//OfflineStartUrl.audit",
+            "lighthouse-core/gather/gatherers/service-worker.js//ServiceWorker.beforePass",
+            "lighthouse-core/gather/gatherers/offline.js//Offline.beforePass",
+            "lighthouse-core/gather/gatherers/offline.js//Offline.afterPass",
+            "lighthouse-core/lib/network-recorder.js//NetworkRecorder.onRequestStarted",
+            "lighthouse-core/lib/network-recorder.js//NetworkRecorder.onRequestFinished"
+        ],
+        "explanation": "The classes and functions identified are directly related to the handling of offline capabilities and network requests in Lighthouse. The 'OfflineStartUrl' class and its 'audit' function are responsible for checking if the start URL responds correctly when offline, which is the core of the reported issue. The 'ServiceWorker' class and its 'beforePass' function are involved in gathering service worker information, which is crucial for offline functionality. The 'Offline' class and its 'beforePass' and 'afterPass' functions manage the transition to and from offline mode, which is directly related to the bug where the page does not load offline. Finally, the 'NetworkRecorder' class and its 'onRequestStarted' and 'onRequestFinished' functions handle network request events, which are essential for determining if requests are served from the service worker or disk cache, a key aspect of the bug.",
+        "bug_scenario": "The bug scenario involves running Lighthouse on a specific URL and observing that the offline pass does not behave as expected. Instead of loading the offline version of the page, the desktop version is loaded, and network requests do not have the 'fromServiceWorker' and 'fromDiskCache' flags set to true, which indicates that the page is not being served from the service worker cache as it should be when offline."
+    }
+}

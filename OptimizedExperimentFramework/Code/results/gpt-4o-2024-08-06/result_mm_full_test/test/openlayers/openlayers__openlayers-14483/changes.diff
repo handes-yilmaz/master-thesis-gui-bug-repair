@@ -1,0 +1,75 @@
+diff --git a/src/ol/render/canvas/TextBuilder.js b/src/ol/render/canvas/TextBuilder.js
+index c8cea3f..9b71ef2 100644
+--- a/src/ol/render/canvas/TextBuilder.js
++++ b/src/ol/render/canvas/TextBuilder.js
+@@ -371,38 +371,38 @@ class CanvasTextBuilder extends CanvasBuilder {
+       // For clarity, we pass NaN for offsetX, offsetY, width and height, which will be computed at
+       // render time.
+       const pixelRatio = this.pixelRatio;
+-      this.instructions.push([
+-        CanvasInstruction.DRAW_IMAGE,
+-        begin,
+-        end,
+-        null,
+-        NaN,
+-        NaN,
+-        NaN,
+-        1,
+-        0,
+-        0,
+-        this.textRotateWithView_,
+-        this.textRotation_,
+-        [1, 1],
+-        NaN,
+-        undefined,
+-        this.declutterImageWithText_,
+-        padding == defaultPadding
+-          ? defaultPadding
+-          : padding.map(function (p) {
+-              return p * pixelRatio;
+-            }),
+-        !!textState.backgroundFill,
+-        !!textState.backgroundStroke,
+-        this.text_,
+-        this.textKey_,
+-        this.strokeKey_,
+-        this.fillKey_,
+-        this.textOffsetX_,
+-        this.textOffsetY_,
+-        geometryWidths,
+-      ]);
++this.instructions.push([
++    CanvasInstruction.DRAW_IMAGE,
++    begin,
++    end,
++    null,
++    NaN,
++    NaN,
++    NaN,
++    1,
++    this.textOffsetX_,
++    this.textOffsetY_,
++    this.textRotateWithView_,
++    this.textRotation_,
++    [1, 1],
++    NaN,
++    undefined,
++    this.declutterImageWithText_,
++    padding == defaultPadding
++      ? defaultPadding
++      : padding.map(function (p) {
++          return p * pixelRatio;
++        }),
++    !!textState.backgroundFill,
++    !!textState.backgroundStroke,
++    this.text_,
++    this.textKey_,
++    this.strokeKey_,
++    this.fillKey_,
++    0,
++    0,
++    geometryWidths,
++  ]);
+       const scale = 1 / pixelRatio;
+       // Set default fill for hit detection background
+       const currentFillStyle = this.state.fillStyle;

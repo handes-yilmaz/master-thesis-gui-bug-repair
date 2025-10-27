@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/language-js/index.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "1. **src/language-js/parser-babel.js**: This file contains the current implementation of the Babel parser, including the logic for handling different plugins and parsing methods. To switch to Cherow, modifications would be needed here to integrate Cherow as an alternative parser.\n\n2. **src/language-js/index.js**: This file manages the available parsers, including Babel and Flow. To add Cherow as a parser option, changes would be required to include it in the list of parsers.\n\n3. **src/main/parser.js**: This file is responsible for resolving and using the appropriate parser based on options. To support Cherow, adjustments would be necessary to resolve and utilize Cherow when specified.",
+        "bug_scenario": "The bug report suggests using the Cherow parser for JavaScript to improve the speed of Prettier, especially in a format-on-save scenario. The benchmark image shows that Cherow is faster than other parsers like Babylon, which is currently used. However, Cherow does not support Flow syntax, which is a blocker for its default use."
+    }
+}

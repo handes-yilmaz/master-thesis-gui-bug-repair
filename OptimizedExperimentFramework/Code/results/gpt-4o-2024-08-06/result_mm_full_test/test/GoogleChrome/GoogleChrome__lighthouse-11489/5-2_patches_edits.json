@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "lighthouse-core/report/html/renderer/details-renderer.js": [
+            {
+                "SEARCH": [
+                    "_renderBytes(details) {",
+                    "// TODO: handle displayUnit once we have something other than 'kb'",
+                    "// Note that 'kb' is historical and actually represents KiB.",
+                    "const value = Util.i18n.formatBytesToKiB(details.value, details.granularity);"
+                ],
+                "REPLACE": [
+                    "  _renderBytes(details) {",
+                    "    // TODO: handle displayUnit once we have something other than 'kb'",
+                    "    // Note that 'kb' is historical and actually represents KiB.",
+                    "    const value = Util.i18n.formatBytesToKiB(details.value, details.granularity).toFixed(1);"
+                ]
+            }
+        ]
+    }
+}

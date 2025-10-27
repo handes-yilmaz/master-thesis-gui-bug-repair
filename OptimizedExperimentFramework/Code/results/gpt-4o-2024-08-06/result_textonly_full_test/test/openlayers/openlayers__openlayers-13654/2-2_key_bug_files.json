@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/reproj/Tile.js"
+        ],
+        "explanation": "1. **src/ol/source/GeoTIFF.js**: This file is responsible for handling GeoTIFF sources, including their configuration and loading. The problem might be related to how the GeoTIFF source is set up or how it handles different projections, which is crucial for displaying the COG correctly on the map.\n\n2. **src/ol/layer/WebGLTile.js**: This file deals with the WebGLTile layer, which is used to render the COG on the map. Issues in this file could relate to how the layer handles different projections or how it integrates with the source data, affecting the display of the COG.\n\n3. **src/ol/reproj/Tile.js**: This file is involved in the reprojection of tiles. Since the issue is related to displaying a COG with a different projection, any problems in the reprojection logic could prevent the COG from being displayed correctly. This file likely contains the logic for transforming the tile data from the source projection to the target projection, which is essential for the COG to appear on the map.",
+        "bug_scenario": "The bug scenario involves attempting to display a Cloud Optimized GeoTIFF (COG) with a UTM projection on a map that uses a different projection (EPSG:3857 or EPSG:4326). The issue is that the COG does not appear on the map, suggesting a problem with automatic reprojection support or configuration."
+    }
+}

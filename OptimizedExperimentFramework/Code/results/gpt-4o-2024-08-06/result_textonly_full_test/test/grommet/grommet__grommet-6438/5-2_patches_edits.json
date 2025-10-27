@@ -1,0 +1,43 @@
+{
+    "1/1": {
+        "src/js/components/Calendar/utils.js": [
+            {
+                "SEARCH": [
+                    "if ((from && sameDay(date, from)) || (to && sameDay(date, to))) {",
+                    "result = 2;",
+                    "} else if (",
+                    "from &&",
+                    "sameDayOrAfter(date, from) &&",
+                    "to &&",
+                    "sameDayOrBefore(date, to)",
+                    ") {",
+                    "result = 1;",
+                    "} else {",
+                    "result = undefined;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if ((from && sameDay(date, from)) || (to && sameDay(date, to))) {",
+                    "      result = 2;",
+                    "    } else if (",
+                    "      from &&",
+                    "      sameDayOrAfter(date, from) &&",
+                    "      to &&",
+                    "      sameDayOrBefore(date, to)",
+                    "    ) {",
+                    "      result = 1;",
+                    "    } else {",
+                    "      result = undefined;",
+                    "    }",
+                    "    // Ensure that the date is not before the 'from' date or after the 'to' date",
+                    "    if (from && date < from) {",
+                    "      result = undefined;",
+                    "    }",
+                    "    if (to && date > to) {",
+                    "      result = undefined;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

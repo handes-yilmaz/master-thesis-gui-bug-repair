@@ -1,0 +1,103 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "window.runLighthouseForConnection",
+            "file_path": "lighthouse-extension/app/src/lighthouse-background.js",
+            "function_details": [
+                {
+                    "name": "window.runLighthouseForConnection",
+                    "start_line": 101,
+                    "end_line": 123
+                }
+            ],
+            "function_code": [
+                "window.runLighthouseForConnection = function(connection, url, options, aggregationIDs) {",
+                "  const newConfig = Config.generateNewConfigOfAggregations(defaultConfig, aggregationIDs);",
+                "  const config = new Config(newConfig);",
+                "",
+                "  // Add url and config to fresh options object.",
+                "  const runOptions = Object.assign({}, options, {url, config});",
+                "",
+                "  lighthouseIsRunning = true;",
+                "  updateBadgeUI(url);",
+                "",
+                "  return Runner.run(connection, runOptions) // Run Lighthouse.",
+                "    .then(result => {",
+                "      lighthouseIsRunning = false;",
+                "      updateBadgeUI();",
+                "      filterOutArtifacts(result);",
+                "      return result;",
+                "    })",
+                "    .catch(err => {",
+                "      lighthouseIsRunning = false;",
+                "      updateBadgeUI();",
+                "      throw err;",
+                "    });",
+                "};"
+            ]
+        },
+        "2": {
+            "function_name": "window.runLighthouseInExtension",
+            "file_path": "lighthouse-extension/app/src/lighthouse-background.js",
+            "function_details": [
+                {
+                    "name": "window.runLighthouseInExtension",
+                    "start_line": 130,
+                    "end_line": 148
+                }
+            ],
+            "function_code": [
+                "window.runLighthouseInExtension = function(options, aggregationIDs) {",
+                "  // Default to 'info' logging level.",
+                "  log.setLevel('info');",
+                "  const connection = new ExtensionProtocol();",
+                "  // return enableOtherChromeExtensions(false)",
+                "    // .then(_ => connection.getCurrentTabURL())",
+                "  return connection.getCurrentTabURL()",
+                "    .then(url => window.runLighthouseForConnection(connection, url, options, aggregationIDs))",
+                "    .then(results => {",
+                "      // return enableOtherChromeExtensions(true).then(_ => {",
+                "      const blobURL = window.createReportPageAsBlob(results, 'extension');",
+                "      chrome.tabs.create({url: blobURL});",
+                "      // });",
+                "    }).catch(err => {",
+                "      // return enableOtherChromeExtensions(true).then(_ => {",
+                "      throw err;",
+                "      // });",
+                "    });",
+                "};"
+            ]
+        },
+        "3": {
+            "function_name": "window.createReportPageAsBlob",
+            "file_path": "lighthouse-extension/app/src/lighthouse-background.js",
+            "function_details": [
+                {
+                    "name": "window.createReportPageAsBlob",
+                    "start_line": 169,
+                    "end_line": 185
+                }
+            ],
+            "function_code": [
+                "window.createReportPageAsBlob = function(results, reportContext) {",
+                "  performance.mark('report-start');",
+                "",
+                "  const reportGenerator = new ReportGenerator();",
+                "  let html;",
+                "  try {",
+                "    html = reportGenerator.generateHTML(results, reportContext);",
+                "  } catch (err) {",
+                "    html = reportGenerator.renderException(err, results);",
+                "  }",
+                "  const blob = new Blob([html], {type: 'text/html'});",
+                "  const blobURL = window.URL.createObjectURL(blob);",
+                "",
+                "  performance.mark('report-end');",
+                "  performance.measure('generate report', 'report-start', 'report-end');",
+                "  return blobURL;",
+                "};"
+            ]
+        }
+    }
+}

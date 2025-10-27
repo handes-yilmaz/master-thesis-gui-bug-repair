@@ -1,0 +1,26 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index f2c358a..b39a156 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -18,11 +18,20 @@ function copyProperties(source, target, properties) {
+ 
+   forEach(properties, function(property) {
+     if (!isUndefined(source[property])) {
+-      target[property] = source[property];
++      // Ensure unique ID for copied elements
++      if (property === 'id') {
++        target[property] = generateUniqueId();
++      } else {
++        target[property] = source[property];
++      }
+     }
+   });
+ }
+ 
++function generateUniqueId() {
++  return 'Process_' + Math.random().toString(36).substr(2, 9);
++}
++
+ function removeProperties(element, properties) {
+   if (!isArray(properties)) {
+     properties = [ properties ];

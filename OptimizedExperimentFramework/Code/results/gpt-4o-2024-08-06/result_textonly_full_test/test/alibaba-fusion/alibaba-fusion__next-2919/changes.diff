@@ -1,0 +1,64 @@
+diff --git a/src/tab/tabs/nav.jsx b/src/tab/tabs/nav.jsx
+index e0a3155..f02f23d 100644
+--- a/src/tab/tabs/nav.jsx
++++ b/src/tab/tabs/nav.jsx
+@@ -557,30 +557,35 @@ class Nav extends React.Component {
+         const container = (
+             <div className={containerCls} onKeyDown={this.handleKeyDown} key="nav-container">
+                 <div className={`${prefix}tabs-nav-wrap`} ref={this.wrapperRefHandler}>
+-                    <div className={`${prefix}tabs-nav-scroll`} style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+-                        {animation ? (
+-                            <Animate
+-                                role="tablist"
+-                                aria-multiselectable={false}
+-                                component="ul"
+-                                className={navCls}
+-                                animation={navCls}
+-                                singleMode={false}
+-                                ref={this.navRefHandler}
+-                                afterAppear={this.initialSettings.bind(this)}
+-                            >
+-                                {tabList}
+-                            </Animate>
+-                        ) : (
+-                            <ul
+-                                role="tablist"
+-                                className={`${navCls} ${prefix}disable-animation`}
+-                                ref={this.navRefHandler}
+-                            >
+-                                {tabList}
+-                            </ul>
+-                        )}
+-                    </div>
++<div
++    className={`${prefix}tabs-nav-scroll`}
++    style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}
++    onMouseDown={this.handleMouseDown}
++    onKeyDown={this.handleKeyDown}
++>
++    {animation ? (
++        <Animate
++            role="tablist"
++            aria-multiselectable={false}
++            component="ul"
++            className={navCls}
++            animation={navCls}
++            singleMode={false}
++            ref={this.navRefHandler}
++            afterAppear={this.initialSettings.bind(this)}
++        >
++            {tabList}
++        </Animate>
++    ) : (
++        <ul
++            role="tablist"
++            className={`${navCls} ${prefix}disable-animation`}
++            ref={this.navRefHandler}
++        >
++            {tabList}
++        </ul>
++    )}
++</div>
+                 </div>
+                 {prevButton}
+                 {nextButton}

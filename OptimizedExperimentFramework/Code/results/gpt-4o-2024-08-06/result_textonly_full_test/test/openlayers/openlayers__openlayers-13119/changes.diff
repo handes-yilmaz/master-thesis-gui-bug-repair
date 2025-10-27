@@ -1,0 +1,31 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index d801be0..304d125 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -273,7 +273,7 @@ class WebGLTileLayer extends BaseTileLayer {
+   constructor(opt_options) {
+     const options = opt_options ? assign({}, opt_options) : {};
+ 
+-    const style = options.style || {};
++    const style = options.style || { blendFunc: 'default' };
+     delete options.style;
+ 
+     const cacheSize = options.cacheSize;
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index b94618b..a0406fa 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -453,7 +453,13 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+       }
+     }
+ 
++    const gl = this.helper.getGL();
+     this.helper.useProgram(this.program_);
++    if (this.getLayer().style_.blendFunc === 'additive') {
++      gl.blendFunc(gl.ONE, gl.ONE);
++    } else {
++      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
++    }
+     this.helper.prepareDraw(frameState, !blend);
+ 
+     const zs = Object.keys(tileTexturesByZ)

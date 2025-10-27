@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/modeling/behavior/DetachEventBehavior.js",
+            "lib/features/modeling/behavior/CreateBehavior.js",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js"
+        ],
+        "explanation": "The bug is directly related to the behavior of Boundary Events when moved in a batch process. In the repository, the relevant files that handle the behavior of boundary events and their detachment are most likely to be in the 'modeling/behavior' directory. Specifically:\n\n1. **BoundaryEventBehavior.js**: This file likely contains logic specific to the handling and lifecycle of boundary events, which is directly related to the bug where these events are not converting properly.\n\n2. **DetachEventBehavior.js**: Since the bug involves events not detaching and converting as expected, this file is likely responsible for the logic that handles the detachment process when events are moved.\n\n3. **CreateBehavior.js** and **CreateBoundaryEventBehavior.js**: These files might contain the logic for creating boundary events or converting them into other types, which is crucial for understanding how events should behave when moved to the canvas.\n\nThese files are key suspects in influencing how events are managed, attached, detached, and converted within the system, which aligns with the bug's symptoms.",
+        "bug_scenario": "The bug involves Boundary Events in a BPMN diagram not converting to Intermediate Events when moved to the canvas in a batch operation. Instead of detaching and converting, the Boundary Events retain their original state, which is not the expected behavior."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/modeling/behavior/DetachEventBehavior.js",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "The files identified are related to the handling and behavior of Boundary Events within the BPMN modeler.\n\n1. **BoundaryEventBehavior.js**: This file likely contains logic for how boundary events behave, including their attachment and detachment. Any logic to change the event type upon movement would be part of this file.\n\n2. **DetachEventBehavior.js**: This file is crucial for the detachment process. When a Boundary Event is moved, it should be detached from its host, and this file would manage such detachment operations.\n\n3. **CreateBoundaryEventBehavior.js**: This file manages the creation of Boundary Events. If the bug involves correctly handling these events when moved, this file may need changes to ensure events are created with the correct properties when moved.\n\n4. **AttachEventBehavior.js**: This file manages the attachment of events to a host. Adjustments may be necessary to handle the conversion from Boundary to Intermediate Events correctly.\n\n5. **UpdatePropertiesHandler.js**: Since the bug involves changing the event type (from Boundary to Intermediate), this file is likely responsible for managing the properties of events, including their type, when they are updated through operations like moving.",
+        "bug_scenario": "The bug report describes a problem where Boundary Events in a BPMN diagram are not properly detached and converted into Intermediate Events when moved out of their host elements in a batch move operation. The expected behavior is either to disallow such a move or to automatically convert the Boundary Events into Intermediate Events when they are moved to the canvas."
+    }
+}

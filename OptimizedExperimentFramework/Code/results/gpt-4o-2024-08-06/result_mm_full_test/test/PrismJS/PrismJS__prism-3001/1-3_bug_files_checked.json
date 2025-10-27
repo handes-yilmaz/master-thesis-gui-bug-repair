@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-typescript.js",
+            "components/prism-tsx.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The bug is related to the syntax highlighting of TypeScript code. The files `prism-typescript.js` and `prism-tsx.js` are directly related to TypeScript and TSX language support in the syntax highlighting library, so they are likely handling the logic for detecting keywords. Additionally, `prism-core.js` is a central part of the Prism library that could handle generic keyword recognition and parsing, affecting how languages are tokenized and highlighted.",
+        "bug_scenario": "The bug involves TypeScript keywords like `infer` and `type` being incorrectly highlighted as keywords even when they are part of larger identifiers, such as `inference` and `typeDefs`. The expected behavior is that only the standalone keywords should be highlighted, not when they are part of a longer word. However, the actual behavior incorrectly highlights these as keywords."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-typescript.js",
+            "plugins/highlight-keywords/prism-highlight-keywords.js"
+        ],
+        "explanation": "The file 'components/prism-typescript.js' is likely responsible for defining the syntax highlighting rules specific to TypeScript, which includes handling of keywords like 'infer' and 'type'. The file 'plugins/highlight-keywords/prism-highlight-keywords.js' could be involved in the keyword highlighting logic, potentially affecting how keywords are recognized and highlighted when followed by other characters.",
+        "bug_scenario": "The bug report details an issue with TypeScript syntax highlighting, where keywords like 'infer' and 'type' are incorrectly highlighted as keywords even when they are part of a larger identifier (e.g., 'inference', 'typeDefs'). The expected behavior is that only standalone keywords should be highlighted, but in the provided scenario, the highlighting is applied incorrectly as shown in the image."
+    }
+}

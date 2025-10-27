@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/driver.js//Driver",
+            "lighthouse-core/gather/gather-runner.js//GatherRunner"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/driver.js//sendCommand",
+            "lighthouse-core/gather/driver.js//_innerSendCommand",
+            "lighthouse-core/gather/gather-runner.js//run"
+        ],
+        "explanation": "The `Driver` class in `driver.js` is responsible for managing the connection and communication with the browser, including sending commands and receiving events. The `sendCommand` and `_innerSendCommand` functions are crucial as they handle the sending of protocol commands, which is directly related to the issue of not handling OOPIFs. The `GatherRunner` class in `gather-runner.js` orchestrates the gathering process, including setting up the driver and running the passes. The `run` function is significant as it manages the execution sequence and could be where the handling of OOPIFs needs to be integrated.",
+        "bug_scenario": "The bug scenario involves Lighthouse not handling Out-of-Process iframes (OOPIFs) correctly. The issue is observed in Chrome DevTools where it uses `Target.sendMessageToTarget` to send `Network.enable` to a discovered target and receives data in `Target.receivedMessageFromTarget` event. The concern is that Lighthouse might only be analyzing requests from the main frame and not from iframes."
+    }
+}

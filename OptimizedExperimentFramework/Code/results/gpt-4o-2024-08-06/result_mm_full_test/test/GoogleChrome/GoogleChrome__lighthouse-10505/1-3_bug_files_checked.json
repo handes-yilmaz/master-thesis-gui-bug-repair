@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/interactive.js",
+            "lighthouse-core/computed/metrics/interactive.js",
+            "lighthouse-core/lib/dependency-graph/simulator/simulator.js",
+            "lighthouse-core/lib/dependency-graph/base-node.js",
+            "lighthouse-core/lib/dependency-graph/network-node.js",
+            "lighthouse-core/lib/dependency-graph/cpu-node.js"
+        ],
+        "explanation": "The files are involved in calculating the Time to Interactive (TTI) metric in Lighthouse. The 'interactive.js' files in both 'audits' and 'computed' directories are directly responsible for determining when a page becomes interactive. This is crucial for diagnosing the NO_TTI_CPU_IDLE_PERIOD error. The simulator and node files under 'dependency-graph' are involved in simulating network and CPU activity, potentially affecting the TTI calculation when there are slow FCPs followed by idle periods.",
+        "bug_scenario": "The bug report describes an issue where Lighthouse reports a NO_TTI_CPU_IDLE_PERIOD error. This occurs when there's a slow First Contentful Paint (FCP) but the page is idle immediately after. The expected behavior is that there shouldn't be an error, but Lighthouse fails to calculate the Time to Interactive (TTI) properly, leading to performance score errors."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/first-contentful-paint.js",
+            "lighthouse-core/audits/metrics/interactive.js",
+            "lighthouse-core/computed/metrics/first-contentful-paint.js",
+            "lighthouse-core/computed/metrics/interactive.js",
+            "lighthouse-core/lib/dependency-graph/simulator/simulator.js",
+            "lighthouse-core/gather/gather-runner.js"
+        ],
+        "explanation": "These files are related to computing performance metrics and simulating network and CPU conditions in Lighthouse. The error NO_TTI_CPU_IDLE_PERIOD suggests issues in calculating the 'Time to Interactive' metric, which is directly related to how the first content is painted and when the page becomes interactive. The files listed handle the computation of these metrics and the simulation environment impacting these calculations. Adjustments may be needed in these files to correctly handle scenarios where the page becomes idle immediately after a delayed FCP.",
+        "bug_scenario": "The bug scenario involves an error in Lighthouse where it reports no performance score and displays a NO_TTI_CPU_IDLE_PERIOD error. This occurs when a page has a slow First Contentful Paint (FCP) but becomes idle immediately after. The issue is consistently reproducible in Chrome DevTools and occasionally with the CLI when running Lighthouse with specific throttling settings."
+    }
+}

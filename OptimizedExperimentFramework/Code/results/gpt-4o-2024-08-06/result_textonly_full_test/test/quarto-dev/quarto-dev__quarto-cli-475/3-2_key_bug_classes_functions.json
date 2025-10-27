@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/callout.lua//function calloutLatex",
+            "src/resources/filters/quarto-pre/callout.lua//function latexCalloutBoxDefault"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/callout.lua//function calloutLatex",
+            "src/resources/filters/quarto-pre/callout.lua//function latexCalloutBoxDefault"
+        ],
+        "explanation": "The bug is related to how captions in callout blocks are processed for LaTeX output. The `calloutLatex` function is responsible for converting callout Divs into LaTeX elements, and it currently uses `pandoc.utils.stringify()` to process captions, which does not handle markdown correctly. The `latexCalloutBoxDefault` function is involved in generating the LaTeX callout box, where the caption is directly inserted into the LaTeX options. Both functions need to be modified to correctly escape special characters and process markdown in captions, as proposed in the bug report.",
+        "bug_scenario": "The bug involves rendering markdown callout block captions to PDF using LaTeX. Special characters in the caption, such as the multi-assignment operator `%<-%` or commas, are not being processed correctly, leading to errors in the LaTeX output. The caption text is currently used 'as is' without markdown processing, causing issues when special characters are present. The proposed solution involves modifying the Lua filter to wrap the caption in brackets and use `pandoc.write()` for markdown processing instead of `pandoc.utils.stringify()`."
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/ol/format/GeoJSON.js": [
+            {
+                "SEARCH": [
+                    "if (geoJSONObject['type'] === 'FeatureCollection') {",
+                    "const geoJSONFeatureCollection = /** @type {GeoJSONFeatureCollection} */ (",
+                    "object",
+                    ");",
+                    "features = [];",
+                    "const geoJSONFeatures = geoJSONFeatureCollection['features'];",
+                    "for (let i = 0, ii = geoJSONFeatures.length; i < ii; ++i) {",
+                    "features.push(",
+                    "this.readFeatureFromObject(geoJSONFeatures[i], opt_options)",
+                    ");",
+                    "}",
+                    "} else {",
+                    "features = [this.readFeatureFromObject(object, opt_options)];",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (geoJSONObject['type'] === 'FeatureCollection') {",
+                    "      const geoJSONFeatureCollection = /** @type {GeoJSONFeatureCollection} */ (",
+                    "        object",
+                    "      );",
+                    "      features = [];",
+                    "      const geoJSONFeatures = geoJSONFeatureCollection['features'];",
+                    "      if (Array.isArray(geoJSONFeatures)) {",
+                    "        for (let i = 0, ii = geoJSONFeatures.length; i < ii; ++i) {",
+                    "          features.push(",
+                    "            this.readFeatureFromObject(geoJSONFeatures[i], opt_options)",
+                    "          );",
+                    "        }",
+                    "      }",
+                    "    } else {",
+                    "      features = [this.readFeatureFromObject(object, opt_options)];",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

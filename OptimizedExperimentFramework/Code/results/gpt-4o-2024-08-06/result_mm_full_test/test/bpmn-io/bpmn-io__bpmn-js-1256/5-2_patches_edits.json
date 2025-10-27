@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "lib/features/modeling/util/LaneUtil.js": [
+            {
+                "SEARCH": [
+                    "export function getChildLanes(shape) {",
+                    "return shape.children.filter(function(c) {",
+                    "return is(c, 'bpmn:Lane');",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "export function getChildLanes(shape) {",
+                    "  const lanes = shape.children.filter(function(c) {",
+                    "    return is(c, 'bpmn:Lane');",
+                    "  });",
+                    "",
+                    "  // Recalculate layout when a child lane is removed",
+                    "  if (lanes.length < shape.children.length) {",
+                    "    recalculateLaneLayout(shape, lanes);",
+                    "  }",
+                    "",
+                    "  return lanes;",
+                    "}",
+                    "",
+                    "function recalculateLaneLayout(parentLane, childLanes) {",
+                    "  // Logic to adjust the parent lane's dimensions and reposition child lanes",
+                    "  // This is a placeholder for the actual implementation",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

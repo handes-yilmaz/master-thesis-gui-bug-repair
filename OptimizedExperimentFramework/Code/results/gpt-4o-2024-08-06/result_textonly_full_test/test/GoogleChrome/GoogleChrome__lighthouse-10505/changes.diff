@@ -1,0 +1,23 @@
+diff --git a/lighthouse-core/computed/metrics/interactive.js b/lighthouse-core/computed/metrics/interactive.js
+index b534a5a..2f920fb 100644
+--- a/lighthouse-core/computed/metrics/interactive.js
++++ b/lighthouse-core/computed/metrics/interactive.js
+@@ -51,9 +51,18 @@ class Interactive extends ComputedMetric {
+     const navStartTsInMs = traceOfTab.timestamps.navigationStart / 1000;
+     const traceEndTsInMs = traceOfTab.timestamps.traceEnd / 1000;
+     if (longTasks.length === 0) {
++      // If there are no long tasks, consider the entire trace as a quiet period
+       return [{start: 0, end: traceEndTsInMs}];
+     }
+ 
++    // Ensure that we consider immediate idleness after FCP
++    if (longTasks[0].start > FcpTsInMs + REQUIRED_QUIET_WINDOW) {
++      quietPeriods.push({
++        start: FcpTsInMs,
++        end: longTasks[0].start + navStartTsInMs,
++      });
++    }
++
+     /** @type {Array<TimePeriod>} */
+     const quietPeriods = [];
+     longTasks.forEach((task, index) => {

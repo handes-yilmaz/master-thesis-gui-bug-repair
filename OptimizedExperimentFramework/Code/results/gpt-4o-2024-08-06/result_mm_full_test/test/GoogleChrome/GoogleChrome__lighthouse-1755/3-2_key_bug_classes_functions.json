@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/aggregator/aggregate.js//Aggregate"
+        ],
+        "bug_functions": [
+            "lighthouse-core/aggregator/aggregate.js//compare",
+            "lighthouse-core/aggregator/aggregate.js//_convertToWeight"
+        ],
+        "explanation": "The issue is related to the aggregation logic where a failing audit is not correctly affecting the overall aggregation result. The 'compare' function in 'Aggregate' class is responsible for comparing audit results to expected values and calculating scores. The '_convertToWeight' function is crucial as it converts audit results to weighted values, which directly impacts the aggregation outcome. If a failing audit is not properly weighted, it could lead to incorrect passing marks in the aggregation.",
+        "bug_scenario": "The bug scenario involves aggregations being marked as passing even if one fails. The image shows an accessibility report where most checks are passing, but the 'Background and foreground colors have a sufficient contrast ratio' check is failing, indicating a discrepancy in the aggregation logic."
+    }
+}

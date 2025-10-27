@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Form/Form.js//validateForm",
+            "src/js/components/Form/Form.js//validateName"
+        ],
+        "bug_functions": [
+            "src/js/components/Form/Form.js//validate",
+            "src/js/components/Form/Form.js//setFieldValue"
+        ],
+        "explanation": "The issue is related to form validation not updating correctly when fields are dynamically added or removed. The `validateForm` and `validateName` functions are responsible for validating the form and individual fields, respectively. The `validate` function applies validation rules, and `setFieldValue` manages field values. These elements are crucial for ensuring the form's validity state is accurate when fields change dynamically.",
+        "bug_scenario": "The form becomes invalid when dynamically adding and removing required fields. When a checkbox is unchecked, a required TextInput field appears, making the form invalid as expected. However, when the checkbox is checked again, the TextInput is removed, but the form remains invalid due to the onValidate method not updating correctly."
+    }
+}

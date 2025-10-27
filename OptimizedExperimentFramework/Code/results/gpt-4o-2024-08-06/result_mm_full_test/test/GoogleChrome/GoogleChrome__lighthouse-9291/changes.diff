@@ -1,0 +1,15 @@
+diff --git a/lighthouse-cli/run.js b/lighthouse-cli/run.js
+index cc8c717..8c97aa7 100644
+--- a/lighthouse-cli/run.js
++++ b/lighthouse-cli/run.js
+@@ -170,6 +170,10 @@ async function potentiallyKillChrome(launchedChrome) {
+  * @return {Promise<LH.RunnerResult|undefined>}
+  */
+ async function runLighthouse(url, flags, config) {
++  // Ensure the URL has a protocol
++  if (!/^https?:\/\//i.test(url)) {
++    url = `http://${url}`;
++  }
+   /** @param {any} reason */
+   async function handleTheUnhandled(reason) {
+     process.stderr.write(`Unhandled Rejection. Reason: ${reason}\n`);

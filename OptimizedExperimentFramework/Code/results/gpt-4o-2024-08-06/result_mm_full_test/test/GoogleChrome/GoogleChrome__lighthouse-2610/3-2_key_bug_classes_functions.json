@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/critical-request-chains.js//CriticalRequestChains",
+            "lighthouse-core/gather/computed/critical-request-chains.js//CriticalRequestChains"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/critical-request-chains.js//_traverse",
+            "lighthouse-core/audits/critical-request-chains.js//_getLongestChain",
+            "lighthouse-core/gather/computed/critical-request-chains.js//extractChain"
+        ],
+        "explanation": "The issue is related to the incorrect calculation or display of sizes in the Critical Request Chain. The `CriticalRequestChains` class in both files is responsible for handling the critical request chain data. The `_traverse` and `_getLongestChain` functions in `lighthouse-core/audits/critical-request-chains.js` are involved in traversing the request chain and calculating the longest chain, which includes size calculations. The `extractChain` function in `lighthouse-core/gather/computed/critical-request-chains.js` is responsible for extracting the critical request chain from network records, which directly affects the size information.",
+        "bug_scenario": "The bug scenario involves incorrect size information being displayed for the Critical Request Chain in Lighthouse. All sizes are listed as the same, which does not match the actual sizes of the resources."
+    }
+}

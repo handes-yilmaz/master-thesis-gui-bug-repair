@@ -1,0 +1,13 @@
+diff --git a/src/ol/renderer/canvas/VectorTileLayer.js b/src/ol/renderer/canvas/VectorTileLayer.js
+index 68be9e1..33ab618 100644
+--- a/src/ol/renderer/canvas/VectorTileLayer.js
++++ b/src/ol/renderer/canvas/VectorTileLayer.js
+@@ -692,7 +692,7 @@ class CanvasVectorTileLayerRenderer extends CanvasTileLayerRenderer {
+     const declutter = layer.getDeclutter();
+     const replayTypes = declutter
+       ? VECTOR_REPLAYS[renderMode].filter((type) => !DECLUTTER.includes(type))
+-      : VECTOR_REPLAYS[renderMode];
++      : VECTOR_REPLAYS[renderMode].filter((type) => type !== 'Fill');
+     const viewState = frameState.viewState;
+     const rotation = viewState.rotation;
+     const tileSource = layer.getSource();

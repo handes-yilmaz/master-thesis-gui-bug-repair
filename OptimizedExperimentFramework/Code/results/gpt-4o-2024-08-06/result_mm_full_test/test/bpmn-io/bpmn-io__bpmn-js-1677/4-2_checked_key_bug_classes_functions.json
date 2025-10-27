@@ -1,0 +1,81 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "Modeling.prototype.updateLabel",
+            "file_path": "lib/features/modeling/Modeling.js",
+            "function_details": [
+                {
+                    "name": "Modeling.prototype.updateLabel",
+                    "start_line": 63,
+                    "end_line": 70
+                }
+            ],
+            "function_code": [
+                "Modeling.prototype.updateLabel = function(element, newLabel, newBounds, hints) {",
+                "  this._commandStack.execute('element.updateLabel', {",
+                "    element: element,",
+                "    newLabel: newLabel,",
+                "    newBounds: newBounds,",
+                "    hints: hints || {}",
+                "  });",
+                "};"
+            ]
+        },
+        "2": {
+            "function_name": "LabelEditingProvider.prototype.update",
+            "file_path": "lib/features/label-editing/LabelEditingProvider.js",
+            "function_details": [
+                {
+                    "name": "LabelEditingProvider.prototype.update",
+                    "start_line": 381,
+                    "end_line": 422
+                }
+            ],
+            "function_code": [
+                "LabelEditingProvider.prototype.update = function(",
+                "    element, newLabel,",
+                "    activeContextText, bounds) {",
+                "",
+                "  var newBounds,",
+                "      bbox;",
+                "",
+                "  if (is(element, 'bpmn:TextAnnotation')) {",
+                "",
+                "    bbox = this._canvas.getAbsoluteBBox(element);",
+                "",
+                "    newBounds = {",
+                "      x: element.x,",
+                "      y: element.y,",
+                "      width: element.width / bbox.width * bounds.width,",
+                "      height: element.height / bbox.height * bounds.height",
+                "    };",
+                "  }",
+                "",
+                "  if (is(element, 'bpmn:Group')) {",
+                "",
+                "    var businessObject = getBusinessObject(element);",
+                "",
+                "    // initialize categoryValue if not existing",
+                "    if (!businessObject.categoryValueRef) {",
+                "",
+                "      var rootElement = this._canvas.getRootElement(),",
+                "          definitions = getBusinessObject(rootElement).$parent;",
+                "",
+                "      var categoryValue = createCategoryValue(definitions, this._bpmnFactory);",
+                "",
+                "      getBusinessObject(element).categoryValueRef = categoryValue;",
+                "    }",
+                "",
+                "  }",
+                "",
+                "  if (isEmptyText(newLabel)) {",
+                "    newLabel = null;",
+                "  }",
+                "",
+                "  this._modeling.updateLabel(element, newLabel, newBounds);",
+                "};"
+            ]
+        }
+    }
+}

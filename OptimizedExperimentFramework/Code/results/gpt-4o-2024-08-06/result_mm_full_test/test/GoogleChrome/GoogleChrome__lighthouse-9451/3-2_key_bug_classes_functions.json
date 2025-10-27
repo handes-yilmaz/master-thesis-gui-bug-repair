@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/offline-start-url.js//OfflineStartUrl",
+            "lighthouse-core/audits/works-offline.js//WorksOffline",
+            "lighthouse-core/gather/gatherers/offline.js//Offline"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/offline-start-url.js//OfflineStartUrl.audit",
+            "lighthouse-core/audits/works-offline.js//WorksOffline.audit",
+            "lighthouse-core/gather/gatherers/offline.js//Offline.beforePass",
+            "lighthouse-core/gather/gatherers/offline.js//Offline.afterPass"
+        ],
+        "explanation": "The classes and functions identified are directly related to the offline auditing process in Lighthouse. The `OfflineStartUrl` and `WorksOffline` classes contain logic to determine if a page responds with a 200 status code when offline, which is central to the reported issue. The `Offline` gatherer class and its methods `beforePass` and `afterPass` are responsible for simulating offline conditions and capturing network records, which are crucial for diagnosing why the offline pass is not functioning as expected.",
+        "bug_scenario": "The bug scenario involves Lighthouse incorrectly reporting that the start URL does not load offline, even though the current page does. The expected behavior is for Lighthouse to report that the start URL loads offline, displaying an offline page instead of the desktop version. The image shows a typical offline page message indicating a poor internet connection."
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/Raster.js//Processor",
+            "src/ol/source/Raster.js//RasterSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/Raster.js//process",
+            "src/ol/source/Raster.js//onWorkerComplete_",
+            "src/ol/source/Raster.js//setOperation"
+        ],
+        "explanation": "The issue is related to the processing of image data and the application of operations on the raster source. The `Processor` class handles the execution of operations on image data, which is crucial for the Region Growing algorithm. The `process` function is responsible for running operations on input data, which may not be correctly updating the pixel values when the level is decreased. The `onWorkerComplete_` function handles the completion of pixel processing, which might not be correctly updating the display. The `setOperation` function sets the operation to be performed, which could be incorrectly configured, leading to the observed behavior.",
+        "bug_scenario": "The bug involves a Region Growing operation using a GeoTIFF file. When the sea level slider is increased, pixels below the level turn white, but when decreased, they do not change back. Additionally, the R value of a pixel is incorrect when printed."
+    }
+}

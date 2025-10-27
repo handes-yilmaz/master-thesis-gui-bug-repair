@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/elixir.js//FUNCTION",
+            "src/languages/elixir.js//ELIXIR_DEFAULT_CONTAINS"
+        ],
+        "bug_functions": [
+            "src/languages/elixir.js//export default function"
+        ],
+        "explanation": "The issue is related to how the Elixir language definition handles function captures. The `FUNCTION` and `ELIXIR_DEFAULT_CONTAINS` elements in `elixir.js` are responsible for defining how functions and other elements are highlighted. The `function_capture` class within `ELIXIR_DEFAULT_CONTAINS` specifically deals with the `&function_name/arity` syntax, which is where the bug occurs. Adjusting these elements should address the incorrect highlighting behavior.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting in Elixir code when using function capture syntax (`&function_name/arity`). The highlighting treats the `/` as a division operator, affecting the rest of the code until the next `/`. The expected behavior is for the function capture to be highlighted correctly without affecting subsequent code."
+    }
+}

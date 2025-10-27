@@ -1,0 +1,38 @@
+diff --git a/src/select/select.jsx b/src/select/select.jsx
+index d12cd53..787676b 100644
+--- a/src/select/select.jsx
++++ b/src/select/select.jsx
+@@ -729,17 +729,25 @@ class Select extends Base {
+             }
+         }
+ 
+-        if (mode === 'single') {
+-            if (!value) {
+-                return null;
+-            }
+-
+-            const retvalue = fillProps ? value[fillProps] : valueRender(value);
+-            // 0 => '0'
++if (mode === 'single') {
++    if (!value) {
++        // Handle empty dataSource with defaultValue
++        if (this.props.defaultValue) {
++            const defaultValue = this.props.defaultValue;
++            const retvalue = fillProps ? defaultValue[fillProps] : valueRender(defaultValue);
+             return typeof retvalue === 'number'
+                 ? retvalue.toString()
+                 : retvalue;
+-        } else if (value) {
++        }
++        return null;
++    }
++
++    const retvalue = fillProps ? value[fillProps] : valueRender(value);
++    // 0 => '0'
++    return typeof retvalue === 'number'
++        ? retvalue.toString()
++        : retvalue;
++} else if (value) {
+             let limitedCountValue = value;
+             let maxTagPlaceholderEl;
+             if (maxTagCount !== undefined && value.length > maxTagCount) {

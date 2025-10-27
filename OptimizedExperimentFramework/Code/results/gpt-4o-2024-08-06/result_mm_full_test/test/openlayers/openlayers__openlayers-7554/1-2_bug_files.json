@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/imagevector.js",
+            "src/ol/interaction/draw.js",
+            "src/ol/layer/vector.js",
+            "src/ol/renderer/canvas/vectorlayer.js"
+        ],
+        "explanation": "1. **src/ol/source/imagevector.js**: This file is relevant because the deprecation of 'ol.source.ImageVector' is mentioned in the upgrade notes, and changes in its implementation could affect rendering performance.\n2. **src/ol/interaction/draw.js**: Since the issue is with the draw interaction, this file is directly related to the bug as it would handle drawing operations.\n3. **src/ol/layer/vector.js**: This file likely handles vector layer functionalities, which are essential when dealing with vector sources and could be affected by changes in rendering modes.\n4. **src/ol/renderer/canvas/vectorlayer.js**: This file would be involved in rendering vector layers on the canvas and might be impacted by the changes in the renderMode handling.",
+        "bug_scenario": "The bug report indicates a performance issue with the draw interaction in OpenLayers when upgrading from version 4.4.2 to 4.6.2. The specific problem is poor performance when using 'renderMode: image' in the newer version, compared to 'image vector' in the older version. The image shows a map with a drawn triangle, likely a test scenario to compare rendering performance across versions."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/imagevector.js",
+            "src/ol/interaction/draw.js",
+            "src/ol/layer/vector.js",
+            "src/ol/renderer/canvas/vectorlayer.js",
+            "src/ol/renderer/webgl/vectorlayer.js"
+        ],
+        "explanation": "The file 'src/ol/source/imagevector.js' is likely involved due to the deprecation of 'ol.source.ImageVector' mentioned in the bug report. The 'src/ol/interaction/draw.js' handles the drawing interaction, which is directly related to the performance issue described. The 'src/ol/layer/vector.js' file is relevant as it deals with vector layers that would be affected by changes in rendering modes. The 'src/ol/renderer/canvas/vectorlayer.js' and 'src/ol/renderer/webgl/vectorlayer.js' files are involved as they manage the rendering of vector layers on canvas and WebGL, which are key components of the rendering performance problem.",
+        "bug_scenario": "The bug is related to poor performance in the drawing interaction when using the 'renderMode: image' in version 4.6.2 compared to the 'image vector' in version 4.4.2 of OpenLayers. The problem arises after upgrading from version 4.4.2 to 4.6.2, where the 'ol.source.ImageVector' has been deprecated. The image shows a world map with a triangle being drawn, likely demonstrating the performance issue."
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-json.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The bug is related to JSON tokenization. Therefore, the file 'components/prism-json.js' is directly related as it handles JSON syntax highlighting. Additionally, 'components/prism-core.js' is likely involved because it contains core functionalities for Prism's syntax highlighting, and any changes in core parsing or tokenizing logic would affect all languages including JSON.",
+        "bug_scenario": "The bug is related to incorrect JSON tokenization in the Prism library when logging server responses. Specifically, the issue arises when the HTTP header 'Accept: */*' is used, causing the JSON to be highlighted incorrectly. The image provided shows how the JSON tokenizer breaks with the input containing a comment-like pattern '/*' which is interpreted incorrectly."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-json.js",
+            "components/prism-json.min.js",
+            "prism.js"
+        ],
+        "explanation": "The files `components/prism-json.js` and `components/prism-json.min.js` are directly related to JSON syntax highlighting in Prism. Since the bug is about incorrect JSON tokenization, these files are the most likely to contain the logic that needs to be adjusted to correctly handle the `/*` token in JSON strings. The `prism.js` file is the core component that might also be involved in the general tokenization logic and could require updates to ensure the core parser correctly distinguishes between JSON content and comments, especially considering the issue with the HTTP header format.",
+        "bug_scenario": "The bug report describes an issue with JSON tokenization when logging server responses. Specifically, the HTTP header `Accept: */*` seems to trigger a problem where the JSON is not tokenized correctly, as depicted in the provided image. The code snippet shows a JSON object where the string value for key \"A\" is `\"/*\"`, which might be misinterpreted as the start of a comment."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js//ExternalAnchorsUseRelNoopenerAudit",
+            "lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js//AnchorsWithNoRelNoopener"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js//audit",
+            "lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js//afterPass"
+        ],
+        "explanation": "The `ExternalAnchorsUseRelNoopenerAudit` class in the `external-anchors-use-rel-noopener.js` file is responsible for auditing external anchor tags to ensure they use `rel=\"noopener\"`. The `audit` function within this class filters and processes anchor tags, which is directly related to the issue of `mailto:` links breaking when `rel=\"noopener\"` is applied. Similarly, the `AnchorsWithNoRelNoopener` class in the `anchors-with-no-rel-noopener.js` file gathers anchor elements that do not have `rel=\"noopener\"`, and the `afterPass` function is responsible for identifying such elements. Both classes and their respective functions are directly involved in handling the `rel=\"noopener\"` attribute, making them key elements related to the bug.",
+        "bug_scenario": "The bug scenario involves the use of `rel=\"noopener\"` in `mailto:` links, which causes these links to break on Chrome for Android and iOS Safari. The issue is observed in production where the support link fails to open the mail client, while the sales link without `rel=\"noopener\"` works fine."
+    }
+}

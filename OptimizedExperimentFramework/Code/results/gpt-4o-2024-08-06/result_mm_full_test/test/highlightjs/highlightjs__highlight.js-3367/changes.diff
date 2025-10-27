@@ -1,0 +1,16 @@
+diff --git a/src/lib/regex.js b/src/lib/regex.js
+index b914fb4..52d07a3 100644
+--- a/src/lib/regex.js
++++ b/src/lib/regex.js
+@@ -46,8 +46,9 @@ export function optional(re) {
+  * @returns {string}
+  */
+ export function concat(...args) {
+-  const joined = args.map((x) => source(x)).join("");
+-  return joined;
++const joined = args.map((x) => source(x)).join("");
++// Add a boundary check to separate numbers and keywords
++return joined.replace(/(\d)(?=\w)/g, '$1\\b');
+ }
+ 
+ /**

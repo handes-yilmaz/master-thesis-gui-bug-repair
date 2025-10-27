@@ -1,0 +1,81 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/CreateParticipantBehavior.js": [
+            {
+                "SEARCH": [
+                    "function getParticipantBounds(shape, childrenBBox) {",
+                    "childrenBBox = {",
+                    "width: childrenBBox.width + HORIZONTAL_PARTICIPANT_PADDING * 2 + PARTICIPANT_BORDER_WIDTH,",
+                    "height: childrenBBox.height + VERTICAL_PARTICIPANT_PADDING * 2",
+                    "};",
+                    "",
+                    "var width = Math.max(shape.width, childrenBBox.width),",
+                    "height = Math.max(shape.height, childrenBBox.height);",
+                    "",
+                    "return {",
+                    "x: -width / 2,",
+                    "y: -height / 2,",
+                    "width: width,",
+                    "height: height",
+                    "};",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function getParticipantBounds(shape, childrenBBox, currentViewport) {",
+                    "  childrenBBox = {",
+                    "    width: childrenBBox.width + HORIZONTAL_PARTICIPANT_PADDING * 2 + PARTICIPANT_BORDER_WIDTH,",
+                    "    height: childrenBBox.height + VERTICAL_PARTICIPANT_PADDING * 2",
+                    "  };",
+                    "",
+                    "  var width = Math.max(shape.width, childrenBBox.width),",
+                    "      height = Math.max(shape.height, childrenBBox.height);",
+                    "",
+                    "  return {",
+                    "    x: currentViewport.x - width / 2,",
+                    "    y: currentViewport.y - height / 2,",
+                    "    width: width,",
+                    "    height: height",
+                    "  };",
+                    "}"
+                ]
+            }
+        ],
+        "lib/features/modeling/behavior/ResizeBehavior.js": [
+            {
+                "SEARCH": [
+                    "export function getParticipantResizeConstraints(laneShape, resizeDirection, balanced) {",
+                    "var lanesRoot = getLanesRoot(laneShape);",
+                    "",
+                    "var isFirst = true,",
+                    "isLast = true;",
+                    "",
+                    "// max top/bottom size for lanes",
+                    "var allLanes = collectLanes(lanesRoot, [ lanesRoot ]);",
+                    "",
+                    "var laneTrbl = asTRBL(laneShape);",
+                    "",
+                    "var maxTrbl = {},",
+                    "minTrbl = {};"
+                ],
+                "REPLACE": [
+                    "export function getParticipantResizeConstraints(laneShape, resizeDirection, balanced, currentViewport) {",
+                    "  var lanesRoot = getLanesRoot(laneShape);",
+                    "",
+                    "  var isFirst = true,",
+                    "      isLast = true;",
+                    "",
+                    "  // max top/bottom size for lanes",
+                    "  var allLanes = collectLanes(lanesRoot, [ lanesRoot ]);",
+                    "",
+                    "  var laneTrbl = asTRBL(laneShape);",
+                    "",
+                    "  var maxTrbl = {},",
+                    "      minTrbl = {",
+                    "        top: currentViewport.y,",
+                    "        left: currentViewport.x",
+                    "      };"
+                ]
+            }
+        ]
+    }
+}

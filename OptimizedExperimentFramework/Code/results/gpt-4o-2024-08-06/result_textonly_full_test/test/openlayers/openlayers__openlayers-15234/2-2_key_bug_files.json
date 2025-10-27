@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLPoints.js",
+            "src/ol/renderer/webgl/PointsLayer.js"
+        ],
+        "explanation": "1. `src/ol/layer/WebGLPoints.js`: This file contains the `WebGLPointsLayer` class, which is directly responsible for rendering large point datasets using WebGL. The constructor and methods in this class, such as `createRenderer`, are crucial for setting up the rendering process, including handling the style and projection of the points. The issue likely stems from how the projection is being handled or not being respected in this class.\n\n2. `src/ol/renderer/webgl/PointsLayer.js`: This file contains the `WebGLPointsLayerRenderer` class, which is responsible for the actual rendering of the points using WebGL. The methods in this class, such as `rebuildBuffers_`, are involved in transforming and rendering the points. The problem with the projection not being respected could be due to incorrect handling of the projection transformation in this renderer class, leading to the points being plotted in the wrong location.",
+        "bug_scenario": "The bug scenario involves the `WebGLPointsLayer` not respecting the `featureProjection` specified at the Vector source, such as EPSG:4326, and instead creating features with geometry in the projection of EPSG:3857. This results in points being plotted at incorrect locations when `useGeographic()` is enabled, specifically near Africa instead of the expected locations."
+    }
+}

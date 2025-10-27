@@ -1,0 +1,73 @@
+{
+    "1/1": {
+        "src/ol/expr/expression.js": [
+            {
+                "SEARCH": [
+                    "export const Ops = {",
+                    "Get: 'get',",
+                    "Var: 'var',",
+                    "Concat: 'concat',",
+                    "GeometryType: 'geometry-type',",
+                    "Any: 'any',"
+                ],
+                "REPLACE": [
+                    "export const Ops = {",
+                    "  Get: 'get',",
+                    "  Var: 'var',",
+                    "  Concat: 'concat',",
+                    "  GeometryType: 'geometry-type',",
+                    "  Any: 'any',",
+                    "  GetId: 'get-id', // New operator for fetching the feature id"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "function parseCallExpression(encoded, context, typeHint) {",
+                    "const operator = encoded[0];",
+                    "",
+                    "const parser = parsers[operator];",
+                    "if (!parser) {",
+                    "throw new Error(`Unknown operator: ${operator}`);",
+                    "}",
+                    "return parser(encoded, context, typeHint);"
+                ],
+                "REPLACE": [
+                    "function parseCallExpression(encoded, context, typeHint) {",
+                    "  const operator = encoded[0];",
+                    "",
+                    "  if (operator === Ops.GetId) {",
+                    "    // Handle the 'get-id' operator",
+                    "    return new CallExpression(StringType, operator);",
+                    "  }",
+                    "",
+                    "  const parser = parsers[operator];",
+                    "  if (!parser) {",
+                    "    throw new Error(`Unknown operator: ${operator}`);",
+                    "  }",
+                    "  return parser(encoded, context, typeHint);"
+                ]
+            }
+        ],
+        "src/ol/format/GeoJSON.js": [
+            {
+                "SEARCH": [
+                    "const id = feature.getId();",
+                    "if (id !== undefined) {",
+                    "object.id = id;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const id = feature.getId();",
+                    "    if (id !== undefined) {",
+                    "      object.id = id;",
+                    "    }",
+                    "",
+                    "    // Add support for fetching the id using the 'get-id' operator",
+                    "    if (context && context.properties && context.properties.has('id')) {",
+                    "      context.properties.add('id');",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

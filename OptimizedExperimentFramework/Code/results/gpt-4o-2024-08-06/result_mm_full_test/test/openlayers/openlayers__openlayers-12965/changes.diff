@@ -1,0 +1,72 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index a0eb3b1..96c1919 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -300,7 +300,7 @@ class WebGLTileLayer extends BaseTileLayer {
+    * @return {import("../renderer/Layer.js").default} A layer renderer.
+    * @protected
+    */
+-  createRenderer() {
++  createRenderer(sharedHelper) {
+     const source = this.getSource();
+     const parsedStyle = parseStyle(
+       this.style_,
+@@ -312,7 +312,7 @@ class WebGLTileLayer extends BaseTileLayer {
+       fragmentShader: parsedStyle.fragmentShader,
+       uniforms: parsedStyle.uniforms,
+       cacheSize: this.cacheSize_,
+-    });
++    }, sharedHelper);
+   }
+ 
+   /**
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index 00a2a03..c3f1924 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -115,11 +115,13 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+   /**
+    * @param {import("../../layer/WebGLTile.js").default} tileLayer Tile layer.
+    * @param {Options} options Options.
++   * @param {WebGLHelper} sharedHelper Shared WebGL helper for context sharing.
+    */
+-  constructor(tileLayer, options) {
++  constructor(tileLayer, options, sharedHelper) {
+     super(tileLayer, {
+       uniforms: options.uniforms,
+     });
++    this.helper = sharedHelper || new WebGLHelper();
+ 
+     /**
+      * This transform converts tile i, j coordinates to screen coordinates.
+diff --git a/src/ol/webgl/Helper.js b/src/ol/webgl/Helper.js
+index 0036fee..dd4cfba 100644
+--- a/src/ol/webgl/Helper.js
++++ b/src/ol/webgl/Helper.js
+@@ -237,7 +237,7 @@ class WebGLHelper extends Disposable {
+   /**
+    * @param {Options} [opt_options] Options.
+    */
+-  constructor(opt_options) {
++  constructor(opt_options, sharedCanvas) {
+     super();
+     const options = opt_options || {};
+ 
+@@ -252,7 +252,7 @@ class WebGLHelper extends Disposable {
+      * @private
+      * @type {HTMLCanvasElement}
+      */
+-    this.canvas_ = document.createElement('canvas');
++    this.canvas_ = sharedCanvas || document.createElement('canvas');
+     this.canvas_.style.position = 'absolute';
+     this.canvas_.style.left = '0';
+ 
+@@ -260,7 +260,7 @@ class WebGLHelper extends Disposable {
+      * @private
+      * @type {WebGLRenderingContext}
+      */
+-    this.gl_ = getContext(this.canvas_);
++    this.gl_ = sharedCanvas ? sharedCanvas.getContext('webgl') : getContext(this.canvas_);
+     const gl = this.getGL();
+ 
+     /**

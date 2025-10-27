@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/ol/render/canvas/Executor.js": [
+            {
+                "SEARCH": [
+                    "if (rotateWithView && viewRotationFromTransform) {",
+                    "// Canvas is expected to be rotated to reverse view rotation.",
+                    "rotation += viewRotation;",
+                    "} else if (!rotateWithView && !viewRotationFromTransform) {",
+                    "// Canvas is not rotated, images need to be rotated back to be north-up.",
+                    "rotation -= viewRotation;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "if (rotateWithView) {",
+                    "  // Apply view rotation directly if text should rotate with view",
+                    "  rotation += viewRotation;",
+                    "} else {",
+                    "  // Adjust rotation to account for translation",
+                    "  rotation -= viewRotationFromTransform;",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

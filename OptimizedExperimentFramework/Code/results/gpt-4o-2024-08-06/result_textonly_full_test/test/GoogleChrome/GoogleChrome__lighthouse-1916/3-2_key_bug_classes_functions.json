@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/offscreen-images.js//OffscreenImages",
+            "lighthouse-core/gather/gatherers/image-usage.js//ImageUsage"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/offscreen-images.js//OffscreenImages.computeWaste",
+            "lighthouse-core/audits/byte-efficiency/offscreen-images.js//OffscreenImages.audit_",
+            "lighthouse-core/gather/gatherers/image-usage.js//collectImageElementInfo",
+            "lighthouse-core/gather/gatherers/image-usage.js//ImageUsage.fetchElementWithSizeInformation"
+        ],
+        "explanation": "The classes and functions identified are directly involved in the process of auditing and gathering image usage data, which is central to the bug. The `OffscreenImages` class in `offscreen-images.js` is responsible for auditing images that are offscreen, and its `computeWaste` and `audit_` functions are likely where the decision to flag images, including SVGs, is made. The `ImageUsage` class in `image-usage.js` gathers information about images on the page, and its `collectImageElementInfo` function collects data about image elements, which could include SVGs. The `fetchElementWithSizeInformation` function is involved in fetching size information, which might be relevant to determining whether an image should be flagged. These elements are key to understanding and potentially fixing the bug where SVGs are incorrectly flagged.",
+        "bug_scenario": "The bug scenario involves a debug string appearing in the offscreen images audit for an SVG file when testing a specific URL. The issue is whether SVGs should be ignored in this audit, as they are being flagged despite having 0 area, which might not be the intended behavior."
+    }
+}

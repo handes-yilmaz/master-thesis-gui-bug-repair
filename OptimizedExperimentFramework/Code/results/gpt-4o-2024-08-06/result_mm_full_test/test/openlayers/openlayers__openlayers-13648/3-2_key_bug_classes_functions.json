@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/reproj/Image.js//ReprojImage"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//getImagesForSource",
+            "src/ol/source/GeoTIFF.js//configure_",
+            "src/ol/reproj/Image.js//reproject_"
+        ],
+        "explanation": "The issue is likely related to how the GeoTIFF images are being loaded and displayed. The `GeoTIFFSource` class in `GeoTIFF.js` is responsible for handling GeoTIFF data, and functions like `getImagesForSource` and `configure_` are crucial for setting up the image data and configuring the tile grid. If these functions do not correctly handle non-square pixels or the full extent of the image, it could result in only part of the image being displayed. Similarly, the `ReprojImage` class in `Image.js` deals with reprojecting images, and the `reproject_` function is responsible for rendering the reprojected image. If there is an issue with how the image is reprojected or rendered, it could also lead to incomplete image display.",
+        "bug_scenario": "The bug involves loading a Cloud Optimized GeoTIFF (COG) where only the upper part of the image is displayed instead of the full image. The expected behavior is for the entire image to be shown, similar to how it appears in applications like geotiff.io or QGIS."
+    }
+}

@@ -1,0 +1,60 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1dd7e6b..062639e 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -503,6 +503,15 @@ class WebGLTileLayer extends BaseTileLayer {
+  * @function
+  * @api
+  */
+-WebGLTileLayer.prototype.dispose;
++/**
++ * Clean up underlying WebGL resources.
++ * @function
++ * @api
++ */
++WebGLTileLayer.prototype.dispose = function() {
++  if (this.hasRenderer()) {
++    this.getRenderer().disposeInternal();
++  }
++};
+ 
+ export default WebGLTileLayer;
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index c0f2c34..e9f2572 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -354,17 +354,28 @@ class WebGLTileLayerRenderer extends WebGLBaseTileLayerRenderer {
+   /**
+    * Clean up.
+    */
+-  disposeInternal() {
+-    const helper = this.helper;
+-    if (helper) {
+-      const gl = helper.getGL();
++disposeInternal() {
++  const helper = this.helper;
++  if (helper) {
++    const gl = helper.getGL();
++    if (this.program_) {
+       gl.deleteProgram(this.program_);
+       delete this.program_;
++    }
++    if (this.indices_) {
+       helper.deleteBuffer(this.indices_);
++      delete this.indices_;
+     }
+-    super.disposeInternal();
+-    delete this.indices_;
++    this.paletteTextures_.forEach((paletteTexture) => {
++      const texture = paletteTexture.getTexture(gl);
++      if (texture) {
++        gl.deleteTexture(texture);
++      }
++    });
++    this.paletteTextures_ = [];
+   }
++  super.disposeInternal();
++}
+ }
+ 
+ export default WebGLTileLayerRenderer;

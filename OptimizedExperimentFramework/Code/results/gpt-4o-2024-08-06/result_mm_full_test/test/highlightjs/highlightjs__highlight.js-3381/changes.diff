@@ -1,0 +1,22 @@
+diff --git a/src/lib/regex.js b/src/lib/regex.js
+index da6cc45..489aa04 100644
+--- a/src/lib/regex.js
++++ b/src/lib/regex.js
+@@ -22,13 +22,13 @@ export function source(re) {
+  * @returns {string}
+  */
+ export function lookahead(re) {
+-  return concat('(?=', re, ')');
++return concat('(?=\\b', re, '\\b)');
+ }
+ 
+ /**
+- * @param {RegExp | string } re
+- * @returns {string}
+- */
++* @param {RegExp | string } re
++* @returns {string}
++*/
+ export function anyNumberOfTimes(re) {
+   return concat('(?:', re, ')*');
+ }

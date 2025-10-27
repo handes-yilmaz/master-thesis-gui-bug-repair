@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/format/KML.js//KML",
+            "src/ol/style/Text.js//Text"
+        ],
+        "bug_functions": [
+            "src/ol/format/KML.js//readName",
+            "src/ol/format/KML.js//readNameFromNode",
+            "src/ol/format/KML.js//readNameFromDocument"
+        ],
+        "explanation": "The `KML` class in `src/ol/format/KML.js` is responsible for reading and writing data in the KML format, which is an XML-based format. The functions `readName`, `readNameFromNode`, and `readNameFromDocument` are likely involved in extracting the name from the KML data. These functions should ensure that any encoded characters in the XML are properly decoded before being used or displayed. The `Text` class in `src/ol/style/Text.js` is responsible for setting text styles, which includes handling the text content that is displayed. If the text content is not properly decoded, it will appear incorrectly in the labels. Therefore, these classes and functions are directly related to the bug of character codes appearing in labels.",
+        "bug_scenario": "The bug scenario involves character codes appearing in labels, specifically the encoded character `&amp;apos;` appearing instead of an apostrophe in the name 'Andy\\'s'. This issue is observed in a KML example, suggesting that the text is not being properly decoded from its XML format before being displayed."
+    }
+}

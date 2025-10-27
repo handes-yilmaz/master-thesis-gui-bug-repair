@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/Modeling.js//Modeling",
+            "lib/features/label-editing/LabelEditingProvider.js//LabelEditingProvider"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/Modeling.js//Modeling.prototype.updateLabel",
+            "lib/features/label-editing/LabelEditingProvider.js//LabelEditingProvider.prototype.update"
+        ],
+        "explanation": "The 'Modeling' class in 'Modeling.js' contains the 'updateLabel' function, which is directly involved in executing the 'element.updateLabel' command that triggers the error. The 'LabelEditingProvider' class in 'LabelEditingProvider.js' manages direct editing and label updates, with the 'update' function handling label changes. Both classes and functions are central to the label update process, which is where the illegal invocation occurs.",
+        "bug_scenario": "The bug occurs when an element is deleted while direct editing is active, causing an 'illegal invocation' exception. The image shows a diagram with a selected element and a context pad with options, including a delete option."
+    }
+}

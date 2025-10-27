@@ -1,0 +1,9 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/ImageArcGISRest.js"
+        ],
+        "explanation": "The file 'src/ol/source/ImageArcGISRest.js' is the key bug file because it contains the implementation of the ImageArcGISRest class, which is directly responsible for handling the ratio parameter that is causing the layer-map mismatch issue. The constructor of the ImageArcGISRest class sets the default ratio to 1.5, which is identified as the source of the problem. Adjusting this ratio or providing a mechanism to handle different scaling ratios is necessary to fix the bug.",
+        "bug_scenario": "In OpenLayers version 7.4, there is a bug related to the ImageArcGISRest source. The default value of the ratio parameter in ImageArcGISRest is set to 1.5. When the computer's zoom or scaling ratio is not 100% (e.g., 150%), it causes a mismatch between the layer and the map, leading to misalignment or incorrect rendering of the layer. Additionally, even when the ratio is set to 1.5 or any other value other than 1, a layer-map mismatch issue can occur after map rotation, causing the rotated layer to not align correctly with the rotated map. The current workaround is to forcibly set the ratio to 1 to address these issues."
+    }
+}

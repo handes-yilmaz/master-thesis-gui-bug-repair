@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer",
+            "src/ol/layer/Layer.js//Layer"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/webgl/TileLayer.js//enqueueTiles",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "The `WebGLTileLayerRenderer` class in `TileLayer.js` is directly involved in rendering tile layers using WebGL, and the `enqueueTiles` and `renderFrame` functions are likely where the incorrect use of `layer.getMinZoom()` occurs, as these functions handle tile rendering and management. The `Layer` class in `Layer.js` is relevant because it correctly uses `layer.getMinZoom()` in a way that does not interfere with tile grid zoom levels, providing a reference for the correct implementation. The bug is related to how zoom levels are managed and used in rendering, which is central to the functionality of these classes and functions.",
+        "bug_scenario": "The bug scenario involves the incorrect use of the `layer.getMinZoom()` function in the OpenLayers library, specifically in the `TileLayer.js` file. This function is used as a tile grid index, which can prevent tiles from loading correctly because `layer.getMinZoom()` returns a view zoom level that does not directly relate to tile grid zoom levels. The correct approach would be to use `tileGrid.getZForResolution()` calculated from `layer.getMaxResolution()` or `view.getResolutionForZoom(layer.getMinZoom())`."
+    }
+}

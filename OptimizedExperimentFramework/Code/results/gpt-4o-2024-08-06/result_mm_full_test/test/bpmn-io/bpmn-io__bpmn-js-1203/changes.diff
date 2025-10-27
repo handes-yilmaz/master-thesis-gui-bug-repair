@@ -1,0 +1,16 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index f3fc8f3..c46cc82 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -44,6 +44,11 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+     var descriptor = context.descriptor,
+         element = context.element;
+ 
++    // Retain properties when pasting as a Boundary Event
++    if (descriptor.type === 'bpmn:BoundaryEvent') {
++      copyProperties(element, descriptor, ['asyncBefore', 'asyncAfter', 'jobPriority']);
++    }
++
+     var businessObject = descriptor.oldBusinessObject = getBusinessObject(element);
+ 
+     descriptor.type = element.type;

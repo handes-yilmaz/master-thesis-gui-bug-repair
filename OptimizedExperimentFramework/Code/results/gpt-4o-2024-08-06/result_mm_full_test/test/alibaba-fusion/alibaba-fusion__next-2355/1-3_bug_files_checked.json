@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "src/table/util.js"
+        ],
+        "explanation": "The provided error messages and code snippets show that the issue arises from the 'fetchDataByPath' function in 'util.js' within the 'table' directory. This function attempts to parse and access nested properties in an object using paths, which is causing the error when the path format '[start, end]' is used. Modifications are needed in this file to handle such string formats correctly.",
+        "bug_scenario": "The bug involves the 'dataIndex' attribute of a Table component in React, where the user expects support for a string format like '[start, end]'. The error message indicates a TypeError when attempting to read properties from an undefined object using such a path format."
+    },
+    "2": {
+        "bug_files": [
+            "src/table/util.js",
+            "src/table/index.jsx"
+        ],
+        "explanation": "The file `src/table/util.js` likely contains the `fetchDataByPath` function, which is responsible for accessing data based on the `dataIndex`. The function attempts to parse the dataIndex and retrieve nested properties, which is where the current logic fails for the '[start, end]' format. The `src/table/index.jsx` file is where the Table component is defined and utilized, and modifications here might be necessary to pass dataIndex values correctly or handle errors gracefully.",
+        "bug_scenario": "The bug involves a compatibility issue with the Table component's dataIndex property. The user wants the dataIndex to support strings in the format '[start, end]', which is currently not supported, resulting in an error. The error is shown in a stack trace with functions like fetchDataByPath that attempt to access nested properties using this format but fail, leading to undefined values."
+    }
+}

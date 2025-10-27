@@ -1,0 +1,97 @@
+{
+    "1/1": {
+        "src/ol/interaction/Draw.js": [
+            {
+                "SEARCH": [
+                    "export function createRegularPolygon(opt_sides, opt_angle) {",
+                    "return function(coordinates, opt_geometry) {",
+                    "const center = /** @type {LineCoordType} */ (coordinates)[0];",
+                    "const end = /** @type {LineCoordType} */ (coordinates)[1];",
+                    "const radius = Math.sqrt(",
+                    "squaredCoordinateDistance(center, end));",
+                    "const geometry = opt_geometry ? /** @type {Polygon} */ (opt_geometry) :",
+                    "fromCircle(new Circle(center), opt_sides);",
+                    "let angle = opt_angle;",
+                    "if (!opt_angle) {",
+                    "const x = end[0] - center[0];",
+                    "const y = end[1] - center[1];",
+                    "angle = Math.atan(y / x) - (x < 0 ? Math.PI : 0);",
+                    "}",
+                    "makeRegular(geometry, center, radius, angle);",
+                    "return geometry;",
+                    "};",
+                    "}"
+                ],
+                "REPLACE": [
+                    "export function createRegularPolygon(opt_sides, opt_angle) {",
+                    "  return function(coordinates, opt_geometry) {",
+                    "    const center = /** @type {LineCoordType} */ (coordinates)[0];",
+                    "    const end = /** @type {LineCoordType} */ (coordinates)[1];",
+                    "    const radius = Math.sqrt(",
+                    "      squaredCoordinateDistance(center, end));",
+                    "    const geometry = opt_geometry ? /** @type {Polygon} */ (opt_geometry) :",
+                    "      fromCircle(new Circle(center), opt_sides);",
+                    "    let angle = opt_angle;",
+                    "    if (!opt_angle) {",
+                    "      const x = end[0] - center[0];",
+                    "      const y = end[1] - center[1];",
+                    "      angle = Math.atan2(y, x);",
+                    "    }",
+                    "    makeRegular(geometry, center, radius, angle);",
+                    "    return geometry;",
+                    "  };",
+                    "}"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "export function createBox() {",
+                    "return (",
+                    "function(coordinates, opt_geometry) {",
+                    "const extent = boundingExtent(/** @type {LineCoordType} */ (coordinates));",
+                    "const boxCoordinates = [[",
+                    "getBottomLeft(extent),",
+                    "getBottomRight(extent),",
+                    "getTopRight(extent),",
+                    "getTopLeft(extent),",
+                    "getBottomLeft(extent)",
+                    "]];",
+                    "let geometry = opt_geometry;",
+                    "if (geometry) {",
+                    "geometry.setCoordinates(boxCoordinates);",
+                    "} else {",
+                    "geometry = new Polygon(boxCoordinates);",
+                    "}",
+                    "return geometry;",
+                    "}",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "export function createBox() {",
+                    "  return (",
+                    "    function(coordinates, opt_geometry) {",
+                    "      const extent = boundingExtent(/** @type {LineCoordType} */ (coordinates));",
+                    "      const boxCoordinates = [[",
+                    "        getBottomLeft(extent),",
+                    "        getBottomRight(extent),",
+                    "        getTopRight(extent),",
+                    "        getTopLeft(extent),",
+                    "        getBottomLeft(extent)",
+                    "      ]];",
+                    "      let geometry = opt_geometry;",
+                    "      if (geometry) {",
+                    "        geometry.setCoordinates(boxCoordinates);",
+                    "      } else {",
+                    "        geometry = new Polygon(boxCoordinates);",
+                    "      }",
+                    "      geometry.applyTransform(transformToGeographic);",
+                    "      return geometry;",
+                    "    }",
+                    "  );",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

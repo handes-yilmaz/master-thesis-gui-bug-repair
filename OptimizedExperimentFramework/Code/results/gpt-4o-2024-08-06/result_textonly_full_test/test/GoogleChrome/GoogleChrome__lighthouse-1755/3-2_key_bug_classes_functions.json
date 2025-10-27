@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/aggregator/aggregate.js//Aggregate"
+        ],
+        "bug_functions": [
+            "lighthouse-core/aggregator/aggregate.js//Aggregate.compare",
+            "lighthouse-core/aggregator/aggregate.js//Aggregate._convertToWeight"
+        ],
+        "explanation": "The bug is related to the aggregation logic, specifically how individual audit results are processed and aggregated into a final score. The `Aggregate` class in `lighthouse-core/aggregator/aggregate.js` is responsible for this logic. The `compare` function is crucial as it maps audit results to expected values and calculates the overall score. If an audit fails but the aggregation is still marked as passing, the issue likely lies in how scores are calculated or weighted. The `_convertToWeight` function is also relevant because it determines the weight of each audit result in the aggregation. If this function does not correctly account for failed audits, it could lead to the bug described in the report.",
+        "bug_scenario": "The bug scenario involves a situation where aggregations are incorrectly marked as passing even if one of the individual audits within the aggregation fails. This is evident from the bug report and the accompanying image, which likely shows a visual representation of the aggregation results, highlighting the discrepancy between expected and actual outcomes."
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "clients/devtools/devtools-entry.js"
+        ],
+        "explanation": "The bug is related to how the emulation descriptions are generated and displayed in DevTools. Since the bug report mentions that the change occurs in `devtools-entry.js` and affects how \"no emulation\" is shown during mobile runs, this file is directly related to the issue. It likely contains logic or configuration that interacts with `getEmulationDescriptions` function and needs to be updated to properly reflect the emulation state.",
+        "bug_scenario": "The DevTools incorrectly display 'no emulation' for mobile runs when screen emulation is disabled, likely due to a change in the `getEmulationDescriptions` function that now returns 'no emulation' when `screenEmulation.disabled` is true. This is specifically an issue in the devtools entry point as indicated by the bug report."
+    },
+    "2": {
+        "bug_files": [
+            "clients/devtools/devtools-entry.js"
+        ],
+        "explanation": "The file clients/devtools/devtools-entry.js is mentioned in the bug report as the location where screenEmulation.disabled is set to true, leading to the incorrect 'no emulation' message shown in DevTools. This file likely contains the logic that determines the emulation status displayed to the user.",
+        "bug_scenario": "The bug report indicates that the DevTools incorrectly shows 'no emulation' for mobile runs. The image shows a UI where it displays 'No emulation with Lighthouse' under conditions where emulation should be active. This seems to be an issue with the function getEmulationDescriptions returning 'no emulation' when screenEmulation.disabled is true, particularly affecting devtools-entry.js."
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/php.js",
+            "src/lib/modes.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "The issue is related to how classes are applied for syntax highlighting. The 'php.js' file likely defines the behavior for PHP syntax highlighting. The 'modes.js' file could be responsible for determining which classes are applied based on language input. The 'regex.js' file might handle the parsing of language-specific tags and classes. These files would be critical in addressing the class application logic that is causing the bug.",
+        "bug_scenario": "The bug involves incorrect class application when using syntax highlighting for PHP. When the 'language-php' class is added, it results in an additional 'php' tag, whereas not providing a class does not cause this issue. The screenshot shows the HTML structure with the unexpected 'hljs_php' class being applied."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/php.js",
+            "src/lib/utils.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "1. `src/languages/php.js`: This file is directly related to PHP language support and likely contains the logic that triggers the incorrect class assignment.\n2. `src/lib/utils.js`: Utility functions for handling class names and applying them to elements might be causing the duplication issue.\n3. `src/lib/modes.js`: This file might define how different language modes are applied, potentially leading to the incorrect assignment of the PHP class.",
+        "bug_scenario": "The issue is that adding the 'language-php' class to a code element results in an extra 'php' tag being added. This is specific to PHP and does not occur with other languages. The image shows the extra 'hljs-php' class being applied, which is not expected behavior."
+    }
+}

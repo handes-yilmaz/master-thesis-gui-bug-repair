@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-fsharp.js//Prism.languages.fsharp"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue arises from the pattern used to identify comments in the F# syntax highlighter. The pattern for comments in 'components/prism-fsharp.js' incorrectly matches the multiplication operator (*) when used in a functional context, treating it as the start of a multi-line comment. This is due to the pattern: 'pattern: /(^|[^\\\\])\\(\\*[\\s\\S]*?\\*\\)/', which needs to be adjusted to differentiate between actual comments and the use of (*) as a function.",
+        "bug_scenario": "The bug involves the F# syntax highlighter misinterpreting the multiplication operator (*) as the start of a multi-line comment when used in a functional context, causing incorrect syntax highlighting."
+    }
+}

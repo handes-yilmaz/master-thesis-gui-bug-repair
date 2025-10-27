@@ -1,0 +1,39 @@
+diff --git a/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js b/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js
+index 023f13c..9639d45 100644
+--- a/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js
++++ b/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js
+@@ -28,6 +28,11 @@ UpdateModdlePropertiesHandler.prototype.execute = function(context) {
+   var changed = context.changed || this.getVisualReferences(moddleElement).concat(element);
+   var oldProperties = context.oldProperties || getModdleProperties(moddleElement, keys(properties));
+ 
++  // Preserve multi-instance properties
++  if (moddleElement.loopCharacteristics) {
++    oldProperties.loopCharacteristics = moddleElement.loopCharacteristics;
++  }
++
+   setModdleProperties(moddleElement, properties);
+ 
+   context.oldProperties = oldProperties;
+diff --git a/lib/features/modeling/cmd/UpdatePropertiesHandler.js b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+index 437c4d0..85e6531 100644
+--- a/lib/features/modeling/cmd/UpdatePropertiesHandler.js
++++ b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+@@ -100,6 +100,11 @@ UpdatePropertiesHandler.prototype.execute = function(context) {
+   // update properties
+   setProperties(element, properties);
+ 
++  // Preserve multi-instance properties
++  if (businessObject.loopCharacteristics) {
++    properties.loopCharacteristics = businessObject.loopCharacteristics;
++  }
++
+   // store old values
+   context.oldProperties = oldProperties;
+   context.changed = changed;
+@@ -239,4 +244,4 @@ function unwrapBusinessObjects(properties) {
+   });
+ 
+   return unwrappedProps;
+-}
+\ No newline at end of file
++}

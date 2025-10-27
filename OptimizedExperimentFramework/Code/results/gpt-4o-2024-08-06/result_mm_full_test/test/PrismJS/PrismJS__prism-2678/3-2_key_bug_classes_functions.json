@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-markdown.js//Prism.languages.markdown"
+        ],
+        "bug_functions": [
+            "components/prism-markdown.js//createInline",
+            "components/prism-markdown.js//Prism.languages.insertBefore"
+        ],
+        "explanation": "The bug is related to the Markdown language processing in the Prism library. The class `Prism.languages.markdown` is responsible for defining the syntax highlighting rules for Markdown, which includes handling different Markdown elements like images. The function `createInline` is used to create patterns for inline elements, which would include images. The function `Prism.languages.insertBefore` is used to modify the language definition to add new tokens or modify existing ones, which is necessary to add support for image tokens. These elements are directly related to the bug because they define and manipulate the syntax rules that need to be updated to correctly handle image tokens in Markdown.",
+        "bug_scenario": "The bug scenario involves adding support for image tokens in Markdown. The provided Markdown syntax for an image is not being correctly processed or rendered, as indicated by the example in the bug report."
+    }
+}

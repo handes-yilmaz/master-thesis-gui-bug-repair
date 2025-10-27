@@ -1,0 +1,62 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/redirects.js": [
+            {
+                "SEARCH": [
+                    "const headings = [",
+                    "{key: 'url', itemType: 'text', text: str_(i18n.UIStrings.columnURL)},",
+                    "{key: 'wastedMs', itemType: 'ms', text: str_(i18n.UIStrings.columnTimeSpent)},",
+                    "];",
+                    "const summary = {wastedMs: totalWastedMs};",
+                    "const details = Audit.makeTableDetails(headings, pageRedirects, summary);",
+                    "",
+                    "return {",
+                    "// We award a passing grade if you only have 1 redirect",
+                    "score: redirectRequests.length <= 2 ? 1 : UnusedBytes.scoreForWastedMs(totalWastedMs),",
+                    "rawValue: totalWastedMs,",
+                    "displayValue: totalWastedMs ?",
+                    "str_(i18n.UIStrings.displayValueMsSavings, {wastedMs: totalWastedMs}) :",
+                    "'',",
+                    "extendedInfo: {",
+                    "value: {",
+                    "wastedMs: totalWastedMs,",
+                    "},",
+                    "},",
+                    "details,",
+                    "};"
+                ],
+                "REPLACE": [
+                    "    const headings = [",
+                    "      {key: 'url', itemType: 'text', text: str_(i18n.UIStrings.columnURL)},",
+                    "      {key: 'wastedMs', itemType: 'ms', text: str_(i18n.UIStrings.columnTimeSpent)},",
+                    "    ];",
+                    "    const summary = {wastedMs: totalWastedMs};",
+                    "    const details = Audit.makeTableDetails(headings, pageRedirects, summary);",
+                    "",
+                    "    // Ensure details are properly formatted and displayed",
+                    "    const formattedDetails = {",
+                    "      type: 'table',",
+                    "      headings,",
+                    "      items: pageRedirects,",
+                    "      summary,",
+                    "    };",
+                    "",
+                    "    return {",
+                    "      // We award a passing grade if you only have 1 redirect",
+                    "      score: redirectRequests.length <= 2 ? 1 : UnusedBytes.scoreForWastedMs(totalWastedMs),",
+                    "      rawValue: totalWastedMs,",
+                    "      displayValue: totalWastedMs ?",
+                    "        str_(i18n.UIStrings.displayValueMsSavings, {wastedMs: totalWastedMs}) :",
+                    "        '',",
+                    "      extendedInfo: {",
+                    "        value: {",
+                    "          wastedMs: totalWastedMs,",
+                    "        },",
+                    "      },",
+                    "      details: formattedDetails,",
+                    "    };"
+                ]
+            }
+        ]
+    }
+}

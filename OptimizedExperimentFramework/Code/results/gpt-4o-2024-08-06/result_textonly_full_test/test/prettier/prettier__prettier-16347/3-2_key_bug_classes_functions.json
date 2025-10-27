@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//createParse",
+            "src/language-markdown/print-preprocess.js//preprocess",
+            "src/language-markdown/print-preprocess.js//mergeContinuousTexts",
+            "src/language-markdown/printer-markdown.js//genericPrint",
+            "src/utils/front-matter/parse.js//parse"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//createParse",
+            "src/language-markdown/print-preprocess.js//preprocess",
+            "src/language-markdown/print-preprocess.js//mergeContinuousTexts",
+            "src/language-markdown/printer-markdown.js//genericPrint",
+            "src/utils/front-matter/parse.js//parse"
+        ],
+        "explanation": "The classes and functions identified are related to the parsing and processing of markdown content, which is where the bug manifests. The `createParse` function in `parser-markdown.js` is responsible for setting up the parsing pipeline, which includes handling frontmatter. The `preprocess` function in `print-preprocess.js` and its helper `mergeContinuousTexts` are involved in processing the AST, potentially affecting how text nodes are merged, which could lead to the removal of empty lines. The `genericPrint` function in `printer-markdown.js` is responsible for the final output formatting, where the removal of empty lines might occur. Finally, the `parse` function in `parse.js` directly handles the parsing of frontmatter, which is crucial to maintaining the integrity of the input structure, including empty lines.",
+        "bug_scenario": "The bug scenario involves the removal of empty lines in the markdown YAML frontmatter when processed by Prettier 3.3.0. The expected behavior is that these empty lines should not be removed, but they are being removed in the current implementation."
+    }
+}

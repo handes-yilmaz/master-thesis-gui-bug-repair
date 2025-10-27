@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/format/reveal/format-reveal.ts",
+            "src/resources/filters/layout/layout.lua"
+        ],
+        "explanation": "1. `src/format/reveal/format-reveal.ts`: This file contains functions related to the reveal.js format, including `applyStretch`, which is responsible for adding the stretch class to images in slides with only one image. The issue with the figure being stretched too much likely originates from this function, as it handles the application of the stretch class.\n\n2. `src/resources/filters/layout/layout.lua`: This file manages layout panels and includes functions like `layoutPanels` and `layoutCells`, which are responsible for determining the layout of elements on the slide. The interaction between the `aside` class and the figure's layout might be influenced by the logic in this file, particularly in how it partitions and arranges elements on the slide.",
+        "bug_scenario": "The bug scenario involves a conflict between the `aside` class and the `r-stretch` class in reveal.js slides. When a slide contains a single figure and the `aside` class is used, the figure is stretched excessively, causing the `aside` content to overlap the bottom of the figure. Additionally, if the figure has a caption, the caption is displayed below the `aside` content. The desired behavior is for the `aside` content to have priority, occupying the bottom part of the slide, while the figure should be stretched only to the top of the `aside` block."
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/table/util.js//fetchDataByPath"
+        ],
+        "bug_functions": [
+            "src/table/util.js//fetchDataByPath"
+        ],
+        "explanation": "The `fetchDataByPath` function in `src/table/util.js` is responsible for accessing object properties based on a given path. The error occurs because the function does not correctly handle paths in the format `'[start, end]'`. The function needs to be modified to parse and handle such string formats, ensuring it returns `undefined` when the path does not exist, as required by the business logic.",
+        "bug_scenario": "The bug involves enhancing the compatibility of the `dataIndex` in a Table component to support string formats like `'[start, end]'`. The current implementation does not handle this format, leading to errors when such strings are used. The error message indicates that the `fetchDataByPath` function cannot read properties of undefined when attempting to access a path like `'startDate,endDate'`."
+    }
+}

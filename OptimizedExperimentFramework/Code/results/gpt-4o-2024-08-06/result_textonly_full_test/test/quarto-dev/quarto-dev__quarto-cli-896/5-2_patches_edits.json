@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "src/format/reveal/format-reveal.ts": [
+            {
+                "SEARCH": [
+                    "// find output-location-slide and inject slides as required",
+                    "const slideOutputs = doc.querySelectorAll(`.${kOutputLocationSlide}`);",
+                    "for (const slideOutput of slideOutputs) {",
+                    "// find parent slide",
+                    "const slideOutputEl = slideOutput as Element;",
+                    "const parentSlide = findParentSlide(slideOutputEl);",
+                    "if (parentSlide && parentSlide.parentElement) {",
+                    "const newSlide = doc.createElement(\"section\");",
+                    "newSlide.id = parentSlide?.id ? parentSlide.id + \"-output\" : \"\";",
+                    "for (const clz of parentSlide.classList) {",
+                    "newSlide.classList.add(clz);",
+                    "}",
+                    "newSlide.classList.add(kOutputLocationSlide);",
+                    "// repeat header if there is one",
+                    "if (",
+                    "slideHeadingTags.includes(",
+                    "parentSlide.firstElementChild?.tagName || \"\",",
+                    ")",
+                    ") {",
+                    "const headingEl = doc.createElement(",
+                    "parentSlide.firstElementChild?.tagName!,",
+                    ");",
+                    "headingEl.innerHTML = parentSlide.firstElementChild?.innerHTML || \"\";",
+                    "newSlide.appendChild(headingEl);",
+                    "}",
+                    "newSlide.appendChild(slideOutputEl);",
+                    "parentSlide.parentElement.appendChild(newSlide);",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    // Ensure custom divs are processed correctly",
+                    "    const customDivs = doc.querySelectorAll('.qrcodeblock, .qrcodeblockagain');",
+                    "    for (const customDiv of customDivs) {",
+                    "      const customDivEl = customDiv as Element;",
+                    "      const images = customDivEl.querySelectorAll('img');",
+                    "      for (const image of images) {",
+                    "        const imageEl = image as Element;",
+                    "        // Ensure image is within the custom div",
+                    "        if (imageEl.parentElement !== customDivEl) {",
+                    "          customDivEl.appendChild(imageEl);",
+                    "        }",
+                    "      }",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

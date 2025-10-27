@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Image.js//ImageStyle",
+            "src/ol/style/Text.js//Text",
+            "src/ol/render/canvas/Executor.js//Executor"
+        ],
+        "bug_functions": [
+            "src/ol/render/canvas/Executor.js//getDeclutterBox",
+            "src/ol/render/canvas/Executor.js//calculateImageOrLabelDimensions_",
+            "src/ol/render/canvas/Executor.js//replayImageOrLabel_"
+        ],
+        "explanation": "The classes and functions identified are directly related to the rendering and styling of images and text in OpenLayers, which are central to the decluttering issue described in the bug report. The ImageStyle and Text classes in 'src/ol/style/Image.js' and 'src/ol/style/Text.js' respectively, manage the styling options including declutterMode. The Executor class in 'src/ol/render/canvas/Executor.js' handles the rendering process, including the decluttering logic. Functions like getDeclutterBox, calculateImageOrLabelDimensions_, and replayImageOrLabel_ are likely involved in determining how images and labels are placed and rendered, making them critical to addressing the bug.",
+        "bug_scenario": "The bug scenario involves an issue with the declutterMode option in OpenLayers, specifically when it is set to values other than 'declutter'. The problem is that image and label combinations are not handled correctly, leading to rendering issues. The enhancement request is to allow decluttering only for text, which requires changing the declutter option from a boolean to a more flexible setting like 'none', 'text', 'geometry', and 'both'."
+    }
+}

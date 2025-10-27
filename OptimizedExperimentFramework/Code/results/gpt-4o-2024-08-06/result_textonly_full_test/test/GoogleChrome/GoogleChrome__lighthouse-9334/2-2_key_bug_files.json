@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-cli/run.js",
+            "lighthouse-core/lib/i18n/i18n.js",
+            "lighthouse-core/lib/i18n/locales.js"
+        ],
+        "explanation": "1. `lighthouse-cli/run.js`: This file is responsible for executing the Lighthouse CLI commands and handling errors. It includes functions for saving results and printing errors, which are crucial for displaying the correct i18n messages. If the i18n text is not translated, it could be due to how errors are handled or how results are saved and displayed.\n\n2. `lighthouse-core/lib/i18n/i18n.js`: This file contains the core logic for internationalization, including message formatting and locale handling. If the i18n text is not being translated, the issue likely lies in this file, as it manages the translation of messages based on the locale.\n\n3. `lighthouse-core/lib/i18n/locales.js`: This file defines the available locales and their corresponding message files. If the i18n text is not translated, it could be due to a missing or incorrect locale configuration in this file, preventing the correct messages from being loaded.",
+        "bug_scenario": "The bug scenario involves running the Lighthouse CLI command with the `--view` flag, which should open the HTML report in a browser after the run completes. However, the issue is that the i18n (internationalization) text is not being translated during a fatal CLI run, as indicated by the error message shown in the provided image."
+    }
+}

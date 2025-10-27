@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/lib/lh-error.js",
+            "lighthouse-core/config/constants.js"
+        ],
+        "explanation": "1. `lighthouse-core/gather/driver.js`: This file contains the `Driver` class, which is responsible for managing the browser's DevTools protocol commands and events. The methods related to waiting for FCP and handling timeouts are likely implemented here, making it a key file in addressing the timeout issue.\n\n2. `lighthouse-core/gather/gather-runner.js`: This file manages the sequence of operations for loading a page and running gatherers. It includes methods for loading pages and handling timeouts, which are directly related to the increased error rate due to timeouts.\n\n3. `lighthouse-core/lib/lh-error.js`: This file defines various error messages and codes, including those related to timeouts and page load failures. It is crucial for understanding and potentially modifying how errors are reported when timeouts occur.\n\n4. `lighthouse-core/config/constants.js`: This file contains configuration constants, including timeout settings such as `maxWaitForLoad`. Adjusting these constants could be part of the solution to mitigate the timeout issues.",
+        "bug_scenario": "The bug scenario involves increased failures due to a 60-second timeout on the PSI/LR (PageSpeed Insights/Lighthouse Runner) backend. The error rate has increased, and it is suspected to be related to latency issues. The problem is highlighted by the `loadPage-defaultPass` timing, which shows a significant jump, indicating that the page load process is taking longer than expected. The issue is suspected to be linked to a recent change in the Lighthouse codebase, specifically a pull request that introduced a wait for First Contentful Paint (FCP) when tracing, which might be causing more sites to hit the 60-second render timeout."
+    }
+}

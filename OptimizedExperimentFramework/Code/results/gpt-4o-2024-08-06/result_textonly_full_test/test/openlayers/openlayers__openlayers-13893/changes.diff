@@ -1,0 +1,39 @@
+diff --git a/src/ol/layer/Graticule.js b/src/ol/layer/Graticule.js
+index 03a99d3..ae6e4ef 100644
+--- a/src/ol/layer/Graticule.js
++++ b/src/ol/layer/Graticule.js
+@@ -989,7 +989,7 @@ class Graticule extends VectorLayer {
+    * @return {number} The interval in degrees.
+    * @private
+    */
+-  getInterval_(resolution) {
++getInterval_(resolution) {
+     const centerLon = this.projectionCenterLonLat_[0];
+     const centerLat = this.projectionCenterLonLat_[1];
+     let interval = -1;
+@@ -999,8 +999,8 @@ class Graticule extends VectorLayer {
+     /** @type {Array<number>} **/
+     const p2 = [];
+     for (let i = 0, ii = this.intervals_.length; i < ii; ++i) {
+-      const delta = clamp(this.intervals_[i] / 2, 0, 90);
+-      // Don't attempt to transform latitudes beyond the poles!
++      const delta = this.intervals_[i] / 2;
++      // Ensure delta is within valid range
+       const clampedLat = clamp(centerLat, -90 + delta, 90 - delta);
+       p1[0] = centerLon - delta;
+       p1[1] = clampedLat - delta;
+@@ -1010,12 +1010,12 @@ class Graticule extends VectorLayer {
+       this.fromLonLatTransform_(p2, p2);
+       const dist = Math.pow(p2[0] - p1[0], 2) + Math.pow(p2[1] - p1[1], 2);
+       if (dist <= target) {
++        interval = this.intervals_[i];
+         break;
+       }
+-      interval = this.intervals_[i];
+     }
+     return interval;
+-  }
++}
+ 
+   /**
+    * @param {number} lon Longitude.

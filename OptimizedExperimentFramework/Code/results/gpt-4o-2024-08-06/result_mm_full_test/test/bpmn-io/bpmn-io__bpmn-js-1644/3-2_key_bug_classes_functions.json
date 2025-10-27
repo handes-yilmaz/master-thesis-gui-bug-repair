@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler.prototype.execute",
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler.prototype.revert",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler.prototype.execute",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler.prototype.revert"
+        ],
+        "explanation": "The classes and functions identified are responsible for handling property updates and reverts in the BPMN model. The issue likely arises from how properties are set and reverted when changing between parallel and sequential multi-instances. The execute and revert functions in both handlers manage the application and rollback of property changes, which is where the loss of multi-instance properties could occur.",
+        "bug_scenario": "The bug occurs when changing a sub-process from parallel to sequential multi-instance, causing the loss of multi-instance properties. The expected behavior is to retain these properties during the change."
+    }
+}

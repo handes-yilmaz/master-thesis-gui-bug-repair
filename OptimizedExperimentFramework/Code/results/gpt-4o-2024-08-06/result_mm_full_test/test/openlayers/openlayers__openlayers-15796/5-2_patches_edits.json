@@ -1,0 +1,65 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "this.setDrawContext_();",
+                    "",
+                    "this.preRender(context, frameState);",
+                    "",
+                    "const projection = viewState.projection;",
+                    "",
+                    "// clipped rendering if layer extent is set",
+                    "let clipped = false;",
+                    "if (render && layerState.extent && this.clipping) {",
+                    "const layerExtent = fromUserExtent(layerState.extent, projection);",
+                    "render = intersectsExtent(layerExtent, frameState.extent);",
+                    "clipped = render && !containsExtent(layerExtent, frameState.extent);",
+                    "if (clipped) {",
+                    "this.clipUnrotated(context, frameState, layerExtent);",
+                    "}",
+                    "}",
+                    "",
+                    "if (render) {",
+                    "this.renderWorlds(",
+                    "replayGroup,",
+                    "frameState,",
+                    "this.getLayer().getDeclutter() ? false : undefined,",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    this.setDrawContext_();",
+                    "",
+                    "    // Clear the canvas if opacity is less than 1",
+                    "    if (this.opacity_ < 1) {",
+                    "      context.clearRect(0, 0, context.canvas.width, context.canvas.height);",
+                    "    }",
+                    "",
+                    "    this.preRender(context, frameState);",
+                    "",
+                    "    const projection = viewState.projection;",
+                    "",
+                    "    // clipped rendering if layer extent is set",
+                    "    let clipped = false;",
+                    "    if (render && layerState.extent && this.clipping) {",
+                    "      const layerExtent = fromUserExtent(layerState.extent, projection);",
+                    "      render = intersectsExtent(layerExtent, frameState.extent);",
+                    "      clipped = render && !containsExtent(layerExtent, frameState.extent);",
+                    "      if (clipped) {",
+                    "        this.clipUnrotated(context, frameState, layerExtent);",
+                    "      }",
+                    "    }",
+                    "",
+                    "    if (render) {",
+                    "      this.renderWorlds(",
+                    "        replayGroup,",
+                    "        frameState,",
+                    "        this.getLayer().getDeclutter() ? false : undefined,",
+                    "      );",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

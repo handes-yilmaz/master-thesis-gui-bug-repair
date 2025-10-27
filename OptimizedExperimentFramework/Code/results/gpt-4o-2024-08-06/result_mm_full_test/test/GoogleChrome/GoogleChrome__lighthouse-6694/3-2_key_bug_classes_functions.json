@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/uses-rel-preconnect.js//UsesRelPreconnectAudit"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/uses-rel-preconnect.js//audit",
+            "lighthouse-core/audits/uses-rel-preconnect.js//hasAlreadyConnectedToOrigin"
+        ],
+        "explanation": "The `UsesRelPreconnectAudit` class is responsible for the audit logic related to preconnect suggestions. The `audit` function is the main function that performs the audit and generates suggestions. The `hasAlreadyConnectedToOrigin` function checks if a connection to an origin is already established, which is crucial for determining whether a preconnect suggestion is necessary. The issue likely lies in these functions not correctly identifying existing preconnect links, leading to false positives.",
+        "bug_scenario": "The bug scenario involves a false positive in the Lighthouse audit for preconnect/dns-prefetch suggestions. The user is already using `preconnect` for certain domains, but Lighthouse still suggests adding preconnect or dns-prefetch resource hints, indicating a potential issue in the audit logic."
+    }
+}

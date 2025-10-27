@@ -1,0 +1,25 @@
+diff --git a/src/command/render/pandoc.ts b/src/command/render/pandoc.ts
+index 6e1a712..8fd3043 100644
+--- a/src/command/render/pandoc.ts
++++ b/src/command/render/pandoc.ts
+@@ -1216,14 +1216,17 @@ async function resolveExtras(
+     ): Promise<HtmlPostProcessResult> => {
+       return withTiming(
+         "pandocDependenciesPostProcessor",
+-        async () =>
+-          await readAndInjectDependencies(
++        async () => {
++          // Ensure correct list formatting
++          doc.body = doc.body.replace(/^\s*\*\s+/gm, '* ');
++          return await readAndInjectDependencies(
+             dependenciesFile,
+             inputDir,
+             libDir,
+             doc,
+             project,
+-          ),
++          );
++        },
+       );
+     };
+ 

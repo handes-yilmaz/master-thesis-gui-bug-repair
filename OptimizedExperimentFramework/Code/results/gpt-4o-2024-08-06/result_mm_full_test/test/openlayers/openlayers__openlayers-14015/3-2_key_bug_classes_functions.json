@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//setStyle",
+            "src/ol/layer/WebGLTile.js//updateStyleVariables",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame",
+            "src/ol/renderer/webgl/TileLayer.js//enqueueTiles"
+        ],
+        "explanation": "The `WebGLTileLayer` class in `src/ol/layer/WebGLTile.js` is responsible for managing the tile layer, including its source and style. The `setStyle` and `updateStyleVariables` functions are relevant because they handle updates to the layer's style, which may include clearing or updating cached textures when the source or projection changes. The `WebGLTileLayerRenderer` class in `src/ol/renderer/webgl/TileLayer.js` is responsible for rendering the tile layer using WebGL. The `renderFrame` function is crucial as it handles the rendering of the frame, which should account for changes in source or projection by using the correct cached textures. The `enqueueTiles` function is involved in managing the tiles to be rendered, which includes ensuring that the correct tiles are used when the source or projection changes.",
+        "bug_scenario": "The bug scenario involves WebGL tile layers using incorrect cached textures when the source is replaced using `setSource()` or when the view projection is changed. This results in tiles from the old source or projection being displayed instead of the new ones when panning or zooming back out."
+    }
+}

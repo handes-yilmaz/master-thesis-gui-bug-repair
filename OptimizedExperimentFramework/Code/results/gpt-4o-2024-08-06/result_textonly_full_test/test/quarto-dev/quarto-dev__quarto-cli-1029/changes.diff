@@ -1,0 +1,32 @@
+diff --git a/src/format/reveal/format-reveal.ts b/src/format/reveal/format-reveal.ts
+index b955ecf..5488ee5 100644
+--- a/src/format/reveal/format-reveal.ts
++++ b/src/format/reveal/format-reveal.ts
+@@ -745,13 +745,20 @@ function applyStretch(doc: Document, autoStretch: boolean) {
+             }
+           }
+ 
+-          // Target position of image
+-          // first level after the element
+-          const nextEl = nodeEl.nextElementSibling;
+-          // Remove image from its parent
+-          removeEmpty(imageEl);
+-          // insert at target position
+-          slideEl.insertBefore(image, nextEl);
++      // Check for aside block and adjust image position
++      const asideBlock = slideEl.querySelector(".aside");
++      if (asideBlock) {
++        // Insert image before the aside block
++        slideEl.insertBefore(image, asideBlock);
++      } else {
++        // Target position of image
++        // first level after the element
++        const nextEl = nodeEl.nextElementSibling;
++        // Remove image from its parent
++        removeEmpty(imageEl);
++        // insert at target position
++        slideEl.insertBefore(image, nextEl);
++      }
+ 
+           // If there was a caption processed add it after
+           if (caption.classList.contains("caption")) {

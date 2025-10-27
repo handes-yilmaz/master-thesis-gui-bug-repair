@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/cmake.js//default function"
+        ],
+        "bug_functions": [
+            "src/lib/modes.js//COMMENT"
+        ],
+        "explanation": "The `default function` in `src/languages/cmake.js` is responsible for defining the language rules for CMake, including how comments are handled. Since the issue is with multi-line comments, this function likely needs to be updated to correctly identify and handle the `#[[` to `]]` comment syntax. The `COMMENT` function in `src/lib/modes.js` is a utility for creating comment modes, and it may need adjustments to support the specific multi-line comment syntax used in CMake.",
+        "bug_scenario": "The issue is that multi-line comments in CMake are not being highlighted correctly. The expected behavior is for everything between `#[[` and `]]` to be treated as a comment, but it is not happening. The image shows that the text is not grayed out as expected, indicating that the multi-line comment is not recognized properly."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/render/canvas.js",
+            "src/ol/style/Stroke.js"
+        ],
+        "explanation": "1. `src/ol/render/canvas/Immediate.js`: This file contains the `CanvasImmediateRenderer` class, which is responsible for rendering features and geometries directly to an HTML5 Canvas context. The issue with the `lineDash` not being scaled by the pixel ratio likely originates here, as this is where the immediate rendering logic is implemented.\n\n2. `src/ol/render/canvas.js`: This file defines various canvas rendering utilities and states, including `StrokeState`, which contains properties like `lineDash`. The problem might be related to how these states are applied or not adjusted for the pixel ratio during rendering.\n\n3. `src/ol/style/Stroke.js`: This file defines the `Stroke` class, which includes the `lineDash` property. The issue could be related to how the `lineDash` is set or retrieved, and whether it considers the pixel ratio when used in immediate rendering contexts.",
+        "bug_scenario": "The bug scenario involves rendering dashed lines on a canvas using the OpenLayers library. When setting a pixel ratio in `ol/render.toContext()` for high device pixel ratio displays, the pixel coordinates are scaled correctly, but the `lineDash` property is not scaled. This results in dashed lines appearing blurred or as continuous lines on devices with a pixel ratio greater than 1.0. The issue is demonstrated by rendering a dashed line on a map canvas and using canvas immediate rendering, where the dashes and gaps become shorter in proportion to the line width on high pixel ratio devices."
+    }
+}

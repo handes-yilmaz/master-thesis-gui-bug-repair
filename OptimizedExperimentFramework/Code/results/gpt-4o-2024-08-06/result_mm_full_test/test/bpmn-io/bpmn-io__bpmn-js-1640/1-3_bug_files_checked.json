@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior.js",
+            "lib/features/modeling/util/ModelingUtil.js"
+        ],
+        "explanation": "These files are likely responsible for handling properties and behaviors related to BPMN elements. \n\n- `UpdateModdlePropertiesHandler.js` and `UpdatePropertiesHandler.js` are involved in updating properties, which can include handling the multi-instance properties during changes.\n- `UpdateFlowNodeRefsBehavior.js` might be responsible for keeping track of references or state changes when switching between configurations.\n- `ModelingUtil.js` likely contains utility functions that support property manipulation and should ensure properties are handled correctly when instances are changed.",
+        "bug_scenario": "The bug involves losing multi-instance properties when switching between parallel and sequential configurations in a BPMN modeler. The steps to reproduce include creating a sub-process, adding a parallel multi-instance, setting a loop cardinality, and then changing to a sequential multi-instance, which results in the loss of properties."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js"
+        ],
+        "explanation": "The bug is related to the loss of properties when changing configurations in the modeling process. Files within the 'modeling' feature are likely involved as they handle updates and replacements of properties and elements. Specifically, 'UpdateModdlePropertiesHandler.js' and 'UpdatePropertiesHandler.js' are responsible for managing changes to properties in the model. 'ReplaceElementBehaviour.js' and 'ReplaceConnectionBehavior.js' deal with the replacement logic, which could affect how properties are retained or lost during configuration changes.",
+        "bug_scenario": "The bug involves losing multi-instance properties when switching between parallel and sequential configurations in a BPMN model. The steps to reproduce include creating a sub-process, adding a parallel multi-instance, specifying a loop cardinality, and then switching to a sequential multi-instance, after which the properties are lost."
+    }
+}

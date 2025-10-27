@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "types/input/index.d.ts//TextAreaProps"
+        ],
+        "bug_functions": [],
+        "explanation": "The `TextAreaProps` interface in `types/input/index.d.ts` defines the type for the `onBlur` event. The current type definition `onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;` does not match the expected type in the implementation, leading to a type mismatch error. Adjusting this type definition to match the expected event signature will resolve the issue.",
+        "bug_scenario": "The bug scenario involves a type mismatch in the TypeScript definition for the `onBlur` event in the `Input.TextArea` component. The error message indicates that the `onBlur` event handler is expected to be of type `() => void`, but the provided type is `(event: MouseEvent<Element, MouseEvent>) => void`. This mismatch causes a type error when using the `onBlur` event."
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js"
+        ],
+        "explanation": "The bug is related to the loss of properties when changing the configuration of a BPMN element. The `UpdatePropertiesHandler.js` file is responsible for updating BPMN element properties, including handling changes to the element's business object properties. This is directly related to the issue of properties being lost when switching between multi-instance configurations. The `UpdateModdlePropertiesHandler.js` file is also relevant as it deals with updating moddle properties, which are part of the BPMN model's underlying data structure. Both files are key to ensuring that properties are correctly maintained and updated during configuration changes.",
+        "bug_scenario": "The bug scenario involves a loss of multi-instance properties when switching between parallel and sequential multi-instance configurations in a BPMN model. The steps to reproduce the bug include creating a sub-process, adding a parallel multi-instance, setting a loop cardinality, and then changing to a sequential multi-instance, which results in the loss of the multi-instance properties. The expected behavior is that these properties should not be lost during the change."
+    }
+}

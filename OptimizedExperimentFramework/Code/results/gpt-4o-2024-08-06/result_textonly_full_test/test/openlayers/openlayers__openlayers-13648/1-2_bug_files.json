@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/source/GeoTIFF.js",
+            "src/reproj/Image.js",
+            "src/reproj/Tile.js",
+            "src/ol/source/GeoTIFF.js"
+        ],
+        "explanation": "1. **src/source/GeoTIFF.js**: This file is likely responsible for handling GeoTIFF data sources, which are directly related to the COG format. Any issues with parsing or rendering COG files may originate here.\n\n2. **src/reproj/Image.js** and **src/reproj/Tile.js**: These files are responsible for reprojecting images and tiles. Since only the upper part of the image is displayed, there might be a reprojection issue causing this partial rendering. Fixing the reprojection logic may resolve the display problem.\n\n3. **src/ol/source/GeoTIFF.js**: This file is part of the OpenLayers source management for GeoTIFFs. It would be involved in loading and managing the GeoTIFF data. Bugs in how the GeoTIFF image is processed or displayed would likely involve this file as well.\n\nConsidering the specific issue with non-square pixels and partial image rendering, these files all have roles in handling image data and transformations, which are critical to resolving the reported bug.",
+        "bug_scenario": "The bug reported is about a Cloud Optimized GeoTIFF (COG) file not displaying correctly, with only the upper part being shown instead of the entire image as expected. The issue is demonstrated using a link to a specific example on CodeSandbox that uses OpenLayers, a JavaScript library for displaying map data."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/source/TileImage.js",
+            "src/ol/reproj/Image.js",
+            "src/ol/reproj/Tile.js"
+        ],
+        "explanation": "The files likely related to the bug are those involved in handling GeoTIFF images and their projections in the OpenLayers library.\\n1. **src/ol/source/GeoTIFF.js**: This file is directly responsible for loading and interpreting GeoTIFF images, which is the format in question that is not displaying correctly.\\n2. **src/ol/source/TileImage.js**: This file may be involved because it handles tiled images, which are a common way to handle large raster data like COGs. The issue could be related to how tiles are being loaded or stitched together.\\n3. **src/ol/reproj/Image.js and src/ol/reproj/Tile.js**: These files handle reprojection of images and tiles, respectively. If the COG's projection settings are not correctly managed or interpreted, it could result in only part of the image being displayed.\\n\\nInvestigating these files could reveal issues with how non-square pixels or image tiles are handled, leading to the observed bug.",
+        "bug_scenario": "The bug involves loading a Cloud Optimized GeoTIFF (COG) where only the upper part of the image is displayed, instead of the full image as expected. This issue occurs when trying to view the COG using a specific URL in an example from OpenLayers."
+    }
+}

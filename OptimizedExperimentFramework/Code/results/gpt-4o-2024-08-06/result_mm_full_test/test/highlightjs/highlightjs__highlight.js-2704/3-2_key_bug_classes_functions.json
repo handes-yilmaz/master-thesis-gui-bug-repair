@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/fsharp.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue arises from the syntax highlighting rules defined in the `src/languages/fsharp.js` file. The highlighter is incorrectly interpreting the `Operators.(*)` syntax as the start of a multi-line comment. This file contains the logic for how F# code is parsed and highlighted, including the rules for recognizing comments. Adjusting the rules in this file to correctly differentiate between the `Operators.(*)` function and the start of a multi-line comment will resolve the issue.",
+        "bug_scenario": "The bug scenario involves the F# code snippet being incorrectly highlighted as a multi-line comment due to the use of the `Operators.(*)` function. The highlighter mistakenly interprets this as the start of a multi-line comment, which in F# is denoted by `(* Comment Here *)`. This results in the rest of the codeblock being highlighted as a comment, which is incorrect."
+    }
+}

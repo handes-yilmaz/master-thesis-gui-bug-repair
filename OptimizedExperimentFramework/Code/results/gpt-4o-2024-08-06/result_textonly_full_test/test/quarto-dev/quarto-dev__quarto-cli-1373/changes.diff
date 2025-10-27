@@ -1,0 +1,13 @@
+diff --git a/src/command/render/codetools.ts b/src/command/render/codetools.ts
+index 2413c6d..a44223f 100644
+--- a/src/command/render/codetools.ts
++++ b/src/command/render/codetools.ts
+@@ -303,7 +303,7 @@ function resolveCodeTools(format: Format, doc: Document): CodeTools {
+     source: typeof (codeTools) === "boolean"
+       ? codeTools
+       : codeTools?.source !== undefined
+-      ? codeTools?.source
++      ? (typeof codeTools.source === "string" ? true : codeTools.source)
+       : true,
+     toggle: typeof (codeTools) === "boolean"
+       ? codeTools

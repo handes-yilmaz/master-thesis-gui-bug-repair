@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/nav/item.jsx//Item",
+            "src/nav/nav.jsx//Nav"
+        ],
+        "bug_functions": [
+            "src/nav/item.jsx//Item.render",
+            "src/nav/nav.jsx//Nav.render"
+        ],
+        "explanation": "The issue is related to the rendering of navigation items in 'iconOnly' mode. In 'src/nav/item.jsx', the 'Item' class's 'render' function checks if 'iconOnly' is true and if no icon is provided, it returns null to avoid rendering a placeholder. This logic is crucial to prevent blank spaces. In 'src/nav/nav.jsx', the 'Nav' class's 'render' function manages the overall layout and style of the navigation, including handling the 'iconOnly' mode. Both classes need to ensure that items without icons are not rendered as empty spaces.",
+        "bug_scenario": "In 'iconOnly' mode, items without an icon should not appear as blank spaces in the navigation component. The image shows a vertical navigation bar with several items, some of which appear blank because they lack icons."
+    }
+}

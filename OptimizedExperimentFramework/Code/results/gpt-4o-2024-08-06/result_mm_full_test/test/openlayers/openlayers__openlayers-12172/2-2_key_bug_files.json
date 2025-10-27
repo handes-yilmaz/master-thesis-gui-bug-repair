@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Icon.js",
+            "src/ol/render/canvas/ImageBuilder.js"
+        ],
+        "explanation": "The file 'src/ol/style/Icon.js' is a key bug file because it contains the implementation of the Icon class, which includes properties and methods related to icon styling, such as displacement. The displacement property is directly mentioned in the bug report as causing the clipping issue. The constructor and methods like 'getOrigin' and 'getAnchor' in this file handle the positioning and rendering of icons, which are crucial for addressing the clipping problem.\n\nThe file 'src/ol/render/canvas/ImageBuilder.js' is another key bug file because it deals with rendering images on a canvas, including handling the drawing of points and multi-points with images. The methods 'drawPoint' and 'drawMultiPoint' use image properties like anchor and scale, which are affected by displacement settings. Adjustments in this file may be necessary to ensure that icons with displacement are rendered correctly without being clipped.",
+        "bug_scenario": "The bug scenario involves an issue with the OpenLayers library where an icon style with a displacement setting causes the icon to be clipped. This is observed when a green cross icon is clipped in a forked example of Regular Shapes on CodeSandbox. The expected behavior is for the icon to display without being clipped, similar to the regular shape in the original example."
+    }
+}

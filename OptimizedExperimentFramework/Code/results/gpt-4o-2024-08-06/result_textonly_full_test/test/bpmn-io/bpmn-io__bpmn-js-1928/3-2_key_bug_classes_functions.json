@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/space-tool/BpmnSpaceTool.js//BpmnSpaceTool",
+            "lib/features/modeling/behavior/SpaceToolBehavior.js//SpaceToolBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/space-tool/BpmnSpaceTool.js//BpmnSpaceTool.prototype.calculateAdjustments",
+            "lib/features/modeling/behavior/SpaceToolBehavior.js//SpaceToolBehavior.prototype.getMinDimensions"
+        ],
+        "explanation": "The BpmnSpaceTool class in 'lib/features/space-tool/BpmnSpaceTool.js' is directly related to the space tool functionality, which is responsible for handling space adjustments in the diagram. The calculateAdjustments function within this class is likely involved in determining how elements are resized or adjusted when the space tool is used. Since the bug involves incorrect resizing of an empty pool, this function is a key area to investigate.\n\nThe SpaceToolBehavior class in 'lib/features/modeling/behavior/SpaceToolBehavior.js' is also relevant because it handles the behavior of the space tool, including setting minimum dimensions for elements. The getMinDimensions function is responsible for determining the minimum dimensions of elements when the space tool is applied. This function is crucial for ensuring that elements like the empty pool maintain their intended size constraints, which is not happening in the current bug scenario.",
+        "bug_scenario": "The bug scenario involves an empty pool in a BPMN diagram that should have a fixed height to distinguish it from lanes or expanded pools. However, when using the space tool, the pool is resized vertically, which is not the expected behavior. The expected behavior is that the empty pool should not resize vertically when the space tool is used."
+    }
+}

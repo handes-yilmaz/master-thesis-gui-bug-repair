@@ -1,0 +1,52 @@
+{
+    "1/1": {
+        "src/language-js/print/jsx.js": [
+            {
+                "SEARCH": [
+                    "const jsxFullWidthWhitespace = ifBreak(concat([`{\"${fullWidthSpace}\"}`, softline]), fullWidthSpace);",
+                    "",
+                    "const isFacebookTranslationTag =",
+                    "n.openingElement &&",
+                    "n.openingElement.name &&",
+                    "n.openingElement.name.name === \"fbt\";",
+                    "",
+                    "const children = printJSXChildren(",
+                    "path,",
+                    "options,",
+                    "print,",
+                    "jsxWhitespace,",
+                    "isFacebookTranslationTag",
+                    ").map(child => {",
+                    "// Ensure full-width spaces are handled consistently",
+                    "if (typeof child === 'string' && child.includes(fullWidthSpace)) {",
+                    "return child.replace(new RegExp(fullWidthSpace, 'g'), jsxFullWidthWhitespace);",
+                    "}",
+                    "return child;",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  const jsxFullWidthWhitespace = ifBreak(concat([`{\"${fullWidthSpace}\"}`, softline]), `{\"${fullWidthSpace}\"}`);",
+                    "",
+                    "  const isFacebookTranslationTag =",
+                    "    n.openingElement &&",
+                    "    n.openingElement.name &&",
+                    "    n.openingElement.name.name === \"fbt\";",
+                    "",
+                    "  const children = printJSXChildren(",
+                    "    path,",
+                    "    options,",
+                    "    print,",
+                    "    jsxWhitespace,",
+                    "    isFacebookTranslationTag",
+                    "  ).map(child => {",
+                    "    // Ensure full-width spaces are handled consistently",
+                    "    if (typeof child === 'string' && child.includes(fullWidthSpace)) {",
+                    "      return child.replace(new RegExp(fullWidthSpace, 'g'), jsxFullWidthWhitespace);",
+                    "    }",
+                    "    return child;",
+                    "  });"
+                ]
+            }
+        ]
+    }
+}

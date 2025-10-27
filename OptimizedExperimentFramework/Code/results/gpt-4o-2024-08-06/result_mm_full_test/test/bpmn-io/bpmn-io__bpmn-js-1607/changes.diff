@@ -1,0 +1,23 @@
+diff --git a/lib/import/BpmnImporter.js b/lib/import/BpmnImporter.js
+index 029dd18..add6cc6 100644
+--- a/lib/import/BpmnImporter.js
++++ b/lib/import/BpmnImporter.js
+@@ -132,6 +132,11 @@ BpmnImporter.prototype.add = function(semantic, di, parentElement) {
+ 
+     var bounds = di.bounds;
+ 
++    // Handle groups within collapsed sub-processes
++    if (is(semantic, 'bpmn:Group') && parentElement && parentElement.collapsed) {
++      hidden = true;
++    }
++
+     element = this._elementFactory.createShape(elementData(semantic, di, {
+       collapsed: collapsed,
+       hidden: hidden,
+@@ -349,4 +354,4 @@ function isPointInsideBBox(bbox, point) {
+ 
+ function isFrameElement(semantic) {
+   return is(semantic, 'bpmn:Group');
+-}
+\ No newline at end of file
++}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Graticule.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js"
+        ],
+        "explanation": "1. **src/ol/layer/Graticule.js**: This file likely handles the rendering of the graticule lines. Fixing the issue of missing meridians and improperly placed parallels would involve changes here.\n\n2. **src/ol/proj/proj4.js**: This file is responsible for handling projections, including those that cross the dateline. Adjustments may be needed to correctly normalize longitudes and handle the dateline crossing.\n\n3. **src/ol/proj/Projection.js**: This file may define how projections are calculated and managed, including handling cases where the projection crosses the dateline.",
+        "bug_scenario": "The bug involves incorrect display of graticule lines when a map projection crosses the dateline. Most meridians do not appear, and parallels are improperly positioned or extend too far. The expected behavior is for all meridians and parallels to appear correctly within the projection extent, even when crossing the dateline."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/Graticule.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/reproj/Tile.js"
+        ],
+        "explanation": "1. `src/ol/layer/Graticule.js`: This file likely controls the rendering of the graticule lines on the map. Since the issue is with the incorrect display of these lines, changes here could address how meridians and parallels are drawn across the dateline.\n2. `src/ol/proj/proj4.js`: This file involves projections and the use of the proj4 library, which might be responsible for handling the normalization of longitudes. The bug report mentions issues with normalized longitudes, making this file a possible source of the problem.\n3. `src/ol/reproj/Tile.js`: This file might handle tile reprojection, which could affect how map tiles are displayed when crossing the dateline. Incorrect tile handling could contribute to the misalignment of graticule lines across the dateline.",
+        "bug_scenario": "The bug occurs when using a map projection that crosses the dateline. The graticule (the grid of latitude and longitude lines) does not display correctly: most meridians are missing, and parallels appear incorrectly, either starting from the dateline or extending too far. This is evident when the projection is set to cross the dateline, as shown in the provided images where graticule lines are misaligned or missing."
+    }
+}

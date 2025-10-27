@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/uses-webp-images.js",
+            "lighthouse-core/audits/byte-efficiency/uses-optimized-images.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js"
+        ],
+        "explanation": "The bug relates to the feature where BMP images should be flagged for optimization. The file `lighthouse-core/audits/byte-efficiency/uses-webp-images.js` likely contains the logic for auditing image formats to suggest WebP. Similarly, `lighthouse-core/audits/byte-efficiency/uses-optimized-images.js` is responsible for checking if images are served in optimized formats, including WebP. The gatherer `lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js` is responsible for collecting data on image usage, which would include identifying BMP images that need optimization. These files need to be updated to include logic for identifying BMP images and flagging them appropriately in the audit results.",
+        "bug_scenario": "The bug scenario involves running a Lighthouse (LH) audit on a webpage with a BMP image. The current behavior does not flag BMP images as needing to be served in next-gen formats like WebP, which is expected according to the feature policy on legacy image formats."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/uses-optimized-images.js",
+            "lighthouse-core/audits/byte-efficiency/uses-webp-images.js",
+            "lighthouse-core/audits/byte-efficiency/uses-responsive-images.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js",
+            "lighthouse-core/gather/gatherers/image-usage.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/byte-efficiency/uses-optimized-images.js**: This file likely contains the logic for determining whether images are optimized. Since the issue is related to BMP images not being flagged, this file might need modifications to include BMP in its checks.\n\n2. **lighthouse-core/audits/byte-efficiency/uses-webp-images.js**: This audit checks for the use of WebP images, a next-gen format. It might need to be updated to include logic for flagging BMP images as candidates for conversion to WebP.\n\n3. **lighthouse-core/audits/byte-efficiency/uses-responsive-images.js**: Although this primarily deals with responsive images, it might share some logic or checks related to image formats that should be updated to include BMP.\n\n4. **lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js**: This gatherer likely collects data about images that can be optimized, including format checks. Updating this to recognize BMP as a non-optimal format would address the bug.\n\n5. **lighthouse-core/gather/gatherers/image-usage.js**: This file gathers information about image usage on a page, including the formats used. It might need to be updated to ensure BMP formats are flagged appropriately.",
+        "bug_scenario": "The bug report indicates that when running Lighthouse (LH) on a specific URL, the tool does not flag BMP images as needing conversion to next-gen formats, such as WebP. The expected behavior is for these images to be flagged under 'serve images under next gen formats' audit."
+    }
+}

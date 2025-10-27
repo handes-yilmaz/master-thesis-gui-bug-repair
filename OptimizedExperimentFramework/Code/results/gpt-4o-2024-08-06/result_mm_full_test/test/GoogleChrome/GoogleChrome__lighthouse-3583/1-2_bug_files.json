@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/critical-request-chains.js",
+            "lighthouse-core/gather/computed/critical-request-chains.js"
+        ],
+        "explanation": "The files `critical-request-chains.js` in both `audits` and `gather/computed` directories are likely responsible for constructing and analyzing the critical request chains. To address the issue, logic needs to be modified in these files to ensure iframes and data URIs are not marked as critical, reflecting the changes needed as described in the bug report.",
+        "bug_scenario": "The bug report highlights the issue that iframes and data URIs should not be considered critical requests in the Critical Request Chains (CRC) tree. The images show examples of iframes, such as a YouTube embed, being fetched with high priority, but they're not render-blocking. Similarly, data URIs are shown in the request chain, which aren't true network requests."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/critical-request-chains.js",
+            "lighthouse-core/gather/computed/critical-request-chains.js"
+        ],
+        "explanation": "The files 'lighthouse-core/audits/critical-request-chains.js' and 'lighthouse-core/gather/computed/critical-request-chains.js' are directly related to managing and computing the critical request chains. Modifying these files will allow changes to how iframes and data URIs are handled in the CRC tree, addressing the issue described in the bug report.",
+        "bug_scenario": "The bug report highlights the issue of iframes being treated as critical requests in the critical request chain (CRC) tree, even though they are not render-blocking. The user suggests excluding iframes and their children from the CRC tree. Additionally, there's a mention of excluding data URIs since they are not actual network requests. The images show CRC trees from paulirish.com and washingtonpost.com, indicating where iframes and data URIs appear in the request hierarchy."
+    }
+}

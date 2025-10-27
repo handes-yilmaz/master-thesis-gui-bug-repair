@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/form/form.jsx//Form",
+            "src/form/item.jsx//Item"
+        ],
+        "bug_functions": [
+            "src/form/form.jsx//getChildContext",
+            "src/form/item.jsx//getLabelForErrorMessage"
+        ],
+        "explanation": "The bug is related to the form component's handling of error messages and labels. The Form class in 'src/form/form.jsx' is directly involved because it contains the useLabelForErrorMessage and errorMessageLabel properties, which are central to the issue described in the bug report. The getChildContext function in the Form class is relevant because it sets the context for form fields, including the useLabelForErrorMessage property, which is part of the problem.\n\nThe Item class in 'src/form/item.jsx' is also relevant because it represents individual form items that may need to handle error messages and labels differently. The getLabelForErrorMessage function in the Item class is specifically mentioned in the compressed file and is likely responsible for determining how labels are used for error messages, making it a key function to address the bug.",
+        "bug_scenario": "The bug scenario involves a form component where the useLabelForErrorMessage API is not functioning as expected due to additional DOM structure added by business layer styling. The request is to introduce a new errorMessageLabel API to work alongside useLabelForErrorMessage to address this issue."
+    }
+}

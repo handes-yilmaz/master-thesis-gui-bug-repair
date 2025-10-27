@@ -1,0 +1,64 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "prepareAssets",
+            "file_path": "lighthouse-core/lib/asset-saver.js",
+            "function_details": [
+                {
+                    "name": "prepareAssets",
+                    "start_line": 110,
+                    "end_line": 129
+                }
+            ],
+            "function_code": [
+                "function prepareAssets(artifacts, results) {",
+                "  const passNames = Object.keys(artifacts.traces);",
+                "  const assets = [];",
+                "",
+                "  return passNames.reduce((chain, passName) => {",
+                "    const trace = artifacts.traces[passName];",
+                "",
+                "    return chain.then(_ => artifacts.requestScreenshots(trace))",
+                "      .then(screenshots => {",
+                "        const traceData = Object.assign({}, trace);",
+                "        const html = screenshotDump(screenshots, results);",
+                "",
+                "        assets.push({",
+                "          traceData,",
+                "          html",
+                "        });",
+                "      });",
+                "  }, Promise.resolve())",
+                "    .then(_ => assets);",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "saveAssets",
+            "file_path": "lighthouse-core/lib/asset-saver.js",
+            "function_details": [
+                {
+                    "name": "saveAssets",
+                    "start_line": 137,
+                    "end_line": 149
+                }
+            ],
+            "function_code": [
+                "function saveAssets(artifacts, results) {",
+                "  return prepareAssets(artifacts, results).then(assets => {",
+                "    assets.forEach((data, index) => {",
+                "      const filenamePrefix = getFilenamePrefix(results);",
+                "      const traceData = data.traceData;",
+                "      fs.writeFileSync(`${filenamePrefix}-${index}.trace.json`, JSON.stringify(traceData, null, 2));",
+                "      log.log('trace file saved to disk', filenamePrefix);",
+                "",
+                "      fs.writeFileSync(`${filenamePrefix}-${index}.screenshots.html`, data.html);",
+                "      log.log('screenshots saved to disk', filenamePrefix);",
+                "    });",
+                "  });",
+                "}"
+            ]
+        }
+    }
+}

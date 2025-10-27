@@ -1,0 +1,86 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "const requests = new Array(numSources);",
+                    "for (let i = 0; i < numSources; ++i) {",
+                    "requests[i] = getImagesForSource(this.sourceInfo_[i]);",
+                    "}",
+                    "Promise.all(requests)",
+                    ".then(function (sources) {",
+                    "self.configure_(sources);",
+                    "})",
+                    ".catch(function (error) {",
+                    "console.error(error); // eslint-disable-line no-console",
+                    "self.error_ = error;",
+                    "self.setState(State.ERROR);",
+                    "});"
+                ],
+                "REPLACE": [
+                    "    const requests = new Array(numSources);",
+                    "    for (let i = 0; i < numSources; ++i) {",
+                    "      requests[i] = getImagesForSource(this.sourceInfo_[i]);",
+                    "    }",
+                    "    Promise.all(requests)",
+                    "      .then(function (sources) {",
+                    "        self.configurePyramid_(sources);",
+                    "      })",
+                    "      .catch(function (error) {",
+                    "        console.error(error); // eslint-disable-line no-console",
+                    "        self.error_ = error;",
+                    "        self.setState(State.ERROR);",
+                    "      });"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "createRenderer() {",
+                    "const parsedStyle = parseStyle(this.style_, this.getSourceBandCount_());",
+                    "",
+                    "return new WebGLTileLayerRenderer(this, {",
+                    "vertexShader: parsedStyle.vertexShader,",
+                    "fragmentShader: parsedStyle.fragmentShader,",
+                    "uniforms: parsedStyle.uniforms,",
+                    "cacheSize: this.cacheSize_,",
+                    "paletteTextures: parsedStyle.paletteTextures,",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  createRenderer() {",
+                    "    const parsedStyle = parseStyle(this.style_, this.getSourceBandCount_());",
+                    "",
+                    "    return new WebGLTileLayerRenderer(this, {",
+                    "      vertexShader: parsedStyle.vertexShader,",
+                    "      fragmentShader: parsedStyle.fragmentShader,",
+                    "      uniforms: parsedStyle.uniforms,",
+                    "      cacheSize: this.cacheSize_,",
+                    "      paletteTextures: parsedStyle.paletteTextures,",
+                    "      useSingleContext: true, // Use a single WebGL context per layer",
+                    "    });",
+                    "  }"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "constructor(tileLayer, options) {",
+                    "super(tileLayer, {",
+                    "uniforms: options.uniforms,",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  constructor(tileLayer, options) {",
+                    "    super(tileLayer, {",
+                    "      uniforms: options.uniforms,",
+                    "      useSingleContext: options.useSingleContext || false,",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

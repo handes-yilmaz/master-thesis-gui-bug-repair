@@ -1,0 +1,19 @@
+diff --git a/lib/draw/BpmnRenderer.js b/lib/draw/BpmnRenderer.js
+index 37fb539..b34a173 100644
+--- a/lib/draw/BpmnRenderer.js
++++ b/lib/draw/BpmnRenderer.js
+@@ -2247,7 +2247,13 @@ BpmnRenderer.prototype.canRender = function(element) {
+  * @return {SVGElement} mainGfx
+  */
+ BpmnRenderer.prototype.drawShape = function(parentGfx, element, attrs = {}) {
+-  var { type } = element;
++  var { type, di } = element;
++
++  // Check if the element is a pool and if it is vertical
++  if (is(element, 'bpmn:Participant') && di.isHorizontal === false) {
++    // Adjust rendering logic for vertical pool
++    attrs = { ...attrs, transform: 'rotate(-90)' };
++  }
+ 
+   var handler = this._renderer(type);
+ 

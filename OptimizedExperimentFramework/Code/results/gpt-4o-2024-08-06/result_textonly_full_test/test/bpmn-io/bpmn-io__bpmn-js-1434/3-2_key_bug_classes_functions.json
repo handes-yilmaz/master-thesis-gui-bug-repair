@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js//SubProcessStartEventBehavior",
+            "lib/features/rules/BpmnRules.js//BpmnRules"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//removeProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences",
+            "lib/features/rules/BpmnRules.js//canReplace"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they handle the copy-paste functionality and the rules governing BPMN elements. The 'BpmnCopyPaste' class in 'BpmnCopyPaste.js' is directly responsible for managing how elements are copied and pasted, including the properties that are transferred during these operations. The 'SubProcessStartEventBehavior' class in 'SubProcessStartEventBehavior.js' is relevant because it deals with the behavior of start events within subprocesses, which is directly related to the bug scenario. The 'BpmnRules' class in 'BpmnRules.js' contains rules that determine what elements can be replaced or moved, which is crucial for enforcing the restriction on pasting typed start events onto subprocesses. The 'canReplace' function within 'BpmnRules.js' is particularly relevant as it defines the conditions under which elements can be replaced, which should include restrictions on pasting typed start events onto subprocesses.",
+        "bug_scenario": "The bug scenario involves the ability to copy and paste typed start events onto a subprocess, which should not be allowed. The expected behavior is that pasting such events onto a subprocess should be restricted."
+    }
+}

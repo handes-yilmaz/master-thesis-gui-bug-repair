@@ -1,0 +1,49 @@
+{
+    "1/1": {
+        "lib/features/rules/BpmnRules.js": [
+            {
+                "SEARCH": [
+                    "function canConnectMessageFlow(source, target) {",
+                    "",
+                    "// during connect user might move mouse out of canvas",
+                    "// https://github.com/bpmn-io/bpmn-js/issues/1033",
+                    "if (getRootElement(source) && !getRootElement(target)) {",
+                    "return false;",
+                    "}",
+                    "",
+                    "return (",
+                    "isMessageFlowSource(source) &&",
+                    "isMessageFlowTarget(target) &&",
+                    "!isSameOrganization(source, target)",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function canConnectMessageFlow(source, target) {",
+                    "",
+                    "  // during connect user might move mouse out of canvas",
+                    "  // https://github.com/bpmn-io/bpmn-js/issues/1033",
+                    "  if (getRootElement(source) && !getRootElement(target)) {",
+                    "    return false;",
+                    "  }",
+                    "",
+                    "  return (",
+                    "    isMessageFlowSource(source) &&",
+                    "    (isMessageFlowTarget(target) || isIntermediateMessageCatchBoundaryEvent(target)) &&",
+                    "    !isSameOrganization(source, target)",
+                    "  );",
+                    "}",
+                    "",
+                    "function isIntermediateMessageCatchBoundaryEvent(element) {",
+                    "  return is(element, 'bpmn:BoundaryEvent') && hasMessageEventDefinition(element);",
+                    "}",
+                    "",
+                    "function hasMessageEventDefinition(element) {",
+                    "  var eventDefinition = getEventDefinition(element);",
+                    "  return eventDefinition && is(eventDefinition, 'bpmn:MessageEventDefinition');",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

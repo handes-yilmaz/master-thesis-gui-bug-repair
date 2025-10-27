@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/code-annotation.lua//annoteProvider",
+            "src/resources/filters/quarto-pre/code-annotation.lua//resolveCellAnnotes",
+            "src/resources/filters/quarto-pre/code-annotation.lua//processLaTeXAnnotation",
+            "src/resources/filters/quarto-pre/code-annotation.lua//codeMeta"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/code-annotation.lua//annoteProvider",
+            "src/resources/filters/quarto-pre/code-annotation.lua//resolveCellAnnotes",
+            "src/resources/filters/quarto-pre/code-annotation.lua//processLaTeXAnnotation",
+            "src/resources/filters/quarto-pre/code-annotation.lua//codeMeta"
+        ],
+        "explanation": "The 'annoteProvider' function is responsible for providing annotation handling for different languages, including 'tikz'. The 'resolveCellAnnotes' function finds and processes annotations in code cells, which is crucial for handling the annotations correctly. The 'processLaTeXAnnotation' function specifically deals with LaTeX output, which is where the issue with the '\\circled' command arises. The 'codeMeta' function ensures that the necessary LaTeX packages are included, which is directly related to the missing 'tikz' package and the undefined '\\circled' command.",
+        "bug_scenario": "The bug involves code annotations not working correctly in PDF outputs using the 'tikz' package. The '\\circled' command is not defined, causing issues with code annotations and stylized list elements in the document."
+    }
+}

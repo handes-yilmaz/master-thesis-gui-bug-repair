@@ -1,0 +1,57 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/CreateDataObjectBehavior.js": [
+            {
+                "SEARCH": [
+                    "// set the reference to the DataObject",
+                    "shape.businessObject.dataObjectRef = dataObject;"
+                ],
+                "REPLACE": [
+                    "      // set the reference to the DataObject",
+                    "      shape.businessObject.dataObjectRef = dataObject;",
+                    "",
+                    "      // initialize isCollection property",
+                    "      dataObject.isCollection = false;"
+                ]
+            }
+        ],
+        "lib/features/modeling/Modeling.js": [
+            {
+                "SEARCH": [
+                    "this._commandStack.execute('element.updateProperties', {",
+                    "element: element,",
+                    "properties: properties",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  // Ensure isCollection property is handled",
+                    "  if (properties.hasOwnProperty('isCollection')) {",
+                    "    properties.isCollection = !!properties.isCollection; // Ensure boolean value",
+                    "  }",
+                    "",
+                    "  this._commandStack.execute('element.updateProperties', {",
+                    "    element: element,",
+                    "    properties: properties",
+                    "  });"
+                ]
+            }
+        ],
+        "lib/features/modeling/cmd/UpdatePropertiesHandler.js": [
+            {
+                "SEARCH": [
+                    "// update properties",
+                    "setProperties(businessObject, properties);"
+                ],
+                "REPLACE": [
+                    "  // update properties",
+                    "  setProperties(businessObject, properties);",
+                    "",
+                    "  // handle isCollection property",
+                    "  if (properties.hasOwnProperty('isCollection')) {",
+                    "    businessObject.isCollection = properties.isCollection;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

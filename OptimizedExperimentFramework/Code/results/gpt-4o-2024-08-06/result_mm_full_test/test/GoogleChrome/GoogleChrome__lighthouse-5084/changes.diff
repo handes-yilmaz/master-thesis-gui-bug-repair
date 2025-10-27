@@ -1,0 +1,15 @@
+diff --git a/lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js b/lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js
+index e7c32eb..b1cc7b0 100644
+--- a/lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js
++++ b/lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js
+@@ -143,8 +143,8 @@ class UnusedBytes extends Audit {
+     });
+ 
+     const savingsOnTTI = Math.max(
+-      Interactive.getLastLongTaskEndTime(simulationBeforeChanges.nodeTimings) -
+-        Interactive.getLastLongTaskEndTime(simulationAfterChanges.nodeTimings),
++      simulationBeforeChanges.timeInMs -
++        simulationAfterChanges.timeInMs,
+       0
+     );
+ 

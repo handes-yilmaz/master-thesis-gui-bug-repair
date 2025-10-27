@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "src/table/base/header.jsx": [
+            {
+                "SEARCH": [
+                    "...",
+                    "}"
+                ],
+                "REPLACE": [
+                    "...",
+                    "// Ensure the selection cell is properly rendered and managed",
+                    "renderSelectionCell() {",
+                    "    return (",
+                    "        <th>",
+                    "            <input type=\"checkbox\" onChange={this.handleSelectAll} />",
+                    "        </th>",
+                    "    );",
+                    "}",
+                    "",
+                    "handleSelectAll = (event) => {",
+                    "    const isChecked = event.target.checked;",
+                    "    // Logic to select or deselect all rows",
+                    "    this.props.onSelectAll(isChecked);",
+                    "}"
+                ]
+            }
+        ],
+        "src/table/base/cell.jsx": [
+            {
+                "SEARCH": [
+                    "</div>",
+                    "</Tag>",
+                    ");",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "                </div>",
+                    "            </Tag>",
+                    "        );",
+                    "    }",
+                    "",
+                    "    // Ensure custom cell content does not interfere with selection",
+                    "    handleCellClick = (event) => {",
+                    "        if (this.props.isSelectable) {",
+                    "            this.props.onSelect(this.props.rowIndex);",
+                    "        }",
+                    "    }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

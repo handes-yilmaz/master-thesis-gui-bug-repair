@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "}"
+                ],
+                "REPLACE": [
+                    "  }",
+                    "",
+                    "  /**",
+                    "   * Set a new style for the layer and re-create the renderer.",
+                    "   * @param {Style} style The new style to apply.",
+                    "   * @api",
+                    "   */",
+                    "  setStyle(style) {",
+                    "    this.style_ = style;",
+                    "    const source = this.getSource();",
+                    "    const parsedStyle = parseStyle(",
+                    "      this.style_,",
+                    "      'bandCount' in source ? source.bandCount : 4",
+                    "    );",
+                    "",
+                    "    this.getRenderer().update({",
+                    "      vertexShader: parsedStyle.vertexShader,",
+                    "      fragmentShader: parsedStyle.fragmentShader,",
+                    "      uniforms: parsedStyle.uniforms,",
+                    "    });",
+                    "",
+                    "    this.changed();",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

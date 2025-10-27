@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/ol/interaction/Pointer.js": [
+            {
+                "SEARCH": [
+                    "} else if (mapBrowserEvent.type == MapBrowserEventType.POINTERMOVE) {",
+                    "this.handleMoveEvent(mapBrowserEvent);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    } else if (mapBrowserEvent.type == MapBrowserEventType.POINTERMOVE) {",
+                    "        if (!this.handlingDownUpSequence) {",
+                    "            this.handleMoveEvent(mapBrowserEvent);",
+                    "        }",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/MapBrowserEventHandler.js": [
+            {
+                "SEARCH": [
+                    "this.dispatchEvent(",
+                    "new MapBrowserEvent(pointerEvent.type, this.map_, pointerEvent, dragging)",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    if (!dragging || pointerEvent.type !== MapBrowserEventType.POINTERMOVE) {",
+                    "      this.dispatchEvent(",
+                    "        new MapBrowserEvent(pointerEvent.type, this.map_, pointerEvent, dragging)",
+                    "      );",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/number-picker/index.jsx//NumberPicker"
+        ],
+        "bug_functions": [
+            "src/number-picker/index.jsx//getPrecision",
+            "src/number-picker/index.jsx//getPrecisionFactor",
+            "src/number-picker/index.jsx//upStep",
+            "src/number-picker/index.jsx//downStep"
+        ],
+        "explanation": "The NumberPicker class is directly responsible for the behavior of the number picker component, including handling the display and calculation of numbers. The functions getPrecision and getPrecisionFactor are crucial because they determine the precision of the number displayed, which is directly related to the bug of incorrect number display due to floating-point precision issues. The upStep and downStep functions are responsible for incrementing and decrementing the number, respectively, and are directly involved in the calculation that leads to the display bug. These functions need to be adjusted to handle floating-point precision correctly to fix the bug.",
+        "bug_scenario": "The bug scenario involves a display issue in the NumberPicker component when using Safari. Specifically, when incrementing a number with a step of 0.01, the expected result of 4.02 + 0.01 should be 4.03, but due to JavaScript's floating-point precision, it displays as 4.029999999999999."
+    }
+}

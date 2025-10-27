@@ -1,0 +1,26 @@
+diff --git a/src/lib/regex.js b/src/lib/regex.js
+index db62fcf..8aee3f5 100644
+--- a/src/lib/regex.js
++++ b/src/lib/regex.js
+@@ -35,10 +35,18 @@ export function anyNumberOfTimes(re) {
+ 
+ /**
+  * @param {RegExp | string } re
+- * @returns {string}
+- */
++* @returns {string}
++*/
+ export function optional(re) {
+-  return concat('(', re, ')?');
++return concat('(', re, ')?');
++}
++
++/**
++* @param {string} delimiter
++* @returns {RegExp}
++*/
++export function perlStyleRegex(delimiter) {
++return new RegExp(`m\\${delimiter}([^\\${delimiter}]*)\\${delimiter}`);
+ }
+ 
+ /**

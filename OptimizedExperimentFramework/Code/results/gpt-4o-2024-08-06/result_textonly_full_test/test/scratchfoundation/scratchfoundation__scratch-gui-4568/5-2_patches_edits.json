@@ -1,0 +1,63 @@
+{
+    "1/1": {
+        "src/reducers/monitors.js": [
+            {
+                "SEARCH": [
+                    "const reducer = function (state, action) {",
+                    "if (typeof state === 'undefined') state = initialState;",
+                    "switch (action.type) {",
+                    "case UPDATE_MONITORS:",
+                    "return action.monitors;",
+                    "default:",
+                    "return state;",
+                    "}",
+                    "};",
+                    "",
+                    "const updateMonitors = function (monitors) {",
+                    "return {",
+                    "type: UPDATE_MONITORS,",
+                    "monitors: monitors,",
+                    "meta: {",
+                    "throttle: 30",
+                    "}",
+                    "};",
+                    "};"
+                ],
+                "REPLACE": [
+                    "const reducer = function (state, action) {",
+                    "    if (typeof state === 'undefined') state = initialState;",
+                    "    switch (action.type) {",
+                    "    case UPDATE_MONITORS:",
+                    "        return action.monitors.map(monitor => {",
+                    "            if (monitor.type === 'slider') {",
+                    "                return {",
+                    "                    ...monitor,",
+                    "                    min: monitor.min !== undefined ? monitor.min : 0,",
+                    "                    max: monitor.max !== undefined ? monitor.max : 100",
+                    "                };",
+                    "            }",
+                    "            return monitor;",
+                    "        });",
+                    "    default:",
+                    "        return state;",
+                    "    }",
+                    "};",
+                    "",
+                    "const updateMonitors = function (monitors) {",
+                    "    return {",
+                    "        type: UPDATE_MONITORS,",
+                    "        monitors: monitors.map(monitor => ({",
+                    "            ...monitor,",
+                    "            min: monitor.min !== undefined ? monitor.min : 0,",
+                    "            max: monitor.max !== undefined ? monitor.max : 100",
+                    "        })),",
+                    "        meta: {",
+                    "            throttle: 30",
+                    "        }",
+                    "    };",
+                    "};"
+                ]
+            }
+        ]
+    }
+}

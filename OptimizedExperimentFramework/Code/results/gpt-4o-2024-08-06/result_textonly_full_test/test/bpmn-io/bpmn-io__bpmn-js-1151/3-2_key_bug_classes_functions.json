@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/label-editing/LabelUtil.js//getLabel",
+            "lib/features/label-editing/LabelUtil.js//setLabel",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//UpdateLabelHandler",
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior"
+        ],
+        "explanation": "The bug is related to the handling of labels during the copy-paste operation. The `BpmnCopyPaste` class in `lib/features/copy-paste/BpmnCopyPaste.js` is directly involved in the copy-paste process, including handling label elements. The `getLabel` and `setLabel` functions in `lib/features/label-editing/LabelUtil.js` are responsible for retrieving and setting labels on elements, which is crucial for ensuring labels are copied and pasted correctly. The `UpdateLabelHandler` class in `lib/features/label-editing/cmd/UpdateLabelHandler.js` manages the updating of labels, which is necessary for maintaining label integrity during operations. Finally, the `LabelBehavior` class in `lib/features/modeling/behavior/LabelBehavior.js` ensures that labels are properly updated and managed during various modeling operations, including creation and deletion, which can affect label persistence during copy-paste.",
+        "bug_scenario": "The bug scenario involves the loss of labels when users attempt to extract participant contents into a process diagram within a single diagram instance. The labels are not retained during the copy-paste operation, leading to diagrams missing labels after pasting the copied contents."
+    }
+}

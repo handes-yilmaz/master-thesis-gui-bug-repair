@@ -1,0 +1,69 @@
+{
+    "1/1": {
+        "src/format/reveal/format-reveal.ts": [
+            {
+                "SEARCH": [
+                    "// start with html format extras and our standard  & plugin extras",
+                    "let extras = mergeConfigs(",
+                    "// extras for all html formats",
+                    "await htmlFormatExtras(",
+                    "input,",
+                    "flags,",
+                    "offset,",
+                    "format,",
+                    "services.temp,",
+                    "{",
+                    "tabby: true,",
+                    "anchors: false,",
+                    "copyCode: true,",
+                    "hoverCitations: true,",
+                    "hoverFootnotes: true,",
+                    "figResponsive: false,",
+                    "}, // tippy options",
+                    "{",
+                    "parent: \"section.slide\",",
+                    "config: {",
+                    "offset: [0, 0],",
+                    "maxWidth: 700,",
+                    "},",
+                    "},",
+                    "{",
+                    "quartoBase: false,",
+                    "},",
+                    "),"
+                ],
+                "REPLACE": [
+                    "        // Ensure embedded content is processed for revealjs",
+                    "        let extras = mergeConfigs(",
+                    "          // extras for all html formats",
+                    "          await htmlFormatExtras(",
+                    "            input,",
+                    "            flags,",
+                    "            offset,",
+                    "            format,",
+                    "            services.temp,",
+                    "            {",
+                    "              tabby: true,",
+                    "              anchors: false,",
+                    "              copyCode: true,",
+                    "              hoverCitations: true,",
+                    "              hoverFootnotes: true,",
+                    "              figResponsive: false,",
+                    "              embedContent: true, // Ensure embedded content is included",
+                    "            }, // tippy options",
+                    "            {",
+                    "              parent: \"section.slide\",",
+                    "              config: {",
+                    "                offset: [0, 0],",
+                    "                maxWidth: 700,",
+                    "              },",
+                    "            },",
+                    "            {",
+                    "              quartoBase: false,",
+                    "            },",
+                    "          ),"
+                ]
+            }
+        ]
+    }
+}

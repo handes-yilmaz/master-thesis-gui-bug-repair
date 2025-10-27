@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/DataTile.js//DataTileSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/DataTile.js//constructor"
+        ],
+        "explanation": "The class DataTileSource in 'src/ol/source/DataTile.js' is directly related to the bug because it handles the data tile loading and configuration, including the number of bands (bandCount) used in the data. The constructor function of this class is responsible for setting up the tile source options, including the bandCount, which is central to the issue described in the bug report. The problem with the alpha channel and incorrect output when using even bandsCount is likely due to how the bandCount is managed and utilized within this class and its constructor.",
+        "bug_scenario": "The bug scenario involves using an even number of bands (>= 6) in the DataTileSource, which results in incorrect output when the last band is used as an alpha channel. The issue arises when setting the layer style to show RGBA and requesting 5 bands from titiler, which returns 6 bands (5 bands + alpha) as output. The alpha mask does not work correctly, and the problem is addressed by generating ol/DataTile with an additional dimension when working with even bandsCount."
+    }
+}

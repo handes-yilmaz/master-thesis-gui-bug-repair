@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Icon.js//Icon",
+            "src/ol/style/IconImage.js//IconImage"
+        ],
+        "bug_functions": [
+            "src/ol/style/Icon.js//getImage",
+            "src/ol/style/Icon.js//getPixelRatio",
+            "src/ol/style/IconImage.js//replaceColor_"
+        ],
+        "explanation": "The `Icon` class in `src/ol/style/Icon.js` is responsible for setting the icon style, including handling offsets and colors. The `getImage` and `getPixelRatio` functions are likely involved in rendering the icon with the correct pixel ratio, which is where the bug manifests when the ratio is not 1. The `IconImage` class in `src/ol/style/IconImage.js` handles the image rendering and color replacement. The `replaceColor_` function is directly related to applying the custom color to the icon, which is part of the bug scenario when the pixel ratio is greater than 1.",
+        "bug_scenario": "The bug occurs when using an icon style with a custom color on a monitor with a pixel ratio greater than 1. The offset of the icon style is incorrect, causing the icon to be displayed improperly. The images show the icon appearing correctly with a pixel ratio of 1, but distorted or incorrectly positioned with a pixel ratio of 2, especially when a custom color is applied."
+    }
+}

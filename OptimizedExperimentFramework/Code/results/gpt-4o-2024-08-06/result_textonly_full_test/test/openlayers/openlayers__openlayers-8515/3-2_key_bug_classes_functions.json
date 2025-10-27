@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/interaction/Select.js//Select",
+            "src/ol/layer/Layer.js//Layer",
+            "src/ol/layer/Vector.js//VectorLayer"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Select.js//handleEvent",
+            "src/ol/layer/Layer.js//setMap",
+            "src/ol/layer/Vector.js//setStyle"
+        ],
+        "explanation": "The `Select` class in `src/ol/interaction/Select.js` is directly responsible for handling the selection of features and their visual representation, which is central to the issue of layer ordering and zIndex. The `handleEvent` function within this class is crucial as it manages the selection state and interaction events, potentially affecting the rendering order.\n\nThe `Layer` class in `src/ol/layer/Layer.js` is relevant because it manages the rendering properties of layers, including zIndex, which is directly related to the bug. The `setMap` function is particularly important as it handles the layer's association with the map and its rendering order.\n\nThe `VectorLayer` class in `src/ol/layer/Vector.js` is involved because it deals with vector data rendering, which includes the red dots mentioned in the bug report. The `setStyle` function is significant as it determines how features are styled and rendered, which could influence their visibility and order relative to other layers.",
+        "bug_scenario": "The bug scenario involves the `ol.select.Interaction` feature in a mapping application, where a cluster layer is selected, and underlying features are highlighted with a red dot. The issue is that these red dots, which are in a separate layer, always appear below the selected feature, regardless of the zIndex setting. The desired behavior is for the red dots to appear above the selected feature when a custom SVG icon is selected."
+    }
+}

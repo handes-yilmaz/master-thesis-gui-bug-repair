@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/PaletteTexture.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "1. **src/ol/layer/WebGLTile.js**: This file is critical because it defines the WebGLTileLayer, which is directly involved in the problem described. Any issue with how layers are added or removed from the map would likely involve changes here.\n\n2. **src/ol/renderer/webgl/TileLayer.js**: This file handles the rendering of tile layers using WebGL. Given that the issue involves rendering problems and WebGL context errors, this file is crucial for understanding how WebGL contexts are managed during the rendering process.\n\n3. **src/ol/webgl/PaletteTexture.js**: Since the problem involves a palette style, this file is relevant because it manages palette textures within WebGL. Any issues with texture binding or context loss would need to be addressed here.\n\n4. **src/ol/webgl/TileTexture.js**: This file likely manages the WebGL textures for tile data. Problems with re-binding textures to a WebGL context during layer re-addition could be causing the rendering issues described in the bug report.",
+        "bug_scenario": "The bug occurs when a WebGLTileLayer with a palette style is removed and re-added to a map, resulting in rendering issues. Specifically, after performing add/remove operations multiple times, the layer fails to display correctly and may appear as a black layer. Console warnings indicate WebGL context errors, suggesting a potential issue with how WebGL contexts or resources are managed during layer removal and addition."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/TileTexture.js",
+            "src/ol/webgl/PaletteTexture.js"
+        ],
+        "explanation": "1. **src/ol/layer/WebGLTile.js**: This file likely contains the implementation for the WebGLTileLayer. Since the bug is related to WebGLTileLayer specifically, any issues with how this layer type handles WebGL contexts or textures would be managed here.\n\n2. **src/ol/renderer/webgl/TileLayer.js**: This file is responsible for rendering tile layers using WebGL. Given the issue is with rendering after re-adding the layer, this file might contain the logic that mishandles the WebGL context or texture rebinding.\n\n3. **src/ol/webgl/TileTexture.js**: This file manages textures for tile layers in a WebGL context. The errors indicate a problem with texture binding, so how textures are managed and re-bound when layers are added back could be a source of the issue.\n\n4. **src/ol/webgl/PaletteTexture.js**: Since the bug involves a palette style, this file likely handles the palette textures. Any issues with how palettes are applied or managed across WebGL contexts would need to be addressed here.",
+        "bug_scenario": "The bug occurs when using a WebGLTileLayer with a palette style. When a layer is removed and then added back to the map, it stops displaying correctly and instead shows a black layer. Console errors indicate a WebGL context issue, where textures are not bound to the correct context after re-adding the layer. This suggests a problem with handling WebGL contexts or textures when layers are removed and re-added."
+    }
+}

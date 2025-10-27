@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/proj/epsg3857.js//EPSG3857Projection"
+        ],
+        "bug_functions": [
+            "src/ol/proj/epsg3857.js//fromEPSG4326"
+        ],
+        "explanation": "The `fromEPSG4326` function in `src/ol/proj/epsg3857.js` is directly responsible for the transformation from EPSG:4326 to EPSG:3857. This function uses `Math.tan`, which can convert `Infinity` to `NaN`, causing the issue when handling empty extents. The `EPSG3857Projection` class is relevant because it defines the projection parameters and transformations, including the `fromEPSG4326` function, which is central to the bug. The transformation logic within this class and function needs to be adjusted to handle cases where the input extent is empty, preventing the generation of NaN values.",
+        "bug_scenario": "The bug scenario involves the function `applyTransform` being used on an empty extent, which results in an extent with NaN values. This NaN extent, when used as a parameter in the `fit` function, causes an error. The issue is traced back to the `fromEPSG4326` function, which is part of the transformation process from EPSG:4326 to EPSG:3857. The problem arises because `Math.tan` transforms `Infinity` to `NaN`, leading to the error when handling empty extents."
+    }
+}

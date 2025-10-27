@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "features/copy-paste/BpmnCopyPaste.js",
+            "features/copy-paste/ModdleCopy.js",
+            "modeling/cmd/IdClaimHandler.js"
+        ],
+        "explanation": "1. **features/copy-paste/BpmnCopyPaste.js**: This file likely handles the copy-paste functionality specific to BPMN elements, where the duplication of IDs might not be addressed.\n2. **features/copy-paste/ModdleCopy.js**: This file might be responsible for copying the moddle elements, which includes the Pool and its ID. It should ensure unique IDs are generated when copying.\n3. **modeling/cmd/IdClaimHandler.js**: This file is likely responsible for claiming or ensuring unique IDs within the modeling context. It might need adjustments to prevent ID duplication during copy-paste operations.",
+        "bug_scenario": "The bug occurs when a Pool is copied and pasted, resulting in duplicate Pool IDs. This is evident when exporting and importing the file, as shown in the GIF image. The XML snippet shows the same process ID being used for different tasks, which is incorrect behavior."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/copy-paste/ModdleCopy.js",
+            "lib/features/modeling/behavior/UnclaimIdBehavior.js"
+        ],
+        "explanation": "1. **BpmnCopyPaste.js** and **ModdleCopy.js**: These files are related to the copy-paste functionality of BPMN elements. The bug arises when copying a Pool, so it is likely that the issue is rooted in how these files handle the duplication of IDs during the copy operation.\n\n2. **UnclaimIdBehavior.js**: This file may be responsible for ensuring unique IDs are maintained when elements are duplicated or imported. The bug involves duplicate IDs, suggesting that this behavior is not functioning correctly or is not being invoked properly in this scenario.",
+        "bug_scenario": "The bug involves duplicating a Pool in a BPMN model, which results in duplicate Pool IDs after exporting and importing the file. This causes issues with the integrity of the XML structure, as shown in the provided XML snippet where two processes have the same ID 'Process_17iojvx'."
+    }
+}

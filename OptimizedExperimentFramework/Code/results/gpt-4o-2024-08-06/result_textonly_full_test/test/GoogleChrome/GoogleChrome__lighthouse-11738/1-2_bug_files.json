@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/computed/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/computed/metrics/cumulative-layout-shift-all-frames.js",
+            "lighthouse-core/config/constants.js",
+            "lighthouse-core/lib/dependency-graph/simulator/simulator.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/metrics/cumulative-layout-shift.js**: This file directly relates to the audit of the CLS metric, which is the core of the reported issue. Any changes in the calculation or handling of CLS would likely need modifications here.\n\n2. **lighthouse-core/computed/metrics/cumulative-layout-shift.js** and **lighthouse-core/computed/metrics/cumulative-layout-shift-all-frames.js**: These files are involved in computing the CLS metric, possibly aggregating data across different frames. If there is a timing issue related to how long Lighthouse waits to compute CLS, it could involve these computations.\n\n3. **lighthouse-core/config/constants.js**: This file might contain configuration constants that affect throttling and timing settings. Adjusting the duration for which Lighthouse waits during simulations might involve changes to constants in this file.\n\n4. **lighthouse-core/lib/dependency-graph/simulator/simulator.js**: Since the bug relates to the 'simulate' throttling method, this file is likely involved in simulating network conditions and timings, which could include the adjustments needed for wait times related to CLS calculations.",
+        "bug_scenario": "The bug report indicates that Lighthouse is not waiting long enough to accurately detect the Cumulative Layout Shift (CLS) when the throttling method is set to 'simulate'. The expectation is that Lighthouse should allow more time for the page to load and correctly measure the CLS, which is a metric that evaluates the visual stability of a page by measuring unexpected layout shifts during the page's lifecycle."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/computed/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/audits/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/computed/load-simulator.js",
+            "lighthouse-core/config/constants.js"
+        ],
+        "explanation": "1. `lighthouse-core/metrics/cumulative-layout-shift.js`: This file is likely responsible for calculating the Cumulative Layout Shift metric. Any issues related to the timing or calculation of CLS would originate here.\n\n2. `lighthouse-core/computed/metrics/cumulative-layout-shift.js`: This file probably deals with the computation aspects of the CLS metric, especially in relation to the aggregation of layout shifts across frames. It is essential for understanding how CLS is computed during a simulated run.\n\n3. `lighthouse-core/audits/metrics/cumulative-layout-shift.js`: This file is likely used for auditing the CLS metric and might contain logic that determines how and when to gather CLS data, making it critical if there are problems with how CLS results are reported.\n\n4. `lighthouse-core/computed/load-simulator.js`: This file is responsible for simulating the loading of pages. Since the issue is with the `throttlingMethod=simulate`, any errors in this simulation could directly impact the perceived CLS.\n\n5. `lighthouse-core/config/constants.js`: This file might define constants related to throttling and simulation settings, which could be impacting the timeouts or durations used for waiting on page load events, affecting CLS measurement.",
+        "bug_scenario": "The bug scenario involves running a Lighthouse audit on a webpage, specifically using the CLI command `lighthouse --view https://develop.pwa-venia.com/venia-bottoms.html`. The issue reported is that Lighthouse does not wait long enough to accurately detect the Cumulative Layout Shift (CLS) on certain pages when the `throttlingMethod` is set to `simulate`. As a result, the CLS score is inaccurately lower than expected because the page loads later than Lighthouse anticipates."
+    }
+}

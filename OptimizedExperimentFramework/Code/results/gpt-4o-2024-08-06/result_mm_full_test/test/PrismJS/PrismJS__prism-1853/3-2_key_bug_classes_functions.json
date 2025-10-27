@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-json.js//Prism.languages.json"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the JSON tokenization process in the Prism library. The `Prism.languages.json` object in `components/prism-json.js` defines patterns for different JSON elements, including comments. The pattern for comments is likely misinterpreting the `\"/*\"` string as the start of a comment, causing the incorrect tokenization. Adjusting the comment pattern to correctly differentiate between actual comments and strings containing `/*` is necessary to fix the bug.",
+        "bug_scenario": "The bug scenario involves incorrect JSON tokenization when logging server responses. The issue is triggered by the HTTP header `Accept: */*`, causing the JSON string `\"A\": \"/*\"` to be misinterpreted as a comment, leading to incorrect syntax highlighting."
+    }
+}

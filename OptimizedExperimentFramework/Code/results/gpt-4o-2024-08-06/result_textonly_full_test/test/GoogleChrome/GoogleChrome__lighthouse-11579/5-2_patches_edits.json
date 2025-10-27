@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/driver.js": [
+            {
+                "SEARCH": [
+                    "const promise = new Promise((resolve, reject) => {",
+                    "const maxWaitTimeout = setTimeout(() => {",
+                    "reject(new LHError(LHError.errors.NO_FCP));",
+                    "}, maxWaitForFcpMs);",
+                    "/** @type {NodeJS.Timeout|undefined} */",
+                    "let loadTimeout;",
+                    "",
+                    "/** @param {LH.Crdp.Page.LifecycleEventEvent} e */",
+                    "const lifecycleListener = e => {",
+                    "if (e.name === 'firstContentfulPaint') {",
+                    "loadTimeout = setTimeout(() => {",
+                    "resolve();",
+                    "cancel();",
+                    "}, pauseAfterFcpMs);",
+                    "}",
+                    "};",
+                    "",
+                    "this.on('Page.lifecycleEvent', lifecycleListener);"
+                ],
+                "REPLACE": [
+                    "    const promise = new Promise((resolve, reject) => {",
+                    "      const maxWaitTimeout = setTimeout(() => {",
+                    "        reject(new LHError(LHError.errors.NO_FCP));",
+                    "      }, maxWaitForFcpMs * 2); // Increase timeout for background tabs",
+                    "      /** @type {NodeJS.Timeout|undefined} */",
+                    "      let loadTimeout;",
+                    "",
+                    "      /** @param {LH.Crdp.Page.LifecycleEventEvent} e */",
+                    "      const lifecycleListener = e => {",
+                    "        if (e.name === 'firstContentfulPaint') {",
+                    "          loadTimeout = setTimeout(() => {",
+                    "            resolve();",
+                    "            cancel();",
+                    "          }, pauseAfterFcpMs);",
+                    "        }",
+                    "      };",
+                    "",
+                    "      this.on('Page.lifecycleEvent', lifecycleListener);"
+                ]
+            }
+        ]
+    }
+}

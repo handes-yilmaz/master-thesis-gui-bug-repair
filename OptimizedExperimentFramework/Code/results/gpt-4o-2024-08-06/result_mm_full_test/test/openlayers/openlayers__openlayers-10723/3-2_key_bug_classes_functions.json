@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Graticule.js//Graticule"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Graticule.js//addMeridian_",
+            "src/ol/layer/Graticule.js//addParallel_",
+            "src/ol/layer/Graticule.js//createGraticule_"
+        ],
+        "explanation": "The issue is related to the incorrect rendering of meridians and parallels when the projection crosses the dateline. The `Graticule` class in `Graticule.js` is responsible for rendering the grid lines (meridians and parallels) on the map. The functions `addMeridian_`, `addParallel_`, and `createGraticule_` are likely involved in calculating and drawing these lines. These functions need to be adjusted to handle the dateline crossing correctly, ensuring that the lines are rendered within the correct extent and do not extend unnecessarily.",
+        "bug_scenario": "The graticule does not display correctly when the view projection crosses the dateline. Most meridians do not appear, and parallels begin at the dateline or extend too far. The expected behavior is for all meridians and parallels within the projection extent to appear correctly."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/bash.js//HEREDOC",
+            "src/languages/bash.js//REDIRECTION",
+            "src/languages/bash.js//SUBSHELL"
+        ],
+        "bug_functions": [
+            "src/languages/bash.js//export default function"
+        ],
+        "explanation": "The bug is related to the lack of syntax highlighting for specific Bash elements. The `HEREDOC`, `REDIRECTION`, and `SUBSHELL` classes in `src/languages/bash.js` are directly responsible for defining how these elements should be highlighted. The `HEREDOC` class is responsible for here documents, `REDIRECTION` for stream redirections, and `SUBSHELL` for subshell variables. The `export default function` in the same file is the main function that initializes the language definition and includes these classes in the language's syntax highlighting rules. Therefore, any issues with these elements not being highlighted correctly would likely be due to problems or omissions in these classes or the main function that configures them.",
+        "bug_scenario": "The bug scenario involves the lack of syntax highlighting for certain Bash language elements in a code editor or viewer. Specifically, elements like pipes (|), continue command markers (\\), stream redirections (>, <), here documents (<<, <<<), and subshell variables ($(...)) are not being highlighted as expected. The issue is observed in the Bash language highlighting, which is also used by the shell language. The problem is reproducible in environments like JSfiddle and is related to the highlighting library used, which is initialized with `hljs.initHighlightingOnLoad();`."
+    }
+}

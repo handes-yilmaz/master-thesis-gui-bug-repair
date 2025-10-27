@@ -1,0 +1,44 @@
+{
+    "1/1": {
+        "lib/features/create-append-anything/CreateAppendKeyboardBindings.js": [
+            {
+                "SEARCH": [
+                    "if (selection && selection.get().length == 1) {",
+                    "editorActions && editorActions.trigger('appendElement', event);",
+                    "} else {",
+                    "editorActions && editorActions.trigger('createElement', event);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "      if (selection && selection.get().length == 1 && editorActions.isRegistered('appendElement')) {",
+                    "        editorActions && editorActions.trigger('appendElement', event);",
+                    "      } else {",
+                    "        editorActions && editorActions.trigger('createElement', event);",
+                    "      }"
+                ]
+            }
+        ],
+        "lib/features/create-append-anything/AppendMenuProvider.js": [
+            {
+                "SEARCH": [
+                    "if (!rules.allowed('shape.append', { element: element })) {",
+                    "return [];",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (!rules.allowed('shape.append', { element: element })) {",
+                    "    return [];",
+                    "  }",
+                    "",
+                    "  if (appendOptions.length === 0) {",
+                    "    // Ensure create action is available if no append options",
+                    "    return [{",
+                    "      label: translate('Create Element'),",
+                    "      action: this._createEntryAction(element, null)",
+                    "    }];",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

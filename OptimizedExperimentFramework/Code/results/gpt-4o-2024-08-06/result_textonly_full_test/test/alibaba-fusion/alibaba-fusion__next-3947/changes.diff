@@ -1,0 +1,31 @@
+diff --git a/src/form/form.jsx b/src/form/form.jsx
+index 575344d..95427ee 100644
+--- a/src/form/form.jsx
++++ b/src/form/form.jsx
+@@ -147,6 +147,11 @@ export default class Form extends React.Component {
+          * @version 1.23
+          */
+         errorMessageLabel: PropTypes.string,
++        /**
++         * 获取错误信息的标签
++         * @version 1.24
++         */
++        getLabel: PropTypes.func,
+         /**
+          * 表示是否显示 label 后面的冒号
+          * @version 1.22
+diff --git a/src/form/item.jsx b/src/form/item.jsx
+index 2a634b4..78427c1 100644
+--- a/src/form/item.jsx
++++ b/src/form/item.jsx
+@@ -327,6 +327,10 @@ export default class Item extends React.Component {
+             return label;
+         }
+ 
++        if (this.props.getLabel) {
++            return this.props.getLabel();
++        }
++
+         return null;
+     }
+ 

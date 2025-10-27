@@ -1,0 +1,26 @@
+diff --git a/src/ol/source/ImageWMS.js b/src/ol/source/ImageWMS.js
+index 4d48448..6fd40d3 100644
+--- a/src/ol/source/ImageWMS.js
++++ b/src/ol/source/ImageWMS.js
+@@ -297,7 +297,7 @@ class ImageWMS extends ImageSource {
+       pixelRatio = 1;
+     }
+ 
+-    const imageResolution = resolution / pixelRatio;
++    const imageResolution = Math.round(resolution / pixelRatio);
+ 
+     const center = getCenter(extent);
+     const viewWidth = ceil(getWidth(extent) / imageResolution, DECIMALS);
+diff --git a/src/ol/source/TileWMS.js b/src/ol/source/TileWMS.js
+index e342fd8..e7210ba 100644
+--- a/src/ol/source/TileWMS.js
++++ b/src/ol/source/TileWMS.js
+@@ -430,7 +430,7 @@ class TileWMS extends TileImage {
+     }
+ 
+     if (pixelRatio != 1 && (!this.hidpi_ || this.serverType_ === undefined)) {
+-      pixelRatio = 1;
++      pixelRatio = Math.round(pixelRatio);
+     }
+ 
+     const tileResolution = tileGrid.getResolution(tileCoord[0]);

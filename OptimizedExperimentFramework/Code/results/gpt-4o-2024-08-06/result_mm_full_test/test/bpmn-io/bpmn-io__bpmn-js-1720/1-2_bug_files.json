@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/context-pad/ContextPadProvider.js",
+            "lib/features/replace/ReplaceMenuProvider.js"
+        ],
+        "explanation": "These files are likely related to the bug because they handle behaviors and interactions associated with resizing elements (ResizeBehavior.js), managing subprocess planes (SubProcessPlaneBehavior.js), toggling element collapse states (ToggleElementCollapseBehaviour.js), and managing the context pad (ContextPadProvider.js) which includes the wrench menu. The ReplaceMenuProvider.js is responsible for the options available when transforming elements, which is directly related to the issue described in the bug report.",
+        "bug_scenario": "The bug involves transforming a call activity into a subprocess without resizing the shape. The sequence of edits leads to a dead end where the user cannot revert back to a call activity. The wrench menu becomes confusing with additional entries, and once an expanded subprocess is selected, it visually resembles a task without the option to revert or resize properly."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "The bug involves transforming and resizing elements, which suggests issues within the files handling element behavior and properties. \\n1. **ResizeBehavior.js**: This file likely handles resizing logic, which is directly related to the issue of the shape not resizing correctly.\\n2. **ToggleElementCollapseBehaviour.js**: Given that the problem involves toggling between collapsed and expanded states, this file might contain relevant logic for element collapse/expand behavior.\\n3. **UpdatePropertiesHandler.js**: This file is likely responsible for updating element properties, crucial for ensuring that the UI reflects the correct state and options after transformations.",
+        "bug_scenario": "The issue arises when transforming a Call Activity into a SubProcess in a Camunda BPMN diagram, where the shape does not resize as expected. The steps to reproduce involve creating a task, converting it to a call activity, and then changing it to an expanded sub-process, which results in a dead end as the type cannot be reverted using the wrench menu."
+    }
+}

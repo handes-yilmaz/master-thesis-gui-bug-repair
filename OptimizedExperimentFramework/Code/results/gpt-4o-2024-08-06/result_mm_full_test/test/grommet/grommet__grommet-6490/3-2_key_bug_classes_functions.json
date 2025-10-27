@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Box/Box.js//Box",
+            "src/js/components/Box/StyledBox.js//StyledBoxGap"
+        ],
+        "bug_functions": [
+            "src/js/components/Box/StyledBox.js//gapStyle"
+        ],
+        "explanation": "The issue arises when the `gap` property is set in pixels and the `border` is set to 'between'. The `gapStyle` function in `StyledBox.js` attempts to use the `match` method on the `gap` value, which may not be defined or properly handled when in pixel format. The `Box` component in `Box.js` is responsible for rendering and managing the properties, including `border` and `gap`, and needs to ensure these values are correctly processed and passed to `StyledBoxGap`. Adjustments in these areas are necessary to handle pixel values correctly and avoid the TypeError.",
+        "bug_scenario": "The Box component breaks at runtime when using `border=\"between\"` and a `gap` size in pixels, resulting in a TypeError: Cannot read properties of undefined (reading 'match')."
+    }
+}

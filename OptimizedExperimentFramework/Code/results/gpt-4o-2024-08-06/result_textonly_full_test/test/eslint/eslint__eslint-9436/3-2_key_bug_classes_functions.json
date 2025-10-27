@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/no-constant-condition.js//module.exports"
+        ],
+        "bug_functions": [
+            "lib/rules/no-constant-condition.js//reportIfConstant"
+        ],
+        "explanation": "The bug is related to the 'no-constant-condition' rule in ESLint, which is implemented in the 'lib/rules/no-constant-condition.js' file. The 'module.exports' object defines the rule, including its logic and the functions that handle the detection of constant conditions. The 'reportIfConstant' function is specifically responsible for reporting constant conditions. It uses the 'context.report' method to report issues, and the bug is likely in how it determines the location ('loc') of the constant condition to report. The function is supposed to report only the location of the constant condition, but it seems to be reporting a broader range, which is the core issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves the ESLint rule 'no-constant-condition' which is reporting error ranges that are too broad. Instead of highlighting just the constant condition, the entire statement or expression is being underlined, which is not the expected behavior. The user expects the error to only underline the constant condition itself, such as the word 'true' in the given examples."
+    }
+}

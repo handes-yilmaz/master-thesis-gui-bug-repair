@@ -1,0 +1,39 @@
+diff --git a/lighthouse-core/audits/byte-efficiency/uses-optimized-images.js b/lighthouse-core/audits/byte-efficiency/uses-optimized-images.js
+index 8311f44..62d217a 100644
+--- a/lighthouse-core/audits/byte-efficiency/uses-optimized-images.js
++++ b/lighthouse-core/audits/byte-efficiency/uses-optimized-images.js
+@@ -53,7 +53,7 @@ class UsesOptimizedImages extends ByteEfficiencyAudit {
+       if (image.failed) {
+         warnings.push(`Unable to decode ${URL.getURLDisplayName(image.url)}`);
+         continue;
+-      } else if (/(jpeg|bmp)/.test(image.mimeType) === false ||
++      } else if (/(jpeg|bmp|bmp)/.test(image.mimeType) === false ||
+                  image.originalSize < image.jpegSize + IGNORE_THRESHOLD_IN_BYTES) {
+         continue;
+       }
+diff --git a/lighthouse-core/audits/byte-efficiency/uses-webp-images.js b/lighthouse-core/audits/byte-efficiency/uses-webp-images.js
+index 1b9a290..3411a1c 100644
+--- a/lighthouse-core/audits/byte-efficiency/uses-webp-images.js
++++ b/lighthouse-core/audits/byte-efficiency/uses-webp-images.js
+@@ -22,7 +22,7 @@ class UsesWebPImages extends ByteEfficiencyAudit {
+       id: 'uses-webp-images',
+       title: 'Serve images in next-gen formats',
+       scoreDisplayMode: ByteEfficiencyAudit.SCORING_MODES.NUMERIC,
+-      description: 'Image formats like JPEG 2000, JPEG XR, and WebP often provide better ' +
++      description: 'Image formats like JPEG 2000, JPEG XR, WebP, and BMP often provide better ' +
+         'compression than PNG or JPEG, which means faster downloads and less data consumption. ' +
+         '[Learn more](https://developers.google.com/web/tools/lighthouse/audits/webp).',
+       requiredArtifacts: ['OptimizedImages', 'devtoolsLogs'],
+diff --git a/lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js b/lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js
+index b593ae9..a3aa086 100644
+--- a/lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js
++++ b/lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js
+@@ -87,7 +87,7 @@ class OptimizedImages extends Gatherer {
+ 
+       seenUrls.add(record.url);
+       const isOptimizableImage = record.resourceType === NetworkRequest.TYPES.Image &&
+-        /image\/(png|bmp|jpeg)/.test(record.mimeType);
++        /image\/(png|bmp|jpeg|bmp)/.test(record.mimeType);
+       const isSameOrigin = URL.originsMatch(pageUrl, record.url);
+       const isBase64DataUri = /^data:.{2,40}base64\s*,/.test(record.url);
+ 

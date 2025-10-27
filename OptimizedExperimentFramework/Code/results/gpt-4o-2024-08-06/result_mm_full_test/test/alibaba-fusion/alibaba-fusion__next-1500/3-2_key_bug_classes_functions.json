@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/table/base/header.jsx//Header",
+            "src/table/fixed/header.jsx//FixedHeader"
+        ],
+        "bug_functions": [
+            "src/table/base/header.jsx//render",
+            "src/table/base/header.jsx//getCellRef",
+            "src/table/base/header.jsx//onSort"
+        ],
+        "explanation": "The issue is related to the interaction between fixed headers and resizable columns, which affects the rendering of the filter dropdown. The 'Header' class in 'src/table/base/header.jsx' manages the rendering of table headers, including sorting and filtering elements. The 'render' function is responsible for rendering the header cells, where the filter and resize elements are added. The 'getCellRef' and 'onSort' functions are involved in managing cell references and sorting, which could be affected by the resizing logic. The 'FixedHeader' class in 'src/table/fixed/header.jsx' is also relevant as it deals with the fixed header rendering, which might need adjustments to handle the filter dropdown correctly when resizing is enabled.",
+        "bug_scenario": "The bug occurs when using fixedHeader and resizable together in a table. Clicking the filter button causes the header to display incorrectly, as shown in the image where the filter dropdown overlaps with the header."
+    }
+}

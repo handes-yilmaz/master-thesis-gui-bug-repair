@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/report/report-generator.js b/lighthouse-core/report/report-generator.js
+index b0526a3..2018ffa 100644
+--- a/lighthouse-core/report/report-generator.js
++++ b/lighthouse-core/report/report-generator.js
+@@ -191,7 +191,7 @@ class ReportGenerator {
+       url: results.url,
+       lighthouseVersion: results.lighthouseVersion,
+       generatedTime: results.generatedTime,
+-      lhresults: this._escapeScriptTags(JSON.stringify(results, null, 2)),
++      lhresults: this._escapeMarkdown(this._escapeScriptTags(JSON.stringify(results, null, 2))),
+       stylesheets: this.getReportCSS(),
+       reportContext: reportContext,
+       scripts: this.getReportJS(reportContext),

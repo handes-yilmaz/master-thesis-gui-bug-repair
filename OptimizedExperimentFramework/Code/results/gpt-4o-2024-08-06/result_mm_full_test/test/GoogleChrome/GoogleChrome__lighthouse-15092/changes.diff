@@ -1,0 +1,52 @@
+diff --git a/core/audits/byte-efficiency/efficient-animated-content.js b/core/audits/byte-efficiency/efficient-animated-content.js
+index 27b4496..7e6b865 100644
+--- a/core/audits/byte-efficiency/efficient-animated-content.js
++++ b/core/audits/byte-efficiency/efficient-animated-content.js
+@@ -25,7 +25,7 @@ const str_ = i18n.createIcuMessageFn(import.meta.url, UIStrings);
+ 
+ // If GIFs are above this size, we'll flag them
+ // See https://github.com/GoogleChrome/lighthouse/pull/4885#discussion_r178406623 and https://github.com/GoogleChrome/lighthouse/issues/4696#issuecomment-370979920
+-const GIF_BYTE_THRESHOLD = 100 * 1024;
++const GIF_BYTE_THRESHOLD = 50 * 1024; // Lowered threshold to flag more GIFs
+ 
+ class EfficientAnimatedContent extends ByteEfficiencyAudit {
+   /**
+diff --git a/core/audits/byte-efficiency/modern-image-formats.js b/core/audits/byte-efficiency/modern-image-formats.js
+index bf53cce..7d64eef 100644
+--- a/core/audits/byte-efficiency/modern-image-formats.js
++++ b/core/audits/byte-efficiency/modern-image-formats.js
+@@ -23,7 +23,7 @@ const UIStrings = {
+ 
+ const str_ = i18n.createIcuMessageFn(import.meta.url, UIStrings);
+ 
+-const IGNORE_THRESHOLD_IN_BYTES = 8192;
++const IGNORE_THRESHOLD_IN_BYTES = 4096; // Lowered threshold to catch more inefficient images
+ 
+ class ModernImageFormats extends ByteEfficiencyAudit {
+   /**
+diff --git a/core/audits/byte-efficiency/offscreen-images.js b/core/audits/byte-efficiency/offscreen-images.js
+index 759aa85..4a6e8cb 100644
+--- a/core/audits/byte-efficiency/offscreen-images.js
++++ b/core/audits/byte-efficiency/offscreen-images.js
+@@ -30,7 +30,7 @@ const UIStrings = {
+ const str_ = i18n.createIcuMessageFn(import.meta.url, UIStrings);
+ 
+ // See https://github.com/GoogleChrome/lighthouse/issues/10471 for discussion about the thresholds here.
+-const ALLOWABLE_OFFSCREEN_IN_PX = 100;
++const ALLOWABLE_OFFSCREEN_IN_PX = 50; // Reduced to catch more offscreen images
+ const ALLOWABLE_OFFSCREEN_BOTTOM_IN_VIEWPORTS = 3;
+ 
+ const IGNORE_THRESHOLD_IN_BYTES = 2048;
+diff --git a/core/audits/byte-efficiency/uses-responsive-images.js b/core/audits/byte-efficiency/uses-responsive-images.js
+index 36b30cc..7fc876b 100644
+--- a/core/audits/byte-efficiency/uses-responsive-images.js
++++ b/core/audits/byte-efficiency/uses-responsive-images.js
+@@ -31,7 +31,7 @@ const UIStrings = {
+ 
+ const str_ = i18n.createIcuMessageFn(import.meta.url, UIStrings);
+ 
+-const IGNORE_THRESHOLD_IN_BYTES = 4096;
++const IGNORE_THRESHOLD_IN_BYTES = 2048; // Lowered to catch more non-responsive images
+ 
+ // Ignore up to 12KB of waste if an effort was made with breakpoints.
+ const IGNORE_THRESHOLD_IN_BYTES_BREAKPOINTS_PRESENT = 12288;

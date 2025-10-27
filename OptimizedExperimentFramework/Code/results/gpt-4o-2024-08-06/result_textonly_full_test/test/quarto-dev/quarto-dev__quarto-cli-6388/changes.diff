@@ -1,0 +1,32 @@
+diff --git a/src/core/pandoc/pandoc-partition.ts b/src/core/pandoc/pandoc-partition.ts
+index 0c8e0e4..4e1bedd 100644
+--- a/src/core/pandoc/pandoc-partition.ts
++++ b/src/core/pandoc/pandoc-partition.ts
+@@ -58,8 +58,17 @@ export function partitionMarkdown(markdown: string): PartitionedMarkdown {
+     markdown,
+   );
+ 
++  // ensure correct list formatting
++  const formattedLines = lines.map((line) => {
++    // Correctly handle list items to prevent incorrect sub-bullets
++    if (/^\s*\*\s/.test(line)) {
++      return line.trim();
++    }
++    return line;
++  });
++
+   // does this contain refs?
+-  const containsRefs = lines.some((line) =>
++  const containsRefs = formattedLines.some((line) =>
+     /^:::\s*{#refs([\s}]|.*?})\s*$/.test(line)
+   );
+ 
+@@ -68,7 +77,7 @@ export function partitionMarkdown(markdown: string): PartitionedMarkdown {
+     headingText,
+     headingAttr,
+     containsRefs,
+-    markdown: lines.join("\n"),
++    markdown: formattedLines.join("\n"),
+     srcMarkdownNoYaml: partitioned?.markdown || "",
+   };
+ }

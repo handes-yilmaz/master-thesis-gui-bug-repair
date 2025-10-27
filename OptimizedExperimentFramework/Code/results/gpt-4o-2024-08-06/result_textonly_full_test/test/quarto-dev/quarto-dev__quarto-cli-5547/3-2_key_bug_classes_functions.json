@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/format/reveal/format-reveal.ts//applyStretch"
+        ],
+        "bug_functions": [
+            "src/format/reveal/format-reveal.ts//revealHtmlPostprocessor",
+            "src/format/reveal/format-reveal.ts//applyStretch"
+        ],
+        "explanation": "The function `revealHtmlPostprocessor` in `format-reveal.ts` is likely responsible for processing the HTML of the slides, including handling elements like images and links. Since the issue is with the rendering of standalone images with links, this function is a key suspect as it might be stripping or ignoring the hyperlink when processing standalone images. Additionally, the `applyStretch` function is involved in handling images, specifically adding a stretch class to images in slides with only one image. This function might be incorrectly handling standalone images, leading to the hyperlink being ignored or stripped. These functions are directly related to the rendering and processing of images and links in the RevealJS format, making them relevant to the bug.",
+        "bug_scenario": "The bug scenario involves a RevealJS presentation where an image with a hyperlink does not render the hyperlink if the image is standalone on a slide. However, if there is additional text on the slide, the hyperlink works as expected. This suggests an issue with how standalone images are processed in the rendering logic, potentially stripping or ignoring the hyperlink."
+    }
+}

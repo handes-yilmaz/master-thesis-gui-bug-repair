@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/tree/view/tree-node.jsx",
+            "src/tree/view/tree.jsx",
+            "src/tree/view/util.js",
+            "src/tree/index.jsx"
+        ],
+        "explanation": "The files likely involved in this bug are those related to the Tree component, specifically the handling of node selection states and CSS styling:\n\n1. **src/tree/view/tree-node.jsx**: This file likely handles the individual tree nodes, including their selection states. The issue could lie in how the 'selected' parameter is toggled within each node.\n\n2. **src/tree/view/tree.jsx**: This file likely manages the overall tree structure and might handle the propagation of selection state changes across nodes. The problem could be in how state changes are managed or propagated.\n\n3. **src/tree/view/util.js**: Utility functions related to tree operations might be defined here. If there are helper functions for managing states or styles, these could be malfunctioning.\n\n4. **src/tree/index.jsx**: As the main entry point for the Tree component, this file might initialize or configure the selection behavior, and any errors here could affect the entire component.\n\nThese files are integral to the operation of the Tree component, and changes or bugs in their logic could lead to the described issue with node selection states and styling not toggling correctly.",
+        "bug_scenario": "The bug is related to the Tree component where the selected state of a tree node does not toggle correctly. When a node is clicked, the 'selected' parameter in 'extra' should toggle between true and false, along with corresponding CSS style changes. However, after the first click, the state becomes false and does not change with subsequent clicks, nor does the CSS style update to reflect the state change."
+    },
+    "2": {
+        "bug_files": [
+            "src/tree/view/tree-node.jsx",
+            "src/tree/view/tree.jsx",
+            "src/tree/view/util.js"
+        ],
+        "explanation": "These files are related to the tree component implementation. The 'tree-node.jsx' likely handles individual node logic, including selection state toggling. The 'tree.jsx' file is the main component file that manages the overall tree structure and could contain the state management logic for node selection. The 'util.js' file might contain utility functions that assist in handling node states and interactions, which could be relevant if the selection logic relies on helper functions defined there. These files will need to be examined and possibly edited to ensure the selected status toggles correctly and updates the UI appropriately after each click.",
+        "bug_scenario": "The bug involves a tree component where a node's selected status does not toggle correctly. Initially, the 'selected' parameter is set to false after the first click, and it does not change with subsequent clicks, nor does the CSS style reflect changes, making it impossible to distinguish between true or false states. The expected behavior is that clicking on the same node should toggle the selected status between true and false, with corresponding style changes."
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "1/1": {
+        "src/containers/slider-monitor.jsx": [
+            {
+                "SEARCH": [
+                    "const defaultMin = 0;",
+                    "const defaultMax = 100;",
+                    "",
+                    "class SliderMonitor extends React.Component {",
+                    "constructor (props) {",
+                    "super(props);",
+                    "this.state = {",
+                    "min: defaultMin,",
+                    "max: defaultMax,",
+                    "value: props.value || defaultMin",
+                    "};",
+                    "}"
+                ],
+                "REPLACE": [
+                    "class SliderMonitor extends React.Component {",
+                    "    constructor (props) {",
+                    "        super(props);",
+                    "        this.state = {",
+                    "            min: props.min !== undefined ? props.min : 0,",
+                    "            max: props.max !== undefined ? props.max : 100,",
+                    "            value: props.value || (props.min !== undefined ? props.min : 0)",
+                    "        };",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/pandoc.ts",
+            "src/format/html/format-html.ts",
+            "src/core/pandoc/pandoc-formats.ts",
+            "src/command/render/pandoc-html.ts"
+        ],
+        "explanation": "The suspected files are related to the rendering and formatting processes of Quarto documents, especially involving Pandoc, which is used for document conversion in Quarto. The file `src/render/pandoc.ts` is likely involved in handling Pandoc command-line arguments or output, which would affect how captions are processed. \n\nThe file `src/format/html/format-html.ts` could be responsible for the final HTML output formatting where the Markdown rendering might not be applied correctly to table captions. Similarly, `src/render/pandoc-html.ts` would be dealing with the rendering specifics from Pandoc to HTML, possibly bypassing Markdown processing for table captions.\n\nAdditionally, `src/core/pandoc/pandoc-formats.ts` might define how different formats are handled and could contain logic that inadvertently skips Markdown processing for table captions but not for figures.",
+        "bug_scenario": "The bug report indicates that there is an issue with applying Markdown styling (such as italics or superscript) to table captions in Quarto documents. This problem does not occur with figure captions, where Markdown styling is rendered correctly. The provided screenshot and .qmd file snippet illustrate this issue, showing that while Markdown syntax appears in the source code for table captions, it is not rendered in the output."
+    },
+    "2": {
+        "bug_files": [
+            "src/command/render/constants.ts",
+            "src/format/markdown/format-markdown.ts",
+            "src/format/html/format-html.ts"
+        ],
+        "explanation": "The files identified as bug-related are likely responsible for rendering table captions and handling markdown formatting. The `src/render/constants.ts` and `src/render/table-captions.ts` files may define how table captions are processed and rendered, which is directly related to the issue. Additionally, the `src/format/markdown/format-markdown.ts` file is likely involved in parsing markdown syntax, which could be part of the problem if markdown is not being applied to table captions correctly. Similarly, `src/format/html/format-html.ts` may handle HTML rendering where the markdown should be converted to styled HTML in captions.",
+        "bug_scenario": "The bug is related to the inability to use markdown styling such as italics or superscript in table captions when using Quarto, while such styling works fine in figure captions. The screenshot provided in the bug report illustrates this issue, showing styled text in a figure caption but not in a table caption."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageWMS.js//ImageWMS",
+            "src/ol/source/TileWMS.js//TileWMS"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageWMS.js//getImageInternal",
+            "src/ol/source/TileWMS.js//tileUrlFunction"
+        ],
+        "explanation": "The classes `ImageWMS` and `TileWMS` are responsible for handling WMS images and tiles, respectively. The `getImageInternal` function in `ImageWMS` is crucial because it calculates the image resolution and size, which directly affects the image clarity. Similarly, the `tileUrlFunction` in `TileWMS` constructs the URL for tile requests, which involves calculating the tile size and resolution. Both functions are likely involved in the bug because they handle the image and tile rendering processes that determine the final visual output, which is currently blurry under certain conditions.",
+        "bug_scenario": "The bug scenario involves a WMS (Web Map Service) image becoming blurry when the map's width or height is not even, or when the ratio is not a round integer. This results in a map that is not pixel-perfect, which is the expected behavior."
+    }
+}

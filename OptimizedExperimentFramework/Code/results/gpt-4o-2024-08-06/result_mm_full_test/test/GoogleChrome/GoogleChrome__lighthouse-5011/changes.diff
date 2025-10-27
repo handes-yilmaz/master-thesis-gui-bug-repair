@@ -1,0 +1,20 @@
+diff --git a/lighthouse-core/gather/computed/critical-request-chains.js b/lighthouse-core/gather/computed/critical-request-chains.js
+index da226a8..9bb45ec 100644
+--- a/lighthouse-core/gather/computed/critical-request-chains.js
++++ b/lighthouse-core/gather/computed/critical-request-chains.js
+@@ -31,10 +31,15 @@ class CriticalRequestChains extends ComputedArtifact {
+     // XHRs are fetched at High priority, but we exclude them, as they are unlikely to be critical
+     // Images are also non-critical.
+     // Treat any images missed by category, primarily favicons, as non-critical resources
++    // Exclude preloaded stylesheets with onload handlers changing rel to stylesheet
+     const nonCriticalResourceTypes = [
+       WebInspector.resourceTypes.Image._category,
+       WebInspector.resourceTypes.XHR._category,
++      WebInspector.resourceTypes.Stylesheet._category,
+     ];
++    if (request._isLinkPreload && request._onloadHandler) {
++      return false;
++    }
+     if (nonCriticalResourceTypes.includes(resourceTypeCategory) ||
+         isIframe ||
+         request.mimeType && request.mimeType.startsWith('image/')) {

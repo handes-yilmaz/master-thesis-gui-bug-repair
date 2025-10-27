@@ -1,0 +1,28 @@
+diff --git a/src/ol/format/KML.js b/src/ol/format/KML.js
+index 11c1ec0..3ebf452 100644
+--- a/src/ol/format/KML.js
++++ b/src/ol/format/KML.js
+@@ -407,6 +407,12 @@ function createStyleDefaults() {
+  *
+  * @api
+  */
++function decodeHtmlEntities(text) {
++  const textarea = document.createElement('textarea');
++  textarea.innerHTML = text;
++  return textarea.value;
++}
++
+ class KML extends XMLFeature {
+ 
+   /**
+@@ -533,6 +539,10 @@ class KML extends XMLFeature {
+     // we do not remove the styleUrl property from the object, so it
+     // gets stored on feature when setProperties is called
+ 
++    // Decode HTML entities in the name property if it exists
++    if (object['name']) {
++      object['name'] = decodeHtmlEntities(object['name']);
++    }
+     feature.setProperties(object, true);
+ 
+     return feature;

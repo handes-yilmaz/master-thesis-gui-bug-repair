@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/label-editing/LabelEditingProvider.js//LabelEditingProvider"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/LabelBehavior.js//getVisibleLabelAdjustment",
+            "lib/features/label-editing/LabelEditingProvider.js//activate"
+        ],
+        "explanation": "The bug is related to the visibility and positioning of labels when a sub-process is collapsed. The `LabelBehavior` class in `LabelBehavior.js` is responsible for managing the visibility and updating of labels during various diagram operations, such as element creation and deletion. The `getVisibleLabelAdjustment` function within this class is likely involved in adjusting label positions, which could be related to the issue of labels not being hidden correctly.\n\nThe `LabelEditingProvider` class in `LabelEditingProvider.js` handles direct editing of labels and their bounding boxes. The `activate` function is responsible for activating direct editing on elements, including tasks and sub-processes. This function might be involved in the initial setup of label visibility and positioning, which could contribute to the bug when the sub-process is collapsed. Both classes and functions are directly related to label management and are likely candidates for containing the bug or needing modification to fix the issue.",
+        "bug_scenario": "The bug scenario involves a BPMN diagram where labels of elements inside a sub-process become visible and misaligned when the sub-process is collapsed. This issue occurs when clicking through the steps of creating and labeling elements inside an expanded sub-process and then collapsing it. The expected behavior is for the labels inside the sub-process to be hidden when the sub-process is collapsed."
+    }
+}

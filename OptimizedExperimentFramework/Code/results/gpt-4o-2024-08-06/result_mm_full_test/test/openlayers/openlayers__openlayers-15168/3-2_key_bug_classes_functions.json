@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/reproj/Image.js//ReprojImage",
+            "src/ol/reproj/Tile.js//ReprojTile",
+            "src/ol/reproj/DataTile.js//ReprojDataTile"
+        ],
+        "bug_functions": [
+            "src/ol/reproj/Image.js//reproject_",
+            "src/ol/reproj/Tile.js//reproject_",
+            "src/ol/reproj/DataTile.js//reproject_"
+        ],
+        "explanation": "The classes and functions identified are responsible for handling the reprojection of images and tiles in OpenLayers. The ReprojImage, ReprojTile, and ReprojDataTile classes encapsulate the logic for reprojecting images, tiles, and data tiles, respectively. The reproject_ functions within these classes are critical as they perform the actual reprojection calculations and rendering. The bug is related to how these functions handle the reprojection process, specifically the assumption that the target pixels are square, which leads to the observed misalignment. Adjusting these functions to account for non-square pixel dimensions in the target projection would be necessary to fix the bug.",
+        "bug_scenario": "The bug scenario involves raster reprojection in OpenLayers, where the reprojection process assumes that projected pixels are square. This assumption leads to misalignments when the source image pixels are not square in the target projection. The bug is illustrated with a 5x5 pixel image intended to cover an area of 3km by 2km, but the reprojection results in a misalignment horizontally, making the image appear as 7x5 pixels instead of maintaining the original 5x5 structure."
+    }
+}

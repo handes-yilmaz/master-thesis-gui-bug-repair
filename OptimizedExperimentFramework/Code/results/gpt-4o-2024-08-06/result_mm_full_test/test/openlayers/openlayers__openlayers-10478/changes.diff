@@ -1,0 +1,15 @@
+diff --git a/src/ol/reproj/Tile.js b/src/ol/reproj/Tile.js
+index 909b125..0ee8526 100644
+--- a/src/ol/reproj/Tile.js
++++ b/src/ol/reproj/Tile.js
+@@ -271,8 +271,8 @@ class ReprojTile extends Tile {
+       this.sourcesListenerKeys_ = [];
+       this.sourceTiles_.forEach(function(tile, i, arr) {
+         const state = tile.getState();
+-        if (state == TileState.IDLE || state == TileState.LOADING) {
+-          leftToLoad++;
++if (state == TileState.IDLE || state == TileState.LOADING || state == TileState.ABORT) {
++  leftToLoad++;
+ 
+           const sourceListenKey = listen(tile, EventType.CHANGE,
+             function(e) {

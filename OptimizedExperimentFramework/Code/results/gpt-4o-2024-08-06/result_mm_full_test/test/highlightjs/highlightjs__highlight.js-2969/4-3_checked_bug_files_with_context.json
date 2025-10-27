@@ -1,0 +1,32 @@
+{
+    "src/lib/regex.js": [
+        "...",
+        " * @returns {RegExp}",
+        " * */",
+        "export function escape(value) {",
+        "  return new RegExp(value.replace(/[-/\\\\^$*+?.()|[\\]{}]/g, '\\\\$&'), 'm');",
+        "}",
+        "",
+        "/**",
+        " * @param {RegExp | string } re",
+        " * @returns {string}",
+        " */",
+        "export function source(re) {",
+        "  if (!re) return null;",
+        "  if (typeof re === \"string\") return re;",
+        "",
+        "  return re.source;",
+        "}",
+        "",
+        "/**",
+        " * @param {RegExp | string } re",
+        " * @returns {string}",
+        " */",
+        "export function lookahead(re) {",
+        "  return concat('(?=', re, ')');",
+        "}",
+        "",
+        "/**",
+        "..."
+    ]
+}

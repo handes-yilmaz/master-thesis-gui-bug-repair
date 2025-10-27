@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/offline-start-url.js",
+            "lighthouse-core/gather/gatherers/service-worker.js",
+            "lighthouse-core/gather/gatherers/offline.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/offline-start-url.js**: This file contains the audit logic for checking if the `start_url` responds with a 200 status when offline. The issue is directly related to the offline capabilities of the start URL, making this file a key component in the bug.\n\n2. **lighthouse-core/gather/gatherers/service-worker.js**: This file is responsible for gathering information about service workers, which are crucial for offline functionality. The bug report mentions that the `fromServiceWorker` flag is false, indicating a potential issue with how service workers are being detected or utilized.\n\n3. **lighthouse-core/gather/gatherers/offline.js**: This file handles the transition to offline mode and checks network records for offline status. The bug involves incorrect offline behavior, making this file relevant to the problem.\n\n4. **lighthouse-core/lib/network-recorder.js**: This file manages network requests and their statuses. The bug report highlights that network requests have incorrect flags (`fromServiceWorker` and `fromDiskCache`), suggesting that the network recording logic might be flawed or incomplete.",
+        "bug_scenario": "The bug scenario involves running Lighthouse (LH) on a specific URL (https://www.bhphotovideo.com/) and observing that during the offline pass, the desktop version of the page is loaded instead of a page indicating offline status. The network requests show that the `fromServiceWorker` and `fromDiskCache` flags are false, which should not be possible when offline. The expected behavior is that the start URL should load offline, and a specific offline page should be visible instead of the desktop version."
+    }
+}

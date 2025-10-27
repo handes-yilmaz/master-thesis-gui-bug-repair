@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "src/ol/interaction/Draw.js": [
+            {
+                "SEARCH": [
+                    "if (this.shouldHandle_) {",
+                    "if (!this.finishCoordinate_) {",
+                    "this.startDrawing_(event);",
+                    "if (this.mode_ === Mode.POINT) {",
+                    "this.finishDrawing();",
+                    "}",
+                    "} else if (this.freehand_ || circleMode) {",
+                    "this.finishDrawing();",
+                    "} else if (this.atFinish_(event)) {",
+                    "if (this.finishCondition_(event)) {",
+                    "this.finishDrawing();",
+                    "}",
+                    "} else {",
+                    "this.addToDrawing_(event);",
+                    "}",
+                    "pass = false;",
+                    "} else if (this.freehand_) {",
+                    "this.finishCoordinate_ = null;",
+                    "this.abortDrawing_();",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (this.shouldHandle_) {",
+                    "      if (!this.finishCoordinate_) {",
+                    "        this.startDrawing_(event);",
+                    "        if (this.mode_ === Mode.POINT) {",
+                    "          this.finishDrawing();",
+                    "        }",
+                    "      } else if (this.freehand_ || circleMode) {",
+                    "        this.finishDrawing();",
+                    "      } else if (this.atFinish_(event)) {",
+                    "        if (this.finishCondition_(event)) {",
+                    "          this.finishDrawing();",
+                    "        }",
+                    "      } else {",
+                    "        this.addToDrawing_(event);",
+                    "      }",
+                    "      pass = false;",
+                    "    } else if (this.freehand_) {",
+                    "      this.finishCoordinate_ = null;",
+                    "      this.abortDrawing_();",
+                    "    }",
+                    "    // Reset shouldHandle_ to ensure other interactions can proceed",
+                    "    this.shouldHandle_ = false;"
+                ]
+            }
+        ]
+    }
+}

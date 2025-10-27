@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/Raster.js//RasterSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/Raster.js//processSources_",
+            "src/ol/source/Raster.js//onWorkerComplete_"
+        ],
+        "explanation": "The class `RasterSource` in `src/ol/source/Raster.js` is responsible for handling raster data and operations, including the creation and management of web workers for processing. The functions `processSources_` and `onWorkerComplete_` are likely involved in the lifecycle management of these workers. `processSources_` is responsible for starting the processing of source data, which likely involves creating workers, while `onWorkerComplete_` handles the completion of worker tasks. The issue of not terminating workers suggests that these functions do not properly handle the termination of workers after their tasks are complete, leading to the memory leak described in the bug report.",
+        "bug_scenario": "The bug scenario involves a memory leak issue where web workers created by the raster source in an OpenLayers application are not being terminated, leading to high memory usage. This is observed by changing input values in a demo application and monitoring the memory tab in Chrome DevTools, which shows multiple workers persisting in memory."
+    }
+}

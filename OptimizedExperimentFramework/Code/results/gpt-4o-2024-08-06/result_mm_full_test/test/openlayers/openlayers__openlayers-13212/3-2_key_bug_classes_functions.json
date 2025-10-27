@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer",
+            "src/ol/tilegrid/TileGrid.js//TileGrid"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//getImagesForSource",
+            "src/ol/renderer/webgl/TileLayer.js//enqueueTiles",
+            "src/ol/tilegrid/TileGrid.js//getTileRangeForExtentAndZ"
+        ],
+        "explanation": "The class `GeoTIFFSource` in `src/ol/source/GeoTIFF.js` is directly related to handling GeoTIFF data, which is central to the proposed solution of using a GeoTIFF pyramid. The function `getImagesForSource` is likely involved in fetching and managing the images from the GeoTIFF source, which is crucial for implementing the pyramid structure.\n\nThe class `WebGLTileLayerRenderer` in `src/ol/renderer/webgl/TileLayer.js` is responsible for rendering tile layers using WebGL, which is where the performance issues are occurring. The function `enqueueTiles` is likely involved in managing the tiles to be rendered, which is directly related to the problem of WebGL-contexts being lost.\n\nThe class `TileGrid` in `src/ol/tilegrid/TileGrid.js` is responsible for managing the grid pattern for tiles, which is relevant to the proposed solution of using a tile grid object. The function `getTileRangeForExtentAndZ` is likely involved in determining the tile range for a given extent and zoom level, which is important for managing the pyramid of GeoTIFFs.",
+        "bug_scenario": "The bug scenario involves the WebGLTileLayers not scaling well with larger pyramids, leading to WebGL-contexts being lost, resulting in not-rendered tiles and poor performance. The proposed solution is to provide a separate source representing a pyramid of GeoTIFFs, which would use a single canvas/WebGL context per layer/renderer to solve the issue."
+    }
+}

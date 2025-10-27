@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "lib/features/modeling/cmd/UpdatePropertiesHandler.js": [
+            {
+                "SEARCH": [
+                    "// update properties",
+                    "setProperties(businessObject, properties);",
+                    "",
+                    "// store old values",
+                    "context.oldProperties = oldProperties;"
+                ],
+                "REPLACE": [
+                    "  // disallow typed start events inside non-event based sub-processes",
+                    "  if (isTypedStartEvent(businessObject) && isInsideSubProcess(element)) {",
+                    "    throw new Error(translate('Typed start events are not allowed inside sub-processes'));",
+                    "  }",
+                    "",
+                    "  // update properties",
+                    "  setProperties(businessObject, properties);",
+                    "",
+                    "  // store old values",
+                    "  context.oldProperties = oldProperties;"
+                ]
+            }
+        ]
+    }
+}

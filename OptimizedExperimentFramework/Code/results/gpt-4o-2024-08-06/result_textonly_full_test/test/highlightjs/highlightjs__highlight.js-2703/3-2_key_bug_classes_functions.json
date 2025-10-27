@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/scala.js//CLASS",
+            "src/languages/javascript.js//PARAMS"
+        ],
+        "bug_functions": [
+            "src/lib/html_renderer.js//HTMLRenderer"
+        ],
+        "explanation": "The bug in Scala rendering is related to the 'CLASS' object in 'src/languages/scala.js', which defines how classes and their components are recognized and highlighted. The issue arises when comments are misinterpreted as part of the class title due to incorrect parsing logic.\n\nIn JavaScript, the 'PARAMS' object in 'src/languages/javascript.js' is responsible for handling function parameters, including comments within them. The failure to highlight comments inside parameters suggests a problem with how the 'PARAMS' object processes and includes comments.\n\nThe 'HTMLRenderer' class in 'src/lib/html_renderer.js' is involved in rendering the highlighted code to HTML. It manages how nodes (including comments) are wrapped and displayed. Any issues in this class could affect the final output, such as missing or incorrectly placed HTML tags for comments.",
+        "bug_scenario": "The bug scenario involves incorrect rendering of comments in Scala and JavaScript code when using the Highlight.js library for syntax highlighting. In Scala, comments are incorrectly rendered as class titles when the class definition and comment are on separate lines. In JavaScript, comments inside function parameters are not highlighted at all."
+    }
+}

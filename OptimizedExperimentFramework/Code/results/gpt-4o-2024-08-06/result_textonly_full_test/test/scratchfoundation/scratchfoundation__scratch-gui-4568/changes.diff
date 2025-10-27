@@ -1,0 +1,35 @@
+diff --git a/src/reducers/monitors.js b/src/reducers/monitors.js
+index 09162422..70de2721 100644
+--- a/src/reducers/monitors.js
++++ b/src/reducers/monitors.js
+@@ -7,7 +7,16 @@ const reducer = function (state, action) {
+     if (typeof state === 'undefined') state = initialState;
+     switch (action.type) {
+     case UPDATE_MONITORS:
+-        return action.monitors;
++        return action.monitors.map(monitor => {
++            if (monitor.type === 'slider') {
++                return {
++                    ...monitor,
++                    min: monitor.min !== undefined ? monitor.min : 0,
++                    max: monitor.max !== undefined ? monitor.max : 100
++                };
++            }
++            return monitor;
++        });
+     default:
+         return state;
+     }
+@@ -16,7 +25,11 @@ const reducer = function (state, action) {
+ const updateMonitors = function (monitors) {
+     return {
+         type: UPDATE_MONITORS,
+-        monitors: monitors,
++        monitors: monitors.map(monitor => ({
++            ...monitor,
++            min: monitor.min !== undefined ? monitor.min : 0,
++            max: monitor.max !== undefined ? monitor.max : 100
++        })),
+         meta: {
+             throttle: 30
+         }

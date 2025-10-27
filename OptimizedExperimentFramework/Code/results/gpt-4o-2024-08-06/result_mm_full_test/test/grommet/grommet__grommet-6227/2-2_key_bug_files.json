@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/Form/Form.js",
+            "src/js/components/FormField/FormField.js"
+        ],
+        "explanation": "1. **src/js/components/Form/Form.js**: This file contains the logic for form validation, including functions like `validateForm` and `validateName`. The issue likely lies in how validation results are maintained and updated when fields are dynamically added or removed.\n\n2. **src/js/components/FormField/FormField.js**: This file handles individual form fields, including their validation and interaction with the form context. The problem might be related to how the form field's validation state is managed when the field is removed.",
+        "bug_scenario": "The bug occurs when dynamically adding and removing required fields in a form. When a checkbox is unchecked, a required TextInput field appears, making the form invalid as expected. However, when the checkbox is checked again, the TextInput is removed, but the form remains invalid due to the onValidate method not updating correctly."
+    }
+}

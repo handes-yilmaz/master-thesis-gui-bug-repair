@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/util/LaneUtil.js",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/DeleteLaneBehavior.js**: This file handles the behavior when a lane is deleted. The issue might be related to how the system compensates for lane deletion, affecting the ability to connect message flows correctly.\n\n2. **lib/features/modeling/util/LaneUtil.js**: This utility file deals with lane-related operations, such as collecting lanes and computing resize operations. The bug could be due to incorrect handling of lane states after deletion.\n\n3. **lib/features/modeling/cmd/ResizeLaneHandler.js**: This file manages the resizing of lanes. The problem might stem from how resizing affects the pool's ability to accept message flows, especially after a lane is removed.",
+        "bug_scenario": "The bug occurs when trying to connect a message flow to the boundary of a pool that previously had more than one lane. The connection is only possible by dropping the connector at the header of the pool, not inside the single lane of the pool."
+    }
+}

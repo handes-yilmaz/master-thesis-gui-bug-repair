@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//UpdateLabelHandler",
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//setText",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//postExecute",
+            "lib/features/modeling/behavior/LabelBehavior.js//postExecute"
+        ],
+        "explanation": "The `UpdateLabelHandler` class in `UpdateLabelHandler.js` is responsible for updating the text of BPMN elements. The `setText` function sets the label text, and the `postExecute` function resizes the element based on the label. These are likely causing the resizing issue when labels are empty. The `LabelBehavior` class in `LabelBehavior.js` manages label creation and updates. Its `postExecute` function handles label updates after element creation or deletion, which could be affecting the element size and visibility.",
+        "bug_scenario": "The bug involves elements such as events and gateways becoming smaller or disappearing when selected. This occurs after direct editing with an empty label or when clicking on these elements after upgrading the library version."
+    }
+}

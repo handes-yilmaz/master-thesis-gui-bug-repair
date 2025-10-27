@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Form/Form.js//validateForm"
+        ],
+        "bug_functions": [
+            "src/js/components/Form/Form.js//validateForm"
+        ],
+        "explanation": "The `validateForm` function in `src/js/components/Form/Form.js` is responsible for validating all keys in the form value. The bug is related to the form's validation status not updating correctly when a dynamically added required field is removed. The comments in the compressed file indicate that the function should clean up validation results for fields that have been removed from the form. This suggests that the `validateForm` function is not correctly handling the removal of dynamic fields, leading to the form remaining invalid even after the field is removed. Therefore, this function is a key element related to the bug.",
+        "bug_scenario": "The bug scenario involves a form where a required TextInput field is dynamically added and removed based on the state of a checkbox. When the checkbox is unchecked, the TextInput field appears and the form becomes invalid as expected because the new field is required but empty. However, when the checkbox is checked again, the TextInput field is removed, but the form remains invalid, which is incorrect behavior. The form should be valid if all other fields meet their validation criteria after the dynamic field is removed."
+    }
+}

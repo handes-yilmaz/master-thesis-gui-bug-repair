@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/Raster.js",
+            "src/ol/source/Source.js",
+            "src/ol/worker/version.js"
+        ],
+        "explanation": "1. **src/ol/source/Raster.js**: This file is likely responsible for managing raster sources, including the creation and management of web workers. The issue describes a problem with raster source workers not terminating, making this file a primary suspect.\n\n2. **src/ol/source/Source.js**: This is a general source management file, which might include logic related to the handling and lifecycle of sources, including termination logic that might be missing or incorrect.\n\n3. **src/ol/worker/version.js**: This file might be related to the handling of workers, as it is located in a directory related to web workers. It may contain logic or versioning that affects how workers are managed or terminated.",
+        "bug_scenario": "The bug involves web workers created by the raster source that are not being terminated, leading to high memory usage or a memory leak. The bug is reproducible by changing numbers in an input field on a given web application, which results in multiple web workers being seen in the Chrome DevTools memory tab."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/Raster.js",
+            "src/ol/worker/serialize-workers.js",
+            "src/ol/Disposable.js"
+        ],
+        "explanation": "1. **src/ol/source/Raster.js**: This file likely contains the logic for creating raster sources and managing webworkers. The issue originates from the management of these workers, so changes here can help ensure workers are terminated when no longer needed.\n\n2. **src/ol/worker/serialize-workers.js**: This file is related to worker serialization and may play a role in managing the lifecycle of webworkers. Adjustments here could help in properly terminating workers.\n\n3. **src/ol/Disposable.js**: This file might handle cleanup logic for objects, including webworkers. Ensuring that workers are properly disposed of can help address the memory leak.",
+        "bug_scenario": "The bug report describes a memory leak issue due to raster webworkers not being terminated in a web application using the OpenLayers library. The application creates these workers when using raster sources, but they remain active, leading to excessive memory usage. The provided image shows multiple active JavaScript VM instances, indicating these workers are not being terminated properly."
+    }
+}

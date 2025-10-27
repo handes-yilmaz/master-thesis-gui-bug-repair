@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js"
+        ],
+        "bug_functions": [
+            "src/lib/regex.js//lookahead",
+            "src/lib/regex.js//concat"
+        ],
+        "explanation": "The bug is related to how the syntax highlighting is parsing and recognizing numbers and keywords in Python code. The file `src/languages/python.js` contains the logic for defining Python syntax highlighting, including keywords and numbers. The functions `lookahead` and `concat` in `src/lib/regex.js` are likely involved in constructing the regular expressions used for matching these patterns. Adjustments in these areas are necessary to ensure that numbers and keywords are correctly identified and highlighted separately.",
+        "bug_scenario": "The issue is that keywords directly following numbers in Python code are not being highlighted correctly. The highlighting should separate the number and the keyword, but currently, they are being treated as a single token. The expected behavior is to have the number and keyword highlighted separately, as shown in the expected output image."
+    }
+}

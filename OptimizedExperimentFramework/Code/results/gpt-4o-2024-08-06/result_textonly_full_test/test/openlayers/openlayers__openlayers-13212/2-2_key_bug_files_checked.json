@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/tilegrid/TileGrid.js"
+        ],
+        "explanation": "1. **src/ol/source/GeoTIFF.js**: This file is crucial because it defines the GeoTIFF source, which is central to the proposed solution of using a GeoTIFF pyramid. Modifications here would involve implementing the logic to handle a pyramid of GeoTIFFs, similar to the WMTS source.\n\n2. **src/ol/layer/WebGLTile.js**: This file is relevant because it deals with the WebGLTileLayer, which is directly affected by the issue of WebGL context loss. Changes here might involve optimizing how layers are managed and rendered to prevent context loss.\n\n3. **src/ol/renderer/webgl/TileLayer.js**: This file is important as it handles the rendering of tile layers using WebGL. The rendering process needs to be optimized to handle larger pyramids without losing contexts.\n\n4. **src/ol/tilegrid/TileGrid.js**: This file is involved because it manages the tile grid, which is a key component in handling how tiles are organized and accessed. Adjustments here might be necessary to support the new GeoTIFF pyramid structure and ensure efficient tile management.",
+        "bug_scenario": "The bug scenario involves the use of WebGLTileLayers with large pyramids of tiles, which leads to the loss of WebGL contexts and poor performance. The issue is that the current implementation does not scale well with larger pyramids, resulting in not-rendered tiles and low frame rates. The proposed solution is to create a separate source for a pyramid of GeoTIFFs, which would use a single canvas/WebGL context per layer/renderer, similar to the WMTS source, to solve the issue."
+    }
+}

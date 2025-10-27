@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/format/KML.js",
+            "src/ol/format/XML.js",
+            "src/ol/style/Text.js"
+        ],
+        "explanation": "The issue involves text encoding, specifically with XML-based formats like KML. The files related to KML ('src/ol/format/KML.js') and XML parsing ('src/ol/format/XML.js') are likely involved in processing the data that contains encoded characters. Additionally, the text style module ('src/ol/style/Text.js') may be responsible for rendering text on the map, which could require modification to properly decode such encoded characters.",
+        "bug_scenario": "The bug involves character codes appearing in labels on a map, where \"Andy&amp;apos;s\" is displayed instead of \"Andy's\". This indicates that the text is not being properly decoded from its encoded form."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/format/KML.js",
+            "src/ol/style/Text.js",
+            "src/ol/renderer/canvas/TextBuilder.js"
+        ],
+        "explanation": "1. **src/ol/format/KML.js**: This file is responsible for parsing KML files, which are XML-based. The bug suggests that the issue might originate from improper parsing of text elements, so modifications here could ensure text is decoded properly.\n2. **src/ol/style/Text.js**: This file deals with text styling. The renderer might need to decode character entities to display the text correctly.\n3. **src/ol/renderer/canvas/TextBuilder.js**: This file is responsible for rendering text on canvas. Ensuring that text is decoded before rendering could solve the issue.",
+        "bug_scenario": "The bug involves character codes appearing in labels instead of being decoded. For example, \"Andy&amp;apos;s\" should be displayed as \"Andy's\". This issue is likely related to how text is processed and rendered from XML-based formats such as KML."
+    }
+}

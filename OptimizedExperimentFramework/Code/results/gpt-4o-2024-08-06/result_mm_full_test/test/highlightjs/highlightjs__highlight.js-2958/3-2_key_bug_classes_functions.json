@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/xml.js"
+        ],
+        "bug_functions": [
+            "src/languages/xml.js//TAG_NAME_RE"
+        ],
+        "explanation": "The issue is related to the regular expression used for matching XML tag names. The `TAG_NAME_RE` regex in `src/languages/xml.js` is responsible for identifying tag names, and it seems to fail when the namespace prefix is a single letter. Adjusting this regex to correctly handle single letter prefixes should resolve the highlighting issue.",
+        "bug_scenario": "The bug scenario involves XML syntax highlighting where lines with a single letter namespace prefix are not highlighted correctly. The expected behavior is for all lines to be highlighted, but lines with a single letter prefix are failing to highlight."
+    }
+}

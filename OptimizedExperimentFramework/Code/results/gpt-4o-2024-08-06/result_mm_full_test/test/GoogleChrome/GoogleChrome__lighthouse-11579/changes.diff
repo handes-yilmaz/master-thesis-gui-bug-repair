@@ -1,0 +1,25 @@
+diff --git a/lighthouse-core/gather/driver.js b/lighthouse-core/gather/driver.js
+index 7edb442..4130fd3 100644
+--- a/lighthouse-core/gather/driver.js
++++ b/lighthouse-core/gather/driver.js
+@@ -1032,6 +1032,7 @@ class Driver {
+ 
+     await this.sendCommand('Page.enable');
+     await this.sendCommand('Page.setLifecycleEventsEnabled', {enabled: true});
++    await this.sendCommand('Page.setVisibilityState', {visibilityState: 'visible'});
+     await this.sendCommand('Emulation.setScriptExecutionDisabled', {value: disableJS});
+     // No timeout needed for Page.navigate. See https://github.com/GoogleChrome/lighthouse/pull/6413.
+     const waitforPageNavigateCmd = this._innerSendCommand('Page.navigate', undefined, {url});
+diff --git a/lighthouse-core/gather/gather-runner.js b/lighthouse-core/gather/gather-runner.js
+index 1c2c225..b3de4ae 100644
+--- a/lighthouse-core/gather/gather-runner.js
++++ b/lighthouse-core/gather/gather-runner.js
+@@ -82,7 +82,7 @@ class GatherRunner {
+     log.time(status);
+     try {
+       const {finalUrl, timedOut} = await driver.gotoURL(passContext.url, {
+-        waitForFcp: passContext.passConfig.recordTrace,
++        waitForFcp: true,
+         waitForLoad: true,
+         passContext,
+       });

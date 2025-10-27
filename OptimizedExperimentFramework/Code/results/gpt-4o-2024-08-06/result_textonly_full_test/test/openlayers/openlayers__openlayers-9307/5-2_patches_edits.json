@@ -1,0 +1,18 @@
+{
+    "1/1": {
+        "src/ol/render/canvas/TextBuilder.js": [
+            {
+                "SEARCH": [
+                    "const offsetY = this.textOffsetY_ * pixelRatio;",
+                    "const text = this.text_;",
+                    "const textScale = textState.scale;"
+                ],
+                "REPLACE": [
+                    "    const offsetY = (this.textOffsetY_ - (textState.font.includes('px') ? parseInt(textState.font) / 4 : 0)) * pixelRatio;",
+                    "    const text = this.text_.replace(/\\n/g, '');",
+                    "    const textScale = textState.scale;"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "1. **src/ol/layer/WebGLTile.js**: This file is responsible for handling WebGL tile layers, which is directly relevant since the bug occurs in the WebGLTileLayer. Any issues with rendering or tile management would likely involve this part of the code.\n\n2. **src/ol/source/GeoTIFF.js**: The bug report specifies that the issue arises when using a GeoTIFF source. This file manages GeoTIFF data sources, and problems with data handling or projection transformations within this module could directly contribute to the described rendering issue.\n\n3. **src/ol/proj/proj4.js**: The bug involves registering a stereographic projection using proj4. This file manages the integration of proj4 projections, and any mishandling of projections, especially along critical lines like the antimeridian, could cause the observed gaps.\n\n4. **src/ol/renderer/webgl/TileLayer.js**: Given that the rendering issue appears when using a WebGLTileLayer, this file, which handles the WebGL tile layer rendering, is likely involved. It would be responsible for how tiles are drawn and managed in the WebGL context, especially near projection boundaries.",
+        "bug_scenario": "The bug involves missing tiles when using the WebGLTileLayer with a GeoTiff source in a stereographic projection. Tiles near the antimeridian are not rendered, resulting in black gaps, which vary in size depending on the source tile size and zoom level. The problem is evident when initializing the WebGLTileLayer with a GeoTIFF source and using a stereographic projection, creating visual gaps in the map display."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/render/webgl/utils.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/proj/proj4.js"
+        ],
+        "explanation": "1. **src/ol/source/GeoTIFF.js**: This file is responsible for handling GeoTIFF sources, which are directly related to the bug in rendering tiles from GeoTiff sources. Any issue in handling or loading the GeoTIFF tiles could result in missing tiles.\n\n2. **src/ol/render/webgl/utils.js**: This file includes utility functions for WebGL rendering. Since the bug involves rendering issues in a WebGLTileLayer, any logic related to projections or tile rendering in WebGL might reside here.\n\n3. **src/ol/renderer/webgl/TileLayer.js**: Responsible for rendering tile layers using WebGL. Since the problem is specifically with WebGLTileLayer, this file is crucial as it manages how tiles are drawn, potentially affecting how they appear or fail to appear.\n\n4. **src/ol/proj/proj4.js**: This file handles projection definitions and transformations. Since the bug involves reprojecting tiles to a stereographic projection, any errors or oversight in projection logic could lead to incorrect tile placement or missing tiles near the antimeridian.",
+        "bug_scenario": "The bug occurs when GeoTiff tiles are reprojected into a stereographic projection, resulting in missing tiles near the antimeridian. This causes visible black gaps in the map display, with the size of the gaps depending on the source tile size and zoom level."
+    }
+}

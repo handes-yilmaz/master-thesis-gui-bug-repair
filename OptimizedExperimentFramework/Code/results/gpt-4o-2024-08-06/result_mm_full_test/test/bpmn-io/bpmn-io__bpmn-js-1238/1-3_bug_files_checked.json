@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior.js",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/BpmnUpdater.js"
+        ],
+        "explanation": "1. **UpdateFlowNodeRefsBehavior.js**: Responsible for handling updates to the flow node references, which likely includes parent-child relationships.\n2. **UpdateSemanticParentHandler.js**: Specifically deals with updating the semantic parent, directly related to the issue where the association's parent does not update.\n3. **BpmnUpdater.js**: This file likely manages various updates in the BPMN model, including changes in associations and their parent relationships.",
+        "bug_scenario": "The bug involves the association's parent not updating when the source/target is moved to a new parent. This results in the association being deleted if the subprocess is deleted."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior.js"
+        ],
+        "explanation": "1. **features/modeling/cmd/UpdateSemanticParentHandler.js**: This file likely handles updates to the semantic parent, which is directly related to the bug of not updating the association's parent.\n\n2. **features/modeling/BpmnUpdater.js**: This file is responsible for updating BPMN elements. It might manage the parent-child relationships when elements are moved.\n\n3. **features/modeling/behavior/UpdateFlowNodeRefsBehavior.js**: This file seems to manage updating references for flow nodes, which would be necessary when moving source/target associations to new parents.",
+        "bug_scenario": "The bug involves moving the source and target of an association out of a subprocess, but the association's parent remains the subprocess. This results in the association being deleted when the subprocess is deleted."
+    }
+}

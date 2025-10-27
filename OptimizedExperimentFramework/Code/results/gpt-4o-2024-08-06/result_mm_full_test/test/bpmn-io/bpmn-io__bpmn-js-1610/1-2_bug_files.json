@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/SubProcessPlaneBehavior.js",
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/interaction-events/BpmnInteractionEvents.js"
+        ],
+        "explanation": "1. **lib/features/drilldown/SubProcessPlaneBehavior.js**: This file likely manages the behavior when switching between sub-process planes. The issue involves plane switching, making this file relevant.\n\n2. **lib/features/label-editing/LabelEditingProvider.js**: This file is responsible for managing label editing. Since the bug involves the direct editing box not closing, this file might contain code that needs modification to handle plane switching correctly.\n\n3. **lib/features/interaction-events/BpmnInteractionEvents.js**: Interaction events could be responsible for triggering the direct editing mode. This file might need adjustments to ensure that editing is canceled when switching planes.",
+        "bug_scenario": "The bug occurs when switching planes with direct editing active. The editing box remains open even after the element is no longer visible."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/drilldown/SubProcessPlaneBehavior.js"
+        ],
+        "explanation": "The issue lies in the direct editing feature not being canceled when switching planes. The 'LabelEditingProvider.js' file is responsible for handling direct editing, and modifications here would ensure that editing sessions are correctly terminated on plane switches. The 'SubProcessPlaneBehavior.js' file likely handles plane switching behavior, and adjustments here are necessary to ensure proper interaction with the label editing functionality.",
+        "bug_scenario": "The bug occurs when switching planes with direct editing active. The editing box remains open even after the element is no longer visible, which is unexpected behavior. The expected behavior is that direct editing should be canceled when switching planes."
+    }
+}

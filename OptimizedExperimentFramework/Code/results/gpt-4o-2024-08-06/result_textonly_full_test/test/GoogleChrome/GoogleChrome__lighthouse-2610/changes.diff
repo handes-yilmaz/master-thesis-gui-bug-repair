@@ -1,0 +1,22 @@
+diff --git a/lighthouse-core/audits/critical-request-chains.js b/lighthouse-core/audits/critical-request-chains.js
+index 0a0e3d3..2b97633 100644
+--- a/lighthouse-core/audits/critical-request-chains.js
++++ b/lighthouse-core/audits/critical-request-chains.js
+@@ -30,7 +30,7 @@ class CriticalRequestChains extends Audit {
+   }
+ 
+   static _traverse(tree, cb) {
+-    function walk(node, depth, startTime, transferSize = 0) {
++    function walk(node, depth, startTime) {
+       const children = Object.keys(node);
+       if (children.length === 0) {
+         return;
+@@ -47,7 +47,7 @@ class CriticalRequestChains extends Audit {
+           id,
+           node: child,
+           chainDuration: (child.request.endTime - startTime) * 1000,
+-          chainTransferSize: (transferSize + child.request.transferSize)
++          chainTransferSize: child.request.transferSize
+         });
+ 
+         // Carry on walking.

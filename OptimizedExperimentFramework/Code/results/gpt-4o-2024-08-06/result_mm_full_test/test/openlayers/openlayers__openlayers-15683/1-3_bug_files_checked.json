@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/renderer/webgl/VectorLayer.js",
+            "src/ol/layer/Vector.js",
+            "src/ol/render/canvas/PolygonBuilder.js",
+            "src/ol/render/canvas/ExecutorGroup.js"
+        ],
+        "explanation": "The bug is related to the rendering of vector layers during map rotations. The files that are most likely related to this issue include those responsible for rendering vector layers on canvas and WebGL, as they handle how the map layers are drawn and displayed. Specifically:\n\n1. **src/ol/renderer/canvas/VectorLayer.js** and **src/ol/renderer/webgl/VectorLayer.js**: These files contain the logic for rendering vector layers using canvas and WebGL respectively. Any changes in how vector layers are sized or cropped during transformations will likely be implemented here.\n\n2. **src/ol/layer/Vector.js**: This file defines the vector layer, which would be directly affected by any rendering or transformation issues.\n\n3. **src/ol/render/canvas/PolygonBuilder.js**: Since the problem involves polygons being incorrectly rendered (cut off), this file, responsible for building polygon rendering instructions, is crucial.\n\n4. **src/ol/render/canvas/ExecutorGroup.js**: This manages the execution of rendering instructions, which could be where the transformation logic is not accounting for rotation correctly, leading to cropping issues.\n\nThese files are prime suspects due to their roles in the rendering pipeline of vector layers and their interaction with map transformations such as rotation.",
+        "bug_scenario": "The bug occurs when a vector layer on a map is rotated, causing the vector layer canvas to be cropped, giving it a wrong size. This behavior is noticeable when rotating a map with a large polygon, which gets cut off instead of being fully visible. This issue was introduced in version 9.1.0 of the software, likely due to a specific pull request mentioned in the report."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/renderer/webgl/VectorLayer.js",
+            "src/ol/layer/Vector.js"
+        ],
+        "explanation": "The issue is related to the rendering of vector layers when the map is rotated. The files 'src/ol/renderer/canvas/VectorLayer.js' and 'src/ol/renderer/webgl/VectorLayer.js' are directly responsible for the rendering of vector layers in both canvas and WebGL contexts, which are the contexts where this bug manifests. Additionally, 'src/ol/layer/Vector.js' might contain logic related to the vector layer setup, which could also contribute to how the layer is rendered and potentially needs adjustments to handle rotation correctly.",
+        "bug_scenario": "The bug occurs when a vector layer on a map is rotated; the canvas of the vector layer is incorrectly sized, resulting in the layer being cropped. This issue was introduced in version 9.1.0 of the OpenLayers library, likely due to changes made in a specific pull request."
+    }
+}

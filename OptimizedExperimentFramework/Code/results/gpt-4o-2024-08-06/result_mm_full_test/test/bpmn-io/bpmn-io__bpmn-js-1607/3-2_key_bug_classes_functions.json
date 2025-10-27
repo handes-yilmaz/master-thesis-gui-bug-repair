@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/GroupBehavior.js//GroupBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/GroupBehavior.js//removeReferencedCategoryValue",
+            "lib/features/modeling/behavior/GroupBehavior.js//createCategoryValue",
+            "lib/import/BpmnImporter.js//BpmnImporter.prototype.add"
+        ],
+        "explanation": "The `GroupBehavior` class in `GroupBehavior.js` is responsible for handling BPMN group behaviors, including creating and removing category values. The functions `removeReferencedCategoryValue` and `createCategoryValue` are directly involved in managing category references, which are likely causing the unresolved reference issue. Additionally, the `add` function in `BpmnImporter.js` is responsible for adding BPMN elements to the canvas, which includes handling references and could be related to the import warning.",
+        "bug_scenario": "The bug occurs when a group is created inside a collapsed sub-process in a BPMN diagram. Upon saving and re-importing the diagram, a warning appears indicating an unresolved reference to a category value, suggesting that the group creation process is not correctly handling category references."
+    }
+}

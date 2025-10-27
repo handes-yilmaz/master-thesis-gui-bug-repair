@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/canvas/TextBuilder.js//CanvasTextBuilder",
+            "src/ol/renderer/canvas/VectorLayer.js//CanvasVectorLayerRenderer",
+            "src/ol/render/canvas/Immediate.js//CanvasImmediateRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/render/canvas/TextBuilder.js//drawText",
+            "src/ol/render/canvas/TextBuilder.js//setTextStyle",
+            "src/ol/renderer/canvas/VectorLayer.js//renderFrame",
+            "src/ol/render/canvas/Immediate.js//drawText_",
+            "src/ol/render/canvas/Immediate.js//setTextStyle"
+        ],
+        "explanation": "The classes and functions identified are directly related to the rendering of text in vector layers and contexts. The `CanvasTextBuilder` class in `TextBuilder.js` is responsible for building text instructions, and its `drawText` and `setTextStyle` methods are likely involved in how text is positioned and styled, which is central to the bug. The `CanvasVectorLayerRenderer` class in `VectorLayer.js` handles rendering for vector layers, and its `renderFrame` method is crucial for how text is ultimately displayed on the canvas. The `CanvasImmediateRenderer` class in `Immediate.js` provides immediate rendering capabilities, and its `drawText_` and `setTextStyle` methods are likely involved in the immediate rendering process that is behaving inconsistently. These elements are key to addressing the inconsistency in text rendering between vector layers and vector context.",
+        "bug_scenario": "The bug scenario involves inconsistent rendering of offset and rotated text between vector layers and vector context. The vector layer renderer rotates offset text around the feature from which it is offset, while the immediate renderer rotates it around its offset anchor point as defined by the `textAlign` and `textBaseline` settings. This inconsistency is observed when offset and rotation are applied together to text, leading to different behaviors between vector layer and immediate renderers."
+    }
+}

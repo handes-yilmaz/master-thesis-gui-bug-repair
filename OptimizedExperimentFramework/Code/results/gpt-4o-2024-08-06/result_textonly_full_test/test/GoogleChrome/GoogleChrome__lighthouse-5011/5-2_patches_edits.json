@@ -1,0 +1,57 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/computed/critical-request-chains.js": [
+            {
+                "SEARCH": [
+                    "static isCritical(request, mainResource) {",
+                    "assert.ok(mainResource, 'mainResource not provided');",
+                    "const resourceTypeCategory = request._resourceType && request._resourceType._category;",
+                    "",
+                    "// Iframes are considered High Priority but they are not render blocking",
+                    "const isIframe = request._resourceType === WebInspector.resourceTypes.Document",
+                    "&& request.frameId !== mainResource.frameId;",
+                    "// XHRs are fetched at High priority, but we exclude them, as they are unlikely to be critical",
+                    "// Images are also non-critical.",
+                    "// Treat any images missed by category, primarily favicons, as non-critical resources",
+                    "const nonCriticalResourceTypes = [",
+                    "WebInspector.resourceTypes.Image._category,",
+                    "WebInspector.resourceTypes.XHR._category,",
+                    "];",
+                    "if (nonCriticalResourceTypes.includes(resourceTypeCategory) ||",
+                    "isIframe ||",
+                    "request.mimeType && request.mimeType.startsWith('image/')) {",
+                    "return false;",
+                    "}",
+                    "",
+                    "return ['VeryHigh', 'High', 'Medium'].includes(request.priority());",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  static isCritical(request, mainResource) {",
+                    "    assert.ok(mainResource, 'mainResource not provided');",
+                    "    const resourceTypeCategory = request._resourceType && request._resourceType._category;",
+                    "",
+                    "    // Iframes are considered High Priority but they are not render blocking",
+                    "    const isIframe = request._resourceType === WebInspector.resourceTypes.Document",
+                    "      && request.frameId !== mainResource.frameId;",
+                    "    // XHRs are fetched at High priority, but we exclude them, as they are unlikely to be critical",
+                    "    // Images are also non-critical.",
+                    "    // Treat any images missed by category, primarily favicons, as non-critical resources",
+                    "    const nonCriticalResourceTypes = [",
+                    "      WebInspector.resourceTypes.Image._category,",
+                    "      WebInspector.resourceTypes.XHR._category,",
+                    "    ];",
+                    "    if (nonCriticalResourceTypes.includes(resourceTypeCategory) ||",
+                    "        isIframe ||",
+                    "        request.mimeType && request.mimeType.startsWith('image/') ||",
+                    "        request._isLinkPreload) { // Exclude preload links",
+                    "      return false;",
+                    "    }",
+                    "",
+                    "    return ['VeryHigh', 'High', 'Medium'].includes(request.priority());",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

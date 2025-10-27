@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js//DeleteSequenceFlowBehavior",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js//isDefaultFlow",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler.prototype.execute"
+        ],
+        "explanation": "The class `DeleteSequenceFlowBehavior` in `UnsetDefaultFlowBehavior.js` is responsible for unsetting the default property of a sequence flow source when an element is deleted. The function `isDefaultFlow` within this class checks if a connection is the default flow, which is directly related to the bug where the default attribute is incorrectly removed. The `UpdatePropertiesHandler` class in `UpdatePropertiesHandler.js` handles property updates for BPMN elements. Its `execute` method updates properties, including the default flow, and is involved in the bug as it manages the changes to the default attribute when catch events are added. Both classes and functions are central to the handling and updating of the default flow property, which is the core issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves a BPMN model where an exclusive gateway with two output sequence flows has one set as the default flow. When a Timer Intermediate Catch Event is added to the non-default flow, the default attribute on the gateway is removed, although the default flow remains visually rendered. This issue is observed with other types of catch events as well."
+    }
+}

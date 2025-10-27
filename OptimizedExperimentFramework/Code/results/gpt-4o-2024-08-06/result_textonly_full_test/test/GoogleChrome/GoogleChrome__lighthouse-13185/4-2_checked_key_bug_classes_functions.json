@@ -1,0 +1,54 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "getScreenshot",
+            "file_path": "flow-report/src/util.ts",
+            "function_details": [
+                {
+                    "name": "getScreenshot",
+                    "start_line": 43,
+                    "end_line": 52
+                }
+            ],
+            "function_code": [
+                "export function getScreenshot(reportResult: LH.ReportResult) {",
+                "  const fullPageScreenshotAudit = reportResult.audits['full-page-screenshot'];",
+                "  const fullPageScreenshot =",
+                "    fullPageScreenshotAudit &&",
+                "    fullPageScreenshotAudit.details &&",
+                "    fullPageScreenshotAudit.details.type === 'full-page-screenshot' &&",
+                "    fullPageScreenshotAudit.details.screenshot.data;",
+                "",
+                "  return fullPageScreenshot || null;",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "getFilmstripFrames",
+            "file_path": "flow-report/src/util.ts",
+            "function_details": [
+                {
+                    "name": "getFilmstripFrames",
+                    "start_line": 54,
+                    "end_line": 66
+                }
+            ],
+            "function_code": [
+                "export function getFilmstripFrames(",
+                "  reportResult: LH.ReportResult",
+                "): Array<{data: string}> | undefined {",
+                "  const filmstripAudit = reportResult.audits['screenshot-thumbnails'];",
+                "  if (!filmstripAudit) return undefined;",
+                "",
+                "  const frameItems =",
+                "    filmstripAudit.details &&",
+                "    filmstripAudit.details.type === 'filmstrip' &&",
+                "    filmstripAudit.details.items;",
+                "",
+                "  return frameItems || undefined;",
+                "}"
+            ]
+        }
+    }
+}

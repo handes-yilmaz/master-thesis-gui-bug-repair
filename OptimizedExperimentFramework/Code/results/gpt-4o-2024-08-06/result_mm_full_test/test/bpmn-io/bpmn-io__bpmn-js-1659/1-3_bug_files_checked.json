@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/draw/TextRenderer.js"
+        ],
+        "explanation": "1. **LabelBehavior.js**: This file likely contains logic related to how labels behave during model transformations, such as resizing, which could affect their positioning.\n2. **LayoutConnectionBehavior.js**: This file is likely responsible for managing the layout of connections, including their visual updates when related elements change.\n3. **LabelUtil.js**: Utility functions for label positioning and updates could be defined here, impacting how labels are moved or adjusted.\n4. **TextRenderer.js**: This file handles text rendering, which could impact how labels are visually placed and updated in response to changes.",
+        "bug_scenario": "The bug involves labels and associations not being repositioned along with connections when a connected shape is resized. In the provided animation, when the subprocess is resized, the labels and associations remain in their original positions, resulting in a disjointed appearance."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js",
+            "lib/features/label-editing/LabelUtil.js"
+        ],
+        "explanation": "These files are related to the layout and positioning of labels and connections. 'LayoutConnectionBehavior.js' and 'LabelBehavior.js' control how connections and labels are managed during modeling operations. 'LabelLayoutUtil.js' is likely involved in calculating label positions. 'LabelUtil.js' could be responsible for handling label-related utilities and might need adjustments to ensure labels are repositioned correctly during subprocess resizing.",
+        "bug_scenario": "The bug occurs when resizing a subprocess that has connections with labels. The labels do not move with the connection, leaving them disconnected from the SequenceFlow."
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "lighthouse-core/lib/i18n/i18n.js": [
+            {
+                "SEARCH": [
+                    "if (typeof value === 'string' && isIcuMessage(value)) {",
+                    "const {icuMessageInstance, formattedString} = _resolveIcuMessageInstanceId(value, locale);",
+                    "const messageInstancesInLHR = icuMessagePaths[icuMessageInstance.icuMessageId] || [];",
+                    "const currentPathAsString = _formatPathAsString(currentPathInLHR);",
+                    "",
+                    "messageInstancesInLHR.push(",
+                    "icuMessageInstance.values ?",
+                    "{values: icuMessageInstance.values, path: currentPathAsString} :",
+                    "currentPathAsString",
+                    ");",
+                    "",
+                    "subObject[property] = formattedString;",
+                    "icuMessagePaths[icuMessageInstance.icuMessageId] = messageInstancesInLHR;",
+                    "} else {",
+                    "replaceInObject(value, icuMessagePaths, currentPathInLHR);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "      if (typeof value === 'string' && isIcuMessage(value)) {",
+                    "        const {icuMessageInstance, formattedString} = _resolveIcuMessageInstanceId(value, locale);",
+                    "        if (formattedString) {",
+                    "          const messageInstancesInLHR = icuMessagePaths[icuMessageInstance.icuMessageId] || [];",
+                    "          const currentPathAsString = _formatPathAsString(currentPathInLHR);",
+                    "",
+                    "          messageInstancesInLHR.push(",
+                    "            icuMessageInstance.values ?",
+                    "              {values: icuMessageInstance.values, path: currentPathAsString} :",
+                    "              currentPathAsString",
+                    "          );",
+                    "",
+                    "          subObject[property] = formattedString;",
+                    "          icuMessagePaths[icuMessageInstance.icuMessageId] = messageInstancesInLHR;",
+                    "        } else {",
+                    "          console.warn(`Missing translation for message ID: ${icuMessageInstance.icuMessageId}`);",
+                    "        }",
+                    "      } else {",
+                    "        replaceInObject(value, icuMessagePaths, currentPathInLHR);",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

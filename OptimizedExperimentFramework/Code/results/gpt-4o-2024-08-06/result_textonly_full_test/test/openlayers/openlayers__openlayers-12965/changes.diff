@@ -1,0 +1,30 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index a0eb3b1..89fac2d 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -265,8 +265,9 @@ class WebGLTileLayer extends BaseTileLayer {
+   /**
+    * @param {Options} opt_options Tile layer options.
+    */
+-  constructor(opt_options) {
++  constructor(opt_options, sharedContext) {
+     const options = opt_options ? assign({}, opt_options) : {};
++    this.sharedContext_ = sharedContext;
+ 
+     const style = options.style || {};
+     delete options.style;
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index 00a2a03..0347004 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -117,8 +117,10 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+    * @param {Options} options Options.
+    */
+   constructor(tileLayer, options) {
++    const sharedContext = tileLayer.sharedContext_;
+     super(tileLayer, {
+       uniforms: options.uniforms,
++      context: sharedContext || undefined,
+     });
+ 
+     /**

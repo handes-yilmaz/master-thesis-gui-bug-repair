@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "lib/features/modeling/util/LaneUtil.js": [
+            {
+                "SEARCH": [
+                    "shape.children.filter(function(s) {",
+                    "if (is(s, 'bpmn:Lane')) {",
+                    "collectLanes(s, collectedShapes);",
+                    "",
+                    "collectedShapes.push(s);",
+                    "}",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  shape.children.forEach(function(s) {",
+                    "    if (is(s, 'bpmn:Lane')) {",
+                    "      collectLanes(s, collectedShapes);",
+                    "    }",
+                    "  });",
+                    "",
+                    "  if (is(shape, 'bpmn:Lane')) {",
+                    "    collectedShapes.push(shape);",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

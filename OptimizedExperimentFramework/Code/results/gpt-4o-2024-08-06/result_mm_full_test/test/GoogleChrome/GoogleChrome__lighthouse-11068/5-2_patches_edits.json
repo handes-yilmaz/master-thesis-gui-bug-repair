@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/gatherers/css-usage.js": [
+            {
+                "SEARCH": [
+                    "await driver.sendCommand('CSS.startRuleUsageTracking');",
+                    "await driver.evaluateAsync('getComputedStyle(document.body)');",
+                    "driver.off('CSS.styleSheetAdded', onStylesheetAdded);"
+                ],
+                "REPLACE": [
+                    "    await driver.sendCommand('CSS.startRuleUsageTracking');",
+                    "    await driver.evaluateAsync('getComputedStyle(document.body)');",
+                    "    await driver.sendCommand('CSS.takeCoverageDelta'); // Ensure coverage is taken",
+                    "    driver.off('CSS.styleSheetAdded', onStylesheetAdded);"
+                ]
+            }
+        ],
+        "lighthouse-core/audits/font-display.js": [
+            {
+                "SEARCH": [
+                    "const {passingURLs, failingURLs} = FontDisplay.findFontDisplayDeclarations(artifacts);",
+                    "/** @type {Array<string>} */",
+                    "const warningURLs = [];"
+                ],
+                "REPLACE": [
+                    "    const {passingURLs, failingURLs} = FontDisplay.findFontDisplayDeclarations(artifacts);",
+                    "    /** @type {Array<string>} */",
+                    "    const warningURLs = [];",
+                    "",
+                    "    // Log the number of stylesheets processed for debugging",
+                    "    console.log(`Processed ${artifacts.CSSUsage.stylesheets.length} stylesheets.`);"
+                ]
+            }
+        ]
+    }
+}

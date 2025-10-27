@@ -1,0 +1,48 @@
+diff --git a/lighthouse-core/audits/metrics.js b/lighthouse-core/audits/metrics.js
+index 8179ed8..23c335d 100644
+--- a/lighthouse-core/audits/metrics.js
++++ b/lighthouse-core/audits/metrics.js
+@@ -30,11 +30,25 @@ class Metrics extends Audit {
+   static async audit(artifacts, context) {
+     const trace = artifacts.traces[Audit.DEFAULT_PASS];
+     const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
++    const iframeElements = artifacts.IFrameElements || [];
++    const iframeSummaries = await Promise.all(iframeElements.map(iframe => 
++      ComputedTimingSummary.request({trace: iframe.trace, devtoolsLog: iframe.devtoolsLog}, context)
++    ));
++    
+     const summary = await ComputedTimingSummary
+       .request({trace, devtoolsLog}, context);
+     const metrics = summary.metrics;
+     const debugInfo = summary.debugInfo;
+ 
++    // Aggregate iframe metrics
++    for (const iframeSummary of iframeSummaries) {
++      for (const [name, value] of Object.entries(iframeSummary.metrics)) {
++        if (typeof value === 'number') {
++          metrics[name] = (metrics[name] || 0) + value;
++        }
++      }
++    }
++
+     for (const [name, value] of Object.entries(metrics)) {
+       const key = /** @type {keyof LH.Artifacts.TimingSummary} */ (name);
+       if (typeof value === 'number') {
+diff --git a/lighthouse-core/gather/gatherers/iframe-elements.js b/lighthouse-core/gather/gatherers/iframe-elements.js
+index 97aea7d..1ba3832 100644
+--- a/lighthouse-core/gather/gatherers/iframe-elements.js
++++ b/lighthouse-core/gather/gatherers/iframe-elements.js
+@@ -48,6 +48,13 @@ class IFrameElements extends Gatherer {
+ 
+     /** @type {LH.Artifacts['IFrameElements']} */
+     const iframeElements = await driver.evaluateAsync(expression, {useIsolation: true});
++    
++    // Collect additional trace and devtoolsLog for each iframe
++    for (const iframe of iframeElements) {
++      iframe.trace = await driver.getTraceForIframe(iframe.src);
++      iframe.devtoolsLog = await driver.getDevtoolsLogForIframe(iframe.src);
++    }
++    
+     return iframeElements;
+   }
+ }

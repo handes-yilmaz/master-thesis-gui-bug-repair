@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/reproj/Image.js",
+            "src/ol/reproj/Tile.js",
+            "src/ol/reproj/common.js"
+        ],
+        "explanation": "The bug is related to how the reprojection of images and tiles is handled in the OpenLayers library, specifically in the reproj directory. The files Image.js and Tile.js are likely responsible for the logic that performs reprojection of images and tiles, respectively. The common.js file might contain shared utility functions or constants that affect how reprojection is applied across different modules. Since the bug involves incorrect assumptions about pixel shape during reprojection, these files are directly related to the issue and likely need modification to handle non-square pixel dimensions correctly.",
+        "bug_scenario": "The bug scenario involves a raster reprojection issue where the target pixels are assumed to be perfect squares, leading to misalignment when projecting images that have non-square pixel dimensions. Specifically, a 5x5 pixel image with each pixel covering a 3km by 2km area should maintain these dimensions in the target projection, but the current implementation results in a 7x5 pixel representation, with horizontal misalignment due to the square assumption."
+    },
+    "2": {
+        "bug_files": [
+            "src/reproj/common.js",
+            "src/reproj/Image.js",
+            "src/reproj/Tile.js",
+            "src/reproj/Triangulation.js",
+            "src/proj/Projection.js",
+            "src/proj/projections.js",
+            "src/proj/transforms.js"
+        ],
+        "explanation": "These files are related to the reprojection functionality within the repository. The reproj folder contains files like common.js, Image.js, Tile.js, and Triangulation.js that are directly related to handling the reprojection of raster images and tiles. Any logic regarding how pixels are assumed to be shaped or aligned during reprojection would likely reside in these files. Additionally, the proj folder contains Projection.js, projections.js, and transforms.js, which handle the mathematical transformations and definitions of projections. These files are crucial for the reprojection process and could contain logic that improperly assumes square pixels during the projection transformation.",
+        "bug_scenario": "The bug report describes an issue with raster reprojection where the projected pixels are assumed to be square, leading to misalignments. In the given example, a 5x5 image is projected from Lambert Conformal Conic to Web Mercator, but the horizontal alignment of pixels is incorrect because the projection treats the destination pixels as square, resulting in the first column of source pixels being repeated and causing the image to appear as 7x5 instead of 5x5."
+    }
+}

@@ -1,0 +1,13 @@
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 65d960d..02e6a95 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -629,7 +629,7 @@ class GeoTIFFSource extends DataTile {
+   }
+ 
+   loadTile_(z, x, y) {
+-    const size = toSize(this.tileGrid.getTileSize(z));
++    const size = toSize(this.tileGrid.getTileSize(z), this.tileGrid.getTileSize(z) * this.sourcePixelRatio_);
+ 
+     const sourceCount = this.sourceImagery_.length;
+     const requests = new Array(sourceCount);

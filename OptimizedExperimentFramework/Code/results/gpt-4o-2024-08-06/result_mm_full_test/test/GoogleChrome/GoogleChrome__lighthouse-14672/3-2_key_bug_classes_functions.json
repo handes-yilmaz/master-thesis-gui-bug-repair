@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "clients/devtools/devtools-entry.js//createConfig"
+        ],
+        "bug_functions": [
+            "clients/devtools/devtools-entry.js//createConfig"
+        ],
+        "explanation": "The `createConfig` function in `devtools-entry.js` is responsible for setting the `screenEmulation` property to `{disabled: true}`. This configuration leads to the incorrect display of 'No emulation' in DevTools, as it disables screen emulation for mobile runs. Adjusting this function to correctly handle emulation settings for mobile devices is necessary to fix the bug.",
+        "bug_scenario": "The image shows a DevTools interface where it incorrectly displays 'No emulation with Lighthouse' during a mobile run, despite the expectation that emulation should be active. This is due to a change in the `getEmulationDescriptions` function that returns 'no emulation' when `screenEmulation.disabled` is true, which is set in `devtools-entry.js`."
+    }
+}

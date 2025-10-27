@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "The error references `segmentIndex` in `LabelLayoutUtil.js`, indicating that the issue likely arises when calculating label positions during gateway insertion. `LabelBehavior.js` is involved in label management, which is directly related to this error. `DropOnFlowBehavior.js` handles the behavior of dropping elements onto a flow, which is the action causing the error. Finally, `Modeling.js` is responsible for executing modeling commands, including inserting shapes like gateways, and is part of the call stack leading to the error.",
+        "bug_scenario": "When inserting a gateway into a flow on the diagram, the editor crashes with an error: `Cannot read properties of undefined (reading 'segmentIndex')`. This occurs when trying to insert the gateway before a label, causing the editor to become unresponsive."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "The error message indicates issues in `LabelLayoutUtil.js` and `LabelBehavior.js`, both of which deal with label positioning and manipulation, likely where `segmentIndex` is accessed. `DropOnFlowBehavior.js` is involved in handling the dropping of elements onto flows, which is directly related to the user action causing the bug. `Modeling.js` is responsible for the creation and manipulation of shapes and connections, which could also be affected by manipulating flows and labels.",
+        "bug_scenario": "When attempting to insert a gateway onto a flow, the editor crashes with the error `Cannot read properties of undefined (reading 'segmentIndex')`. This occurs specifically when inserting a gateway on a green flow before a label, breaking the editor's state."
+    }
+}

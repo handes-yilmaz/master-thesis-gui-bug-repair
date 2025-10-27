@@ -1,0 +1,16 @@
+diff --git a/lib/features/modeling/Modeling.js b/lib/features/modeling/Modeling.js
+index 4af7d06..baf812e 100644
+--- a/lib/features/modeling/Modeling.js
++++ b/lib/features/modeling/Modeling.js
+@@ -80,6 +80,11 @@ Modeling.prototype.connect = function(source, target, attrs, hints) {
+     return;
+   }
+ 
++  // Ensure the pool's state is reset correctly after lane modifications
++  if (source.type === 'bpmn:Participant' && source.lanes && source.lanes.length === 0) {
++    source = source.parent;
++  }
++
+   return this.createConnection(source, target, attrs, source.parent, hints);
+ };
+ 

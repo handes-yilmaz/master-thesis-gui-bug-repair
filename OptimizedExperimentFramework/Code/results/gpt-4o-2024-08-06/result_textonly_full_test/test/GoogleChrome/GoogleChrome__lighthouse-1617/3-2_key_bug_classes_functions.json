@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/manifest-short-name-length.js//ManifestShortNameLength",
+            "lighthouse-core/audits/manifest-short-name.js//ManifestShortName"
+        ],
+        "bug_functions": [
+            "lighthouse-core/lib/manifest-parser.js//parseShortName",
+            "lighthouse-core/gather/gatherers/manifest.js//Manifest"
+        ],
+        "explanation": "The class `ManifestShortNameLength` in `lighthouse-core/audits/manifest-short-name-length.js` is directly responsible for auditing the length of the manifest's short name. The bug report indicates a false positive when the short name is missing, which suggests that the logic in this class needs to be adjusted to handle missing short names correctly.\n\nThe class `ManifestShortName` in `lighthouse-core/audits/manifest-short-name.js` is responsible for checking the presence of the short name in the manifest. Since the bug involves a missing short name, this class is relevant to ensure that the presence check is correctly implemented.\n\nThe function `parseShortName` in `lighthouse-core/lib/manifest-parser.js` is responsible for parsing the short name from the manifest. If the short name is missing, this function should handle it appropriately to prevent false positives.\n\nThe class `Manifest` in `lighthouse-core/gather/gatherers/manifest.js` is involved in fetching and parsing the manifest. It needs to ensure that the manifest data is correctly interpreted, especially when certain fields like the short name are missing.",
+        "bug_scenario": "The bug scenario involves a false positive error when checking the length of a manifest's short name. The issue arises when the short name is missing, leading to incorrect audit results."
+    }
+}

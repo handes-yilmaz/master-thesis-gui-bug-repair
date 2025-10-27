@@ -1,0 +1,43 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/CreateDataObjectBehavior.js": [
+            {
+                "SEARCH": [
+                    "// set the reference to the DataObject",
+                    "shape.businessObject.dataObjectRef = dataObject;"
+                ],
+                "REPLACE": [
+                    "      // set the reference to the DataObject",
+                    "      shape.businessObject.dataObjectRef = dataObject;",
+                    "",
+                    "      // set isCollection to false by default",
+                    "      dataObject.isCollection = false;"
+                ]
+            }
+        ],
+        "lib/features/popup-menu/ReplaceMenuProvider.js": [
+            {
+                "SEARCH": [
+                    "return headerEntries;",
+                    "};"
+                ],
+                "REPLACE": [
+                    "  if (is(element, 'bpmn:DataObjectReference')) {",
+                    "    headerEntries.push({",
+                    "      id: 'toggle-is-collection',",
+                    "      className: 'bpmn-icon-data-object-collection',",
+                    "      title: 'Toggle Collection',",
+                    "      action: function() {",
+                    "        var dataObject = element.businessObject.dataObjectRef;",
+                    "        dataObject.isCollection = !dataObject.isCollection;",
+                    "      }",
+                    "    });",
+                    "  }",
+                    "",
+                    "  return headerEntries;",
+                    "};"
+                ]
+            }
+        ]
+    }
+}

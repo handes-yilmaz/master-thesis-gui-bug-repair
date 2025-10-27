@@ -1,0 +1,16 @@
+diff --git a/src/rating/rating.jsx b/src/rating/rating.jsx
+index da8704a..def0c2b 100644
+--- a/src/rating/rating.jsx
++++ b/src/rating/rating.jsx
+@@ -328,6 +328,11 @@ class Rating extends Component {
+         if (newValue !== value) {
+             this.props.onChange(isReset ? 0 : newValue);
+         }
++
++        // Prevent duplicate triggering when id is present
++        if (this.props.id) {
++            e.preventDefault();
++        }
+         
+         setTimeout(() => {
+             this.setState({ clicked: false });

@@ -1,0 +1,47 @@
+{
+    "1/1": {
+        "src/ol/webgl/Helper.js": [
+            {
+                "SEARCH": [
+                    "gl.blendFunc(",
+                    "gl.ONE,",
+                    "opt_disableAlphaBlend ? gl.ZERO : gl.ONE_MINUS_SRC_ALPHA",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const blendFuncSrc = frameState.blendFuncSrc || gl.ONE;",
+                    "    const blendFuncDst = frameState.blendFuncDst || (opt_disableAlphaBlend ? gl.ZERO : gl.ONE_MINUS_SRC_ALPHA);",
+                    "    gl.blendFunc(blendFuncSrc, blendFuncDst);"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "super(options);"
+                ],
+                "REPLACE": [
+                    "    super(options);",
+                    "",
+                    "    /**",
+                    "     * @type {Object}",
+                    "     * @private",
+                    "     */",
+                    "    this.blendOptions_ = options.blendOptions || {};"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "this.helper.prepareDraw(frameState, !blend);"
+                ],
+                "REPLACE": [
+                    "    frameState.blendFuncSrc = this.getLayer().blendOptions_.src || gl.ONE;",
+                    "    frameState.blendFuncDst = this.getLayer().blendOptions_.dst || gl.ONE_MINUS_SRC_ALPHA;",
+                    "    this.helper.prepareDraw(frameState, !blend);"
+                ]
+            }
+        ]
+    }
+}

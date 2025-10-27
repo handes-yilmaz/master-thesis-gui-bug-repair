@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/behavior/ResizeBehavior.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js**: This file contains logic related to toggling the collapse state of elements, specifically Sub Processes in BPMN diagrams. The functions `expandedBounds` and `collapsedBounds` are responsible for calculating the dimensions of a Sub Process when it is expanded or collapsed. The bug report indicates that the dimensions become incorrect when a Sub Process is collapsed and turned into an Ad Hoc Sub Process, suggesting that the logic in this file may not correctly handle the dimension calculations for this specific scenario.\n\n2. **lib/features/modeling/behavior/ResizeBehavior.js**: This file sets minimum bounds and resize constraints for various BPMN elements, including Sub Processes. The function checks if a shape is a Sub Process and whether it is expanded, setting minimum dimensions accordingly. Since the bug involves incorrect dimensions after collapsing and converting to an Ad Hoc Sub Process, this file is likely involved in the bug, as it may not correctly apply or update the constraints and dimensions for Ad Hoc Sub Processes.",
+        "bug_scenario": "The bug scenario involves a BPMN (Business Process Model and Notation) diagram where an expanded Sub Process with a child element is collapsed and then turned into an Ad Hoc Sub Process. The expected behavior is that the dimensions of the Sub Process should not change during this transformation. However, the bug report indicates that the dimensions become weird or incorrect after these steps."
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnUpdater.js//BpmnUpdater",
+            "lib/features/modeling/behavior/DataStoreBehavior.js//DataStoreBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnUpdater.js//updateDiParent",
+            "lib/features/modeling/BpmnUpdater.js//updateParent",
+            "lib/features/modeling/behavior/DataStoreBehavior.js//updateDataStoreParent"
+        ],
+        "explanation": "The BpmnUpdater class in BpmnUpdater.js is responsible for updating the BPMN diagram's XML and DI when changes occur, such as morphing elements. The updateDiParent and updateParent functions are directly involved in handling parent updates, which is where the error occurs. The DataStoreBehavior class in DataStoreBehavior.js manages the behavior of DataStoreReferences, including their containment and parent updates, which are relevant when morphing these elements. The updateDataStoreParent function specifically handles updating the parent of a DataStoreReference, which is crucial in the context of the reported bug.",
+        "bug_scenario": "The bug occurs when attempting to morph a DataStoreReference to a DataObjectReference outside of a Pool in a BPMN model. This action throws an error, specifically a TypeError, indicating that a property 'get' is being accessed on an undefined object. The error trace points to the BpmnUpdater.js file, suggesting an issue with updating the diagram's parent elements during the morphing process."
+    }
+}

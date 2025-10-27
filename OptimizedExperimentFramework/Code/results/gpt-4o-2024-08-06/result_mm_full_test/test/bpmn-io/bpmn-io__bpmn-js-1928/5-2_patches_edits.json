@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "lib/features/space-tool/BpmnSpaceTool.js": [
+            {
+                "SEARCH": [
+                    "// do not resize text annotations",
+                    "adjustments.resizingShapes = adjustments.resizingShapes.filter(function(shape) {",
+                    "return !is(shape, 'bpmn:TextAnnotation');",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  // do not resize text annotations or empty pools",
+                    "  adjustments.resizingShapes = adjustments.resizingShapes.filter(function(shape) {",
+                    "    return !is(shape, 'bpmn:TextAnnotation') && !isEmptyPool(shape);",
+                    "  });"
+                ]
+            }
+        ]
+    }
+}

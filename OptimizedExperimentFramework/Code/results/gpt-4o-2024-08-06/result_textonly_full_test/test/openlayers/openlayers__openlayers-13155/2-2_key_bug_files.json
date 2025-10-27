@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "1. **src/ol/renderer/webgl/TileLayer.js**: This file contains the WebGLTileLayerRenderer class, which is responsible for rendering tile layers using WebGL. The bug report suggests that the renderer should respect the imageSmoothing setting of the tile source. This file likely needs modification to pass the imageSmoothing setting to the TileTexture.\n\n2. **src/ol/webgl/TileTexture.js**: This file handles the creation and configuration of WebGL textures for tiles. The bug report indicates that the TileTexture should use gl.NEAREST instead of gl.LINEAR for texture filtering when imageSmoothing is set to false. This file would need changes to implement this behavior based on the imageSmoothing setting.",
+        "bug_scenario": "The bug scenario involves a WebGLTile renderer not respecting the imageSmoothing setting of the tile source. When zoomed in, the Sea Level example shows pixelated edges due to the lack of image smoothing, which distorts pixel values and creates visible lines along contours. The issue is more pronounced when sea level values are exaggerated, causing rows of pixels to appear above the sea when the map is panned. The solution involves passing the imageSmoothing setting to the TileTexture, allowing it to use gl.NEAREST instead of gl.LINEAR for texture filtering."
+    }
+}

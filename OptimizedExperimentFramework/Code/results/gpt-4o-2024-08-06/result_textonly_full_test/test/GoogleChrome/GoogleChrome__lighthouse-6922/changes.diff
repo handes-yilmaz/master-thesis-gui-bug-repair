@@ -1,0 +1,20 @@
+diff --git a/lighthouse-core/gather/driver.js b/lighthouse-core/gather/driver.js
+index bcb475c..550c2a9 100644
+--- a/lighthouse-core/gather/driver.js
++++ b/lighthouse-core/gather/driver.js
+@@ -75,6 +75,15 @@ class Driver {
+         this._networkStatusMonitor.dispatch(event);
+       }
+ 
++      // Handle target discovery for OOPIFs
++      if (event.method === 'Target.targetCreated') {
++        const targetInfo = event.params.targetInfo;
++        if (targetInfo.type === 'iframe') {
++          this.sendCommand('Target.attachToTarget', {targetId: targetInfo.targetId, flatten: true});
++          this.sendCommand('Network.enable', {}, targetInfo.targetId);
++        }
++      }
++
+       // @ts-ignore TODO(bckenny): tsc can't type event.params correctly yet,
+       // typing as property of union instead of narrowing from union of
+       // properties. See https://github.com/Microsoft/TypeScript/pull/22348.

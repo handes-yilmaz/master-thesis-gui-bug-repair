@@ -1,0 +1,55 @@
+{
+    "1/1": {
+        "rendering/test.js": [
+            {
+                "SEARCH": [
+                    "async function main(entries, options) {",
+                    "if (!options.force && !options.match) {",
+                    "entries = await getOutdated(entries, options);",
+                    "}",
+                    "if (options.match) {",
+                    "const exp = new RegExp(options.match);",
+                    "entries = entries.filter(entry => exp.test(entry));",
+                    "}",
+                    "if (!options.interactive && entries.length === 0) {",
+                    "return;",
+                    "}",
+                    "",
+                    "const done = await serve(options);",
+                    "try {",
+                    "await render(entries, options);",
+                    "} finally {",
+                    "if (!options.interactive) {",
+                    "done();",
+                    "}",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "async function main(entries, options) {",
+                    "  if (!options.force && !options.match) {",
+                    "    entries = await getOutdated(entries, options);",
+                    "  }",
+                    "  if (options.match) {",
+                    "    const exp = new RegExp(options.match);",
+                    "    entries = entries.filter(entry => exp.test(entry));",
+                    "  }",
+                    "  if (!options.interactive && entries.length === 0) {",
+                    "    return;",
+                    "  }",
+                    "",
+                    "  const done = await serve(options);",
+                    "  try {",
+                    "    // Ensure render function is used for all rendering tests",
+                    "    await render(entries, options);",
+                    "  } finally {",
+                    "    if (!options.interactive) {",
+                    "      done();",
+                    "    }",
+                    "  }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

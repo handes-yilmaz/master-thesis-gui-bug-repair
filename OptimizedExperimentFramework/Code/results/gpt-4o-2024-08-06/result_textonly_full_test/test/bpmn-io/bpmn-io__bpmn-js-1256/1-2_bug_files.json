@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/cmd/UpdateFlowNodeRefsHandler.js",
+            "lib/features/modeling/util/LaneUtil.js",
+            "lib/features/modeling/behavior/ResizeLaneBehavior.js"
+        ],
+        "explanation": "1. **DeleteLaneBehavior.js**: This file likely contains the logic for handling the deletion of lanes from the diagram. The bug report specifies that removing a child lane causes deformation, indicating a potential issue in how delete operations are managed.\n\n2. **UpdateFlowNodeRefsHandler.js**: Removing a lane might require updating references to flow nodes. If these references are not updated correctly, it could lead to the diagram not rendering properly after a lane is removed.\n\n3. **LaneUtil.js**: This utility file might contain functions used to manipulate lanes within the diagram. Errors in these utility functions could result in improper lane resizing or positioning when a lane is removed.\n\n4. **ResizeLaneBehavior.js**: This file likely handles the resizing of lanes, which would be relevant when a lane is removed and the remaining lanes need to adjust their sizes accordingly. If resizing is not handled properly, it could contribute to the deformation seen in the bug scenario.",
+        "bug_scenario": "The bug occurs when a user attempts to remove a child lane from a BPMN diagram, leading to the deformation of the remaining lanes and diagram structure. Initially, a structured diagram with multiple child lanes is created. Upon removing one of these child lanes, the diagram becomes distorted and sometimes uneditable."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/behavior/ResizeLaneBehavior.js",
+            "lib/features/modeling/cmd/RemoveElementBehavior.js",
+            "lib/features/modeling/util/LaneUtil.js",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js"
+        ],
+        "explanation": "- **DeleteLaneBehavior.js**: This file likely contains logic related to the behavior when a lane is deleted. Since the bug involves deleting a child lane, this file is a primary suspect.\n- **ResizeLaneBehavior.js**: Upon removal of a child lane, the remaining lanes may need to resize to fill the space left behind. Any deformation issues might be related to incorrect resizing logic.\n- **RemoveElementBehavior.js**: This file would be responsible for the overall logic when elements (like lanes) are removed from the diagram. It might contain code that inadvertently causes the deformation when a lane is deleted.\n- **LaneUtil.js**: Utility functions related to lane operations are likely housed here. Any errors in utility functions could manifest when lanes are manipulated.\n- **ResizeLaneHandler.js**: Similar to ResizeLaneBehavior.js, this file is likely involved in the actual command execution for resizing lanes. Any issues in handling the resizing operation could cause the diagram to appear deformed after a lane is removed.",
+        "bug_scenario": "The bug occurs when a user tries to remove a child lane from a BPMN diagram created using the online demo tool. Upon removing a child lane, the entire diagram becomes deformed and editing becomes difficult. The bug is reproducible in library versions 5.x and 6.x but works as expected in versions 3.0.1 and 4.0.1."
+    }
+}

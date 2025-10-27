@@ -1,0 +1,69 @@
+{
+    "1/1": {
+        "src/core/pandoc/pandoc-partition.ts": [
+            {
+                "SEARCH": [
+                    "export function partitionMarkdown(markdown: string): PartitionedMarkdown {",
+                    "// partition out yaml",
+                    "const partitioned = partitionYamlFrontMatter(markdown);",
+                    "markdown = partitioned ? partitioned.markdown : markdown;",
+                    "",
+                    "// extract heading",
+                    "const { lines, headingText, headingAttr } = markdownWithExtractedHeading(",
+                    "markdown,",
+                    ");",
+                    "",
+                    "// does this contain refs?",
+                    "const containsRefs = lines.some((line) =>",
+                    "/^:::\\s*{#refs([\\s}]|.*?})\\s*$/.test(line)",
+                    ");",
+                    "",
+                    "return {",
+                    "yaml: (partitioned ? readYamlFromMarkdown(partitioned.yaml) : undefined),",
+                    "headingText,",
+                    "headingAttr,",
+                    "containsRefs,",
+                    "markdown: lines.join(\"\\n\"),",
+                    "srcMarkdownNoYaml: partitioned?.markdown || \"\",",
+                    "};",
+                    "}"
+                ],
+                "REPLACE": [
+                    "export function partitionMarkdown(markdown: string): PartitionedMarkdown {",
+                    "  // partition out yaml",
+                    "  const partitioned = partitionYamlFrontMatter(markdown);",
+                    "  markdown = partitioned ? partitioned.markdown : markdown;",
+                    "",
+                    "  // extract heading",
+                    "  const { lines, headingText, headingAttr } = markdownWithExtractedHeading(",
+                    "    markdown,",
+                    "  );",
+                    "",
+                    "  // ensure correct list formatting",
+                    "  const formattedLines = lines.map((line) => {",
+                    "    // Correctly handle list items to prevent incorrect sub-bullets",
+                    "    if (/^\\s*\\*\\s/.test(line)) {",
+                    "      return line.trim();",
+                    "    }",
+                    "    return line;",
+                    "  });",
+                    "",
+                    "  // does this contain refs?",
+                    "  const containsRefs = formattedLines.some((line) =>",
+                    "    /^:::\\s*{#refs([\\s}]|.*?})\\s*$/.test(line)",
+                    "  );",
+                    "",
+                    "  return {",
+                    "    yaml: (partitioned ? readYamlFromMarkdown(partitioned.yaml) : undefined),",
+                    "    headingText,",
+                    "    headingAttr,",
+                    "    containsRefs,",
+                    "    markdown: formattedLines.join(\"\\n\"),",
+                    "    srcMarkdownNoYaml: partitioned?.markdown || \"\",",
+                    "  };",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

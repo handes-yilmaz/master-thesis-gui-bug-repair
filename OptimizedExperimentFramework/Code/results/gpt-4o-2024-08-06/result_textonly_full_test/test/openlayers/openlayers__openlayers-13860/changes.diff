@@ -1,0 +1,21 @@
+diff --git a/src/ol/format/GeoJSON.js b/src/ol/format/GeoJSON.js
+index d7cd119..df27d98 100644
+--- a/src/ol/format/GeoJSON.js
++++ b/src/ol/format/GeoJSON.js
+@@ -150,10 +150,12 @@ class GeoJSON extends JSONFeature {
+       );
+       features = [];
+       const geoJSONFeatures = geoJSONFeatureCollection['features'];
+-      for (let i = 0, ii = geoJSONFeatures.length; i < ii; ++i) {
+-        features.push(
+-          this.readFeatureFromObject(geoJSONFeatures[i], opt_options)
+-        );
++      if (Array.isArray(geoJSONFeatures)) {
++        for (let i = 0, ii = geoJSONFeatures.length; i < ii; ++i) {
++          features.push(
++            this.readFeatureFromObject(geoJSONFeatures[i], opt_options)
++          );
++        }
+       }
+     } else {
+       features = [this.readFeatureFromObject(object, opt_options)];

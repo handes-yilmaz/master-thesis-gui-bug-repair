@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageWMS.js//ImageWMS",
+            "src/ol/source/TileWMS.js//TileWMS",
+            "src/ol/renderer/canvas/ImageLayer.js//CanvasImageLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageWMS.js//getImageInternal",
+            "src/ol/source/TileWMS.js//tileUrlFunction",
+            "src/ol/renderer/canvas/ImageLayer.js//renderFrame"
+        ],
+        "explanation": "The classes and functions identified are directly involved in the rendering and handling of WMS images. The `ImageWMS` and `TileWMS` classes are responsible for managing WMS image sources, including constructing URLs for image requests and handling image parameters such as resolution and pixel ratio. The `getImageInternal` function in `ImageWMS` and the `tileUrlFunction` in `TileWMS` are critical for determining how images are fetched and displayed, which directly affects image clarity. The `CanvasImageLayerRenderer` class, particularly the `renderFrame` function, is responsible for rendering the image onto the canvas, where issues with image scaling and pixel alignment can lead to blurriness. These elements are likely where the bug manifests, as they handle the core logic for image rendering and display.",
+        "bug_scenario": "The bug scenario involves a WMS (Web Map Service) image becoming blurry when the map's aspect ratio is not a round integer or when the map's width or height is not even. This results in a map that is not pixel-perfect, which is the expected behavior."
+    }
+}

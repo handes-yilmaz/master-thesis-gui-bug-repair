@@ -1,0 +1,40 @@
+diff --git a/lib/linter/code-path-analysis/code-path-analyzer.js b/lib/linter/code-path-analysis/code-path-analyzer.js
+index c0b1854..bd978a2 100644
+--- a/lib/linter/code-path-analysis/code-path-analyzer.js
++++ b/lib/linter/code-path-analysis/code-path-analyzer.js
+@@ -492,10 +492,18 @@ function processCodePathToEnter(analyzer, node) {
+ 
+         case "LogicalExpression":
+             if (isHandledLogicalOperator(node.operator)) {
+-                state.pushChoiceContext(
+-                    node.operator,
+-                    isForkingByTrueOrFalse(node)
+-                );
++                if (node.operator === "&&" && node.parent && node.parent.operator === "??") {
++                    // Special handling for (a && b) ?? c
++                    state.pushChoiceContext(
++                        "&&??",
++                        false // No true/false fork, handle as nullish coalescing
++                    );
++                } else {
++                    state.pushChoiceContext(
++                        node.operator,
++                        isForkingByTrueOrFalse(node)
++                    );
++                }
+             }
+             break;
+ 
+diff --git a/lib/linter/code-path-analysis/code-path-state.js b/lib/linter/code-path-analysis/code-path-state.js
+index dcd2469..2e6c369 100644
+--- a/lib/linter/code-path-analysis/code-path-state.js
++++ b/lib/linter/code-path-analysis/code-path-state.js
+@@ -129,7 +129,7 @@ class ChoiceContext {
+      * Creates a new instance.
+      * @param {ChoiceContext} upperContext The previous `ChoiceContext`.
+      * @param {string} kind The kind of choice. If it's a logical or assignment expression, this
+-     *      is `"&&"` or `"||"` or `"??"`; if it's an `if` statement or
++     *      is `"&&"`, `"||"`, `"??"`, or `"&&??"`; if it\'s an `if` statement or
+      *      conditional expression, this is `"test"`; otherwise, this is `"loop"`.
+      * @param {boolean} isForkingAsResult Indicates if the result of the choice
+      *      creates a fork.

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/critical-request-chains.js//CriticalRequestChains",
+            "lighthouse-core/gather/computed/critical-request-chains.js//CriticalRequestChains"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/critical-request-chains.js//_traverse",
+            "lighthouse-core/audits/critical-request-chains.js//_getLongestChain",
+            "lighthouse-core/audits/critical-request-chains.js//audit",
+            "lighthouse-core/gather/computed/critical-request-chains.js//extractChain"
+        ],
+        "explanation": "The classes and functions identified are directly related to the computation and display of the Critical Request Chains in Lighthouse. The `CriticalRequestChains` class in both files is responsible for handling the logic related to critical request chains. The `_traverse` and `_getLongestChain` functions in `lighthouse-core/audits/critical-request-chains.js` are involved in traversing the request chain tree and determining the longest chain, which is crucial for calculating and displaying the correct sizes. The `audit` function is responsible for performing the audit and returning the results, including the size information. In `lighthouse-core/gather/computed/critical-request-chains.js`, the `extractChain` function is responsible for extracting the critical request chains from network records, which is a key step in determining the sizes of the requests. These elements are likely where the bug causing incorrect size information is located.",
+        "bug_scenario": "The bug scenario involves incorrect size information being displayed for the Critical Request Chain in the Lighthouse tool. All sizes are listed as the same, which does not match the actual sizes of the requests. This issue is observed in the built-in Lighthouse in Chrome Canary and the Chrome Extension of Lighthouse."
+    }
+}

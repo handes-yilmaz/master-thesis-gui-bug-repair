@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/ruby.js//STRING"
+        ],
+        "bug_functions": [
+            "src/lib/regex.js//escape",
+            "src/lib/regex.js//source"
+        ],
+        "explanation": "The `STRING` class in `src/languages/ruby.js` is responsible for defining how string literals are parsed and recognized in Ruby. The issue with character literals not being supported correctly likely stems from this class not handling certain cases properly. The `escape` and `source` functions in `src/lib/regex.js` are involved in processing regular expressions, which are crucial for correctly identifying and parsing character literals. The misinterpretation of the single slash character as a regex starter suggests that these functions may need adjustments to handle these cases correctly.",
+        "bug_scenario": "The bug involves incorrect handling of certain Ruby character literals. Specifically, the single slash character is misinterpreted as starting a regex, and other character literals like escaped backslashes, non-ASCII characters, and Unicode characters using curly-bracket notation are not supported as expected."
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/extent/Corner.js",
+            "src/ol/extent/Relationship.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "1. `src/ol/layer/WebGLTile.js`: This file is responsible for managing WebGLTile layers, which are directly mentioned in the bug report as having rendering issues.\n2. `src/ol/extent/Corner.js` & `src/ol/extent/Relationship.js`: These files deal with extent calculations and relationships. The bug involves incorrect extent rendering, suggesting potential issues in extent logic.\n3. `src/ol/source/GeoTIFF.js`: The bug involves GeoTIFF sources, as shown in the QGIS settings and code snippet. Adjustments may be necessary to ensure the source extent aligns correctly.\n4. `src/ol/renderer/webgl/TileLayer.js`: This handles the rendering of tile layers using WebGL. Given the rendering issue, changes here might be required to fix how extents are respected during rendering.",
+        "bug_scenario": "The images depict an issue where the WebGLTile layer renders images outside their intended extent. The first image shows a rendered area larger than the red box, which represents the correct extent. The subsequent images further illustrate the problem, showing how the extent is incorrectly displayed when zooming and how settings in QGIS differ from the output in the application."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "1. **src/ol/layer/WebGLTile.js**: This file likely contains the implementation for the WebGLTile layer, which is responsible for rendering the tile layers using WebGL. Any issues with how the extent is being handled would likely involve this file.\n\n2. **src/ol/source/GeoTIFF.js**: This file manages the GeoTIFF source, which is used as a data source for tile rendering. If the extent is not being correctly set or interpreted, adjustments may be required here.\n\n3. **src/ol/renderer/webgl/TileLayer.js**: This file likely contains the rendering logic for WebGL tile layers. Bugs related to rendering tiles beyond their intended extents could be due to issues in this renderer.",
+        "bug_scenario": "The bug report and images show that a WebGLTile layer in the application is rendering tiles outside the specified extent. The red box in the images indicates the correct extent, but the imagery extends beyond it. This problem persists even when zoomed in, as illustrated in the images."
+    }
+}

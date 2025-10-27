@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js//LayoutConnectionBehavior",
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js//getnewAnchorPoint",
+            "lib/features/modeling/behavior/LabelBehavior.js//getVisibleLabelAdjustment",
+            "lib/features/modeling/behavior/LabelBehavior.js//getReferencePointDelta"
+        ],
+        "explanation": "The classes and functions identified are responsible for handling the layout and positioning of connections and labels. The `LayoutConnectionBehavior` class in `LayoutConnectionBehavior.js` is responsible for updating connections and their waypoints, which is directly related to the issue of connections not updating correctly when a shape is resized. The `getnewAnchorPoint` function within this class calculates new anchor points for connections, which is crucial for ensuring connections are correctly repositioned.\n\nThe `LabelBehavior` class in `LabelBehavior.js` manages the behavior of labels, including their creation and movement. The `getVisibleLabelAdjustment` function is responsible for adjusting label positions when connections are updated, which is directly related to the bug where labels are left hanging. The `getReferencePointDelta` function calculates the delta for moving labels, which is necessary for ensuring labels move correctly with their associated connections. These functions are critical for addressing the bug where labels and associations do not move with the connection when a shape is resized.",
+        "bug_scenario": "The bug scenario involves a connection with multiple waypoints connected to an expanded sub-process. When the sub-process is resized, the labels and associations do not move with the connection, leaving them hanging and disconnected from the sequence flow."
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "1/1": {
+        "lib/features/popup-menu/ReplaceMenuProvider.js": [
+            {
+                "SEARCH": [
+                    "// data object references",
+                    "if (is(businessObject, 'bpmn:DataObjectReference')) {",
+                    "entries = filter(replaceOptions.DATA_OBJECT_REFERENCE, differentType);",
+                    "",
+                    "return this._createEntries(element, entries);",
+                    "}",
+                    "",
+                    "// data store references",
+                    "if (is(businessObject, 'bpmn:DataStoreReference')) {",
+                    "entries = filter(replaceOptions.DATA_STORE_REFERENCE, differentType);",
+                    "",
+                    "return this._createEntries(element, entries);",
+                    "}"
+                ],
+                "REPLACE": [
+                    " // data object references",
+                    "if (is(businessObject, 'bpmn:DataObjectReference')) {",
+                    "  entries = filter(replaceOptions.DATA_OBJECT_REFERENCE.concat(replaceOptions.DATA_STORE_REFERENCE), differentType);",
+                    "",
+                    "  return this._createEntries(element, entries);",
+                    "}",
+                    "",
+                    "// data store references",
+                    "if (is(businessObject, 'bpmn:DataStoreReference')) {",
+                    "  entries = filter(replaceOptions.DATA_STORE_REFERENCE.concat(replaceOptions.DATA_OBJECT_REFERENCE), differentType);",
+                    "",
+                    "  return this._createEntries(element, entries);",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

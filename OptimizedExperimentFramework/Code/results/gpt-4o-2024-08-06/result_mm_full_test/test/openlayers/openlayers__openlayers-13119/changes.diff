@@ -1,0 +1,48 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index d801be0..cf9ab7e 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -281,6 +281,12 @@ class WebGLTileLayer extends BaseTileLayer {
+ 
+     super(options);
+ 
++    /**
++     * @type {Object}
++     * @private
++     */
++    this.blendOptions_ = options.blendOptions || {};
++
+     /**
+      * @type {Style}
+      * @private
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index b94618b..368945b 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -454,6 +454,8 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+     }
+ 
+     this.helper.useProgram(this.program_);
++    frameState.blendFuncSrc = this.getLayer().blendOptions_.src || gl.ONE;
++    frameState.blendFuncDst = this.getLayer().blendOptions_.dst || gl.ONE_MINUS_SRC_ALPHA;
+     this.helper.prepareDraw(frameState, !blend);
+ 
+     const zs = Object.keys(tileTexturesByZ)
+diff --git a/src/ol/webgl/Helper.js b/src/ol/webgl/Helper.js
+index ae8358c..570380a 100644
+--- a/src/ol/webgl/Helper.js
++++ b/src/ol/webgl/Helper.js
+@@ -578,10 +578,9 @@ class WebGLHelper extends Disposable {
+     gl.clear(gl.COLOR_BUFFER_BIT);
+ 
+     gl.enable(gl.BLEND);
+-    gl.blendFunc(
+-      gl.ONE,
+-      opt_disableAlphaBlend ? gl.ZERO : gl.ONE_MINUS_SRC_ALPHA
+-    );
++    const blendFuncSrc = frameState.blendFuncSrc || gl.ONE;
++    const blendFuncDst = frameState.blendFuncDst || (opt_disableAlphaBlend ? gl.ZERO : gl.ONE_MINUS_SRC_ALPHA);
++    gl.blendFunc(blendFuncSrc, blendFuncDst);
+ 
+     gl.useProgram(this.currentProgram_);
+     this.applyFrameState(frameState);

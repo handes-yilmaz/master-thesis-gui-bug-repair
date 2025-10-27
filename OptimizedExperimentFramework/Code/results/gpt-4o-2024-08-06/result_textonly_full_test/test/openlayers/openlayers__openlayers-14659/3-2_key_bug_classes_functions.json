@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/VectorContext.js//VectorContext",
+            "src/ol/render/canvas/Immediate.js//CanvasImmediateRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/render/VectorContext.js//drawFeature",
+            "src/ol/render/VectorContext.js//drawCircle",
+            "src/ol/render/canvas/Immediate.js//drawFeature",
+            "src/ol/render/canvas/Immediate.js//drawGeometry"
+        ],
+        "explanation": "The `VectorContext` class in `src/ol/render/VectorContext.js` contains the `drawFeature` and `drawCircle` methods, which are directly mentioned in the bug report as having issues with extent comparison. These methods are responsible for rendering features and circles, respectively, and are likely where the incorrect extent comparison logic resides. The `CanvasImmediateRenderer` class in `src/ol/render/canvas/Immediate.js` extends `VectorContext` and implements the `drawFeature` and `drawGeometry` methods. Since the bug report mentions that replacing `drawFeature` with `setStyle`/`drawGeometry` resolves the issue, these methods are also relevant to the bug. The `drawGeometry` method is part of the workaround mentioned in the bug report, indicating its role in the rendering process that bypasses the faulty extent comparison.",
+        "bug_scenario": "The bug scenario involves the `drawFeature()` function not working correctly with geographic coordinates when Null Island is out of view. This is due to an incorrect extent comparison that stops the function from working properly. The issue can be reproduced by animating a marker on a polyline near Null Island and panning the map so that Null Island goes out of view, causing the animation to become invisible. However, if `drawFeature` is replaced by `setStyle`/`drawGeometry`, the animation remains visible. The expected behavior is that the extent comparison should be corrected or removed as it is redundant, and the comparison in `drawCircle` needs fixing."
+    }
+}

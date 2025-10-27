@@ -1,0 +1,28 @@
+diff --git a/src/js/components/DataTable/DataTable.js b/src/js/components/DataTable/DataTable.js
+index 5ea9399..7f6ae25 100644
+--- a/src/js/components/DataTable/DataTable.js
++++ b/src/js/components/DataTable/DataTable.js
+@@ -38,6 +38,7 @@ import {
+ } from './StyledDataTable';
+ import { DataTablePropTypes } from './propTypes';
+ import { PlaceholderBody } from './PlaceholderBody';
++import DataTableGroup from './DataTableGroup'; // Import the new component
+ 
+ const emptyData = [];
+ 
+@@ -67,6 +68,15 @@ const DataTable = ({
+   fill,
+   groupBy,
+   onClickRow, // removing unknown DOM attributes
++  onGroupByChange, // New prop for handling groupBy changes
++}) => {
++  return (
++    <StyledContainer>
++      <DataTableGroup groupBy={groupBy} onGroupByChange={onGroupByChange} />
++      {/* Existing DataTable rendering logic */}
++    </StyledContainer>
++  );
++}
+   onMore,
+   onSearch, // removing unknown DOM attributes
+   onSelect,

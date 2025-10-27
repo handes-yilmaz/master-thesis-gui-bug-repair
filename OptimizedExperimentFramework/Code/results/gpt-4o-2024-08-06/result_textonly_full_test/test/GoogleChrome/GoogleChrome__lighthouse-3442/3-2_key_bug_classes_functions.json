@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js//ReportRenderer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js//renderReport",
+            "lighthouse-core/report/v2/renderer/report-renderer.js//_renderReport"
+        ],
+        "explanation": "The class `ReportRenderer` in `report-renderer.js` is responsible for rendering the Lighthouse report based on JSON output. The function `renderReport` is directly involved in rendering the report into a container element, which is currently resulting in a blank page. This function clears the container's content and appends the rendered report, which suggests that if the page is blank, there might be an issue with how the report is being rendered or appended. The `_renderReport` function is a private method that constructs the report's DOM elements, including the header, navigation, and footer. If the report is blank, it is likely that this function is not correctly creating or appending these elements, leading to the observed issue. Therefore, these classes and functions are key to addressing the bug.",
+        "bug_scenario": "The bug scenario involves a report page that is supposed to display results but instead appears blank. This occurs when running the application both from the command line and as a browser extension. The screenshot provided in the bug report shows a blank page where the report should be rendered."
+    }
+}

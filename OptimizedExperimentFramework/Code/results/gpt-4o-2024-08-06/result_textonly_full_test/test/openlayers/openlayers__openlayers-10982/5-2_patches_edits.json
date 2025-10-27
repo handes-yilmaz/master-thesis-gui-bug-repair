@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorTileLayer.js": [
+            {
+                "SEARCH": [
+                    "const renderPixelRatio =",
+                    "(frameState.pixelRatio / tile.wantedResolution) * tileResolution;",
+                    "const resolution = tileGrid.getResolution(z);",
+                    "const context = tile.getContext(layer);",
+                    "",
+                    "// Increase tile size when overzooming for low pixel ratio, to avoid blurry tiles",
+                    "pixelRatio = Math.max(pixelRatio, renderPixelRatio / pixelRatio);"
+                ],
+                "REPLACE": [
+                    "    const renderPixelRatio =",
+                    "      (frameState.pixelRatio / tile.wantedResolution) * tileResolution;",
+                    "    const resolution = tileGrid.getResolution(z);",
+                    "    const context = tile.getContext(layer);",
+                    "",
+                    "    // Adjust pixel ratio to account for browser zoom level",
+                    "    pixelRatio = Math.max(pixelRatio, renderPixelRatio);"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+diff --git a/src/ol/renderer/canvas/VectorLayer.js b/src/ol/renderer/canvas/VectorLayer.js
+index 169bf87..7e5e362 100644
+--- a/src/ol/renderer/canvas/VectorLayer.js
++++ b/src/ol/renderer/canvas/VectorLayer.js
+@@ -257,7 +257,8 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+     if (!declutter) {
+       return;
+     }
+-    this.setupCompositionContext_(); //FIXME Check if this works, or if we need to defer something.
++    this.setupCompositionContext_();
++    this.compositionContext_.globalAlpha = this.opacity_; // Apply opacity to decluttered items
+     this.renderWorlds(this.replayGroup_, frameState, true);
+     this.releaseCompositionContext_();
+   }

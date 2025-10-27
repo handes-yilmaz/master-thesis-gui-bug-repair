@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "lib/rules/prefer-const.js": [
+            {
+                "SEARCH": [
+                    "const shouldBeConst = (",
+                    "writer !== null &&",
+                    "writer.from === variable.scope &&",
+                    "canBecomeVariableDeclaration(writer.identifier)",
+                    ");",
+                    "",
+                    "if (!shouldBeConst) {",
+                    "return null;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const shouldBeConst = (",
+                    "        writer !== null &&",
+                    "        writer.from === variable.scope &&",
+                    "        canBecomeVariableDeclaration(writer.identifier)",
+                    "    );",
+                    "",
+                    "    if (!shouldBeConst) {",
+                    "        return null;",
+                    "    }",
+                    "",
+                    "    // Ensure that variables initialized with undefined retain the initializer",
+                    "    if (writer.identifier.parent.init && writer.identifier.parent.init.type === \"Identifier\" && writer.identifier.parent.init.name === \"undefined\") {",
+                    "        return null;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

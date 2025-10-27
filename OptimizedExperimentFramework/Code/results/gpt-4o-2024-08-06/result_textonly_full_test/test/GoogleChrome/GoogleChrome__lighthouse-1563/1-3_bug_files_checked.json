@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/user-timings.js",
+            "lighthouse-core/formatters/user-timings.js"
+        ],
+        "explanation": "The files 'lighthouse-core/audits/user-timings.js' and 'lighthouse-core/formatters/user-timings.js' are likely related to the bug because they deal with user timings specifically. The 'user-timings.js' in audits would be responsible for auditing and potentially filtering user timing marks, making it a primary suspect for the issue. The formatter file of the same name would handle how these timings are displayed in reports, which may need adjustments to reflect any changes made to filtering logic or criteria.",
+        "bug_scenario": "The bug scenario involves filtering out irrelevant user timing marks, particularly those injected by third-party services like Google Ads. The issue is unclear regarding the criteria for filtering these timing marks, as highlighted in the provided screenshot which shows a timeline with multiple user timings injected by ads."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/user-timings.js",
+            "lighthouse-core/formatters/user-timings.js",
+            "lighthouse-core/lib/traces/tracing-processor.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/user-timings.js`: This file likely contains the logic for auditing user timing marks in the application. Since the problem involves filtering out irrelevant user timings, modifications to this file might be necessary to implement the filtering logic.\n\n2. `lighthouse-core/formatters/user-timings.js`: This file could be responsible for formatting the user timings data for reports. Changes here might be needed to ensure that only relevant user timing marks are displayed in the final report.\n\n3. `lighthouse-core/lib/traces/tracing-processor.js`: This file might be dealing with the processing of trace data, including user timings. To filter out irrelevant entries, adjustments in how traces are processed might be required to exclude or properly categorize injected measurements by third-party scripts like Google Ads.",
+        "bug_scenario": "The bug report indicates an issue with irrelevant user timing marks, specifically relating to Google Ads injecting numerous measurements. The image provided seems to contain visual evidence of these injected timing marks that are not relevant to the user's interest or the application's performance analysis."
+    }
+}

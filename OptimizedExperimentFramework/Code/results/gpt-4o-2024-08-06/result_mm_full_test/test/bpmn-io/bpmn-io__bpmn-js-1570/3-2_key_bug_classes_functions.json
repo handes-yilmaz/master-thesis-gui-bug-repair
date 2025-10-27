@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js//SubProcessPlaneBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js//SubProcessPlaneBehavior.prototype._moveChildrenToShape",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js//SubProcessPlaneBehavior.prototype._addDiagram",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js//SubProcessPlaneBehavior.prototype._removeDiagram"
+        ],
+        "explanation": "The issue is related to the behavior of subprocesses when they are wrapped in a pool. The `SubProcessPlaneBehavior` class handles the creation and removal of diagrams and planes for subprocesses. The methods `_moveChildrenToShape`, `_addDiagram`, and `_removeDiagram` are responsible for managing the positioning and visibility of elements when subprocesses are collapsed or expanded. These functions likely need adjustments to ensure the diagram remains in the current viewport during these operations.",
+        "bug_scenario": "The diagram jumps unexpectedly when wrapping a process in a pool, instead of staying in the current viewport."
+    }
+}

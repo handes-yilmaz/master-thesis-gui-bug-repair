@@ -1,0 +1,25 @@
+diff --git a/flow-report/src/util.ts b/flow-report/src/util.ts
+index d462222..63f6e5c 100644
+--- a/flow-report/src/util.ts
++++ b/flow-report/src/util.ts
+@@ -54,15 +54,13 @@ export function getScreenshot(reportResult: LH.ReportResult) {
+ export function getFilmstripFrames(
+   reportResult: LH.ReportResult
+ ): Array<{data: string}> | undefined {
+-  const filmstripAudit = reportResult.audits['screenshot-thumbnails'];
+-  if (!filmstripAudit) return undefined;
++  const fullPageScreenshot = getScreenshot(reportResult);
++  if (!fullPageScreenshot) return undefined;
+ 
+-  const frameItems =
+-    filmstripAudit.details &&
+-    filmstripAudit.details.type === 'filmstrip' &&
+-    filmstripAudit.details.items;
++  // Create a single frame item using the full-page screenshot
++  const frameItems = [{data: fullPageScreenshot}];
+ 
+-  return frameItems || undefined;
++  return frameItems;
+ }
+ 
+ export function getModeDescription(mode: LH.Result.GatherMode, strings: UIStringsType) {

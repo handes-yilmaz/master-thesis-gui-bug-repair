@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/tilegrid/TileGrid.js"
+        ],
+        "explanation": "1. **src/ol/source/GeoTIFF.js**: This file is crucial because it defines the GeoTIFF source, which is directly related to the problem of handling GeoTIFF pyramids. The current implementation needs to be modified to support a new source type that can handle a pyramid of GeoTIFFs efficiently.\n\n2. **src/ol/renderer/webgl/TileLayer.js**: This file is responsible for rendering tile layers using WebGL. The issue of WebGL context loss and performance degradation is directly related to how tiles are managed and rendered. Modifications here would involve optimizing the rendering process to handle larger pyramids without losing context.\n\n3. **src/ol/tilegrid/TileGrid.js**: This file manages the tile grid, which is essential for handling the layout and structure of tiles in a pyramid. Adjustments here would be necessary to support the new pyramid structure and ensure that tiles are requested and rendered correctly.",
+        "bug_scenario": "The bug scenario involves the use of WebGLTileLayers in a mapping application, where the current implementation does not scale well with larger pyramids, leading to WebGL context loss and poor performance. The proposed solution is to create a separate source for GeoTIFF pyramids, which would handle overlapping tiles more efficiently and maintain a single WebGL context per layer, improving performance."
+    }
+}

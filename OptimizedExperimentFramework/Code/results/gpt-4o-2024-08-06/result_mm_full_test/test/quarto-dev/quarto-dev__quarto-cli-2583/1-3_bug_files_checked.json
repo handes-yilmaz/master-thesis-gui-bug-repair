@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/format/html/format-html.ts",
+            "src/format/markdown/format-markdown.ts",
+            "src/resources/filters/common/tables.lua"
+        ],
+        "explanation": "The bug is related to how table captions are processed and rendered in Quarto. The files handling HTML and Markdown formatting, like `format-html.ts` and `format-markdown.ts`, are likely involved in processing captions. The handling script `tables.lua` might control how tables and their attributes are processed, impacting the markdown parsing for captions.",
+        "bug_scenario": "The bug is that markdown styling (e.g., italics, superscript) does not work in table captions in Quarto, whereas it works in figure captions. The provided example and screenshot show that the markdown syntax is ignored in the table caption but is correctly rendered in the figure caption."
+    },
+    "2": {
+        "bug_files": [
+            "src/command/render/pandoc-dependencies-html.ts",
+            "src/command/render/pandoc.ts",
+            "src/core/pandoc/pandoc-formats.ts",
+            "src/core/pandoc/pandoc-attr.ts",
+            "src/command/render/render.ts"
+        ],
+        "explanation": "The files identified are likely involved in rendering and processing markdown and LaTeX for HTML outputs in Quarto. The issue with styling in table captions suggests a problem in how markdown syntax is parsed or processed specifically for table captions, which is why files involved in rendering and pandoc processing are relevant. These files include HTML rendering dependencies, general rendering logic, and specific pandoc attributes and formats handling that could affect markdown style application in captions.",
+        "bug_scenario": "The bug involves the inability to style text in table captions using markdown or LaTeX syntax in Quarto. While figure captions allow for such styling, table captions do not, as demonstrated by the inability to use superscript or italics in the table caption shown in the screenshot."
+    }
+}

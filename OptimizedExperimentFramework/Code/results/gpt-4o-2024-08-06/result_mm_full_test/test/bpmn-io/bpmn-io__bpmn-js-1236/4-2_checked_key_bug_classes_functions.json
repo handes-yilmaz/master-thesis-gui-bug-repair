@@ -1,0 +1,42 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "ResizeBehavior",
+            "file_path": "lib/features/modeling/behavior/ResizeBehavior.js",
+            "function_details": [
+                {
+                    "name": "ResizeBehavior",
+                    "start_line": 19,
+                    "end_line": 42
+                }
+            ],
+            "function_code": [
+                "export default function ResizeBehavior(eventBus) {",
+                "  eventBus.on('resize.start', HIGH_PRIORITY, function(event) {",
+                "    var context = event.context,",
+                "        shape = context.shape,",
+                "        direction = context.direction,",
+                "        balanced = context.balanced;",
+                "",
+                "    if (is(shape, 'bpmn:Lane') || is(shape, 'bpmn:Participant')) {",
+                "      context.resizeConstraints = getParticipantResizeConstraints(shape, direction, balanced);",
+                "    }",
+                "",
+                "    if (is(shape, 'bpmn:Participant')) {",
+                "      context.minDimensions = PARTICIPANT_MIN_DIMENSIONS;",
+                "    }",
+                "",
+                "    if (is(shape, 'bpmn:SubProcess') && isExpanded(shape)) {",
+                "      context.minDimensions = SUB_PROCESS_MIN_DIMENSIONS;",
+                "    }",
+                "",
+                "    if (is(shape, 'bpmn:TextAnnotation')) {",
+                "      context.minDimensions = TEXT_ANNOTATION_MIN_DIMENSIONS;",
+                "    }",
+                "  });",
+                "}"
+            ]
+        }
+    }
+}

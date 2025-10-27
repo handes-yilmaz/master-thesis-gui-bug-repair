@@ -1,0 +1,28 @@
+diff --git a/src/ol/source/DataTile.js b/src/ol/source/DataTile.js
+index 3836457..177d873 100644
+--- a/src/ol/source/DataTile.js
++++ b/src/ol/source/DataTile.js
+@@ -66,6 +66,9 @@ class DataTileSource extends TileSource {
+       });
+     }
+ 
++    /** @private */
++    this.gutter_ = options.gutter !== undefined ? options.gutter : 0;
++
+     super({
+       cacheSize: 0.1, // don't cache on the source
+       attributions: options.attributions,
+diff --git a/src/ol/source/XYZ.js b/src/ol/source/XYZ.js
+index 15b11cb..07f388f 100644
+--- a/src/ol/source/XYZ.js
++++ b/src/ol/source/XYZ.js
+@@ -95,6 +95,9 @@ class XYZ extends TileImage {
+             tileSize: options.tileSize,
+           });
+ 
++    /** @private */
++    this.gutter_ = options.gutter !== undefined ? options.gutter : 0;
++
+     super({
+       attributions: options.attributions,
+       cacheSize: options.cacheSize,

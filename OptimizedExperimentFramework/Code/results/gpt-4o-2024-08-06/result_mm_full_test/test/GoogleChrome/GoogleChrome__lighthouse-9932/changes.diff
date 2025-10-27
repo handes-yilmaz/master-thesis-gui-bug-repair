@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/lib/dependency-graph/simulator/simulator.js b/lighthouse-core/lib/dependency-graph/simulator/simulator.js
+index f16dd04..296d82e 100644
+--- a/lighthouse-core/lib/dependency-graph/simulator/simulator.js
++++ b/lighthouse-core/lib/dependency-graph/simulator/simulator.js
+@@ -87,7 +87,7 @@ class Simulator {
+     /** @type {LH.Artifacts.NetworkRequest[]} */
+     const records = [];
+     graph.getRootNode().traverse(node => {
+-      if (node.type === BaseNode.TYPES.NETWORK) {
++      if (node.type === BaseNode.TYPES.NETWORK && !node.record.url.startsWith('data:')) {
+         records.push(node.record);
+       }
+     });

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/uses-optimized-images.js//UsesOptimizedImages",
+            "lighthouse-core/audits/byte-efficiency/uses-webp-images.js//UsesWebPImages"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/uses-optimized-images.js//UsesOptimizedImages.audit_",
+            "lighthouse-core/audits/byte-efficiency/uses-webp-images.js//UsesWebPImages.audit_"
+        ],
+        "explanation": "The classes and functions identified are responsible for auditing image formats and recommending optimizations. The 'UsesOptimizedImages' class and its 'audit_' function check for image formats like JPEG and BMP, but currently do not flag BMP images for conversion to next-gen formats. Similarly, 'UsesWebPImages' and its 'audit_' function are responsible for recommending WebP conversions but do not include BMP in their checks. These need to be updated to include BMP images in their audits.",
+        "bug_scenario": "The bug scenario involves Lighthouse not flagging BMP images under the 'serve images in next-gen formats' audit. The expectation is that BMP images should be flagged similarly to JPEGs and PNGs, recommending conversion to more efficient formats like WebP."
+    }
+}

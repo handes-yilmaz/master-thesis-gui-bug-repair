@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/import/BpmnTreeWalker.js//BpmnTreeWalker",
+            "lib/import/BpmnImporter.js//BpmnImporter"
+        ],
+        "bug_functions": [
+            "lib/import/BpmnTreeWalker.js//handleBoundaryEvent",
+            "lib/import/BpmnImporter.js//BpmnImporter.prototype.add"
+        ],
+        "explanation": "The issue is related to the rendering of associations on boundary events after import. The `BpmnTreeWalker` class is responsible for walking through BPMN elements and handling their import, including boundary events, as seen in the `handleBoundaryEvent` function. This function is directly related to the bug as it deals with the import logic for boundary events, which are not being rendered correctly. Similarly, the `BpmnImporter` class, particularly the `add` function, is responsible for adding BPMN elements to the canvas, including boundary events and their associations. If associations are not rendered, it suggests a problem in how these elements are being added or processed during import, making these classes and functions key areas to investigate for the bug fix.",
+        "bug_scenario": "The bug scenario involves creating associations on BPMN Boundary Events that can be modeled but are not rendered upon import. The images show a boundary event associated with a data object, which disappears after reloading the diagram."
+    }
+}

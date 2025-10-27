@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/driver.js//Driver",
+            "lighthouse-core/gather/connections/cri.js//CriConnection"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/driver.js//sendCommand",
+            "lighthouse-core/gather/driver.js//_innerSendCommand",
+            "lighthouse-core/gather/connections/cri.js//connect",
+            "lighthouse-core/gather/connections/cri.js//_connectToSocket"
+        ],
+        "explanation": "The `Driver` class in `lighthouse-core/gather/driver.js` is responsible for interacting with the browser using the DevTools protocol, which includes sending commands and receiving events. The `sendCommand` and `_innerSendCommand` functions are crucial as they handle the communication with the browser, which is necessary for target discovery and handling OOPIFs. The `CriConnection` class in `lighthouse-core/gather/connections/cri.js` manages the WebSocket connection to the browser, which is essential for sending and receiving messages related to different targets, including OOPIFs. The `connect` and `_connectToSocket` functions are directly involved in establishing and managing this connection, making them relevant to the issue of handling OOPIFs.",
+        "bug_scenario": "The bug scenario involves Lighthouse not handling Out-of-Process iframes (OOPIFs) correctly. The user observed that Chrome DevTools uses `Target.sendMessageToTarget` to send `Network.enable` to a discovered target and receives data in `Target.receivedMessageFromTarget` event, but Lighthouse does not seem to perform similar target discovery for iframes, potentially limiting its analysis to the main frame only."
+    }
+}

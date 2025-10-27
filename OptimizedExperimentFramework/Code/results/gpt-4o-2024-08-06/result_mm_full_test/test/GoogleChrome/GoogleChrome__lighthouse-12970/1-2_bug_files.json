@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js",
+            "lighthouse-core/computed/main-resource.js",
+            "lighthouse-core/gather/gatherers/seo/robots-txt.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/byte-efficiency/render-blocking-resources.js`: This file likely contains the logic for identifying and suggesting the removal of render-blocking resources, which is the core of the reported issue.\n\n2. `lighthouse-core/computed/main-resource.js`: This file may be involved in the computation of resources and their classification as render-blocking, including local resources.\n\n3. `lighthouse-core/gather/gatherers/seo/robots-txt.js`: Although less directly related, this file might interact with resource loading rules and could be checked to ensure local resources are handled appropriately.",
+        "bug_scenario": "The bug report describes an issue where Lighthouse incorrectly suggests removing local resources (file:///) as they are considered render-blocking. These resources are blocked from loading, making the suggestion invalid."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js",
+            "lighthouse-core/computed/main-resource.js"
+        ],
+        "explanation": "The bug seems to be related to how Lighthouse identifies and categorizes resources as render blocking. The file 'render-blocking-resources.js' is likely involved because it deals with the audit of render-blocking resources. The file 'main-resource.js' in the computed directory is also relevant as it computes main resource details, which could be influencing the incorrect identification of local resources.",
+        "bug_scenario": "In the bug scenario, Lighthouse is incorrectly identifying local resources (file:///) as render blocking, which should not be the case. The image shows the audit suggestion to eliminate render-blocking resources, with a local file URL highlighted as causing a delay."
+    }
+}

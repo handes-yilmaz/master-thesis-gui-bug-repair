@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer",
+            "src/ol/source/TileWMS.js//TileWMS"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//parseStyle",
+            "src/ol/layer/WebGLTile.js//createRenderer",
+            "src/ol/source/TileWMS.js//getRequestUrl_",
+            "src/ol/source/TileWMS.js//tileUrlFunction",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "The bug is related to the handling of image gutters in the WebGLTile layer renderer. The class `WebGLTileLayer` in `src/ol/layer/WebGLTile.js` is responsible for managing the style and rendering of WebGL tile layers, which includes creating the renderer that might need to handle gutter clipping. The `parseStyle` and `createRenderer` functions are involved in setting up the rendering pipeline, which could be where the gutter handling needs to be adjusted.\n\nThe `WebGLTileLayerRenderer` class in `src/ol/renderer/webgl/TileLayer.js` is directly responsible for rendering the tile layers using WebGL. The `renderFrame` function is crucial as it handles the actual rendering process where the gutter issue manifests.\n\nThe `TileWMS` class in `src/ol/source/TileWMS.js` is relevant because it manages the WMS tile source, including the gutter parameter. The `getRequestUrl_` and `tileUrlFunction` functions are responsible for constructing the URLs for tile requests, which include handling the gutter size. Adjustments in these functions might be necessary to ensure the gutter is correctly clipped before rendering.",
+        "bug_scenario": "The bug scenario involves the WebGLTile layer renderer not clipping the image gutter before creating textures, which results in misplacement and duplication of images. The expected behavior is to clip the gutter, adjusted for pixel ratio if necessary, to produce output similar to when used with ol/layer/Tile."
+    }
+}

@@ -1,0 +1,16 @@
+diff --git a/rendering/test.js b/rendering/test.js
+index 9941a92..d110298 100755
+--- a/rendering/test.js
++++ b/rendering/test.js
+@@ -287,9 +287,8 @@ async function getOutdated(entries, options) {
+ }
+ 
+ async function main(entries, options) {
+-  if (!options.force && !options.match) {
+-    entries = await getOutdated(entries, options);
+-  }
++  // Unify rendering tests by ensuring all entries are processed consistently
++  entries = await getOutdated(entries, options);
+   if (options.match) {
+     const exp = new RegExp(options.match);
+     entries = entries.filter(entry => exp.test(entry));

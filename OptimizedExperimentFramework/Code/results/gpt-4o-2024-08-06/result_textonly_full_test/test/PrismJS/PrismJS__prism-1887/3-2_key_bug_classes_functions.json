@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [
+            "components/prism-cpp.js//Prism.languages.cpp",
+            "components/prism-c.js//Prism.languages.c"
+        ],
+        "explanation": "The bug is related to the incorrect handling of C++ literals with single quotes in the syntax highlighting. The function `Prism.languages.cpp` in `components/prism-cpp.js` is directly responsible for defining the syntax highlighting rules for C++. The regex pattern for 'number' in this function needs to be modified to correctly handle single quotes in literals. Similarly, the `Prism.languages.c` function in `components/prism-c.js` contains a similar regex pattern for 'number' that serves as a base for C++ highlighting. The issue arises because the regex pattern does not account for single quotes, leading to incorrect parsing of literals. Therefore, these functions are key to addressing the bug.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for C++ floating point and integer literals that use single quotes as separators. The current highlighting does not recognize these literals correctly, leading to parts of the numbers being interpreted as strings instead of numbers. This is evident in the provided screenshots where the top or left side shows the incorrect highlighting and the bottom or right side shows the correct highlighting."
+    }
+}

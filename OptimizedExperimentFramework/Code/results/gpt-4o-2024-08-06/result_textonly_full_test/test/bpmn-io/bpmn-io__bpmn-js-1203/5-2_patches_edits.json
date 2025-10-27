@@ -1,0 +1,44 @@
+{
+    "1/1": {
+        "lib/features/copy-paste/BpmnCopyPaste.js": [
+            {
+                "SEARCH": [
+                    "function copyProperties(source, target, properties) {",
+                    "if (!isArray(properties)) {",
+                    "properties = [ properties ];",
+                    "}",
+                    "",
+                    "forEach(properties, function(property) {",
+                    "if (!isUndefined(source[property])) {",
+                    "target[property] = source[property];",
+                    "}",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function copyProperties(source, target, properties) {",
+                    "  if (!isArray(properties)) {",
+                    "    properties = [ properties ];",
+                    "  }",
+                    "",
+                    "  forEach(properties, function(property) {",
+                    "    if (!isUndefined(source[property])) {",
+                    "      target[property] = source[property];",
+                    "    }",
+                    "  });",
+                    "",
+                    "  // Ensure properties specific to Intermediate Events are retained when pasted as Boundary Events",
+                    "  if (source.$type === 'bpmn:IntermediateThrowEvent' && target.$type === 'bpmn:BoundaryEvent') {",
+                    "    const intermediateEventProperties = ['asyncBefore', 'asyncAfter', 'jobPriority'];",
+                    "    forEach(intermediateEventProperties, function(property) {",
+                    "      if (!isUndefined(source[property])) {",
+                    "        target[property] = source[property];",
+                    "      }",
+                    "    });",
+                    "  }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//ToggleElementCollapseBehaviour"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//expandedBounds",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//collapsedBounds",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//postExecuted"
+        ],
+        "explanation": "The `ToggleElementCollapseBehaviour` class is directly responsible for handling the behavior of elements when they are toggled between expanded and collapsed states. The functions `expandedBounds` and `collapsedBounds` are crucial as they calculate the new dimensions of the subprocess when it is expanded or collapsed. The `postExecuted` function is responsible for applying these new dimensions to the subprocess. Since the bug is related to unexpected dimension changes when collapsing a subprocess, these functions are likely where the issue lies, as they directly manipulate the size and positioning of the subprocess elements.",
+        "bug_scenario": "The bug scenario involves a subprocess in a BPMN diagram that, when collapsed and turned into an Ad Hoc Sub Process, exhibits unexpected changes in its dimensions. The expected behavior is that the dimensions should remain consistent, but they do not, leading to a visual discrepancy in the diagram."
+    }
+}

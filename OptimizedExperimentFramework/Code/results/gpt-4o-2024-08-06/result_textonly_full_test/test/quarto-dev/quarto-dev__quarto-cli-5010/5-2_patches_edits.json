@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "src/format/html/format-html.ts": [
+            {
+                "SEARCH": [
+                    "// If there is a site URL, we can use that as the default filter",
+                    "const siteMetadata = format.metadata[kWebsite] as Metadata;",
+                    "if (!options.linkExternalFilter && siteMetadata) {",
+                    "const siteUrl = siteMetadata[kSiteUrl] as string;",
+                    "if (siteUrl) {",
+                    "options.linkExternalFilter = siteUrl.replaceAll(\".\", \"\\\\\\\\.\").replaceAll(",
+                    "\"/\",",
+                    "\"\\\\\\\\/\",",
+                    ");",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  // If there is a site URL, we can use that as the default filter",
+                    "  const siteMetadata = format.metadata[kWebsite] as Metadata;",
+                    "  if (!options.linkExternalFilter && siteMetadata) {",
+                    "    const siteUrl = siteMetadata[kSiteUrl] as string;",
+                    "    if (siteUrl) {",
+                    "      options.linkExternalFilter = siteUrl.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&').replaceAll(",
+                    "        \"/\",",
+                    "        \"\\\\\\\\/\",",
+                    "      );",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

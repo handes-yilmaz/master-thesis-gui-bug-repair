@@ -1,0 +1,13 @@
+diff --git a/src/language-js/print/jsx.js b/src/language-js/print/jsx.js
+index bd21710..0a307fc 100644
+--- a/src/language-js/print/jsx.js
++++ b/src/language-js/print/jsx.js
+@@ -120,7 +120,7 @@ function printJsxElementInternal(path, options, print) {
+ 
+   // Handle full-width space (U+3000) consistently
+   const fullWidthSpace = "\u3000";
+-  const jsxFullWidthWhitespace = ifBreak(concat([`{"${fullWidthSpace}"}`, softline]), fullWidthSpace);
++  const jsxFullWidthWhitespace = ifBreak(concat([`{"${fullWidthSpace}"}`, softline]), `{"${fullWidthSpace}"}`);
+ 
+   const isFacebookTranslationTag =
+     n.openingElement &&

@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/draw/BpmnRenderUtil.js",
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/behavior/ResizeLaneBehavior.js",
+            "lib/features/modeling/util/LaneUtil.js"
+        ],
+        "explanation": "The bug involves the rendering and behavior of pools and lanes when connecting message flows. Files in the 'draw' directory like 'BpmnRenderer.js' and 'BpmnRenderUtil.js' likely control the visual aspects of the pools and connectors. The 'DeleteLaneBehavior.js' and 'ResizeLaneBehavior.js' in 'behavior' are relevant because they handle changes related to lane manipulation, which is directly related to the bug. 'LaneUtil.js' is a utility for lane operations, which could also affect how connections are managed after lane deletion.",
+        "bug_scenario": "The bug involves connecting message flows to pool boundaries in a BPMN modeler. When a pool previously had multiple lanes but now has only one, connecting a message flow becomes possible only at the pool's header, not within the single lane. The steps involve creating pools, adding and removing lanes, and attempting to connect them."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/behavior/ResizeLaneBehavior.js",
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js",
+            "lib/features/modeling/util/LaneUtil.js"
+        ],
+        "explanation": "These files are related to lane and pool behavior in the modeling aspect of the application. 'DeleteLaneBehavior.js' and 'ResizeLaneBehavior.js' likely handle the addition and removal of lanes, which is part of the bug reproduction steps. 'CreateParticipantBehavior.js' is relevant to creating and connecting pools. 'ResizeLaneHandler.js' and 'LaneUtil.js' are utility and handler files that manage lane resizing, which may affect how connections are made post-resize or removal.",
+        "bug_scenario": "The bug occurs when trying to connect a message flow to the boundary of a pool that previously had multiple lanes. The connection is only successful when dropped at the pool's header, not inside the single lane."
+    }
+}

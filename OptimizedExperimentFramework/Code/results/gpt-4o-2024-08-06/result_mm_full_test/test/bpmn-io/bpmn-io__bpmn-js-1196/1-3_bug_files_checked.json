@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js"
+        ],
+        "explanation": "The files related to the bug likely include those handling the copy-paste functionality and modeling behaviors, specifically:\n\n1. **BpmnCopyPaste.js**: This file is directly related to the copy-paste feature of the BPMN elements, which is the core issue as the Boundary Event is not correctly copied with its attached task.\n\n2. **BoundaryEventBehavior.js**: This file likely governs the behavior of boundary events, including their attachment logic.\n\n3. **CreateBoundaryEventBehavior.js**: This file might handle the creation logic for boundary events, ensuring they attach correctly to tasks when created or copied.",
+        "bug_scenario": "The bug involves copying a Boundary Event along with its attached object (a task) in a BPMN diagram. When copied, the Boundary Event is not attached to the new task as expected. This scenario is illustrated in the provided GIF, where the Boundary Event remains detached from the task after copying."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js"
+        ],
+        "explanation": "1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file likely handles the logic for copying and pasting elements. It would need to ensure that when a task is copied, any attached Boundary Events are also copied and correctly reattached.\n\n2. **lib/features/modeling/behavior/CreateBoundaryEventBehavior.js**: This file may contain logic related to the creation of Boundary Events, including their attachment to tasks. It needs to ensure that copied Boundary Events attach properly to copied tasks.\n\n3. **lib/features/modeling/behavior/AttachEventBehavior.js**: This file likely manages the behavior of attaching events to objects. It may require updates to handle the attachment of copied Boundary Events to their respective tasks.",
+        "bug_scenario": "The bug occurs when a Boundary Event is copied along with the task it is attached to. The copied Boundary Event is not automatically attached to the copied task, which is the expected behavior."
+    }
+}

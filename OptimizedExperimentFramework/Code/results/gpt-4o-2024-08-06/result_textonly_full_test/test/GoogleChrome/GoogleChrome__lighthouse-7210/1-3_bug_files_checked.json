@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js",
+            "lighthouse-core/audits/byte-efficiency/uses-text-compression.js",
+            "lighthouse-core/gather/gatherers/css-usage.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/byte-efficiency/unused-css-rules.js**: This file is directly related to the 'Defer unused CSS' audit that reports potential savings in CSS sizes. It would likely contain logic that calculates the size of unused CSS and potential savings incorrectly.\n\n2. **lighthouse-core/audits/byte-efficiency/uses-text-compression.js**: This file handles audits related to text compression, including GZIP. It could be responsible for the miscalculation of the gzipped size of CSS resources.\n\n3. **lighthouse-core/gather/gatherers/css-usage.js**: This gatherer likely collects data about CSS usage on the page, which is then analyzed in audits to determine efficiency. Incorrect or incomplete data gathering could lead to the incorrect reporting seen in the bug scenario.",
+        "bug_scenario": "The bug scenario involves incorrect reporting of GZIP compression sizes for CSS in the Lighthouse audit when using Google Pagespeed. The tool erroneously reports a size of 80kb with potential savings of 70kb, whereas the total configuration fetched is only 20kb gzipped. This points to a miscalculation or misreporting in the CSS size compression analysis."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js",
+            "lighthouse-core/gather/gatherers/css-usage.js",
+            "lighthouse-core/lib/minification-estimator.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/byte-efficiency/unused-css-rules.js`: This file is likely responsible for auditing and reporting on unused CSS rules, which directly relates to the issue described in the bug report about CSS size and savings.\n\n2. `lighthouse-core/gather/gatherers/css-usage.js`: This file gathers data on CSS usage during a page load, which is essential for determining whether CSS is unused or misreported in size, as described in the bug report.\n\n3. `lighthouse-core/lib/minification-estimator.js`: This file likely contains logic for estimating resource sizes and potential savings from minification and compression, which would be directly related to the GZIP compression ratio issue described in the bug report.",
+        "bug_scenario": "The issue described in the bug report is about an incorrect calculation of the GZIP compression ratio for CSS when analyzed by Google Pagespeed via Lighthouse. It reports a much larger size for CSS resources than what is actually fetched and utilized, leading to misleading potential savings under 'Defer unused CSS'. The bug scenario image shows a Pagespeed result indicating a large size for CSS and a significant potential saving, which does not reflect the actual data."
+    }
+}

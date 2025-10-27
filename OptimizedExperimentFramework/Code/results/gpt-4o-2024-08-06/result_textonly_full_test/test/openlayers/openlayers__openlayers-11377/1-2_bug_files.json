@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_files": [
+            "src/pointer/EventType.js",
+            "src/interaction/Pointer.js",
+            "src/events/Event.js",
+            "src/events/EventType.js",
+            "src/MapBrowserEvent.js",
+            "src/MapBrowserEventHandler.js"
+        ],
+        "explanation": "The issue is related to the pointermove event's performance, which likely involves how pointer events are handled and processed in the codebase. The files identified are related to pointer event handling and map interactions:\n\n1. **src/pointer/EventType.js**: This file likely defines event types related to pointer actions, which includes pointermove.\n\n2. **src/interaction/Pointer.js**: This file handles pointer interactions, which would be directly related to the performance of pointermove events.\n\n3. **src/events/Event.js** & **src/events/EventType.js**: These files are responsible for the core event handling mechanism and event types, which are fundamental to how pointer events are processed.\n\n4. **src/MapBrowserEvent.js** & **src/MapBrowserEventHandler.js**: These files handle browser events related to the map, including pointer events. They are crucial for translating browser-level events into application-level interactions, potentially impacting performance.\n\nInvestigating and optimizing the handling of pointermove events in these files could lead to improved performance in version 6.4.0.",
+        "bug_scenario": "The bug report describes a performance issue with the pointermove event in version 6.4.0 compared to 6.3.1. The provided GIFs show the cursor movement being much more responsive in version 6.3.1 than in 6.4.0, where it appears sluggish. This slowdown affects operations like zoom and panning, which are critical for applications relying on smooth user interactions."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/events/Event.js",
+            "src/ol/events/EventType.js",
+            "src/ol/interaction/DragPan.js",
+            "src/ol/interaction/Pointer.js",
+            "src/ol/interaction/MouseWheelZoom.js"
+        ],
+        "explanation": "The bug is related to the performance of pointer events, which are likely influenced by how events are managed and processed. The files within the 'src/ol/events' directory, such as Event.js and EventType.js, are responsible for handling events, making them relevant for any performance issues related to pointermove. Additionally, files under 'src/ol/interaction' like DragPan.js, Pointer.js, and MouseWheelZoom.js involve interactions that would be directly affected by pointer event performance, as they implement the logic for panning and zooming based on pointer movements. These interactions are where inefficiencies could cause the performance degradation observed.",
+        "bug_scenario": "The bug report describes a performance regression in the pointermove event handling between versions 6.3.1 and 6.4.0. The issue is specifically observed with 1000 features using non-cached styles, where the performance in version 6.4.0 is significantly slower. The provided example shows that operations like zooming and panning are affected, and a noticeable delay is observed in the cursor change speed. This is visible in the attached GIFs, where the cursor movement in version 6.3.1 appears smooth and fast compared to the sluggish response in version 6.4.0."
+    }
+}

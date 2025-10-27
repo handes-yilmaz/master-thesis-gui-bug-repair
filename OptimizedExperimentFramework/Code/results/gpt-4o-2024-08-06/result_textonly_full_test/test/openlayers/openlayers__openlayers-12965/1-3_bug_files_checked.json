@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/ContextEventType.js",
+            "src/ol/webgl/Helper.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "The files identified are related to the handling and rendering of WebGL TileLayers in the OpenLayers library.\\n1. **src/ol/layer/WebGLTile.js**: This file likely defines the WebGL TileLayer class, which is directly related to the issue of managing WebGL contexts, as each instance currently requires its own context.\\n2. **src/ol/renderer/webgl/TileLayer.js**: This file is responsible for rendering TileLayers using WebGL. Changes here might be necessary to implement context sharing logic or optimize context usage across multiple TileLayers.\\n3. **src/ol/webgl/ContextEventType.js**: This file could define events related to context management, which might need modifications to support shared contexts.\\n4. **src/ol/webgl/Helper.js**: This file likely contains utility functions for working with WebGL contexts and could contain logic that needs to be adjusted for context sharing.\\n5. **src/ol/webgl/TileTexture.js**: This file might handle the textures for tiles that use WebGL and could require changes to efficiently manage resources when sharing contexts.",
+        "bug_scenario": "The bug scenario involves the limitation of WebGL contexts in browsers when using multiple WebGL TileLayers in an application. The current implementation requires a separate WebGL context for each TileLayer, and browsers typically have a limit of 16 contexts. This limitation can lead to the application misbehaving or breaking when the limit is reached. The proposal is to share WebGL contexts among TileLayers to reduce the number of contexts required."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/ContextEventType.js",
+            "src/ol/webgl/Helper.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "The identified files are likely related to the bug because they are involved in the WebGL rendering process and the management of WebGL contexts:\n\n1. **src/ol/layer/WebGLTile.js**: This file is likely where individual WebGL TileLayers are defined and managed. Modifying how WebGL contexts are assigned or shared among tile layers would require changes here.\n\n2. **src/ol/renderer/webgl/TileLayer.js**: This file probably handles the rendering of tile layers using WebGL. This includes interaction with WebGL contexts, so changes to context management would be relevant here.\n\n3. **src/ol/webgl/ContextEventType.js**: This file might define events related to the WebGL context, which would be crucial if the way contexts are created or shared is changed.\n\n4. **src/ol/webgl/Helper.js**: This file likely contains helper functions for managing WebGL contexts and operations, and would need modifications to support shared contexts across multiple layers.\n\n5. **src/ol/webgl/TileTexture.js**: This file would be involved in managing textures for tiles, which is directly related to WebGL context usage. Any changes to how contexts are shared would need to consider how textures are managed across shared contexts.\n\nThese files are central to implementing the proposed solution of sharing WebGL contexts between TileLayers, addressing the issue of the browser's WebGL context limit.",
+        "bug_scenario": "The bug report highlights an issue with the current implementation of WebGL contexts in OpenLayers. Each WebGL TileLayer is using a separate WebGL context, which can easily hit the browser's limit (typically 16 contexts). This limitation causes problems when multiple raster images are rendered using WebGL TileLayers. The proposed solution is to allow WebGL TileLayers within one OpenLayers map to share a single WebGL context, thus reducing the number of contexts required and decreasing the likelihood of hitting the browser's context limit."
+    }
+}

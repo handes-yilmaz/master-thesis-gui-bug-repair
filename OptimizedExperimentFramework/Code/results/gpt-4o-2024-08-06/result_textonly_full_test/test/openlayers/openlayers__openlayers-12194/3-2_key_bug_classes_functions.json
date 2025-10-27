@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/canvas/Immediate.js//CanvasImmediateRenderer",
+            "src/ol/style/Stroke.js//Stroke"
+        ],
+        "bug_functions": [
+            "src/ol/render.js//toContext"
+        ],
+        "explanation": "The `CanvasImmediateRenderer` class in `src/ol/render/canvas/Immediate.js` is responsible for rendering geometries directly to a canvas context. The issue with line dashes not scaling correctly is likely related to how this class handles the rendering process, particularly with respect to the pixel ratio.\n\nThe `Stroke` class in `src/ol/style/Stroke.js` manages the stroke style for vector features, including line dashes. The problem may involve how the line dash pattern is applied or scaled in relation to the pixel ratio.\n\nThe `toContext` function in `src/ol/render.js` binds a Canvas Immediate API to a canvas context and sets the pixel ratio. This function is directly involved in setting up the rendering context where the issue occurs, making it a key function to investigate for potential fixes.",
+        "bug_scenario": "The bug scenario involves rendering dashed lines on a canvas using the OpenLayers library. When the pixel ratio is set for high-resolution displays, the line dashes are not scaled correctly in the Canvas Immediate rendering context, leading to blurred or continuous lines instead of dashed lines. This issue is particularly noticeable on devices with a pixel ratio greater than 1.0."
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/renderer/details-renderer.js",
+            "lighthouse-core/report/v2/renderer/report-renderer.js",
+            "lighthouse-core/report/v2/report-generator.js"
+        ],
+        "explanation": "The files related to rendering the report and generating the report details are likely involved in this bug. 'details-renderer.js' and 'report-renderer.js' are responsible for displaying the report details, including the dropdowns for passed items. 'report-generator.js' is responsible for generating the report itself, and may include logic for determining when to show or hide specific elements based on the results.",
+        "bug_scenario": "The bug report indicates that when there are 0 passing audits, the details dropdown should not be shown. However, the screenshot shows that the dropdown is still visible even though there are 0 passed items."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/audit.js",
+            "lighthouse-core/report/v2/renderer/report-renderer.js"
+        ],
+        "explanation": "The issue is related to the audit results display logic. The `audit.js` file in `lighthouse-core/audits/` is likely responsible for processing the audit results, determining which audits have passed or failed. The `report-renderer.js` file in `lighthouse-core/report/v2/renderer/` handles the rendering of these results in the report view, including the dropdown for passed items. These files would need to be edited to ensure the dropdown is not shown when there are 0 passing audits.",
+        "bug_scenario": "The bug reported is that when there are 0 passing audits, the details dropdown should not be shown. The screenshot shows a list of failed audits with a dropdown labeled 'View 0 passed items', which is misleading since there are no passing items to view."
+    }
+}

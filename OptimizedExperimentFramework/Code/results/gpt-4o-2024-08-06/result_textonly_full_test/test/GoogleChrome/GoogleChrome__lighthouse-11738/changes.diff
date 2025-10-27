@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/computed/load-simulator.js b/lighthouse-core/computed/load-simulator.js
+index af34f9d..318ff9f 100644
+--- a/lighthouse-core/computed/load-simulator.js
++++ b/lighthouse-core/computed/load-simulator.js
+@@ -60,6 +60,8 @@ class LoadSimulator {
+           options.throughput = throttling.throughputKbps * 1024;
+           options.cpuSlowdownMultiplier = throttling.cpuSlowdownMultiplier;
+         }
++        // Add a delay to ensure enough time for CLS detection
++        options.layoutTaskMultiplier = options.layoutTaskMultiplier || 1.5;
+         break;
+       default:
+         // intentionally fallback to simulator defaults

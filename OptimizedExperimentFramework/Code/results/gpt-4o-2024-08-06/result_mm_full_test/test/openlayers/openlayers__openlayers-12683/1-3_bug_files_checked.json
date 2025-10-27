@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Icon.js",
+            "src/ol/style/IconImage.js",
+            "src/ol/style/Style.js"
+        ],
+        "explanation": "The files in the 'src/ol/style/' directory are likely responsible for handling icon styles, including offsets, colors, and rendering. 'Icon.js' and 'IconImage.js' are directly related to the functionality of icons, including their offsets and images. 'Style.js' might be involved in applying styles to the vector source, which could include handling pixel ratios and color changes.",
+        "bug_scenario": "The bug occurs when using an icon style with a custom color on a display with a pixel ratio greater than 1. In such cases, the offset of the icon is incorrectly calculated, causing the icon sprite to render inaccurately. The images illustrate that with a pixel ratio of 2, the icon is not positioned correctly compared to when the ratio is 1 or when the custom color is removed."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/style/Icon.js",
+            "src/ol/style/IconImage.js",
+            "src/ol/style/IconImageCache.js"
+        ],
+        "explanation": "The files related to the styling of icons, specifically `Icon.js`, `IconImage.js`, and `IconImageCache.js`, are likely involved in this bug. These files handle the rendering and caching of icon images, and the issue seems to be related to how offsets and colors are applied to icons when the display's pixel ratio changes. Adjustments in these files would be necessary to ensure the icon offset remains consistent regardless of pixel ratio and color settings.",
+        "bug_scenario": "The bug report describes an issue with icon styling in OpenLayers when the screen pixel ratio is not equal to 1. Specifically, the icon's offset is incorrect when a custom color is applied to the icon style and the screen's pixel ratio is greater than 1. The expected behavior is that the offset should remain consistent regardless of pixel ratio or color customization. The provided images illustrate the discrepancy: with a pixel ratio of 1, the icon appears correctly, but with a pixel ratio of 2, the icon's offset is incorrect. When the custom color is removed, the icon displays correctly even with a pixel ratio of 2."
+    }
+}

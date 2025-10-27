@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/audits/metrics/first-contentful-paint.js",
+            "lighthouse-core/computed/metrics/first-contentful-paint.js"
+        ],
+        "explanation": "1. **lighthouse-core/gather/driver.js**: This file is responsible for managing the connection and communication with the browser. It includes methods for handling network status and lifecycle events, which are crucial for detecting and waiting for the First Contentful Paint (FCP) event.\n\n2. **lighthouse-core/gather/gather-runner.js**: This file manages the loading of pages and the execution of gatherers. It includes logic for handling page load errors, such as NO_FCP, and is responsible for setting up and disposing of the driver, which is critical in this context.\n\n3. **lighthouse-core/audits/metrics/first-contentful-paint.js**: This file defines the audit for the First Contentful Paint metric. It is directly related to the NO_FCP error, as it attempts to measure the FCP and reports errors if it cannot.\n\n4. **lighthouse-core/computed/metrics/first-contentful-paint.js**: This file computes the FCP metric. It is involved in the calculation and reporting of the FCP, and any issues here could lead to the NO_FCP error being reported.",
+        "bug_scenario": "The bug scenario involves running Lighthouse (LH) on a URL, such as https://www.google.com/, and encountering a 'NO_FCP' error when the tab is in the background. This error prevents the measurement of performance metrics, including First Contentful Paint (FCP), Speed Index, and others. The issue occurs regardless of whether the server is remote or local, and persists even with a clean Chrome profile. The CLI version of LH works fine, but the extension version does not."
+    }
+}

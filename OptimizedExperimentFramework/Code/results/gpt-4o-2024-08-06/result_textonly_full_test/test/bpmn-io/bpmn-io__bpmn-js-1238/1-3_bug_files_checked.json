@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior.js",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/BpmnUpdater.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior.js**: This file is likely responsible for the behavior of updating flow node references, which should include updating the parent association when a source or target is moved.\n\n2. **lib/features/modeling/cmd/UpdateSemanticParentHandler.js**: This command handler might be responsible for handling updates to the semantic parent of nodes, which should include updating associations when nodes change parents.\n\n3. **lib/features/modeling/BpmnUpdater.js**: This file probably includes logic to update BPMN elements in response to model changes, such as re-parenting elements. It should handle updating associations as part of this process.\n\nThese files are related to the bug because they are involved in managing the relationships and parent-child associations of BPMN elements, which is the root cause of the described bug.",
+        "bug_scenario": "The bug scenario describes a situation where the parent of an association does not update when its source or target is moved to a new parent, causing the association to be deleted when the original parent (subprocess) is deleted. This is evident from the gif image provided, which likely shows the process of moving the source/target and the resulting deletion of the association upon deleting the subprocess."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior.js",
+            "lib/features/modeling/BpmnUpdater.js"
+        ],
+        "explanation": "The files are identified as related to the bug based on the following reasoning:\n\n1. **lib/features/modeling/cmd/UpdateSemanticParentHandler.js**: This file likely contains functionality related to updating the semantic parent of elements in the BPMN model. Since the bug involves updating the association's parent when moving elements, this file is directly related to the problem.\n\n2. **lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior.js**: This file is likely responsible for managing the references of flow nodes, including associations, within the BPMN model. The bug involves the incorrect handling of these references when elements are moved, making this file relevant.\n\n3. **lib/features/modeling/BpmnUpdater.js**: This file typically manages updates to the BPMN model elements. Since the bug involves updating the parent relationship of associations, changes might be needed here to ensure associations are correctly updated when their source or target nodes are moved.\n\nThese files are likely where the logic that handles updating associations and their parent relationships resides, which is crucial for fixing the bug.",
+        "bug_scenario": "The bug scenario involves an issue where moving the source and target of an association out of a subprocess does not update the association's parent correctly. As a result, when the subprocess is deleted, the association is also deleted, even though it should not be, since its source and target have been moved outside the subprocess."
+    }
+}

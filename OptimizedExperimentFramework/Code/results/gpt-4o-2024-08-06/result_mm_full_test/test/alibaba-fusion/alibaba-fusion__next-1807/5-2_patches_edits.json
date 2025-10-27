@@ -1,0 +1,63 @@
+{
+    "1/1": {
+        "src/menu/view/item.jsx": [
+            {
+                "SEARCH": [
+                    "...",
+                    "render() {",
+                    "const { children, ...otherProps } = this.props;",
+                    "return (",
+                    "<li {...otherProps}>",
+                    "{children}",
+                    "</li>",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "...",
+                    "render() {",
+                    "    const { children, ...otherProps } = this.props;",
+                    "    const isString = typeof children === 'string';",
+                    "    const shouldAddTitle = isString && children.length > 10; // Example condition for truncation",
+                    "    return (",
+                    "        <li {...otherProps} title={shouldAddTitle ? children : undefined}>",
+                    "            {children}",
+                    "        </li>",
+                    "    );",
+                    "}"
+                ]
+            }
+        ],
+        "src/menu/view/menu.jsx": [
+            {
+                "SEARCH": [
+                    "...",
+                    "class Menu extends Component {",
+                    "static isNextMenu = true;",
+                    "",
+                    "static propTypes = {",
+                    "...ConfigProvider.propTypes,",
+                    "prefix: PropTypes.string,",
+                    "pure: PropTypes.bool,",
+                    "rtl: PropTypes.bool,",
+                    "className: PropTypes.string,",
+                    "..."
+                ],
+                "REPLACE": [
+                    "...",
+                    "class Menu extends Component {",
+                    "    static isNextMenu = true;",
+                    "",
+                    "    static propTypes = {",
+                    "        ...ConfigProvider.propTypes,",
+                    "        prefix: PropTypes.string,",
+                    "        pure: PropTypes.bool,",
+                    "        rtl: PropTypes.bool,",
+                    "        className: PropTypes.string,",
+                    "        showTitle: PropTypes.bool, // Add new prop",
+                    "        ..."
+                ]
+            }
+        ]
+    }
+}

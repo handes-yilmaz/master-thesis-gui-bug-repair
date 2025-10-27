@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DetachEventBehavior.js//DetachEventBehavior",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//BoundaryEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DetachEventBehavior.js//preExecute",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//postExecute"
+        ],
+        "explanation": "The `DetachEventBehavior` class in `DetachEventBehavior.js` is directly responsible for handling the conversion of Boundary Events to Intermediate Events when they are detached from their host. The `preExecute` function within this class is specifically designed to replace a Boundary Event with an Intermediate Event when it is moved without a host. This is the core functionality that is failing, as described in the bug report.\n\nThe `BoundaryEventBehavior` class in `BoundaryEventBehavior.js` is responsible for managing the behavior of Boundary Events in various scenarios, such as when connections are created or reconnected. The `postExecute` functions in this class handle the removal of Boundary Events under certain conditions, which might be related to the issue of not properly detaching or converting Boundary Events when moved. Both classes are integral to the handling and transformation of Boundary Events, making them key areas to investigate and modify to resolve the bug.",
+        "bug_scenario": "The bug scenario involves a situation where Boundary Events in a BPMN diagram are not being converted to Intermediate Events when they are moved to the canvas in a batch operation. This is demonstrated in the provided screen recording, where multiple Boundary Events are selected and moved, but they do not change as expected."
+    }
+}

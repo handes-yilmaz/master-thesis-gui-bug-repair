@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-html/embed/angular-interpolation.js",
+            "src/language-html/printer-html.js",
+            "src/plugins/angular.js"
+        ],
+        "explanation": "1. `src/language-html/embed/angular-interpolation.js`: This file is likely responsible for handling Angular-specific interpolation in HTML, which is directly related to how pipes and their arguments are formatted.\n2. `src/language-html/printer-html.js`: This file probably contains the logic for printing HTML, including Angular templates, and thus affects how spaces are managed around pipe arguments.\n3. `src/plugins/angular.js`: This file is likely responsible for the Angular plugin, handling Angular-specific syntax and formatting, including the behavior of pipes in templates.",
+        "bug_scenario": "The bug involves unwanted spaces being added around arguments in Angular Pipes when formatted by Prettier 2.8.0. The expected behavior is to have no spaces between pipe arguments when they are strings or numbers."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-html/embed/angular-interpolation.js",
+            "src/language-html/printer-html.js"
+        ],
+        "explanation": "The issue is related to the formatting of Angular pipes in HTML templates. The files `angular-interpolation.js` and `printer-html.js` in the `language-html` directory are likely involved because they handle the embedding and printing of HTML, including Angular-specific syntax. Adjusting these files should allow control over how spaces are added around pipe arguments.",
+        "bug_scenario": "The bug involves unwanted spaces being added between Angular pipe arguments in HTML templates when using Prettier 2.8.0. The expected behavior is to have no spaces between the pipe name and its arguments if they are strings or numbers, aligning with official Angular documentation."
+    }
+}

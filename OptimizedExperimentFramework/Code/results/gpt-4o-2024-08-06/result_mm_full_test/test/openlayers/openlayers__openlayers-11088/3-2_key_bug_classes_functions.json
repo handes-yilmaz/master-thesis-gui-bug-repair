@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/proj/proj4.js//register",
+            "src/ol/proj/Projection.js//Projection"
+        ],
+        "bug_functions": [
+            "src/ol/proj/transforms.js//add",
+            "src/ol/proj/transforms.js//get"
+        ],
+        "explanation": "The issue is related to the handling of projections and transformations between different coordinate systems. The `register` function in `proj4.js` is responsible for making proj4 projections available in OpenLayers, which is crucial for correct axis orientation and transformation. The `Projection` class in `Projection.js` defines the projection properties, including axis orientation, which is directly related to the issue. The `add` and `get` functions in `transforms.js` manage the transformation functions between projections, which are likely affected by the changes in proj4js 2.6.1 regarding axis order interpretation.",
+        "bug_scenario": "The bug scenario involves OpenLayers not working properly with proj4js version 2.6.1. When using OL 6.3.2-dev with proj4js 2.6.0, both Mercator and WMTS layer projections work correctly. However, with proj4js 2.6.1, the WMTS layer (EPSG:2180) is rotated when using Mercator projection, and the OSM layer (Mercator) is rotated when using EPSG:2180 projection."
+    }
+}

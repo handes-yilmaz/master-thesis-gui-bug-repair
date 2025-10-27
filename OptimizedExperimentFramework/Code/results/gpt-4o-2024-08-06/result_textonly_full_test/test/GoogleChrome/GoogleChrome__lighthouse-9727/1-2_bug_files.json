@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics.js",
+            "lighthouse-core/gather/gatherers/iframe-elements.js",
+            "lighthouse-core/lib/network-recorder.js",
+            "lighthouse-core/lib/network-request.js",
+            "lighthouse-core/computed/metrics.js",
+            "lighthouse-core/audits/byte-efficiency/total-byte-weight.js"
+        ],
+        "explanation": "The files identified are related to the areas of the codebase that handle performance metrics and network requests, which are crucial for evaluating the performance of iframes:\n\n1. `lighthouse-core/audits/metrics.js`: This file likely contains the logic for calculating performance metrics, which would need to be adjusted to account for iframe performance.\n\n2. `lighthouse-core/gather/gatherers/iframe-elements.js`: This file is responsible for gathering information about iframe elements, which is directly relevant to the issue of iframe performance not being properly considered.\n\n3. `lighthouse-core/lib/network-recorder.js` and `lighthouse-core/lib/network-request.js`: These files handle network requests and recording, which are essential for understanding the load impact of iframes.\n\n4. `lighthouse-core/computed/metrics.js`: This file computes the metrics used in the performance score, and changes here could integrate iframe performance data.\n\n5. `lighthouse-core/audits/byte-efficiency/total-byte-weight.js`: This file evaluates the byte weight of resources, which could include iframes, affecting overall performance metrics.",
+        "bug_scenario": "The bug scenario involves the Lighthouse tool not accurately reporting performance issues related to iframes. Specifically, when a page includes an iframe with poor performance, this is not reflected in the overall performance score of the page, leading to misleading results. The attached image shows a performance comparison where a page with an iframe receives a better performance score than the iframe itself, despite the iframe's poor performance."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/gather/gatherers/iframe-elements.js",
+            "lighthouse-core/audits/performance-budget.js",
+            "lighthouse-core/computed/page-dependency-graph.js",
+            "lighthouse-core/computed/critical-request-chains.js"
+        ],
+        "explanation": "The files identified are related to the gathering and auditing of iframe and page performance data within Lighthouse:\n\n1. **lighthouse-core/gather/gatherers/iframe-elements.js**: This file likely deals with gathering data specifically from iframe elements. Modifications here may be necessary to ensure iframe performance data is collected accurately.\n\n2. **lighthouse-core/audits/performance-budget.js**: This file handles performance budget audits, which may need enhancements to incorporate iframe-related metrics.\n\n3. **lighthouse-core/computed/page-dependency-graph.js**: The page dependency graph is crucial for understanding how resources are loaded and managed, including iframes. Adjustments might be needed to ensure iframes are correctly integrated into the graph.\n\n4. **lighthouse-core/computed/critical-request-chains.js**: This file computes critical request chains, which are essential for performance auditing. If iframes are not being treated as critical resources, this could lead to the reported discrepancies.",
+        "bug_scenario": "The bug scenario involves the performance evaluation of web pages that include iframes. Specifically, the issue is that when Lighthouse evaluates a page with an iframe, the iframe's performance is not adequately reflected in the overall report. This can lead to misleading performance scores, as seen in the images and described in the report. For example, an index.html page containing a large, slow-loading iframe receives a better performance score than the iframe's content (huge-dom.html) evaluated on its own, which suggests that iframe performance is not being factored into the parent page's score as expected."
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/metrics.js": [
+            {
+                "SEARCH": [
+                    "const summary = await ComputedTimingSummary",
+                    ".request({trace, devtoolsLog}, context);",
+                    "const metrics = summary.metrics;",
+                    "const debugInfo = summary.debugInfo;"
+                ],
+                "REPLACE": [
+                    "    const iframeElements = artifacts.IFrameElements || [];",
+                    "    const iframeSummaries = await Promise.all(iframeElements.map(iframe => ",
+                    "      ComputedTimingSummary.request({trace: iframe.trace, devtoolsLog: iframe.devtoolsLog}, context)",
+                    "    ));",
+                    "    ",
+                    "    const summary = await ComputedTimingSummary",
+                    "      .request({trace, devtoolsLog}, context);",
+                    "    const metrics = summary.metrics;",
+                    "    const debugInfo = summary.debugInfo;",
+                    "",
+                    "    // Aggregate iframe metrics",
+                    "    for (const iframeSummary of iframeSummaries) {",
+                    "      for (const [name, value] of Object.entries(iframeSummary.metrics)) {",
+                    "        if (typeof value === 'number') {",
+                    "          metrics[name] = (metrics[name] || 0) + value;",
+                    "        }",
+                    "      }",
+                    "    }"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/iframe-elements.js": [
+            {
+                "SEARCH": [
+                    "const iframeElements = await driver.evaluateAsync(expression, {useIsolation: true});",
+                    "return iframeElements;"
+                ],
+                "REPLACE": [
+                    "    const iframeElements = await driver.evaluateAsync(expression, {useIsolation: true});",
+                    "    ",
+                    "    // Collect additional trace and devtoolsLog for each iframe",
+                    "    for (const iframe of iframeElements) {",
+                    "      iframe.trace = await driver.getTraceForIframe(iframe.src);",
+                    "      iframe.devtoolsLog = await driver.getDevtoolsLogForIframe(iframe.src);",
+                    "    }",
+                    "    ",
+                    "    return iframeElements;"
+                ]
+            }
+        ]
+    }
+}

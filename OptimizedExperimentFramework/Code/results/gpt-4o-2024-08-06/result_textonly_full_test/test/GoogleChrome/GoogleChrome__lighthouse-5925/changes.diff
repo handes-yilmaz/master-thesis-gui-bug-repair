@@ -1,0 +1,22 @@
+diff --git a/lighthouse-core/audits/byte-efficiency/unminified-javascript.js b/lighthouse-core/audits/byte-efficiency/unminified-javascript.js
+index 6b505aa..608046a 100644
+--- a/lighthouse-core/audits/byte-efficiency/unminified-javascript.js
++++ b/lighthouse-core/audits/byte-efficiency/unminified-javascript.js
+@@ -67,7 +67,16 @@ class UnminifiedJavaScript extends ByteEfficiencyAudit {
+ 
+     const totalBytes = ByteEfficiencyAudit.estimateTransferSize(networkRecord, contentLength,
+       'Script');
+-    const wastedRatio = 1 - totalTokenLength / contentLength;
++    // Adjust totalTokenLength to exclude non-code elements like comments and whitespace
++    const adjustedTokenLength = tokens.reduce((sum, token) => {
++      // Exclude comments and whitespace from the token length
++      if (token.type !== 'LineComment' && token.type !== 'BlockComment' && token.type !== 'Whitespace') {
++        return sum + token.value.length;
++      }
++      return sum;
++    }, 0);
++
++    const wastedRatio = 1 - adjustedTokenLength / contentLength;
+     const wastedBytes = Math.round(totalBytes * wastedRatio);
+ 
+     return {

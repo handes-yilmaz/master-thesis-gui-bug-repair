@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/lib/ecmascript.js",
+            "src/languages/javascript.js",
+            "src/languages/typescript.js"
+        ],
+        "explanation": "The issue is with syntax highlighting of JavaScript and TypeScript code, particularly involving template literals. The files likely to be responsible for this are the ones handling the language definitions and highlighting rules for JavaScript and TypeScript.\\n1. **src/languages/lib/ecmascript.js**: This file is a common library that might handle language features shared between JavaScript and TypeScript, such as template literals.\\n2. **src/languages/javascript.js**: This file deals specifically with JavaScript syntax highlighting rules, which would include parsing and highlighting template literals.\\n3. **src/languages/typescript.js**: Similar to the JavaScript file, this file handles TypeScript syntax highlighting. Since TypeScript is a superset of JavaScript, it would also need to correctly handle template literals and their expressions.",
+        "bug_scenario": "The bug is related to the syntax highlighting of template literals in JavaScript and TypeScript. Specifically, the issue arises when a right curly brace '}' is used inside a template literal's expression. The highlighter mistakenly identifies it as the end of the expression, causing incorrect highlighting of the rest of the code as a string instead of correctly identifying nested template literals or functions inside the template expressions."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/lib/ecmascript.js",
+            "src/languages/javascript.js",
+            "src/languages/typescript.js",
+            "src/lib/regex.js",
+            "src/lib/token_tree.js"
+        ],
+        "explanation": "1. **src/languages/lib/ecmascript.js**: This file is likely responsible for defining the syntax highlighting rules for ECMAScript, which includes both JavaScript and TypeScript. Modifying this file may be necessary to correctly recognize template literals and their expressions, especially involving curly braces.\n\n2. **src/languages/javascript.js**: This file specifically handles syntax highlighting rules for JavaScript. Given the bug pertains to JavaScript template literals, this file is directly related to the issue.\n\n3. **src/languages/typescript.js**: Similar to the JavaScript file, this one deals with TypeScript syntax highlighting. Since the bug affects TypeScript as well, this file would need review and potential modification.\n\n4. **src/lib/regex.js**: If the highlighter uses regular expressions to parse syntax, this file could contain patterns that need adjustment to properly handle the expressions within template literals.\n\n5. **src/lib/token_tree.js**: This file likely manages the structure of tokenized code, which is crucial for highlighting. Adjustments here may be needed to ensure that expressions inside template literals are not prematurely terminated by right curly braces.",
+        "bug_scenario": "The bug occurs when using right curly braces inside a template literal expression in JavaScript or TypeScript. The syntax highlighter mistakenly interprets the right curly brace as the end of the expression, causing the rest of the expression to be highlighted incorrectly as a string. This issue is particularly noticeable when the expression involves nested template literals, which are common in libraries like Styled Components used with React."
+    }
+}

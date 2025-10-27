@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "flow-report/src/util.ts": [
+            {
+                "SEARCH": [
+                    "export function getFilmstripFrames(",
+                    "reportResult: LH.ReportResult",
+                    "): Array<{data: string}> | undefined {",
+                    "const filmstripAudit = reportResult.audits['screenshot-thumbnails'];",
+                    "if (!filmstripAudit) return undefined;",
+                    "",
+                    "const frameItems =",
+                    "filmstripAudit.details &&",
+                    "filmstripAudit.details.type === 'filmstrip' &&",
+                    "filmstripAudit.details.items;",
+                    "",
+                    "return frameItems || undefined;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "export function getFilmstripFrames(",
+                    "  reportResult: LH.ReportResult",
+                    "): Array<{data: string}> | undefined {",
+                    "  const fullPageScreenshot = getScreenshot(reportResult);",
+                    "  if (!fullPageScreenshot) return undefined;",
+                    "",
+                    "  // Create a single frame item using the full-page screenshot",
+                    "  const frameItems = [{data: fullPageScreenshot}];",
+                    "",
+                    "  return frameItems;",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

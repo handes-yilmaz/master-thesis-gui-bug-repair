@@ -1,0 +1,45 @@
+{
+    "1/1": {
+        "lighthouse-core/report/html/renderer/pwa-category-renderer.js": [
+            {
+                "SEARCH": [
+                    "const tmpl = this.dom.cloneTemplate('#tmpl-lh-gauge--pwa', this.templateContext);",
+                    "const wrapper = /** @type {HTMLAnchorElement} */ (this.dom.find('.lh-gauge--pwa__wrapper',",
+                    "tmpl));",
+                    "wrapper.href = `#${category.id}`;",
+                    "",
+                    "const allGroups = this._getGroupIds(category.auditRefs);",
+                    "const passingGroupIds = this._getPassingGroupIds(category.auditRefs);",
+                    "",
+                    "if (passingGroupIds.size === allGroups.size) {",
+                    "wrapper.classList.add('lh-badged--all');",
+                    "} else {",
+                    "for (const passingGroupId of passingGroupIds) {",
+                    "wrapper.classList.add(`lh-badged--${passingGroupId}`);",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const tmpl = this.dom.cloneTemplate('#tmpl-lh-gauge--pwa', this.templateContext);",
+                    "    const wrapper = /** @type {HTMLAnchorElement} */ (this.dom.find('.lh-gauge--pwa__wrapper',",
+                    "      tmpl));",
+                    "    wrapper.href = `#${category.id}`;",
+                    "",
+                    "    const allGroups = this._getGroupIds(category.auditRefs);",
+                    "    const passingGroupIds = this._getPassingGroupIds(category.auditRefs);",
+                    "",
+                    "    if (passingGroupIds.size === allGroups.size) {",
+                    "      wrapper.classList.add('lh-badged--all');",
+                    "    } else {",
+                    "      for (const passingGroupId of passingGroupIds) {",
+                    "        wrapper.classList.add(`lh-badged--${passingGroupId}`);",
+                    "      }",
+                    "    }",
+                    "",
+                    "    // Ensure the PWA gauge is styled correctly",
+                    "    wrapper.classList.add('lh-gauge--pwa');"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/javascript.js",
+            "src/languages/typescript.js"
+        ],
+        "explanation": "The issue is related to how the syntax highlighting library processes JavaScript and TypeScript code, particularly when it encounters empty block-comments. The files `src/languages/javascript.js` and `src/languages/typescript.js` are directly responsible for defining the syntax rules and parsing logic for these languages. These files likely contain the logic that interprets comments and other syntax elements. Modifying these files to correctly handle empty block-comments without disrupting the rest of the highlighting process should address the bug.",
+        "bug_scenario": "The bug report describes an issue with syntax highlighting for JavaScript and TypeScript when using empty block-comments (/**/) in the code. Specifically, the presence of an empty block-comment is causing the rest of the code to not be highlighted correctly. The provided sample code that reproduces the issue is: `/**/console.log(\"Hello, World!\")/**/`. The expected behavior is that the code should be highlighted properly regardless of the empty block-comments."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/lib/ecmascript.js",
+            "src/languages/javascript.js",
+            "src/languages/typescript.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "The issue is related to syntax highlighting for JavaScript and TypeScript, which is likely handled in language-specific files. The files `src/languages/lib/ecmascript.js`, `src/languages/javascript.js`, and `src/languages/typescript.js` are responsible for defining the syntax rules and highlighting for these languages. Since the problem pertains to how comments are parsed and how they affect syntax highlighting, these files are directly relevant as they would contain the logic for parsing JavaScript and TypeScript code.\n\nAdditionally, `src/lib/regex.js` is included because parsing and syntax highlighting often rely on regular expressions to identify language constructs, including comments. Any issues with how comments are identified or skipped in the highlighting process could be tied back to the regex patterns used in this file, making it a potential source of the bug.",
+        "bug_scenario": "The issue is that an empty block comment within JavaScript or TypeScript code breaks the syntax highlighting. The provided image shows an example where the code `/**/console.log(\"Hello, World!\")/**/` is not highlighted correctly as expected. The expected behavior should highlight the `console.log` part correctly, but the presence of the empty block comment seems to disrupt the highlighting process."
+    }
+}

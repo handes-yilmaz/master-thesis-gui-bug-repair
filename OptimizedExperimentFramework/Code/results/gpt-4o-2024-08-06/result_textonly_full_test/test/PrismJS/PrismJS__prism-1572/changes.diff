@@ -1,0 +1,20 @@
+diff --git a/components/index.js b/components/index.js
+index fe5940a..8493048 100644
+--- a/components/index.js
++++ b/components/index.js
+@@ -34,7 +34,7 @@ function loadLanguages(arr, withoutDependencies) {
+ 	// If no argument is passed, load all components
+ 	if (!arr) {
+ 		arr = Object.keys(components.languages).filter(function (language) {
+-			return language !== 'meta';
++\t\t\treturn language !== 'meta' && language !== 'gcode';
+ 		});
+ 	}
+ 	if (arr && !arr.length) {
+@@ -79,4 +79,4 @@ function loadLanguages(arr, withoutDependencies) {
+ module.exports = function (arr) {
+ 	// Don't expose withoutDependencies
+ 	loadLanguages(arr);
+-};
+\ No newline at end of file
++};

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/reproj/Image.js//ReprojImage",
+            "src/ol/reproj/Tile.js//ReprojTile"
+        ],
+        "bug_functions": [
+            "src/ol/reproj/Image.js//reproject_",
+            "src/ol/reproj/Tile.js//reproject_"
+        ],
+        "explanation": "The classes and functions identified are directly involved in the reprojection process of images and tiles. The 'ReprojImage' and 'ReprojTile' classes encapsulate the logic for handling reprojected images and tiles, respectively. The 'reproject_' functions within these classes are responsible for the actual reprojection logic, which includes rendering the reprojected images and tiles. Given the bug report, the issue of assuming square pixels likely stems from the logic within these functions, as they handle the transformation and rendering of the source images and tiles into the target projection. Adjustments in these areas would be necessary to address the misalignment and ensure that the projected pixels maintain the intended aspect ratio.",
+        "bug_scenario": "The bug scenario involves a raster reprojection issue where the system assumes that projected pixels are square, leading to misalignments. Specifically, when projecting a 5x5 pixel image with each pixel intended to cover an area of 3km by 2km, the system incorrectly aligns the pixels horizontally, resulting in a 7x5 image instead of maintaining the original 5x5 structure. This is due to the system's attempt to draw perfect squares, causing the first column of pixels to be repeated and extending too far east."
+    }
+}

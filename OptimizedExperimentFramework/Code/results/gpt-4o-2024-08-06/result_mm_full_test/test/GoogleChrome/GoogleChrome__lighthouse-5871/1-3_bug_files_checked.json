@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "These files are likely involved in capturing and reporting the user agent. The `driver.js` and `gather-runner.js` are responsible for setting up and executing the test environment, which includes setting the user agent. The `network-recorder.js` is involved in capturing network requests, where the user agent string is crucial. Ensuring consistency would require modifications in these files to align the reported user agent with the one used during requests.",
+        "bug_scenario": "The bug involves inconsistent user agent strings in the Lighthouse report's runtime settings compared to the actual user agent of the test requests. This disparity is causing confusion as different user agents are logged in the web server's logfile for the same tool."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/gather/connections/connection.js",
+            "lighthouse-core/gather/connections/cri.js",
+            "lighthouse-core/report/report-generator.js"
+        ],
+        "explanation": "These files are likely responsible for gathering and reporting connection information, including user agent strings. \"connection.js\" and \"cri.js\" deal with establishing and handling browser connections, which would involve specifying user agents. \"report-generator.js\" is involved in generating the report that displays the runtime settings, including the user agent, meaning it could be directly involved in displaying the incorrect information.",
+        "bug_scenario": "The bug is related to inconsistent user agent strings reported in Lighthouse's runtime settings versus those logged by the web server. This inconsistency is visible in the screenshots where the user agent in the Lighthouse report does not match the user agent in the server logs."
+    }
+}

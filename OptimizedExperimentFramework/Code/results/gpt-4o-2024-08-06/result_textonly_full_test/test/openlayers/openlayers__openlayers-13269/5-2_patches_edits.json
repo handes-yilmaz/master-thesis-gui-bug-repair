@@ -1,0 +1,37 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const tileSize = toSize(tileGrid.getTileSize(tileZ), this.tempSize_);",
+                    "const tileOrigin = tileGrid.getOrigin(tileZ);"
+                ],
+                "REPLACE": [
+                    "    let tileSize = toSize(tileGrid.getTileSize(tileZ), this.tempSize_);",
+                    "    const tileOrigin = tileGrid.getOrigin(tileZ);",
+                    "",
+                    "    // Adjust tile size for gutter",
+                    "    const gutter = this.getLayer().getSource().getGutter();",
+                    "    if (gutter !== 0) {",
+                    "      tileSize = bufferSize(tileSize, gutter, this.tempSize_);",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const tileExtent = getRenderExtent(frameState, frameState.extent);"
+                ],
+                "REPLACE": [
+                    "    let tileExtent = getRenderExtent(frameState, frameState.extent);",
+                    "",
+                    "    // Adjust tile extent for gutter",
+                    "    const gutter = this.getLayer().getSource().getGutter();",
+                    "    if (gutter !== 0) {",
+                    "      const tileResolution = tileGrid.getResolution(z);",
+                    "      tileExtent = buffer(tileExtent, tileResolution * gutter, tileExtent);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

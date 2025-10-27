@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/Form/Form.js",
+            "src/js/components/Form/FormContext.js",
+            "src/js/components/Form/__tests__/Form-test-controlled.js",
+            "src/js/components/Form/__tests__/Form-test-uncontrolled.js"
+        ],
+        "explanation": "The issue described relates to form validation in the context of dynamically added and removed fields. The `src/js/components/Form/Form.js` file is likely responsible for handling form state and validation logic, which is where the bug may originate. The `FormContext.js` file in the same directory might manage context for form-related states, including validation status, which could contribute to the issue if it doesn't properly account for the removal of fields. The test files `Form-test-controlled.js` and `Form-test-uncontrolled.js` are relevant as they likely contain tests for form behavior, and examining or updating these tests can help ensure that the validation logic is correctly implemented and verified against the described bug scenario.",
+        "bug_scenario": "The bug scenario involves a form in a web application where dynamically adding and removing required fields causes the form validation status to be incorrect. Specifically, when a checkbox is unchecked, a required text input field is added, making the form invalid as expected due to the lack of input in the new field. However, when the checkbox is checked again and the text input is removed, the form still remains invalid, which is unexpected behavior. The validation logic is not updating correctly when fields are dynamically removed."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/Form/Form.js",
+            "src/js/components/Form/stories/DynamicFields.js",
+            "src/js/components/TextInput/TextInput.js",
+            "src/js/components/Form/FormContext.js"
+        ],
+        "explanation": "The bug is related to form validation when dynamically adding and removing required fields. The files most likely involved in this behavior include:\n\n1. **Form.js**: This file likely contains the core logic for form handling, including validation. It's where form state and validation logic are managed, so any issues with form validity would be addressed here.\n\n2. **DynamicFields.js**: This story file is specifically mentioned in the bug report as part of the reproduction steps. It likely contains an example of the dynamic field functionality which is not behaving as expected.\n\n3. **TextInput.js**: Since the bug involves a required TextInput field, this file could be responsible for handling the input field's properties, including its required status and interaction with the form's validation logic.\n\n4. **FormContext.js**: This file is likely responsible for managing the context within which the form operates, including validation states and updates. Any issues with how form state is shared or updated when fields are dynamically added or removed could stem from here.",
+        "bug_scenario": "The bug report describes a scenario where a form becomes invalid when dynamically adding and removing required fields. The issue is that when a required TextInput field is dynamically removed, the form should revert to a valid state if all other fields are valid. However, the form remains invalid according to the onValidate method, even when the required field is removed and no other validation issues exist. This behavior is unexpected and should be corrected."
+    }
+}

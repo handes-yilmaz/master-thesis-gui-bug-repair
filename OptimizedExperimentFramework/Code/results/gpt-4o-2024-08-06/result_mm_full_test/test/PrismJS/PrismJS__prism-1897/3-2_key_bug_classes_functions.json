@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-markdown.js//italic",
+            "components/prism-markdown.js//bold"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the regex patterns used for matching italic and bold text in markdown. The `italic` and `bold` classes in `components/prism-markdown.js` contain the regex patterns that are too greedy, causing them to match more characters than intended. Adjusting these patterns to correctly handle the markdown syntax will fix the rendering issue.",
+        "bug_scenario": "The bug involves incorrect handling of italic and bold markdown syntax, where the punctuation for italic text using `*` and `_` is too greedy, matching any number of leading `*`s and `_`s. This results in incorrect rendering of markdown text, as shown in the image where `*__foo__*` and `_**bar**_` are not rendered as expected."
+    }
+}

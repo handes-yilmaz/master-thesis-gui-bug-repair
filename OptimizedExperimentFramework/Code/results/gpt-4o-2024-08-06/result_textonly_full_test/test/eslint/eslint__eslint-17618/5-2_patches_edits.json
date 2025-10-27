@@ -1,0 +1,46 @@
+{
+    "1/1": {
+        "lib/linter/code-path-analysis/code-path-analyzer.js": [
+            {
+                "SEARCH": [
+                    "case \"LogicalExpression\":",
+                    "if (isHandledLogicalOperator(node.operator)) {",
+                    "state.pushChoiceContext(",
+                    "node.operator,",
+                    "isForkingByTrueOrFalse(node)",
+                    ");",
+                    "}",
+                    "break;"
+                ],
+                "REPLACE": [
+                    "        case \"LogicalExpression\":",
+                    "            if (isHandledLogicalOperator(node.operator)) {",
+                    "                if (node.operator === \"&&\" && node.parent && node.parent.operator === \"??\") {",
+                    "                    // Special handling for (a && b) ?? c",
+                    "                    state.pushChoiceContext(",
+                    "                        \"&&??\",",
+                    "                        false // No true/false fork, handle as nullish coalescing",
+                    "                    );",
+                    "                } else {",
+                    "                    state.pushChoiceContext(",
+                    "                        node.operator,",
+                    "                        isForkingByTrueOrFalse(node)",
+                    "                    );",
+                    "                }",
+                    "            }",
+                    "            break;"
+                ]
+            }
+        ],
+        "lib/linter/code-path-analysis/code-path-state.js": [
+            {
+                "SEARCH": [
+                    "*      is `\"&&\"` or `\"||\"` or `\"??\"`; if it\\'s an `if` statement or"
+                ],
+                "REPLACE": [
+                    "     *      is `\"&&\"`, `\"||\"`, `\"??\"`, or `\"&&??\"`; if it\\'s an `if` statement or"
+                ]
+            }
+        ]
+    }
+}

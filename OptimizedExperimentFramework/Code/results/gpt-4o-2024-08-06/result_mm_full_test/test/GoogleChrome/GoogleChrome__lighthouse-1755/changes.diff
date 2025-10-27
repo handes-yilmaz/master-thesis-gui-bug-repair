@@ -1,0 +1,17 @@
+diff --git a/lighthouse-core/aggregator/aggregate.js b/lighthouse-core/aggregator/aggregate.js
+index 845f310..a696f78 100644
+--- a/lighthouse-core/aggregator/aggregate.js
++++ b/lighthouse-core/aggregator/aggregate.js
+@@ -181,8 +181,11 @@ class Aggregate {
+ 
+       maxScore = Aggregate._getTotalWeight(item.audits);
+ 
++      const overall = (overallScore / maxScore);
++      const hasFailures = expectedNames.some(e => filteredAndRemappedResults[e].score < item.audits[e].expectedValue);
++
+       return {
+-        overall: (overallScore / maxScore),
++        overall: hasFailures ? 0 : overall,
+         name: item.name,
+         description: item.description,
+         subItems: subItems

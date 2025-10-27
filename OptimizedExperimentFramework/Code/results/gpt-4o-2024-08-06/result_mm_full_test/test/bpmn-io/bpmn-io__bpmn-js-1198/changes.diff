@@ -1,0 +1,15 @@
+diff --git a/lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js b/lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js
+index f854565..ab04d42 100644
+--- a/lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js
++++ b/lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js
+@@ -53,5 +53,10 @@ function isDefaultFlow(connection, source) {
+   var sourceBo = getBusinessObject(source),
+       sequenceFlow = getBusinessObject(connection);
+ 
++  // Preserve default attribute when a catch event is added
++  if (is(connection.target, 'bpmn:IntermediateCatchEvent')) {
++    return sourceBo.get('default') === sequenceFlow;
++  }
++
+   return sourceBo.get('default') === sequenceFlow;
+ }

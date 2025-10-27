@@ -1,0 +1,63 @@
+{
+    "1/1": {
+        "src/ol/source/TileDebug.js": [
+            {
+                "SEARCH": [
+                    "getTile(z, x, y) {",
+                    "const tileCoordKey = getKeyZXY(z, x, y);",
+                    "if (this.tileCache.containsKey(tileCoordKey)) {",
+                    "return /** @type {!LabeledTile} */ (this.tileCache.get(tileCoordKey));",
+                    "} else {",
+                    "const tileSize = toSize(this.tileGrid.getTileSize(z));",
+                    "const tileCoord = [z, x, y];",
+                    "const textTileCoord = this.getTileCoordForTileUrlFunction(tileCoord);",
+                    "let text;",
+                    "if (textTileCoord) {",
+                    "text =",
+                    "'z:' +",
+                    "textTileCoord[0] +",
+                    "' x:' +",
+                    "textTileCoord[1] +",
+                    "' y:' +",
+                    "textTileCoord[2];",
+                    "} else {",
+                    "text = 'none';",
+                    "}",
+                    "const tile = new LabeledTile(tileCoord, tileSize, text);",
+                    "this.tileCache.set(tileCoordKey, tile);",
+                    "return tile;",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  getTile(z, x, y) {",
+                    "    const tileCoordKey = getKeyZXY(z, x, y);",
+                    "    if (this.tileCache.containsKey(tileCoordKey)) {",
+                    "      return /** @type {!LabeledTile} */ (this.tileCache.get(tileCoordKey));",
+                    "    } else {",
+                    "      const tileSize = toSize(this.tileGrid.getTileSize(z));",
+                    "      const tileCoord = [z, x, y];",
+                    "      const textTileCoord = this.getTileCoordForTileUrlFunction(tileCoord);",
+                    "      let text;",
+                    "      if (textTileCoord) {",
+                    "        const invertedY = -textTileCoord[2] - 1; // Invert Y coordinate",
+                    "        text =",
+                    "          'z:' +",
+                    "          textTileCoord[0] +",
+                    "          ' x:' +",
+                    "          textTileCoord[1] +",
+                    "          ' y:' +",
+                    "          invertedY;",
+                    "      } else {",
+                    "        text = 'none';",
+                    "      }",
+                    "      const tile = new LabeledTile(tileCoord, tileSize, text);",
+                    "      this.tileCache.set(tileCoordKey, tile);",
+                    "      return tile;",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-typescript.js//Prism.languages.typescript"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the syntax highlighting rules defined in the 'components/prism-typescript.js' file. The class 'Prism.languages.typescript' is responsible for extending JavaScript syntax highlighting to support TypeScript-specific features. The issue arises from the regular expressions used to define keywords, which do not correctly account for cases where keywords are part of larger identifiers. The regular expression for keywords needs to be adjusted to ensure that it only matches standalone keywords, not those embedded within other words. This is why 'Prism.languages.typescript' is identified as a bug-related element.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting in TypeScript code. Specifically, certain TypeScript keywords like 'infer' and 'type' are being treated as keywords even when they are followed by alphabetic characters, which should not be the case. The expected behavior is that only standalone keywords should be highlighted, not when they are part of a larger identifier (e.g., 'inference' or 'typeDefs'). The actual behavior, as shown in the image, incorrectly highlights these keywords within larger identifiers."
+    }
+}

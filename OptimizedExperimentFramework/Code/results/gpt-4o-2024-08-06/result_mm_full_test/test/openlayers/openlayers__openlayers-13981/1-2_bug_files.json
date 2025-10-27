@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/render/VectorContext.js"
+        ],
+        "explanation": "1. **src/ol/render/canvas/TextBuilder.js**: This file is likely responsible for constructing text elements in the canvas rendering process. Since the bug involves text alignment and rotation issues, this file would need adjustments to address how text is built and rendered.\n\n2. **src/ol/renderer/canvas/VectorLayer.js**: This file handles the rendering of vector layers. The issue is specifically about how these layers are rendered differently in terms of text alignment and rotation, making it a primary suspect for the bug.\n\n3. **src/ol/render/canvas/Immediate.js**: The immediate renderer, which is part of the rendering pipeline, is specifically mentioned in the bug report as having different behavior from the vector layer renderer. Thus, this file is directly related to the problem.\n\n4. **src/ol/render/VectorContext.js**: This context is crucial for rendering operations and would be directly involved in how text is handled during rendering. Since the bug involves differences in rendering context, this file is likely to contain relevant logic that needs correction.",
+        "bug_scenario": "The bug scenario involves inconsistent rendering of offset and rotated text between vector layers and vector context in a map rendering application. The vector layer renderer rotates offset text around the feature, while the immediate renderer rotates it around the offset anchor point. This inconsistency becomes apparent when both offset and rotation are applied to text, leading to different rendering outputs depending on the context used."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/renderer/canvas/VectorImageLayer.js",
+            "src/ol/renderer/vector.js"
+        ],
+        "explanation": "The files identified are related to the rendering and handling of vector graphics, particularly text rendering, which is the core issue described in the bug report.\\n- **src/ol/render/canvas/Immediate.js**: Directly involved in rendering operations, likely where the context behavior for text rendering is defined.\\n- **src/ol/render/canvas/TextBuilder.js**: Responsible for constructing text rendering instructions, which would include handling of offsets and alignment parameters.\\n- **src/ol/renderer/canvas/VectorLayer.js**: Manages rendering of vector layers, which is where the bug manifests when comparing to the immediate renderer.\\n- **src/ol/renderer/canvas/VectorImageLayer.js**: Similar to VectorLayer.js, this handles vector image layers which might also be affected by similar rendering logic.\\n- **src/ol/renderer/vector.js**: Likely contains vector rendering logic that could affect how offsets and rotations are applied in different contexts.",
+        "bug_scenario": "The bug involves inconsistent rendering of rotated and offset text between vector layers and the vector context. In vector layers, text rotation is applied around the feature it is offset from, whereas in the vector context, text rotation is applied around its offset anchor point. This inconsistency affects how text is displayed when both offset and rotation are used together."
+    }
+}

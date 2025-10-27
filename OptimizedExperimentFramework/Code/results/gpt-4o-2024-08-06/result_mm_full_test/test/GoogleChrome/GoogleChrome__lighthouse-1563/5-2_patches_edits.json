@@ -1,0 +1,21 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/user-timings.js": [
+            {
+                "SEARCH": [
+                    "return evt.name !== 'requestStart' &&",
+                    "evt.name !== 'navigationStart' &&",
+                    "evt.name !== 'paintNonDefaultBackgroundColor' &&",
+                    "evt.args.frame === undefined;"
+                ],
+                "REPLACE": [
+                    "      return evt.name !== 'requestStart' &&",
+                    "          evt.name !== 'navigationStart' &&",
+                    "          evt.name !== 'paintNonDefaultBackgroundColor' &&",
+                    "          evt.args.frame === undefined &&",
+                    "          !evt.name.startsWith('goog_');"
+                ]
+            }
+        ]
+    }
+}

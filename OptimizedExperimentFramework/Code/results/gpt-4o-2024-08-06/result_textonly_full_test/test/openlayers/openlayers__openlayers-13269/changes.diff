@@ -1,0 +1,37 @@
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index 2af3a33..8599286 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -396,7 +396,14 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+     const tileLayer = this.getLayer();
+     const tileSource = tileLayer.getRenderSource();
+     const tileGrid = tileSource.getTileGridForProjection(viewState.projection);
+-    const extent = getRenderExtent(frameState, frameState.extent);
++    let tileExtent = getRenderExtent(frameState, frameState.extent);
++
++    // Adjust tile extent for gutter
++    const gutter = this.getLayer().getSource().getGutter();
++    if (gutter !== 0) {
++      const tileResolution = tileGrid.getResolution(z);
++      tileExtent = buffer(tileExtent, tileResolution * gutter, tileExtent);
++    }
+     const z = tileGrid.getZForResolution(
+       viewState.resolution,
+       tileSource.zDirection
+@@ -491,8 +498,14 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+     for (let j = 0, jj = zs.length; j < jj; ++j) {
+       const tileZ = zs[j];
+       const tileResolution = tileGrid.getResolution(tileZ);
+-      const tileSize = toSize(tileGrid.getTileSize(tileZ), this.tempSize_);
+-      const tileOrigin = tileGrid.getOrigin(tileZ);
++    let tileSize = toSize(tileGrid.getTileSize(tileZ), this.tempSize_);
++    const tileOrigin = tileGrid.getOrigin(tileZ);
++
++    // Adjust tile size for gutter
++    const gutter = this.getLayer().getSource().getGutter();
++    if (gutter !== 0) {
++      tileSize = bufferSize(tileSize, gutter, this.tempSize_);
++    }
+ 
+       const centerI =
+         (centerX - tileOrigin[0]) / (tileSize[0] * tileResolution);

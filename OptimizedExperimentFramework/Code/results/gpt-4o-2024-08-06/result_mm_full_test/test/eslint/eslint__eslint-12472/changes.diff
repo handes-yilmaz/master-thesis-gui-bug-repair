@@ -1,0 +1,16 @@
+diff --git a/lib/rules/key-spacing.js b/lib/rules/key-spacing.js
+index ba796cf..12a220f 100644
+--- a/lib/rules/key-spacing.js
++++ b/lib/rules/key-spacing.js
+@@ -99,6 +99,11 @@ function initOptions(toOptions, fromOptions) {
+         toOptions.multiLine = initOptionProperty({}, (fromOptions.multiLine || fromOptions));
+         toOptions.singleLine = initOptionProperty({}, (fromOptions.singleLine || fromOptions));
+ 
++        // Ensure JSX objects are not misaligned
++        if (fromOptions.jsx) {
++            toOptions.align.jsx = true;
++        }
++
+     } else { // string or undefined
+         toOptions.multiLine = initOptionProperty({}, (fromOptions.multiLine || fromOptions));
+         toOptions.singleLine = initOptionProperty({}, (fromOptions.singleLine || fromOptions));

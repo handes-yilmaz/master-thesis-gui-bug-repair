@@ -1,0 +1,33 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index 5ce0aac..95f3341 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -59,6 +59,8 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+     copyProperties(businessObject.di, descriptor, 'isExpanded');
+ 
+     if (isLabel(descriptor)) {
++      descriptor.businessObject = getBusinessObject(cache[descriptor.labelTarget]);
++      setLabel(descriptor, oldBusinessObject.name || '', true);
+       return descriptor;
+     }
+ 
+@@ -119,10 +121,18 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+ 
+     // handle label elements
+     if (isLabel(descriptor)) {
+-      descriptor.businessObject = getBusinessObject(cache[ descriptor.labelTarget ]);
++      descriptor.businessObject = getBusinessObject(cache[descriptor.labelTarget]);
+       setLabel(descriptor, oldBusinessObject.name || '', true);
+       return;
+     }
++    // Ensure label is created if missing
++    if (!descriptor.label && isLabelExternal(descriptor)) {
++      var labelCenter = getExternalLabelMid(descriptor);
++      modeling.createLabel(descriptor, labelCenter, {
++        id: descriptor.businessObject.id + '_label',
++        businessObject: descriptor.businessObject
++      });
++    }
+ 
+     newBusinessObject = bpmnFactory.create(oldBusinessObject.$type);
+ 

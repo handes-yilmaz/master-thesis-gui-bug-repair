@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLPoints.js//WebGLPointsLayer",
+            "src/ol/renderer/webgl/PointsLayer.js//WebGLPointsLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/webgl/PointsLayer.js//renderFrame",
+            "src/ol/renderer/webgl/PointsLayer.js//rebuildBuffers_"
+        ],
+        "explanation": "The `WebGLPointsLayer` class in `src/ol/layer/WebGLPoints.js` is directly related to the bug because it is responsible for handling the style and rendering options for the WebGL points, including the `icon-rotate-with-view` property. The `WebGLPointsLayerRenderer` class in `src/ol/renderer/webgl/PointsLayer.js` is responsible for rendering the points using WebGL, and any issues with how icons are displayed would likely involve this class. The `renderFrame` function is crucial as it handles the rendering of the layer, and any distortion in icons would be a result of how this function processes the frame. The `rebuildBuffers_` function is also relevant because it deals with the internal WebGL buffers, which are essential for rendering the icons correctly, especially when transformations like rotation are applied.",
+        "bug_scenario": "The bug scenario involves icon distortion on the `WebGLPoints` layer when the `icon-rotate-with-view` property is set to true and the viewport is non-square. The expected behavior is that icons should be displayed without distortion, but currently, they are distorted when the viewport is not square."
+    }
+}

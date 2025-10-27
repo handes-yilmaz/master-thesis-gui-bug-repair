@@ -1,0 +1,57 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "source",
+            "file_path": "src/lib/regex.js",
+            "function_details": [
+                {
+                    "name": "source",
+                    "start_line": 13,
+                    "end_line": 18
+                }
+            ],
+            "function_code": [
+                "export function source(re) {",
+                "  if (!re) return null;",
+                "  if (typeof re === \"string\") return re;",
+                "",
+                "  return re.source;",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "lookahead",
+            "file_path": "src/lib/regex.js",
+            "function_details": [
+                {
+                    "name": "lookahead",
+                    "start_line": 24,
+                    "end_line": 26
+                }
+            ],
+            "function_code": [
+                "export function lookahead(re) {",
+                "  return concat('(?=', re, ')');",
+                "}"
+            ]
+        },
+        "3": {
+            "function_name": "concat",
+            "file_path": "src/lib/regex.js",
+            "function_details": [
+                {
+                    "name": "concat",
+                    "start_line": 48,
+                    "end_line": 51
+                }
+            ],
+            "function_code": [
+                "export function concat(...args) {",
+                "  const joined = args.map((x) => source(x)).join(\"\");",
+                "  return joined;",
+                "}"
+            ]
+        }
+    }
+}

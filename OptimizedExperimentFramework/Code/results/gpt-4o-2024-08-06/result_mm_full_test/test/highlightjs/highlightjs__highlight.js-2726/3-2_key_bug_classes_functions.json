@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/latex.js//COMMAND"
+        ],
+        "bug_functions": [
+            "src/languages/latex.js//export default function"
+        ],
+        "explanation": "The issue arises because the LaTeX syntax highlighting logic in the 'src/languages/latex.js' file treats content within braces as a 'string' class, which leads to uniform highlighting. The 'COMMAND' class and the 'export default function' are responsible for defining how LaTeX commands and their contents are parsed and highlighted. To fix the bug, these elements need to be adjusted to ensure that content within braces is parsed and highlighted as normal LaTeX code, rather than as a string literal.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting in LaTeX code when using highlight.js. Specifically, content inside braces is not highlighted correctly, as it is treated as a single string literal rather than normal TeX code. This results in important syntactical elements within braces not being highlighted, which is inconsistent with how LaTeX code should be parsed and displayed."
+    }
+}

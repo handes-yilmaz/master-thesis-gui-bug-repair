@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/behavior/DataStoreBehavior.js"
+        ],
+        "explanation": "1. **BpmnUpdater.js**: This file is directly mentioned in the error stack trace. The error occurs in the `updateDiParent` function, which is responsible for updating the diagram interchange (DI) parent. The error suggests that the function is trying to access a property of an undefined object, likely due to incorrect handling of elements outside of a Pool.\n\n2. **UpdateSemanticParentHandler.js**: This file uses the `updateDiParent` method from BpmnUpdater.js. It handles the execution and reversion of semantic parent updates, which are crucial when morphing elements. The error might be related to how the semantic parent is updated when morphing outside a Pool.\n\n3. **DataStoreBehavior.js**: This file manages the behavior of DataStore elements, including their containment and parent updates. Since the bug involves morphing a DataStoreReference, this file likely contains logic that needs adjustment to handle morphing outside of a Pool correctly.",
+        "bug_scenario": "The bug occurs when attempting to morph a DataStoreReference to a DataObjectReference outside of a Pool in a BPMN model. This action throws an error due to undefined properties being accessed in the BpmnUpdater.js file."
+    }
+}

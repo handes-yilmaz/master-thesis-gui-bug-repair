@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/lib/stack-collector.js//JSLibraryDetectorTest",
+            "lighthouse-core/lib/stack-collector.js//JSLibrary",
+            "lighthouse-core/audits/dobetterweb/js-libraries.js//JsLibrariesAudit"
+        ],
+        "bug_functions": [
+            "lighthouse-core/lib/stack-collector.js//collectStacks",
+            "lighthouse-core/lib/stack-packs.js//getStackPacks"
+        ],
+        "explanation": "The classes and functions identified are directly related to the detection and handling of JavaScript libraries and stack packs, which are central to the reported issue. The 'JSLibraryDetectorTest' and 'JSLibrary' classes in 'stack-collector.js' are responsible for defining and managing the detection of JavaScript libraries, which is where the duplication issue originates. The 'collectStacks' function in the same file is responsible for gathering these libraries, making it a key point for addressing the duplication. The 'JsLibrariesAudit' class in 'js-libraries.js' is responsible for auditing and listing detected JavaScript libraries, which is directly related to the visibility of the experimental entries. Finally, the 'getStackPacks' function in 'stack-packs.js' is responsible for determining which stack packs to display, making it crucial for resolving the issue of duplicated stack packs.",
+        "bug_scenario": "The bug scenario involves duplicated stack packs being displayed when running Lighthouse or PSI on a specific website. This is due to new 'Fast Path' checks added in the js-lib-detector, which were then integrated into Lighthouse. The issue is that two stack packs are being shown, and experimental 'React (Fast Path)' entries are visible to users, which was not intended."
+    }
+}

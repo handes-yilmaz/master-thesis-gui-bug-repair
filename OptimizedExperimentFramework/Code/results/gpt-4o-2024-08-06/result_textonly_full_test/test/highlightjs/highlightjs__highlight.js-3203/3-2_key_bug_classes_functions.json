@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/powershell.js//PS_ARGUMENTS"
+        ],
+        "bug_functions": [
+            "src/languages/powershell.js//export default function"
+        ],
+        "explanation": "The issue is related to the syntax highlighting of PowerShell flags, which is handled in the `src/languages/powershell.js` file. The `PS_ARGUMENTS` object contains a regular expression that defines how flags are recognized and highlighted. The regex pattern within `PS_ARGUMENTS` was updated to include double hyphen flags, which directly addresses the bug described in the report. Additionally, the `export default function` in the same file is responsible for defining the overall syntax highlighting rules for PowerShell, including the integration of `PS_ARGUMENTS`. Therefore, both the `PS_ARGUMENTS` object and the main export function are key elements related to the bug, as they determine how PowerShell syntax, including flags, is parsed and highlighted.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for PowerShell flags in a code editor or viewer. Specifically, the issue is that double hyphen flags (`--flag`) are not being highlighted correctly, while single hyphen flags (`-flag`) are highlighted as expected. The expected behavior is for both single and double hyphen flags to be highlighted correctly, as shown in the provided images from PowerShell Core 7.1.3."
+    }
+}

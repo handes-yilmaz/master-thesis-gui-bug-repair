@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Image.js",
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/Executor.js"
+        ],
+        "explanation": "1. **src/ol/style/Image.js**: This file defines the ImageStyle class, which includes a declutterMode property. The bug report suggests adding an ignorePlacement option to ol.style.Image, which would likely involve changes to how declutterMode is handled in this file.\n\n2. **src/ol/style/Text.js**: Similar to Image.js, this file defines the Text class, which would need to accommodate the new ignorePlacement option for text styles. This is crucial for implementing the selective decluttering of text as described in the bug report.\n\n3. **src/ol/render/canvas/Executor.js**: This file handles the rendering logic, including decluttering of images and labels. Modifications here would be necessary to implement the new declutter options and ensure that the rendering order and decluttering logic align with the new settings.",
+        "bug_scenario": "The bug scenario involves an issue with the decluttering of image and label combinations in OpenLayers when the declutterMode is set to something other than 'declutter'. The problem is that the current implementation does not allow for selective decluttering of text only, which is a common requirement when a layer's style function returns both imagery and text. The suggestion is to enhance the declutter option from a boolean to a more flexible setting that can handle 'none', 'text', 'geometry', and 'both'."
+    }
+}

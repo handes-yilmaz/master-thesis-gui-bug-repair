@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "features/copy-paste/BpmnCopyPaste.js",
+            "features/copy-paste/ModdleCopy.js",
+            "modeling/behavior/UnclaimIdBehavior.js"
+        ],
+        "explanation": "1. **features/copy-paste/BpmnCopyPaste.js**: This file likely contains the logic for handling the copy and paste operations within the BPMN editor. The bug report indicates an issue with duplicate IDs when copying and pasting, so this file is crucial in ensuring that new, unique IDs are assigned during the paste operation.\n\n2. **features/copy-paste/ModdleCopy.js**: This file may manage the detailed copying of BPMN elements, ensuring that all necessary properties are correctly duplicated. It might also handle ID management, making it relevant to the issue of duplicate IDs.\n\n3. **modeling/behavior/UnclaimIdBehavior.js**: This file potentially deals with ID management and unclaiming previously used IDs. Since the bug involves duplicate IDs, this behavior might need to be adjusted to ensure that IDs are properly released and reassigned, preventing duplication during the copy-paste process.",
+        "bug_scenario": "The bug occurs when a user attempts to copy and paste a Pool containing a Task, then exports and re-imports the BPMN file. The duplication of Pool IDs suggests that the copy-paste functionality is not correctly generating unique IDs for the copied elements, leading to conflicts when re-imported."
+    },
+    "2": {
+        "bug_files": [
+            "features/copy-paste/BpmnCopyPaste.js",
+            "features/copy-paste/ModdleCopy.js",
+            "modeling/cmd/IdClaimHandler.js"
+        ],
+        "explanation": "1. **features/copy-paste/BpmnCopyPaste.js**: This file is likely responsible for handling the copy-paste operations for BPMN elements. The duplication of IDs suggests there might be an issue with how IDs are managed during the copy process.\n\n2. **features/copy-paste/ModdleCopy.js**: This file likely deals with the underlying data structure (moddle) when copying elements. If IDs are not correctly modified or regenerated during the moddle copy, it could lead to identical IDs in duplicated elements.\n\n3. **modeling/cmd/IdClaimHandler.js**: This file likely involves claiming or assigning IDs to elements in the BPMN model. Ensuring unique IDs during model manipulation is crucial, and any mishandling here could result in duplicate IDs when elements are copied.",
+        "bug_scenario": "The bug report describes an issue where duplicating a Pool in a BPMN diagram causes both the original and copied Pools to have the same ID. This results in a problem when exporting and importing the diagram, as IDs should be unique to ensure proper functionality and avoid conflicts in the BPMN XML format."
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const style = options.style || {};"
+                ],
+                "REPLACE": [
+                    "    const style = options.style || { blendFunc: 'default' };"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "this.helper.useProgram(this.program_);",
+                    "this.helper.prepareDraw(frameState, !blend);"
+                ],
+                "REPLACE": [
+                    "    const gl = this.helper.getGL();",
+                    "    this.helper.useProgram(this.program_);",
+                    "    if (this.getLayer().style_.blendFunc === 'additive') {",
+                    "      gl.blendFunc(gl.ONE, gl.ONE);",
+                    "    } else {",
+                    "      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);",
+                    "    }",
+                    "    this.helper.prepareDraw(frameState, !blend);"
+                ]
+            }
+        ]
+    }
+}

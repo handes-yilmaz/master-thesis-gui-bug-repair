@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js"
+        ],
+        "explanation": "The issue revolves around the ability to copy and paste certain BPMN elements in a way that defies the intended business logic constraints. Given this, files related to the copy-paste functionality and subprocess start event behaviors are likely involved.\\n\\n1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file likely contains the logic for how BPMN elements are copied and pasted within the application. Since the issue is directly related to copying and pasting typed start events, modifications to this file might be necessary to implement restrictions against pasting these events onto subprocesses.\\n\\n2. **lib/features/modeling/behavior/SubProcessStartEventBehavior.js**: This file presumably handles the behavior of start events within subprocesses. It would be necessary to ensure that any logic preventing the creation of typed start events directly within subprocesses is also applied to pasted events, thus ensuring consistent behavior whether the event is created or pasted.\\n\\nThese files are critical because they deal with the specific operations (copy-paste and event behavior within subprocesses) relevant to the reported bug scenario.",
+        "bug_scenario": "The bug allows copying typed start events or non-interrupting events from an event sub-process and pasting them onto a subprocess, which is not permitted by the business logic. This is demonstrated in the provided image as an animation, showing the action of copying a start event and attempting to paste it into a subprocess, which should be restricted."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/rules/BpmnRules.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js"
+        ],
+        "explanation": "1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file is likely responsible for handling copy-paste actions in the BPMN modeler. Since the bug is related to the ability to paste a typed start event onto a subprocess, the implementation of the paste logic would need to be examined and potentially modified here to introduce a restriction on pasting typed start events onto subprocesses.\n\n2. **lib/features/rules/BpmnRules.js**: This file might define the rules governing what can and cannot be done within the BPMN modeler. Since the expected behavior involves a rule that prohibits pasting typed start events onto subprocesses, this file would be relevant in defining or enforcing such a rule.\n\n3. **lib/features/modeling/behavior/SubProcessStartEventBehavior.js**: This file likely deals with specific behaviors related to start events within subprocesses. Since the bug involves improperly allowed start events within subprocesses, this file might be where the behavior of start events in subprocesses is defined or managed. It might need adjustments to ensure typed start events can't be pasted into subprocesses.",
+        "bug_scenario": "The bug scenario involves the ability to copy a typed start event and paste it onto a subprocess, which should not be allowed according to the rules of BPMN (Business Process Model and Notation) modeling. The expected behavior is that such pasting should be prohibited to maintain the integrity of the subprocess structure."
+    }
+}

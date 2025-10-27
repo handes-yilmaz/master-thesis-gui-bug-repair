@@ -1,0 +1,41 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 2cf948e..f7d5f7d 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -450,7 +450,22 @@ class WebGLTileLayer extends BaseTileLayer {
+   render(frameState, target) {
+     this.rendered = true;
+     const viewState = frameState.viewState;
+-    const sources = this.getSources(frameState.extent, viewState.resolution);
++    const sources = this.getSources(frameState.extent, viewState.resolution).map(source => {
++      if (source.getProjection() !== viewState.projection) {
++        return new ReprojTile(
++          source.getProjection(),
++          source.getTileGrid(),
++          viewState.projection,
++          this.getTileGrid(),
++          frameState.tileCoord,
++          null,
++          frameState.pixelRatio,
++          0,
++          (z, x, y, pixelRatio) => source.getTile(z, x, y, pixelRatio)
++        );
++      }
++      return source;
++    });
+     let ready = true;
+     for (let i = 0, ii = sources.length; i < ii; ++i) {
+       const source = sources[i];
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 485d074..cd2d163 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -652,7 +652,7 @@ class GeoTIFFSource extends DataTile {
+         const image = firstSource[i];
+         const projection = getProjection(image);
+         if (projection) {
+-          this.projection = projection;
++    this.projection = projection || 'EPSG:4326'; // Default to EPSG:4326 if no projection is found
+           break;
+         }
+       }

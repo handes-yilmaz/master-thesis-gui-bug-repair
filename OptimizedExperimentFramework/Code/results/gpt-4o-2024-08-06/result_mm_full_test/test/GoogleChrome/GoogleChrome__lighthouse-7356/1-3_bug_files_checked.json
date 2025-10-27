@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/lib/lh-error.js",
+            "lighthouse-core/config/constants.js"
+        ],
+        "explanation": "1. **lighthouse-core/gather/driver.js**: This file likely handles the interaction with the page and waits for events like the First Contentful Paint (FCP). Any logic related to 'waitForFCP when tracing' would be implemented here.\n2. **lighthouse-core/gather/gather-runner.js**: This file manages the timing and orchestration of the gathering process. Changes in timeout or waiting strategies would be relevant here.\n3. **lighthouse-core/lib/lh-error.js**: This file defines the errors used throughout the Lighthouse process. If NO_FCP errors are common, adjustments might be needed here.\n4. **lighthouse-core/config/constants.js**: This file likely contains timeout settings or constants used in the gathering process, such as maximum wait times for loading events.",
+        "bug_scenario": "The bug report indicates an increased error rate in the Lighthouse (LH) backend related to latency issues, specifically due to a 60-second timeout on PageSpeed Insights (PSI) and Lighthouse Runner (LR). The images show a significant rise in render error rates and latency times, especially in the 'loadPage-defaultPass' timing. The issue seems to be linked to a recent change involving the 'waitForFCP when tracing' which might be affecting the loading times and hitting the 60s render timeout."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/lib/lh-error.js",
+            "lighthouse-core/config/constants.js"
+        ],
+        "explanation": "1. **lighthouse-core/gather/driver.js**: This file likely handles the gathering of metrics and waiting for events like FCP (First Contentful Paint). The change related to 'waitForFCP when tracing' could be implemented here, causing the timeout issue.\n2. **lighthouse-core/gather/gather-runner.js**: This file might manage the overall gathering process, including timing configurations and handling load timeouts.\n3. **lighthouse-core/lib/lh-error.js**: This file probably defines errors like NO_FCP and might be involved in error handling related to timeouts.\n4. **lighthouse-core/config/constants.js**: This file may define timeout values and constants that influence behavior related to the timing and thresholds for loading and rendering.",
+        "bug_scenario": "The bug report indicates an increased error rate due to a 60-second timeout on the PSI/LR. The images show a rise in render error rates and latency timings, particularly with the 'loadPage-defaultPass' timing jumping significantly. The suspect is the 'waitForFCP when tracing' change, which might be causing more sites to hit the 35s maxWaitForLoad timeout, leading to more 60s render timeouts."
+    }
+}

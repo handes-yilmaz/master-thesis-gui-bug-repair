@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/large-javascript-libraries.js": [
+            {
+                "SEARCH": [
+                    "return {",
+                    "name: /** @type {LH.Audit.Details.TableItem} */ {",
+                    "type: 'link',",
+                    "text: original.name,",
+                    "url: original.repository,",
+                    "},",
+                    "transferSize: original.gzip,",
+                    "subItems: /** @type {LH.Audit.Details.TableSubItems} */ ({",
+                    "type: 'subitems',",
+                    "items: suggestionItems,",
+                    "}),",
+                    "};"
+                ],
+                "REPLACE": [
+                    "      return {",
+                    "        name: /** @type {LH.Audit.Details.TableItem} */ {",
+                    "          type: 'link',",
+                    "          text: original.name,",
+                    "          url: original.repository,",
+                    "        },",
+                    "        transferSize: original.gzip.toFixed(1), // Ensure one decimal place",
+                    "        subItems: /** @type {LH.Audit.Details.TableSubItems} */ ({",
+                    "          type: 'subitems',",
+                    "          items: suggestionItems,",
+                    "        }),",
+                    "      };"
+                ]
+            }
+        ]
+    }
+}

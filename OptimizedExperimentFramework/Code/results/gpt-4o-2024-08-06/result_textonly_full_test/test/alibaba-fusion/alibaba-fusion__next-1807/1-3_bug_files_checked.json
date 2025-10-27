@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/menu/view/item.jsx",
+            "src/menu/view/menu.jsx",
+            "src/menu/view/util.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "The files identified as bug-related pertain to the Menu component and its configuration, which are central to addressing the reported issue. \n\n1. **src/menu/view/item.jsx**: This file likely handles the individual Menu Item components where the 'title' attribute is applied. Modifying this file could allow for changes in how the 'title' is set or removed based on the content type.\n\n2. **src/menu/view/menu.jsx**: This file is likely responsible for the overall Menu handling, including rendering and managing Menu Items. Adjustments here could help implement logic for when to apply or remove titles.\n\n3. **src/menu/view/util.js**: Utilities related to Menu operations, potentially including helpers for setting attributes like 'title' or 'aria-label'. Changes here could facilitate any logic needed to decide when and how to set these attributes.\n\n4. **src/config-provider/config.jsx**: Since one proposed solution involves using a configuration API to control the display of titles, this file is crucial in implementing such an API. It would handle the configuration logic that determines if the 'title' should be shown.\n\nThese files collectively manage how Menu Items are rendered and configured, directly impacting the bug scenario described in the report.",
+        "bug_scenario": "The bug scenario revolves around the default addition of a 'title' attribute to Menu Items in a user interface. Currently, the 'title' is added to Menu Items, which displays all collapsed text when hovered over for 3 seconds and is readable by screen readers. While this aids accessibility and visibility of long text, it also leads to issues such as redundancy when the 'title' is the same as the inner text, violating WCAG guidelines. Furthermore, some business users find the title tooltip intrusive. The proposed solutions involve changing the 'title' to 'aria-label' or providing configuration options to control the 'title' display."
+    },
+    "2": {
+        "bug_files": [
+            "src/menu/view/item.jsx",
+            "src/config-provider/config.jsx",
+            "src/menu/view/menu.jsx"
+        ],
+        "explanation": "The bug is related to the handling of 'title' attributes on Menu Items. Given the repository structure, the relevant files are located in the 'src/menu/view' directory. These include 'item.jsx' and 'menu.jsx', which are likely to handle the rendering of individual menu items and the overall menu component, respectively. Changes to the 'title' attribute would need to be implemented here. Additionally, since one proposed solution involves adding a configuration option, the 'src/config-provider/config.jsx' file is relevant as it would likely handle the application-wide configuration settings for components like Menu.",
+        "bug_scenario": "The bug scenario involves the use of the 'title' attribute on Menu Items in a web application. Currently, the 'title' attribute is automatically added to Menu Items, allowing for screen readers to read the content and for users to see collapsed text when hovering over the item. However, this causes issues when the 'title' and 'innerText' are identical, violating the WCAG principle of avoiding repetitive text. Additionally, some users find the title tooltip undesirable. Three potential solutions are discussed, including replacing 'title' with 'aria-label', providing a configuration option to control 'title' display, or conditionally setting 'title' only for certain content types."
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/util/LineAttachmentUtil.js",
+            "lib/features/draw/BpmnRenderer.js"
+        ],
+        "explanation": "1. **DropOnFlowBehavior.js**: This file likely handles behavior when an element is dropped on a sequence flow. The issue suggests a problem with how the docking point is calculated or applied, making this file relevant.\n2. **LineAttachmentUtil.js**: Utilities related to line attachment are likely involved in calculating how a sequence flow attaches to an element. This is relevant for ensuring correct docking positions.\n3. **BpmnRenderer.js**: Changes in the rendering of sequence flows upon modifying the layout might be necessary, especially if the visual representation does not match the intended layout. This file handles rendering logic.",
+        "bug_scenario": "A sequence flow layout breaks after dropping an element onto it. The new incoming sequence flow docks at the top left corner, which is incorrect."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/util/LineAttachmentUtil.js",
+            "lib/features/modeling/Modeling.js",
+            "lib/draw/BpmnRenderer.js",
+            "lib/draw/BpmnRenderUtil.js"
+        ],
+        "explanation": "1. **DropOnFlowBehavior.js**: This file likely handles the behavior when elements are dropped onto sequence flows. The bug might reside in how this behavior calculates the docking point.\n2. **LineAttachmentUtil.js**: This utility might be responsible for calculating attachment points. Errors in this logic could lead to incorrect docking.\n3. **Modeling.js**: Central to the modeling logic, this file may coordinate actions related to layout adjustments when elements are moved or dropped.\n4. **BpmnRenderer.js** and **BpmnRenderUtil.js**: These files are involved in rendering sequence flows. Issues in rendering logic might manifest as layout problems when new elements are introduced.",
+        "bug_scenario": "The bug report describes an issue where dropping an element onto a sequence flow disrupts the layout, causing the docking point to default to the top left corner. The provided GIF image shows this behavior in action, where a new flow incorrectly attaches at an unintended point, leading to misaligned connections."
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/geom/GeometryCollection.js//GeometryCollection",
+            "src/ol/interaction/Modify.js//Modify"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Modify.js//writeGeometryCollectionGeometry_"
+        ],
+        "explanation": "The `GeometryCollection` class in `src/ol/geom/GeometryCollection.js` is directly related to the bug because the issue arises when geometries are part of a `GeometryCollection`. This class manages the collection of geometries and their interactions, which is central to the problem described.\n\nThe `Modify` class in `src/ol/interaction/Modify.js` is responsible for handling modifications to feature geometries. Since the bug involves modifying geometries within a `GeometryCollection`, this class is likely involved in the incorrect behavior.\n\nThe `writeGeometryCollectionGeometry_` function within the `Modify` class is specifically responsible for handling geometry collections during modification interactions. This function would need to be examined and potentially modified to ensure that interactions with `GeometryCollection` geometries work as expected, similar to how they work with `FeatureCollection` geometries.",
+        "bug_scenario": "The bug scenario involves a problem with the interaction when editing geometries in a `GeometryCollection`. The interaction works correctly when the same geometries are assigned to features and aggregated in a `FeatureCollection`, but not when they are in a `GeometryCollection`. The issue can be observed by dragging the common vertex of two polygons, which does not behave as expected."
+    }
+}

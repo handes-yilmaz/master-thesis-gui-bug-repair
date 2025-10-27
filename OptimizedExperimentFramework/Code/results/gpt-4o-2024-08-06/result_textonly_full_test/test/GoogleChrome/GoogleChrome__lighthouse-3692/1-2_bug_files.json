@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js",
+            "lighthouse-core/report/v2/renderer/util.js",
+            "lighthouse-core/report/v2/report-generator.js"
+        ],
+        "explanation": "1. **lighthouse-core/report/v2/renderer/report-renderer.js**: This file is likely responsible for rendering the report, including how sections are displayed. Modifying this file can help ensure the warning is prominently shown at the top of the report.\n\n2. **lighthouse-core/report/v2/renderer/util.js**: Utility functions that might be used across the report rendering process could need updates to handle the new warning logic or display conditions.\n\n3. **lighthouse-core/report/v2/report-generator.js**: This file is responsible for generating the report content. It may need modifications to include the logic for determining when to display the warning based on whether headless Chrome was used. This includes updating how the `reportJSON` is processed to include warning information.",
+        "bug_scenario": "The bug report indicates that users should be warned about performance numbers when a report is generated using headless Chrome. The warning should be prominently displayed at the top of the report to ensure visibility, as there are performance-related audits in various categories. This change requires modifying the report generation logic to include warnings when applicable."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js",
+            "lighthouse-core/report/v2/renderer/util.js",
+            "lighthouse-core/report/v2/report-generator.js"
+        ],
+        "explanation": "The bug is about displaying a warning in the performance report. The files in `lighthouse-core/report/v2/renderer/` are responsible for rendering the report, which includes `report-renderer.js` for the main rendering logic and `util.js` for auxiliary functions that might be used across rendering tasks. The `report-generator.js` is likely involved in generating the report data structure that is rendered, making it a crucial part in ensuring the warning is included in the generated report. These files are directly related to the rendering and generation of reports, which is where the warning needs to be integrated.",
+        "bug_scenario": "The bug is related to a performance report generated using headless Chrome. There is a need to warn users about the performance numbers when the report is created in this environment. The warning should be placed at the top of the report to enhance visibility and address the presence of performance-related audits across different categories. Additionally, there is a consideration to determine if running the module should also trigger a warning."
+    }
+}

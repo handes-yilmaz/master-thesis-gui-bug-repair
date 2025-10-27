@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/cascader-select/cascader-select.jsx//CascaderSelect"
+        ],
+        "bug_functions": [
+            "src/cascader-select/index.jsx//transform"
+        ],
+        "explanation": "The CascaderSelect class in 'src/cascader-select/cascader-select.jsx' is the main component where the issue is likely occurring, as it is responsible for handling the properties and their transformations. The problem of modifying user-passed properties could be happening within this class, especially in methods that deal with property updates or state management.\n\nThe 'transform' function in 'src/cascader-select/index.jsx' is also a key area because it explicitly creates a copy of the props and modifies them. This function is part of the configuration process for the CascaderSelect component and is directly involved in transforming the properties, which aligns with the reported issue of property modification. The function's logic of copying and altering props could be the root cause of the problem when used in conjunction with immer, which expects immutability.",
+        "bug_scenario": "The bug scenario involves the CascaderSelect component, which is modifying the properties passed to it. This behavior causes an error when using the immer library, as immer expects immutability of the input properties. The issue is highlighted by the fact that the component should not alter the values provided by the user."
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/driver.js//Driver",
+            "lighthouse-core/gather/gather-runner.js//GatherRunner"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/driver.js//_waitForFCP",
+            "lighthouse-core/gather/driver.js//gotoURL",
+            "lighthouse-core/gather/gather-runner.js//loadPage"
+        ],
+        "explanation": "The 'Driver' class in 'driver.js' contains the '_waitForFCP' function, which is directly related to the issue of waiting for the First Contentful Paint (FCP) and could be causing the timeout. The 'gotoURL' function is also relevant as it handles navigation and waiting for page load events, which are critical in managing timeouts. The 'GatherRunner' class in 'gather-runner.js' includes the 'loadPage' function, which is responsible for loading the page and is directly linked to the 'loadPage-defaultPass' timing that shows a significant increase, indicating a potential area where the timeout issue could be addressed.",
+        "bug_scenario": "The bug scenario involves increased failures due to a 60-second timeout on PSI/LR, with a noticeable rise in error rates on the LR backend. The issue is linked to increased latency, particularly in the 'loadPage-defaultPass' timing, which shows a significant jump. The problem is suspected to be related to the 'waitForFCP' implementation in the Lighthouse code, as indicated by the diff of changes and the common occurrence of the NO_FCP LighthouseError."
+    }
+}

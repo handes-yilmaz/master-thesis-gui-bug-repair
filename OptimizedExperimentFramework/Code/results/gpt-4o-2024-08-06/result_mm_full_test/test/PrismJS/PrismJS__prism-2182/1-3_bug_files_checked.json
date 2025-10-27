@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-elixir.js"
+        ],
+        "explanation": "The file `components/prism-elixir.js` is responsible for syntax highlighting Elixir code. The problem is with the regex pattern used to detect attribute names, which does not currently account for attributes ending with a `?`. The fix involves updating the regex pattern to include `?` at the end, ensuring proper syntax highlighting for such attributes.",
+        "bug_scenario": "The issue is that in the Elixir syntax highlighting, attributes ending with a question mark (`?`) are not correctly highlighted. This is due to the regular expression pattern missing the optional question mark at the end. The image shows a code snippet where `attribute?` is not highlighted as expected."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-elixir.js"
+        ],
+        "explanation": "The file 'components/prism-elixir.js' contains the syntax highlighting rules for Elixir in PrismJS. The bug report specifically points to line 40 in this file, which involves the regex pattern responsible for matching attribute names. Modifying this pattern to include a '?' at the end will fix the issue of recognizing and highlighting attributes that end with a '?'. This makes it the primary file related to the bug.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting for Elixir attributes that end with a '?'. The regex pattern fails to recognize these as valid tokens, which leads to them not being highlighted correctly. The image shows Elixir code where 'attribute?' is not tokenized properly."
+    }
+}

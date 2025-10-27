@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/html/renderer/report-renderer.js",
+            "lighthouse-core/report/html/renderer/util.js",
+            "lighthouse-core/report/html/renderer/category-renderer.js"
+        ],
+        "explanation": "1. **lighthouse-core/report/html/renderer/report-renderer.js**: This file is responsible for rendering the Lighthouse report, including the sections for passed audits and warnings. The function `_renderReportWarnings` is specifically tasked with rendering warnings, making it a key area to modify for ensuring warnings are visible in the 'Passed Audits' section.\n\n2. **lighthouse-core/report/html/renderer/util.js**: This utility file contains functions that prepare the report result and manage UI strings. The function `prepareReportResult` is crucial as it reshapes the Lighthouse report for rendering, which may include handling how warnings are displayed.\n\n3. **lighthouse-core/report/html/renderer/category-renderer.js**: This file handles the rendering of different audit categories, including passed audits. The function `_getClumpIdForAuditRef` determines the clump (or section) an audit belongs to, which is relevant for organizing and displaying warnings within the 'Passed Audits' section.",
+        "bug_scenario": "The bug scenario involves ensuring that warnings within the 'Passed Audits' section of a Lighthouse report are visible. The current plan is to add a block of warnings following the 'Passed Audits' section, as depicted in the provided image. This change is intended to improve the visibility of warnings that are currently not prominently displayed in the report."
+    }
+}

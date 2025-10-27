@@ -1,0 +1,17 @@
+diff --git a/src/ol/layer/Heatmap.js b/src/ol/layer/Heatmap.js
+index 556d486..da5bb3d 100644
+--- a/src/ol/layer/Heatmap.js
++++ b/src/ol/layer/Heatmap.js
+@@ -78,6 +78,12 @@ class Heatmap extends VectorLayer {
+     delete baseOptions.weight;
+     super(baseOptions);
+ 
++    if (options.className) {
++      this.className_ = options.className;
++    } else {
++      this.className_ = 'ol-layer-heatmap';
++    }
++
+     /**
+      * @private
+      * @type {HTMLCanvasElement}

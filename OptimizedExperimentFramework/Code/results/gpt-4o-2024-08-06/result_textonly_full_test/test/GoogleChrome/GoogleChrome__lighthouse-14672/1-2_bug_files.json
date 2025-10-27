@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "clients/devtools/devtools-entry.js",
+            "lib/emulation.js"
+        ],
+        "explanation": "The file `clients/devtools/devtools-entry.js` is directly mentioned in the bug report as the location where `screenEmulation.disabled` is set to true for Devtools, leading to the incorrect 'no emulation' message. This makes it a primary suspect for where the behavior needs to be adjusted to properly reflect the emulation status.\n\nAdditionally, `lib/emulation.js` is likely involved because it is typically responsible for handling emulation settings and states. Since the bug is about emulation descriptions, this file would contain the relevant logic that determines how emulation is described or displayed, making it potentially related to the issue described in the bug report. Changes in this file might have affected how Devtools interpret or apply these settings, contributing to the bug.",
+        "bug_scenario": "The bug scenario involves Devtools displaying 'no emulation' for mobile runs even when emulation is expected to be active. This issue is a result of changes made in a recent update (#14515), where the function `getEmulationDescriptions` was modified to return 'no emulation' when `screenEmulation.disabled` is true. This change affects the Devtools specifically when using `devtools-entry.js`."
+    },
+    "2": {
+        "bug_files": [
+            "clients/devtools/devtools-entry.js"
+        ],
+        "explanation": "The `devtools-entry.js` file is directly related to the bug because it handles the DevTools environment configuration. The bug report explicitly mentions that the function `getEmulationDescriptions` was changed to return 'no emulation' under certain conditions, and this logic is likely implemented or called within `devtools-entry.js`. Therefore, investigating and potentially modifying this file is necessary to address the bug.",
+        "bug_scenario": "The bug report indicates that the DevTools is showing 'no emulation' incorrectly for mobile runs. This issue arises from a change made in a previous commit (#14515) where the function `getEmulationDescriptions` was altered to return 'no emulation' when `screenEmulation.disabled` is set to true. This condition specifically affects the `devtools-entry.js` file, which handles the entry point for DevTools interactions."
+    }
+}

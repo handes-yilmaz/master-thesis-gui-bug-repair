@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "explanation": "The file `BoundaryEventBehavior.js` likely handles the behavior of boundary events, including their connectivity rules. It should ensure that boundary events cannot be message flow targets. The file `BpmnRules.js` is responsible for defining BPMN-specific rules and constraints, such as preventing certain types of connections. Both files are critical in enforcing the correct BPMN semantics, which the bug report indicates is currently failing.",
+        "bug_scenario": "The bug involves the inability to connect a message flow to a boundary event, which is semantically incorrect according to BPMN rules. The scenario shows an attempt to connect a participant to a boundary event, which should be disallowed, yet the UI permits the action. This visual representation indicates a flaw in enforcing BPMN connectivity rules in the application."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "explanation": "1. **BoundaryEventBehavior.js**: This file likely handles the behavior of boundary events in the modeling context. Modifications here would ensure that boundary events cannot be connected as message flow targets.\n\n2. **BpmnRules.js**: This file is responsible for defining the rules that govern connections in BPMN diagrams. It needs to be updated to enforce the rule that message flows cannot target boundary events.",
+        "bug_scenario": "The bug involves being able to connect a message flow to a boundary event in a BPMN diagram, which is against BPMN semantics. The provided image shows a BPMN diagram where participant B is being connected to a boundary event, which should be disallowed. This connection is possible in the current version, indicating a bug."
+    }
+}

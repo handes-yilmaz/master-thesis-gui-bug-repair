@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/search/Search.jsx",
+            "src/select/auto-complete.jsx"
+        ],
+        "explanation": "1. **src/search/Search.jsx**: This file contains the implementation of the Search component, which is directly related to the bug. The issue arises when the Enter key is pressed, and the search term does not match the selected suggestion. The `onSearch` method in this file uses the `autoCompleteRef` to determine the selected value, which is crucial for fixing the bug where the wrong search term is used.\n\n2. **src/select/auto-complete.jsx**: This file implements the AutoComplete component, which is used within the Search component. The handling of the Enter key and the selection of suggestions are managed here. The `handleTriggerKeyDown` and `chooseHighlightItem` methods are particularly relevant, as they determine which item is selected when Enter is pressed. Adjustments here are necessary to ensure the correct suggestion is used as the search term.",
+        "bug_scenario": "The bug scenario involves the Search component where, upon entering a character and triggering the suggestion list, pressing the Enter key results in a search term that does not match the selected suggestion. Specifically, when the user types 'r', the suggestion list appears, and pressing Enter searches for 'r' instead of the first suggestion 'Recent'."
+    }
+}

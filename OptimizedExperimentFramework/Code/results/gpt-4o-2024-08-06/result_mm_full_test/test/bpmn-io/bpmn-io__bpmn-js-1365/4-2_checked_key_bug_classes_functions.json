@@ -1,0 +1,67 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "CreateDataObjectBehavior",
+            "file_path": "lib/features/modeling/behavior/CreateDataObjectBehavior.js",
+            "function_details": [
+                {
+                    "name": "CreateDataObjectBehavior",
+                    "start_line": 11,
+                    "end_line": 30
+                }
+            ],
+            "function_code": [
+                "export default function CreateDataObjectBehavior(eventBus, bpmnFactory, moddle) {",
+                "",
+                "  CommandInterceptor.call(this, eventBus);",
+                "",
+                "  this.preExecute('shape.create', function(event) {",
+                "",
+                "    var context = event.context,",
+                "        shape = context.shape;",
+                "",
+                "    if (is(shape, 'bpmn:DataObjectReference') && shape.type !== 'label') {",
+                "",
+                "      // create a DataObject every time a DataObjectReference is created",
+                "      var dataObject = bpmnFactory.create('bpmn:DataObject');",
+                "",
+                "      // set the reference to the DataObject",
+                "      shape.businessObject.dataObjectRef = dataObject;",
+                "    }",
+                "  });",
+                "",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "ReplaceMenuProvider.prototype.getHeaderEntries",
+            "file_path": "lib/features/popup-menu/ReplaceMenuProvider.js",
+            "function_details": [
+                {
+                    "name": "ReplaceMenuProvider.prototype.getHeaderEntries",
+                    "start_line": 251,
+                    "end_line": 266
+                }
+            ],
+            "function_code": [
+                "ReplaceMenuProvider.prototype.getHeaderEntries = function(element) {",
+                "",
+                "  var headerEntries = [];",
+                "",
+                "  if (is(element, 'bpmn:Activity') && !isEventSubProcess(element)) {",
+                "    headerEntries = headerEntries.concat(this._getLoopEntries(element));",
+                "  }",
+                "",
+                "  if (is(element, 'bpmn:SubProcess') &&",
+                "      !is(element, 'bpmn:Transaction') &&",
+                "      !isEventSubProcess(element)) {",
+                "    headerEntries.push(this._getAdHocEntry(element));",
+                "  }",
+                "",
+                "  return headerEntries;",
+                "};"
+            ]
+        }
+    }
+}

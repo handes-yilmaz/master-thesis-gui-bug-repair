@@ -1,0 +1,23 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index 0060df8..63c4a9d 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -44,6 +44,11 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+     var descriptor = context.descriptor,
+         element = context.element;
+ 
++    // Check if the element is a Boundary Event and has an attachedTo property
++    if (is(element, 'bpmn:BoundaryEvent') && element.attachedToRef) {
++      // Ensure the copied descriptor maintains the attachment relationship
++      descriptor.attachedToRef = element.attachedToRef;
++    }
+     var businessObject = descriptor.oldBusinessObject = getBusinessObject(element);
+ 
+     descriptor.type = element.type;
+@@ -157,4 +162,4 @@ BpmnCopyPaste.$inject = [
+ 
+ function isLabel(element) {
+   return !!element.labelTarget;
+-}
+\ No newline at end of file
++}

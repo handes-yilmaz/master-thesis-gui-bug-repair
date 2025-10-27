@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//getProjection",
+            "src/ol/source/GeoTIFF.js//determineProjection",
+            "src/ol/source/GeoTIFF.js//configure_",
+            "src/ol/source/GeoTIFF.js//loadTile_",
+            "src/ol/renderer/webgl/TileLayer.js//renderTile"
+        ],
+        "explanation": "The classes and functions identified are related to the handling and rendering of GeoTIFF data in a WebGL context. The GeoTIFFSource class in 'src/ol/source/GeoTIFF.js' is responsible for managing GeoTIFF data, including determining projections and configuring tile grids, which are crucial for correctly rendering tiles in different projections. The functions 'getProjection', 'determineProjection', and 'configure_' are directly involved in handling the projection and configuration of the GeoTIFF data, which is likely where the issue with the antimeridian rendering occurs. The WebGLTileLayer class in 'src/ol/layer/WebGLTile.js' and the WebGLTileLayerRenderer class in 'src/ol/renderer/webgl/TileLayer.js' are responsible for rendering the tiles using WebGL. The 'renderTile' function in the renderer class is specifically responsible for drawing the tiles, and any issues with tile rendering near the antimeridian would likely involve this function. These elements are critical to addressing the bug of missing tiles around the antimeridian.",
+        "bug_scenario": "The bug scenario involves missing tiles in a WebGLTileLayer when using a GeoTiff source that has been reprojected into a stereographic projection. Specifically, tiles near the antimeridian are not rendered, resulting in black gaps. The size of these gaps depends on the source tile sizes and zoom level."
+    }
+}

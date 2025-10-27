@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/metrics.js": [
+            {
+                "SEARCH": [
+                    "const summary = await ComputedTimingSummary",
+                    ".request({trace, devtoolsLog}, context);",
+                    "const metrics = summary.metrics;",
+                    "const debugInfo = summary.debugInfo;"
+                ],
+                "REPLACE": [
+                    "    const summary = await ComputedTimingSummary",
+                    "      .request({trace, devtoolsLog}, context);",
+                    "    const iframeSummary = await ComputedTimingSummary",
+                    "      .request({trace: artifacts.traces['iframe'], devtoolsLog: artifacts.devtoolsLogs['iframe']}, context);",
+                    "    const metrics = {...summary.metrics, ...iframeSummary.metrics};",
+                    "    const debugInfo = {...summary.debugInfo, ...iframeSummary.debugInfo};"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/iframe-elements.js": [
+            {
+                "SEARCH": [
+                    "const iframeElements = await driver.evaluateAsync(expression, {useIsolation: true});",
+                    "return iframeElements;"
+                ],
+                "REPLACE": [
+                    "    const iframeElements = await driver.evaluateAsync(expression, {useIsolation: true});",
+                    "    // Gather additional performance data for iframes",
+                    "    const iframeMetrics = await driver.evaluateAsync('collectIframeMetrics()', {useIsolation: true});",
+                    "    return {iframeElements, iframeMetrics};"
+                ]
+            }
+        ]
+    }
+}

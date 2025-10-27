@@ -1,0 +1,73 @@
+{
+    "1/1": {
+        "src/js/components/Form/Form.js": [
+            {
+                "SEARCH": [
+                    "validationRules.forEach(([name, { field, input }]) => {",
+                    "if (!omitValid) {",
+                    "nextErrors[name] = undefined;",
+                    "nextInfos[name] = undefined;",
+                    "}",
+                    "",
+                    "let result;",
+                    "if (input) {",
+                    "// input() a validation function supplied through useFormInput()",
+                    "result = input(name, formValue, format, messages);",
+                    "}",
+                    "if (field && !result) {",
+                    "// field() a validation function supplied through useFormField()",
+                    "result = field(name, formValue, format, messages);",
+                    "}",
+                    "// typeof error === 'object' is implied for both cases of error with",
+                    "// a status message and for an error object that is a react node",
+                    "if (typeof result === 'object') {",
+                    "if (result.status === 'info') {",
+                    "nextInfos[name] = result.message;",
+                    "} else {",
+                    "nextErrors[name] = result.message || result; // could be a node",
+                    "}",
+                    "} else if (typeof result === 'string') {",
+                    "nextErrors[name] = result;",
+                    "}",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  validationRules.forEach(([name, { field, input }]) => {",
+                    "    if (!omitValid) {",
+                    "      nextErrors[name] = undefined;",
+                    "      nextInfos[name] = undefined;",
+                    "    }",
+                    "",
+                    "    let result;",
+                    "    if (input) {",
+                    "      // input() a validation function supplied through useFormInput()",
+                    "      result = input(name, formValue, format, messages);",
+                    "    }",
+                    "    if (field && !result) {",
+                    "      // field() a validation function supplied through useFormField()",
+                    "      result = field(name, formValue, format, messages);",
+                    "    }",
+                    "    // typeof error === 'object' is implied for both cases of error with",
+                    "    // a status message and for an error object that is a react node",
+                    "    if (typeof result === 'object') {",
+                    "      if (result.status === 'info') {",
+                    "        nextInfos[name] = result.message;",
+                    "      } else {",
+                    "        nextErrors[name] = result.message || result; // could be a node",
+                    "      }",
+                    "    } else if (typeof result === 'string') {",
+                    "      nextErrors[name] = result;",
+                    "    }",
+                    "  });",
+                    "",
+                    "  // Clear errors for fields that are no longer present",
+                    "  Object.keys(nextErrors).forEach((key) => {",
+                    "    if (!validationRules.some(([name]) => name === key)) {",
+                    "      delete nextErrors[key];",
+                    "    }",
+                    "  });"
+                ]
+            }
+        ]
+    }
+}

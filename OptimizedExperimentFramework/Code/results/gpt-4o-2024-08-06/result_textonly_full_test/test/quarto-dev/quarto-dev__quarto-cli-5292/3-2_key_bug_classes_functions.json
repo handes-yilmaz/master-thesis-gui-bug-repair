@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/code-annotation.lua//kLangCommentChars",
+            "src/resources/filters/quarto-pre/code-annotation.lua//annoteProvider",
+            "src/resources/filters/quarto-pre/code-annotation.lua//resolveCellAnnotes",
+            "src/resources/filters/quarto-pre/code-annotation.lua//codeMeta"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/code-annotation.lua//annoteProvider",
+            "src/resources/filters/quarto-pre/code-annotation.lua//resolveCellAnnotes",
+            "src/resources/filters/quarto-pre/code-annotation.lua//processLaTeXAnnotation",
+            "src/resources/filters/quarto-pre/code-annotation.lua//code"
+        ],
+        "explanation": "The bug is related to the code annotation feature, which involves handling annotations in code cells and ensuring they are correctly processed and displayed in the output document. The 'kLangCommentChars' class is relevant because it defines the comment characters for different languages, including 'tikz', which is directly mentioned in the bug report. The 'annoteProvider' function is crucial as it provides functions to resolve annotation numbers and strip them from source code, which is directly related to the issue of annotations not appearing correctly. The 'resolveCellAnnotes' function is responsible for finding annotations in a code cell and returning them, which is a key part of the annotation process that is failing. The 'codeMeta' function ensures that the 'tikz' package is used for LaTeX output, which is directly related to the missing '\\circled' command issue. The 'processLaTeXAnnotation' function handles LaTeX-specific annotation processing, which is relevant to the PDF output problem. Finally, the 'code' function is the main filter that processes code cells and their annotations, making it a central part of the bug scenario.",
+        "bug_scenario": "The bug scenario involves a code annotation feature in Quarto version 1.3.336 that is not functioning correctly for PDF outputs. Specifically, the 'tikz' package is not included, and the '\\circled' command is not defined, leading to issues with code annotations in the document. The user attempted to define the '\\circled' command in the document preamble, which partially resolved the issue by producing code annotations in the code block but failed to stylize list elements below it."
+    }
+}

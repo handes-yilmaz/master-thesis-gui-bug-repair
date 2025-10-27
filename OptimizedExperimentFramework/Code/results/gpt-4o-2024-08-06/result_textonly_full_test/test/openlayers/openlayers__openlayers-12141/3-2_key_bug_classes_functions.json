@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/Vector.js//VectorSource"
+        ],
+        "bug_functions": [
+            "src/ol/featureloader.js//loadFeaturesXhr",
+            "src/ol/featureloader.js//xhr",
+            "src/ol/source/Vector.js//getExtent"
+        ],
+        "explanation": "The bug is related to the process of loading features and calculating their extent. The function loadFeaturesXhr in src/ol/featureloader.js is responsible for loading features via an XMLHttpRequest and calling a success callback with the loaded features. The xhr function in the same file creates a feature loader that uses loadFeaturesXhr and adds the loaded features to the source. The issue likely arises because the features are not added to the source before the success callback is called, leading to an incorrect extent calculation. The VectorSource class in src/ol/source/Vector.js contains the getExtent method, which is directly responsible for calculating and returning the extent of the features in the source. If features are not correctly added before this method is called, it will return an incorrect extent. Therefore, these functions and classes are key to addressing the bug.",
+        "bug_scenario": "The bug scenario involves attempting to get the extent of a VectorSource in a mapping application, but the result is incorrect, returning [Infinity,Infinity,-Infinity,-Infinity]. This issue occurs when trying to retrieve the extent inside the featuresloadend callback function. The expected behavior is for VectorSource.getExtent() to return the correct extent when the featuresloadend event is triggered."
+    }
+}

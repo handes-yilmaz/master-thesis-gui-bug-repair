@@ -1,0 +1,16 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "const width = Math.round((getWidth(extent) / resolution) * pixelRatio);",
+                    "const height = Math.round((getHeight(extent) / resolution) * pixelRatio);"
+                ],
+                "REPLACE": [
+                    "    const width = Math.round((getWidth(extent) / resolution) * pixelRatio * Math.abs(Math.cos(rotation)) + (getHeight(extent) / resolution) * pixelRatio * Math.abs(Math.sin(rotation)));",
+                    "    const height = Math.round((getHeight(extent) / resolution) * pixelRatio * Math.abs(Math.cos(rotation)) + (getWidth(extent) / resolution) * pixelRatio * Math.abs(Math.sin(rotation)));"
+                ]
+            }
+        ]
+    }
+}

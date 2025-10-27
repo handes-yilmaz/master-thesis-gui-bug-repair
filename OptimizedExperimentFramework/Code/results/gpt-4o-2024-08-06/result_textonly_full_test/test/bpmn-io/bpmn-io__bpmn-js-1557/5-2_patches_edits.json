@@ -1,0 +1,23 @@
+{
+    "1/1": {
+        "BpmnUpdater.js": [
+            {
+                "SEARCH": [
+                    "Oh.updateDiParent = function(element, newParent) {",
+                    "var di = this._elementRegistry.get(element.id).businessObject.di;",
+                    "var parentDi = this._elementRegistry.get(newParent.id).businessObject.di;"
+                ],
+                "REPLACE": [
+                    "Oh.updateDiParent = function(element, newParent) {",
+                    "  var di = this._elementRegistry.get(element.id).businessObject.di;",
+                    "  var parentDi = newParent ? this._elementRegistry.get(newParent.id).businessObject.di : null;",
+                    "",
+                    "  if (!parentDi) {",
+                    "    console.warn('Cannot update DI parent: new parent is undefined or not applicable.');",
+                    "    return;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

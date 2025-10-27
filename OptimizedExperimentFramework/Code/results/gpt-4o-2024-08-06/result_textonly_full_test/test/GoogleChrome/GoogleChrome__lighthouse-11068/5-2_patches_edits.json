@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/gatherers/css-usage.js": [
+            {
+                "SEARCH": [
+                    "const dedupedStylesheets = new Map(styleSheetInfo.map(sheet => {",
+                    "return /** @type {[string, LH.Artifacts.CSSStyleSheetInfo]} */ ([sheet.content, sheet]);",
+                    "}));",
+                    "return {",
+                    "rules: ruleUsageResponse.ruleUsage,",
+                    "stylesheets: Array.from(dedupedStylesheets.values()),",
+                    "};"
+                ],
+                "REPLACE": [
+                    "    const dedupedStylesheets = new Map(styleSheetInfo.map(sheet => {",
+                    "      return /** @type {[string, LH.Artifacts.CSSStyleSheetInfo]} */ ([sheet.header.sourceURL || sheet.content, sheet]);",
+                    "    }));",
+                    "    return {",
+                    "      rules: ruleUsageResponse.ruleUsage,",
+                    "      stylesheets: Array.from(dedupedStylesheets.values()),",
+                    "    };"
+                ]
+            }
+        ]
+    }
+}

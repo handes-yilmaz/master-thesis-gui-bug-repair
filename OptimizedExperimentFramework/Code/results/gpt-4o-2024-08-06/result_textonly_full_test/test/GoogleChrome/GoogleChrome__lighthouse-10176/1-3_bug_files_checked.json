@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/stack-collector.js",
+            "lighthouse-core/audits/dobetterweb/js-libraries.js",
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js",
+            "lighthouse-core/lib/stack-packs.js",
+            "stack-packs/index.js"
+        ],
+        "explanation": "1. **lighthouse-core/lib/stack-collector.js**: This file is directly mentioned in the bug report in relation to the 'superloose coupling' that needs to be improved by adding real 'id' properties in js-library-detector. Modifications here would help address the duplication issue.\n\n2. **lighthouse-core/audits/dobetterweb/js-libraries.js**: This file is related to the detection of JavaScript libraries during audits. Since the bug report mentions issues with 'React (Fast Path)' entries appearing in audits, changes here may be necessary to control their visibility.\n\n3. **lighthouse-core/audits/byte-efficiency/unminified-javascript.js**: As the bug is identified in the Minify JavaScript audit results, this file is relevant as it deals with byte efficiency and unminified JavaScript, potentially requiring adjustments to prevent duplication.\n\n4. **lighthouse-core/lib/stack-packs.js**: This file likely handles the logic for comparing and displaying stack packs. Adjustments here may be needed to properly manage and prevent duplicate entries.\n\n5. **stack-packs/index.js**: This file serves as the entry point for stack packs, and it might require updates to manage how stack packs are initialized or filtered to prevent duplicates from being shown.",
+        "bug_scenario": "The bug scenario is related to the duplication of stack packs when running Lighthouse or PageSpeed Insights (PSI) on the website https://abcnews.go.com/. The issue is visible in the Minify JavaScript audit results, where two identical stack packs are shown. This is due to the addition of new 'Fast Path' checks in the js-lib-detector, which were subsequently integrated into Lighthouse. There are two main issues: the presence of duplicate stack packs, and the unintended visibility of experimental 'React (Fast Path)' entries in user-facing audits."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/lib/stack-collector.js",
+            "lighthouse-core/audits/dobetterweb/js-libraries.js",
+            "stack-packs/index.js"
+        ],
+        "explanation": "1. `lighthouse-core/lib/stack-collector.js`: This file is directly mentioned in the bug report with a link to a specific line of code (https://github.com/GoogleChrome/lighthouse/blob/dab020167000860c2b8fc43ee76963eb83d63a94/lighthouse-core/lib/stack-collector.js#L83) that suggests a loose coupling issue that may lead to duplicated stack packs. This needs to be addressed to ensure stack packs are uniquely identified and not duplicated.\n\n2. `lighthouse-core/audits/dobetterweb/js-libraries.js`: The bug report discusses issues with showing experimental `React (Fast Path)` entries within the `bestpractices/js-libraries` audit. This implies that the audit file responsible for JavaScript libraries, which is likely `js-libraries.js`, needs modification to control visibility of these experimental entries.\n\n3. `stack-packs/index.js`: This file is likely responsible for managing stack packs, given its name and location. Modifications here may be necessary to ensure stack packs are correctly identified and managed, preventing duplication and controlling visibility of certain entries.",
+        "bug_scenario": "The bug concerns duplicated stack packs and unexpected visibility of certain experimental entries when running Lighthouse or PSI on specific websites. The bug is evident in the images provided, showing duplicate entries in the audits and unexpected 'React (Fast Path)' entries being exposed to users."
+    }
+}

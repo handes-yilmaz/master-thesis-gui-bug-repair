@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//setStyle",
+            "src/ol/layer/WebGLTile.js//updateStyleVariables",
+            "src/ol/renderer/webgl/TileLayer.js//renderTile"
+        ],
+        "explanation": "The WebGLTileLayer class in 'src/ol/layer/WebGLTile.js' is directly responsible for managing the style and rendering of tile layers, including handling palette styles. The setStyle and updateStyleVariables functions are crucial as they manage the style updates and could be involved in the issue where the style is not correctly reapplied after re-adding the layer. The WebGLTileLayerRenderer class in 'src/ol/renderer/webgl/TileLayer.js' is responsible for the actual rendering of the tiles using WebGL. The renderTile function is particularly relevant as it handles the binding of textures and rendering, which is where the WebGL context issues are likely manifesting. The problem may lie in how textures are managed or re-initialized when the layer is re-added to the map.",
+        "bug_scenario": "The bug occurs when a WebGLTileLayer with a palette style is removed and then re-added to a map. The layer fails to render correctly, showing a black layer instead. Console warnings indicate issues with WebGL context, such as 'bindTexture: tex is from a different (or lost) WebGL context.'"
+    }
+}

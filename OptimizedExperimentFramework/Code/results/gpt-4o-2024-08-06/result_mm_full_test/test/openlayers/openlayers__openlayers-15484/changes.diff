@@ -1,0 +1,24 @@
+diff --git a/src/ol/reproj/DataTile.js b/src/ol/reproj/DataTile.js
+index 3d1aa88..d708fdb 100644
+--- a/src/ol/reproj/DataTile.js
++++ b/src/ol/reproj/DataTile.js
+@@ -197,17 +197,8 @@ class ReprojDataTile extends DataTile {
+     let sourceExtent = this.triangulation_.calculateSourceExtent();
+ 
+     if (maxSourceExtent) {
+-      if (sourceProj.canWrapX()) {
+-        sourceExtent[1] = clamp(
+-          sourceExtent[1],
+-          maxSourceExtent[1],
+-          maxSourceExtent[3],
+-        );
+-        sourceExtent[3] = clamp(
+-          sourceExtent[3],
+-          maxSourceExtent[1],
+-          maxSourceExtent[3],
+-        );
++      if (sourceProj.canWrapX() && options.wrapX) {
++        sourceExtent = getIntersection(sourceExtent, maxSourceExtent);
+       } else {
+         sourceExtent = getIntersection(sourceExtent, maxSourceExtent);
+       }

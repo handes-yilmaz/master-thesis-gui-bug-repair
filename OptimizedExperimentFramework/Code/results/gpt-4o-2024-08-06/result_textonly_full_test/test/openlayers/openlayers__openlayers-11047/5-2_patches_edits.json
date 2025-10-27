@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "src/ol/source/Raster.js": [
+            {
+                "SEARCH": [
+                    "class RasterSource extends ImageSource {",
+                    "...",
+                    "setOperation(operation, opt_lib) {",
+                    "this.worker_ = new Processor({",
+                    "operation: operation,",
+                    "imageOps: this.operationType_ === RasterOperationType.IMAGE,",
+                    "queue: 1,",
+                    "lib: opt_lib,",
+                    "threads: this.threads_,",
+                    "});",
+                    "this.changed();",
+                    "}",
+                    "..."
+                ],
+                "REPLACE": [
+                    "class RasterSource extends ImageSource {",
+                    "  ...",
+                    "  setOperation(operation, opt_lib) {",
+                    "    this.terminateWorkers_(); // Terminate existing workers before creating new ones",
+                    "    this.worker_ = new Processor({",
+                    "      operation: operation,",
+                    "      imageOps: this.operationType_ === RasterOperationType.IMAGE,",
+                    "      queue: 1,",
+                    "      lib: opt_lib,",
+                    "      threads: this.threads_,",
+                    "    });",
+                    "    this.changed();",
+                    "  }",
+                    "",
+                    "  /**",
+                    "   * Terminate all workers to free up resources.",
+                    "   * @private",
+                    "   */",
+                    "  terminateWorkers_() {",
+                    "    if (this.worker_) {",
+                    "      this.worker_.terminate();",
+                    "      this.worker_ = null;",
+                    "    }",
+                    "  }",
+                    "  ..."
+                ]
+            }
+        ]
+    }
+}

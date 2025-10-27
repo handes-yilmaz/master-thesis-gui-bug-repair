@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "wrapX: options.wrapX,"
+                ],
+                "REPLACE": [
+                    "      wrapX: options.wrapX !== undefined ? options.wrapX : false,"
+                ]
+            }
+        ],
+        "src/ol/reproj/DataTile.js": [
+            {
+                "SEARCH": [
+                    "const limitedTargetExtent = maxTargetExtent",
+                    "? getIntersection(targetExtent, maxTargetExtent)",
+                    ": targetExtent;"
+                ],
+                "REPLACE": [
+                    "    const limitedTargetExtent = maxTargetExtent",
+                    "      ? getIntersection(targetExtent, maxTargetExtent)",
+                    "      : targetExtent;",
+                    "",
+                    "    if (options.wrapX) {",
+                    "      // Adjust the limitedTargetExtent to respect wrapX",
+                    "      limitedTargetExtent[0] = Math.max(limitedTargetExtent[0], maxTargetExtent[0]);",
+                    "      limitedTargetExtent[2] = Math.min(limitedTargetExtent[2], maxTargetExtent[2]);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

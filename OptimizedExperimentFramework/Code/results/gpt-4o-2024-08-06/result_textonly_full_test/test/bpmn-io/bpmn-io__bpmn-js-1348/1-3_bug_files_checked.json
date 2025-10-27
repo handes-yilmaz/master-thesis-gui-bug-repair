@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/rules/BpmnRules.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js"
+        ],
+        "explanation": "The file `BpmnRules.js` within the `rules` directory is likely responsible for defining the rules that determine allowable connections within the modeler. Given that the issue is about disallowing a connection that should be allowed, this file is a probable source for the bug. The `AttachEventBehavior.js` and `BoundaryEventBehavior.js` files within the `modeling/behavior` directory are also relevant because they handle the behaviors associated with attaching events to activities and managing boundary events, respectively. Since the issue involves message flows to boundary events, modifications to the behavior defined in these files might be necessary to correct the rule implementation, allowing the intended connection.",
+        "bug_scenario": "The bug scenario involves a BPMN Modeler where message flows targeting intermediate message catch boundary events are disallowed, although they should be allowed according to the BPMN 2.0 specification. The provided images illustrate the process of attempting to connect a message flow from an activity in one participant to an intermediate message catch boundary event, and the subsequent failure of the modeler to permit this connection. The expected behavior, as per the BPMN 2.0 spec, is that such connections should be allowed for message catch events."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/features/rules/BpmnRules.js",
+            "lib/features/replace/ReplaceOptions.js"
+        ],
+        "explanation": "1. **BoundaryEventBehavior.js**: This file is likely responsible for the behavior of boundary events within modeling operations. Given the issue involves boundary event connections, modifications here could be necessary to allow connections for intermediate message catch boundary events as specified by BPMN 2.0.\n\n2. **BpmnRules.js**: This file likely contains the rules that govern what connections are allowed in the BPMN modeler. Since the problem is that the modeler disallows certain connections that should be permitted, adjustments to the rules in this file could resolve the issue.\n\n3. **ReplaceOptions.js**: This file might define options or configurations for element replacements and connections. Ensuring that intermediate message catch boundary events are included in configurations that allow message flow connections could be part of the solution.",
+        "bug_scenario": "The bug scenario involves attempting to create a connection between a message flow and an intermediate message catch boundary event in a BPMN modeler, which is disallowed by the software. However, according to the BPMN 2.0 specification, such connections should be allowed under certain conditions. The user tries to establish this connection, but the modeler prevents it, which is contrary to the expected behavior as defined by the BPMN specification. The bug is visualized in the provided gif image, where the user attempts to connect the elements but is unable to do so due to current software restrictions."
+    }
+}

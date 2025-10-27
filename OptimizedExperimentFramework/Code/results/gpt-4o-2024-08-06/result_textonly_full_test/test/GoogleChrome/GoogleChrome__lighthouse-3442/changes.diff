@@ -1,0 +1,27 @@
+diff --git a/lighthouse-core/report/v2/renderer/report-renderer.js b/lighthouse-core/report/v2/renderer/report-renderer.js
+index 732fc99..670a5a3 100644
+--- a/lighthouse-core/report/v2/renderer/report-renderer.js
++++ b/lighthouse-core/report/v2/renderer/report-renderer.js
+@@ -32,12 +32,17 @@ class ReportRenderer {
+    * @param {!ReportRenderer.ReportJSON} report
+    * @param {!Element} container Parent element to render the report into.
+    */
+-  renderReport(report, container) {
++renderReport(report, container) {
+     container.textContent = ''; // Remove previous report.
+-    const element = container.appendChild(this._renderReport(report));
+-
+-    return /** @type {!Element} **/ (element);
+-  }
++    const reportContent = this._renderReport(report);
++    if (reportContent) {
++        const element = container.appendChild(reportContent);
++        return /** @type {!Element} **/ (element);
++    } else {
++        console.error('Failed to render report: No content generated.');
++        return null;
++    }
++}
+ 
+   /**
+    * Define a custom element for <templates> to be extracted from. For example:

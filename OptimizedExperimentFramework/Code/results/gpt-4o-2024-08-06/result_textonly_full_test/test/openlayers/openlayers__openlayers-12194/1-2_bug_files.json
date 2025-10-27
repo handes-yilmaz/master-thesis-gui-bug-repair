@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/render/VectorContext.js",
+            "src/ol/style/Stroke.js",
+            "src/ol/render.js"
+        ],
+        "explanation": "1. **src/ol/render/canvas/Immediate.js**: This file likely contains the implementation details for the Canvas Immediate rendering. The bug description indicates that the pixel ratio is not being applied to the lineDash array in this context, suggesting that this file needs to be modified to apply the pixel ratio scaling correctly to lineDash patterns.\n\n2. **src/ol/render/VectorContext.js**: This file is involved in vector rendering contexts, which includes the toContext function used in the provided example. Since the pixelRatio is set in this context, adjustments might be necessary here to ensure that lineDash patterns are scaled properly.\n\n3. **src/ol/style/Stroke.js**: This file manages the stroke style, including lineDash settings. The issue involves the lineDash array not being scaled by the pixel ratio, which suggests that modifications may be needed in how lineDash is applied or interpreted under different rendering contexts.\n\n4. **src/ol/render.js**: This file might manage the overall rendering process and context setup. Ensuring that pixelRatio adjustments are correctly applied across different rendering methods (e.g., map vs. canvas immediate) could involve changes here to maintain consistency.",
+        "bug_scenario": "The bug occurs when using the Canvas Immediate rendering context in OpenLayers. A dashed line rendered using this method does not scale the lineDash pattern by the pixel ratio, resulting in visually different dashes compared to when rendered on a map. On devices with a high pixel ratio, this causes the dashes to appear shorter and can blur into a continuous line, especially when the default 'round' lineCap is used."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/render/canvas.js",
+            "src/ol/style/Stroke.js",
+            "src/ol/render.js",
+            "src/ol/has.js"
+        ],
+        "explanation": "1. **src/ol/render/canvas/Immediate.js**: This file likely handles immediate rendering contexts for canvas, where the pixelRatio is set. It needs to implement scaling for lineDash patterns according to pixelRatio.\n\n2. **src/ol/render/canvas.js**: As a core rendering file, it may contain shared utilities or functions related to canvas rendering, including potentially setting or managing the pixelRatio.\n\n3. **src/ol/style/Stroke.js**: The Stroke style is directly involved in defining lineDash patterns. Modifications here may be needed to ensure lineDash is adjusted based on pixelRatio.\n\n4. **src/ol/render.js**: This file may contain overarching rendering logic that includes managing pixel ratios and styles, which would need to be adapted to scale lineDash patterns.\n\n5. **src/ol/has.js**: Contains feature detection and device characteristic information like pixelRatio. This might be used to determine the current device's pixel ratio and apply appropriate scaling.",
+        "bug_scenario": "The bug scenario involves rendering a dashed line using OpenLayers on a canvas with high device pixel ratios. The pixelRatio is correctly scaling pixel coordinates but not scaling the lineDash pattern, resulting in shorter dashes that blur into continuous lines on high pixel density displays."
+    }
+}

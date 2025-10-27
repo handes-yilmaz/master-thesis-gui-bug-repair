@@ -1,0 +1,20 @@
+diff --git a/src/language-html/printer-html.js b/src/language-html/printer-html.js
+index 3b424b6..26121a5 100644
+--- a/src/language-html/printer-html.js
++++ b/src/language-html/printer-html.js
+@@ -43,7 +43,14 @@ function genericPrint(path, options, print) {
+     case "interpolation":
+       return [
+         printOpeningTagStart(node, options),
+-        ...path.map(print, "children"),
++        ...path.map((childPath) => {
++          const childNode = childPath.getValue();
++          if (childNode.type === "text" && /^[0-9]+$/.test(childNode.value.trim())) {
++            // No spaces for number arguments
++            return childNode.value.trim();
++          }
++          return print(childPath);
++        }, "children"),
+         printClosingTagEnd(node, options),
+       ];
+     case "text": {

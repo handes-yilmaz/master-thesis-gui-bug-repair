@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/menu/view/item.jsx//Item",
+            "src/menu/view/menu.jsx//Menu"
+        ],
+        "bug_functions": [
+            "src/menu/view/item.jsx//Item.getTitle",
+            "src/menu/view/item.jsx//Item.render"
+        ],
+        "explanation": "The 'Item' class in 'src/menu/view/item.jsx' is directly responsible for rendering the Menu Item components, including the logic for setting the 'title' attribute. The 'getTitle' function within this class is specifically responsible for generating the title string from the children elements, which is central to the bug as it determines when and how the title is set. The 'render' function is where the title attribute is applied to the DOM element, making it a key point for addressing the bug. The 'Menu' class in 'src/menu/view/menu.jsx' is also relevant as it manages the overall behavior and configuration of the menu, which may include settings related to the title attribute.",
+        "bug_scenario": "The bug scenario involves the automatic addition of a 'title' attribute to Menu Items in a UI component. This title attribute is intended to support accessibility by allowing screen readers to read the text and to display long, collapsed text when hovered over. However, this behavior is problematic when the title and innerText are identical, violating WCAG guidelines against repetitive text. Additionally, some business users do not want the title tooltip to appear on the page. The proposed solutions involve either replacing the title with an aria-label, providing a configuration option to control the title's presence, or conditionally setting the title based on the content type of the Menu Item's children."
+    }
+}

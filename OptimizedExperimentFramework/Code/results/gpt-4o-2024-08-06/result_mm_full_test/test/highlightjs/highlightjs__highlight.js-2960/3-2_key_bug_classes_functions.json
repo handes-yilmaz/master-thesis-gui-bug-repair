@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/perl.js"
+        ],
+        "bug_functions": [
+            "src/lib/regex.js//escape",
+            "src/lib/regex.js//concat"
+        ],
+        "explanation": "The issue is related to the regex parsing logic in the Perl language definition file (`src/languages/perl.js`). The regex detection logic needs to be updated to correctly handle Perl's `m` style regex with arbitrary delimiters. The `escape` and `concat` functions in `src/lib/regex.js` are likely involved in constructing and escaping regex patterns, which are crucial for correctly parsing and highlighting regex in Perl. These functions need to be reviewed and potentially modified to support the arbitrary delimiters used in Perl's regex syntax.",
+        "bug_scenario": "The bug scenario involves incorrect regex highlighting in Perl code when using the `m` style regex with arbitrary delimiters. The expected behavior is that only `/$` should be highlighted as a regex, but the current implementation fails to detect it correctly."
+    }
+}

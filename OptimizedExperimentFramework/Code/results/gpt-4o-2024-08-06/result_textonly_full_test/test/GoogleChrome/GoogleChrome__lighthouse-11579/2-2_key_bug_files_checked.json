@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/computed/trace-of-tab.js"
+        ],
+        "explanation": "1. **lighthouse-core/gather/driver.js**: This file is responsible for managing the communication with the browser, including handling network and lifecycle events. The presence of methods like `_waitForFcp` and `_waitForFullyLoaded` suggests that this file plays a role in detecting the First Contentful Paint (FCP) event. The bug report indicates a 'NO_FCP' error, which means the FCP event is not being detected or handled correctly when the tab is in the background.\n\n2. **lighthouse-core/gather/gather-runner.js**: This file manages the lifecycle of a Lighthouse run, including loading pages and handling errors. The method `loadPage` mentions handling navigation errors such as NO_FCP, which directly relates to the bug. This file likely contains logic that needs to be adjusted to correctly handle FCP detection when the tab is in the background.\n\n3. **lighthouse-core/computed/trace-of-tab.js**: This file processes trace data to extract key events like the First Contentful Paint. The method `compute_` throws an error if FCP is not found, which aligns with the 'NO_FCP' error described in the bug report. This suggests that the trace processing logic might need adjustments to ensure FCP is detected even when the tab is not in the foreground.",
+        "bug_scenario": "The bug scenario involves running Lighthouse (LH) on a URL, such as https://www.google.com/, and encountering a 'NO_FCP' error when the tab is in the background. This error prevents the measurement of performance metrics, specifically the First Contentful Paint (FCP), which is crucial for evaluating page performance. The issue persists regardless of whether the server is remote or local, and it occurs even with a clean Chrome profile. The CLI version of Lighthouse does not exhibit this problem, indicating that the issue is specific to the browser extension version."
+    }
+}

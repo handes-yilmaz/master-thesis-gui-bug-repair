@@ -1,0 +1,43 @@
+diff --git a/src/transfer/view/transfer-panel.jsx b/src/transfer/view/transfer-panel.jsx
+index 74a731d..1f59d88 100644
+--- a/src/transfer/view/transfer-panel.jsx
++++ b/src/transfer/view/transfer-panel.jsx
+@@ -201,7 +201,7 @@ export default class TransferPanel extends Component {
+ 
+     renderSearch() {
+         const { prefix, searchPlaceholder, locale, searchProps = {}, position } = this.props;
+-        const positionSpecificSearchProps = searchProps[position] || {};
++        const positionSpecificSearchProps = searchProps || {};
+         return (
+             <Search
+                 aria-labelledby={this.headerId}
+diff --git a/src/transfer/view/transfer.jsx b/src/transfer/view/transfer.jsx
+index 6fefa78..a24c188 100644
+--- a/src/transfer/view/transfer.jsx
++++ b/src/transfer/view/transfer.jsx
+@@ -116,7 +116,13 @@ class Transfer extends Component {
+         /**
+          * 搜索框配置项，同 Search 组件 props
+          */
+-        searchProps: PropTypes.object,
++        searchProps: PropTypes.oneOfType([
++            PropTypes.object,
++            PropTypes.shape({
++                left: PropTypes.object,
++                right: PropTypes.object,
++            }),
++        ]),
+         /**
+          * 自定义搜索函数
+          * @param {String} searchedValue 搜索的内容
+@@ -507,7 +513,9 @@ class Transfer extends Component {
+             dataSource,
+             locale,
+             showSearch,
+-            searchProps,
++            searchProps: typeof searchProps === 'object' && ('left' in searchProps || 'right' in searchProps)
++                ? searchProps[position]
++                : searchProps,
+             filter,
+             onSearch,
+             leftDisabled,

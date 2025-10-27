@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "core/audits/bf-cache.js",
+            "core/audits/no-unload-listeners.js",
+            "gather/driver/execution-context.js",
+            "gather/gatherers/global-listeners.js"
+        ],
+        "explanation": "1. **core/audits/bf-cache.js**: This file likely handles the back/forward cache (bfcache) audits, which is directly mentioned in the bug report as failing due to the 'unload' listener.\n\n2. **core/audits/no-unload-listeners.js**: This file is responsible for the 'no-unload-listeners' audit. The bug report indicates that this audit incorrectly passes despite the presence of 'unload' listeners injected by extensions.\n\n3. **gather/driver/execution-context.js**: This file might be responsible for handling different execution contexts. The bug arises because the 'unload' listeners are in an isolated execution context.\n\n4. **gather/gatherers/global-listeners.js**: This file could be involved in gathering global event listeners, which is pertinent to detecting 'unload' listeners across different contexts.",
+        "bug_scenario": "The bug is related to the Lighthouse audit failing due to an 'unload' listener injected by an extension content script, which is not detected by the 'no-unload-listeners' audit. This happens because the 'unload' listener is added in an isolated execution context, making it invisible to the audit and the DevTools console, unless explicitly queried in that context."
+    },
+    "2": {
+        "bug_files": [
+            "core/audits/bf-cache.js",
+            "core/audits/no-unload-listeners.js",
+            "gather/driver/execution-context.js"
+        ],
+        "explanation": "1. `core/audits/bf-cache.js`: This file likely contains the logic for the bfcache audit, which is failing due to the presence of the 'unload' listener injected by the extension.\n2. `core/audits/no-unload-listeners.js`: This file is responsible for auditing the presence of 'unload' listeners, which is passing incorrectly because it does not account for listeners injected in isolated contexts.\n3. `gather/driver/execution-context.js`: This file may involve handling different execution contexts. Adjusting this code could allow the audit to detect listeners in isolated contexts.",
+        "bug_scenario": "The issue involves the failure of the bfcache audit when an extension injects an 'unload' listener into the main frame. This listener, added inside a content script on 'document_start', is not detected by the 'no-unload-listeners' audit or by standard DevTools inspections, making it hard to debug. The images show a Lighthouse audit failing due to an 'unload' handler in the main frame, despite a passing 'no-unload-listeners' audit indicating no visible 'unload' listeners."
+    }
+}

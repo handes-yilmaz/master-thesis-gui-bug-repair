@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js//SubProcessStartEventBehavior",
+            "lib/features/drilldown/SubprocessCompatibility.js//SubprocessCompatibility"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/LabelBehavior.js//getVisibleLabelAdjustment",
+            "lib/features/modeling/behavior/LabelBehavior.js//postExecute",
+            "lib/features/drilldown/SubprocessCompatibility.js//createNewDiagrams"
+        ],
+        "explanation": "The bug is related to the visibility and positioning of labels when a sub process is collapsed. The `LabelBehavior` class handles the creation and updating of labels, which is directly related to the issue of labels being visible when they should be hidden. The `getVisibleLabelAdjustment` function within `LabelBehavior.js` is likely responsible for adjusting label positions, which may not be functioning correctly when collapsing sub processes. The `SubProcessStartEventBehavior` class is involved in handling start events within sub processes, which could affect label visibility. The `SubprocessCompatibility` class and its `createNewDiagrams` function manage the creation of new diagrams for collapsed sub processes, which might not be correctly handling label visibility or positioning.",
+        "bug_scenario": "The bug occurs when a sub process is collapsed, and the labels of the start, task, and end events inside the sub process become visible and misaligned. This issue is only reproducible by following specific steps, and it does not affect the import/export functionality of the diagram."
+    }
+}

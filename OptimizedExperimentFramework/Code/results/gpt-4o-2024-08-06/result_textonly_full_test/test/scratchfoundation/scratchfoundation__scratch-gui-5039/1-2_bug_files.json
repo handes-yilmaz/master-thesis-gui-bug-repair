@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/components/context-menu/context-menu.jsx",
+            "src/components/action-menu/action-menu.jsx",
+            "src/components/sprite-selector/sprite-selector.jsx"
+        ],
+        "explanation": "The bug is related to the context menu not appearing correctly when interacting with a sprite. This suggests that the issue lies within the context menu logic or the components handling the sprite interactions.\n\n1. **src/components/context-menu/context-menu.jsx**: This file is likely responsible for rendering and controlling the behavior of the context menu. Since the bug involves the context menu not appearing correctly, this file is directly related.\n\n2. **src/components/action-menu/action-menu.jsx**: The action menu might be related to the options presented when interacting with sprites. If the 'duplicate' option is part of the action menu, then this file would be relevant to investigate.\n\n3. **src/components/sprite-selector/sprite-selector.jsx**: This component likely deals with the selection and interaction of sprites. If the context menu behavior is tied to sprite selection or interaction, this file would be pertinent to check for any event handling issues that could prevent the context menu from appearing.\n\nThese files are identified based on their likely roles in managing the UI components related to the context menu and sprite interactions, which are central to the described bug.",
+        "bug_scenario": "The bug report describes an issue where the 'duplicate' menu option does not appear when right-clicking a sprite after it has been moved to another space. Instead, the OS's default context menu appears, which is not the expected behavior. The images and gif provided in the report illustrate the expected outcome (where the duplicate menu should appear) and the actual outcome (where the OS context menu appears)."
+    },
+    "2": {
+        "bug_files": [
+            "src/components/context-menu/context-menu.jsx",
+            "src/components/action-menu/action-menu.jsx",
+            "src/containers/menu.jsx",
+            "src/lib/drag-utils.js",
+            "src/lib/drag-recognizer.js"
+        ],
+        "explanation": "1. **src/components/context-menu/context-menu.jsx**: This file is likely responsible for rendering the context menu that should appear when right-clicking a sprite. Since the OS menu is appearing instead, the issue may lie in how this component handles right-click events.\n\n2. **src/components/action-menu/action-menu.jsx**: Given that the duplicate option is an action, this file could be responsible for defining or triggering the duplicate functionality. It might not be correctly integrated or triggered from the context menu.\n\n3. **src/containers/menu.jsx**: This container might manage the state or the visibility logic of menus, including the context and action menus. If there's a logical error in determining which menu to display, it would be here.\n\n4. **src/lib/drag-utils.js** and **src/lib/drag-recognizer.js**: These files likely handle drag and drop operations. The bug report mentions the problem occurring after dragging a sprite, suggesting that the drag logic might interfere with the subsequent right-click event handling, preventing the custom context menu from appearing.",
+        "bug_scenario": "The bug occurs when a user right-clicks on a sprite to duplicate it, but instead of the expected duplicate menu appearing, the operating system's context menu is shown. This happens after dragging the sprite, as seen in the provided GIF. The expected behavior is the appearance of a duplicate menu specific to the application, which does not occur, indicating an issue with the event handling for the right-click action."
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/interaction/Pointer.js",
+            "src/ol/MapBrowserEventHandler.js",
+            "src/ol/interaction/DragPan.js",
+            "src/ol/interaction/MouseWheelZoom.js"
+        ],
+        "explanation": "1. **src/ol/interaction/Pointer.js**: This file contains the PointerInteraction class, which handles pointer events such as pointermove, pointerdown, and pointerup. The handleMoveEvent function is directly related to the pointermove event, which is the focus of the performance issue.\n\n2. **src/ol/MapBrowserEventHandler.js**: This file manages the dispatching of pointer events, including pointermove, to the map. It includes logic for handling pointer events and relaying them, which could impact performance if not optimized.\n\n3. **src/ol/interaction/DragPan.js**: This file handles the drag pan interaction, which is affected by pointermove events. The handleDragEvent function is called during pointermove events, and any inefficiencies here could contribute to the performance regression.\n\n4. **src/ol/interaction/MouseWheelZoom.js**: This file handles zoom interactions, which are affected by pointermove events. The handleEvent function processes mouse wheel events, and any performance issues here could be exacerbated by changes in pointermove handling.",
+        "bug_scenario": "The bug scenario involves a performance regression in the pointermove event handling between versions 6.3.1 and 6.4.0 of a library. The performance degradation is noticeable when interacting with 1000 features with non-cached styles, affecting operations like zoom and panning. The cursor change is significantly slower in version 6.4.0 compared to 6.3.1, as demonstrated in the provided GIFs."
+    }
+}

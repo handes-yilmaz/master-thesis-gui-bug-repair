@@ -1,0 +1,74 @@
+{
+    "1/1": {
+        "src/tree/view/tree-node.jsx": [
+            {
+                "SEARCH": [
+                    "handleSelect(e) {",
+                    "e.preventDefault();",
+                    "",
+                    "const { root, selected, eventKey } = this.props;",
+                    "const newSelectedState = !selected;",
+                    "root.handleSelect(newSelectedState, eventKey, this, e);",
+                    "this.setState({ selected: newSelectedState });",
+                    "}"
+                ],
+                "REPLACE": [
+                    "handleSelect(e) {",
+                    "    e.preventDefault();",
+                    "",
+                    "    const { root, eventKey } = this.props;",
+                    "    const newSelectedState = !this.state.selected;",
+                    "    root.handleSelect(newSelectedState, eventKey, this, e);",
+                    "    this.setState({ selected: newSelectedState });",
+                    "}"
+                ]
+            }
+        ],
+        "src/tree/view/tree.jsx": [
+            {
+                "SEARCH": [
+                    "handleSelect(select, key, node, e) {",
+                    "const { multiple, onSelect } = this.props;",
+                    "let selectedKeys = [...this.state.selectedKeys];",
+                    "if (multiple) {",
+                    "this.processKey(selectedKeys, key, select);",
+                    "} else {",
+                    "selectedKeys = [key];",
+                    "}",
+                    "",
+                    "if (!('selectedKeys' in this.props)) {",
+                    "this.setState({ selectedKeys });",
+                    "}",
+                    "onSelect(selectedKeys, {",
+                    "selectedNodes: this.getNodes(selectedKeys),",
+                    "node,",
+                    "selected: select,",
+                    "event: e,",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "handleSelect(select, key, node, e) {",
+                    "    const { multiple, onSelect } = this.props;",
+                    "    let selectedKeys = [...this.state.selectedKeys];",
+                    "    if (multiple) {",
+                    "        this.processKey(selectedKeys, key, select);",
+                    "    } else {",
+                    "        selectedKeys = select ? [key] : [];",
+                    "    }",
+                    "",
+                    "    if (!('selectedKeys' in this.props)) {",
+                    "        this.setState({ selectedKeys });",
+                    "    }",
+                    "    onSelect(selectedKeys, {",
+                    "        selectedNodes: this.getNodes(selectedKeys),",
+                    "        node,",
+                    "        selected: select,",
+                    "        event: e,",
+                    "    });",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

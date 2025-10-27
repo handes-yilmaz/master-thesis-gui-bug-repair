@@ -1,0 +1,25 @@
+diff --git a/src/command/render/crossref.ts b/src/command/render/crossref.ts
+index 9699cdf..2ee4065 100644
+--- a/src/command/render/crossref.ts
++++ b/src/command/render/crossref.ts
+@@ -34,7 +34,7 @@ export function crossrefFilterParams(
+ ) {
+   const flags = options.flags;
+   const metadata = options.format.metadata;
+-  const kCrossrefFilterParams = [kListings, kNumberSections, kNumberOffset];
++  const kCrossrefFilterParams = [kListings, kNumberSections, kNumberOffset, kSubfigureLabels];
+   const params: Metadata = {};
+   kCrossrefFilterParams.forEach((option) => {
+     let value = crossrefOption(option, flags, defaults);
+@@ -65,6 +65,11 @@ export function crossrefFilterParams(
+   // Read the number depth
+   params[kNumberDepth] = metadata?.[kNumberDepth];
+ 
++  // handle subfigure labels
++  if (metadata?.subfigureLabels) {
++    params[kSubfigureLabels] = metadata.subfigureLabels;
++  }
++
+   // always create crossref index for projects
+   if (options.project) {
+     // if its a book then only write for multi-file (as otherwise all of the

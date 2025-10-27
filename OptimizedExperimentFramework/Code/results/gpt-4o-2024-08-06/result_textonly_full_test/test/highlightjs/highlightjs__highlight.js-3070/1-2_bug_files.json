@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/php.js",
+            "src/lib/multi_class.js"
+        ],
+        "explanation": "1. `src/languages/php.js`: This file is directly related to the PHP language highlighting logic. Since the issue occurs specifically when 'language-php' is applied, any logic related to PHP syntax highlighting or class application would likely be found here. Fixing the bug may require inspecting how classes are applied in this file to ensure that the 'php' class is not redundantly added.\n\n2. `src/lib/multi_class.js`: This file, based on its name, might handle the application of multiple classes to code elements. The issue described involves incorrect class application, so this file could contain logic that needs adjustment to prevent the additional 'php' class from being applied when 'language-php' is already present.",
+        "bug_scenario": "The bug scenario involves a class naming issue with the 'language-php' class applied to code elements. When this class is used, it unexpectedly adds an extra 'php' tag. The issue seems to be specific to PHP, as other languages do not exhibit this problem."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/php.js",
+            "src/lib/html_renderer.js",
+            "src/lib/modes.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "1. **src/languages/php.js**: This file likely contains the language definition for PHP highlighting. Since the issue is specific to PHP and involves incorrect behavior when the \"language-php\" class is used, this file is the primary suspect for containing logic that might add the extra tag.\n\n2. **src/lib/html_renderer.js**: This file is responsible for rendering the highlighted code into HTML. If extra tags are being added, the logic in this file might be responsible for incorrectly processing the class or generating additional HTML elements.\n\n3. **src/lib/modes.js**: This file handles different highlighting modes and could be involved in determining how classes and tags are applied to highlighted code. It might contain logic that treats \"language-php\" differently.\n\n4. **src/lib/regex.js**: Regular expressions are often used to identify and parse language-specific syntax in code highlighting. If a regex pattern is incorrect or overly broad, it could lead to the addition of unintended tags, especially when specific language classes are applied.",
+        "bug_scenario": "The bug scenario involves an issue with the Highlight.js library where adding the class \"language-php\" to a code element results in an extra php tag being added, causing incorrect behavior. This issue seems specific to PHP highlighting and does not occur with other languages."
+    }
+}

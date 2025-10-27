@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "src/ol/layer/Layer.js": [
+            {
+                "SEARCH": [
+                    "this.mapPrecomposeKey_ = listen(map, RenderEventType.PRECOMPOSE, function(evt) {",
+                    "const layerState = this.getLayerState();",
+                    "layerState.managed = false;",
+                    "layerState.zIndex = Infinity;",
+                    "evt.frameState.layerStatesArray.push(layerState);",
+                    "evt.frameState.layerStates[getUid(this)] = layerState;",
+                    "}, this);"
+                ],
+                "REPLACE": [
+                    "      this.mapPrecomposeKey_ = listen(map, RenderEventType.PRECOMPOSE, function(evt) {",
+                    "        const layerState = this.getLayerState();",
+                    "        layerState.managed = false;",
+                    "        // Allow setting a custom zIndex for unmanaged layers",
+                    "        layerState.zIndex = this.getZIndex() !== undefined ? this.getZIndex() : Infinity;",
+                    "        evt.frameState.layerStatesArray.push(layerState);",
+                    "        evt.frameState.layerStates[getUid(this)] = layerState;",
+                    "      }, this);"
+                ]
+            }
+        ]
+    }
+}

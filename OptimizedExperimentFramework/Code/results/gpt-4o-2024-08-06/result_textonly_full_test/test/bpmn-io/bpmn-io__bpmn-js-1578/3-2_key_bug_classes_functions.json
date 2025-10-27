@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/copy-paste/ModdleCopy.js//ModdleCopy"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences",
+            "lib/features/copy-paste/ModdleCopy.js//copyElement",
+            "lib/features/copy-paste/ModdleCopy.js//copyProperty"
+        ],
+        "explanation": "The BpmnCopyPaste class in 'lib/features/copy-paste/BpmnCopyPaste.js' is responsible for handling the copy-paste operations of BPMN elements, including Pools. The function 'resolveReferences' within this class is crucial as it deals with resolving references, which is likely where the duplicate ID issue arises when copying elements. The ModdleCopy class in 'lib/features/copy-paste/ModdleCopy.js' is used to copy model properties from source to target elements. The 'copyElement' and 'copyProperty' functions are directly involved in the copying process, including handling IDs. These functions are likely not correctly handling the uniqueness of IDs during the copy operation, leading to the duplication issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves duplicating a Pool in a BPMN diagram, which results in duplicate Pool IDs when the diagram is exported and then imported. This is demonstrated in the provided XML snippet where two processes have the same ID, leading to conflicts during import."
+    }
+}

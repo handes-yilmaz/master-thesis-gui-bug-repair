@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler",
+            "lib/features/modeling/Modeling.js//Modeling"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler.prototype.execute",
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler.prototype.revert",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler.prototype.execute",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler.prototype.revert",
+            "lib/features/modeling/Modeling.js//Modeling.prototype.updateModdleProperties",
+            "lib/features/modeling/Modeling.js//Modeling.prototype.updateProperties"
+        ],
+        "explanation": "The classes and functions identified are responsible for handling property updates in BPMN elements. The `UpdateModdlePropertiesHandler` and `UpdatePropertiesHandler` classes, along with their `execute` and `revert` methods, are directly involved in setting and reverting properties on BPMN elements. These handlers are likely responsible for the loss of multi-instance properties when switching between configurations. The `Modeling` class, specifically its `updateModdleProperties` and `updateProperties` methods, orchestrates the execution of these handlers, making it a key component in the process that leads to the bug. The issue likely arises from how properties are managed and updated during the transition between parallel and sequential multi-instance settings.",
+        "bug_scenario": "The bug scenario involves losing multi-instance properties when switching between parallel and sequential multi-instance configurations in a BPMN model. The expected behavior is that these properties should be retained during such changes."
+    }
+}

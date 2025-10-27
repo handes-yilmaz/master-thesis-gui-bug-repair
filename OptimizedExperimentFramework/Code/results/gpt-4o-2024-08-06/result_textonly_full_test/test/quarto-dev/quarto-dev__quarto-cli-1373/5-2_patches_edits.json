@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/command/render/codetools.ts": [
+            {
+                "SEARCH": [
+                    "const codeToolsResolved = {",
+                    "source: typeof (codeTools) === \"boolean\"",
+                    "? codeTools",
+                    ": codeTools?.source !== undefined",
+                    "? codeTools?.source",
+                    ": true,",
+                    "toggle: typeof (codeTools) === \"boolean\"",
+                    "? codeTools",
+                    ": codeTools?.toggle !== undefined",
+                    "? !!codeTools?.toggle",
+                    ": true,",
+                    "caption: typeof (codeTools) === \"boolean\"",
+                    "? kCodeCaption",
+                    ": codeTools?.caption || kCodeCaption,",
+                    "};"
+                ],
+                "REPLACE": [
+                    "  const codeToolsResolved = {",
+                    "    source: typeof (codeTools) === \"boolean\"",
+                    "      ? codeTools",
+                    "      : codeTools?.source !== undefined",
+                    "      ? (typeof codeTools.source === \"string\" ? true : codeTools.source)",
+                    "      : true,",
+                    "    toggle: typeof (codeTools) === \"boolean\"",
+                    "      ? codeTools",
+                    "      : codeTools?.toggle !== undefined",
+                    "      ? !!codeTools?.toggle",
+                    "      : true,",
+                    "    caption: typeof (codeTools) === \"boolean\"",
+                    "      ? kCodeCaption",
+                    "      : codeTools?.caption || kCodeCaption,",
+                    "  };"
+                ]
+            }
+        ]
+    }
+}

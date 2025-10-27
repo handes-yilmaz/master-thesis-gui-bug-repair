@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/DateInput/DateInput.js//DateInput",
+            "src/js/components/Calendar/Calendar.js//Calendar"
+        ],
+        "bug_functions": [
+            "src/js/components/Calendar/utils.js//betweenDates",
+            "src/js/components/Calendar/utils.js//withinDates"
+        ],
+        "explanation": "The `DateInput` class in `DateInput.js` is directly responsible for handling the date input and calendar properties, including the bounds. It is likely that the logic for disabling dates outside the bounds is not correctly implemented or enforced here. The `Calendar` class in `Calendar.js` is responsible for rendering the calendar and managing date selection, which includes ensuring that only valid dates within the specified bounds are selectable. The utility functions `betweenDates` and `withinDates` in `utils.js` are crucial for determining if a date falls within a specified range or bounds. If these functions do not correctly handle the edge cases or are not used properly, they could allow dates outside the bounds to be selected, leading to the observed bug.",
+        "bug_scenario": "The bug scenario involves the ability to select a date outside the specified bounds in a date input component. The expected behavior is to disable the selection of dates that fall outside the defined bounds, but currently, the last day of the previous month can be selected even if it is outside the bounds specified by the `calendarProps`. The provided image shows a calendar interface where the bounds are set to ['2020-07-01', '2020-07-31'], yet the last day of the previous month is selectable, indicating a bug in the date validation logic."
+    }
+}

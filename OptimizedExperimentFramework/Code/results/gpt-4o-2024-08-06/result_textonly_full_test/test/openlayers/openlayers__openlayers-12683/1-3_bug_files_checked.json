@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Icon.js",
+            "src/ol/style/IconImage.js",
+            "src/ol/style/IconImageCache.js",
+            "src/ol/style/Style.js"
+        ],
+        "explanation": "1. **src/ol/style/Icon.js**: This file likely handles the logic for setting icon styles, including offsets and colors. Since the bug is directly related to the offset of the icon when a color is applied, this file is a primary suspect.\n\n2. **src/ol/style/IconImage.js**: This file manages the actual image content used in the icon style. Since the bug affects how the image sprite is displayed, adjustments in how images are loaded or scaled based on pixel ratio might be necessary here.\n\n3. **src/ol/style/IconImageCache.js**: This file could be responsible for caching images, including those used in icon styles. If there are issues with how images are retrieved or scaled from the cache, it could contribute to the offset problem.\n\n4. **src/ol/style/Style.js**: This file deals with the overall styling of features, including icons. It may contain logic that applies styles to icons, affecting how offsets and colors are processed together with screen pixel ratios.",
+        "bug_scenario": "The bug is related to rendering issues with icon styles in a vector source when a custom color and offset are applied, particularly when viewed on screens with a pixel ratio greater than 1. The offset appears incorrect under these conditions, leading to misalignment of the image sprite."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/style/Icon.js",
+            "src/ol/style/Style.js",
+            "src/ol/style/IconImage.js",
+            "src/ol/style/IconImageCache.js"
+        ],
+        "explanation": "1. **src/ol/style/Icon.js**: This file is likely responsible for defining the behavior and properties of the Icon style, including offsets and sizes, making it directly related to the issue where the offset is incorrect.\n\n2. **src/ol/style/Style.js**: As this file handles styling, it might include logic for applying styles to icons, potentially impacting how colors and sizes are handled.\n\n3. **src/ol/style/IconImage.js**: This file likely deals with the image representation of icons, which could affect how offsets and color adjustments are rendered.\n\n4. **src/ol/style/IconImageCache.js**: This file might be responsible for caching icon images, which could be related to how offsets are calculated or how images are retrieved and rendered, particularly when screen ratios change.",
+        "bug_scenario": "The bug occurs when using an Icon style with a specified offset and size on a monitor with a pixel ratio greater than 1, while also applying a custom color. The offset of the image sprite becomes incorrect, which means it doesn't select the same region of the image sprite consistently across different screen ratios or when a color is applied. This issue was introduced in version 6.4.0 due to a specific pull request."
+    }
+}

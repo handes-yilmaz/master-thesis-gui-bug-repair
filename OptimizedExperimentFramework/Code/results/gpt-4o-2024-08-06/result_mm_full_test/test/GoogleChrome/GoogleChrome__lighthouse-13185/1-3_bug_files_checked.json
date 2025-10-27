@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "flow-report/src/summary/summary.tsx",
+            "lighthouse-core/audits/full-page-screenshot.js",
+            "report/renderer/report-renderer.js"
+        ],
+        "explanation": "1. **flow-report/src/summary/summary.tsx**: This file is likely responsible for rendering the summary view of reports, where thumbnails are used. Modifying this file is necessary to change how images are displayed from hotlinked to using local assets.\n2. **lighthouse-core/audits/full-page-screenshot.js**: This file might be involved in capturing or utilizing the full-page screenshot that will replace the hotlink thumbnails.\n3. **report/renderer/report-renderer.js**: This file is responsible for rendering the report. To ensure that images are not hotlinked, changes in how images are rendered in the report are necessary.",
+        "bug_scenario": "The bug involves removing image hotlinking from reports and using local assets instead. The images are currently being hotlinked, which causes issues with CSP/mixed content in HTTPS environments. The goal is to use full-page screenshots instead of thumbnails that hotlink images from remote servers."
+    },
+    "2": {
+        "bug_files": [
+            "flow-report/src/summary/summary.tsx",
+            "flow-report/src/wrappers/report-renderer.tsx",
+            "report/renderer/report-renderer.js",
+            "report/generator/report-generator.js"
+        ],
+        "explanation": "These files are likely involved in rendering the report and generating the HTML output, which includes embedding images. The purpose is to modify the code responsible for handling thumbnails and images so that they use local assets instead of remote hotlinks, and also to ensure that images have explicit `width` and `height` attributes to avoid layout shifts.",
+        "bug_scenario": "The report indicates that `<img>` tags are currently hotlinking images from remote servers and a suggestion is made to use full-page screenshots instead to simplify the content security policy. The image shows that the `<img>` elements are lacking explicit `width` and `height` attributes, which can affect layout stability and cause cumulative layout shifts (CLS)."
+    }
+}

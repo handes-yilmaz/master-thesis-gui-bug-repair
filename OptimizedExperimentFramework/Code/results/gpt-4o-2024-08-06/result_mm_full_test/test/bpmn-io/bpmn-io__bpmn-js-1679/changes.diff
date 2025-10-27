@@ -1,0 +1,39 @@
+diff --git a/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js b/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js
+index 023f13c..1b7be5c 100644
+--- a/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js
++++ b/lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js
+@@ -28,6 +28,11 @@ UpdateModdlePropertiesHandler.prototype.execute = function(context) {
+   var changed = context.changed || this.getVisualReferences(moddleElement).concat(element);
+   var oldProperties = context.oldProperties || getModdleProperties(moddleElement, keys(properties));
+ 
++  // Ensure isSequential property is correctly updated
++  if (properties.hasOwnProperty('isSequential')) {
++    moddleElement.isSequential = properties.isSequential;
++  }
++
+   setModdleProperties(moddleElement, properties);
+ 
+   context.oldProperties = oldProperties;
+diff --git a/lib/features/modeling/cmd/UpdatePropertiesHandler.js b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+index 437c4d0..a6f2c4f 100644
+--- a/lib/features/modeling/cmd/UpdatePropertiesHandler.js
++++ b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+@@ -97,6 +97,11 @@ UpdatePropertiesHandler.prototype.execute = function(context) {
+     }
+   }
+ 
++  // Ensure isSequential property is correctly updated
++  if (properties.hasOwnProperty('isSequential')) {
++    businessObject.isSequential = properties.isSequential;
++  }
++
+   // update properties
+   setProperties(element, properties);
+ 
+@@ -239,4 +244,4 @@ function unwrapBusinessObjects(properties) {
+   });
+ 
+   return unwrappedProps;
+-}
+\ No newline at end of file
++}

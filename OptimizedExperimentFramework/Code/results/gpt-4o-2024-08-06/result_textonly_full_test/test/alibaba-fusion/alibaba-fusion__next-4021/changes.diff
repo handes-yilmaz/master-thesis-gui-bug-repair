@@ -1,0 +1,14 @@
+diff --git a/src/number-picker/number-picker.jsx b/src/number-picker/number-picker.jsx
+index 322a0e9..74a8ccc 100644
+--- a/src/number-picker/number-picker.jsx
++++ b/src/number-picker/number-picker.jsx
+@@ -329,6 +329,9 @@ class NumberPicker extends React.Component {
+                     this.setValue({ value: valueCorrected, e });
+                 }
+             } else {
++                // Correct the value immediately if it exceeds the max limit
++                valueCorrected = this.correctBoundary(valueCorrected);
++                this.setValue({ value: valueCorrected, e });
+                 onlyDisplay = true;
+             }
+         }

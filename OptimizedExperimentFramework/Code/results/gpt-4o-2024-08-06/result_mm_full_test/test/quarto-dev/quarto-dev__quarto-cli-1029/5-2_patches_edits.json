@@ -1,0 +1,44 @@
+{
+    "1/1": {
+        "src/format/reveal/format-reveal.ts": [
+            {
+                "SEARCH": [
+                    "// Only apply auto stretch on specific known structures",
+                    "// and avoid applying automatically on custom divs",
+                    "if (",
+                    "// on <p><img> (created by Pandoc)",
+                    "nodeEl.nodeName === \"P\" ||",
+                    "// on quarto figure divs",
+                    "nodeEl.nodeName === \"DIV\" &&",
+                    "nodeEl.classList.contains(\"quarto-figure\") ||",
+                    "// on computation output created image",
+                    "nodeEl.nodeName === \"DIV\" && nodeEl.classList.contains(\"cell\") ||",
+                    "// on other divs (custom divs) when explicitly opt-in",
+                    "nodeEl.nodeName === \"DIV\" && hasStretchClass(nodeEl)",
+                    ") {"
+                ],
+                "REPLACE": [
+                    "      // Check for aside content and adjust image position",
+                    "      const asideContent = slideEl.querySelector(\".aside\");",
+                    "      if (asideContent) {",
+                    "        imageEl.style.marginBottom = `${asideContent.clientHeight}px`;",
+                    "      }",
+                    "",
+                    "      // Only apply auto stretch on specific known structures",
+                    "      // and avoid applying automatically on custom divs",
+                    "      if (",
+                    "        // on <p><img> (created by Pandoc)",
+                    "        nodeEl.nodeName === \"P\" ||",
+                    "        // on quarto figure divs",
+                    "        nodeEl.nodeName === \"DIV\" &&",
+                    "          nodeEl.classList.contains(\"quarto-figure\") ||",
+                    "        // on computation output created image",
+                    "        nodeEl.nodeName === \"DIV\" && nodeEl.classList.contains(\"cell\") ||",
+                    "        // on other divs (custom divs) when explicitly opt-in",
+                    "        nodeEl.nodeName === \"DIV\" && hasStretchClass(nodeEl)",
+                    "      ) {"
+                ]
+            }
+        ]
+    }
+}

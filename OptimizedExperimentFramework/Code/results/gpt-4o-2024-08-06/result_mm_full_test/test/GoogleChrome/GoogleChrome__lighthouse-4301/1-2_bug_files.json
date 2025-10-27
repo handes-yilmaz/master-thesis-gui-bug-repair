@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/audits/works-offline.js",
+            "lighthouse-core/audits/service-worker.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "The issue is related to the loading and auditing process within Lighthouse. The relevant files include: 1. `driver.js` and `gather-runner.js` in `lighthouse-core/gather/`, which manage the page loading and execution of audits. 2. `works-offline.js` and `service-worker.js` in `lighthouse-core/audits/`, since the issue seems connected to auditing Progressive Web Apps, which involve service workers and offline capabilities. 3. `network-recorder.js` in `lighthouse-core/lib/`, as it handles network events, which could be related to the hanging during page loading.",
+        "bug_scenario": "Lighthouse hangs indefinitely during the 'Loading page & waiting for onload' step when auditing for Progressive Web App compliance. The issue occurs both in the native audit tool and the Lighthouse extension, and the process does not progress beyond this stage."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/audits/service-worker.js",
+            "lighthouse-core/gather/gatherers/service-worker.js"
+        ],
+        "explanation": "1. `lighthouse-core/gather/driver.js`: This file likely handles the interaction with the browser and manages page events. A bug here could prevent the tool from recognizing when the page has loaded.\n\n2. `lighthouse-core/gather/gather-runner.js`: This file manages the overall gathering process and coordinates audits and page loading. Any issue here could affect the completion of the loading phase.\n\n3. `lighthouse-core/audits/service-worker.js`: Since the issue occurs during a Progressive Web App audit, and involves Service Workers, this file could be directly related.\n\n4. `lighthouse-core/gather/gatherers/service-worker.js`: This file gathers information related to Service Workers. If there is a hang related to Service Worker events, this file could be relevant.",
+        "bug_scenario": "The issue described is that the Lighthouse tool hangs indefinitely on the 'Loading page & waiting for onload' step during a Progressive Web App audit. This occurs in both the native audit and the Lighthouse extension, indicating a problem with the page load detection or event handling."
+    }
+}

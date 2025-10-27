@@ -1,0 +1,40 @@
+{
+    "1/1": {
+        "components/cascader-select/cascader-select.tsx": [
+            {
+                "SEARCH": [
+                    "if (multiple && value.length === this.props.dataSource.length) {",
+                    "this.setState({ searchValue: '' });",
+                    "}",
+                    "",
+                    "if (searchValue && this.select) {",
+                    "this.select.handleSearchClear();",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        if (multiple && value.length === this.props.dataSource.length) {",
+                    "            this.setState({ searchValue: '' });",
+                    "        }",
+                    "",
+                    "        if (searchValue && this.select) {",
+                    "            this.select.handleSearchClear();",
+                    "        }",
+                    "",
+                    "        // Add a button to clear search results manually",
+                    "        const clearButton = document.createElement('button');",
+                    "        clearButton.innerText = 'Clear Search';",
+                    "        clearButton.onclick = () => {",
+                    "            this.setState({ searchValue: '' });",
+                    "            if (this.select) {",
+                    "                this.select.handleSearchClear();",
+                    "            }",
+                    "        };",
+                    "        const dropdown = document.querySelector('.cascader-select-dropdown');",
+                    "        if (dropdown && !dropdown.querySelector('button')) {",
+                    "            dropdown.appendChild(clearButton);",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

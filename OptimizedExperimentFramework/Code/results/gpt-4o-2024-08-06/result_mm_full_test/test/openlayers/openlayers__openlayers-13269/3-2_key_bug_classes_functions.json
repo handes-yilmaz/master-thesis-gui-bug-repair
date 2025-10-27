@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/source/TileWMS.js//TileWMS",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//parseStyle",
+            "src/ol/source/TileWMS.js//getRequestUrl_",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "The WebGLTileLayer class in 'src/ol/layer/WebGLTile.js' is responsible for managing the rendering of tile layers using WebGL, and it interacts with the renderer to create textures. The parseStyle function is involved in setting up shaders and uniforms, which are crucial for rendering tiles correctly. The TileWMS class in 'src/ol/source/TileWMS.js' handles the WMS tile source, including the gutter option, which is directly related to the bug. The getRequestUrl_ function constructs URLs for tile requests, and it needs to account for the gutter to avoid rendering issues. The WebGLTileLayerRenderer class in 'src/ol/renderer/webgl/TileLayer.js' is the renderer that processes the tiles and creates the final visual output. The renderFrame function is where the actual rendering happens, and it should ensure that the gutter is clipped before textures are created to prevent misplacement and duplication.",
+        "bug_scenario": "The bug scenario involves the WebGLTile layer renderer not clipping the image gutter before creating textures, which results in misplacement and duplication of images. This issue is observed when using the WebGLTile layer with a TileWMS source, where the gutter option is not being handled correctly, leading to visual artifacts at the edges of tiles."
+    }
+}

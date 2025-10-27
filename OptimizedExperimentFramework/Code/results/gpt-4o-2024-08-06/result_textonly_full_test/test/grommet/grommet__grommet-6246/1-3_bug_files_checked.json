@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/DataChart/DataChart.js",
+            "src/js/components/DataChart/utils.js",
+            "src/js/components/DataChart/__tests__/DataChart-test.js"
+        ],
+        "explanation": "1. **DataChart.js**: This is the primary file for the DataChart component, where the rendering logic for the chart is implemented. Any issues with how data is interpreted or rendered, including handling negative values, would likely be addressed here. Adjustments to handle negative data appropriately, such as rendering a zero line or customizing attributes, would be made in this file.\n\n2. **utils.js**: This file likely contains utility functions used by the DataChart component. These might include calculations or data transformations that need to account for negative values. Ensuring these utilities correctly handle negative inputs is crucial for the overall functionality of the chart.\n\n3. **DataChart-test.js**: This test file should include test cases that cover scenarios with negative data values. If such scenarios are not currently tested, new test cases would need to be added to ensure that the component correctly handles negative values. Modifying or adding tests here helps verify that any changes made to handle negative values are working as expected.",
+        "bug_scenario": "The bug scenario involves a DataChart component that fails to render correctly when the data includes negative values. The expected behavior is that the chart should render a zero line as a guide and allow customization of negative values' attributes. However, in the actual scenario, the chart does not display anything when negative values are present."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/DataChart/DataChart.js",
+            "src/js/components/DataChart/index.js",
+            "src/js/components/DataChart/propTypes.js",
+            "src/js/components/DataChart/utils.js"
+        ],
+        "explanation": "The bug is related to how the DataChart component handles data that includes negative values. Thus, the primary file likely to be affected is `DataChart.js`, where the logic for rendering the chart with input data is implemented. The `index.js` file is included as it serves as the entry point for exporting the component, and changes in the main component logic often require changes or verification in export files. The `propTypes.js` file may need adjustments if the way props are validated or utilized changes due to the bug fix. Lastly, `utils.js` is included because utility functions used in rendering or calculating chart data might need modifications to accommodate negative values properly.",
+        "bug_scenario": "The bug scenario involves the DataChart component, which fails to render bars when the data includes negative values. The expected behavior is for the chart to include a zero line guide by default when negative values are present, and allow customization of attributes for negative values. However, the actual behavior is that the chart shows nothing when negative values are included."
+    }
+}

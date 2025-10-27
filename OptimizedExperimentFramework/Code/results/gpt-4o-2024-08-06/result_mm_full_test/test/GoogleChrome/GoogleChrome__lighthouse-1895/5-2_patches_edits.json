@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/first-meaningful-paint.js": [
+            {
+                "SEARCH": [
+                    "const getTs = evt => evt && evt.ts;",
+                    "const getTiming = evt => {",
+                    "if (!evt) {",
+                    "return undefined;",
+                    "}",
+                    "const timing = (evt.ts - evts.navigationStart.ts) / 1000;",
+                    "return parseFloat(timing.toFixed(3));",
+                    "};"
+                ],
+                "REPLACE": [
+                    "    const getTs = evt => evt && evt.ts;",
+                    "    const getTiming = evt => {",
+                    "      if (!evt || !evts.navigationStart) {",
+                    "        return undefined;",
+                    "      }",
+                    "      const timing = (evt.ts - evts.navigationStart.ts) / 1000;",
+                    "      return parseFloat(timing.toFixed(3));",
+                    "    };"
+                ]
+            }
+        ]
+    }
+}

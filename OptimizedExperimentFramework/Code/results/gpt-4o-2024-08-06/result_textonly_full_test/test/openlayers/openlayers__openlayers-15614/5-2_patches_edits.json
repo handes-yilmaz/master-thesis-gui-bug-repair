@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "setupCompositionContext_() {",
+                    "if (this.opacity_ !== 1) {",
+                    "const compositionContext = createCanvasContext2D(",
+                    "this.context.canvas.width,",
+                    "this.context.canvas.height,",
+                    "canvasPool,",
+                    ");",
+                    "this.compositionContext_ = compositionContext;",
+                    "} else {",
+                    "this.compositionContext_ = this.context;",
+                    "}",
+                    "}",
+                    "",
+                    "releaseCompositionContext_() {",
+                    "if (this.opacity_ !== 1) {",
+                    "const alpha = this.context.globalAlpha;",
+                    "this.context.globalAlpha = this.opacity_;",
+                    "this.context.drawImage(this.compositionContext_.canvas, 0, 0);",
+                    "this.context.globalAlpha = alpha;",
+                    "releaseCanvas(this.compositionContext_);",
+                    "canvasPool.push(this.compositionContext_.canvas);",
+                    "this.compositionContext_ = null;",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  setupCompositionContext_() {",
+                    "    const compositionContext = createCanvasContext2D(",
+                    "      this.context.canvas.width,",
+                    "      this.context.canvas.height,",
+                    "      canvasPool,",
+                    "    );",
+                    "    this.compositionContext_ = compositionContext;",
+                    "  }",
+                    "",
+                    "  releaseCompositionContext_() {",
+                    "    const alpha = this.context.globalAlpha;",
+                    "    this.context.globalAlpha = this.opacity_;",
+                    "    this.context.drawImage(this.compositionContext_.canvas, 0, 0);",
+                    "    this.context.globalAlpha = alpha;",
+                    "    releaseCanvas(this.compositionContext_);",
+                    "    canvasPool.push(this.compositionContext_.canvas);",
+                    "    this.compositionContext_ = null;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

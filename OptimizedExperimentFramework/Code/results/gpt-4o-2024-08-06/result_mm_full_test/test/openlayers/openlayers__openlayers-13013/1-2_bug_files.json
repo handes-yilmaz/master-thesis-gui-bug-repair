@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/DataTile.js",
+            "src/ol/tilegrid/TileGrid.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "The files are related to the rendering and data handling of tiles in a WebGL context. 'WebGLTile.js' manages the WebGLTile layer rendering, which is where the issue manifests. 'DataTile.js' handles the data source configuration that is potentially misconfigured, leading to the mismatch. 'TileGrid.js' is involved in defining the tile grid parameters, which may be incorrect given the warning. 'TileTexture.js' deals with the WebGL texture operations, where the data size mismatch is likely occurring.",
+        "bug_scenario": "The screenshot shows a web application using WebGL for rendering that is failing to display tiles correctly. The tiles are black, and a console warning indicates a texture upload issue, specifically that the desired upload requires more data than is available. This suggests a mismatch between the expected and provided data sizes for the WebGL texture, possibly related to the custom tile grid configuration."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/DataTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/tilegrid/TileGrid.js"
+        ],
+        "explanation": "1. `src/ol/layer/WebGLTile.js` - This file implements the `WebGLTile` layer, which is directly involved in rendering the tiles that are appearing black.\n2. `src/ol/source/DataTile.js` - This file handles the `DataTile` source, which is responsible for loading the data that is not rendering correctly.\n3. `src/ol/renderer/webgl/TileLayer.js` - This file manages the WebGL rendering of tile layers, and the bug might involve how the data is being processed or displayed.\n4. `src/ol/tilegrid/TileGrid.js` - This file deals with the tile grid configuration. The issue could be related to how tile sizes and grids are defined and processed, especially since the warning mentions a discrepancy in data upload requirements.",
+        "bug_scenario": "The bug involves the `ol.layer.WebGLTile` not rendering data from `ol.source.DataTile` correctly, resulting in black tiles. The console logs a WebGL warning indicating a mismatch between the data required and available, specifically related to the tile size and data upload. The issue might be linked to recent changes in the OpenLayers repository."
+    }
+}

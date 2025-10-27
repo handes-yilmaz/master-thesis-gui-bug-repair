@@ -1,0 +1,18 @@
+diff --git a/src/ol/style/Icon.js b/src/ol/style/Icon.js
+index 916f6c5..ebbc481 100644
+--- a/src/ol/style/Icon.js
++++ b/src/ol/style/Icon.js
+@@ -390,8 +390,11 @@ class Icon extends ImageStyle {
+         offset[1] = iconImageSize[1] - size[1] - offset[1];
+       }
+     }
+-    offset[0] += displacement[0];
+-    offset[1] += displacement[1];
++    const size = this.getSize();
++    if (size) {
++      offset[0] += displacement[0] - size[0] / 2;
++      offset[1] += displacement[1] - size[1] / 2;
++    }
+     this.origin_ = offset;
+     return this.origin_;
+   }

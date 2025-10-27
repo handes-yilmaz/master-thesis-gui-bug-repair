@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/VectorTile.js//VectorTileLayer",
+            "src/ol/style/Fill.js//Fill",
+            "src/ol/style/Style.js//Style",
+            "src/ol/renderer/canvas/VectorTileLayer.js//CanvasVectorTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/style/Fill.js//setColor",
+            "src/ol/style/Style.js//setFill",
+            "src/ol/renderer/canvas/VectorTileLayer.js//renderFeature"
+        ],
+        "explanation": "The `VectorTileLayer` class in `src/ol/layer/VectorTile.js` is directly involved as it is responsible for handling vector tile layers, including their rendering and styling. The `Fill` class in `src/ol/style/Fill.js` is crucial because it manages the fill style for vector features, and the issue is related to how fill styles are applied. The `setColor` function within the `Fill` class is likely involved in setting the color of the fill, which is directly related to the bug. The `Style` class in `src/ol/style/Style.js` is involved because it acts as a container for vector feature rendering styles, and the `setFill` function is used to apply the fill style that is causing the issue. The `CanvasVectorTileLayerRenderer` class in `src/ol/renderer/canvas/VectorTileLayer.js` is responsible for rendering vector tile layers on the canvas, and the `renderFeature` function is likely involved in how features are drawn, potentially contributing to the rendering of the additional layer.",
+        "bug_scenario": "The bug scenario involves an issue with the `setFill()` method when styling a `VectorTile` layer in OpenLayers version 9.1.0. The problem arises when a fill style is applied to a `VectorTile` layer, resulting in an additional semi-transparent layer appearing on top of other layers. This issue is particularly noticeable when the fill is set using `setFill()` method, causing a ghost layer effect and flickering on mouse hover over the map."
+    }
+}

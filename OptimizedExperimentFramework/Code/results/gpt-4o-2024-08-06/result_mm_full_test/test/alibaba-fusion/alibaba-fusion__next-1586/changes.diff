@@ -1,0 +1,73 @@
+diff --git a/src/tree/view/tree-node.jsx b/src/tree/view/tree-node.jsx
+index 9914528..43b024c 100644
+--- a/src/tree/view/tree-node.jsx
++++ b/src/tree/view/tree-node.jsx
+@@ -179,14 +179,14 @@ export default class TreeNode extends Component {
+         this.setState({ loading });
+     }
+ 
+-    handleSelect(e) {
+-        e.preventDefault();
++handleSelect(e) {
++    e.preventDefault();
+ 
+-        const { root, selected, eventKey } = this.props;
+-        const newSelectedState = !selected;
+-        root.handleSelect(newSelectedState, eventKey, this, e);
+-        this.setState({ selected: newSelectedState });
+-    }
++    const { root, eventKey } = this.props;
++    const newSelectedState = !this.state.selected;
++    root.handleSelect(newSelectedState, eventKey, this, e);
++    this.setState({ selected: newSelectedState });
++}
+ 
+     handleCheck() {
+         const { root, checked, eventKey } = this.props;
+diff --git a/src/tree/view/tree.jsx b/src/tree/view/tree.jsx
+index fa27611..d515973 100644
+--- a/src/tree/view/tree.jsx
++++ b/src/tree/view/tree.jsx
+@@ -659,25 +659,25 @@ export default class Tree extends Component {
+         }
+     }
+ 
+-    handleSelect(select, key, node, e) {
+-        const { multiple, onSelect } = this.props;
+-        let selectedKeys = [...this.state.selectedKeys];
+-        if (multiple) {
+-            this.processKey(selectedKeys, key, select);
+-        } else {
+-            selectedKeys = [key];
+-        }
++handleSelect(select, key, node, e) {
++    const { multiple, onSelect } = this.props;
++    let selectedKeys = [...this.state.selectedKeys];
++    if (multiple) {
++        this.processKey(selectedKeys, key, select);
++    } else {
++        selectedKeys = select ? [key] : [];
++    }
+ 
+-        if (!('selectedKeys' in this.props)) {
+-            this.setState({ selectedKeys });
+-        }
+-        onSelect(selectedKeys, {
+-            selectedNodes: this.getNodes(selectedKeys),
+-            node,
+-            selected: select,
+-            event: e,
+-        });
++    if (!('selectedKeys' in this.props)) {
++        this.setState({ selectedKeys });
+     }
++    onSelect(selectedKeys, {
++        selectedNodes: this.getNodes(selectedKeys),
++        node,
++        selected: select,
++        event: e,
++    });
++}
+ 
+     // eslint-disable-next-line max-statements
+     handleCheck(check, key, node) {

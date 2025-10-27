@@ -1,0 +1,32 @@
+diff --git a/lib/features/rules/BpmnRules.js b/lib/features/rules/BpmnRules.js
+index cf32304..aa8b2ed 100644
+--- a/lib/features/rules/BpmnRules.js
++++ b/lib/features/rules/BpmnRules.js
+@@ -657,20 +657,16 @@ function canReplace(elements, target, position) {
+           element.type !== 'label' &&
+           canDrop(element, target)) {
+ 
+-        // replace a non-interrupting start event by a blank interrupting start event
+-        // when the target is not an event sub process
+-        if (!isInterrupting(element)) {
+-          canExecute.replacements.push({
+-            oldElementId: element.id,
+-            newElementType: 'bpmn:StartEvent'
+-          });
+-        }
+-
+-        // replace an error/escalation/compensate start event by a blank interrupting start event
+-        // when the target is not an event sub process
++        // disallow typed start events inside non-event based sub-process
+         if (hasErrorEventDefinition(element) ||
+             hasEscalationEventDefinition(element) ||
+             hasCompensateEventDefinition(element)) {
++          return false;
++        }
++
++        // replace a non-interrupting start event by a blank interrupting start event
++        // when the target is not an event sub process
++        if (!isInterrupting(element)) {
+           canExecute.replacements.push({
+             oldElementId: element.id,
+             newElementType: 'bpmn:StartEvent'

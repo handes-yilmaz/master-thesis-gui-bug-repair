@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/canvas/TextBuilder.js//CanvasTextBuilder",
+            "src/ol/render/canvas/Executor.js//Executor",
+            "src/ol/style/Text.js//Text"
+        ],
+        "bug_functions": [
+            "src/ol/render/canvas/TextBuilder.js//drawText",
+            "src/ol/render/canvas/TextBuilder.js//setTextStyle",
+            "src/ol/render/canvas/Executor.js//calculateImageOrLabelDimensions_",
+            "src/ol/render/canvas/Executor.js//replayImageOrLabel_"
+        ],
+        "explanation": "The bug is related to the incorrect translation of rotated text styles in vector layers. The `CanvasTextBuilder` class in `TextBuilder.js` is responsible for drawing text on the canvas, and its `drawText` and `setTextStyle` methods are likely involved in handling text rendering, including rotation and translation. The `Executor` class in `Executor.js` manages the execution of rendering instructions, and its methods `calculateImageOrLabelDimensions_` and `replayImageOrLabel_` are crucial for determining the positioning and rendering of text and images, which includes handling transformations like rotation and translation. The `Text` class in `Text.js` defines the text style properties, including rotation, which directly affects how text is rendered and transformed on the map. These classes and functions are key to addressing the bug because they handle the rendering logic that needs to be adjusted to account for the translation of rotated text styles.",
+        "bug_scenario": "The bug scenario involves a modified spyglass feature in a mapping application using OpenLayers (OL). The issue arises when vector layers with rotated text styles are clipped and translated. Instead of displaying at the translated location, the rotated text styles appear at their original location on the map. This problem does not occur with non-rotated text styles. The expected behavior is for the rotated text to be translated and superimposed correctly over other elements."
+    }
+}

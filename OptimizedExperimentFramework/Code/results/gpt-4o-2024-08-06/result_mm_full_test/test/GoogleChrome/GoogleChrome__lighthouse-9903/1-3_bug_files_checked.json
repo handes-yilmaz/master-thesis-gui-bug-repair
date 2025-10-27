@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/uses-rel-preconnect.js",
+            "lighthouse-core/computed/resource-summary.js",
+            "lighthouse-core/gather/gatherers/link-elements.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/uses-rel-preconnect.js**: This file likely contains the logic for the audit that suggests preconnects. Any bugs in the criteria for determining which origins should be preconnected or how many can be added might be found here.\n\n2. **lighthouse-core/computed/resource-summary.js**: This file computes the summary of resources used by a page. It could be involved in identifying third-party origins that require preconnects.\n\n3. **lighthouse-core/gather/gatherers/link-elements.js**: This file gathers link elements from a page, which would include those with 'rel=preconnect'. Errors or missing logic here could lead to incorrect reporting of preconnect suggestions.",
+        "bug_scenario": "The bug report indicates that after adding specified origins for preconnect, Lighthouse continues to suggest additional origins. This occurs even after the initial ones were added, leading to confusion about the criteria for 'important third-party origins' and maximum limits for preconnects."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/uses-rel-preconnect.js",
+            "lighthouse-core/config/default-config.js",
+            "lighthouse-core/gather/gatherers/link-elements.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/uses-rel-preconnect.js**: This file likely contains the audit logic that checks for preconnect suggestions. Any issues with the audit logic, such as not recognizing previously added origins, would originate here.\n2. **lighthouse-core/config/default-config.js**: This file might be responsible for setting up default configurations for audits, including which audits to run and how they are prioritized.\n3. **lighthouse-core/gather/gatherers/link-elements.js**: This file likely gathers data about link elements, including preconnect links. If it fails to properly detect or report existing preconnects, it could cause the issue observed.",
+        "bug_scenario": "The bug involves Lighthouse continuously suggesting 'Preconnect to required origins' even after the origins have been added. The report keeps showing additional origins, and the user is confused about how to determine which third-party origins are important and why Lighthouse suggests more than six preconnects when it is believed that only up to six can be added."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/metrics.js//Metrics",
+            "lighthouse-core/gather/gatherers/iframe-elements.js//IFrameElements"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/metrics.js//audit",
+            "lighthouse-core/gather/gatherers/iframe-elements.js//afterPass"
+        ],
+        "explanation": "The `Metrics` class in `lighthouse-core/audits/metrics.js` is responsible for collecting and reporting performance metrics. It needs to be modified to include iframe performance in its calculations. The `audit` function within this class is where the metrics are computed and returned, making it a key function to address the issue. The `IFrameElements` class in `lighthouse-core/gather/gatherers/iframe-elements.js` is responsible for gathering iframe elements. The `afterPass` function collects iframe data, which should be integrated into the performance metrics to ensure accurate reporting.",
+        "bug_scenario": "The bug scenario involves Lighthouse not adequately considering iframes in performance reports. When a page with an iframe is evaluated, the iframe's performance issues are not reflected in the overall metrics, leading to misleading results. The parent page with an iframe shows a better performance score than the iframe alone, despite the iframe's poor performance."
+    }
+}

@@ -1,0 +1,22 @@
+diff --git a/src/ol/source/TileDebug.js b/src/ol/source/TileDebug.js
+index 36353da..0b19112 100644
+--- a/src/ol/source/TileDebug.js
++++ b/src/ol/source/TileDebug.js
+@@ -130,7 +130,7 @@ class TileDebug extends XYZ {
+       return /** @type {!LabeledTile} */ (this.tileCache.get(tileCoordKey));
+     } else {
+       const tileSize = toSize(this.tileGrid.getTileSize(z));
+-      const tileCoord = [z, x, y];
++      const tileCoord = [z, x, -y]; // Invert the y coordinate
+       const textTileCoord = this.getTileCoordForTileUrlFunction(tileCoord);
+       let text;
+       if (textTileCoord) {
+@@ -140,7 +140,7 @@ class TileDebug extends XYZ {
+           ' x:' +
+           textTileCoord[1] +
+           ' y:' +
+-          textTileCoord[2];
++          -textTileCoord[2]; // Display inverted y coordinate
+       } else {
+         text = 'none';
+       }

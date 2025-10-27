@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/format/KML.js//KML"
+        ],
+        "bug_functions": [
+            "src/ol/format/KML.js//readPlacemark_",
+            "src/ol/format/KML.js//readName",
+            "src/ol/format/KML.js//readNameFromNode"
+        ],
+        "explanation": "The issue is related to XML encoding in KML files, which is not being decoded properly when rendering text labels. The `KML` class in `src/ol/format/KML.js` is responsible for reading and writing KML data, including feature names and labels. The functions `readPlacemark_`, `readName`, and `readNameFromNode` are involved in reading and processing the names and labels from KML nodes. These functions should ensure that any encoded characters are decoded, possibly using a function like `decodeURIComponent()` to handle the decoding of XML entities.",
+        "bug_scenario": "The bug involves character codes appearing in labels, such as 'Andy&amp;apos;s' instead of 'Andy's'. This issue arises from XML encoding not being properly decoded in the labels displayed on the map."
+    }
+}

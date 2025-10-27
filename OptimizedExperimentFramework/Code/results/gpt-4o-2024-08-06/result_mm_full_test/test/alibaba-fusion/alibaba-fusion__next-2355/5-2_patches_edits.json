@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "src/table/util.js": [
+            {
+                "SEARCH": [
+                    "const field = path.match(/([^[.\\\\]]+)/g);",
+                    "let val = object;",
+                    "for (let i = 0; i < field.length; i++) {",
+                    "if (val === undefined) {",
+                    "return undefined;",
+                    "}",
+                    "val = val[field[i]];",
+                    "}",
+                    "return val;"
+                ],
+                "REPLACE": [
+                    "    const field = path.match(/([^[.\\\\]]+)/g);",
+                    "    let val = object;",
+                    "    for (let i = 0; i < field.length; i++) {",
+                    "        if (val === undefined) {",
+                    "            return undefined;",
+                    "        }",
+                    "        if (Array.isArray(val) && field[i].includes(',')) {",
+                    "            const keys = field[i].slice(1, -1).split(',');",
+                    "            val = keys.map(key => val[key.trim()]);",
+                    "        } else {",
+                    "            val = val[field[i]];",
+                    "        }",
+                    "    }",
+                    "    return val;"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "1/1": {
+        "src/command/render/pandoc.ts": [
+            {
+                "SEARCH": [
+                    "// resolve dependencies",
+                    "writeDependencies(dependenciesFile, extras);",
+                    "",
+                    "const htmlDependenciesPostProcesor = (",
+                    "doc: Document,",
+                    "_inputMedata: Metadata,",
+                    "): Promise<HtmlPostProcessResult> => {",
+                    "return withTiming(",
+                    "\"pandocDependenciesPostProcessor\",",
+                    "async () =>",
+                    "await readAndInjectDependencies(",
+                    "dependenciesFile,",
+                    "inputDir,",
+                    "libDir,",
+                    "doc,",
+                    "project,",
+                    "),",
+                    ");",
+                    "};"
+                ],
+                "REPLACE": [
+                    "    // resolve dependencies",
+                    "    writeDependencies(dependenciesFile, extras);",
+                    "",
+                    "    const htmlDependenciesPostProcesor = (",
+                    "      doc: Document,",
+                    "      _inputMedata: Metadata,",
+                    "    ): Promise<HtmlPostProcessResult> => {",
+                    "      return withTiming(",
+                    "        \"pandocDependenciesPostProcessor\",",
+                    "        async () => {",
+                    "          // Ensure correct list formatting",
+                    "          doc.body = doc.body.replace(/^\\s*\\*\\s+/gm, '* ');",
+                    "          return await readAndInjectDependencies(",
+                    "            dependenciesFile,",
+                    "            inputDir,",
+                    "            libDir,",
+                    "            doc,",
+                    "            project,",
+                    "          );",
+                    "        },",
+                    "      );",
+                    "    };"
+                ]
+            }
+        ]
+    }
+}

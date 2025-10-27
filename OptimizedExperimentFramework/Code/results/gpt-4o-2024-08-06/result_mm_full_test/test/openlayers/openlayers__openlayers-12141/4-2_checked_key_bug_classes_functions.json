@@ -1,0 +1,52 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "xhr",
+            "file_path": "src/ol/featureloader.js",
+            "function_details": [
+                {
+                    "name": "xhr",
+                    "start_line": 134,
+                    "end_line": 167
+                }
+            ],
+            "function_code": [
+                "export function xhr(url, format) {",
+                "  /**",
+                "   * @param {import(\"./extent.js\").Extent} extent Extent.",
+                "   * @param {number} resolution Resolution.",
+                "   * @param {import(\"./proj/Projection.js\").default} projection Projection.",
+                "   * @param {function(): void} [success] Success",
+                "   *      Function called when loading succeeded.",
+                "   * @param {function(): void} [failure] Failure",
+                "   *      Function called when loading failed.",
+                "   * @this {import(\"./source/Vector\").default}",
+                "   */",
+                "  return function (extent, resolution, projection, success, failure) {",
+                "    const source = /** @type {import(\"./source/Vector\").default} */ (this);",
+                "    loadFeaturesXhr(",
+                "      url,",
+                "      format,",
+                "      extent,",
+                "      resolution,",
+                "      projection,",
+                "      /**",
+                "       * @param {Array<import(\"./Feature.js\").default>} features The loaded features.",
+                "       * @param {import(\"./proj/Projection.js\").default} dataProjection Data",
+                "       * projection.",
+                "       */",
+                "      function (features, dataProjection) {",
+                "        if (success !== undefined) {",
+                "          success(features);",
+                "        }",
+                "        source.addFeatures(features);",
+                "      },",
+                "      /* FIXME handle error */ failure ? failure : VOID",
+                "    );",
+                "  };",
+                "}"
+            ]
+        }
+    }
+}

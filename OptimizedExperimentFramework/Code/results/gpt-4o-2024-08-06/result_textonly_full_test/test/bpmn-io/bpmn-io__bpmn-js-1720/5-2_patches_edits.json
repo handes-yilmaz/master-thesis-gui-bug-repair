@@ -1,0 +1,38 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/ResizeBehavior.js": [
+            {
+                "SEARCH": [
+                    "return {",
+                    "min: minTrbl,",
+                    "max: maxTrbl",
+                    "};",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  // Ensure resizing logic is applied when transforming Call Activity to SubProcess",
+                    "  if (is(laneShape, 'bpmn:CallActivity') && isSubProcessTransformation(resizeDirection)) {",
+                    "    applySubProcessResize(laneShape);",
+                    "  }",
+                    "",
+                    "  return {",
+                    "    min: minTrbl,",
+                    "    max: maxTrbl",
+                    "  };",
+                    "}",
+                    "",
+                    "// Helper function to determine if transformation to SubProcess is occurring",
+                    "function isSubProcessTransformation(resizeDirection) {",
+                    "  return /sub-process/.test(resizeDirection);",
+                    "}",
+                    "",
+                    "// Function to apply resizing logic for SubProcess",
+                    "function applySubProcessResize(shape) {",
+                    "  // Logic to resize the shape appropriately",
+                    "  // This could involve setting specific dimensions or constraints",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

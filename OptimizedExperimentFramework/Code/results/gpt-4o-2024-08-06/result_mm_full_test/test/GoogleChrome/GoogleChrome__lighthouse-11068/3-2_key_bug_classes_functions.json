@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/font-display.js//FontDisplay",
+            "lighthouse-core/gather/gatherers/css-usage.js//CSSUsage"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/font-display.js//findFontDisplayDeclarations",
+            "lighthouse-core/audits/font-display.js//audit",
+            "lighthouse-core/gather/gatherers/css-usage.js//afterPass"
+        ],
+        "explanation": "The FontDisplay class in 'lighthouse-core/audits/font-display.js' is responsible for checking the font-display values in stylesheets. The 'findFontDisplayDeclarations' function is crucial as it scans stylesheets for @font-face declarations and checks for font-display properties. The 'audit' function uses this information to generate warnings if font-display values are missing or incorrect. The CSSUsage class in 'lighthouse-core/gather/gatherers/css-usage.js' gathers information about stylesheets, and its 'afterPass' function collects stylesheet content, which is essential for the FontDisplay audit to function correctly. If CSSUsage does not gather the necessary stylesheet data, the FontDisplay audit cannot perform its checks, leading to the warnings observed.",
+        "bug_scenario": "The bug scenario involves audit warnings from Lighthouse indicating that it was unable to automatically check the font-display value for several webfont URLs. This suggests that the CSSUsage artifact does not have any stylesheets referencing these fonts, leading to the warnings."
+    }
+}

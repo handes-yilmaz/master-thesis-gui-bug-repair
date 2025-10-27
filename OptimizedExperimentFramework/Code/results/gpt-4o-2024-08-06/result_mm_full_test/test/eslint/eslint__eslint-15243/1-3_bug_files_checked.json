@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/cli-engine/cli-engine.js"
+        ],
+        "explanation": "To support async formatters, changes would likely be needed in the ESLint core functionality that manages formatters. This involves the 'cli-engine.js' which is responsible for executing the linting process, and the 'formatters' directory where different formatter implementations are located. Implementing async support would require modifying how these formatters are called and handled, ensuring they can execute asynchronously.",
+        "bug_scenario": "The bug relates to the need for ESLint to support asynchronous formatters, specifically when using the 'shiki' library for code highlighting, which operates asynchronously. The provided image shows a code snippet with linting issues such as missing spaces and an extra semicolon, indicating that linting rules are being applied but the async formatter is not supported."
+    },
+    "2": {
+        "bug_files": [
+            "lib/cli-engine/formatters/stylish.js",
+            "lib/cli-engine/cli-engine.js",
+            "lib/linter/index.js"
+        ],
+        "explanation": "1. `lib/cli-engine/formatters/stylish.js`: This file is likely involved in formatting lint results. To support async formatters, modifications might be needed here.\n2. `lib/cli-engine/cli-engine.js`: This is the main engine handling CLI operations, including invoking formatters. It may need changes to properly handle async operations.\n3. `lib/linter/index.js`: The linter is responsible for processing code and applying rules. It may need modifications to pass results to async formatters.",
+        "bug_scenario": "The bug report indicates a need to support an asynchronous formatter in ESLint. The image shows a code snippet with formatting issues related to spacing and semicolon placement, which suggests the current formatter is not handling async operations or new highlighter integrations (like shiki) properly."
+    }
+}

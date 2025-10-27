@@ -1,0 +1,21 @@
+diff --git a/lighthouse-core/report/html/renderer/category-renderer.js b/lighthouse-core/report/html/renderer/category-renderer.js
+index 0fa8be2..4e6b368 100644
+--- a/lighthouse-core/report/html/renderer/category-renderer.js
++++ b/lighthouse-core/report/html/renderer/category-renderer.js
+@@ -283,7 +283,15 @@ class CategoryRenderer {
+     itemCountEl.textContent = `${auditRefs.length} audits`;
+ 
+     // Add all audit results to the clump.
+-    const auditElements = auditRefs.map(this.renderAudit.bind(this));
++    const auditElements = auditRefs.map(auditRef => {
++      const auditElement = this.renderAudit(auditRef);
++      if (auditRef.result.warnings && auditRef.result.warnings.length > 0) {
++        const warningsEl = this.dom.createElement('div', 'lh-warnings');
++        warningsEl.textContent = `${Util.UIStrings.warningHeader} ${auditRef.result.warnings.join(' ')}`;
++        auditElement.appendChild(warningsEl);
++      }
++      return auditElement;
++    });
+     clumpElement.append(...auditElements);
+ 
+     clumpElement.classList.add(`lh-clump--${clumpId.toLowerCase()}`);

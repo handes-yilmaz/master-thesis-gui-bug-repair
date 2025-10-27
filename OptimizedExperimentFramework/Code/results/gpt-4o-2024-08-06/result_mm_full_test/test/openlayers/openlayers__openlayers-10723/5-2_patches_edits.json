@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "src/ol/layer/Graticule.js": [
+            {
+                "SEARCH": [
+                    "const maxLat = validExtent[3];",
+                    "const maxLon = validExtent[2];",
+                    "const minLat = validExtent[1];",
+                    "const minLon = validExtent[0];"
+                ],
+                "REPLACE": [
+                    "    const maxLat = validExtent[3];",
+                    "    const maxLon = validExtent[2] > 180 ? validExtent[2] - 360 : validExtent[2];",
+                    "    const minLat = validExtent[1];",
+                    "    const minLon = validExtent[0] < -180 ? validExtent[0] + 360 : validExtent[0];"
+                ]
+            }
+        ]
+    }
+}

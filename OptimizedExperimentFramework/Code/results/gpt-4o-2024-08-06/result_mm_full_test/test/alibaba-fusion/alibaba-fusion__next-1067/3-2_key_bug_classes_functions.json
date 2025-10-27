@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/slider/slick/arrow.jsx//Arrow",
+            "src/slider/slick/inner-slider.jsx//InnerSlider"
+        ],
+        "bug_functions": [
+            "src/slider/slick/arrow.jsx//Arrow.isDisabled",
+            "src/slider/slick/inner-slider.jsx//InnerSlider.render"
+        ],
+        "explanation": "The `Arrow.isDisabled` function in `arrow.jsx` determines whether the arrow should be disabled based on the current slide, slide count, and other properties. The logic here is likely causing the arrow to be disabled incorrectly. The `InnerSlider.render` function in `inner-slider.jsx` is responsible for rendering the slider and its components, including the arrows. It uses the `Arrow` component and its `isDisabled` method, so any issues in rendering or logic flow could also contribute to the bug.",
+        "bug_scenario": "The left arrow in the slider component is disabled when it should be active. This occurs when the number of slides to show is greater than the total slide count, infinite scrolling is set to false, and the default active index is not zero."
+    }
+}

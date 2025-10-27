@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "lib/rules/indent.js": [
+            {
+                "SEARCH": [
+                    "setDesiredOffset(token, offsetFrom, offset) {",
+                    "if (offsetFrom && token.loc.start.line === offsetFrom.loc.start.line) {",
+                    "this.matchIndentOf(offsetFrom, token);",
+                    "} else {",
+                    "this.desiredOffsets[token.range[0]] = { offset, from: offsetFrom };",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    setDesiredOffset(token, offsetFrom, offset) {",
+                    "        if (offsetFrom && token.loc.start.line === offsetFrom.loc.start.line) {",
+                    "            this.matchIndentOf(offsetFrom, token);",
+                    "        } else {",
+                    "            // Adjust for JSX binary expressions with parentheses",
+                    "            const isParenthesizedJSX = token.type === \"Punctuator\" && token.value === \"(\";",
+                    "            const adjustedOffset = isParenthesizedJSX ? offset + 1 : offset;",
+                    "            this.desiredOffsets[token.range[0]] = { offset: adjustedOffset, from: offsetFrom };",
+                    "        }",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

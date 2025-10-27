@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/gatherers/offline.js": [
+            {
+                "SEARCH": [
+                    "const navigationRecord = loadData.networkRecords.filter(record => {",
+                    "return URL.equalWithExcludedFragments(record.url, passContext.url) &&",
+                    "record.fetchedViaServiceWorker;",
+                    "}).pop(); // Take the last record that matches.",
+                    "",
+                    "return passContext.driver.goOnline(passContext)",
+                    ".then(_ => navigationRecord ? navigationRecord.statusCode : -1);"
+                ],
+                "REPLACE": [
+                    "    const navigationRecord = loadData.networkRecords.filter(record => {",
+                    "      return URL.equalWithExcludedFragments(record.url, passContext.url) &&",
+                    "        (record.fetchedViaServiceWorker || record.fromDiskCache);",
+                    "    }).pop(); // Take the last record that matches.",
+                    "",
+                    "    return passContext.driver.goOnline(passContext)",
+                    "      .then(_ => navigationRecord ? navigationRecord.statusCode : -1);"
+                ]
+            }
+        ]
+    }
+}

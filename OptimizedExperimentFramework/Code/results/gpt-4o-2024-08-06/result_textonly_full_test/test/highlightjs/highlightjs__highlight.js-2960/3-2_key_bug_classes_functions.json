@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/perl.js"
+        ],
+        "bug_functions": [
+            "src/lib/regex.js//concat",
+            "src/lib/regex.js//either"
+        ],
+        "explanation": "The bug is related to the incorrect handling of Perl regex patterns with arbitrary delimiters. The file `src/languages/perl.js` is directly responsible for defining the syntax highlighting rules for Perl, including regex patterns. This file contains the logic for recognizing Perl regex patterns, and modifications here would be necessary to correctly identify and highlight regex patterns with arbitrary delimiters.\n\nThe functions `concat` and `either` in `src/lib/regex.js` are utility functions used to construct regex patterns. These functions are likely involved in building the regex patterns used in the highlighting logic. If these functions do not correctly handle the arbitrary delimiters or the specific syntax of Perl regex, it could lead to the issue described in the bug report. Therefore, these functions are key elements that may need to be adjusted to fix the problem.",
+        "bug_scenario": "The bug scenario involves the incorrect detection of Perl regex patterns in a syntax highlighting library. Specifically, the issue arises when using the Perl match operator `m` with arbitrary delimiters, such as `m(/$)`, which is not being correctly highlighted as a regex. The expected behavior is that only the regex pattern should be highlighted, but the current implementation fails to recognize these patterns correctly."
+    }
+}

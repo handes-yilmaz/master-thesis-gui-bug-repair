@@ -1,0 +1,16 @@
+diff --git a/src/language-markdown/printer-markdown.js b/src/language-markdown/printer-markdown.js
+index 22d2a45..d040a88 100644
+--- a/src/language-markdown/printer-markdown.js
++++ b/src/language-markdown/printer-markdown.js
+@@ -588,6 +588,11 @@ function printChildren(path, options, print, events = {}) {
+         }
+       }
+ 
++      // Ensure empty lines are preserved
++      if (result === hardline && parts[parts.length - 1] === hardline) {
++        parts.push(hardline);
++      }
++
+       parts.push(result);
+     }
+   }, "children");

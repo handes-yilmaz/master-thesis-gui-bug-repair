@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/prefer-const.js",
+            "lib/rules/no-undef-init.js"
+        ],
+        "bug_functions": [
+            "lib/rules/prefer-const.js//getIdentifierIfShouldBeConst",
+            "lib/rules/no-undef-init.js//VariableDeclarator"
+        ],
+        "explanation": "The issue arises from the interaction between the 'prefer-const' and 'no-undef-init' rules. The 'prefer-const' rule suggests converting variables to constants if they are not reassigned, but it does not handle the case where the variable is initialized with 'undefined'. The 'no-undef-init' rule flags unnecessary initializations to 'undefined'. The function 'getIdentifierIfShouldBeConst' in 'prefer-const.js' determines if a variable should be a constant, and 'VariableDeclarator' in 'no-undef-init.js' handles the initialization check. These functions need to be adjusted to ensure that the 'undefined' initialization is preserved when converting to 'const'.",
+        "bug_scenario": "The bug occurs when ESLint's autofix feature transforms a variable initialized with 'undefined' to a constant without preserving the 'undefined' initialization, causing JavaScript errors. The user expected the variable to be transformed to a constant while retaining the 'undefined' initialization."
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/perl.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "The file `src/languages/perl.js` is likely responsible for defining the syntax highlighting rules for Perl, including regex patterns. The file `src/lib/regex.js` might contain the core logic for regex parsing and highlighting across different languages, which could be causing the incorrect highlighting behavior.",
+        "bug_scenario": "The screenshot shows that the regex pattern `m(/$)` is not highlighted correctly as a regex in Perl code. The issue is related to the Perl match operator `m` which allows arbitrary delimiters, and the highlighter fails to recognize this correctly."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/perl.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "The issue is related to regex parsing in Perl, so the primary file that would need modification is `src/languages/perl.js`, which likely contains the language syntax rules for Perl. Additionally, `src/lib/regex.js` might be involved, as it could contain the general regex parsing logic used by the highlighter across different languages.",
+        "bug_scenario": "The issue is with the regex detection in Perl code highlighting. The regex after the 'm' keyword is not properly detected if using arbitrary delimiters, like a slash in this example. The expected behavior is that only the pattern '/$' should be highlighted as a regex, but it fails due to improper detection."
+    }
+}

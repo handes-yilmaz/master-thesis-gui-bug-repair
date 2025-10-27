@@ -1,0 +1,66 @@
+{
+    "1/1": {
+        "src/format/html/format-html.ts": [
+            {
+                "SEARCH": [
+                    "if (featureDefaults.figResponsive) {",
+                    "options.figResponsive = format.metadata[kFigResponsive] !== false;",
+                    "} else {",
+                    "options.figResponsive = format.metadata[kFigResponsive] || false;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (featureDefaults.figResponsive) {",
+                    "    options.figResponsive = format.metadata[kFigResponsive] !== false;",
+                    "  } else {",
+                    "    options.figResponsive = format.metadata[kFigResponsive] || true; // Ensure figures are responsive by default",
+                    "  }"
+                ]
+            }
+        ],
+        "src/command/render/render.ts": [
+            {
+                "SEARCH": [
+                    "const pandocOptions: PandocOptions = {",
+                    "markdown: notebookResult.markdown",
+                    "? notebookResult.markdown",
+                    ": executeResult.markdown,",
+                    "source: context.target.source,",
+                    "output: recipe.output,",
+                    "keepYaml: recipe.keepYaml,",
+                    "mediabagDir,",
+                    "libDir: context.libDir,",
+                    "format,",
+                    "project: context.project,",
+                    "args: recipe.args,",
+                    "services: context.options.services,",
+                    "metadata: executeResult.metadata,",
+                    "quiet,",
+                    "flags: context.options.flags,",
+                    "};"
+                ],
+                "REPLACE": [
+                    "  const pandocOptions: PandocOptions = {",
+                    "    markdown: notebookResult.markdown",
+                    "      ? notebookResult.markdown",
+                    "      : executeResult.markdown,",
+                    "    source: context.target.source,",
+                    "    output: recipe.output,",
+                    "    keepYaml: recipe.keepYaml,",
+                    "    mediabagDir,",
+                    "    libDir: context.libDir,",
+                    "    format,",
+                    "    project: context.project,",
+                    "    args: recipe.args,",
+                    "    services: context.options.services,",
+                    "    metadata: executeResult.metadata,",
+                    "    quiet,",
+                    "    flags: context.options.flags,",
+                    "    // Ensure single figure rendering",
+                    "    figSingle: true,",
+                    "  };"
+                ]
+            }
+        ]
+    }
+}

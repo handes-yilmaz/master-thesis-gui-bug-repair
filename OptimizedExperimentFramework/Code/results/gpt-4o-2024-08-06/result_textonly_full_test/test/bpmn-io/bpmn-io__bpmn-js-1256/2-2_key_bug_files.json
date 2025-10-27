@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/cmd/UpdateFlowNodeRefsHandler.js",
+            "lib/features/modeling/util/LaneUtil.js"
+        ],
+        "explanation": "1. **DeleteLaneBehavior.js**: This file contains the logic for handling the deletion of lanes. The function `compensateLaneDelete` is responsible for adjusting the positions of sibling lanes when a lane is deleted. The deformation issue likely arises from incorrect calculations or adjustments in this function, leading to the observed diagram deformation.\n\n2. **UpdateFlowNodeRefsHandler.js**: This file manages the updates to lane references when elements are changed. The `computeUpdates` function determines which lanes need to be updated when a lane is removed. If this function does not correctly update the references, it could lead to inconsistencies and deformation in the diagram.\n\n3. **LaneUtil.js**: This utility file provides functions for managing lanes, such as `collectLanes` and `getChildLanes`. These functions are used to gather and manage lane elements. If these functions do not correctly identify or manage lanes, it could contribute to the deformation issue when a lane is removed.",
+        "bug_scenario": "The bug scenario involves a BPMN model where, upon removing a child lane from a parent lane, the diagram becomes deformed. This deformation affects other related lanes and the overall diagram structure, making it difficult to continue editing the diagram. The issue is observed in the latest versions of the library but not in older versions (v3.0.1 and v4.0.1)."
+    }
+}

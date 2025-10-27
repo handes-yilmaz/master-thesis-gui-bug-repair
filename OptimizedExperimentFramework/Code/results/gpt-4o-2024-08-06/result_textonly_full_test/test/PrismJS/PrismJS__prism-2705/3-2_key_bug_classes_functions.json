@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-javascript.js//Prism.languages.javascript",
+            "components/prism-js-templates.js//createTemplate"
+        ],
+        "bug_functions": [
+            "components/prism-js-templates.js//tokenizeEmbedded",
+            "components/prism-js-templates.js//tokenizeInterpolationExpression"
+        ],
+        "explanation": "The bug is related to the handling of template literals in JavaScript and TypeScript. The `Prism.languages.javascript` class in `components/prism-javascript.js` is responsible for defining the syntax highlighting rules for JavaScript, including template literals. The `createTemplate` function in `components/prism-js-templates.js` is used to create patterns for template strings with special tags, which is directly related to the issue of template literals not being closed properly. The `tokenizeEmbedded` and `tokenizeInterpolationExpression` functions in `components/prism-js-templates.js` are responsible for tokenizing code with embedded languages and handling interpolation expressions, respectively. These functions are crucial for correctly parsing and highlighting template literals, and any issues in these functions could lead to the bug described.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in JavaScript and TypeScript code using PrismJS. The problem arises when a specific sequence of template literals and comments are used, causing the syntax highlighting to break. The issue is that a template literal is not being closed properly, leading to incorrect parsing of subsequent code."
+    }
+}

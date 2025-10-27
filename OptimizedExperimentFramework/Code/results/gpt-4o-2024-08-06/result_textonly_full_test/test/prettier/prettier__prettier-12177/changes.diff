@@ -1,0 +1,17 @@
+diff --git a/src/language-js/print/statement.js b/src/language-js/print/statement.js
+index 2ae9418..2c86f5e 100644
+--- a/src/language-js/print/statement.js
++++ b/src/language-js/print/statement.js
+@@ -170,6 +170,12 @@ function printSwitchCaseConsequent(path, options, print) {
+     if (comments && comments.length > 0) {
+       parts.push(" ", printDanglingComments(path, options, true));
+     }
++  } else {
++    // Ensure comments after default are on the same line
++    const comments = path.getComments();
++    if (comments && comments.length > 0) {
++      parts.push(" ", printDanglingComments(path, options, true));
++    }
+   }
+ 
+   parts.push(printStatementSequence(path, options, print, "consequent"));

@@ -1,0 +1,14 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 2cf948e..7cc6ae2 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -455,6 +455,9 @@ class WebGLTileLayer extends BaseTileLayer {
+     for (let i = 0, ii = sources.length; i < ii; ++i) {
+       const source = sources[i];
+       const sourceState = source.getState();
++      if (source.getProjection() !== viewState.projection) {
++        source.reproject(viewState.projection);
++      }
+       if (sourceState == 'loading') {
+         const onChange = () => {
+           if (source.getState() == 'ready') {

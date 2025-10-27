@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const sources = this.getSources(frameState.extent, viewState.resolution);",
+                    "let ready = true;",
+                    "for (let i = 0, ii = sources.length; i < ii; ++i) {",
+                    "const source = sources[i];",
+                    "const sourceState = source.getState();"
+                ],
+                "REPLACE": [
+                    "    const sources = this.getSources(frameState.extent, viewState.resolution);",
+                    "    let ready = true;",
+                    "    for (let i = 0, ii = sources.length; i < ii; ++i) {",
+                    "      const source = sources[i];",
+                    "      const sourceState = source.getState();",
+                    "      if (source.getProjection() !== viewState.projection) {",
+                    "        source.reproject(viewState.projection);",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

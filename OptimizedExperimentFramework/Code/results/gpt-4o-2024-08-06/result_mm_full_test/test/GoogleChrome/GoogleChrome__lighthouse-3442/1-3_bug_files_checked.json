@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js",
+            "lighthouse-core/report/v2/renderer/util.js",
+            "lighthouse-core/report/v2/report-generator.js"
+        ],
+        "explanation": "The bug is related to the report generation and rendering process. The error message specifically mentions 'ReportRenderer', which indicates that 'report-renderer.js' is directly involved in the issue. The missing 'generatedTime' property suggests a problem with data handling, which could also involve 'util.js' and 'report-generator.js', as these files are likely responsible for preparing and managing the report data.",
+        "bug_scenario": "The report page is blank when running from both the command line and as a browser extension. The console shows a syntax error and a TypeError indicating that it cannot read the property 'generatedTime' of undefined. This suggests that the report generation may be failing or missing necessary data."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/report/v2/renderer/report-renderer.js",
+            "lighthouse-core/report/v2/renderer/util.js"
+        ],
+        "explanation": "The errors indicate issues with report rendering, specifically related to accessing undefined properties. The 'report-renderer.js' file is likely responsible for rendering the report and thus could be the source of the 'generatedTime' property error. The 'util.js' file may also be involved if it provides utility functions used in rendering the report, which could be improperly handling data or tokens.",
+        "bug_scenario": "The bug scenario involves a report page that appears blank when accessed. The console shows errors such as 'Uncaught SyntaxError: Invalid or unexpected token' and 'Uncaught TypeError: Cannot read property 'generatedTime' of undefined'. These errors prevent the report from being rendered correctly, leading to the blank page issue."
+    }
+}

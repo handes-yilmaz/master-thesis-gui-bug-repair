@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "lib/import/BpmnImporter.js": [
+            {
+                "SEARCH": [
+                    "if (is(semantic, 'bpmn:DataAssociation')) {",
+                    "",
+                    "// render always on top; this ensures DataAssociations",
+                    "// are rendered correctly across different \"hacks\" people",
+                    "// love to model such as cross participant / sub process",
+                    "// associations",
+                    "parentElement = null;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (is(semantic, 'bpmn:DataAssociation') || is(semantic, 'bpmn:Association')) {",
+                    "",
+                    "      // render always on top; this ensures DataAssociations",
+                    "      // and Associations are rendered correctly across different \"hacks\" people",
+                    "      // love to model such as cross participant / sub process",
+                    "      // associations",
+                    "      parentElement = null;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+diff --git a/src/core/image.ts b/src/core/image.ts
+index d0bc4e8..75ae916 100644
+--- a/src/core/image.ts
++++ b/src/core/image.ts
+@@ -29,7 +29,8 @@ export function imageSize(path: string) {
+ }
+ 
+ export function imageContentType(path: string) {
+-  const ext = extname(path);
++  const sanitizedPath = path.split(/[?#]/)[0]; // Remove query and fragment
++  const ext = extname(sanitizedPath);
+   return kimageTypes[ext];
+ }
+ 

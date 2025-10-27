@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "lib/rules/prefer-const.js": [
+            {
+                "SEARCH": [
+                    "if (isReadBeforeInit) {",
+                    "return variable.defs[0].name;",
+                    "}",
+                    "",
+                    "return writer.identifier;"
+                ],
+                "REPLACE": [
+                    "    if (isReadBeforeInit) {",
+                    "        return variable.defs[0].name;",
+                    "    }",
+                    "",
+                    "    // Retain 'undefined' initialization for variables initialized with 'undefined'",
+                    "    if (writer && writer.identifier && writer.identifier.parent && writer.identifier.parent.init && writer.identifier.parent.init.type === 'Identifier' && writer.identifier.parent.init.name === 'undefined') {",
+                    "        return writer.identifier.parent;",
+                    "    }",
+                    "",
+                    "    return writer.identifier;"
+                ]
+            }
+        ]
+    }
+}

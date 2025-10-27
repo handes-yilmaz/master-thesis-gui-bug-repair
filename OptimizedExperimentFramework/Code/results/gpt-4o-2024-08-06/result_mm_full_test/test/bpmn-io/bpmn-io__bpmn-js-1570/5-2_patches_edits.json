@@ -1,0 +1,52 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/SubProcessPlaneBehavior.js": [
+            {
+                "SEARCH": [
+                    "if (!target.x) {",
+                    "offset = {",
+                    "x: DEFAULT_POSITION.x - source.x ,",
+                    "y: DEFAULT_POSITION.y - source.y",
+                    "};",
+                    "}",
+                    "",
+                    "// source is a plane",
+                    "else {",
+                    "",
+                    "// move relative to the center of the shape",
+                    "var targetMid = getMid(target);",
+                    "var childrenBounds = getBBox(visibleChildren);",
+                    "var childrenMid = getMid(childrenBounds);",
+                    "",
+                    "offset = {",
+                    "x: targetMid.x - childrenMid.x,",
+                    "y: targetMid.y - childrenMid.y",
+                    "};",
+                    "}",
+                    "",
+                    "modeling.moveElements(children, offset, target, { autoResize: false });"
+                ],
+                "REPLACE": [
+                    "  if (!target.x) {",
+                    "    offset = {",
+                    "      x: 0,",
+                    "      y: 0",
+                    "    };",
+                    "  } else {",
+                    "    // move relative to the center of the shape",
+                    "    var targetMid = getMid(target);",
+                    "    var childrenBounds = getBBox(visibleChildren);",
+                    "    var childrenMid = getMid(childrenBounds);",
+                    "",
+                    "    offset = {",
+                    "      x: targetMid.x - childrenMid.x,",
+                    "      y: targetMid.y - childrenMid.y",
+                    "    };",
+                    "  }",
+                    "",
+                    "  modeling.moveElements(children, offset, target, { autoResize: false });"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "src/rating/rating.jsx": [
+            {
+                "SEARCH": [
+                    "if (newValue !== value) {",
+                    "this.props.onChange(isReset ? 0 : newValue);",
+                    "}",
+                    "",
+                    "setTimeout(() => {",
+                    "this.setState({ clicked: false });",
+                    "}, 100);"
+                ],
+                "REPLACE": [
+                    "        if (newValue !== value) {",
+                    "            this.props.onChange(isReset ? 0 : newValue);",
+                    "        }",
+                    "",
+                    "        // Prevent duplicate triggering when id is present",
+                    "        if (this.props.id) {",
+                    "            e.preventDefault();",
+                    "        }",
+                    "        ",
+                    "        setTimeout(() => {",
+                    "            this.setState({ clicked: false });",
+                    "        }, 100);"
+                ]
+            }
+        ]
+    }
+}

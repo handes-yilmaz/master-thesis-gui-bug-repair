@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/TileDebug.js",
+            "src/ol/source/TileImage.js"
+        ],
+        "explanation": "The issue is related to the handling of tile coordinates, particularly the inversion of the Y coordinate. The TileDebug.js file is responsible for rendering a grid outline and displaying tile coordinates, which is directly related to the bug where the coordinates do not match the expected inverted Y format. The TileImage.js file is responsible for fetching and managing image tiles, including handling URL templates that specify the tile coordinate format. Since the bug involves the mismatch of tile coordinates due to the inverted Y format, both files are key to addressing the issue. TileDebug.js needs to correctly interpret and display the inverted Y coordinates, while TileImage.js needs to ensure that the tile URLs are generated with the correct coordinate format.",
+        "bug_scenario": "The bug scenario involves a mismatch between the TileDebug and TileImage layers when handling inverted Y coordinates. Specifically, the TileDebug layer does not correctly represent the inverted -y coordinate for the TileImage layer, leading to discrepancies in the tile coordinates displayed in the network console compared to the expected tile debug coordinates."
+    }
+}

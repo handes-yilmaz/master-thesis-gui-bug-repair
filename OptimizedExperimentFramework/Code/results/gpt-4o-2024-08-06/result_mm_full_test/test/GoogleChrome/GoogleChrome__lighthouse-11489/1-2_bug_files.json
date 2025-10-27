@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/dobetterweb/js-libraries.js",
+            "lib/large-javascript-libraries/library-suggestions.js"
+        ],
+        "explanation": "The file 'lighthouse-core/audits/dobetterweb/js-libraries.js' is likely responsible for generating the report that displays the JavaScript library sizes, including the 'Transfer size' column. Modifying this file can ensure that the sizes are displayed consistently with decimal points. The 'lib/large-javascript-libraries/library-suggestions.js' file is part of the logic that handles large JavaScript libraries, which might involve changes to ensure consistent formatting of size outputs.",
+        "bug_scenario": "The bug scenario involves a feature request to display decimal places in the 'Transfer size' column for JavaScript library size comparisons. Currently, whole numbers omit the decimal (e.g., '18 KiB' instead of '18.0 KiB'), which affects accessibility and numeric alignment across rows."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/dobetterweb/js-libraries.js",
+            "lighthouse-core/audits/large-javascript-libraries.js",
+            "lighthouse-core/report/html/renderer/details-renderer.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/dobetterweb/js-libraries.js`: This file likely handles the detection and reporting of JavaScript library sizes, which is directly related to the feature request of displaying decimal places.\n2. `lighthouse-core/audits/large-javascript-libraries.js`: This file is named specifically for auditing large JavaScript libraries, which is the context of the issue.\n3. `lighthouse-core/report/html/renderer/details-renderer.js`: This file probably manages how details like transfer sizes are rendered in reports, making it relevant for altering how numbers are displayed.",
+        "bug_scenario": "The image shows a table of JavaScript libraries with their transfer sizes. The issue is that sizes like '18 KiB' are displayed without a decimal place, making it difficult for visually impaired users to compare sizes due to misaligned columns. The feature request is to always display a decimal, even if zero, for consistency and improved accessibility."
+    }
+}

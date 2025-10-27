@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Vector.js//VectorLayer",
+            "src/ol/renderer/canvas/VectorLayer.js//CanvasVectorLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/canvas/VectorLayer.js//renderFrame",
+            "src/ol/renderer/canvas/VectorLayer.js//prepareFrame"
+        ],
+        "explanation": "The 'VectorLayer' class in 'src/ol/layer/Vector.js' is directly related to the issue as it is responsible for creating the renderer that handles the vector layer rendering. The 'CanvasVectorLayerRenderer' class in 'src/ol/renderer/canvas/VectorLayer.js' is crucial because it implements the rendering logic for vector layers on a canvas. The 'renderFrame' function is responsible for rendering the layer, and if it does not clear previous frames correctly, it would lead to the described bug. The 'prepareFrame' function is also relevant as it prepares the frame for rendering, and any issues in this function could affect how frames are cleared or rendered.",
+        "bug_scenario": "The bug scenario involves a VectorLayer in a mapping application where layers with 'declutter' and 'opacity' less than 1 do not clear between renders. This results in visual artifacts as previous frames are not cleared when the map is panned."
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js"
+        ],
+        "explanation": "1. **src/language-markdown/parser-markdown.js**: This file contains functions related to parsing markdown, including handling of text and inline code. The function `splitText` specifically mentions preserving indentation for nested code blocks or raw HTML, which is directly related to the reported issue.\n\n2. **src/language-markdown/printer-markdown.js**: This file is responsible for printing markdown elements. The function `genericPrint` and related functions handle the formatting of markdown elements, which could be causing the additional indentation when saving the file.",
+        "bug_scenario": "The bug involves incorrect indentation of nested code blocks or raw HTML in markdown files when using the 'format on save' feature in VS Code with Prettier. Each time the file is saved, additional spaces are added, disrupting the intended formatting. This issue is intermittent with code blocks but consistently problematic with raw HTML."
+    }
+}

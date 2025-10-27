@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//setSource",
+            "src/ol/layer/WebGLTile.js//getRenderSource",
+            "src/ol/layer/WebGLTile.js//handleSourceUpdate_",
+            "src/ol/renderer/webgl/TileLayer.js//enqueueTiles",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "The `WebGLTileLayer` class in `src/ol/layer/WebGLTile.js` is directly related to the bug as it manages the tile layer's source and rendering. The `setSource` function is crucial because it is responsible for updating the source of the tile layer, which is directly mentioned in the bug report. The `getRenderSource` and `handleSourceUpdate_` functions are likely involved in managing the current source state and handling updates, which are essential for ensuring the correct textures are used.\n\nThe `WebGLTileLayerRenderer` class in `src/ol/renderer/webgl/TileLayer.js` is responsible for rendering the tile layers using WebGL. The `enqueueTiles` function is involved in preparing tiles for rendering, and `renderFrame` is responsible for the actual rendering process. Both functions are critical in ensuring that the correct tiles are rendered, especially after a source change or projection update, as described in the bug report.",
+        "bug_scenario": "The bug scenario involves WebGL tile layers using incorrect cached textures when the source is replaced using `setSource()` or when the view projection is changed. This results in tiles from the old source or projection being displayed when panning or zooming back, instead of the new source or projection tiles."
+    }
+}

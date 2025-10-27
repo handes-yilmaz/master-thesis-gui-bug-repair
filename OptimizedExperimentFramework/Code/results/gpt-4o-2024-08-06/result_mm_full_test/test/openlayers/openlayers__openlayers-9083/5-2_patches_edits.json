@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "src/ol/interaction/Draw.js": [
+            {
+                "SEARCH": [
+                    "// Reset shouldHandle_ to ensure other interactions can proceed",
+                    "this.shouldHandle_ = false;",
+                    "if (!pass && this.stopClick_) {",
+                    "event.stopPropagation();",
+                    "}",
+                    "return pass;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    // Reset shouldHandle_ to ensure other interactions can proceed",
+                    "    this.shouldHandle_ = false;",
+                    "    this.lastDragTime_ = undefined; // Reset last drag time",
+                    "    if (!pass && this.stopClick_) {",
+                    "      event.stopPropagation();",
+                    "    }",
+                    "    return pass;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

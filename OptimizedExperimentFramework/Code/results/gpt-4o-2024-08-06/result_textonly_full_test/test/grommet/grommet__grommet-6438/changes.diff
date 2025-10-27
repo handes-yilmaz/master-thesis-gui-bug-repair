@@ -1,0 +1,18 @@
+diff --git a/src/js/components/Calendar/utils.js b/src/js/components/Calendar/utils.js
+index d2fa9a2..e95cea3 100644
+--- a/src/js/components/Calendar/utils.js
++++ b/src/js/components/Calendar/utils.js
+@@ -90,6 +90,13 @@ export const betweenDates = (date, dates) => {
+     } else {
+       result = undefined;
+     }
++    // Ensure that the date is not before the 'from' date or after the 'to' date
++    if (from && date < from) {
++      result = undefined;
++    }
++    if (to && date > to) {
++      result = undefined;
++    }
+   } else {
+     result = 1;
+   }

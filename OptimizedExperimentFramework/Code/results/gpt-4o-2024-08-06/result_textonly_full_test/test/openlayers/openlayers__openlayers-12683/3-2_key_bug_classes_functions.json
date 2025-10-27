@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Icon.js//Icon",
+            "src/ol/style/IconImage.js//IconImage"
+        ],
+        "bug_functions": [
+            "src/ol/style/Icon.js//getImage",
+            "src/ol/style/Icon.js//getPixelRatio",
+            "src/ol/style/IconImage.js//replaceColor_"
+        ],
+        "explanation": "The `Icon` class in `src/ol/style/Icon.js` is directly responsible for setting the icon style for vector features, including handling offsets and colors. The `getImage` and `getPixelRatio` functions within this class are likely involved in rendering the icon with the correct offset and scaling based on the pixel ratio. The `IconImage` class in `src/ol/style/IconImage.js` handles the image rendering and color replacement, which is crucial when a custom color is applied. The `replaceColor_` function is particularly relevant as it modifies the image based on the color, which could affect the offset calculation when the pixel ratio is not 1. These classes and functions are central to the bug because they manage the rendering and styling of icons, which is where the offset issue arises.",
+        "bug_scenario": "The bug scenario involves an issue with the offset of an icon style when a custom color is applied and the screen pixel ratio is not equal to 1. Specifically, when a vector source is styled using an image sprite, the sprite offset is incorrect if an offset and size are provided to the icon style, the monitor has a pixel ratio greater than 1, and a custom color is applied to the icon style. The expected behavior is for the offset to select the same region of the image sprite regardless of the screen ratio or color provided."
+    }
+}

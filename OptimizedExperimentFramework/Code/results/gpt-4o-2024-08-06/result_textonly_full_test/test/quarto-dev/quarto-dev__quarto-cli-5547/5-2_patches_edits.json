@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "src/format/reveal/format-reveal.ts": [
+            {
+                "SEARCH": [
+                    "const images = slideEl.querySelectorAll(\"img\");",
+                    "// only target slides with one image",
+                    "if (images.length === 1) {",
+                    "const image = images[0];",
+                    "const imageEl = image as Element;"
+                ],
+                "REPLACE": [
+                    "    const images = slideEl.querySelectorAll(\"img\");",
+                    "    const links = slideEl.querySelectorAll(\"a\");",
+                    "    // only target slides with one image and ensure links are preserved",
+                    "    if (images.length === 1 && links.length === 1 && links[0].contains(images[0])) {",
+                    "      const image = images[0];",
+                    "      const imageEl = image as Element;",
+                    "      const linkEl = links[0] as Element;",
+                    "      // Ensure the link is preserved",
+                    "      if (!linkEl.classList.contains(\"preserve-link\")) {",
+                    "        linkEl.classList.add(\"preserve-link\");",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

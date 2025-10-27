@@ -1,0 +1,24 @@
+diff --git a/src/ol/style/Icon.js b/src/ol/style/Icon.js
+index 4ab5904..9643c36 100644
+--- a/src/ol/style/Icon.js
++++ b/src/ol/style/Icon.js
+@@ -256,10 +256,15 @@ class Icon extends ImageStyle {
+    */
+   clone() {
+     let scale = this.getScale();
+-    scale = Array.isArray(scale) ? scale.slice() : scale;
+-    // if either width or height are defined, do not pass scale.
+-    if (this.width_ !== undefined || this.height_ !== undefined) {
+-      scale = undefined;
++    // Ensure scale is a number if it was originally a number
++    if (typeof scale === 'number') {
++      scale = this.width_ !== undefined || this.height_ !== undefined ? undefined : scale;
++    } else {
++      scale = Array.isArray(scale) ? scale.slice() : scale;
++      // if either width or height are defined, do not pass scale.
++      if (this.width_ !== undefined || this.height_ !== undefined) {
++        scale = undefined;
++      }
+     }
+     return new Icon({
+       anchor: this.anchor_.slice(),

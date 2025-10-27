@@ -1,0 +1,31 @@
+diff --git a/src/tab/tabs/nav.jsx b/src/tab/tabs/nav.jsx
+index e0a3155..85aceee 100644
+--- a/src/tab/tabs/nav.jsx
++++ b/src/tab/tabs/nav.jsx
+@@ -47,8 +47,26 @@ class Nav extends React.Component {
+             dropdownTabs: [],
+         };
+         this.offset = 0;
++        this.wrapper.addEventListener('wheel', this.onWheelScroll);
++        this.wrapper.addEventListener('keydown', this.onKeyDownScroll);
+     }
+ 
++    onWheelScroll = (e) => {
++        e.preventDefault();
++        const delta = e.deltaY || e.deltaX;
++        this.setOffset(this.offset - delta, true, false);
++    };
++
++    onKeyDownScroll = (e) => {
++        const { keyCode } = e;
++        const wrapperWH = getOffsetWH(this.wrapper);
++        if (keyCode === 37 || keyCode === 38) { // Left or Up arrow
++            this.setOffset(this.offset + wrapperWH / 3, true, false);
++        } else if (keyCode === 39 || keyCode === 40) { // Right or Down arrow
++            this.setOffset(this.offset - wrapperWH / 3, true, false);
++        }
++    };
++
+     componentDidMount() {
+         if (!this.props.animation) {
+             this.initialSettings();

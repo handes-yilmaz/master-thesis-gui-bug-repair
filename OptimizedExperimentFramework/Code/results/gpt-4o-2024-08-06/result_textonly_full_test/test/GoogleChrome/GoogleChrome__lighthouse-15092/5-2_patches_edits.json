@@ -1,0 +1,63 @@
+{
+    "1/1": {
+        "core/audits/errors-in-console.js": [
+            {
+                "SEARCH": [
+                    "const consoleRows = artifacts.ConsoleMessages",
+                    ".filter(item => item.level === 'error')",
+                    ".map(item => {",
+                    "const bundle = bundles.find(bundle => bundle.script.scriptId === item.scriptId);",
+                    "return {",
+                    "source: item.source,",
+                    "description: item.text,",
+                    "sourceLocation: Audit.makeSourceLocationFromConsoleMessage(item, bundle),",
+                    "};",
+                    "});"
+                ],
+                "REPLACE": [
+                    "    const consoleRows = artifacts.ConsoleMessages",
+                    "      .filter(item => item.level === 'error' && item.text)",
+                    "      .map(item => {",
+                    "        const bundle = bundles.find(bundle => bundle.script.scriptId === item.scriptId);",
+                    "        return {",
+                    "          source: item.source,",
+                    "          description: item.text || 'No description available',",
+                    "          sourceLocation: Audit.makeSourceLocationFromConsoleMessage(item, bundle),",
+                    "        };",
+                    "      });"
+                ]
+            }
+        ],
+        "core/lib/lh-error.js": [
+            {
+                "SEARCH": [
+                    "if (properties) Object.assign(this, properties);"
+                ],
+                "REPLACE": [
+                    "    if (properties) {",
+                    "      Object.assign(this, properties);",
+                    "      this.properties = properties; // Ensure properties are stored for serialization",
+                    "    }"
+                ]
+            }
+        ],
+        "cli/run.js": [
+            {
+                "SEARCH": [
+                    "console.error('Runtime error encountered:', err.friendlyMessage || err.message);",
+                    "if (err.stack) {",
+                    "console.error(err.stack);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  console.error('Runtime error encountered:', err.friendlyMessage || err.message);",
+                    "  if (err.stack) {",
+                    "    console.error('Stack trace:', err.stack);",
+                    "  } else {",
+                    "    console.error('No stack trace available.');",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

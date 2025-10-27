@@ -1,0 +1,21 @@
+{
+    "1/1": {
+        "src/core/image.ts": [
+            {
+                "SEARCH": [
+                    "export function imageContentType(path: string) {",
+                    "const ext = extname(path);",
+                    "return kimageTypes[ext];",
+                    "}"
+                ],
+                "REPLACE": [
+                    "export function imageContentType(path: string) {",
+                    "  const sanitizedPath = path.split(/[?#]/)[0]; // Remove query and fragment",
+                    "  const ext = extname(sanitizedPath);",
+                    "  return kimageTypes[ext];",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

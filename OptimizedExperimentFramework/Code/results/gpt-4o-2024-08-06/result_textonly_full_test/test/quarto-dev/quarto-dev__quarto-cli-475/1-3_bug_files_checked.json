@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "src/resources/filters/quarto-pre/callout.lua"
+        ],
+        "explanation": "The bug is directly related to how captions in callout blocks are handled and processed in LaTeX rendering. The file `resources/filters/quarto-pre/callout.lua` is responsible for defining how callout blocks are converted into LaTeX. The bug report suggests changes in this file to properly escape special characters and to apply markdown processing to the captions, which are the core issues causing the described errors. The proposed changes to use `pandoc.write()` instead of `pandoc.utils.stringify()` and to wrap the caption in braces `{}` in the LaTeX output are aimed at fixing this problem.",
+        "bug_scenario": "The bug is related to rendering markdown content within callout blocks to LaTeX for PDF output. When special characters like `%`, `,` or markdown formatting (e.g., `**strong**`, `code`) are used in the callout block captions, they are not processed correctly and cause errors in the LaTeX output. The issue arises because captions are used 'as is' without markdown processing or proper escaping for LaTeX."
+    },
+    "2": {
+        "bug_files": [
+            "src/resources/filters/quarto-pre/callout.lua"
+        ],
+        "explanation": "The bug report describes errors in PDF rendering due to improper processing of captions in callout blocks. The `callout.lua` file in `src/resources/filters/quarto-pre/` is responsible for handling the LaTeX callout box creation. The proposed changes in the bug report suggest modifications to this file to better handle markdown and escape special characters in captions. Specifically, it needs to change how captions are processed from using `pandoc.utils.stringify()` to `pandoc.write()` and enclosing captions in brackets to properly escape them for LaTeX output. This directly correlates with the described issue, making this file central to resolving the bug.",
+        "bug_scenario": "The bug involves rendering issues in PDF output when using markdown in callout block captions. Special characters like commas or markdown syntax (e.g., bold, code) in captions cause LaTeX errors because captions are currently processed with `pandoc.utils.stringify()` which doesn't handle markdown or escape special characters properly. This results in improper formatting and LaTeX compilation errors."
+    }
+}

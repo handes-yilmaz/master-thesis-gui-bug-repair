@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/language-js/parser-flow.js",
+            "src/language-js/index.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "1. **src/language-js/parser-babel.js**: This file likely involves the current parser (Babylon) and would need modifications to integrate Cherow as an alternative parser.\n2. **src/language-js/parser-flow.js**: Since Cherow lacks Flow syntax support, this file is relevant to explore how Flow parsing is currently handled.\n3. **src/language-js/index.js**: This file might be responsible for managing or exporting parsers, necessitating changes to include Cherow.\n4. **src/main/parser.js**: This file likely handles the core parsing logic of Prettier, where integration with a new parser like Cherow would be necessary.",
+        "bug_scenario": "The bug report discusses the potential performance improvement by using the Cherow parser for JavaScript in Prettier, which could make the tool faster in a format-on-save scenario. However, Cherow does not support Flow syntax, which is needed for compatibility with existing codebases."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/language-js/parser-flow.js",
+            "src/language-js/index.js",
+            "src/common/third-party.js"
+        ],
+        "explanation": "1. **src/language-js/parser-babel.js**: This file likely contains the current parser implementation using Babel. To switch to Cherow, modifications will be needed here.\n2. **src/language-js/parser-flow.js**: Since Cherow does not support Flow syntax, any integration would need to address this limitation, possibly involving changes in this file.\n3. **src/language-js/index.js**: This file probably serves as an entry point or coordinator for JavaScript parsing, requiring updates to switch parsers.\n4. **src/common/third-party.js**: This file might handle third-party integrations, making it relevant for integrating a new parser like Cherow.",
+        "bug_scenario": "The bug report highlights the need to improve the parsing speed of a JavaScript project by switching from the current parser (likely Babylon) to Cherow, which is indicated to be about 40% faster in performance benchmarks. However, Cherow does not currently support Flow syntax, which is a limitation for its implementation."
+    }
+}

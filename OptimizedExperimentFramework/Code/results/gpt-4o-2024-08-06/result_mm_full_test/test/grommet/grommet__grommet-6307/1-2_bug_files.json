@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/DataTable/DataTable.js",
+            "src/js/components/DataTable/Header.js",
+            "src/js/components/DataTable/Sorter.js",
+            "src/js/components/DataTable/buildState.js"
+        ],
+        "explanation": "The issue is related to the DataTable component, specifically its handling of sorting states. The inconsistency between the URL and the header arrow icon suggests a problem in how the component's state is updated or rendered based on URL changes.\\n\\n- `DataTable.js`: This is the main file for the DataTable component where the overall logic and state management is handled. Any changes in sorting state are likely managed here.\\n- `Header.js`: This file handles the rendering of the header, including sorting icons, so any visual updates to sorting state are managed here.\\n- `Sorter.js`: Responsible for sorting logic; if the sorting state isn't updating correctly with navigation, this file could be involved.\\n- `buildState.js`: This utility likely helps in constructing the state object for the DataTable, including sorting parameters. It might not be responding correctly to URL changes.",
+        "bug_scenario": "The bug involves the sorting arrow icon in a DataTable header not updating when using browser navigation (back/forward) even though the URL changes accordingly. This inconsistency suggests that the header state isn't being updated properly based on URL changes."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/DataTable/Sorter.js",
+            "src/js/components/DataTable/Header.js",
+            "src/js/components/DataTable/DataTable.js"
+        ],
+        "explanation": "The bug involves the DataTable component's sorting functionality. Files related to the sorting logic and header rendering are most likely to contain the issue. 'Sorter.js' likely handles the sort state and logic, 'Header.js' manages the display of the header including icons, and 'DataTable.js' integrates these components and manages the overall state, including URL synchronization.",
+        "bug_scenario": "The sorting arrow icon in the DataTable header does not update correctly when using browser navigation (back/forward). The URL changes correctly, but the header sort icon does not reflect this change."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js//AdaptiveLabelPositioningBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js//checkLabelAdjustment",
+            "lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js//adjustLabelPosition"
+        ],
+        "explanation": "The class `AdaptiveLabelPositioningBehavior` in `AdaptiveLabelPositioningBehavior.js` is directly responsible for adjusting label positions, which is the core issue described in the bug report. The function `checkLabelAdjustment` within this class checks if a label needs adjustment, and `adjustLabelPosition` performs the actual adjustment. These functions are crucial for ensuring that labels are correctly positioned after elements are pasted. The `BpmnCopyPaste` function in `BpmnCopyPaste.js` handles the copy-paste operation, which is where the issue originates, as it should trigger the label positioning behavior but currently does not. Therefore, these classes and functions are directly related to the bug and need to be examined and potentially modified to fix the issue.",
+        "bug_scenario": "The bug scenario involves copying and pasting elements onto flows in a diagramming tool, where the AdaptiveLabelPositioningBehavior is not applied to the labels of these elements after they are pasted. This results in the labels not being aligned as expected, which is demonstrated in the provided GIF image."
+    }
+}

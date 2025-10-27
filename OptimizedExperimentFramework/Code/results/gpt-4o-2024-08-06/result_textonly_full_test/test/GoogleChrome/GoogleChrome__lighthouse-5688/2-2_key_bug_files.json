@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/uses-webp-images.js",
+            "lighthouse-core/audits/byte-efficiency/uses-optimized-images.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js"
+        ],
+        "explanation": "1. **lighthouse-core/audits/byte-efficiency/uses-webp-images.js**: This file is responsible for auditing whether images could be served in next-gen formats like WebP. The bug report indicates that BMP images are not being flagged, suggesting that this audit does not currently consider BMP images for conversion to next-gen formats.\n\n2. **lighthouse-core/audits/byte-efficiency/uses-optimized-images.js**: This file audits whether images are optimized compared to JPEG compression. The presence of BMP in the mimeType check suggests that BMP images are considered here, but the audit might not be flagging them correctly for next-gen format conversion.\n\n3. **lighthouse-core/gather/gatherers/dobetterweb/optimized-images.js**: This gatherer collects image data, including mimeType, which is crucial for determining if an image should be flagged for optimization. The code checks for BMP images, indicating that this gatherer is involved in the process of identifying images that need optimization, but it might not be passing the correct data to the audits for BMP images.",
+        "bug_scenario": "The bug scenario involves the Lighthouse tool not flagging BMP images under the 'serve images under next gen formats' audit. The expectation is that BMP images should be flagged and recommended to be served in more efficient formats like WebP, JPEG 2000, or JPEG XR. The provided image shows a screenshot of the Lighthouse audit results, where a BMP image is not flagged as expected."
+    }
+}

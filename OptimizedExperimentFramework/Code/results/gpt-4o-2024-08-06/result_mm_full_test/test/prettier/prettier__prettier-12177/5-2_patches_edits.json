@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/language-js/print/statement.js": [
+            {
+                "SEARCH": [
+                    "if (node.consequent.length === 0) {",
+                    "// Handle comments after case/default",
+                    "const comments = path.getComments();",
+                    "if (comments && comments.length > 0) {",
+                    "parts.push(\" \", printDanglingComments(path, options, true));",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (node.consequent.length === 0) {",
+                    "    // Handle comments after case/default",
+                    "    const comments = path.getComments();",
+                    "    if (comments && comments.length > 0) {",
+                    "      parts.push(\" \", printDanglingComments(path, options, false));",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

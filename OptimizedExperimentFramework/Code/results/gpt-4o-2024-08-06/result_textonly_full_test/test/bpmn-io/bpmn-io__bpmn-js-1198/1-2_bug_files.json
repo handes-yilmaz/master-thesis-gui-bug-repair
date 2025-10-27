@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/features/modeling/Modeling.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js**: This file likely contains logic related to handling the default flow of a gateway. Since the bug is about the unexpected removal of the default attribute, this behavior file might be responsible for altering or unsetting the default flow incorrectly when a timer event is added.\n\n2. **lib/features/modeling/Modeling.js**: This is a core file in the modeling feature which likely coordinates various modeling actions and behaviors. The unexpected alteration of gateway properties upon adding a timer event might be handled or triggered through this module, as it probably manages the integration of different behaviors and command handlers.\n\n3. **lib/features/modeling/cmd/UpdatePropertiesHandler.js**: This command handler is responsible for updating the properties of BPMN elements. Since the bug involves a property change (removal of the default attribute), this file is likely involved in executing the update operation that inadvertently results in the bug.",
+        "bug_scenario": "The bug occurs when a Timer Intermediate Catch Event is added to a non-default flow of an exclusive gateway, causing the removal of the default attribute from the gateway while keeping the default flow rendered. This issue is also observed with other types of catch events."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/behavior/CreateBehavior.js"
+        ],
+        "explanation": "The bug is related to the behavior of BPMN elements when a Timer Intermediate Catch Event is added. The following files are likely involved:\n\n1. **UnsetDefaultFlowBehavior.js**: This file probably manages the behaviors related to unsetting default flows, which is directly related to the bug where the 'default' attribute is removed.\n\n2. **AttachEventBehavior.js**: This file might handle attaching events to sequence flows, including Timer Intermediate Catch Events. It's potential involvement stems from the issue occurring when such an event is added.\n\n3. **ReplaceElementBehaviour.js**: This file might be responsible for replacing elements and their attributes, including the default flow attributes, during interactions like adding events.\n\n4. **CreateBehavior.js**: This file may handle the creation of new BPMN elements, including intermediate catch events, and could be involved if the logic improperly alters flow attributes during creation.",
+        "bug_scenario": "The bug involves modifying a BPMN diagram where adding a Timer Intermediate Catch Event to a non-default sequence flow inadvertently removes the 'default' attribute from an exclusive gateway, while still rendering the default flow. This affects the diagram's logic and appearance without user intention."
+    }
+}

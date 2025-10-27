@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/extent/Relationship.js",
+            "src/ol/proj/transforms.js",
+            "src/ol/proj/epsg4326.js",
+            "src/ol/proj/epsg3857.js"
+        ],
+        "explanation": "1. `src/ol/proj/transforms.js`: Contains the `getTransform` function, which is directly involved in transforming extents between projections and likely contains the `fromEPSG4326` function.\n2. `src/ol/proj/epsg4326.js` and `src/ol/proj/epsg3857.js`: These files likely define the projections themselves and their transformations.\n3. `src/ol/extent/Relationship.js`: Involved in handling extents, which are central to the bug scenario.",
+        "bug_scenario": "The bug involves the `applyTransform` function returning NaN for an empty extent. This occurs because `fromEPSG4326` (used in `getTransform('EPSG:4326', 'EPSG:3857')`) does not handle empty extents properly, resulting in NaN values when `Math.tan` is applied to Infinity. This causes errors when the extent is used to fit a map view."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/proj/transforms.js",
+            "src/ol/extent/Relationship.js"
+        ],
+        "explanation": "The file `transforms.js` likely contains the `getTransform` function and the `fromEPSG4326` function, both of which are central to the transformation that causes the NaN values. The file `Relationship.js` may be responsible for handling extents and could be involved in checking or managing empty extents.",
+        "bug_scenario": "The bug occurs when `applyTransform` is used on an empty extent, resulting in NaN values. When these values are used to fit the map view, it throws errors due to the inability to handle NaN values properly. The error is traced back to the `fromEPSG4326` function, where `Math.tan` transforms Infinity to NaN."
+    }
+}

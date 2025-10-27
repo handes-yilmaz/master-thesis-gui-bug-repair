@@ -1,0 +1,20 @@
+diff --git a/lighthouse-core/report/html/renderer/performance-category-renderer.js b/lighthouse-core/report/html/renderer/performance-category-renderer.js
+index 772d277..c137ea3 100644
+--- a/lighthouse-core/report/html/renderer/performance-category-renderer.js
++++ b/lighthouse-core/report/html/renderer/performance-category-renderer.js
+@@ -63,6 +63,7 @@ class PerformanceCategoryRenderer extends CategoryRenderer {
+     const oppTmpl = this.dom.cloneTemplate('#tmpl-lh-opportunity', this.templateContext);
+     const element = this.populateAuditValues(audit, index, oppTmpl);
+     element.id = audit.result.id;
++    element.style.flex = '1 1 auto'; // Ensure the element can grow and shrink properly
+ 
+     if (!audit.result.details || audit.result.scoreDisplayMode === 'error') {
+       return element;
+@@ -78,6 +79,7 @@ class PerformanceCategoryRenderer extends CategoryRenderer {
+     const sparklineWidthPct = `${details.overallSavingsMs / scale * 100}%`;
+     this.dom.find('.lh-sparkline__bar', element).style.width = sparklineWidthPct;
+     displayEl.textContent = Util.formatSeconds(details.overallSavingsMs, 0.01);
++    displayEl.style.whiteSpace = 'nowrap'; // Prevent text from wrapping
+ 
+     // Set [title] tooltips
+     if (audit.result.displayValue) {

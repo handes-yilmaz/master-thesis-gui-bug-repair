@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/ImageStatic.js"
+        ],
+        "explanation": "The file `ImageStatic.js` in the `src/source/` directory is directly related to the bug because it is responsible for handling static images, including their scaling and fitting within specified extents. The bug report describes a problem with the scaling of images, which suggests that the logic for calculating the image size or extent is likely implemented in this file. Given the issue is about rounding errors and unnecessary stretching during scaling, this file would contain the relevant code that needs to be reviewed and potentially modified to resolve the bug.",
+        "bug_scenario": "The bug involves rounding errors when scaling a perfectly square image to fit within a square tile extent. The issue arises from floating point calculations that result in unnecessary stretching of the image. The problem is suspected to be linked to the use of `Math.ceil`, which might have been intended to prevent zero width when scaling is negative."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/ImageStatic.js",
+            "src/ol/math.js"
+        ],
+        "explanation": "The file `src/source/ImageStatic.js` is directly related to the bug because it contains the implementation for the ImageStatic module where the rounding issue occurs. This module is responsible for handling the scaling and fitting of images within specified extents, and the use of `Math.ceil` mentioned in the bug report is likely found here.\n\nThe file `src/math.js` may be indirectly related as it likely contains mathematical functions used across the project, including potential utilities like `Math.ceil`. If custom rounding functions or modifications to standard mathematical operations are implemented here, they could influence how image dimensions are calculated and scaled in `ImageStatic.js`.",
+        "bug_scenario": "The bug involves a rounding error in the scaling of images using the ImageStatic module in OpenLayers. The issue arises when a perfectly square image is expected to fit a square tile extent but, due to JavaScript floating point calculations, the image is unnecessarily stretched. The current implementation using `Math.ceil` might contribute to this problem by rounding up the dimensions, which causes the image to stretch. The bug report suggests that scaling should be adjusted to maintain image detail without unnecessary rounding up."
+    }
+}

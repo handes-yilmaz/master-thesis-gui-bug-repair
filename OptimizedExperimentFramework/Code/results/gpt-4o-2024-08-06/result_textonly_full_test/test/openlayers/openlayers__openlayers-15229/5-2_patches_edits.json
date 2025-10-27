@@ -1,0 +1,18 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/PointsLayer.js": [
+            {
+                "SEARCH": [
+                    "const projectionMatrixTransform = createTransform();",
+                    "uniforms[DefaultUniform.PROJECTION_MATRIX] = projectionMatrixTransform;"
+                ],
+                "REPLACE": [
+                    "    const projectionMatrixTransform = createTransform();",
+                    "    const aspectRatio = options.viewSize[0] / options.viewSize[1];",
+                    "    scaleTransform(projectionMatrixTransform, 1, aspectRatio);",
+                    "    uniforms[DefaultUniform.PROJECTION_MATRIX] = projectionMatrixTransform;"
+                ]
+            }
+        ]
+    }
+}

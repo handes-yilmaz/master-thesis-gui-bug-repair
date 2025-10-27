@@ -1,0 +1,53 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/uses-rel-preconnect.js": [
+            {
+                "SEARCH": [
+                    "networkRecords",
+                    ".forEach(record => {",
+                    "if (",
+                    "// filter out all resources where timing info was invalid",
+                    "!UsesRelPreconnectAudit.hasValidTiming(record) ||",
+                    "// filter out all resources that are loaded by the document",
+                    "record.initiator.url === mainResource.url ||",
+                    "// filter out urls that do not have an origin (data, ...)",
+                    "!record.parsedURL || !record.parsedURL.securityOrigin ||",
+                    "// filter out all resources that have the same origin",
+                    "mainResource.parsedURL.securityOrigin === record.parsedURL.securityOrigin ||",
+                    "// filter out all resources where origins are already resolved",
+                    "UsesRelPreconnectAudit.hasAlreadyConnectedToOrigin(record) ||",
+                    "// make sure the requests are below the PRECONNECT_SOCKET_MAX_IDLE (15s) mark",
+                    "!UsesRelPreconnectAudit.socketStartTimeIsBelowThreshold(record, mainResource)",
+                    ") {",
+                    "return;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const preconnectOrigins = new Set();",
+                    "    const dom = artifacts.DOM;",
+                    "    const preconnectLinks = dom.querySelectorAll('link[rel=\"preconnect\"], link[rel=\"dns-prefetch\"]');",
+                    "    preconnectLinks.forEach(link => {",
+                    "      const href = link.getAttribute('href');",
+                    "      if (href) {",
+                    "        preconnectOrigins.add(new URL(href).origin);",
+                    "      }",
+                    "    });",
+                    "",
+                    "    networkRecords.forEach(record => {",
+                    "      const securityOrigin = record.parsedURL.securityOrigin;",
+                    "      if (",
+                    "        preconnectOrigins.has(securityOrigin) ||",
+                    "        !UsesRelPreconnectAudit.hasValidTiming(record) ||",
+                    "        record.initiator.url === mainResource.url ||",
+                    "        !record.parsedURL || !record.parsedURL.securityOrigin ||",
+                    "        mainResource.parsedURL.securityOrigin === record.parsedURL.securityOrigin ||",
+                    "        UsesRelPreconnectAudit.hasAlreadyConnectedToOrigin(record) ||",
+                    "        !UsesRelPreconnectAudit.socketStartTimeIsBelowThreshold(record, mainResource)",
+                    "      ) {",
+                    "        return;",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

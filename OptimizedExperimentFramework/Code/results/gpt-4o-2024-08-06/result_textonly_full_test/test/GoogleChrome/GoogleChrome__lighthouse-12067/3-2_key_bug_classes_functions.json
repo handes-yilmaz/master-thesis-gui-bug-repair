@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [
+            "lighthouse-core/lib/minification-estimator.js//hasPunctuatorBefore"
+        ],
+        "explanation": "The function `hasPunctuatorBefore` is directly responsible for the bug because it is used to determine whether a '/' character in the JavaScript code is the start of a regular expression or a division operator. The function fails to correctly identify the context when 'case' precedes the '/', leading to incorrect parsing. The proposed solution involves modifying the `PUNCTUATOR_REGEX` to include 'case' as a keyword, which would help the function correctly identify the context and fix the bug.",
+        "bug_scenario": "The bug scenario involves the minification-estimator in Lighthouse incorrectly reporting that a JavaScript code snippet is not minified. The issue arises because the function `hasPunctuatorBefore` misinterprets the '/' character following a 'case' statement as a division operator rather than the start of a regular expression. This leads to the incorrect parsing of the code, treating subsequent code as a comment."
+    }
+}

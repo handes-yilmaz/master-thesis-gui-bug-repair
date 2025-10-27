@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/properties.js",
+            "src/lib/utils.js"
+        ],
+        "explanation": "The file `src/languages/properties.js` is likely responsible for parsing properties file syntax, including handling escape characters like the backslash (\\\\). The issue is with the parsing logic that fails when the backslash is the final character in a line. Additionally, `src/lib/utils.js` might contain utility functions for string handling that could be involved in managing escape sequences and newline characters.",
+        "bug_scenario": "The bug involves incorrect handling of a trailing escaped backslash in properties files, specifically when the last character is an escaped backslash (\\\\), as seen in Windows paths. This issue causes incorrect parsing or rendering of property values where multiline values are expected using a backslash (\\) to escape the newline, but breaks when the last character is an escaped backslash."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/properties.js"
+        ],
+        "explanation": "The bug is related to parsing properties files, specifically handling escaped characters like `\\`. The file `src/languages/properties.js` is responsible for parsing properties files, making it directly relevant to this bug. Adjustments need to be made in this file to correctly handle a trailing escaped backslash.",
+        "bug_scenario": "The issue is with handling properties files where a trailing escaped backslash causes incorrect parsing. For a property value ending with `\\`, it should be treated correctly as part of the value but currently breaks the parsing logic."
+    }
+}

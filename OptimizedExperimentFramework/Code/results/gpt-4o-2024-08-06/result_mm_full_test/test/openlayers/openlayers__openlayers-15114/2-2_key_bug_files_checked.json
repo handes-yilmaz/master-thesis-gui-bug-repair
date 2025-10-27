@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/geom/flat/orient.js",
+            "src/ol/renderer/webgl/VectorLayer.js",
+            "src/ol/render/webgl/VectorStyleRenderer.js"
+        ],
+        "explanation": "1. **src/ol/geom/flat/orient.js**: This file contains functions related to determining and orienting the clockwise or counter-clockwise orientation of linear rings. The bug report mentions issues with clockwise orientation, making this file a key suspect for the bug.\n\n2. **src/ol/renderer/webgl/VectorLayer.js**: This file is responsible for rendering vector layers using WebGL. Since the issue is with the WebGL layer not displaying the fill-color correctly, this file is crucial for understanding how the rendering is handled and where it might be going wrong.\n\n3. **src/ol/render/webgl/VectorStyleRenderer.js**: This file handles the rendering of styles for WebGL vector layers, including polygons. Given that the bug involves fill-color and rendering issues, this file is likely involved in the incorrect application of styles or shaders that result in the observed bug.",
+        "bug_scenario": "The bug scenario involves converting vectorial layers with polygons to WebGL layers. The issue arises when using world coordinates to draw a reversed zone, where the fill-color property incorrectly draws linear rings, possibly due to incorrect clockwise orientation. The expected behavior is similar to geojson.io, but the WebGL implementation results in overlapping colors when the geojson is valid, whereas an invalid geojson displays correctly."
+    }
+}

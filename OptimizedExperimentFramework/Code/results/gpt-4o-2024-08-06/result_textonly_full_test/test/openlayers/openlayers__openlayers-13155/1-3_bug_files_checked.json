@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/TileImage.js",
+            "src/ol/source/DataTile.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "1. **src/ol/renderer/webgl/TileLayer.js**: This file is likely responsible for handling the WebGL rendering of tile layers. The bug report suggests passing the 'imageSmoothing' setting to the renderer, which would be implemented here to adjust the texture filtering method.\n\n2. **src/ol/layer/WebGLTile.js**: This file contains the WebGLTile layer implementation. Changes might be needed here to ensure the layer respects the 'imageSmoothing' setting.\n\n3. **src/ol/source/TileImage.js**: The bug report mentions that 'TileImage' sources currently support the 'imageSmoothing' option. This file would need to be verified or modified to ensure it handles this setting correctly in relation to WebGL rendering.\n\n4. **src/ol/source/DataTile.js**: The bug report queries if support should be added for 'DataTile' sources. Any updates to handle 'imageSmoothing' in these sources would be implemented here.\n\n5. **src/ol/source/GeoTIFF.js**: Similar to 'DataTile', if 'GeoTIFF' sources require the 'imageSmoothing' setting, the necessary changes would be made in this file.\n\n6. **src/ol/webgl/TileTexture.js**: This file would be directly involved in configuring the WebGL texture parameters such as 'gl.TEXTURE_MIN_FILTER' and 'gl.TEXTURE_MAX_FILTER'. The proposed fix in the bug report involves using 'gl.NEAREST' instead of 'gl.LINEAR', which would be implemented here.",
+        "bug_scenario": "The bug involves a pixelated edge appearing when zoomed in on the Sea Level example using WebGLTile renderer. This issue is caused by the default image smoothing setting, which distorts pixel values and can make thin lines of 'sea' appear along contours. The bug is noticeable particularly at 3107 meters or with exaggerated sea levels, and can be more apparent when panning the map, as seen in Chrome and Edge browsers. The suggested fix involves using the 'imageSmoothing: false' setting to prevent this distortion by configuring the renderer to use 'gl.NEAREST' instead of 'gl.LINEAR' for texture filtering."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/source/TileImage.js",
+            "src/ol/webgl/TileTexture.js"
+        ],
+        "explanation": "1. `src/ol/renderer/webgl/TileLayer.js`: This file is likely responsible for the WebGL rendering of tile layers. Since the bug involves the WebGLTile renderer not respecting the imageSmoothing setting, modifications to this renderer would be necessary to pass the imageSmoothing setting to the TileTexture.\n\n2. `src/ol/source/TileImage.js`: This file currently supports the imageSmoothing option. It is relevant because the bug report mentions that only TileImage sources support imageSmoothing. Ensuring consistency and proper handling of this setting across different source types may require changes here.\n\n3. `src/ol/webgl/TileTexture.js`: This file is mentioned in the bug report as the component that should receive the imageSmoothing setting. Changes here would involve using gl.NEAREST for gl.TEXTURE_MIN_FILTER and gl.TEXTURE_MAX_FILTER configurations when imageSmoothing is set to false, to prevent the pixel distortion described in the bug scenario.",
+        "bug_scenario": "The bug is related to the WebGLTile renderer not respecting the imageSmoothing setting of a tile source. When zoomed in, this causes pixelated edges along the sea in the Sea Level example, due to image smoothing distorting pixel values. The issue can be observed in certain web browsers where a row of pixels may appear above the sea when the map is panned, especially with exaggerated sea level values. The solution proposed involves passing the imageSmoothing setting to the TileTexture, allowing for the use of gl.NEAREST instead of gl.LINEAR for texture filtering."
+    }
+}

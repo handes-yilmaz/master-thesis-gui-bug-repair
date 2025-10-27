@@ -1,0 +1,33 @@
+{
+    "1/1": {
+        "src/language-js/parser-babel.js": [
+            {
+                "SEARCH": [
+                    "// Existing parser configuration",
+                    "const parserOptions = {",
+                    "plugins: [",
+                    "\"jsx\",",
+                    "\"flow\",",
+                    "// other plugins",
+                    "],",
+                    "// other options",
+                    "};"
+                ],
+                "REPLACE": [
+                    "const parserOptions = {",
+                    "  plugins: [",
+                    "    \"jsx\",",
+                    "    \"flow\",",
+                    "    \"pipelineOperator\", // Add support for pipeline operator",
+                    "    // other plugins",
+                    "  ],",
+                    "  pipelineOperator: {",
+                    "    proposal: \"minimal\" // Specify the minimal proposal",
+                    "  },",
+                    "  // other options",
+                    "};"
+                ]
+            }
+        ]
+    }
+}

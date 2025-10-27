@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/cascader-select/cascader-select.jsx",
+            "src/cascader-select/index.jsx",
+            "src/cascader-select/style.js"
+        ],
+        "explanation": "The files in the `cascader-select` directory are directly related to the `CascaderSelect` component, which is where the bug occurs. The `cascader-select.jsx` file is likely where the logic that modifies the properties is implemented. The `index.jsx` and `style.js` files are also related to how this component is structured and styled, which could impact the handling of properties.",
+        "bug_scenario": "The bug is related to the `CascaderSelect` component, where the internal logic modifies properties passed to it, causing an error when using libraries like `immer` that rely on immutability. The error displayed is `Uncaught TypeError: Cannot add property value, object is not extensible`, indicating that the code attempts to add properties to a non-extensible object."
+    },
+    "2": {
+        "bug_files": [
+            "src/cascader-select/cascader-select.jsx",
+            "src/cascader-select/utils.js"
+        ],
+        "explanation": "The error is related to the CascaderSelect component, which suggests that the problem lies in how the component handles the properties passed to it. The error stack trace points to cascader.js, but since cascader.js is not in the provided structure, it likely corresponds to functionality handled within src/cascader-select/cascader-select.jsx. Additionally, utils.js might be involved in property handling or caching that could be modifying the input objects.",
+        "bug_scenario": "The bug occurs in the CascaderSelect component where properties passed to it are being modified, causing errors when using libraries like immer that depend on immutability. The error message indicates a TypeError due to an attempt to add a property to a non-extensible object."
+    }
+}

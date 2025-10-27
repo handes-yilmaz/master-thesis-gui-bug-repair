@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/draw/BpmnRenderer.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/CreateParticipantBehavior.js**: This file likely handles the behavior when creating or interacting with participants (pools) in the BPMN model. Since the bug involves wrapping a process within a pool, this file might contain logic that affects how elements are placed or adjusted when added to a pool.\n\n2. **lib/features/modeling/behavior/ResizeBehavior.js**: Resizing behavior could be related to how the diagram is adjusted when elements are wrapped in a pool. If the wrapping process causes elements to resize or reposition unexpectedly, the issue might be partially rooted in this file.\n\n3. **lib/draw/BpmnRenderer.js**: This file is responsible for rendering BPMN elements. If the diagram jumps unexpectedly, it might be due to how elements are being rendered or re-rendered when wrapped. Adjustments in the rendering process could potentially fix the viewport jumping issue. \n\nThese files are inferred to be related given the nature of the bug, which involves interactive diagram manipulation and rendering within a BPMN modeling environment.",
+        "bug_scenario": "The bug occurs when a process diagram is modeled and wrapped in a pool, causing the diagram to unexpectedly jump, which disrupts the user's current viewport. This behavior is undesirable as the expectation is for the diagram to remain stationary within the viewport during these actions."
+    },
+    "2": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/modeling/behavior/EventBasedGatewayBehavior.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js",
+            "lib/features/modeling/Modeling.js",
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js"
+        ],
+        "explanation": "The bug is related to the rendering and interaction of BPMN elements when wrapped in a pool. The files identified are related to the rendering and modeling behaviors of the BPMN editor:\n\n1. **lib/draw/BpmnRenderer.js**: This file is responsible for rendering BPMN elements. Rendering issues could lead to unexpected visual behaviors such as jumps in the viewport.\n\n2. **lib/features/modeling/behavior/EventBasedGatewayBehavior.js** and **lib/features/modeling/behavior/SubProcessPlaneBehavior.js**: These files handle specific behaviors of BPMN elements during modeling. They could affect how elements interact with each other and contribute to the viewport changing unexpectedly.\n\n3. **lib/features/modeling/Modeling.js**: This is a core file for modeling BPMN diagrams. It likely includes logic for how elements are manipulated, which can affect viewport behavior when elements are wrapped in a pool.\n\n4. **lib/features/modeling/behavior/CreateParticipantBehavior.js**: Since the issue occurs when wrapping a process in a pool, this file is likely involved as it handles behaviors for creating participants (often represented as pools in BPMN). The logic here could impact how the viewport adjusts when new participants are added.\n\nThese files collectively deal with core aspects of rendering and element interaction within the BPMN editor, making them relevant to the described bug scenario.",
+        "bug_scenario": "The bug scenario involves a diagram in a BPMN (Business Process Model and Notation) viewer or editor that jumps unexpectedly when a process is wrapped in a pool. The provided gif shows a BPMN diagram where the viewport changes or 'jumps' when wrapping the process, instead of staying centered or within the expected view."
+    }
+}

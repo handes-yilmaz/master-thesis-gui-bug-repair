@@ -1,0 +1,43 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const canvasScale =",
+                    "((tileResolution / viewResolution) * pixelRatio) / tilePixelRatio;",
+                    "",
+                    "// set forward and inverse pixel transforms",
+                    "composeTransform(",
+                    "this.pixelTransform,",
+                    "frameState.size[0] / 2,",
+                    "frameState.size[1] / 2,",
+                    "1 / pixelRatio,",
+                    "1 / pixelRatio,",
+                    "rotation,",
+                    "-width / 2,",
+                    "-height / 2",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const canvasScale =",
+                    "      ((tileResolution / viewResolution) * pixelRatio) / tilePixelRatio;",
+                    "",
+                    "    // Adjust scale for rotation close to 90 and 270 degrees",
+                    "    const adjustedRotation = Math.abs(rotation % (Math.PI / 2)) < 0.01 ? 0 : rotation;",
+                    "",
+                    "    // set forward and inverse pixel transforms",
+                    "    composeTransform(",
+                    "      this.pixelTransform,",
+                    "      frameState.size[0] / 2,",
+                    "      frameState.size[1] / 2,",
+                    "      1 / pixelRatio,",
+                    "      1 / pixelRatio,",
+                    "      adjustedRotation,",
+                    "      -width / 2,",
+                    "      -height / 2",
+                    "    );"
+                ]
+            }
+        ]
+    }
+}

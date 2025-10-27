@@ -1,0 +1,21 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index f3fc8f3..64ee0b6 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -21,6 +21,16 @@ function copyProperties(source, target, properties) {
+       target[property] = source[property];
+     }
+   });
++
++  // Ensure properties specific to Intermediate Events are retained when pasted as Boundary Events
++  if (source.$type === 'bpmn:IntermediateThrowEvent' && target.$type === 'bpmn:BoundaryEvent') {
++    const intermediateEventProperties = ['asyncBefore', 'asyncAfter', 'jobPriority'];
++    forEach(intermediateEventProperties, function(property) {
++      if (!isUndefined(source[property])) {
++        target[property] = source[property];
++      }
++    });
++  }
+ }
+ 
+ function removeProperties(element, properties) {

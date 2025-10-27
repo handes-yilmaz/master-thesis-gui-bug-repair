@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js//LayoutConnectionBehavior",
+            "lib/features/snapping/BpmnConnectSnapping.js//BpmnConnectSnapping"
+        ],
+        "bug_functions": [
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js//snapMiddleSegments",
+            "lib/features/snapping/BpmnConnectSnapping.js//snapInsideTarget",
+            "lib/features/snapping/BpmnConnectSnapping.js//snapBoundaryEventLoop"
+        ],
+        "explanation": "The classes and functions identified are related to the snapping and connection behavior in the BPMN diagram editor. The `LayoutConnectionBehavior` class in `LayoutConnectionBehavior.js` is responsible for snapping connections with a Manhattan layout, which directly affects how connections are aligned and snapped to the grid. The `snapMiddleSegments` function within this class is crucial as it handles the snapping of the middle segments of connections, which could be affecting the center-to-center connection capability.\n\nSimilarly, the `BpmnConnectSnapping` class in `BpmnConnectSnapping.js` is involved in snapping during the connect operation. The `snapInsideTarget` and `snapBoundaryEventLoop` functions are responsible for adjusting the snapping behavior when connecting elements, which could interfere with the expected center-to-center snapping behavior. These functions likely need adjustments to ensure that connections can be made directly from the center of one task to the center of another, as expected by the user.",
+        "bug_scenario": "The bug scenario involves an issue with connecting two tasks center to center in a BPMN diagram. Previously, this was possible, but due to recent changes involving connection previews and grid snapping, this functionality is no longer working as expected. The expected behavior is that users should be able to connect tasks center to center without any issues, as this is a common use case."
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/computed/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/computed/load-simulator.js"
+        ],
+        "explanation": "1. `lighthouse-core/metrics/cumulative-layout-shift.js`: This file is likely responsible for calculating the cumulative layout shift metric, and changes here might affect how CLS is measured or reported.\\n2. `lighthouse-core/computed/metrics/cumulative-layout-shift.js`: This file appears to be related to the computation of CLS across all frames, which could be directly involved in how the CLS is being calculated and reported in simulation mode.\\n3. `lighthouse-core/computed/load-simulator.js`: The load simulator is responsible for mimicking real-world conditions and this could be where the throttling or waiting logic is handled. Adjustments here might ensure the simulation waits long enough for the layout shifts to stabilize.",
+        "bug_scenario": "The bug report indicates that when using the `throttlingMethod=simulate` option in Lighthouse, it doesn't wait long enough to accurately detect the Cumulative Layout Shift (CLS) for some pages. The expected behavior is to report a lower CLS score, reflecting that the page loads later than detected. The performance report image shows a CLS of 0, which suggests that the issue is affecting the accuracy of the CLS measurement."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/computed/metrics/cumulative-layout-shift.js",
+            "lighthouse-cli/run.js",
+            "lighthouse-core/gather/driver/wait-for-condition.js"
+        ],
+        "explanation": "1. `lighthouse-core/metrics/cumulative-layout-shift.js` and `lighthouse-core/computed/metrics/cumulative-layout-shift.js` are responsible for calculating and reporting the Cumulative Layout Shift metric, which is directly related to the issue described.\n2. `lighthouse-cli/run.js` is involved in executing the Lighthouse run and may need modifications to adjust the timing or simulation settings.\n3. `lighthouse-core/gather/driver/wait-for-condition.js` deals with waiting mechanisms during the page load and might require adjustments to ensure the CLS is detected accurately.",
+        "bug_scenario": "Lighthouse is not properly waiting long enough to accurately detect the Cumulative Layout Shift (CLS) when the throttling method is set to 'simulate'. This leads to an inaccurate performance score where the CLS is reported as 0, which is incorrect as the page actually loads later. The provided image shows a performance score of 84 with a CLS of 0, indicating the issue."
+    }
+}

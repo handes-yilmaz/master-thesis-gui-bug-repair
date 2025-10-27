@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/v2/report-renderer.js//ReportRenderer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/v2/report-renderer.js//render"
+        ],
+        "explanation": "The `ReportRenderer` class and its `render` function are responsible for rendering the report content. The vulnerability arises from how strings are handled and replaced, potentially allowing for JavaScript injection. The `render` function uses `JSON.stringify` to convert the report object to a string, which is then inserted into the DOM. If `String.replace` is used improperly, it can lead to injection vulnerabilities. Therefore, these elements are directly related to the bug and need to be reviewed and potentially modified to ensure safe handling of strings.",
+        "bug_scenario": "The bug involves a JavaScript injection vulnerability in the `report-renderer.js` file. By inserting a string like `console.log('$');`, the injection escapes the page due to the behavior of `String.replace`, which interprets `$'` as a special character sequence that inserts the portion of the string following the matched substring."
+    }
+}

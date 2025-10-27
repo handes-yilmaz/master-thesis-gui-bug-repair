@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/driver.js//Driver",
+            "lighthouse-core/gather/gather-runner.js//GatherRunner"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/driver.js//_waitForFcp",
+            "lighthouse-core/gather/gather-runner.js//loadPage"
+        ],
+        "explanation": "The 'NO_FCP' error is related to the First Contentful Paint (FCP) metric, which is crucial for performance evaluation. The 'Driver' class in 'driver.js' contains the '_waitForFcp' function, which is responsible for waiting for the FCP event. If this function fails to detect FCP, it could lead to the 'NO_FCP' error. Similarly, the 'GatherRunner' class in 'gather-runner.js' has the 'loadPage' function, which handles page loading and navigation. If this function encounters issues during page load, it could also result in the 'NO_FCP' error. These classes and functions are directly involved in the processes that could lead to the reported issue.",
+        "bug_scenario": "The bug scenario involves running Lighthouse (LH) on a URL, such as https://www.google.com/, and encountering a 'NO_FCP' error when the tab is in the background. This error prevents the measurement of performance metrics, indicating that something went wrong with recording the trace over the page load. The expected behavior is for LH to evaluate performance and check the PWA checklist."
+    }
+}

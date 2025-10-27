@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "lighthouse-core/report/v2/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "const url = this._dom.find('.lh-metadata__url', header);",
+                    "url.href = report.url;",
+                    "url.textContent = report.url;",
+                    "",
+                    "this._dom.find('.lh-env__item__ua', header).textContent = report.userAgent;"
+                ],
+                "REPLACE": [
+                    "    const url = this._dom.find('.lh-metadata__url', header);",
+                    "    url.href = report.url;",
+                    "    url.textContent = report.url;",
+                    "",
+                    "    // Add warning about Headless Chrome performance metrics",
+                    "    const warning = this._dom.createElement('div', 'lh-headless-warning');",
+                    "    warning.textContent = 'Note: Your site\\'s mobile performance may be worse than the numbers presented in this report. Lighthouse could not test on a mobile connection because Headless Chrome does not support network throttling.';",
+                    "    header.insertBefore(warning, url);",
+                    "",
+                    "    this._dom.find('.lh-env__item__ua', header).textContent = report.userAgent;"
+                ]
+            }
+        ]
+    }
+}

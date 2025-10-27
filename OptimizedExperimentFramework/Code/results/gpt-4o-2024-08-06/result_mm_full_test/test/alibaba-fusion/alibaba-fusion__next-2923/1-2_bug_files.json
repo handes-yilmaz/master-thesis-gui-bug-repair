@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/config-provider/index.jsx",
+            "src/config-provider/cache.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "The `src/config-provider/index.jsx` file is likely responsible for the implementation of the `ConfigProvider` component, including its lifecycle methods. The `src/config-provider/cache.js` file might manage the caching mechanism that needs manual clearance. The `src/config-provider/config.jsx` file may contain configuration details related to the provider that could be affected by or influence the caching behavior.",
+        "bug_scenario": "The image illustrates a memory leak issue associated with the `ConfigProvider` component in a server-side rendering (SSR) scenario. The memory usage grows because the component's internal cache is not being garbage collected. The bug report mentions that while the cache should be removed in `componentWillUnmount`, this lifecycle method is not called in SSR, leading to a memory leak."
+    },
+    "2": {
+        "bug_files": [
+            "src/config-provider/index.jsx",
+            "src/config-provider/cache.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "The files related to the `ConfigProvider` component in the `src/config-provider/` directory are likely involved in the bug. The `index.jsx` file likely contains the main logic for the `ConfigProvider` component, including lifecycle methods. `cache.js` might be responsible for managing the cache that needs cleaning. `config.jsx` could define configuration settings that might affect cache management. To fix the issue, these files may need modification to implement a manual cache clearing API or another method to handle cache in SSR.",
+        "bug_scenario": "The bug report describes a memory leak occurring with the `ConfigProvider` component in a server-side rendering (SSR) scenario. The issue arises because the `componentWillUnmount` lifecycle method, which removes the cache, is not executed in SSR, leading to memory growth and inability for garbage collection to clean up the cache. The provided image shows instances of `ConfigProvider` accumulating memory usage, indicating a potential memory leak."
+    }
+}

@@ -1,0 +1,56 @@
+diff --git a/lib/draw/BpmnRenderer.js b/lib/draw/BpmnRenderer.js
+index e97bfc3..d6d8781 100644
+--- a/lib/draw/BpmnRenderer.js
++++ b/lib/draw/BpmnRenderer.js
+@@ -1883,7 +1883,23 @@ BpmnRenderer.prototype.drawConnection = function(parentGfx, element) {
+   var h = this.handlers[type];
+ 
+   /* jshint -W040 */
+-  return h(parentGfx, element);
++  var connection = h(parentGfx, element);
++
++  // Render message name if available
++  if (is(element, 'bpmn:MessageFlow') && element.businessObject.messageRef) {
++    var messageName = element.businessObject.messageRef.name;
++    if (messageName) {
++      this.renderLabel(parentGfx, messageName, {
++        align: 'center-middle',
++        position: {
++          x: element.waypoints[1].x,
++          y: element.waypoints[1].y + 20 // Adjust position as needed
++        }
++      });
++    }
++  }
++
++  return connection;
+ };
+ 
+ BpmnRenderer.prototype.getShapePath = function(element) {
+diff --git a/lib/features/label-editing/LabelUtil.js b/lib/features/label-editing/LabelUtil.js
+index 25f75bd..83763c7 100644
+--- a/lib/features/label-editing/LabelUtil.js
++++ b/lib/features/label-editing/LabelUtil.js
+@@ -40,10 +40,14 @@ export function getLabel(element) {
+   if (attr) {
+ 
+     if (attr === 'categoryValueRef') {
+-
+       return getCategoryValue(semantic);
+     }
+ 
++    // Handle message element names
++    if (is(element, 'bpmn:MessageFlow') && semantic.messageRef) {
++      return semantic.messageRef.name || '';
++    }
++
+     return semantic[attr] || '';
+   }
+ }
+@@ -64,4 +68,4 @@ export function setLabel(element, text, isExternal) {
+   }
+ 
+   return element;
+-}
+\ No newline at end of file
++}

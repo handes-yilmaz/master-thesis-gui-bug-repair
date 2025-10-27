@@ -1,0 +1,17 @@
+diff --git a/src/js/components/Box/StyledBox.js b/src/js/components/Box/StyledBox.js
+index 68f764e..bf8a5c8 100644
+--- a/src/js/components/Box/StyledBox.js
++++ b/src/js/components/Box/StyledBox.js
+@@ -247,9 +247,10 @@ const StyledBox = styled.div`
+ `;
+ 
+ const gapStyle = (directionProp, gap, responsive, border, theme) => {
+-  const metric = theme.global.edgeSize[gap] || (gap.match(/px$/) ? gap : theme.global.edgeSize[gap]);
++  const gapString = typeof gap === 'string' ? gap : `${gap}`;
++  const metric = theme.global.edgeSize[gap] || (gapString.match(/px$/) ? gapString : theme.global.edgeSize[gap]);
+   const breakpoint = getBreakpointStyle(theme, theme.box.responsiveBreakpoint);
+-  const responsiveMetric = responsive && breakpoint && (breakpoint.edgeSize[gap] || (gap.match(/px$/) ? gap : breakpoint.edgeSize[gap]));
++  const responsiveMetric = responsive && breakpoint && (breakpoint.edgeSize[gap] || (gapString.match(/px$/) ? gapString : breakpoint.edgeSize[gap]));
+ 
+   const styles = [];
+   if (directionProp === 'column' || directionProp === 'column-reverse') {

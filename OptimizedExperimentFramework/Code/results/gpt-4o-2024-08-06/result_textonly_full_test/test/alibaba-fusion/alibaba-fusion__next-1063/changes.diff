@@ -1,0 +1,25 @@
+diff --git a/src/field/index.js b/src/field/index.js
+index 6287074..6ab5447 100644
+--- a/src/field/index.js
++++ b/src/field/index.js
+@@ -32,7 +32,7 @@ class Field {
+         this.instance = {};
+         // holds constructor values. Used for setting field defaults on init if no other value or initValue is passed.
+         // Also used caching values when using `parseName: true` before a field is initialized
+-        this.values = JSON.parse(JSON.stringify(options.values || {}));
++        this.values = options.values ? structuredClone(options.values) : {};
+ 
+         this.options = Object.assign(
+             {
+@@ -401,7 +401,10 @@ class Field {
+         } else {
+             // NOTE: this is a shallow merge
+             // Ex. we have two values a.b.c=1 ; a.b.d=2, and use setValues({a:{b:{c:3}}}) , then because of shallow merge a.b.d will be lost, we will get only {a:{b:{c:3}}}
+-            this.values = Object.assign({}, this.values, fieldsValue);
++            this.values = structuredClone(this.values);
++            Object.keys(fieldsValue).forEach(name => {
++                this.values = setIn(this.values, name, fieldsValue[name]);
++            });
+             const fields = this.getNames();
+             fields.forEach(name => {
+                 const value = getIn(this.values, name);

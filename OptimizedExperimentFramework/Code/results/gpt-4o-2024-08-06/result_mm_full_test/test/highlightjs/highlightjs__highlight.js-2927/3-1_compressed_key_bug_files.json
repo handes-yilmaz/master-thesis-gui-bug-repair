@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_file": "src/languages/c.js",
+        "compressed": "NO",
+        "line_numbers": 22,
+        "compressed_line_numbers": 22,
+        "compressed_bug_file_content": "/*\nLanguage: C\nCategory: common, system\nWebsite: https://en.wikipedia.org/wiki/C_(programming_language)\n*/\n\nimport cLike from './c-like.js';\n\n/** @type LanguageFn */\nexport default function(hljs) {\n  const lang = cLike(hljs);\n  // Until C is actually different than C++ there is no reason to auto-detect C\n  // as it's own language since it would just fail auto-detect testing or\n  // simply match with C++.\n  //\n  // See further comments in c-like.js.\n\n  // lang.disableAutodetect = false;\n  lang.name = 'C';\n  lang.aliases = ['c', 'h'];\n  return lang;\n}"
+    },
+    "2": {
+        "bug_file": "src/languages/cpp.js",
+        "compressed": "NO",
+        "line_numbers": 17,
+        "compressed_line_numbers": 17,
+        "compressed_bug_file_content": "/*\nLanguage: C++\nCategory: common, system\nWebsite: https://isocpp.org\n*/\n\nimport cLike from './c-like.js';\n\n/** @type LanguageFn */\nexport default function(hljs) {\n  const lang = cLike(hljs);\n  // return auto-detection back on\n  lang.disableAutodetect = false;\n  lang.name = 'C++';\n  lang.aliases = ['cc', 'c++', 'h++', 'hpp', 'hh', 'hxx', 'cxx'];\n  return lang;\n}"
+    }
+}

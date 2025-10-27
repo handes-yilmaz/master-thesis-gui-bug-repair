@@ -1,0 +1,16 @@
+diff --git a/src/format/html/format-html.ts b/src/format/html/format-html.ts
+index 8c51563..7fc74c0 100644
+--- a/src/format/html/format-html.ts
++++ b/src/format/html/format-html.ts
+@@ -268,9 +268,9 @@ export async function htmlFormatExtras(
+   if (!options.linkExternalFilter && siteMetadata) {
+     const siteUrl = siteMetadata[kSiteUrl] as string;
+     if (siteUrl) {
+-      options.linkExternalFilter = siteUrl.replaceAll(".", "\\.").replaceAll(
++      options.linkExternalFilter = siteUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replaceAll(
+         "/",
+-        "\\/",
++        "\\\\/",
+       );
+     }
+   }

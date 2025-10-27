@@ -1,0 +1,17 @@
+diff --git a/src/ol/renderer/webgl/PointsLayer.js b/src/ol/renderer/webgl/PointsLayer.js
+index be6a204..65ceb5d 100644
+--- a/src/ol/renderer/webgl/PointsLayer.js
++++ b/src/ol/renderer/webgl/PointsLayer.js
+@@ -478,7 +478,11 @@ class WebGLPointsLayerRenderer extends WebGLLayerRenderer {
+   rebuildBuffers_(frameState) {
+     // saves the projection transform for the current frame state
+     const projectionTransform = createTransform();
+-    this.helper.makeProjectionTransform(frameState, projectionTransform);
++    if (frameState.viewState.projection.getCode() === 'EPSG:4326') {
++      makeInverseTransform(projectionTransform, frameState.coordinateToPixelTransform);
++    } else {
++      this.helper.makeProjectionTransform(frameState, projectionTransform);
++    }
+ 
+     const baseInstructionLength = this.hitDetectionEnabled_ ? 7 : 2; // see below
+     const singleInstructionLength =

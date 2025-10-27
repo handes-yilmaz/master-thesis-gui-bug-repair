@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/tree/view/tree-node.jsx//TreeNode",
+            "src/tree/view/tree.jsx//Tree"
+        ],
+        "bug_functions": [
+            "src/tree/view/tree-node.jsx//handleSelect",
+            "src/tree/view/tree.jsx//handleSelect"
+        ],
+        "explanation": "The bug is related to the selection state of tree nodes, which is managed by the 'TreeNode' class in 'tree-node.jsx' and the 'Tree' class in 'tree.jsx'. The 'handleSelect' function in both files is responsible for handling the selection logic of the nodes. Since the issue is that the selected state does not toggle correctly, these functions are likely where the bug resides. The 'handleSelect' function should manage the toggling of the 'selected' state and update the CSS styles accordingly, but it seems to be failing to do so after the first click, which is why these classes and functions are identified as bug-related elements.",
+        "bug_scenario": "The bug scenario involves a tree component where the selected state of a node does not toggle correctly. When a node is clicked, the 'selected' parameter in 'extra' changes to false on the first click, but subsequent clicks do not change the state or the CSS style, making it impossible to distinguish between true or false states. The expected behavior is that clicking a node should toggle the 'selected' state and the corresponding CSS style between true and false with each click."
+    }
+}

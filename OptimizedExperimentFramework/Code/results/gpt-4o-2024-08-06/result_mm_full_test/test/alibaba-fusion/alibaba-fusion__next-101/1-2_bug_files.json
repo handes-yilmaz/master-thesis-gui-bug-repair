@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/number-picker/index.jsx"
+        ],
+        "explanation": "The bug is directly associated with the NumberPicker component, which is likely implemented in the `index.jsx` file within the `number-picker` directory. This file is responsible for rendering and managing the logic of the NumberPicker component, including handling increment operations and number formatting. To address the precision issue, modifications will likely be required in this file to ensure numbers are correctly rounded or formatted to the desired precision before display.",
+        "bug_scenario": "The bug is related to a precision issue with JavaScript floating-point arithmetic in the NumberPicker component when using Safari. Specifically, adding 0.01 to 4.02 results in a value of 4.029999999999999 instead of the expected 4.03. This issue causes a display bug in the NumberPicker component."
+    },
+    "2": {
+        "bug_files": [
+            "src/number-picker/index.jsx",
+            "src/number-picker/style.js",
+            "src/util/func.js"
+        ],
+        "explanation": "1. `src/number-picker/index.jsx`: This is likely the main file where the `NumberPicker` component is implemented. The issue with incorrect number display due to floating-point precision likely originates from the logic within this file.\n\n2. `src/number-picker/style.js`: While primarily for styling, this file might also be involved if there are any styling issues related to how numbers are represented (such as padding or spacing that could affect the display).\n\n3. `src/util/func.js`: Utility functions for handling numbers, including rounding or formatting, are often located in utility files. A function here might be responsible for the precise calculation or display of numbers in the `NumberPicker`.",
+        "bug_scenario": "The bug occurs in the `NumberPicker` component when using Safari browser. When attempting to increment a number, such as 4.02, by a step of 0.01, the result is displayed as 4.029999999999999 instead of the expected 4.03 due to JavaScript's floating-point arithmetic issues."
+    }
+}

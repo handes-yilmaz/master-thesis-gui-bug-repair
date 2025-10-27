@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js"
+        ],
+        "explanation": "1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file handles the copy-paste functionality for BPMN elements. The issue likely lies in how boundary events are copied and whether their attachment to tasks is preserved. The file contains logic for copying elements and their properties, which is crucial for ensuring that boundary events remain attached to their respective tasks when copied.\n\n2. **lib/features/modeling/behavior/CreateBoundaryEventBehavior.js**: This file deals with the behavior of creating boundary events. It includes logic for replacing intermediate events with boundary events when attaching them to a shape. This behavior is relevant because it might need to be adjusted to ensure that boundary events are correctly attached when copied.\n\n3. **lib/features/modeling/behavior/AttachEventBehavior.js**: This file manages the behavior of attaching events, including boundary events, to other elements. It contains logic for handling the movement and attachment of events, which is directly related to the issue of boundary events not being attached after being copied.",
+        "bug_scenario": "The bug scenario involves a boundary event in a BPMN diagram not being correctly copied along with the task it is attached to. When a task with an attached boundary event is copied, the boundary event should also be copied and remain attached to the new task. However, the current behavior is that the boundary event is not attached to the copied task, as shown in the provided GIF image."
+    }
+}

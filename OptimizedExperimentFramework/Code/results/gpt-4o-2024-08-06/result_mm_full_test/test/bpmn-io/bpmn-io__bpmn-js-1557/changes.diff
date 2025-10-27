@@ -1,0 +1,27 @@
+diff --git a/lib/features/modeling/BpmnUpdater.js b/lib/features/modeling/BpmnUpdater.js
+index bfdb011..af036c5 100644
+--- a/lib/features/modeling/BpmnUpdater.js
++++ b/lib/features/modeling/BpmnUpdater.js
+@@ -410,15 +410,15 @@ BpmnUpdater.prototype.updateDiParent = function(di, parentDi) {
+     return;
+   }
+ 
+-  var planeElements = (parentDi || di.$parent).get('planeElement');
+-
+-  if (parentDi) {
+-    planeElements.push(di);
+-    di.$parent = parentDi;
+-  } else {
+-    collectionRemove(planeElements, di);
++  if (!parentDi) {
+     di.$parent = null;
++    return;
+   }
++
++  var planeElements = parentDi.get('planeElement');
++
++  planeElements.push(di);
++  di.$parent = parentDi;
+ };
+ 
+ function getDefinitions(element) {

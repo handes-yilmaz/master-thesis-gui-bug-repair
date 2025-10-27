@@ -1,0 +1,22 @@
+diff --git a/src/ol/layer/Graticule.js b/src/ol/layer/Graticule.js
+index 03a99d3..70f9c64 100644
+--- a/src/ol/layer/Graticule.js
++++ b/src/ol/layer/Graticule.js
+@@ -879,7 +879,7 @@ class Graticule extends VectorLayer {
+ 
+     // Create meridians
+ 
+-    centerLon = Math.floor(centerLon / interval) * interval;
++    centerLon = Math.round(centerLon / interval) * interval;
+     lon = clamp(centerLon, this.minLon_, this.maxLon_);
+ 
+     idx = this.addMeridian_(lon, minLat, maxLat, squaredTolerance, extent, 0);
+@@ -897,7 +897,7 @@ class Graticule extends VectorLayer {
+         );
+       }
+     } else {
+-      while (lon != this.minLon_ && cnt++ < maxLines) {
++      while (lon > this.minLon_ && cnt++ < maxLines) {
+         lon = Math.max(lon - interval, this.minLon_);
+         idx = this.addMeridian_(
+           lon,

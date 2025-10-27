@@ -1,0 +1,14 @@
+diff --git a/src/tree/view/tree.jsx b/src/tree/view/tree.jsx
+index 33abf61..40072b2 100644
+--- a/src/tree/view/tree.jsx
++++ b/src/tree/view/tree.jsx
+@@ -166,7 +166,8 @@ const drill = (data = [], level = 1, prefix = '0', parent) =>
+ 
+         // Use a more stable identifier for keys if available
+         if (key === undefined || key === null) {
+-            item.key = key = item.id || pos; // Assuming 'id' is a unique identifier in the data
++            // Ensure keys are unique and stable by combining id and pos
++            item.key = key = item.id ? `${item.id}-${pos}` : pos;
+         }
+ 
+         !item.isLeaf && drill(children, level + 1, pos, item);

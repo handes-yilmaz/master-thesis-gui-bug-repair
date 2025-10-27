@@ -1,0 +1,39 @@
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index 4d2fccc..1555d69 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -320,10 +320,10 @@ class WebGLTileLayerRenderer extends WebGLBaseTileLayerRenderer {
+         if (source.getWrapX()) {
+           break;
+         }
+-        const gridExtent = tileGrid.getExtent();
+-        if (!gridExtent || containsCoordinate(gridExtent, coordinate)) {
+-          break;
+-        }
++    const gridExtent = tileGrid.getExtent();
++    if (!gridExtent || containsCoordinate(gridExtent, coordinate) || tileGrid.getWrapX()) {
++      break;
++    }
+       }
+     }
+     if (i < 0) {
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index fcdb50c..d02d6f8 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -740,7 +740,14 @@ class GeoTIFFSource extends DataTile {
+       tileSizes: commonRenderTileSizes,
+     });
+ 
+-    this.tileGrid = tileGrid;
++    this.tileGrid = new TileGrid({
++      extent: extent,
++      minZoom: minZoom,
++      origin: origin,
++      resolutions: resolutions,
++      tileSizes: commonRenderTileSizes,
++      wrapX: true // Ensure wrapping around the antimeridian
++    });
+     this.setTileSizes(commonSourceTileSizes);
+ 
+     this.setLoader(this.loadTile_.bind(this));

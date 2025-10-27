@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/report-renderer.js",
+            "lighthouse-core/report/partials/",
+            "lighthouse-core/report/formatter.js"
+        ],
+        "explanation": "The bug report explicitly mentions `report-renderer.js` as the file where the issue was observed due to the use of `String.replace`. This file is likely responsible for rendering reports and could be using `String.replace` without properly escaping the special characters, leading to the vulnerability.\n\nThe `partials` directory under `report` might contain template files or partials that are used by `report-renderer.js` to generate the final report. Any changes to how replacements are handled in `report-renderer.js` would potentially affect these partials.\n\nSimilarly, `formatter.js` in the report directory might be responsible for formatting the output or handling string manipulations, including replacements and could be another place where the injection issue could originate or be mitigated.\n\nThese files collectively handle rendering and formatting tasks where the vulnerability might need to be addressed by ensuring all special characters are properly escaped or handled safely.",
+        "bug_scenario": "The bug report describes a vulnerability where the use of `String.replace` with a replacement string containing special characters (like `$`) can lead to unintended JavaScript injection. Specifically, when characters like `$` are included in the replacement string, they can alter the expected output of the `replace` function, potentially allowing for script injection and breaking the page."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/report/v2/report-renderer.js"
+        ],
+        "explanation": "The file `report-renderer.js` is likely the file where the `String.replace` method is used in a way that could cause the described vulnerability. The bug report specifically mentions this file, indicating that it contains the problematic code where a replacement string is improperly handled, allowing for potential JS injection.",
+        "bug_scenario": "The bug report describes a vulnerability in the `String.replace` method used in `report-renderer.js`. The issue arises because the replacement string can unintentionally include special characters like `$'`, which inserts the portion of the string that follows the matched substring, leading to potential JavaScript injection vulnerabilities."
+    }
+}

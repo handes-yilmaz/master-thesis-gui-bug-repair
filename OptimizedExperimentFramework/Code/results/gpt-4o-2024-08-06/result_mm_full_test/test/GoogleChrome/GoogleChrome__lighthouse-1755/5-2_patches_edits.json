@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "lighthouse-core/aggregator/aggregate.js": [
+            {
+                "SEARCH": [
+                    "return {",
+                    "overall: (overallScore / maxScore),",
+                    "name: item.name,",
+                    "description: item.description,",
+                    "subItems: subItems",
+                    "};"
+                ],
+                "REPLACE": [
+                    "      const overall = (overallScore / maxScore);",
+                    "      const hasFailures = expectedNames.some(e => filteredAndRemappedResults[e].score < item.audits[e].expectedValue);",
+                    "",
+                    "      return {",
+                    "        overall: hasFailures ? 0 : overall,",
+                    "        name: item.name,",
+                    "        description: item.description,",
+                    "        subItems: subItems",
+                    "      };"
+                ]
+            }
+        ]
+    }
+}

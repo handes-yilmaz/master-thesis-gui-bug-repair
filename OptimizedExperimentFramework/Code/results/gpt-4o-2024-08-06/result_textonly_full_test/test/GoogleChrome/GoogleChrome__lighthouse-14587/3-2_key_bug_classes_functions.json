@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "core/lib/emulation.js//parseUseragentIntoMetadata"
+        ],
+        "bug_functions": [
+            "core/lib/emulation.js//emulate"
+        ],
+        "explanation": "The issue is related to the incorrect identification of the device in the Lighthouse report. The `parseUseragentIntoMetadata` function in `core/lib/emulation.js` is responsible for parsing the user agent and determining the device details, including the model (e.g., 'Moto G4'). This function is likely not correctly handling the case where screen emulation is disabled, leading to the incorrect device model being reported. Additionally, the `emulate` function in the same file is responsible for setting the user agent and screen emulation settings. Since the bug involves the report showing an emulated device when it should not, these functions are key areas to investigate and modify to ensure the correct device is reported when screen emulation is disabled.",
+        "bug_scenario": "The bug scenario involves running Lighthouse on a physical Moto Power G device, but the report incorrectly states that the test was conducted on an \"Emulated Moto G4\". The user expected the report to indicate testing on a real device."
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js//UnminifiedJavaScript"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js//computeWaste",
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js//audit_"
+        ],
+        "explanation": "The class `UnminifiedJavaScript` and its functions `computeWaste` and `audit_` are responsible for estimating minification savings by analyzing JavaScript files. The issue arises because the `computeWaste` function uses esprima to tokenize the script content, which fails to account for non-code elements like copyright notices. This leads to an overestimation of potential savings, as seen in the bug report and scenario images.",
+        "bug_scenario": "The bug involves Lighthouse overestimating the savings from minifying JavaScript due to the presence of a copyright notice with carriage returns and whitespace in the minified file. This results in Lighthouse incorrectly identifying the file as not minified, leading to inaccurate savings estimates."
+    }
+}

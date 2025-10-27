@@ -1,0 +1,13 @@
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index 5de570b..f5b7561 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -335,7 +335,7 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+     const minZ = Math.max(
+       initialZ - tileLayer.getPreload(),
+       tileGrid.getMinZoom(),
+-      tileLayer.getMinZoom()
++      tileGrid.getZForResolution(viewState.resolution, tileSource.zDirection)
+     );
+     for (let z = initialZ; z >= minZ; --z) {
+       const tileRange = tileGrid.getTileRangeForExtentAndZ(

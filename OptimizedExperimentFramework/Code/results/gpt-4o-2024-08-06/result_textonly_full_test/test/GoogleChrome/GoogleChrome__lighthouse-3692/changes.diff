@@ -1,0 +1,18 @@
+diff --git a/lighthouse-core/report/v2/renderer/report-renderer.js b/lighthouse-core/report/v2/renderer/report-renderer.js
+index 732fc99..9652330 100644
+--- a/lighthouse-core/report/v2/renderer/report-renderer.js
++++ b/lighthouse-core/report/v2/renderer/report-renderer.js
+@@ -63,6 +63,13 @@ class ReportRenderer {
+ 
+     this._dom.find('.lh-env__item__ua', header).textContent = report.userAgent;
+ 
++    // Add warning for headless Chrome
++    if (report.userAgent.includes('HeadlessChrome')) {
++      const warning = this._dom.createElement('div', 'lh-headless-warning');
++      warning.textContent = 'Warning: This report was generated using headless Chrome. Performance numbers may be affected.';
++      header.insertBefore(warning, header.firstChild);
++    }
++
+     const env = this._dom.find('.lh-env__items', header);
+     report.runtimeConfig.environment.forEach(runtime => {
+       const item = this._dom.cloneTemplate('#tmpl-lh-env__items', env);

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Layer.js//Layer",
+            "src/ol/renderer/canvas/Layer.js//CanvasLayerRenderer",
+            "src/ol/renderer/canvas/TileLayer.js//CanvasTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/canvas/Layer.js//useContainer",
+            "src/ol/renderer/canvas/TileLayer.js//drawTileImage"
+        ],
+        "explanation": "The bug is related to how layers are rendered and their opacity is managed. The `Layer` class in `src/ol/layer/Layer.js` is a base class for all layer types and manages properties like opacity, which is directly related to the bug. The `CanvasLayerRenderer` class in `src/ol/renderer/canvas/Layer.js` is responsible for rendering layers on a canvas, and the `useContainer` function within it manages the rendering container, which could affect how opacity is applied. The `CanvasTileLayerRenderer` class in `src/ol/renderer/canvas/TileLayer.js` extends the canvas rendering capabilities specifically for tile layers, and the `drawTileImage` function is involved in rendering tile images, which is crucial for handling opacity correctly across different layers.",
+        "bug_scenario": "The bug scenario involves a change in the behavior of layer opacity stacking in OpenLayers (OL) version 6.9.0 compared to version 6.7.0. In the newer version, the top-most layer becomes opaque when using tiled ArcGIS REST layers, affecting the rendering of layers in relation to each other, although basemaps still display correctly. The issue seems to be related to how layers are rendered in the canvas element, and it can be temporarily resolved by setting different opacity values for each layer instead of identical ones."
+    }
+}

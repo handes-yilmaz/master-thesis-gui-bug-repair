@@ -1,0 +1,53 @@
+{
+    "1/1": {
+        "lighthouse-core/lib/asset-saver.js": [
+            {
+                "SEARCH": [
+                    "return chain.then(_ => artifacts.requestScreenshots(trace))",
+                    ".then(screenshots => {",
+                    "const traceData = Object.assign({}, trace);",
+                    "const html = screenshotDump(screenshots, results);",
+                    "",
+                    "assets.push({",
+                    "traceData,",
+                    "html",
+                    "});",
+                    "});"
+                ],
+                "REPLACE": [
+                    "    return chain.then(_ => artifacts.requestScreenshots(trace))",
+                    "      .then(screenshots => {",
+                    "        const traceData = Object.assign({}, trace);",
+                    "",
+                    "        // Inject performance metrics as fake trace events",
+                    "        const metrics = results.audits.metrics.details.items[0];",
+                    "        const metricEvents = [",
+                    "          {name: 'firstContentfulPaint', ts: metrics.firstContentfulPaint},",
+                    "          {name: 'firstMeaningfulPaint', ts: metrics.firstMeaningfulPaint},",
+                    "          {name: 'firstVisualChange', ts: metrics.firstVisualChange},",
+                    "          {name: 'visuallyComplete', ts: metrics.visuallyComplete},",
+                    "          {name: 'perceptualSpeedIndex', ts: metrics.perceptualSpeedIndex},",
+                    "          {name: 'interactive', ts: metrics.interactive}",
+                    "        ];",
+                    "        traceData.traceEvents = traceData.traceEvents.concat(metricEvents.map(metric => ({",
+                    "          cat: 'blink.user_timing',",
+                    "          name: metric.name,",
+                    "          ph: 'R',",
+                    "          ts: metric.ts,",
+                    "          pid: 0,",
+                    "          tid: 0,",
+                    "          args: {}",
+                    "        })));",
+                    "",
+                    "        const html = screenshotDump(screenshots, results);",
+                    "",
+                    "        assets.push({",
+                    "          traceData,",
+                    "          html",
+                    "        });",
+                    "      });"
+                ]
+            }
+        ]
+    }
+}

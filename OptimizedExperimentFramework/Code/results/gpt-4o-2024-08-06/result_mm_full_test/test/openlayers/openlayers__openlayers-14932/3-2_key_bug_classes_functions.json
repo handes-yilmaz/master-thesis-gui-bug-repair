@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Text.js//Text",
+            "src/ol/render/canvas/TextBuilder.js//CanvasTextBuilder"
+        ],
+        "bug_functions": [
+            "src/ol/style/Text.js//getTextAlign",
+            "src/ol/style/Text.js//setTextAlign",
+            "src/ol/render/canvas/TextBuilder.js//drawText",
+            "src/ol/render/canvas/TextBuilder.js//setTextStyle"
+        ],
+        "explanation": "The bug is related to the text alignment functionality, which is primarily handled by the Text class in 'src/ol/style/Text.js'. This class includes methods like getTextAlign and setTextAlign, which directly manage the text alignment properties. The CanvasTextBuilder class in 'src/ol/render/canvas/TextBuilder.js' is also involved, as it handles the rendering of text, including alignment, through methods like drawText and setTextStyle. These methods are responsible for applying the text alignment settings during rendering, which is where the regression is observed.",
+        "bug_scenario": "The bug scenario involves a regression in the text alignment functionality of a text styling module. Specifically, the 'start' and 'end' values for the textAlign property are not aligning text correctly, as observed in rendering tests where text is aligned at the wrong end."
+    }
+}

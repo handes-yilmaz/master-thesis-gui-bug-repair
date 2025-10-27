@@ -1,0 +1,27 @@
+diff --git a/lighthouse-core/lib/stack-collector.js b/lighthouse-core/lib/stack-collector.js
+index 8fd8633..f954908 100644
+--- a/lighthouse-core/lib/stack-collector.js
++++ b/lighthouse-core/lib/stack-collector.js
+@@ -81,7 +81,7 @@ async function collectStacks(passContext) {
+ 
+   return jsLibraries.map(lib => ({
+     detector: /** @type {'js'} */ ('js'),
+-    id: lib.id,
++    id: lib.id || lib.name, // Ensure unique id
+     name: lib.name,
+     version: lib.version || undefined,
+     npm: lib.npm || undefined,
+diff --git a/lighthouse-core/lib/stack-packs.js b/lighthouse-core/lib/stack-packs.js
+index 8edf47c..0810d13 100644
+--- a/lighthouse-core/lib/stack-packs.js
++++ b/lighthouse-core/lib/stack-packs.js
+@@ -47,7 +47,8 @@ function getStackPacks(pageStacks) {
+ 
+   for (const pageStack of pageStacks) {
+     const stackPackToIncl = stackPacksToInclude.find(stackPackToIncl =>
+-      stackPackToIncl.requiredStacks.includes(`${pageStack.detector}:${pageStack.id}`));
++      stackPackToIncl.requiredStacks.includes(`${pageStack.detector}:${pageStack.id}`) &&
++      !pageStack.id.includes('Fast Path')); // Exclude experimental entries
+     if (!stackPackToIncl) {
+       continue;
+     }

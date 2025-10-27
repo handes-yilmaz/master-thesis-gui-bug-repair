@@ -1,0 +1,122 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "class WebGLTileLayerRenderer extends WebGLLayerRenderer {",
+                    "/**",
+                    "* @param {import(\"../../layer/WebGLTile.js\").default} tileLayer Tile layer.",
+                    "* @param {Options} options Options.",
+                    "*/",
+                    "constructor(tileLayer, options) {",
+                    "super(tileLayer, {",
+                    "uniforms: options.uniforms,",
+                    "});"
+                ],
+                "REPLACE": [
+                    "class WebGLTileLayerRenderer extends WebGLLayerRenderer {",
+                    "  /**",
+                    "   * @param {import(\"../../layer/WebGLTile.js\").default} tileLayer Tile layer.",
+                    "   * @param {Options} options Options.",
+                    "   * @param {WebGLHelper} sharedHelper Shared WebGL helper for context sharing.",
+                    "   */",
+                    "  constructor(tileLayer, options, sharedHelper) {",
+                    "    super(tileLayer, {",
+                    "      uniforms: options.uniforms,",
+                    "    });",
+                    "    this.helper = sharedHelper || new WebGLHelper();"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "createRenderer() {",
+                    "const source = this.getSource();",
+                    "const parsedStyle = parseStyle(",
+                    "this.style_,",
+                    "'bandCount' in source ? source.bandCount : 4",
+                    ");",
+                    "",
+                    "return new WebGLTileLayerRenderer(this, {",
+                    "vertexShader: parsedStyle.vertexShader,",
+                    "fragmentShader: parsedStyle.fragmentShader,",
+                    "uniforms: parsedStyle.uniforms,",
+                    "cacheSize: this.cacheSize_,",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  createRenderer(sharedHelper) {",
+                    "    const source = this.getSource();",
+                    "    const parsedStyle = parseStyle(",
+                    "      this.style_,",
+                    "      'bandCount' in source ? source.bandCount : 4",
+                    "    );",
+                    "",
+                    "    return new WebGLTileLayerRenderer(this, {",
+                    "      vertexShader: parsedStyle.vertexShader,",
+                    "      fragmentShader: parsedStyle.fragmentShader,",
+                    "      uniforms: parsedStyle.uniforms,",
+                    "      cacheSize: this.cacheSize_,",
+                    "    }, sharedHelper);"
+                ]
+            }
+        ],
+        "src/ol/webgl/Helper.js": [
+            {
+                "SEARCH": [
+                    "constructor(opt_options) {",
+                    "super();",
+                    "const options = opt_options || {};",
+                    "",
+                    "/** @private */",
+                    "this.boundHandleWebGLContextLost_ = this.handleWebGLContextLost.bind(this);",
+                    "",
+                    "/** @private */",
+                    "this.boundHandleWebGLContextRestored_ =",
+                    "this.handleWebGLContextRestored.bind(this);",
+                    "",
+                    "/**",
+                    "* @private",
+                    "* @type {HTMLCanvasElement}",
+                    "*/",
+                    "this.canvas_ = document.createElement('canvas');",
+                    "this.canvas_.style.position = 'absolute';",
+                    "this.canvas_.style.left = '0';",
+                    "",
+                    "/**",
+                    "* @private",
+                    "* @type {WebGLRenderingContext}",
+                    "*/",
+                    "this.gl_ = getContext(this.canvas_);"
+                ],
+                "REPLACE": [
+                    "  constructor(opt_options, sharedCanvas) {",
+                    "    super();",
+                    "    const options = opt_options || {};",
+                    "",
+                    "    /** @private */",
+                    "    this.boundHandleWebGLContextLost_ = this.handleWebGLContextLost.bind(this);",
+                    "",
+                    "    /** @private */",
+                    "    this.boundHandleWebGLContextRestored_ =",
+                    "      this.handleWebGLContextRestored.bind(this);",
+                    "",
+                    "    /**",
+                    "     * @private",
+                    "     * @type {HTMLCanvasElement}",
+                    "     */",
+                    "    this.canvas_ = sharedCanvas || document.createElement('canvas');",
+                    "    this.canvas_.style.position = 'absolute';",
+                    "    this.canvas_.style.left = '0';",
+                    "",
+                    "    /**",
+                    "     * @private",
+                    "     * @type {WebGLRenderingContext}",
+                    "     */",
+                    "    this.gl_ = sharedCanvas ? sharedCanvas.getContext('webgl') : getContext(this.canvas_);"
+                ]
+            }
+        ]
+    }
+}

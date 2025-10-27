@@ -1,0 +1,22 @@
+diff --git a/src/cascader/cascader.jsx b/src/cascader/cascader.jsx
+index b290e81..8db5fbc 100644
+--- a/src/cascader/cascader.jsx
++++ b/src/cascader/cascader.jsx
+@@ -123,7 +123,7 @@ export default class Cascader extends Component {
+         filteredPaths: PropTypes.array,
+         filteredListStyle: PropTypes.object,
+         resultRender: PropTypes.func,
+-        showTitle: true,
++        showTitle: PropTypes.bool,
+     };
+ 
+     static defaultProps = {
+@@ -139,7 +139,7 @@ export default class Cascader extends Component {
+         useVirtual: false,
+         checkStrictly: false,
+         itemRender: item => {
+-            const title = this.props.showTitle ? item.label : undefined;
++            const title = this.props.showTitle !== false ? item.label : undefined;
+             return <span title={title}>{item.label}</span>;
+         },
+     };

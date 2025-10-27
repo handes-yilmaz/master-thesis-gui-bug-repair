@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/command/render/latexmk/latex.ts": [
+            {
+                "SEARCH": [
+                    "const runOptions: Deno.RunOptions = {",
+                    "cmd: [fullLatexCmd.fullPath, ...args],",
+                    "stdout: \"piped\",",
+                    "stderr: \"piped\",",
+                    "};"
+                ],
+                "REPLACE": [
+                    "  const runOptions: Deno.RunOptions = {",
+                    "    cmd: [fullLatexCmd.fullPath, ...args.map(arg => decodeURIComponent(arg))],",
+                    "    stdout: \"piped\",",
+                    "    stderr: \"piped\",",
+                    "  };"
+                ]
+            }
+        ],
+        "src/command/render/latexmk/pdf.ts": [
+            {
+                "SEARCH": [
+                    "const response = await runPdfEngine(",
+                    "input,",
+                    "engine,",
+                    "texLive,",
+                    "outputDir,",
+                    "texInputDirs,",
+                    "pkgMgr,",
+                    "quiet,",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const response = await runPdfEngine(",
+                    "      decodeURIComponent(input),",
+                    "      engine,",
+                    "      texLive,",
+                    "      outputDir,",
+                    "      texInputDirs,",
+                    "      pkgMgr,",
+                    "      quiet,",
+                    "    );"
+                ]
+            }
+        ]
+    }
+}

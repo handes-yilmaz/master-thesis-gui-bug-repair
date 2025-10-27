@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/Tile.js",
+            "src/ol/source/TileWMS.js",
+            "src/ol/source/XYZ.js",
+            "src/ol/source/DataTile.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "1. **src/ol/source/Tile.js**: This is the base class for all tile sources. Modifications here might be necessary to introduce a general gutter handling mechanism that can be used by all tile sources including XYZ and DataTile.\n\n2. **src/ol/source/TileWMS.js**: Currently, this is the only tile source that supports the gutter option. Reviewing and possibly altering its implementation can provide insights into how to extend this feature to other tile sources.\n\n3. **src/ol/source/XYZ.js**: This file is relevant because XYZ tiles are mentioned specifically in the feature request as a target for gutter support. Changes here would involve implementing the gutter option similar to TileWMS.\n\n4. **src/ol/source/DataTile.js**: Similar to XYZ, DataTile is another tile source where gutter support is requested. Modifications would include adding the gutter functionality.\n\n5. **src/ol/renderer/webgl/TileLayer.js**: The feature request mentions issues with how gutters are handled in WebGL rendering. This file is likely responsible for rendering tile layers using WebGL, so changes would be needed to properly handle gutters and prevent edge effects.",
+        "bug_scenario": "The bug scenario involves a feature request related to the handling of a 'gutter' or 'buffer' in tile sources within a mapping library. The gutter is an extra space around tiles to prevent visual artifacts at tile edges during interpolation. The current implementation only supports this feature for TileWMS, but there is a request to extend this support to other tile sources like XYZ and DataTile. Additionally, there's a need to revise the gutter handling for WebGL tile layers, as the current method of removing the gutter before texture creation does not prevent edge effects, leading to visible artifacts where tiles join."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/source/Tile.js",
+            "src/ol/source/TileWMS.js",
+            "src/ol/source/XYZ.js",
+            "src/ol/source/DataTile.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "These files are related to the bug for the following reasons:1. **src/ol/source/Tile.js**: This is a core file for tile sources in OpenLayers. Modifications here might be necessary to support gutter options for more tile sources.2. **src/ol/source/TileWMS.js**: This file currently supports gutter options, so understanding its implementation can help extend similar functionality to other tile sources.3. **src/ol/source/XYZ.js** and **src/ol/source/DataTile.js**: These are other tile source files mentioned in the feature request as needing gutter support. Changes here are needed to implement the desired feature.4. **src/ol/layer/WebGLTile.js**: Since the bug report mentions issues with WebGL tile layers and handling of gutters, this file is likely involved in rendering tiles using WebGL, where changes might be required.5. **src/ol/renderer/webgl/TileLayer.js**: This file handles the rendering of tile layers with WebGL, which is directly related to the bug's mention of edge effects during interpolation. Changes here might be needed to properly handle gutters during WebGL rendering.",
+        "bug_scenario": "The bug scenario described involves a feature request related to handling tile sources with gutter options outside of the currently supported TileWMS. The issue focuses on rendering tiles with a gutter to avoid edge effects during interpolation, which is evident in some OpenLayers examples where tile edges do not align seamlessly, causing visual artifacts."
+    }
+}

@@ -1,0 +1,26 @@
+diff --git a/lighthouse-core/audits/font-display.js b/lighthouse-core/audits/font-display.js
+index d5b4e06..bf6b225 100644
+--- a/lighthouse-core/audits/font-display.js
++++ b/lighthouse-core/audits/font-display.js
+@@ -119,6 +119,9 @@ class FontDisplay extends Audit {
+     /** @type {Array<string>} */
+     const warningURLs = [];
+ 
++    // Log the number of stylesheets processed for debugging
++    console.log(`Processed ${artifacts.CSSUsage.stylesheets.length} stylesheets.`);
++
+     const results = networkRecords
+       // Find all fonts...
+       .filter(record => record.resourceType === 'Font')
+diff --git a/lighthouse-core/gather/gatherers/css-usage.js b/lighthouse-core/gather/gatherers/css-usage.js
+index 282dbd7..84727d9 100644
+--- a/lighthouse-core/gather/gatherers/css-usage.js
++++ b/lighthouse-core/gather/gatherers/css-usage.js
+@@ -28,6 +28,7 @@ class CSSUsage extends Gatherer {
+     await driver.sendCommand('CSS.enable');
+     await driver.sendCommand('CSS.startRuleUsageTracking');
+     await driver.evaluateAsync('getComputedStyle(document.body)');
++    await driver.sendCommand('CSS.takeCoverageDelta'); // Ensure coverage is taken
+     driver.off('CSS.styleSheetAdded', onStylesheetAdded);
+ 
+     // Fetch style sheet content in parallel.

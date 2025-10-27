@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/DataTable/Header.js//Header",
+            "src/js/components/DataTable/Sorter.js//Sorter"
+        ],
+        "bug_functions": [
+            "src/js/components/DataTable/Sorter.js//Sorter"
+        ],
+        "explanation": "The issue is related to the synchronization between the URL state and the UI state of the sorting arrows in the DataTable header. The `Header` component is responsible for rendering the table headers, including the sorting icons. The `Sorter` component manages the sorting logic and listens for URL changes to update the sort state. The `Sorter` function includes an event listener for 'popstate' to handle browser navigation, but it seems the UI update logic is not correctly reflecting these changes in the header. Adjustments in these components are necessary to ensure the UI reflects the current URL state.",
+        "bug_scenario": "The sorting arrow icon in the DataTable header does not update when using browser navigation (back/forward) even though the URL changes, indicating a mismatch between the URL state and the UI state."
+    }
+}

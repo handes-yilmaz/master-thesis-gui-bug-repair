@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "core/audits/errors-in-console.js//ErrorLogs",
+            "core/lib/lh-error.js//LighthouseError"
+        ],
+        "bug_functions": [
+            "core/audits/errors-in-console.js//audit",
+            "core/lib/lh-error.js//fromProtocolMessage",
+            "cli/run.js//printRuntimeErrorAndExit",
+            "cli/run.js//printErrorAndExit"
+        ],
+        "explanation": "The class `ErrorLogs` in `core/audits/errors-in-console.js` is responsible for auditing console errors, which directly relates to the runtime error issue described. The `audit` function within this class is crucial as it processes console messages and determines if there are errors, which aligns with the bug scenario of console errors.\n\nThe `LighthouseError` class in `core/lib/lh-error.js` is designed to handle errors within the Lighthouse framework. The `fromProtocolMessage` function is particularly relevant as it processes protocol messages and converts them into errors, which could be the source of the runtime error.\n\nIn `cli/run.js`, the functions `printRuntimeErrorAndExit` and `printErrorAndExit` are responsible for handling and displaying runtime errors, which is directly related to the bug scenario of runtime errors being logged in the console. These functions ensure that errors are properly reported and the application exits gracefully, which is essential for diagnosing and fixing the runtime error issue.",
+        "bug_scenario": "The bug scenario involves a runtime error related to design updates, as indicated by the error messages shown in the console images. The images depict console errors that are likely related to the execution of a script or a process within the application, causing it to fail or behave unexpectedly."
+    }
+}

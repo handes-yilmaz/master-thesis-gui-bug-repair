@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "src/language-js/print/object.js": [
+            {
+                "SEARCH": [
+                    "const leftBrace =",
+                    "node.type === \"RecordExpression\" ? \"#{\" : node.exact ? \"{|\" : \"{\";",
+                    "const rightBrace = node.exact ? \"|}\" : \"}\";"
+                ],
+                "REPLACE": [
+                    "  const leftBrace =",
+                    "    node.type === \"RecordExpression\"",
+                    "      ? \"#{\"",
+                    "      : node.exact",
+                    "      ? \"{|\"",
+                    "      : node.jsdoc && node.jsdoc.includes(\"@satisfies\")",
+                    "      ? \"({\"",
+                    "      : \"{\";",
+                    "  const rightBrace =",
+                    "    node.exact ? \"|}\" : node.jsdoc && node.jsdoc.includes(\"@satisfies\") ? \"})\" : \"}\";"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "lighthouse-extension/app/src/lighthouse-background.js": [
+            {
+                "SEARCH": [
+                    "return Runner.run(connection, runOptions) // Run Lighthouse.",
+                    ".then(result => {",
+                    "lighthouseIsRunning = false;",
+                    "updateBadgeUI();",
+                    "filterOutArtifacts(result);",
+                    "return result;",
+                    "})"
+                ],
+                "REPLACE": [
+                    "  return Runner.run(connection, runOptions) // Run Lighthouse.",
+                    "    .then(result => {",
+                    "      lighthouseIsRunning = false;",
+                    "      updateBadgeUI();",
+                    "      if (result && result.artifacts) {",
+                    "        filterOutArtifacts(result);",
+                    "      }",
+                    "      return result;",
+                    "    })"
+                ]
+            }
+        ]
+    }
+}

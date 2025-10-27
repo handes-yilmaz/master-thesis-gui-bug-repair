@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/reproj/Image.js",
+            "src/ol/reproj/Tile.js",
+            "src/ol/reproj/DataTile.js",
+            "src/ol/reproj/Triangulation.js"
+        ],
+        "explanation": "1. **src/ol/reproj/Image.js**: This file handles the reprojection of single images. The constructor and methods like `reproject_` and `load` are crucial for managing how images are reprojected, including the calculation of source and target resolutions and extents. The issue of assuming square pixels likely originates here, as the reprojection logic is implemented in this file.\n\n2. **src/ol/reproj/Tile.js**: Similar to `Image.js`, this file deals with the reprojection of tiles. The constructor and methods like `reproject_` and `load` are responsible for handling tile reprojection, including managing source and target tile grids and resolutions. The assumption of square pixels could be embedded in the logic that calculates the reprojection of tiles.\n\n3. **src/ol/reproj/DataTile.js**: This file is responsible for handling data tiles, which are similar to image tiles but may involve different data handling. The reprojection logic here, particularly in the `reproject_` method, could also be contributing to the issue by not accounting for non-square pixel dimensions.\n\n4. **src/ol/reproj/Triangulation.js**: This file contains the logic for triangulating the target extent, which is a key part of the reprojection process. The triangulation logic might be assuming square pixels, leading to incorrect reprojection results. Adjustments in this file could help in correctly mapping the source to the target projection without assuming square pixels.",
+        "bug_scenario": "The bug scenario involves a raster reprojection issue where the target pixels are assumed to be square, leading to misalignments. The source image is projected from Lambert Conformal Conic to Web Mercator, and the expected behavior is that the destination pixels should stretch to match the source image's pixel count, which is not happening. The image shows a 5x5 pixel source image being projected incorrectly as a 7x5 image due to the assumption of square pixels."
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/markdown.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "The issue pertains to how markdown is parsed and rendered, particularly with bold and italic formatting. The file `src/languages/markdown.js` is likely responsible for handling markdown parsing rules, including bold and italics. The file `src/lib/regex.js` may contain regular expressions used to detect and apply markdown syntax rules, which could contribute to the formatting issue.",
+        "bug_scenario": "The bug involves incorrect rendering of bold and italic markdown text. When both bold and italics are applied, the markdown renderer fails to properly close the formatting, causing the rest of the document to be rendered incorrectly as bold and italic."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/markdown.js",
+            "src/lib/html_renderer.js"
+        ],
+        "explanation": "1. **src/languages/markdown.js**: This file likely contains the logic for parsing and rendering Markdown. Since the issue is related to Markdown rendering, this file is probably where the bug needs to be fixed to correctly handle closing characters for bold and italics.\n\n2. **src/lib/html_renderer.js**: This file might be responsible for rendering the parsed Markdown into HTML. The bug could involve incorrect handling of HTML tags when both bold and italics are used, necessitating changes here to ensure proper closure and rendering.",
+        "bug_scenario": "The bug report describes an issue where text formatted with both bold and italics in Markdown causes the entire document to render in bold and italics, ignoring the closing characters. The provided images illustrate the problem and its resolution. In the 'before fix' image, text after the bold and italics formatting continues to be bold and italicized, which is incorrect. The 'after fix' image shows the correct rendering where text formatting does not affect subsequent text."
+    }
+}

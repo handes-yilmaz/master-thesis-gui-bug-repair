@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer",
+            "lib/features/modeling/behavior/MessageFlowBehavior.js//MessageFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer.prototype.drawConnection",
+            "lib/features/label-editing/LabelUtil.js//getLabel",
+            "lib/features/label-editing/LabelUtil.js//setLabel"
+        ],
+        "explanation": "The BpmnRenderer class in 'lib/draw/BpmnRenderer.js' is responsible for rendering BPMN elements, including message flows. The drawConnection function within this class is likely responsible for rendering connections, such as message flows, and would need to be modified to include the rendering of message names.\n\nThe MessageFlowBehavior class in 'lib/features/modeling/behavior/MessageFlowBehavior.js' handles BPMN-specific message flow behavior. This class might need adjustments to ensure that message names are correctly associated with their respective flows during modeling operations.\n\nThe getLabel and setLabel functions in 'lib/features/label-editing/LabelUtil.js' are responsible for retrieving and setting labels on BPMN elements. These functions would need to be updated to handle the message names specifically for message flows, ensuring that the names are correctly retrieved and displayed.",
+        "bug_scenario": "The bug scenario involves the inability to render the names of message elements on message flows in a BPMN diagram. The user wants the names of these message elements to be displayed below the message flows, considering that message flows can have labels themselves."
+    }
+}

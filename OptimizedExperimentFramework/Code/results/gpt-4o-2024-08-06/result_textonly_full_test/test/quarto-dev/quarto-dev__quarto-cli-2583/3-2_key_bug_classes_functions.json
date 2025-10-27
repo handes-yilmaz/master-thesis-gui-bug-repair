@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/render/pandoc.ts//function runPandoc",
+            "src/format/html/format-html.ts//function htmlFormatExtras",
+            "src/command/render/pandoc-html.ts//function resolveSassBundles"
+        ],
+        "bug_functions": [
+            "src/command/render/pandoc.ts//function runPandoc",
+            "src/format/html/format-html.ts//function htmlFormatExtras",
+            "src/command/render/pandoc-html.ts//function resolveSassBundles"
+        ],
+        "explanation": "The issue is related to how markdown is processed and rendered in table captions. The `runPandoc` function in `pandoc.ts` is responsible for executing the Pandoc command, which is crucial for rendering markdown content. If table captions are not being styled correctly, it could be due to how metadata or markdown is being passed to Pandoc. The `htmlFormatExtras` function in `format-html.ts` deals with HTML formatting extras, which might include handling of markdown or CSS that affects table captions. The `resolveSassBundles` function in `pandoc-html.ts` is involved in resolving CSS and SASS bundles, which could impact how styles are applied to table captions. These functions are likely involved in the bug because they handle the rendering and styling processes that are not functioning as expected for table captions.",
+        "bug_scenario": "The bug scenario involves the inability to apply markdown styling, such as italics or superscript, to table captions in Quarto documents. This issue does not affect figure captions, which can be styled as expected. The problem is demonstrated in a screenshot where the table caption does not reflect the intended markdown styling, while the figure caption does."
+    }
+}

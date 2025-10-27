@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "cli/run.js",
+            "core/audits/violation-audit.js",
+            "core/lib/emulation.js"
+        ],
+        "explanation": "1. **cli/run.js**: This file likely handles the command-line operations and may contain logic related to running Lighthouse with specific configurations, such as disabling screen emulation or setting user agents.\n\n2. **core/audit.js**: This file is responsible for conducting audits and generating reports. It may contain code that incorrectly labels the device used during testing.\n\n3. **lib/emulation.js**: This file likely deals with emulation settings and might be influencing the report to incorrectly state that emulation is being used, even when it's disabled in the command.",
+        "bug_scenario": "The issue is that when testing on a real device, the report incorrectly states \"Emulated Moto G4 with Lighthouse 9.6.8\" rather than recognizing the real device used for testing. The expectation was for the report to indicate testing on the actual device or at least mention the physical Moto Power G device."
+    },
+    "2": {
+        "bug_files": [
+            "cli/commands/commands.js",
+            "core/gather/driver/environment.js",
+            "core/gather/gatherers/network-user-agent.js",
+            "core/lib/emulation.js"
+        ],
+        "explanation": "1. `cli/commands/commands.js`: This file is likely responsible for interpreting CLI commands, including those related to emulation settings.\n2. `core/gather/driver/environment.js`: This file handles environment checks and might be responsible for determining the type of device being used.\n3. `core/gather/gatherers/network-user-agent.js`: This file might be involved in setting or detecting the user agent string, which could affect device detection.\n4. `lib/emulation.js`: This file likely contains code relevant to emulation settings, which could be incorrectly applied in this scenario.",
+        "bug_scenario": "The bug occurs when running Lighthouse on a real Moto Power G device, but the report incorrectly states 'Emulated Moto G4'. This suggests that the device detection or configuration is not correctly identifying the physical device and defaults to showing an emulation mode."
+    }
+}

@@ -1,0 +1,14 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 2cf948e..e345cf3 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -515,6 +515,9 @@ class WebGLTileLayer extends BaseTileLayer {
+   updateStyleVariables(variables) {
+     Object.assign(this.styleVariables_, variables);
+     this.changed();
++    if (this.getSource()) {
++      this.getSource().changed(); // Ensure the source is re-rendered
++    }
+   }
+ }
+ 

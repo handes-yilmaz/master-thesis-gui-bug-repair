@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "lighthouse-core/report/report-generator.js": [
+            {
+                "SEARCH": [
+                    "return template({",
+                    "url: results.url,",
+                    "lighthouseVersion: results.lighthouseVersion,",
+                    "generatedTime: results.generatedTime,",
+                    "lhresults: this._escapeScriptTags(JSON.stringify(results, null, 2)),",
+                    "stylesheets: this.getReportCSS(),"
+                ],
+                "REPLACE": [
+                    "    const escapeMarkdown = str => str.startsWith('`') ? str : this._escapeScriptTags(str);",
+                    "    return template({",
+                    "      url: results.url,",
+                    "      lighthouseVersion: results.lighthouseVersion,",
+                    "      generatedTime: results.generatedTime,",
+                    "      lhresults: escapeMarkdown(JSON.stringify(results, null, 2)),",
+                    "      stylesheets: this.getReportCSS(),"
+                ]
+            }
+        ]
+    }
+}

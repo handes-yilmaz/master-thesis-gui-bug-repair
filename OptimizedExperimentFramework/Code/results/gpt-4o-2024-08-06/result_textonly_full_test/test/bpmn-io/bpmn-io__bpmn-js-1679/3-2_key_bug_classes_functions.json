@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler",
+            "lib/features/modeling/BpmnUpdater.js//BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler.prototype.execute",
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//setModdleProperties"
+        ],
+        "explanation": "The bug is related to the updating of XML labels when toggling between 'Parallel' and 'Sequential' in a BPMN model. The 'UpdateModdlePropertiesHandler' class and its 'execute' function are responsible for setting properties on BPMN elements, which directly affects how these elements are represented in the XML. The 'setModdleProperties' function is crucial as it applies the new properties to the moddle element, which should include updating the 'isSequential' attribute. The 'BpmnUpdater' class is responsible for updating the BPMN 2.0 XML and DI when changes occur in the diagram, which is directly related to ensuring the XML reflects the current state of the model. These classes and functions are key to resolving the issue where the XML does not update as expected when toggling loop characteristics.",
+        "bug_scenario": "The bug scenario involves a BPMN modeling tool where toggling between 'Parallel' and 'Sequential' for a multi-instance loop does not update the XML label as expected. The expected behavior is for the XML to reflect the changes with either <bpmn:multiInstanceLoopCharacteristics /> or <bpmn:multiInstanceLoopCharacteristics isSequential=\"true\" />."
+    }
+}

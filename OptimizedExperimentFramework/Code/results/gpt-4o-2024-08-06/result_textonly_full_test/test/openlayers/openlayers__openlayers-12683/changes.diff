@@ -1,0 +1,38 @@
+diff --git a/src/ol/style/IconImage.js b/src/ol/style/IconImage.js
+index 689d252..9b762bb 100644
+--- a/src/ol/style/IconImage.js
++++ b/src/ol/style/IconImage.js
+@@ -226,20 +226,16 @@ class IconImage extends EventTarget {
+     const canvas = document.createElement('canvas');
+     this.canvas_[pixelRatio] = canvas;
+ 
+-    canvas.width = Math.ceil(this.image_.width * pixelRatio);
+-    canvas.height = Math.ceil(this.image_.height * pixelRatio);
++    canvas.width = this.image_.width;
++    canvas.height = this.image_.height;
+ 
+     const ctx = canvas.getContext('2d');
+-    ctx.scale(pixelRatio, pixelRatio);
+     ctx.drawImage(this.image_, 0, 0);
+ 
+     ctx.globalCompositeOperation = 'multiply';
+-    // Internet Explorer 11 does not support the multiply operation.
+-    // If the canvas is tainted in Internet Explorer this still produces
+-    // a solid color image with the shape of the icon.
+     if (ctx.globalCompositeOperation === 'multiply' || this.isTainted_()) {
+       ctx.fillStyle = asString(this.color_);
+-      ctx.fillRect(0, 0, canvas.width / pixelRatio, canvas.height / pixelRatio);
++      ctx.fillRect(0, 0, canvas.width, canvas.height);
+ 
+       ctx.globalCompositeOperation = 'destination-in';
+       ctx.drawImage(this.image_, 0, 0);
+@@ -259,6 +255,9 @@ class IconImage extends EventTarget {
+       }
+       ctx.putImageData(imgData, 0, 0);
+     }
++    canvas.width = Math.ceil(canvas.width * pixelRatio);
++    canvas.height = Math.ceil(canvas.height * pixelRatio);
++    ctx.scale(pixelRatio, pixelRatio);
+   }
+ 
+   /**

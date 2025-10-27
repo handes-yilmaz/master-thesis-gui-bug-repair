@@ -1,0 +1,25 @@
+diff --git a/components/cascader-select/cascader-select.tsx b/components/cascader-select/cascader-select.tsx
+index 531dd0f..9eca838 100644
+--- a/components/cascader-select/cascader-select.tsx
++++ b/components/cascader-select/cascader-select.tsx
+@@ -592,6 +592,20 @@ class CascaderSelect extends Component<CascaderSelectProps, CascaderSelectState>
+         if (searchValue && this.select) {
+             this.select.handleSearchClear();
+         }
++
++        // Add a button to clear search results manually
++        const clearButton = document.createElement('button');
++        clearButton.innerText = 'Clear Search';
++        clearButton.onclick = () => {
++            this.setState({ searchValue: '' });
++            if (this.select) {
++                this.select.handleSearchClear();
++            }
++        };
++        const dropdown = document.querySelector('.cascader-select-dropdown');
++        if (dropdown && !dropdown.querySelector('button')) {
++            dropdown.appendChild(clearButton);
++        }
+     }
+ 
+     handleClear() {

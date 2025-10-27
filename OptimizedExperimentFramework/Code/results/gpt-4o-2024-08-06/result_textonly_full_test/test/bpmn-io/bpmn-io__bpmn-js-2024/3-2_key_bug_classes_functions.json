@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer",
+            "lib/features/modeling/behavior/IsHorizontalFix.js//IsHorizontalFix"
+        ],
+        "bug_functions": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer.prototype.drawShape",
+            "lib/draw/BpmnRenderer.js//BpmnRenderer.prototype.canRender"
+        ],
+        "explanation": "The `BpmnRenderer` class in `lib/draw/BpmnRenderer.js` is responsible for rendering BPMN elements, including pools and lanes. The `drawShape` function within this class is likely where the rendering logic for shapes, including pools, is implemented. Since the issue is related to the incorrect rendering of vertical pools, this function is a key area to investigate and modify to account for the `isHorizontal` property.\n\nThe `canRender` function in the same class is also relevant because it determines whether a given element can be rendered. Ensuring that it correctly identifies vertical pools as renderable elements is crucial.\n\nThe `IsHorizontalFix` class in `lib/features/modeling/behavior/IsHorizontalFix.js` is directly related to the handling of the `isHorizontal` property. This class ensures that each created or updated pool and lane is assigned an `isHorizontal` property set to true. Modifying this logic to correctly handle vertical pools (i.e., when `isHorizontal` is false) is essential to fix the bug.",
+        "bug_scenario": "The bug scenario involves the incorrect rendering of pool and lane labels in vertical collaboration diagrams. The issue arises because the rendering logic does not account for the pool direction, specifically when a pool is marked as vertical using the `isHorizontal=\"false\"` property in the element's DI. This results in diagrams that do not properly support vertical pools, as shown in the provided image."
+    }
+}

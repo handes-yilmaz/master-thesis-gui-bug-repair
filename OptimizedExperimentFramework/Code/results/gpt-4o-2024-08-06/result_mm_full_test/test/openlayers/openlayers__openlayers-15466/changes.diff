@@ -1,0 +1,59 @@
+diff --git a/src/ol/render/canvas/Executor.js b/src/ol/render/canvas/Executor.js
+index efe2953..583b59d 100644
+--- a/src/ol/render/canvas/Executor.js
++++ b/src/ol/render/canvas/Executor.js
+@@ -906,7 +906,7 @@ class Executor {
+                 : null,
+             ];
+             if (declutterTree) {
+-              if (declutterMode === 'none') {
++              if (declutterMode === 'none' || (feature.ignorePlacement_ && declutterMode !== 'declutter')) {
+                 // not rendered in declutter group
+                 continue;
+               } else if (declutterMode === 'obstacle') {
+diff --git a/src/ol/style/Image.js b/src/ol/style/Image.js
+index be788cd..70a6670 100644
+--- a/src/ol/style/Image.js
++++ b/src/ol/style/Image.js
+@@ -62,11 +62,17 @@ class ImageStyle {
+      */
+     this.displacement_ = options.displacement;
+ 
+-    /**
++    /** 
+      * @private
+      * @type {"declutter"|"obstacle"|"none"|undefined}
+      */
+     this.declutterMode_ = options.declutterMode;
++
++    /**
++     * @private
++     * @type {boolean}
++     */
++    this.ignorePlacement_ = options.ignorePlacement || false;
+   }
+ 
+   /**
+diff --git a/src/ol/style/Text.js b/src/ol/style/Text.js
+index d76110b..6be0f74 100644
+--- a/src/ol/style/Text.js
++++ b/src/ol/style/Text.js
+@@ -199,11 +199,17 @@ class Text {
+       ? options.backgroundStroke
+       : null;
+ 
+-    /**
++    /** 
+      * @private
+      * @type {Array<number>|null}
+      */
+     this.padding_ = options.padding === undefined ? null : options.padding;
++
++    /**
++     * @private
++     * @type {boolean}
++     */
++    this.ignorePlacement_ = options.ignorePlacement || false;
+   }
+ 
+   /**

@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "clients/extension/",
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/config/config.js",
+            "lighthouse-core/audits/metrics/first-contentful-paint.js"
+        ],
+        "explanation": "The bug is related to the inability to measure performance metrics due to the 'NO_FCP' error. The files in 'clients/extension/' are relevant as the issue occurs in the extension channel of Lighthouse. The files 'lighthouse-core/gather/driver.js' and 'lighthouse-core/gather/gather-runner.js' are involved in collecting and managing performance data, which is directly related to the issue of not capturing the First Contentful Paint. 'lighthouse-core/config/config.js' could be relevant for any configuration settings affecting background tabs. The 'lighthouse-core/audits/metrics/first-contentful-paint.js' file specifically relates to the First Contentful Paint metric, which is not being recorded.",
+        "bug_scenario": "The bug report describes an issue where the Lighthouse (LH) tool fails to measure performance when a tab is in the background, resulting in a 'NO_FCP' error. This error prevents metrics like First Contentful Paint from being recorded, impacting performance evaluations."
+    },
+    "2": {
+        "bug_files": [
+            "clients/extension",
+            "lighthouse-core/metrics/first-contentful-paint.js",
+            "lighthouse-core/computed/metrics/first-contentful-paint.js",
+            "lighthouse-core/gather/driver/execution-context.js"
+        ],
+        "explanation": "The issue is related to the Lighthouse extension's inability to measure performance metrics when a tab is in the background. The files within 'clients/extension' would likely need modifications to handle the tab's background state. The 'lighthouse-core/metrics/first-contentful-paint.js' and 'lighthouse-core/computed/metrics/first-contentful-paint.js' files are directly related to the First Contentful Paint metric, which is not being recorded. The 'lighthouse-core/gather/driver/execution-context.js' file may be responsible for executing scripts in different contexts, potentially affecting metric collection when the tab is in the background.",
+        "bug_scenario": "When running Lighthouse (LH) on a URL, the First Contentful Paint (FCP) metric cannot be measured if the tab is in the background. The bug report mentions that this issue occurs regardless of whether the server is remote or local. The CLI version works fine, but the extension does not. The screenshot shows that performance metrics are not being recorded, resulting in errors for FCP, Speed Index, Time to Interactive, etc."
+    }
+}

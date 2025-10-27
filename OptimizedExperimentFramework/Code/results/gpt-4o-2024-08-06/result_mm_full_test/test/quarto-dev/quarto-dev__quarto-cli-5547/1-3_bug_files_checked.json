@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/cmd.ts",
+            "src/command/render/render.ts",
+            "src/format/reveal/format-reveal.ts"
+        ],
+        "explanation": "The issue likely stems from how standalone images are processed in the rendering logic. The files in the 'render' directory handle the rendering process for different formats, including RevealJS presentations. The 'format-reveal.ts' file is specifically responsible for formatting RevealJS slides, which is directly related to the issue described.",
+        "bug_scenario": "The bug involves a standalone image with a hyperlink not rendering the link properly in a RevealJS presentation slide. When the image is by itself, the link is not rendered, but it works when there is additional content on the slide."
+    },
+    "2": {
+        "bug_files": [
+            "src/format/reveal/format-reveal.ts",
+            "src/format/reveal/constants.ts",
+            "src/format/reveal/format-reveal-plugin.ts"
+        ],
+        "explanation": "These files are related to the RevealJS format and its rendering logic. The issue is likely due to how standalone images with links are processed in the RevealJS slide rendering logic, possibly within these files. The files handle the RevealJS formatting and could contain the logic that is stripping the hyperlink from standalone images.",
+        "bug_scenario": "The bug involves a RevealJS presentation where a standalone image with a hyperlink does not render the hyperlink, whereas adding text before the image allows the link to work. This suggests the issue lies in how standalone images are being processed, potentially stripping or ignoring the hyperlink."
+    }
+}

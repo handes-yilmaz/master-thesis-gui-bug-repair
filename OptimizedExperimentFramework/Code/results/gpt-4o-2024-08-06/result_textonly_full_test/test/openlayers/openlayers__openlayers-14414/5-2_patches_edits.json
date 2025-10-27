@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "updateStyleVariables(variables) {",
+                    "Object.assign(this.styleVariables_, variables);",
+                    "this.changed();",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  updateStyleVariables(variables) {",
+                    "    Object.assign(this.styleVariables_, variables);",
+                    "    this.changed();",
+                    "    if (this.getSource()) {",
+                    "      this.getSource().changed(); // Ensure the source is re-rendered",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ],
+        "src/ol/source/Raster.js": [
+            {
+                "SEARCH": [
+                    "control.addEventListener('input', () => {",
+                    "outputLevel.innerText = control.value;",
+                    "elevationTile.updateStyleVariables({ level: parseFloat(control.value) });",
+                    "//raster.changed();",
+                    "})"
+                ],
+                "REPLACE": [
+                    "control.addEventListener('input', () => {",
+                    "  outputLevel.innerText = control.value;",
+                    "  elevationTile.updateStyleVariables({ level: parseFloat(control.value) });",
+                    "  raster.changed(); // Ensure the raster source is re-rendered",
+                    "})"
+                ]
+            }
+        ]
+    }
+}

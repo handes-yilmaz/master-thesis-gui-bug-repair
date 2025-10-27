@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-ruby.js//Prism.languages.ruby"
+        ],
+        "bug_functions": [
+            "components/prism-ruby.js//Prism.languages.insertBefore"
+        ],
+        "explanation": "The issue is related to the regex pattern matching and syntax highlighting in the `Prism.languages.ruby` configuration. The `Prism.languages.insertBefore` function is responsible for defining how regex patterns are recognized and highlighted. The current pattern for regex does not correctly handle interpolation within `/.../`, which is why the highlighting fails. Adjusting the regex pattern in this function to properly recognize and highlight interpolation in `/.../` will resolve the issue.",
+        "bug_scenario": "The bug involves the incorrect syntax highlighting of Ruby regex interpolation when using the `/.../` syntax. The interpolation is correctly highlighted with `%r{...}` but not with `/.../`. The image shows the difference in highlighting between the two forms."
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/format/reveal/format-reveal.ts",
+            "src/resources/filters/layout/layout.lua",
+            "src/resources/filters/quarto-post/reveal.lua"
+        ],
+        "explanation": "1. **src/format/reveal/format-reveal.ts**: This file likely handles the revealjs format specifics. The issue may relate to how custom divs are processed in this format.\n   \n2. **src/resources/filters/layout/layout.lua**: This file might manage the layout of elements in the output document. The positioning of images within custom divs could be affected by layout processing scripts.\n\n3. **src/resources/filters/quarto-post/reveal.lua**: Post-processing for reveal.js presentations may involve adjustments to ensure correct element placement. This file could contain logic affecting the rendering of custom divs with images. \n\nThe problem seems to be related to how custom divs are handled in the revealjs format, potentially requiring adjustments in these files to correctly embed images within divs.",
+        "bug_scenario": "The user is trying to place an image inside a custom div in a revealjs presentation. The image is correctly placed in the columns format but not when using a custom block or outer div. The image is being rendered outside the intended div in these cases."
+    },
+    "2": {
+        "bug_files": [
+            "format/reveal/format-reveal.ts",
+            "format/reveal/format-reveal-plugin.ts",
+            "format/reveal/format-reveal-theme.ts"
+        ],
+        "explanation": "The bug is related to handling custom block elements in the revealjs format. The files `format-reveal.ts`, `format-reveal-plugin.ts`, and `format-reveal-theme.ts` are likely responsible for rendering elements in revealjs. These files might contain the logic for interpreting div structures and could be where the placement of images within divs is handled incorrectly.",
+        "bug_scenario": "The issue is that images are not being placed correctly within custom divs in a revealjs format. In the provided example, the image is expected to be between the text in the custom block for Test A and Test C, but it appears outside the div. However, in Test B, when using columns, the image is placed correctly."
+    }
+}

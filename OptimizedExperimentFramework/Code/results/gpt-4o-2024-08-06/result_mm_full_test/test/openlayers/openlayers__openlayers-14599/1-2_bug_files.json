@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/control/Attribution.js",
+            "src/ol/layer/Group.js",
+            "src/ol/source/TileWMS.js"
+        ],
+        "explanation": "1. **Attribution.js** - This file likely manages the display logic for attributions. Since the bug is related to the incorrect display of attributions when a group layer is invisible, this file would need adjustments to account for group layer visibility.\n\n2. **Group.js** - This file likely handles group layer logic. The bug involves a group layer with a sub-layer that remains visible. Adjustments may be needed here to ensure that when the group layer is invisible, its sub-layer attributions are not displayed.\n\n3. **TileWMS.js** - The issue involves WMS layers and their attributions. This file might need changes to properly manage attribution visibility based on group and sub-layer visibility settings.",
+        "bug_scenario": "The image shows a map interface where there's a group layer control (\"SEZON OFF/ON\") that is turned off, but a sub-layer (\"budynki sezon\") is visible. Despite the group layer being invisible, the attributions for the sub-layer (\"SEZON: Budynki\") are still displayed in the info popup, which should not happen."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/layer/Group.js",
+            "src/ol/layer/Layer.js",
+            "src/ol/source/TileWMS.js",
+            "src/ol/control/Attribution.js"
+        ],
+        "explanation": "1. **src/ol/layer/Group.js**: This file likely manages the visibility logic for group layers, which is central to the bug where the group-layer visibility affects the attributions.\n2. **src/ol/layer/Layer.js**: Handles the general layer visibility which is crucial in determining if attributions should be shown.\n3. **src/ol/source/TileWMS.js**: Since the attribution is from a WMS layer, this file is relevant for managing WMS layer sources and their attributions.\n4. **src/ol/control/Attribution.js**: Manages the display of attributions, and is likely involved in controlling whether they are shown based on layer visibility.",
+        "bug_scenario": "The bug involves an attribution text from a WMS layer being displayed in an info popup when the group-layer visibility is set to false, but the sub-layer visibility is set to true. This should not happen as the group-layer is invisible, and the expectation is that its attributions should not be displayed."
+    }
+}

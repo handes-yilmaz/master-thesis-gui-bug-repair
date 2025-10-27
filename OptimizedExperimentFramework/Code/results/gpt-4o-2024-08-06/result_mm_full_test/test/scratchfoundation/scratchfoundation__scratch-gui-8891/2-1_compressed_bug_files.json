@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_file": "src/components/button/button.jsx",
+        "compressed": "NO",
+        "line_numbers": 54,
+        "compressed_line_numbers": 54,
+        "compressed_bug_file_content": "import classNames from 'classnames';\nimport PropTypes from 'prop-types';\nimport React from 'react';\n\nimport styles from './button.css';\n\nconst ButtonComponent = ({\n    className,\n    disabled,\n    iconClassName,\n    iconSrc,\n    onClick,\n    children,\n    ...props\n}) => {\n\n    if (disabled) {\n        onClick = function () {};\n    }\n\n    const icon = iconSrc && (\n        <img\n            className={classNames(iconClassName, styles.icon)}\n            draggable={false}\n            src={iconSrc}\n        />\n    );\n\n    return (\n        <span\n            className={classNames(\n                styles.outlinedButton,\n                className\n            )}\n            role=\"button\"\n            onClick={onClick}\n            {...props}\n        >\n            {icon}\n            <div className={styles.content}>{children}</div>\n        </span>\n    );\n};\n\nButtonComponent.propTypes = {\n    children: PropTypes.node,\n    className: PropTypes.string,\n    disabled: PropTypes.bool,\n    iconClassName: PropTypes.string,\n    iconSrc: PropTypes.string,\n    onClick: PropTypes.func\n};\n\nexport default ButtonComponent;"
+    },
+    "2": {
+        "bug_file": "src/components/icon-button/icon-button.jsx",
+        "compressed": "NO",
+        "line_numbers": 41,
+        "compressed_line_numbers": 41,
+        "compressed_bug_file_content": "import PropTypes from 'prop-types';\nimport React from 'react';\nimport classNames from 'classnames';\nimport styles from './icon-button.css';\n\nconst IconButton = ({\n    img,\n    disabled,\n    className,\n    title,\n    onClick\n}) => (\n    <div\n        className={classNames(\n            styles.container,\n            className,\n            disabled ? styles.disabled : null\n        )}\n        role=\"button\"\n        onClick={disabled ? null : onClick}\n    >\n        <img\n            className={styles.icon}\n            draggable={false}\n            src={img}\n        />\n        <div className={styles.title}>\n            {title}\n        </div>\n    </div>\n);\n\nIconButton.propTypes = {\n    className: PropTypes.string,\n    disabled: PropTypes.bool,\n    img: PropTypes.string,\n    onClick: PropTypes.func.isRequired,\n    title: PropTypes.node.isRequired\n};\n\nexport default IconButton;"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler",
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler.prototype.execute",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js//UpdatePropertiesHandler.prototype.revert",
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler.prototype.execute",
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js//UpdateModdlePropertiesHandler.prototype.revert"
+        ],
+        "explanation": "The classes and functions identified are responsible for handling property updates in BPMN elements. The `UpdatePropertiesHandler` class and its `execute` and `revert` methods manage the setting and reverting of properties on BPMN elements, which is directly related to the issue of properties being lost when changing multi-instance configurations. Similarly, the `UpdateModdlePropertiesHandler` class and its methods handle the updating and reverting of moddle properties, which are likely involved in managing the underlying data structure of the BPMN elements. The bug likely arises from these handlers not correctly preserving or transferring properties when switching between parallel and sequential multi-instance configurations.",
+        "bug_scenario": "The bug scenario involves losing multi-instance properties when switching between parallel and sequential configurations in a BPMN model. The user creates a sub-process, adds a parallel multi-instance, sets a loop cardinality, and then changes to a sequential multi-instance, resulting in the loss of multi-instance properties."
+    }
+}

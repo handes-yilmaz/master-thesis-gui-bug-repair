@@ -1,0 +1,29 @@
+diff --git a/core/lib/emulation.js b/core/lib/emulation.js
+index 288a677..df9da75 100644
+--- a/core/lib/emulation.js
++++ b/core/lib/emulation.js
+@@ -32,6 +32,12 @@ function parseUseragentIntoMetadata(userAgent, formFactor) {
+     {brand: 'Lighthouse', version: lighthouseVersion},
+   ];
+ 
++  const realDeviceDetails = {
++    platform: 'Android',
++    platformVersion: 'unknown',
++    architecture: '',
++    model: 'Real Device',
++  };
+   const motoG4Details = {
+     platform: 'Android',
+     platformVersion: '6.0',
+@@ -49,10 +55,7 @@ function parseUseragentIntoMetadata(userAgent, formFactor) {
+   return {
+     brands,
+     fullVersion,
+-    // Since config users can supply a custom useragent, they likely are emulating something
+-    // other than Moto G4 and MacOS Desktop.
+-    // TODO: Determine how to thoughtfully expose this metadata/client-hints configurability.
+-    ...(mobile ? motoG4Details : macDesktopDetails),
++    ...(settings.emulatedUserAgent === false ? realDeviceDetails : (mobile ? motoG4Details : macDesktopDetails)),
+     mobile,
+   };
+ }

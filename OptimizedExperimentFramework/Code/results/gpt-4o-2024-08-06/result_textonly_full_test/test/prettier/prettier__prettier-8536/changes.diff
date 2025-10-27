@@ -1,0 +1,26 @@
+diff --git a/src/document/doc-printer.js b/src/document/doc-printer.js
+index 67a5b71..6c46729 100644
+--- a/src/document/doc-printer.js
++++ b/src/document/doc-printer.js
+@@ -117,7 +117,7 @@ function trim(out) {
+ 
+   let trimCount = 0;
+ 
+-  // Trim whitespace at the end of line
++  // Trim whitespace and extra newlines at the end of line
+   while (
+     out.length > 0 &&
+     typeof out[out.length - 1] === "string" &&
+@@ -132,6 +132,12 @@ function trim(out) {
+     out[out.length - 1] = trimmed;
+   }
+ 
++  // Remove extra newline if present
++  if (out.length > 0 && out[out.length - 1] === "\n") {
++    out.pop();
++    trimCount++;
++  }
++
+   return trimCount;
+ }
+ 

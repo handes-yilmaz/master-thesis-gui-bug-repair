@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "src/ol/proj/epsg3857.js": [
+            {
+                "SEARCH": [
+                    "let y = RADIUS * Math.log(Math.tan((Math.PI * (+input[i + 1] + 90)) / 360));",
+                    "if (y > MAX_SAFE_Y) {",
+                    "y = MAX_SAFE_Y;",
+                    "} else if (y < -MAX_SAFE_Y) {",
+                    "y = -MAX_SAFE_Y;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    let latitude = +input[i + 1];",
+                    "    if (latitude === Infinity || latitude === -Infinity) {",
+                    "      y = latitude > 0 ? MAX_SAFE_Y : -MAX_SAFE_Y;",
+                    "    } else {",
+                    "      y = RADIUS * Math.log(Math.tan((Math.PI * (latitude + 90)) / 360));",
+                    "      if (y > MAX_SAFE_Y) {",
+                    "        y = MAX_SAFE_Y;",
+                    "      } else if (y < -MAX_SAFE_Y) {",
+                    "        y = -MAX_SAFE_Y;",
+                    "      }",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

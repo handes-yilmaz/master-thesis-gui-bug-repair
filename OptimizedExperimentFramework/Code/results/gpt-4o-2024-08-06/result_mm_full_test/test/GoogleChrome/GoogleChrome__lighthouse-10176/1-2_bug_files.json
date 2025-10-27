@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/stack-collector.js",
+            "lighthouse-core/lib/stack-packs.js",
+            "lighthouse-core/audits/dobetterweb/js-libraries.js"
+        ],
+        "explanation": "1. `lighthouse-core/lib/stack-collector.js`: This file is mentioned in the bug report as having 'superloose coupling' that needs upgrading with real `id` properties to address the duplication issue.\n2. `lighthouse-core/lib/stack-packs.js`: This file likely handles the stack packs logic, including identification and rendering, so changes here could help in managing duplicates.\n3. `lighthouse-core/audits/dobetterweb/js-libraries.js`: Since the issue is related to JavaScript libraries, this file is relevant as it contains logic for auditing JavaScript libraries, potentially leading to the duplication of stack packs.",
+        "bug_scenario": "The bug involves duplicated stack packs appearing in the Lighthouse report when analyzing a page. The images show a duplication of React stack packs under the 'Minify JavaScript' recommendation, and the Lighthouse JSON output confirms two identical entries for React in the stackPacks array."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/lib/stack-collector.js",
+            "lighthouse-core/audits/dobetterweb/js-libraries.js",
+            "lighthouse-core/lib/stack-packs.js"
+        ],
+        "explanation": "1. `lighthouse-core/lib/stack-collector.js`: This file likely manages the collection of stack pack data. The bug report mentions a need to upgrade loose coupling here, suggesting changes are needed to properly handle stack pack IDs and avoid duplication.\n2. `lighthouse-core/audits/dobetterweb/js-libraries.js`: As the bug involves JavaScript libraries and stack pack detection, this file is relevant since it audits JavaScript libraries and may need adjustments to handle the detection logic properly.\n3. `lighthouse-core/lib/stack-packs.js`: This file handles stack packs, which are duplicated in the reported scenario. Modifications here might be necessary to manage and display stack packs correctly, ensuring no duplicates.",
+        "bug_scenario": "The bug involves duplicated stack packs in the Lighthouse report. Specifically, there are two stack packs related to React, which appears to be an unintended behavior due to new 'Fast Path' checks added to the js-library-detector. The issue causes duplicate entries to show in the audit report, such as in the 'Minify JavaScript' section, which is confusing for users."
+    }
+}

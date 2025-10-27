@@ -1,0 +1,113 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "SubProcessPlaneBehavior.prototype._moveChildrenToShape",
+            "file_path": "lib/features/modeling/behavior/SubProcessPlaneBehavior.js",
+            "function_details": [
+                {
+                    "name": "SubProcessPlaneBehavior.prototype._moveChildrenToShape",
+                    "start_line": 289,
+                    "end_line": 332
+                }
+            ],
+            "function_code": [
+                "SubProcessPlaneBehavior.prototype._moveChildrenToShape = function(source, target) {",
+                "  var modeling = this._modeling;",
+                "",
+                "  var children = source.children;",
+                "  var offset;",
+                "",
+                "  if (!children) {",
+                "    return;",
+                "  }",
+                "",
+                "  // Only change plane if there are no visible children, but don't move them",
+                "  var visibleChildren = children.filter(function(child) {",
+                "    return !child.hidden;",
+                "  });",
+                "",
+                "  if (!visibleChildren.length) {",
+                "    modeling.moveElements(children, { x: 0, y: 0 }, target, { autoResize: false });",
+                "    return;",
+                "  }",
+                "",
+                "  // target is a plane",
+                "  if (!target.x) {",
+                "    offset = {",
+                "      x: DEFAULT_POSITION.x - source.x ,",
+                "      y: DEFAULT_POSITION.y - source.y",
+                "    };",
+                "  }",
+                "",
+                "  // source is a plane",
+                "  else {",
+                "",
+                "    // move relative to the center of the shape",
+                "    var targetMid = getMid(target);",
+                "    var childrenBounds = getBBox(visibleChildren);",
+                "    var childrenMid = getMid(childrenBounds);",
+                "",
+                "    offset = {",
+                "      x: targetMid.x - childrenMid.x,",
+                "      y: targetMid.y - childrenMid.y",
+                "    };",
+                "  }",
+                "",
+                "  modeling.moveElements(children, offset, target, { autoResize: false });",
+                "};"
+            ]
+        },
+        "2": {
+            "function_name": "SubProcessPlaneBehavior.prototype._addDiagram",
+            "file_path": "lib/features/modeling/behavior/SubProcessPlaneBehavior.js",
+            "function_details": [
+                {
+                    "name": "SubProcessPlaneBehavior.prototype._addDiagram",
+                    "start_line": 366,
+                    "end_line": 377
+                }
+            ],
+            "function_code": [
+                "SubProcessPlaneBehavior.prototype._addDiagram = function(planeElement) {",
+                "  var bpmnjs = this._bpmnjs;",
+                "  var diagrams = bpmnjs.getDefinitions().diagrams;",
+                "",
+                "  if (!planeElement.businessObject) {",
+                "    planeElement = this._createNewDiagram(planeElement);",
+                "  }",
+                "",
+                "  diagrams.push(planeElement.di.$parent);",
+                "",
+                "  return planeElement;",
+                "};"
+            ]
+        },
+        "3": {
+            "function_name": "SubProcessPlaneBehavior.prototype._removeDiagram",
+            "file_path": "lib/features/modeling/behavior/SubProcessPlaneBehavior.js",
+            "function_details": [
+                {
+                    "name": "SubProcessPlaneBehavior.prototype._removeDiagram",
+                    "start_line": 418,
+                    "end_line": 430
+                }
+            ],
+            "function_code": [
+                "SubProcessPlaneBehavior.prototype._removeDiagram = function(rootElement) {",
+                "  var bpmnjs = this._bpmnjs;",
+                "",
+                "  var diagrams = bpmnjs.getDefinitions().diagrams;",
+                "",
+                "  var removedDiagram = find(diagrams, function(diagram) {",
+                "    return diagram.plane.bpmnElement.id === rootElement.id;",
+                "  });",
+                "",
+                "  diagrams.splice(diagrams.indexOf(removedDiagram), 1);",
+                "",
+                "  return removedDiagram;",
+                "};"
+            ]
+        }
+    }
+}

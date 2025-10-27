@@ -1,0 +1,15 @@
+diff --git a/src/ol/render/canvas/TextBuilder.js b/src/ol/render/canvas/TextBuilder.js
+index ab9cfc1..227c44c 100644
+--- a/src/ol/render/canvas/TextBuilder.js
++++ b/src/ol/render/canvas/TextBuilder.js
+@@ -357,8 +357,8 @@ class CanvasTextBuilder extends CanvasBuilder {
+     const pixelRatio = this.pixelRatio;
+     const baseline = TEXT_ALIGN[textState.textBaseline];
+ 
+-    const offsetY = this.textOffsetY_ * pixelRatio;
+-    const text = this.text_;
++    const offsetY = (this.textOffsetY_ - (textState.font.includes('px') ? parseInt(textState.font) / 4 : 0)) * pixelRatio;
++    const text = this.text_.replace(/\n/g, '');
+     const textScale = textState.scale;
+     const strokeWidth = strokeState ? strokeState.lineWidth * textScale / 2 : 0;
+ 

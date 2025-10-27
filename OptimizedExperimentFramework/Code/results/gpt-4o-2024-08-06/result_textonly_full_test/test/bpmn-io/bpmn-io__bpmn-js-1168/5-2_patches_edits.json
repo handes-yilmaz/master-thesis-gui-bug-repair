@@ -1,0 +1,23 @@
+{
+    "1/1": {
+        "lib/features/copy-paste/BpmnCopyPaste.js": [
+            {
+                "SEARCH": [
+                    "eventBus.on('copyPaste.copyElement', LOW_PRIORITY, function(context) {",
+                    "var descriptor = context.descriptor,",
+                    "element = context.element;"
+                ],
+                "REPLACE": [
+                    "  eventBus.on('copyPaste.copyElement', LOW_PRIORITY, function(context) {",
+                    "    var descriptor = context.descriptor,",
+                    "        element = context.element;",
+                    "",
+                    "    // Prevent direct editing activation after pasting",
+                    "    if (element && element.businessObject) {",
+                    "      element.businessObject.di.isEditing = false;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

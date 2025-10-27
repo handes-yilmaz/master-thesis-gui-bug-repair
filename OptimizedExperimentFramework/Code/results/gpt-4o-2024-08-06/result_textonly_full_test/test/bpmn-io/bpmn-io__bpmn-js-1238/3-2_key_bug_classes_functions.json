@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js//UpdateSemanticParentHandler",
+            "lib/features/modeling/BpmnUpdater.js//BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js//execute",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js//revert",
+            "lib/features/modeling/BpmnUpdater.js//updateSemanticParent",
+            "lib/features/modeling/BpmnUpdater.js//updateDiParent"
+        ],
+        "explanation": "The classes and functions identified are responsible for updating the semantic and DI (Diagram Interchange) parents of elements in a BPMN model. The `UpdateSemanticParentHandler` class, with its `execute` and `revert` functions, directly handles the updating of semantic and DI parents when elements are moved. The `BpmnUpdater` class contains methods like `updateSemanticParent` and `updateDiParent`, which are crucial for ensuring that the parent references are correctly updated in both the semantic model and the diagram interchange model. These elements are directly related to the bug because the issue arises from the failure to update these parent references when moving elements, leading to unintended deletions.",
+        "bug_scenario": "The bug scenario involves moving the source and target of an association out of a subprocess, but the association's parent remains the subprocess. Consequently, deleting the subprocess also deletes the association, which is not the intended behavior. The association's parent should be updated when the source/target is moved to a new parent."
+    }
+}

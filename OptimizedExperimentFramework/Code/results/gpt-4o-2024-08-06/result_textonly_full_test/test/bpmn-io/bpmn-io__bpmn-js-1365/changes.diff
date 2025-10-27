@@ -1,0 +1,60 @@
+diff --git a/lib/features/modeling/Modeling.js b/lib/features/modeling/Modeling.js
+index 4af7d06..c768acb 100644
+--- a/lib/features/modeling/Modeling.js
++++ b/lib/features/modeling/Modeling.js
+@@ -85,6 +85,11 @@ Modeling.prototype.connect = function(source, target, attrs, hints) {
+ 
+ 
+ Modeling.prototype.updateProperties = function(element, properties) {
++  // Ensure isCollection property is handled
++  if (properties.hasOwnProperty('isCollection')) {
++    properties.isCollection = !!properties.isCollection; // Ensure boolean value
++  }
++
+   this._commandStack.execute('element.updateProperties', {
+     element: element,
+     properties: properties
+diff --git a/lib/features/modeling/behavior/CreateDataObjectBehavior.js b/lib/features/modeling/behavior/CreateDataObjectBehavior.js
+index 57532fe..4cd62db 100644
+--- a/lib/features/modeling/behavior/CreateDataObjectBehavior.js
++++ b/lib/features/modeling/behavior/CreateDataObjectBehavior.js
+@@ -24,6 +24,9 @@ export default function CreateDataObjectBehavior(eventBus, bpmnFactory, moddle)
+ 
+       // set the reference to the DataObject
+       shape.businessObject.dataObjectRef = dataObject;
++
++      // initialize isCollection property
++      dataObject.isCollection = false;
+     }
+   });
+ 
+@@ -35,4 +38,4 @@ CreateDataObjectBehavior.$inject = [
+   'moddle'
+ ];
+ 
+-inherits(CreateDataObjectBehavior, CommandInterceptor);
+\ No newline at end of file
++inherits(CreateDataObjectBehavior, CommandInterceptor);
+diff --git a/lib/features/modeling/cmd/UpdatePropertiesHandler.js b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+index b9d3553..b0cfab9 100644
+--- a/lib/features/modeling/cmd/UpdatePropertiesHandler.js
++++ b/lib/features/modeling/cmd/UpdatePropertiesHandler.js
+@@ -99,6 +99,11 @@ UpdatePropertiesHandler.prototype.execute = function(context) {
+   // update properties
+   setProperties(businessObject, properties);
+ 
++  // handle isCollection property
++  if (properties.hasOwnProperty('isCollection')) {
++    businessObject.isCollection = properties.isCollection;
++  }
++
+   // store old values
+   context.oldProperties = oldProperties;
+   context.changed = changed;
+@@ -232,4 +237,4 @@ function unwrapBusinessObjects(properties) {
+   });
+ 
+   return unwrappedProps;
+-}
+\ No newline at end of file
++}

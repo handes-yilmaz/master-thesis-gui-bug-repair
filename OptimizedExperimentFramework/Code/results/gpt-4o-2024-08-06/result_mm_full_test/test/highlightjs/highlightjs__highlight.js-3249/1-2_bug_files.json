@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/latex.js"
+        ],
+        "explanation": "The issue is related to how magic comments are processed for LaTeX. The file `src/languages/latex.js` is responsible for defining the language rules for LaTeX highlighting, including the `MAGIC_COMMENT` rule. Adjustments need to be made here to ensure that the matching for magic comments is case insensitive.",
+        "bug_scenario": "The bug relates to TeX magic comments not being case insensitive in the LaTeX language highlighting. The issue is that only one of the lines containing 'TeX' is highlighted as a 'MAGIC_COMMENT', while the other is not due to a case sensitivity mismatch ('TeX' vs. 'TEX'). Both lines should be highlighted similarly as magic comments, regardless of case."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/latex.js"
+        ],
+        "explanation": "The issue is related to the handling of TeX magic comments, which are defined in the LaTeX language file. The file 'src/languages/latex.js' is responsible for defining the syntax highlighting rules for LaTeX, including the handling of magic comments. The fix would involve modifying this file to ensure that the magic comment rule treats 'TeX' and 'TEX' as equivalent, thereby making it case insensitive.",
+        "bug_scenario": "The bug involves the handling of TeX magic comments in LaTeX files, which should be case insensitive. Currently, only comments with 'TeX' are highlighted, while 'TEX' is not, causing inconsistent behavior in the highlighting process."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/font-display.js//FontDisplay",
+            "lighthouse-core/gather/gatherers/css-usage.js//CSSUsage"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/font-display.js//findFontDisplayDeclarations",
+            "lighthouse-core/audits/font-display.js//audit"
+        ],
+        "explanation": "The 'FontDisplay' class in 'lighthouse-core/audits/font-display.js' is directly related to the bug because it is responsible for auditing the 'font-display' property of web fonts. The 'findFontDisplayDeclarations' function within this class is crucial as it attempts to find and evaluate 'font-display' declarations in stylesheets, which is the core of the reported issue. The 'audit' function is also relevant as it processes the results of the 'findFontDisplayDeclarations' function and generates the audit report, including warnings about undeclared font URLs. The 'CSSUsage' class in 'lighthouse-core/gather/gatherers/css-usage.js' is involved because it gathers information about CSS usage, including stylesheets, which is necessary for the 'FontDisplay' audit to function correctly. The issue likely stems from a failure in gathering or processing the necessary CSS data to check 'font-display' values.",
+        "bug_scenario": "The bug scenario involves audit warnings related to the 'font-display' property for web fonts when using Lighthouse. The warnings indicate that Lighthouse is unable to automatically check the 'font-display' value for certain font URLs, suggesting that the CSSUsage artifact does not have any stylesheets referencing these fonts. This issue was noticed during a migration to a flatten protocol, and it is marked as a pre-existing bug."
+    }
+}

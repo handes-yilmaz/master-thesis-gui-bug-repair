@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "core/gather/driver/execution-context.js",
+            "core/gather/driver/network-monitor.js",
+            "core/gather/driver/navigation.js"
+        ],
+        "explanation": "1. **core/gather/driver/execution-context.js**: This file manages the execution context within the browser, including the creation and management of isolated contexts. The issue with 'processPseudoId' instead of 'processId' could be related to how execution contexts are being managed or identified, which is handled in this file.\n\n2. **core/gather/driver/network-monitor.js**: This file is responsible for monitoring network events and managing frame navigations. The 'FrameCommittedInBrowser' event, which is central to the bug, is likely handled or monitored here, making it a key file in understanding why 'processPseudoId' is being used.\n\n3. **core/gather/driver/navigation.js**: This file deals with navigation events and the management of URLs and frames. Since the bug involves frame navigation and the incorrect assignment of process IDs, this file is relevant as it might be involved in the handling of frame navigation events and the assignment of process IDs.",
+        "bug_scenario": "The bug scenario involves an error in the Lighthouse tool where it is unable to determine the thread ID (tid) for the renderer process. This issue arises because the 'FrameCommittedInBrowser' event is returning a 'processPseudoId' instead of a 'processId'. As a result, the 'mainFramePids' only contains 'undefined', leading to the error message: 'Unable to determine tid for renderer process'."
+    }
+}

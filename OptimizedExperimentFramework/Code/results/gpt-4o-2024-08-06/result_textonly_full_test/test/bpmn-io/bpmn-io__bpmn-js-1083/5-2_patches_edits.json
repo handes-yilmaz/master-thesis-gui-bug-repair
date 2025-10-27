@@ -1,0 +1,58 @@
+{
+    "1/1": {
+        "lib/features/snapping/BpmnConnectSnapping.js": [
+            {
+                "SEARCH": [
+                    "if (/top|bottom/.test(orientation)) {",
+                    "snappingAxes.push('x');",
+                    "}",
+                    "",
+                    "if (/left|right/.test(orientation)) {",
+                    "snappingAxes.push('y');",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (/top|bottom/.test(orientation)) {",
+                    "    snappingAxes.push('y');",
+                    "  }",
+                    "",
+                    "  if (/left|right/.test(orientation)) {",
+                    "    snappingAxes.push('x');",
+                    "  }"
+                ]
+            }
+        ],
+        "lib/features/snapping/BpmnCreateMoveSnapping.js": [
+            {
+                "SEARCH": [
+                    "if (/top/.test(direction)) {",
+                    "setSnapped(event, 'y', targetTRBL.top);",
+                    "} else",
+                    "if (/bottom/.test(direction)) {",
+                    "setSnapped(event, 'y', targetTRBL.bottom);",
+                    "}",
+                    "",
+                    "if (/left/.test(direction)) {",
+                    "setSnapped(event, 'x', targetTRBL.left);",
+                    "} else",
+                    "if (/right/.test(direction)) {",
+                    "setSnapped(event, 'x', targetTRBL.right);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (/top/.test(direction)) {",
+                    "    setSnapped(event, 'y', targetTRBL.top);",
+                    "  } else if (/bottom/.test(direction)) {",
+                    "    setSnapped(event, 'y', targetTRBL.bottom);",
+                    "  }",
+                    "",
+                    "  if (/left/.test(direction)) {",
+                    "    setSnapped(event, 'x', targetTRBL.left);",
+                    "  } else if (/right/.test(direction)) {",
+                    "    setSnapped(event, 'x', targetTRBL.right);",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

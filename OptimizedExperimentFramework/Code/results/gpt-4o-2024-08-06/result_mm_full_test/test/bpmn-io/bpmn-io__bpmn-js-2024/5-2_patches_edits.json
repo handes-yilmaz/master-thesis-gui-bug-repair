@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "lib/draw/BpmnRenderer.js": [
+            {
+                "SEARCH": [
+                    "BpmnRenderer.prototype.drawShape = function(parentGfx, element, attrs = {}) {",
+                    "var { type } = element;",
+                    "",
+                    "var handler = this._renderer(type);",
+                    "",
+                    "return handler(parentGfx, element, attrs);",
+                    "};"
+                ],
+                "REPLACE": [
+                    "BpmnRenderer.prototype.drawShape = function(parentGfx, element, attrs = {}) {",
+                    "  var { type, di } = element;",
+                    "",
+                    "  // Check if the element is a pool and if it is vertical",
+                    "  if (is(element, 'bpmn:Participant') && di.isHorizontal === false) {",
+                    "    // Adjust rendering logic for vertical pool",
+                    "    attrs = { ...attrs, transform: 'rotate(-90)' };",
+                    "  }",
+                    "",
+                    "  var handler = this._renderer(type);",
+                    "",
+                    "  return handler(parentGfx, element, attrs);",
+                    "};"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "1/1": {
+        "lib/features/copy-paste/BpmnCopyPaste.js": [
+            {
+                "SEARCH": [
+                    "eventBus.on('copyPaste.copyElement', LOW_PRIORITY, function(context) {",
+                    "var descriptor = context.descriptor,",
+                    "element = context.element;"
+                ],
+                "REPLACE": [
+                    "  eventBus.on('copyPaste.copyElement', LOW_PRIORITY, function(context) {",
+                    "    var descriptor = context.descriptor,",
+                    "        element = context.element;",
+                    "",
+                    "    // Check if the element can be pasted onto the target",
+                    "    if (!canPaste(element, context.target)) {",
+                    "      context.preventDefault();",
+                    "      return;",
+                    "    }"
+                ]
+            }
+        ],
+        "lib/features/rules/BpmnRules.js": [
+            {
+                "SEARCH": [
+                    "return false;",
+                    "}",
+                    "",
+                    "function isDroppableBoundaryEvent(event) {"
+                ],
+                "REPLACE": [
+                    "  return false;",
+                    "}",
+                    "",
+                    "function canPaste(element, target) {",
+                    "  // Disallow pasting typed start events onto subprocesses",
+                    "  if (is(element, 'bpmn:StartEvent') && hasOneOfEventDefinitions(element, [",
+                    "    'bpmn:MessageEventDefinition',",
+                    "    'bpmn:TimerEventDefinition',",
+                    "    'bpmn:SignalEventDefinition',",
+                    "    'bpmn:ConditionalEventDefinition'",
+                    "  ]) && is(target, 'bpmn:SubProcess')) {",
+                    "    return false;",
+                    "  }",
+                    "  return true;",
+                    "}",
+                    "",
+                    "function isDroppableBoundaryEvent(event) {"
+                ]
+            }
+        ]
+    }
+}

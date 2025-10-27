@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/computed/critical-request-chains.js": [
+            {
+                "SEARCH": [
+                    "static isCritical(request) {",
+                    "const resourceTypeCategory = request._resourceType && request._resourceType._category;",
+                    "",
+                    "// XHRs are fetched at High priority, but we exclude them, as they are unlikely to be critical",
+                    "// Images are also non-critical.",
+                    "// Treat any images missed by category, primarily favicons, as non-critical resources",
+                    "const nonCriticalResourceTypes = [",
+                    "WebInspector.resourceTypes.Image._category,",
+                    "WebInspector.resourceTypes.XHR._category,",
+                    "];",
+                    "if (nonCriticalResourceTypes.includes(resourceTypeCategory) ||",
+                    "request.mimeType && request.mimeType.startsWith('image/')) {",
+                    "return false;",
+                    "}",
+                    "",
+                    "return ['VeryHigh', 'High', 'Medium'].includes(request.priority());",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  static isCritical(request) {",
+                    "    const resourceTypeCategory = request._resourceType && request._resourceType._category;",
+                    "",
+                    "    // XHRs are fetched at High priority, but we exclude them, as they are unlikely to be critical",
+                    "    // Images and iframes are also non-critical.",
+                    "    // Treat any images missed by category, primarily favicons, as non-critical resources",
+                    "    const nonCriticalResourceTypes = [",
+                    "      WebInspector.resourceTypes.Image._category,",
+                    "      WebInspector.resourceTypes.XHR._category,",
+                    "      WebInspector.resourceTypes.Document._category, // Exclude iframes",
+                    "    ];",
+                    "    if (nonCriticalResourceTypes.includes(resourceTypeCategory) ||",
+                    "        request.mimeType && request.mimeType.startsWith('image/') ||",
+                    "        request.url.startsWith('data:')) { // Exclude data URIs",
+                    "      return false;",
+                    "    }",
+                    "",
+                    "    return ['VeryHigh', 'High', 'Medium'].includes(request.priority());",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

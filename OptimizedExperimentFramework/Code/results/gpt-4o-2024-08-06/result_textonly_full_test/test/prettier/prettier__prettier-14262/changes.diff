@@ -1,0 +1,14 @@
+diff --git a/src/language-js/needs-parens.js b/src/language-js/needs-parens.js
+index 7f62380..5ba7f1b 100644
+--- a/src/language-js/needs-parens.js
++++ b/src/language-js/needs-parens.js
+@@ -132,7 +132,8 @@ function needsParens(path, options) {
+     node.type === "FunctionExpression" ||
+     node.type === "ClassExpression" ||
+     node.type === "DoExpression" ||
+-    (node.type === "ObjectExpression" && path.getParentNode().type === "JSDocComment")
++    (node.type === "ObjectExpression" && path.getParentNode().type === "JSDocComment") ||
++    (node.type === "ObjectExpression" && path.getParentNode().type === "TSSatisfiesExpression")
+   ) {
+     const expression = path.findAncestor(
+       (node) => node.type === "ExpressionStatement"

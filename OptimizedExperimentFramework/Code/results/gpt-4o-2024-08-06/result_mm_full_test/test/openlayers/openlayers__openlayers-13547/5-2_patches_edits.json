@@ -1,0 +1,59 @@
+{
+    "1/1": {
+        "src/ol/source/XYZ.js": [
+            {
+                "SEARCH": [
+                    "super({",
+                    "attributions: options.attributions,",
+                    "cacheSize: options.cacheSize,",
+                    "crossOrigin: options.crossOrigin,"
+                ],
+                "REPLACE": [
+                    "    /** @private */",
+                    "    this.gutter_ = options.gutter !== undefined ? options.gutter : 0;",
+                    "",
+                    "    super({",
+                    "      attributions: options.attributions,",
+                    "      cacheSize: options.cacheSize,",
+                    "      crossOrigin: options.crossOrigin,"
+                ]
+            }
+        ],
+        "src/ol/source/DataTile.js": [
+            {
+                "SEARCH": [
+                    "super({",
+                    "cacheSize: 0.1, // don't cache on the source",
+                    "attributions: options.attributions,"
+                ],
+                "REPLACE": [
+                    "    /** @private */",
+                    "    this.gutter_ = options.gutter !== undefined ? options.gutter : 0;",
+                    "",
+                    "    super({",
+                    "      cacheSize: 0.1, // don't cache on the source",
+                    "      attributions: options.attributions,"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "this.renderedSource_ = null;",
+                    "",
+                    "/** @type {number} */",
+                    "this.renderedResolution_ = NaN;"
+                ],
+                "REPLACE": [
+                    "    this.renderedSource_ = null;",
+                    "",
+                    "    /** @type {number} */",
+                    "    this.renderedResolution_ = NaN;",
+                    "",
+                    "    /** @private */",
+                    "    this.gutter_ = options.gutter !== undefined ? options.gutter : 0;"
+                ]
+            }
+        ]
+    }
+}

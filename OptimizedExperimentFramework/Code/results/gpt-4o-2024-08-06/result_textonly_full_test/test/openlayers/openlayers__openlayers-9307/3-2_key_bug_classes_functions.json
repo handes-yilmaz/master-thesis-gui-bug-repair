@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Text.js//Text",
+            "src/ol/render/canvas/TextBuilder.js//CanvasTextBuilder"
+        ],
+        "bug_functions": [
+            "src/ol/style/Text.js//setText",
+            "src/ol/render/canvas/TextBuilder.js//drawText"
+        ],
+        "explanation": "The class `Text` in `src/ol/style/Text.js` is responsible for setting text styles for vector features, which includes handling text content and its properties. The `setText` function within this class is directly related to setting the text content, which is where the issue of line spacing might be addressed by modifying how text is processed or rendered.\n\nThe `CanvasTextBuilder` class in `src/ol/render/canvas/TextBuilder.js` is involved in rendering text on the canvas. The `drawText` function within this class is responsible for drawing text, and it handles the placement and rendering of text on the canvas. This function is crucial for addressing the spacing issue as it directly affects how text is drawn, including any gaps between lines. Adjustments in this function could potentially resolve the unwanted spacing by altering how text is rendered or by modifying the text layout logic.",
+        "bug_scenario": "The bug scenario involves an unwanted gap or space between lines of text in a label feature when using the OpenLayers library. The user is unable to find an option in the API to remove this space, which was not present in earlier versions of OpenLayers. The issue is visually represented in the provided image, where the text '3.5' and 'bar' are separated by a gap."
+    }
+}

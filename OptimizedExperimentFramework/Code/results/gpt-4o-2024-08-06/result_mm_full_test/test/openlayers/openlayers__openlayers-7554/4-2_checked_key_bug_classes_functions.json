@@ -1,0 +1,185 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "ol.source.ImageVector.prototype.canvasFunctionInternal_",
+            "file_path": "src/ol/source/imagevector.js",
+            "function_details": [
+                {
+                    "name": "ol.source.ImageVector.prototype.canvasFunctionInternal_",
+                    "start_line": 123,
+                    "end_line": 167
+                }
+            ],
+            "function_code": [
+                "ol.source.ImageVector.prototype.canvasFunctionInternal_ = function(extent, resolution, pixelRatio, size, projection) {",
+                "  var replayGroup = new ol.render.canvas.ReplayGroup(",
+                "      ol.renderer.vector.getTolerance(resolution, pixelRatio), extent,",
+                "      resolution, pixelRatio, this.source_.getOverlaps(), this.declutterTree_, this.renderBuffer_);",
+                "",
+                "  // Load features only if they are not already loaded",
+                "  if (!this.source_.isFeaturesLoaded(extent, resolution, projection)) {",
+                "    this.source_.loadFeatures(extent, resolution, projection);",
+                "  }",
+                "",
+                "  var loading = false;",
+                "  this.source_.forEachFeatureInExtent(extent,",
+                "      function(feature) {",
+                "        loading = loading ||",
+                "            this.renderFeature_(feature, resolution, pixelRatio, replayGroup);",
+                "      }, this);",
+                "  replayGroup.finish();",
+                "",
+                "  if (loading) {",
+                "    return null;",
+                "  }",
+                "",
+                "  if (loading) {",
+                "    return null;",
+                "  }",
+                "",
+                "  if (this.canvasSize_[0] != size[0] || this.canvasSize_[1] != size[1]) {",
+                "    this.canvasContext_.canvas.width = size[0];",
+                "    this.canvasContext_.canvas.height = size[1];",
+                "    this.canvasSize_[0] = size[0];",
+                "    this.canvasSize_[1] = size[1];",
+                "  } else {",
+                "    this.canvasContext_.clearRect(0, 0, size[0], size[1]);",
+                "  }",
+                "",
+                "  this.declutterTree_.clear();",
+                "",
+                "  var transform = this.getTransform_(ol.extent.getCenter(extent),",
+                "      resolution, pixelRatio, size);",
+                "  replayGroup.replay(this.canvasContext_, transform, 0, {});",
+                "",
+                "  this.replayGroup_ = replayGroup;",
+                "",
+                "  return this.canvasContext_.canvas;",
+                "};"
+            ]
+        },
+        "2": {
+            "function_name": "ol.source.ImageVector.prototype.renderFeature_",
+            "file_path": "src/ol/source/imagevector.js",
+            "function_details": [
+                {
+                    "name": "ol.source.ImageVector.prototype.renderFeature_",
+                    "start_line": 278,
+                    "end_line": 300
+                }
+            ],
+            "function_code": [
+                "ol.source.ImageVector.prototype.renderFeature_ = function(feature, resolution, pixelRatio, replayGroup) {",
+                "  var styles;",
+                "  var styleFunction = feature.getStyleFunction();",
+                "  if (styleFunction) {",
+                "    styles = styleFunction.call(feature, resolution);",
+                "  } else if (this.styleFunction_) {",
+                "    styles = this.styleFunction_(feature, resolution);",
+                "  }",
+                "  if (!styles) {",
+                "    return false;",
+                "  }",
+                "  var i, ii, loading = false;",
+                "  if (!Array.isArray(styles)) {",
+                "    styles = [styles];",
+                "  }",
+                "  for (i = 0, ii = styles.length; i < ii; ++i) {",
+                "    loading = ol.renderer.vector.renderFeature(",
+                "        replayGroup, feature, styles[i],",
+                "        ol.renderer.vector.getSquaredTolerance(resolution, pixelRatio),",
+                "        this.handleImageChange_, this) || loading;",
+                "  }",
+                "  return loading;",
+                "};"
+            ]
+        },
+        "3": {
+            "function_name": "ol.interaction.Draw.prototype.modifyDrawing_",
+            "file_path": "src/ol/interaction/draw.js",
+            "function_details": [
+                {
+                    "name": "ol.interaction.Draw.prototype.modifyDrawing_",
+                    "start_line": 532,
+                    "end_line": 571
+                }
+            ],
+            "function_code": [
+                "ol.interaction.Draw.prototype.modifyDrawing_ = function(event) {",
+                "  var coordinate = event.coordinate;",
+                "  var geometry = /** @type {ol.geom.SimpleGeometry} */ (this.sketchFeature_.getGeometry());",
+                "  var coordinates, last;",
+                "  if (this.mode_ === ol.interaction.Draw.Mode_.POINT) {",
+                "    last = this.sketchCoords_;",
+                "  } else if (this.mode_ === ol.interaction.Draw.Mode_.POLYGON) {",
+                "    coordinates = this.sketchCoords_[0];",
+                "    last = coordinates[coordinates.length - 1];",
+                "    if (this.atFinish_(event)) {",
+                "      // snap to finish",
+                "      coordinate = this.finishCoordinate_.slice();",
+                "    }",
+                "  } else {",
+                "    coordinates = this.sketchCoords_;",
+                "    last = coordinates[coordinates.length - 1];",
+                "  }",
+                "  last[0] = coordinate[0];",
+                "  last[1] = coordinate[1];",
+                "  this.geometryFunction_(/** @type {!Array.<ol.Coordinate>} */ (this.sketchCoords_), geometry);",
+                "  if (this.sketchPoint_) {",
+                "    var sketchPointGeom = /** @type {ol.geom.Point} */ (this.sketchPoint_.getGeometry());",
+                "    sketchPointGeom.setCoordinates(coordinate);",
+                "  }",
+                "  var sketchLineGeom;",
+                "  if (geometry instanceof ol.geom.Polygon &&",
+                "      this.mode_ !== ol.interaction.Draw.Mode_.POLYGON) {",
+                "    if (!this.sketchLine_) {",
+                "      this.sketchLine_ = new ol.Feature(new ol.geom.LineString(null));",
+                "    }",
+                "    var ring = geometry.getLinearRing(0);",
+                "    sketchLineGeom = /** @type {ol.geom.LineString} */ (this.sketchLine_.getGeometry());",
+                "    sketchLineGeom.setFlatCoordinates(",
+                "        ring.getLayout(), ring.getFlatCoordinates());",
+                "  } else if (this.sketchLineCoords_) {",
+                "    sketchLineGeom = /** @type {ol.geom.LineString} */ (this.sketchLine_.getGeometry());",
+                "    sketchLineGeom.setCoordinates(this.sketchLineCoords_);",
+                "  }",
+                "  this.updateSketchFeatures_();",
+                "};"
+            ]
+        },
+        "4": {
+            "function_name": "ol.renderer.canvas.VectorLayer.prototype.renderFeature",
+            "file_path": "src/ol/renderer/canvas/vectorlayer.js",
+            "function_details": [
+                {
+                    "name": "ol.renderer.canvas.VectorLayer.prototype.renderFeature",
+                    "start_line": 416,
+                    "end_line": 435
+                }
+            ],
+            "function_code": [
+                "ol.renderer.canvas.VectorLayer.prototype.renderFeature = function(feature, resolution, pixelRatio, styles, replayGroup) {",
+                "  if (!styles) {",
+                "    return false;",
+                "  }",
+                "  var loading = false;",
+                "  if (Array.isArray(styles)) {",
+                "    for (var i = 0, ii = styles.length; i < ii; ++i) {",
+                "      loading = ol.renderer.vector.renderFeature(",
+                "          replayGroup, feature, styles[i],",
+                "          ol.renderer.vector.getSquaredTolerance(resolution, pixelRatio),",
+                "          this.handleStyleImageChange_, this) || loading;",
+                "    }",
+                "  } else {",
+                "    loading = ol.renderer.vector.renderFeature(",
+                "        replayGroup, feature, styles,",
+                "        ol.renderer.vector.getSquaredTolerance(resolution, pixelRatio),",
+                "        this.handleStyleImageChange_, this);",
+                "  }",
+                "  return loading;",
+                "};"
+            ]
+        }
+    }
+}

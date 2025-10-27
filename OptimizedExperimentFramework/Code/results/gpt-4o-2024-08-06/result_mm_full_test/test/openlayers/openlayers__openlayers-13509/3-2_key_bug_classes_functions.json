@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Group.js//LayerGroup",
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Group.js//LayerGroup.getLayerStatesArray",
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer.getLayerState"
+        ],
+        "explanation": "The LayerGroup class in 'src/ol/layer/Group.js' is responsible for managing a collection of layers, including handling visibility changes. The getLayerStatesArray function in this class is crucial because it determines the visibility state of each layer in the group, and any issues here could lead to the WebGlTile layer not respecting the group's visibility setting.\n\nThe WebGLTileLayer class in 'src/ol/layer/WebGLTile.js' is directly related to the WebGlTile layer type that is exhibiting the bug. The getLayerState function in this class is responsible for returning the current state of the layer, including its visibility. If this function does not correctly account for the group's visibility setting, it could result in the layer remaining visible when it should not be.",
+        "bug_scenario": "The bug scenario involves a map with a single layer of type Group containing a single layer of type WebGlTile. When the visibility of the group is set to false after 3 seconds, the WebGlTile layer remains visible, which is unexpected behavior. The issue does not occur when the layer type is changed from WebGlTile to Tile, indicating the problem is specific to WebGlTile layers."
+    }
+}

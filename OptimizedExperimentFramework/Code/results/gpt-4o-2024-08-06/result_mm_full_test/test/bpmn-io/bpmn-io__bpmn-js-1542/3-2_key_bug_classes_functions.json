@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//findNewLabelLineStartIndex",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//getLabelAdjustment",
+            "lib/features/modeling/behavior/LabelBehavior.js//getVisibleLabelAdjustment",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape"
+        ],
+        "explanation": "The error is related to the handling of label positions and connections when a gateway is inserted. The 'findNewLabelLineStartIndex' and 'getLabelAdjustment' functions in 'LabelLayoutUtil.js' are directly involved in calculating label positions based on segment indices, which is where the error occurs. The 'getVisibleLabelAdjustment' function in 'LabelBehavior.js' is responsible for adjusting label positions during connection updates, which may also be affected by undefined segment indices. The 'insertShape' function in 'DropOnFlowBehavior.js' handles the insertion of shapes onto flows, which is the action that triggers the error, indicating a potential issue with how segment indices are managed during this process.",
+        "bug_scenario": "The bug occurs when inserting a gateway onto a flow in a BPMN diagram, causing the editor to crash with a 'Cannot read properties of undefined (reading 'segmentIndex')' error. This happens when the gateway is placed on a specific flow, leading to an unhandled case in the code where 'segmentIndex' is not properly defined or accessed."
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-fsharp.js",
+            "components/prism-fsharp.min.js"
+        ],
+        "explanation": "The files `prism-fsharp.js` and `prism-fsharp.min.js` are responsible for syntax highlighting of F# code. The issue with the `(*)` operator being interpreted as a comment likely originates from these files, as they contain the logic for recognizing and highlighting F# syntax, including operators and comments.",
+        "bug_scenario": "The F# syntax highlighter incorrectly highlights the multiplier operator `(*)` as the start of a multi-line comment `(* ... *)`, causing incorrect syntax highlighting in F# code where `(*)` is used as a function."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-fsharp.js",
+            "components/prism-fsharp.min.js"
+        ],
+        "explanation": "The files `prism-fsharp.js` and `prism-fsharp.min.js` are responsible for the syntax highlighting of F# code in the Prism library. The bug is related to the incorrect handling of the `(*)` operator being mistaken for a comment, which would be addressed in these files by modifying the regular expressions or logic that parse F# syntax, ensuring `(*)` is treated as a valid operator rather than a comment.",
+        "bug_scenario": "In the F# syntax highlighting, the multiplier operator function `(*)` is mistakenly identified as a multi-line comment `(* ... *)`. This causes improper highlighting of F# code that uses `(*)` as a function, as demonstrated in the provided screenshot where the code is not highlighted correctly after the `(*)` function is used."
+    }
+}

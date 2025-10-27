@@ -1,0 +1,38 @@
+{
+    "1/1": {
+        "src/ol/style/Fill.js": [
+            {
+                "SEARCH": [
+                    "this.color_ = color;"
+                ],
+                "REPLACE": [
+                    "    if (color !== null && typeof color === 'object' && 'src' in color) {",
+                    "      // Existing logic for pattern images",
+                    "    } else {",
+                    "      this.color_ = color;",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/renderer/canvas/VectorTileLayer.js": [
+            {
+                "SEARCH": [
+                    "const render = this.prepareTile(tile, pixelRatio, projection);",
+                    "if (",
+                    "render &&",
+                    "(hifi || Date.now() - frameState.time < 8) &&",
+                    "layer.getRenderMode() !== 'vector'",
+                    ") {",
+                    "this.renderTileImage_(tile, frameState);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const render = this.prepareTile(tile, pixelRatio, projection);",
+                    "    if (render && (hifi || Date.now() - frameState.time < 8)) {",
+                    "      this.renderTileImage_(tile, frameState);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

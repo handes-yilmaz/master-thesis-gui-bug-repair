@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/linter/linter.js",
+            "lib/rules/key-spacing.js",
+            "lib/rules/object-curly-newline.js",
+            "lib/rules/object-property-newline.js",
+            "lib/rules/object-curly-spacing.js"
+        ],
+        "explanation": "The issue is related to the 'key-spacing' rule and its configuration in ESLint, specifically affecting JSX objects. The relevant files include 'key-spacing.js' for the specific rule implementation, 'object-curly-newline.js', 'object-property-newline.js', and 'object-curly-spacing.js' for handling object formatting rules which might interact with the 'key-spacing'. The 'linter.js' file is involved as it applies these rules during linting.",
+        "bug_scenario": "The bug involves incorrect alignment of objects in JSX curly braces due to ESLint's 'key-spacing' rule with 'align: value'. This misalignment occurs when running 'eslint --fix', which re-aligns objects in JSX, leading to an ugly and unexpected format."
+    },
+    "2": {
+        "bug_files": [
+            "lib/linter/linter.js",
+            "lib/rules/key-spacing.js",
+            "lib/rules/object-curly-newline.js",
+            "lib/rules/object-property-newline.js",
+            "lib/rules/object-curly-spacing.js"
+        ],
+        "explanation": "1. **lib/rules/key-spacing.js**: This file likely contains the implementation of the `key-spacing` rule, which is directly mentioned in the bug report as causing the alignment issue in JSX objects.\n2. **lib/rules/object-curly-newline.js**, **lib/rules/object-property-newline.js**, and **lib/rules/object-curly-spacing.js**: These files implement related rules that handle object formatting and spacing, which may interact with `key-spacing` and contribute to the issue.\n3. **lib/linter/linter.js**: This file is likely responsible for applying ESLint rules during the linting process and might be involved in how the rules are applied and fixed, thus affecting the output formatting.",
+        "bug_scenario": "The bug involves ESLint's `key-spacing` rule, specifically when using the `align: 'value'` option, which causes JSX objects to misalign, leading to ugly formatting in the code. The provided images illustrate the misalignment problem, showing how the `style` object properties in JSX are being realigned improperly after running `eslint --fix`."
+    }
+}

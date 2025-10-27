@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/lib/stack-collector.js",
+            "lighthouse-core/lib/stack-packs.js"
+        ],
+        "bug_functions": [
+            "lighthouse-core/lib/stack-collector.js//collectStacks",
+            "lighthouse-core/lib/stack-packs.js//getStackPacks"
+        ],
+        "explanation": "The issue of duplicated stack packs is likely related to how JavaScript libraries are detected and how stack packs are matched and displayed. The `collectStacks` function in `stack-collector.js` is responsible for gathering detected JS libraries, which could be contributing to the duplication if libraries are not uniquely identified. The `getStackPacks` function in `stack-packs.js` determines which stack packs to display based on detected stacks, and any issues in this logic could lead to duplicates being shown. Adding unique IDs to libraries and ensuring proper matching logic would help resolve the duplication.",
+        "bug_scenario": "The bug involves duplicated stack packs being displayed when running Lighthouse or PSI on a specific website. The images show repeated entries for React in the stack packs, indicating a duplication issue."
+    }
+}

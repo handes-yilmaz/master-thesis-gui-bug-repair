@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/TileLayer.js",
+            "src/ol/render/canvas/VectorContext.js",
+            "src/ol/layer/Tile.js",
+            "src/ol/layer/Vector.js",
+            "src/ol/renderer/canvas/TileLayer.js"
+        ],
+        "explanation": "The bug report highlights an issue with rendering in a vector context on tile layers. Therefore, files associated with rendering, especially those dealing with tile layers, are likely related to this bug.\\n\\n1. **src/ol/render/canvas/TileLayer.js**: This file is directly involved with the rendering of canvas tile layers. Given that the issue is with rendering on tile layers, this file is a primary suspect.\\n\\n2. **src/ol/render/canvas/VectorContext.js**: This file manages vector context operations. Since the issue pertains to vector context rendering, any discrepancies or issues in this file could lead to incorrect rendering.\\n\\n3. **src/ol/layer/Tile.js**: This file defines the tile layer, which is directly mentioned in the bug report as having the rendering issue.\\n\\n4. **src/ol/layer/Vector.js**: This file defines vector layers and their interactions. Given the bug's comparison between tile and vector layers, understanding and potentially modifying vector layer handling might be necessary.\\n\\n5. **src/ol/renderer/canvas/TileLayer.js**: This file is involved in how tile layers are rendered using the canvas. Issues with rotations and rendering precision as described would likely be addressed here.",
+        "bug_scenario": "The bug is related to the incorrect rendering of vector contexts on tile layers when the map is rotated close to 90 or 270 degrees. This affects the stroke width, text scale, and precision of the geometry. The issue is highlighted when comparing the rendering between a vector context on a tile layer and a vector layer, especially during animations such as in flight or marker animations."
+    },
+    "2": {
+        "bug_files": [
+            "src/ol/render/canvas/VectorContext.js",
+            "src/ol/renderer/canvas/TileLayer.js",
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/layer/Tile.js",
+            "src/ol/layer/Vector.js"
+        ],
+        "explanation": "The bug report mentions issues with the rendering of vector contexts in tile layers, especially under specific rotations. The files likely related to this issue include those handling vector contexts and tile layers.\\n\\n1. **src/ol/render/canvas/VectorContext.js**: This file is crucial as it likely contains the logic for rendering vector contexts, which is directly mentioned in the bug report.\\n\\n2. **src/ol/renderer/canvas/TileLayer.js**: This file is responsible for rendering tile layers using the canvas renderer. Since the bug is related to rendering issues in tile layers, modifications might be needed here.\\n\\n3. **src/ol/renderer/canvas/VectorLayer.js**: The rendering behavior of vector layers is used as a point of comparison for expected behavior, so this file might provide insights or require adjustments to ensure consistency with tile layer rendering.\\n\\n4. **src/ol/layer/Tile.js**: This file defines the structure and behavior of tile layers, which are central to the bug. Any rendering discrepancies might be traced back to how tile layers are implemented.\\n\\n5. **src/ol/layer/Vector.js**: Since the issue involves comparing vector contexts of tile and vector layers, checking the vector layer implementation can help ensure consistent rendering across different layer types.",
+        "bug_scenario": "The bug involves incorrect rendering behavior when using vector contexts of tile layers, especially noticeable when the view is rotated close to 90 or 270 degrees. This affects stroke width, text scale, and geometry precision, leading to inconsistencies when compared to vector contexts of vector layers. The issue can be observed in examples where both tile and vector layers are used, such as the Flight Animation example, but not in examples like the Marker Animation, which solely uses vector contexts of vector layers."
+    }
+}

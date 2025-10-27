@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/renderer/canvas/ImageLayer.js//CanvasImageLayerRenderer",
+            "src/ol/source/ImageWMS.js//ImageWMS"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/canvas/ImageLayer.js//prepareFrame",
+            "src/ol/renderer/canvas/ImageLayer.js//renderFrame",
+            "src/ol/source/ImageWMS.js//getImageInternal"
+        ],
+        "explanation": "The class `CanvasImageLayerRenderer` in `src/ol/renderer/canvas/ImageLayer.js` is responsible for rendering image layers on a canvas. The `prepareFrame` and `renderFrame` functions within this class are directly involved in determining the size of the canvas and rendering the image, which are key to addressing the memory usage issue described in the bug report. The `prepareFrame` function calculates the pixel ratio and prepares the image for rendering, while `renderFrame` actually draws the image onto the canvas, potentially using more memory than necessary.\n\nThe class `ImageWMS` in `src/ol/source/ImageWMS.js` is responsible for handling WMS image sources. The `getImageInternal` function within this class is crucial because it retrieves the image with a specified resolution and pixel ratio, which directly impacts the memory usage when rendering the image. Adjusting how the image is retrieved and rendered can help address the memory inefficiency described in the bug report.",
+        "bug_scenario": "The bug scenario involves the image layer renderer using more memory than necessary. For image sources that load data from a WMS with a pixel ratio of 1, a canvas is created with the size for the display pixel ratio instead of the image ratio of the source. This results in a canvas that is twice as big as needed on HiDPI devices, using four times the memory."
+    }
+}

@@ -1,0 +1,28 @@
+diff --git a/src/ol/layer/Group.js b/src/ol/layer/Group.js
+index 346b9a6..e1104df 100644
+--- a/src/ol/layer/Group.js
++++ b/src/ol/layer/Group.js
+@@ -316,6 +316,10 @@ class LayerGroup extends BaseLayer {
+         layerState.maxResolution,
+         ownLayerState.maxResolution
+       );
++      // Ensure opacity is applied to vector tile labels
++      if (layer instanceof VectorTileLayer) {
++        layer.setOpacity(layerState.opacity);
++      }
+       layerState.minResolution = Math.max(
+         layerState.minResolution,
+         ownLayerState.minResolution
+diff --git a/src/ol/renderer/canvas/VectorTileLayer.js b/src/ol/renderer/canvas/VectorTileLayer.js
+index b607133..d96a3bb 100644
+--- a/src/ol/renderer/canvas/VectorTileLayer.js
++++ b/src/ol/renderer/canvas/VectorTileLayer.js
+@@ -640,6 +640,8 @@ class CanvasVectorTileLayerRenderer extends CanvasTileLayerRenderer {
+     const replayTypes = VECTOR_REPLAYS[renderMode];
+     const viewState = frameState.viewState;
+     const rotation = viewState.rotation;
++    // Apply group opacity to vector tile labels
++    context.globalAlpha *= this.getLayer().getOpacity();
+     const tileSource = layer.getSource();
+     const tileGrid = tileSource.getTileGridForProjection(viewState.projection);
+     const z = tileGrid.getZForResolution(

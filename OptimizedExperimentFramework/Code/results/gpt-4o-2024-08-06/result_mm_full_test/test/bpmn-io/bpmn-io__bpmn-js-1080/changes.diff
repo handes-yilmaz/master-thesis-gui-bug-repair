@@ -1,0 +1,31 @@
+diff --git a/lib/features/modeling/util/LaneUtil.js b/lib/features/modeling/util/LaneUtil.js
+index 3223d3b..f842191 100644
+--- a/lib/features/modeling/util/LaneUtil.js
++++ b/lib/features/modeling/util/LaneUtil.js
+@@ -42,14 +42,16 @@ export function collectLanes(shape, collectedShapes) {
+ 
+   collectedShapes = collectedShapes || [];
+ 
+-  shape.children.filter(function(s) {
++  shape.children.forEach(function(s) {
+     if (is(s, 'bpmn:Lane')) {
+       collectLanes(s, collectedShapes);
+-
+-      collectedShapes.push(s);
+     }
+   });
+ 
++  if (is(shape, 'bpmn:Lane')) {
++    collectedShapes.push(shape);
++  }
++
+   return collectedShapes;
+ }
+ 
+@@ -151,4 +153,4 @@ export function computeLanesResize(shape, newBounds) {
+   });
+ 
+   return resizeNeeded;
+-}
+\ No newline at end of file
++}

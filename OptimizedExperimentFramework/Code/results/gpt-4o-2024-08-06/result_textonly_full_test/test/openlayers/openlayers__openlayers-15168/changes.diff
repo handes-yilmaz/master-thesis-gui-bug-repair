@@ -1,0 +1,38 @@
+diff --git a/src/ol/reproj/Image.js b/src/ol/reproj/Image.js
+index 58e9690..f9eaa0b 100644
+--- a/src/ol/reproj/Image.js
++++ b/src/ol/reproj/Image.js
+@@ -186,8 +186,12 @@ class ReprojImage extends ImageWrapper {
+   reproject_() {
+     const sourceState = this.sourceImage_.getState();
+     if (sourceState == ImageState.LOADED) {
+-      const width = getWidth(this.targetExtent_) / this.targetResolution_;
+-      const height = getHeight(this.targetExtent_) / this.targetResolution_;
++      const sourceWidth = getWidth(this.sourceImage_.getExtent());
++      const sourceHeight = getHeight(this.sourceImage_.getExtent());
++      const targetWidth = getWidth(this.targetExtent_);
++      const targetHeight = getHeight(this.targetExtent_);
++      const width = targetWidth / this.targetResolution_;
++      const height = (targetHeight / targetWidth) * (sourceHeight / sourceWidth) * width;
+       this.canvas_ = renderReprojected(
+         width,
+         height,
+diff --git a/src/ol/reproj/Tile.js b/src/ol/reproj/Tile.js
+index 32f0d35..f141548 100644
+--- a/src/ol/reproj/Tile.js
++++ b/src/ol/reproj/Tile.js
+@@ -256,8 +256,12 @@ class ReprojTile extends Tile {
+     } else {
+       const z = this.wrappedTileCoord_[0];
+       const size = this.targetTileGrid_.getTileSize(z);
+-      const width = typeof size === 'number' ? size : size[0];
+-      const height = typeof size === 'number' ? size : size[1];
++      const sourceWidth = getWidth(this.sourceTileGrid_.getTileCoordExtent(this.sourceTiles_[0].tileCoord));
++      const sourceHeight = getHeight(this.sourceTileGrid_.getTileCoordExtent(this.sourceTiles_[0].tileCoord));
++      const targetWidth = typeof size === 'number' ? size : size[0];
++      const targetHeight = typeof size === 'number' ? size : size[1];
++      const width = targetWidth;
++      const height = (targetHeight / targetWidth) * (sourceHeight / sourceWidth) * width;
+       const targetResolution = this.targetTileGrid_.getResolution(z);
+       const sourceResolution = this.sourceTileGrid_.getResolution(
+         this.sourceZ_

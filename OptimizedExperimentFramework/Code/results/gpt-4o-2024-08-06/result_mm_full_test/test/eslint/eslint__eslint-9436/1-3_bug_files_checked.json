@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/rules/no-constant-condition.js"
+        ],
+        "explanation": "The bug is related to the ESLint 'no-constant-condition' rule, which is responsible for detecting and reporting constant conditions in the code. The file 'lib/rules/no-constant-condition.js' likely contains the logic that determines the range of text to underline when a constant condition is detected. To fix the issue, this file needs to be modified to adjust the error range to only include the constant condition itself, rather than the entire statement or expression.",
+        "bug_scenario": "The image shows code with two instances of constant conditions in JavaScript. The 'if (true)' statement and 'true ? 1 : 0' expression are both underlined, indicating they trigger the 'no-constant-condition' ESLint rule. The user expects only these constant parts to be highlighted, but the entire statement/expression is underlined, indicating the error range is too broad."
+    },
+    "2": {
+        "bug_files": [
+            "lib/rules/no-constant-condition.js"
+        ],
+        "explanation": "The file `lib/rules/no-constant-condition.js` is directly responsible for implementing the `no-constant-condition` rule in ESLint. Since the bug is about adjusting how this rule reports its error range, the logic within this file needs to be modified to ensure that only the constant parts of the condition are marked.",
+        "bug_scenario": "The bug is related to how ESLint's `no-constant-condition` rule reports error ranges. The rule currently marks the entire statement or expression, whereas it should only underline the constant condition itself. This can be misleading, as shown in the visual representation, where more than the constant condition is underlined."
+    }
+}

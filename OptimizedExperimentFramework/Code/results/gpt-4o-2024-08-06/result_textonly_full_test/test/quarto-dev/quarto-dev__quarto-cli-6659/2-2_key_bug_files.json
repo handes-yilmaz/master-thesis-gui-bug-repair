@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/render.ts",
+            "src/command/render/render-files.ts",
+            "src/command/render/pandoc-html.ts"
+        ],
+        "explanation": "1. **src/command/render/render.ts**: This file contains functions related to rendering documents, including handling of Pandoc rendering. The issue with figures not appearing when `fig-cap` evaluates to `character(0)` likely involves how rendering options are processed and passed to Pandoc, which is managed in this file.\n\n2. **src/command/render/render-files.ts**: This file handles the execution and rendering of files, including the management of rendering contexts and options. The problem with figure captions not being processed correctly when they are empty could be related to how rendering contexts are set up or executed.\n\n3. **src/command/render/pandoc-html.ts**: This file deals with HTML-specific rendering tasks, including CSS and formatting. Since the issue involves figures not appearing in HTML output, this file is relevant for understanding how HTML rendering is configured and executed, particularly in relation to figure captions.",
+        "bug_scenario": "The bug scenario involves rendering figures from R code blocks in Quarto documents. When the `fig-cap` attribute is set to evaluate to `character(0)`, the figure does not appear in the output. This issue arises when the caption is mistakenly set to a zero-length character vector, such as through an incorrect `sprintf` call."
+    }
+}

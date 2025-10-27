@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/no-this-before-super.js//module.exports"
+        ],
+        "bug_functions": [
+            "lib/rules/no-this-before-super.js//isCalled",
+            "lib/rules/no-this-before-super.js//onCodePathStart",
+            "lib/rules/no-this-before-super.js//onCodePathEnd",
+            "lib/rules/no-this-before-super.js//onCodePathSegmentStart",
+            "lib/rules/no-this-before-super.js//onCodePathSegmentLoop",
+            "lib/rules/no-this-before-super.js//CallExpression:exit"
+        ],
+        "explanation": "The error 'Cannot read property 'superCalled' of undefined' suggests that the 'superCalled' property is being accessed on an undefined object. In the 'no-this-before-super.js' file, the 'superCalled' property is part of the 'segInfoMap' object, which tracks whether 'super()' has been called in code path segments. The functions 'isCalled', 'onCodePathStart', 'onCodePathEnd', 'onCodePathSegmentStart', 'onCodePathSegmentLoop', and 'CallExpression:exit' are involved in managing and checking this state. If 'segInfoMap' is not properly initialized or updated, it could lead to the error observed. These functions are key to ensuring 'super()' is correctly tracked and reported, and any issues in these functions could cause the reported bug.",
+        "bug_scenario": "The bug scenario involves an error message 'Cannot read property 'superCalled' of undefined' when using ESLint with a specific configuration. The error occurs in a JavaScript class that extends another class and calls 'super()' in the constructor. The error is related to ESLint's parsing and handling of 'super()' calls in constructors."
+    }
+}

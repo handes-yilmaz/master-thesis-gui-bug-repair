@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/report-renderer.js"
+        ],
+        "explanation": "The file `report-renderer.js` is directly mentioned in the bug report as being vulnerable to string replacement injection attacks. The issue arises because the `String.replace` method is used without proper sanitization, allowing for JavaScript code injection. This is a security flaw that needs to be addressed by altering how strings are handled within this file.",
+        "bug_scenario": "The bug report indicates a vulnerability in `report-renderer.js` where inserting a string using `String.replace` can result in a JavaScript injection. The screenshot shows the HTML structure where the JavaScript code is injected, revealing an exploitability issue with the way strings are replaced and rendered on the page."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/report/v2/report-renderer.js"
+        ],
+        "explanation": "The file `report-renderer.js` is mentioned directly in the bug report as the location where the injection vulnerability occurs. The issue arises from the misuse of `String.replace`, allowing injected JavaScript to be executed. This file needs to be reviewed and modified to ensure that any replacement strings are properly sanitized to prevent script injection.",
+        "bug_scenario": "The bug involves a vulnerability in the `String.replace` method, where inserting `console.log('$');` into `report-renderer.js` can lead to JavaScript injection. This is due to the special meaning of `$` in `String.replace`, which can inadvertently allow code injection into the page. The provided screenshot shows the HTML structure and a script element where the injection could occur."
+    }
+}

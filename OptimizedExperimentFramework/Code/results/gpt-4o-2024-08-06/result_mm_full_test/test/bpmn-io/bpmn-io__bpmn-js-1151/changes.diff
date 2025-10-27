@@ -1,0 +1,50 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index 5ce0aac..09d451a 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -59,6 +59,8 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+     copyProperties(businessObject.di, descriptor, 'isExpanded');
+ 
+     if (isLabel(descriptor)) {
++      descriptor.businessObject = getBusinessObject(cache[ descriptor.labelTarget ]);
++      setLabel(descriptor, oldBusinessObject.name || '', true);
+       return descriptor;
+     }
+ 
+diff --git a/lib/features/label-editing/LabelUtil.js b/lib/features/label-editing/LabelUtil.js
+index 25f75bd..b3b9bd0 100644
+--- a/lib/features/label-editing/LabelUtil.js
++++ b/lib/features/label-editing/LabelUtil.js
+@@ -60,8 +60,9 @@ export function setLabel(element, text, isExternal) {
+     } else {
+       semantic[attr] = text;
+     }
++    element.labelTarget = element.labelTarget || element;
+ 
+   }
+ 
+   return element;
+-}
+\ No newline at end of file
++}
+diff --git a/lib/features/label-editing/cmd/UpdateLabelHandler.js b/lib/features/label-editing/cmd/UpdateLabelHandler.js
+index 04f2a38..fca1b5c 100644
+--- a/lib/features/label-editing/cmd/UpdateLabelHandler.js
++++ b/lib/features/label-editing/cmd/UpdateLabelHandler.js
+@@ -101,6 +101,9 @@ export default function UpdateLabelHandler(modeling, textRenderer) {
+     if (!isLabelExternal(element) && !is(element, 'bpmn:TextAnnotation')) {
+       return;
+     }
++    if (isLabel(element) && !element.labelTarget) {
++      element.labelTarget = element;
++    }
+ 
+     var text = getLabel(label);
+ 
+@@ -139,4 +142,4 @@ UpdateLabelHandler.$inject = [
+ 
+ function isEmptyText(label) {
+   return !label || !label.trim();
+-}
+\ No newline at end of file
++}

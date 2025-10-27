@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/gather/connections/cri.js"
+        ],
+        "explanation": "These files are likely responsible for the communication and data gathering from the browser using the Chrome DevTools Protocol. The bug report suggests an issue with handling requests and target discovery for iframes, which would be managed by these components of the Lighthouse codebase. `driver.js` and `gather-runner.js` are central to gathering data, and `cri.js` is involved in the Chrome Debugging Protocol which would handle target discovery.",
+        "bug_scenario": "The bug report indicates that Lighthouse does not handle Out-of-Process Iframes (OOPIFs). The issue arises because Lighthouse may only be analyzing requests from the main frame and not performing target discovery for iframes, unlike Chrome DevTools which uses `Target.sendMessageToTarget` and `Target.receivedMessageFromTarget` for this purpose."
+    },
+    "2": {
+        "bug_files": [
+            "lighthouse-core/gather/driver.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/gather/connections/cri.js"
+        ],
+        "explanation": "The files in the `lighthouse-core/gather` directory, specifically `driver.js`, `gather-runner.js`, and `cri.js`, are likely responsible for managing connections and data gathering processes in Lighthouse. These files would be related to handling network requests and target discovery necessary for processing iframes. The issue described involves Lighthouse's failure to perform target discovery and gather network data from iframes, which would be directly impacted by how these files are implemented and interact with Chrome DevTools Protocol.",
+        "bug_scenario": "The bug report describes an issue where Lighthouse does not handle Out-of-Process iframes (OOPIFs). The problem seems to be related to Lighthouse's ability to only access and analyze network requests from the main frame, missing out on iframe requests. The image shows Chrome DevTools using `Target.sendMessageToTarget` and `Network.enable` to interact with iframes, suggesting that Lighthouse does not perform similar target discovery to gather data from iframes."
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/geom/GeometryCollection.js//GeometryCollection",
+            "src/ol/interaction/Modify.js//Modify"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Modify.js//writeGeometryCollectionGeometry_"
+        ],
+        "explanation": "The `GeometryCollection` class in `src/ol/geom/GeometryCollection.js` is responsible for handling collections of geometries, which is directly related to the issue of modifying shared vertices. The `Modify` class in `src/ol/interaction/Modify.js` handles the interaction for modifying feature geometries, and the function `writeGeometryCollectionGeometry_` within this class is specifically responsible for handling geometry collections. These elements are crucial for addressing the bug because they manage how geometry collections are modified and interacted with.",
+        "bug_scenario": "The bug occurs when trying to modify a shared vertex of two polygons within a `GeometryCollection`. The interaction does not work correctly, unlike when the same geometries are aggregated in a `FeatureCollection`. The issue can be reproduced by dragging the common vertex of both polygons in the provided sandbox environment."
+    }
+}

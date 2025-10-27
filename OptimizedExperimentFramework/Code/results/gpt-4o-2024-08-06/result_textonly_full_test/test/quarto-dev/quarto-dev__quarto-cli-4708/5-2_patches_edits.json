@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "src/format/reveal/format-reveal.ts": [
+            {
+                "SEARCH": [
+                    "// if we are using 'number' as our hash type then remove the",
+                    "// title slide id",
+                    "if (format.metadata[kHashType] === \"number\") {",
+                    "const titleSlide = doc.getElementById(\"title-slide\");",
+                    "if (titleSlide) {",
+                    "titleSlide.removeAttribute(\"id\");",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "// if we are using 'number' as our hash type, do not remove the",
+                    "// title slide id to maintain alignment",
+                    "if (format.metadata[kHashType] === \"number\") {",
+                    "  const titleSlide = doc.getElementById(\"title-slide\");",
+                    "  if (titleSlide) {",
+                    "    // Ensure the title slide retains its id for proper alignment",
+                    "    // titleSlide.removeAttribute(\"id\");",
+                    "  }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

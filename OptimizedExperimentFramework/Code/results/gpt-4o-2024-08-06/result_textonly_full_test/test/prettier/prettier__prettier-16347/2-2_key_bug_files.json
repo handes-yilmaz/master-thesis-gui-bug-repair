@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/print-preprocess.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/utils/front-matter/parse.js"
+        ],
+        "explanation": "1. **src/language-markdown/parser-markdown.js**: This file is responsible for parsing markdown content. It includes the use of plugins and configurations that could affect how markdown frontmatter is processed, including handling of whitespace and delimiters.\n\n2. **src/language-markdown/print-preprocess.js**: This file contains functions that preprocess the markdown abstract syntax tree (AST), including merging and splitting text nodes. It is likely involved in how empty lines are handled or removed during preprocessing.\n\n3. **src/language-markdown/printer-markdown.js**: This file is responsible for printing or formatting the markdown content. It includes logic for handling whitespace and formatting, which could be directly related to the issue of empty lines being removed.\n\n4. **src/utils/front-matter/parse.js**: This file parses the frontmatter of markdown files. It uses regular expressions to identify and extract frontmatter, and it could be incorrectly handling or stripping empty lines during this process.",
+        "bug_scenario": "The bug scenario involves the removal of empty lines in the markdown YAML frontmatter when processed by Prettier 3.3.0. The expected behavior is that these empty lines should be preserved, but they are currently being removed, leading to incorrect formatting of the markdown content."
+    }
+}

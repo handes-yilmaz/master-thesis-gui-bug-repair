@@ -1,0 +1,50 @@
+diff --git a/src/ol/style/Text.js b/src/ol/style/Text.js
+index 091df3e..ac202be 100644
+--- a/src/ol/style/Text.js
++++ b/src/ol/style/Text.js
+@@ -82,12 +82,18 @@ class Text {
+      */
+     this.scale_ = options.scale;
+ 
+-    /**
++    /** 
+      * @private
+      * @type {string|undefined}
+      */
+     this.text_ = options.text;
+ 
++    /** 
++     * @private
++     * @type {number}
++     */
++    this.lineHeight_ = options.lineHeight !== undefined ? options.lineHeight : 1.0;
++
+     /**
+      * @private
+      * @type {string|undefined}
+@@ -162,6 +168,25 @@ class Text {
+     this.padding_ = options.padding === undefined ? null : options.padding;
+   }
+ 
++  /**
++   * Get the line height for the text.
++   * @return {number} Line height.
++   * @api
++   */
++  getLineHeight() {
++    return this.lineHeight_;
++  }
++
++  /**
++   * Set the line height.
++   *
++   * @param {number} lineHeight Line height.
++   * @api
++   */
++  setLineHeight(lineHeight) {
++    this.lineHeight_ = lineHeight;
++  }
++
+   /**
+    * Clones the style.
+    * @return {Text} The cloned style.

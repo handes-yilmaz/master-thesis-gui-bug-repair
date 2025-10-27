@@ -1,0 +1,61 @@
+{
+    "1/1": {
+        "src/ol/layer/Layer.js": [
+            {
+                "SEARCH": [
+                    "getAttributions(view) {",
+                    "if (!this.isVisible(view)) {",
+                    "return [];",
+                    "}",
+                    "let getAttributions;",
+                    "const source = this.getSource();",
+                    "if (source) {",
+                    "getAttributions = source.getAttributions();",
+                    "}",
+                    "if (!getAttributions) {",
+                    "return [];",
+                    "}",
+                    "const frameState =",
+                    "view instanceof View ? view.getViewStateAndExtent() : view;",
+                    "let attributions = getAttributions(frameState);",
+                    "if (!Array.isArray(attributions)) {",
+                    "attributions = [attributions];",
+                    "}",
+                    "return attributions;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  getAttributions(view) {",
+                    "    if (!this.isVisible(view)) {",
+                    "      return [];",
+                    "    }",
+                    "    // Check visibility of parent group layers",
+                    "    let currentLayer = this;",
+                    "    while (currentLayer) {",
+                    "      if (!currentLayer.getVisible()) {",
+                    "        return [];",
+                    "      }",
+                    "      currentLayer = currentLayer.getParentLayer ? currentLayer.getParentLayer() : null;",
+                    "    }",
+                    "    ",
+                    "    let getAttributions;",
+                    "    const source = this.getSource();",
+                    "    if (source) {",
+                    "      getAttributions = source.getAttributions();",
+                    "    }",
+                    "    if (!getAttributions) {",
+                    "      return [];",
+                    "    }",
+                    "    const frameState =",
+                    "      view instanceof View ? view.getViewStateAndExtent() : view;",
+                    "    let attributions = getAttributions(frameState);",
+                    "    if (!Array.isArray(attributions)) {",
+                    "      attributions = [attributions];",
+                    "    }",
+                    "    return attributions;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

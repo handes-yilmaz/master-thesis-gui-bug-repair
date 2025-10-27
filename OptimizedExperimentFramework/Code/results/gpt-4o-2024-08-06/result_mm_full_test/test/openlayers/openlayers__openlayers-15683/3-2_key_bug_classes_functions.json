@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/renderer/canvas/VectorLayer.js//CanvasVectorLayerRenderer",
+            "src/ol/renderer/webgl/VectorLayer.js//WebGLVectorLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/canvas/VectorLayer.js//renderFrame",
+            "src/ol/renderer/webgl/VectorLayer.js//renderFrame"
+        ],
+        "explanation": "The classes `CanvasVectorLayerRenderer` and `WebGLVectorLayerRenderer` are responsible for rendering vector layers using canvas and WebGL, respectively. The issue of the vector layer canvas being cropped when the map is rotated is directly related to how these renderers handle the rendering of the map and its layers. The `renderFrame` function in both classes is crucial as it is responsible for rendering the layer for each frame state. Any miscalculation or oversight in handling transformations or extents during the rendering process could lead to the observed cropping issue when the map is rotated. Therefore, these classes and functions are key elements related to the bug.",
+        "bug_scenario": "The bug scenario involves a vector layer canvas being incorrectly cropped when the map is rotated. This issue has been observed since version 9.1.0 of the software and is likely related to a specific pull request (https://github.com/openlayers/openlayers/pull/15652). The problem is demonstrated through images showing the map in both rotated and non-rotated states, with the rotated state displaying the cropping issue. The expected behavior is that the polygon should not be cut when the map is rotated."
+    }
+}

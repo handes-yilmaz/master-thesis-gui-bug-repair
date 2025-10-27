@@ -1,0 +1,82 @@
+{
+    "1/1": {
+        "lib/draw/BpmnRenderer.js": [
+            {
+                "SEARCH": [
+                    "BpmnRenderer.prototype.drawConnection = function(parentGfx, element) {",
+                    "var type = element.type;",
+                    "var h = this.handlers[type];",
+                    "",
+                    "/* jshint -W040 */",
+                    "return h(parentGfx, element);",
+                    "};"
+                ],
+                "REPLACE": [
+                    "BpmnRenderer.prototype.drawConnection = function(parentGfx, element) {",
+                    "  var type = element.type;",
+                    "  var h = this.handlers[type];",
+                    "",
+                    "  /* jshint -W040 */",
+                    "  var connection = h(parentGfx, element);",
+                    "",
+                    "  // Render message name if available",
+                    "  if (is(element, 'bpmn:MessageFlow') && element.businessObject.messageRef) {",
+                    "    var messageName = element.businessObject.messageRef.name;",
+                    "    if (messageName) {",
+                    "      this.renderLabel(parentGfx, messageName, {",
+                    "        align: 'center-middle',",
+                    "        position: {",
+                    "          x: element.waypoints[1].x,",
+                    "          y: element.waypoints[1].y + 20 // Adjust position as needed",
+                    "        }",
+                    "      });",
+                    "    }",
+                    "  }",
+                    "",
+                    "  return connection;",
+                    "};"
+                ]
+            }
+        ],
+        "lib/features/label-editing/LabelUtil.js": [
+            {
+                "SEARCH": [
+                    "export function getLabel(element) {",
+                    "var semantic = element.businessObject,",
+                    "attr = getLabelAttr(semantic);",
+                    "",
+                    "if (attr) {",
+                    "",
+                    "if (attr === 'categoryValueRef') {",
+                    "",
+                    "return getCategoryValue(semantic);",
+                    "}",
+                    "",
+                    "return semantic[attr] || '';",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "export function getLabel(element) {",
+                    "  var semantic = element.businessObject,",
+                    "      attr = getLabelAttr(semantic);",
+                    "",
+                    "  if (attr) {",
+                    "",
+                    "    if (attr === 'categoryValueRef') {",
+                    "      return getCategoryValue(semantic);",
+                    "    }",
+                    "",
+                    "    // Handle message element names",
+                    "    if (is(element, 'bpmn:MessageFlow') && semantic.messageRef) {",
+                    "      return semantic.messageRef.name || '';",
+                    "    }",
+                    "",
+                    "    return semantic[attr] || '';",
+                    "  }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

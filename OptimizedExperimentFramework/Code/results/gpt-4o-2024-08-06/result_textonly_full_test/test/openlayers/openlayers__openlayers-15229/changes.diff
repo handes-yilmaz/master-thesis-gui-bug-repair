@@ -1,0 +1,13 @@
+diff --git a/src/ol/renderer/webgl/PointsLayer.js b/src/ol/renderer/webgl/PointsLayer.js
+index be6a204..499309b 100644
+--- a/src/ol/renderer/webgl/PointsLayer.js
++++ b/src/ol/renderer/webgl/PointsLayer.js
+@@ -128,6 +128,8 @@ class WebGLPointsLayerRenderer extends WebGLLayerRenderer {
+   constructor(layer, options) {
+     const uniforms = options.uniforms || {};
+     const projectionMatrixTransform = createTransform();
++    const aspectRatio = options.viewSize[0] / options.viewSize[1];
++    scaleTransform(projectionMatrixTransform, 1, aspectRatio);
+     uniforms[DefaultUniform.PROJECTION_MATRIX] = projectionMatrixTransform;
+ 
+     super(layer, {

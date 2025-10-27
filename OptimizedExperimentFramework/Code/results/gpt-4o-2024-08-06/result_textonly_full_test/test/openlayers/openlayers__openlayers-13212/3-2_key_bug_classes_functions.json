@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//getImagesForSource",
+            "src/ol/source/GeoTIFF.js//configure_",
+            "src/ol/renderer/webgl/TileLayer.js//enqueueTiles"
+        ],
+        "explanation": "The classes and functions identified are related to the handling and rendering of GeoTIFF data and WebGL tile layers. The GeoTIFFSource class in 'src/ol/source/GeoTIFF.js' is responsible for managing GeoTIFF data, which is central to the proposed solution of using a GeoTIFF pyramid. The WebGLTileLayer class in 'src/ol/layer/WebGLTile.js' and the WebGLTileLayerRenderer class in 'src/ol/renderer/webgl/TileLayer.js' are involved in rendering the tile layers using WebGL, which is where the performance issues are occurring. The functions getImagesForSource and configure_ in 'src/ol/source/GeoTIFF.js' are likely involved in setting up the source images and configuring the tile grid, which are critical for implementing the new pyramid source. The enqueueTiles function in 'src/ol/renderer/webgl/TileLayer.js' is involved in managing the tiles to be rendered, which is directly related to the performance issues described.",
+        "bug_scenario": "The bug scenario involves the WebGLTileLayers not scaling well with larger pyramids, leading to WebGL-contexts being lost, resulting in not-rendered tiles and poor performance. The proposed solution is to provide a separate source representing a pyramid of GeoTIFFs, which would use a single canvas/WebGL context per layer/renderer to solve the issue."
+    }
+}

@@ -1,0 +1,22 @@
+diff --git a/lib/features/modeling/behavior/SubProcessPlaneBehavior.js b/lib/features/modeling/behavior/SubProcessPlaneBehavior.js
+index d1400bb..4101934 100644
+--- a/lib/features/modeling/behavior/SubProcessPlaneBehavior.js
++++ b/lib/features/modeling/behavior/SubProcessPlaneBehavior.js
+@@ -309,14 +309,10 @@ SubProcessPlaneBehavior.prototype._moveChildrenToShape = function(source, target
+   // target is a plane
+   if (!target.x) {
+     offset = {
+-      x: DEFAULT_POSITION.x - source.x ,
+-      y: DEFAULT_POSITION.y - source.y
++      x: 0,
++      y: 0
+     };
+-  }
+-
+-  // source is a plane
+-  else {
+-
++  } else {
+     // move relative to the center of the shape
+     var targetMid = getMid(target);
+     var childrenBounds = getBBox(visibleChildren);

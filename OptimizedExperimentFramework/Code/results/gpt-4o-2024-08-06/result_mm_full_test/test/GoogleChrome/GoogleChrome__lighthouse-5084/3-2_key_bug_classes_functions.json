@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js//UnusedBytes",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js//EfficientAnimatedContent"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js//UnusedBytes.computeWasteWithTTIGraph",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js//EfficientAnimatedContent.audit_"
+        ],
+        "explanation": "The `UnusedBytes` class in `byte-efficiency-audit.js` is responsible for computing byte efficiency audits, including calculating potential savings. The `computeWasteWithTTIGraph` function specifically calculates the estimated effect of byte savings, which is not reflecting the savings correctly in this case. The `EfficientAnimatedContent` class in `efficient-animated-content.js` is directly related to auditing animated content, such as GIFs, and its `audit_` function filters and calculates savings for GIFs, which is central to the issue of not reporting the savings correctly.",
+        "bug_scenario": "The bug scenario involves the ByteEfficiency audit in Lighthouse not reporting savings for converting animated GIFs to video formats, despite significant potential savings. The report incorrectly shows a score of 100, indicating no savings, even though there is a large amount of data that could be saved by using video formats instead of GIFs."
+    }
+}

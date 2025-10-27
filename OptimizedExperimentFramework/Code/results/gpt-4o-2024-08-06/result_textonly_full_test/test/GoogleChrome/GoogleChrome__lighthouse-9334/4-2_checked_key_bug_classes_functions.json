@@ -1,0 +1,75 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "lookupLocale",
+            "file_path": "lighthouse-core/lib/i18n/i18n.js",
+            "function_details": [
+                {
+                    "name": "lookupLocale",
+                    "start_line": 118,
+                    "end_line": 124
+                }
+            ],
+            "function_code": [
+                "function lookupLocale(locale) {",
+                "  // TODO: could do more work to sniff out default locale",
+                "  const canonicalLocale = Intl.getCanonicalLocales(locale)[0];",
+                "",
+                "  const closestLocale = lookupClosestLocale(canonicalLocale, LOCALES);",
+                "  return closestLocale || 'en';",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "replaceIcuMessageInstanceIds",
+            "file_path": "lighthouse-core/lib/i18n/i18n.js",
+            "function_details": [
+                {
+                    "name": "replaceIcuMessageInstanceIds",
+                    "start_line": 336,
+                    "end_line": 372
+                }
+            ],
+            "function_code": [
+                "function replaceIcuMessageInstanceIds(inputObject, locale) {",
+                "  /**",
+                "   * @param {*} subObject",
+                "   * @param {LH.I18NMessages} icuMessagePaths",
+                "   * @param {string[]} pathInLHR",
+                "   */",
+                "  function replaceInObject(subObject, icuMessagePaths, pathInLHR = []) {",
+                "    if (typeof subObject !== 'object' || !subObject) return;",
+                "",
+                "    for (const [property, value] of Object.entries(subObject)) {",
+                "      const currentPathInLHR = pathInLHR.concat([property]);",
+                "",
+                "      // Check to see if the value in the LHR looks like a string reference. If it is, replace it.",
+                "      if (typeof value === 'string' && isIcuMessage(value)) {",
+                "        const {icuMessageInstance, formattedString} = _resolveIcuMessageInstanceId(value, locale);",
+                "        const messageInstancesInLHR = icuMessagePaths[icuMessageInstance.icuMessageId] || [];",
+                "        const currentPathAsString = _formatPathAsString(currentPathInLHR);",
+                "",
+                "        messageInstancesInLHR.push(",
+                "          icuMessageInstance.values ?",
+                "            {values: icuMessageInstance.values, path: currentPathAsString} :",
+                "            currentPathAsString",
+                "        );",
+                "",
+                "        subObject[property] = formattedString;",
+                "        icuMessagePaths[icuMessageInstance.icuMessageId] = messageInstancesInLHR;",
+                "      } else {",
+                "        replaceInObject(value, icuMessagePaths, currentPathInLHR);",
+                "      }",
+                "    }",
+                "  }",
+                "",
+                "  /** @type {LH.I18NMessages} */",
+                "  const icuMessagePaths = {};",
+                "  replaceInObject(inputObject, icuMessagePaths);",
+                "  return icuMessagePaths;",
+                "}"
+            ]
+        }
+    }
+}

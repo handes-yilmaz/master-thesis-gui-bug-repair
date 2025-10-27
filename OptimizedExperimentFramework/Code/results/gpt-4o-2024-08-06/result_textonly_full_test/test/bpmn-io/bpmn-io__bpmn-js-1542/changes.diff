@@ -1,0 +1,15 @@
+diff --git a/lib/features/modeling/behavior/util/LabelLayoutUtil.js b/lib/features/modeling/behavior/util/LabelLayoutUtil.js
+index 6ae5cc1..3b7f122 100644
+--- a/lib/features/modeling/behavior/util/LabelLayoutUtil.js
++++ b/lib/features/modeling/behavior/util/LabelLayoutUtil.js
+@@ -15,6 +15,10 @@ import {
+ 
+ export function findNewLabelLineStartIndex(oldWaypoints, newWaypoints, attachment, hints) {
+ 
++  if (!attachment) {
++    return null; // or handle the error as needed
++  }
++
+   var index = attachment.segmentIndex;
+ 
+   var offset = newWaypoints.length - oldWaypoints.length;

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/javascript.js//COMMENT",
+            "src/languages/typescript.js//tsLanguage"
+        ],
+        "bug_functions": [
+            "src/languages/javascript.js//JSDOC_COMMENT",
+            "src/languages/javascript.js//hljs.C_BLOCK_COMMENT_MODE",
+            "src/languages/typescript.js//swapMode"
+        ],
+        "explanation": "The issue is related to how comments are parsed and highlighted in JavaScript and TypeScript. In the JavaScript file, the COMMENT object and its variants, including JSDOC_COMMENT and hljs.C_BLOCK_COMMENT_MODE, are responsible for handling comment syntax. These elements are likely not handling empty block comments correctly, leading to the highlighting issue. In the TypeScript file, the tsLanguage object extends JavaScript highlighting rules, and the swapMode function is used to modify these rules. Adjustments in these areas are necessary to ensure that empty block comments do not disrupt syntax highlighting.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in JavaScript and TypeScript where an empty block comment (/**/) breaks further syntax highlighting. The provided sample code to reproduce the issue is a simple JavaScript console log statement wrapped in empty block comments, which should not affect the highlighting but does."
+    }
+}

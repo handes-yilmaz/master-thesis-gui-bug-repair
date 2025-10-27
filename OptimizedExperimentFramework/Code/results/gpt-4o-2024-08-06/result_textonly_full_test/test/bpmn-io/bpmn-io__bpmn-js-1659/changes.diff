@@ -1,0 +1,20 @@
+diff --git a/lib/features/modeling/behavior/LabelBehavior.js b/lib/features/modeling/behavior/LabelBehavior.js
+index 28a7897..763b83a 100644
+--- a/lib/features/modeling/behavior/LabelBehavior.js
++++ b/lib/features/modeling/behavior/LabelBehavior.js
+@@ -306,7 +306,14 @@ export function getReferencePointDelta(referencePoint, oldBounds, newBounds) {
+ 
+   var newReferencePoint = getNewAttachPoint(referencePoint, oldBounds, newBounds);
+ 
+-  return roundPoint(delta(newReferencePoint, referencePoint));
++  // Calculate the delta from the old reference point to the new reference point
++  var deltaPoint = delta(newReferencePoint, referencePoint);
++
++  // Adjust the reference point by the delta to ensure it moves with the element
++  return roundPoint({
++    x: referencePoint.x + deltaPoint.x,
++    y: referencePoint.y + deltaPoint.y
++  });
+ }
+ 
+ /**

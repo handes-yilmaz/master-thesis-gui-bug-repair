@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics.js",
+            "lighthouse-core/gather/gatherers/iframe-elements.js",
+            "lighthouse-core/lib/network-recorder.js"
+        ],
+        "explanation": "1. `lighthouse-core/audits/metrics.js`: This file is responsible for collecting and reporting metrics in Lighthouse. Since the issue is related to how performance metrics are calculated and reported, this file is likely involved in the bug. It would need to be modified to ensure that iframe performance is accurately reflected in the metrics.\n\n2. `lighthouse-core/gather/gatherers/iframe-elements.js`: This file gathers information about iframe elements on a page. Since the bug involves iframes not being adequately considered in performance reports, this file is directly relevant. It may need changes to ensure that iframe data is collected and passed correctly for performance evaluation.\n\n3. `lighthouse-core/lib/network-recorder.js`: This file handles network requests and their recording. Since iframes can significantly impact network performance, this file might need adjustments to ensure that iframe-related network activity is properly recorded and considered in performance metrics.",
+        "bug_scenario": "The bug scenario involves a performance issue with the Lighthouse tool when evaluating pages containing iframes. The report indicates that Lighthouse does not adequately account for the performance impact of iframes in its metrics and audits. This leads to misleading performance scores, as pages with poorly performing iframes can receive better scores than they should. The example provided demonstrates this by comparing the performance scores of a page with an iframe to the iframe content itself, showing a discrepancy in scores despite the iframe's poor performance."
+    }
+}

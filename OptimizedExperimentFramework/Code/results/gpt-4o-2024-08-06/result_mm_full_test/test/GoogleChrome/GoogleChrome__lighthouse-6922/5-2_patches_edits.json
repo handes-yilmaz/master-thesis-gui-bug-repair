@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/driver.js": [
+            {
+                "SEARCH": [
+                    "this._connection.on('protocolevent', event => {",
+                    "this._devtoolsLog.record(event);",
+                    "if (this._networkStatusMonitor) {",
+                    "this._networkStatusMonitor.dispatch(event);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    this._connection.on('protocolevent', async event => {",
+                    "      this._devtoolsLog.record(event);",
+                    "      if (this._networkStatusMonitor) {",
+                    "        this._networkStatusMonitor.dispatch(event);",
+                    "      }",
+                    "",
+                    "      // Handle target discovery for OOPIFs",
+                    "      if (event.method === 'Target.targetCreated') {",
+                    "        const {targetInfo} = event.params;",
+                    "        if (targetInfo.type === 'iframe') {",
+                    "          await this.sendCommand('Target.attachToTarget', {targetId: targetInfo.targetId, flatten: true});",
+                    "          await this.sendCommand('Network.enable', {}, targetInfo.targetId);",
+                    "        }",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/gather/driver.js b/lighthouse-core/gather/driver.js
+index 7edb442..862e0a5 100644
+--- a/lighthouse-core/gather/driver.js
++++ b/lighthouse-core/gather/driver.js
+@@ -624,7 +624,7 @@ class Driver {
+     const promise = new Promise((resolve, reject) => {
+       const maxWaitTimeout = setTimeout(() => {
+         reject(new LHError(LHError.errors.NO_FCP));
+-      }, maxWaitForFcpMs);
++      }, maxWaitForFcpMs * 2); // Increase timeout for background tabs
+       /** @type {NodeJS.Timeout|undefined} */
+       let loadTimeout;
+ 

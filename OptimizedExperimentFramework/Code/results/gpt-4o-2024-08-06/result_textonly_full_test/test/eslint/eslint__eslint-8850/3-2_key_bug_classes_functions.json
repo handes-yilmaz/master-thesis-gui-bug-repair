@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/indent.js//TokenInfo",
+            "lib/rules/indent.js//OffsetStorage"
+        ],
+        "bug_functions": [
+            "lib/rules/indent.js//setDesiredOffset",
+            "lib/rules/indent.js//setDesiredOffsets",
+            "lib/rules/indent.js//getDesiredIndent"
+        ],
+        "explanation": "The classes and functions identified are related to the handling of indentation in the ESLint rule. The `TokenInfo` class is responsible for managing token information, which is crucial for determining correct indentation. The `OffsetStorage` class manages the desired offsets of tokens, which directly affects how indentation is calculated. The functions `setDesiredOffset` and `setDesiredOffsets` are responsible for setting the desired indentation levels for tokens, which is where the bug likely manifests when parentheses are involved. The `getDesiredIndent` function retrieves the desired indentation for a token, which is critical for comparing against actual indentation and reporting errors. These elements are directly involved in the logic that determines and checks indentation, making them key to resolving the regression issue.",
+        "bug_scenario": "The bug scenario involves a regression in the ESLint indentation rule for JSX binary expressions when using parentheses. The user expects no indentation errors with their configuration, but errors are reported in version 4.1.1, whereas the same code worked fine in version 4.0. The issue seems to be related to how parentheses affect indentation in JSX expressions."
+    }
+}

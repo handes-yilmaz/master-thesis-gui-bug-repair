@@ -1,0 +1,49 @@
+{
+    "1/1": {
+        "src/ol/source/imagevector.js": [
+            {
+                "SEARCH": [
+                    "var replayGroup = new ol.render.canvas.ReplayGroup(",
+                    "ol.renderer.vector.getTolerance(resolution, pixelRatio), extent,",
+                    "resolution, pixelRatio, this.source_.getOverlaps(), this.declutterTree_, this.renderBuffer_);",
+                    "",
+                    "this.source_.loadFeatures(extent, resolution, projection);",
+                    "",
+                    "var loading = false;",
+                    "this.source_.forEachFeatureInExtent(extent,",
+                    "function(feature) {",
+                    "loading = loading ||",
+                    "this.renderFeature_(feature, resolution, pixelRatio, replayGroup);",
+                    "}, this);",
+                    "replayGroup.finish();",
+                    "",
+                    "if (loading) {",
+                    "return null;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  var replayGroup = new ol.render.canvas.ReplayGroup(",
+                    "      ol.renderer.vector.getTolerance(resolution, pixelRatio), extent,",
+                    "      resolution, pixelRatio, this.source_.getOverlaps(), this.declutterTree_, this.renderBuffer_);",
+                    "",
+                    "  // Load features only if they are not already loaded",
+                    "  if (!this.source_.isFeaturesLoaded(extent, resolution, projection)) {",
+                    "    this.source_.loadFeatures(extent, resolution, projection);",
+                    "  }",
+                    "",
+                    "  var loading = false;",
+                    "  this.source_.forEachFeatureInExtent(extent,",
+                    "      function(feature) {",
+                    "        loading = loading ||",
+                    "            this.renderFeature_(feature, resolution, pixelRatio, replayGroup);",
+                    "      }, this);",
+                    "  replayGroup.finish();",
+                    "",
+                    "  if (loading) {",
+                    "    return null;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

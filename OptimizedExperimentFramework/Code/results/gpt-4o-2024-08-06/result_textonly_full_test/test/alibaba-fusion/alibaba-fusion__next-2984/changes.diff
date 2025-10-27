@@ -1,0 +1,22 @@
+diff --git a/src/cascader-select/cascader-select.jsx b/src/cascader-select/cascader-select.jsx
+index 03a0db3..6e0415b 100644
+--- a/src/cascader-select/cascader-select.jsx
++++ b/src/cascader-select/cascader-select.jsx
+@@ -334,7 +334,7 @@ class CascaderSelect extends Component {
+                 }
+             });
+ 
+-        loop([...dataSource]); // Use a copy of dataSource
++        loop(dataSource.map(item => ({ ...item }))); // Create a deep copy of dataSource
+     }
+ 
+     flatValue(value) {
+@@ -345,7 +345,7 @@ class CascaderSelect extends Component {
+             }
+             return pos.split('-').length;
+         };
+-        const newValue = value.slice(0).sort((prev, next) => {
++        const newValue = [...value].sort((prev, next) => {
+             return getDepth(prev) - getDepth(next);
+         });
+ 

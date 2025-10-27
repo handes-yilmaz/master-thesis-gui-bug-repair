@@ -1,0 +1,16 @@
+diff --git a/src/table/base/cell.jsx b/src/table/base/cell.jsx
+index fb690b1..eca7556 100644
+--- a/src/table/base/cell.jsx
++++ b/src/table/base/cell.jsx
+@@ -117,4 +117,11 @@ export default class Cell extends React.Component {
+             </Tag>
+         );
+     }
++
++    // Ensure custom cell content does not interfere with selection
++    handleCellClick = (event) => {
++        if (this.props.isSelectable) {
++            this.props.onSelect(this.props.rowIndex);
++        }
++    }
+ }

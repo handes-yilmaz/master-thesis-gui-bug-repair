@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Group.js//LayerGroup",
+            "src/ol/layer/VectorTile.js//VectorTileLayer",
+            "src/ol/renderer/canvas/VectorTileLayer.js//CanvasVectorTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Group.js//LayerGroup.getLayerStatesArray",
+            "src/ol/layer/VectorTile.js//VectorTileLayer.createRenderer",
+            "src/ol/renderer/canvas/VectorTileLayer.js//CanvasVectorTileLayerRenderer.renderTileImage_"
+        ],
+        "explanation": "The `LayerGroup` class in `src/ol/layer/Group.js` is responsible for managing a collection of layers, including setting properties like opacity. The `getLayerStatesArray` function in this class is crucial because it applies the group's opacity to its child layers, which is where the bug might be occurring if vector tile labels are not being affected.\n\nThe `VectorTileLayer` class in `src/ol/layer/VectorTile.js` is directly related to vector tile layers, and its `createRenderer` function is responsible for creating the renderer that will handle how these tiles are drawn, including their opacity settings.\n\nThe `CanvasVectorTileLayerRenderer` class in `src/ol/renderer/canvas/VectorTileLayer.js` is the renderer for vector tile layers. The `renderTileImage_` function is likely involved in the rendering process where the opacity should be applied to the tile images, including labels. If labels are not being affected by opacity changes, this function might not be correctly applying the opacity settings from the layer group.",
+        "bug_scenario": "The bug scenario involves changing the opacity of a layer group using `setOpacity()`, which does not affect labels rendered for vector tile layers within that group. The opacity change works correctly for vector layers but not for vector tile labels, indicating a problem specifically with how vector tile labels are handled in the layer group opacity settings."
+    }
+}

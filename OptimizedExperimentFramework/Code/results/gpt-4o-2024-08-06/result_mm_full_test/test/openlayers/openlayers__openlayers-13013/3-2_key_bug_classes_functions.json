@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/source/DataTile.js//DataTileSource",
+            "src/ol/webgl/TileTexture.js//TileTexture",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/webgl/TileTexture.js//uploadDataTexture",
+            "src/ol/renderer/webgl/TileLayer.js//enqueueTiles",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "The issue is related to the rendering of tiles using WebGL. The WebGLTileLayer class is responsible for managing the tile layer, and the DataTileSource class is responsible for providing the tile data. The TileTexture class handles the WebGL texture for tiles, and the uploadDataTexture function is crucial for uploading the tile data to the GPU. The WebGLTileLayerRenderer class is responsible for rendering the tile layer, with the enqueueTiles and renderFrame functions being key to managing and rendering the tiles. The warning message suggests a problem with the data being uploaded to the texture, likely due to a mismatch in the expected and actual data size, which is why these classes and functions are relevant to the bug.",
+        "bug_scenario": "The WebGLTileLayer is not rendering data loaded with DataTileSource using a custom tile grid. The console shows a WebGL warning indicating a mismatch in the expected and available data for texture upload, resulting in black tiles being displayed."
+    }
+}

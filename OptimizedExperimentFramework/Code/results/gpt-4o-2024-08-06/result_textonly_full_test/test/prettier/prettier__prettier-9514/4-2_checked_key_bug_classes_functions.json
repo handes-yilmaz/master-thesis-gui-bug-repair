@@ -1,0 +1,68 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "isFlowFile",
+            "file_path": "src/language-js/parser-babel.js",
+            "function_details": [
+                {
+                    "name": "isFlowFile",
+                    "start_line": 70,
+                    "end_line": 90
+                }
+            ],
+            "function_code": [
+                "function isFlowFile(text, options) {",
+                "  if (options.filepath && options.filepath.endsWith(\".js.flow\")) {",
+                "    return true;",
+                "  }",
+                "",
+                "  const shebang = getShebang(text);",
+                "  if (shebang) {",
+                "    text = text.slice(shebang.length);",
+                "  }",
+                "",
+                "  const firstNonSpaceNonCommentCharacterIndex = getNextNonSpaceNonCommentCharacterIndexWithStartIndex(",
+                "    text,",
+                "    0",
+                "  );",
+                "",
+                "  if (firstNonSpaceNonCommentCharacterIndex !== false) {",
+                "    text = text.slice(0, firstNonSpaceNonCommentCharacterIndex);",
+                "  }",
+                "",
+                "  return FLOW_PRAGMA_REGEX.test(text);",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "resolvePluginsConflict",
+            "file_path": "src/language-js/parser-babel.js",
+            "function_details": [
+                {
+                    "name": "resolvePluginsConflict",
+                    "start_line": 50,
+                    "end_line": 65
+                }
+            ],
+            "function_code": [
+                "function resolvePluginsConflict(",
+                "  condition,",
+                "  pluginCombinations,",
+                "  conflictPlugins",
+                ") {",
+                "  if (!condition) {",
+                "    return pluginCombinations;",
+                "  }",
+                "  const combinations = [];",
+                "  for (const combination of pluginCombinations) {",
+                "    for (const plugin of conflictPlugins) {",
+                "      combinations.push([...combination, plugin]);",
+                "    }",
+                "  }",
+                "  return combinations;",
+                "}"
+            ]
+        }
+    }
+}
