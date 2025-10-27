@@ -1,0 +1,13 @@
+diff --git a/src/utils/front-matter/parse.js b/src/utils/front-matter/parse.js
+index 7bfdc0ca59..02cd6c8f91 100644
+--- a/src/utils/front-matter/parse.js
++++ b/src/utils/front-matter/parse.js
+@@ -41,7 +41,7 @@ function parse(text) {
+ 
+   return {
+     frontMatter,
+-    content: raw.replaceAll(/[^\n]/g, " ") + text.slice(raw.length),
++    content: raw.replaceAll(/[^\n]/g, " ").replace(/^\s*$/gm, "") + text.slice(raw.length),
+   };
+ }
+ 

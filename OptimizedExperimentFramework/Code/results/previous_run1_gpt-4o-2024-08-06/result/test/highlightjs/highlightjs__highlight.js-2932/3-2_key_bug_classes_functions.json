@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/properties.js//DELIM_AND_VALUE"
+        ],
+        "bug_functions": [
+            "src/languages/properties.js//export default function"
+        ],
+        "explanation": "The issue arises from how the end of a string is determined in properties files. The DELIM_AND_VALUE object specifies how the value section of a property is interpreted. It uses a regex pattern to end the value at the line's end. However, it does not account for the special case where a trailing backslash should allow continuation or be part of the value. Adjusting this logic to handle trailing escaped backslashes correctly would address the bug. The primary function exports the configuration, which involves parsing logic that needs modification to fix this issue.",
+        "bug_scenario": "The bug involves incorrect handling of properties files where a trailing escaped backslash (\\\\) is not interpreted correctly. This affects values like Windows paths, resulting in incorrect parsing of the properties file."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/properties.js//DELIM_AND_VALUE"
+        ],
+        "bug_functions": [
+            "src/languages/properties.js//export default function"
+        ],
+        "explanation": "The issue is related to how the properties file is parsed, particularly the handling of escaped backslashes. The `DELIM_AND_VALUE` object is responsible for defining how values are parsed, including handling newlines and backslashes. The `export default function` is the entry point for processing the properties file and contains logic to interpret these sequences. Adjusting these elements would address the incorrect parsing of trailing escaped backslashes.",
+        "bug_scenario": "The bug scenario involves the incorrect handling of trailing escaped backslashes in properties files. This occurs when a backslash is used to escape a newline but is followed by another backslash, typically seen in Windows file paths. The issue arises in how these backslashes are parsed, leading to incorrect representations in the output."
+    }
+}

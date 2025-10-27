@@ -1,0 +1,29 @@
+diff --git a/src/lib/compiler_extensions.js b/src/lib/compiler_extensions.js
+index 61b6965..318e949 100644
+--- a/src/lib/compiler_extensions.js
++++ b/src/lib/compiler_extensions.js
+@@ -41,11 +41,19 @@ function skipIfHasPrecedingDot(match, response) {
+  * @type {CompilerExt}
+  */
+ export function scopeClassName(mode, _parent) {
+-  // eslint-disable-next-line no-undefined
+-  if (mode.className !== undefined) {
+-    mode.scope = mode.className;
+-    delete mode.className;
+-  }
++// eslint-disable-next-line no-undefined
++if (mode.className !== undefined) {
++mode.scope = mode.className;
++delete mode.className;
++}
++
++// Add handling for TypeScript generics with extends
++if (mode.keywords) {
++mode.keywords = {
++...mode.keywords,
++'extends': 'keyword',
++};
++}
+ }
+ 
+ /**

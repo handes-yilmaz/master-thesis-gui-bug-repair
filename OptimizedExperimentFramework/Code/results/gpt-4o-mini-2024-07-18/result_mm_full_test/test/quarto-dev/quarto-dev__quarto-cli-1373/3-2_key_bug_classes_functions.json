@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/render/codetools.ts//codeToolsPostprocessor",
+            "src/command/render/codetools.ts//resolveCodeTools",
+            "src/command/render/render.ts//renderPandoc"
+        ],
+        "bug_functions": [
+            "src/command/render/codetools.ts//formatHasCodeTools",
+            "src/command/render/codetools.ts//keepSourceBlock",
+            "src/command/render/codetools.ts//resolveKeepSource"
+        ],
+        "explanation": "The identified classes and functions are related to the rendering and processing of code tools in the Quarto framework. The `codeToolsPostprocessor` function is responsible for adding the code tools to the rendered document, while `resolveCodeTools` determines the configuration for these tools based on the format. The `formatHasCodeTools` function checks if the code tools should be included based on the format settings. The `keepSourceBlock` and `resolveKeepSource` functions manage how source code is retained and displayed, which is crucial for the issue at hand where the URL handling may not be correctly implemented.",
+        "bug_scenario": "The `code-tools` menu does not appear when a URL is specified for the `source` in the Quarto markdown file. However, it works correctly when `source: true` is used. This indicates a potential issue in how the code tools are rendered or processed when a URL is provided."
+    }
+}

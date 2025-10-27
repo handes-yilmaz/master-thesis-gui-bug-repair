@@ -1,0 +1,17 @@
+diff --git a/src/js/components/Meter/Circle.js b/src/js/components/Meter/Circle.js
+index 93ad15cdd5..5f09ae7b72 100644
+--- a/src/js/components/Meter/Circle.js
++++ b/src/js/components/Meter/Circle.js
+@@ -39,10 +39,9 @@ const Circle = forwardRef((props, ref) => {
+         color || defaultColor(index, theme, values ? values.length : 0);
+ 
+       let endAngle;
+-      if (startValue + value >= max) {
++      endAngle = translateEndAngle(startAngle, anglePer, value);
++      if (endAngle > (type === 'semicircle' ? 90 : 360)) {
+         endAngle = type === 'semicircle' ? 90 : 360;
+-      } else {
+-        endAngle = translateEndAngle(startAngle, anglePer, value);
+       }
+       let hoverProps;
+       if (onHover) {

@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler",
+            "lib/features/modeling/behavior/ResizeBehavior",
+            "lib/draw/TextRenderer"
+        ],
+        "bug_functions": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler//setText",
+            "lib/features/label-editing/cmd/UpdateLabelHandler//postExecute",
+            "lib/features/modeling/behavior/ResizeBehavior//resize.start",
+            "lib/draw/TextRenderer//getExternalLabelBounds"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the resizing and rendering of BPMN elements. The `UpdateLabelHandler` class is responsible for updating labels, and its `postExecute` function manages the resizing of elements based on label changes. The `ResizeBehavior` class sets minimum bounds for resizing elements, which is crucial for preventing elements from becoming too small or disappearing. Lastly, the `TextRenderer` class's `getExternalLabelBounds` function calculates the dimensions for external labels, which directly impacts how labels are displayed and resized. Together, these components are integral to the functionality that is malfunctioning in the reported bug.",
+        "bug_scenario": "The bug occurs when selecting events or gateways in a BPMN diagram, causing the elements to resize unexpectedly or disappear entirely. This issue arises when direct editing is completed with an empty label, leading to minimum bounds being applied incorrectly. The problem is reproducible in the demo.bpmn.io tool and was introduced in a recent commit."
+    }
+}

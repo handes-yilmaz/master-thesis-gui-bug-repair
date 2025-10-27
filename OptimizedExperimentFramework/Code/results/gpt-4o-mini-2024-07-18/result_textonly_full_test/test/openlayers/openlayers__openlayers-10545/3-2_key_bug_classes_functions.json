@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/format/KML//KML",
+            "src/ol/style/Text//Text"
+        ],
+        "bug_functions": [
+            "src/ol/format/KML//readPlacemark_",
+            "src/ol/format/KML//readName",
+            "src/ol/style/Text//getText"
+        ],
+        "explanation": "The KML class is responsible for reading and writing KML data, including placemarks which contain the labels that are affected by the encoding issue. The readPlacemark_ function is crucial as it processes the placemark nodes, and if it does not handle decoding correctly, it will lead to the display of encoded characters. The readName function is also relevant as it reads the name from the KML data, which is where the encoded text originates. The Text class is responsible for styling text, and the getText function retrieves the text to be rendered. If the text is not decoded properly before being passed to this function, it will display incorrectly. Therefore, these classes and functions are directly related to the bug as they handle the reading and rendering of the text that is affected by the encoding issue.",
+        "bug_scenario": "The bug involves character codes appearing in labels, specifically the encoded representation of the name 'Andy&apos;s' which should be decoded for proper display. The issue arises in the rendering of KML data, where the text is not being properly decoded from its encoded format, leading to incorrect label representation."
+    }
+}

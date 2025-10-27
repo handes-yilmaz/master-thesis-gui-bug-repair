@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/View.js"
+        ],
+        "explanation": "These files are critical for handling projections and transformations in OpenLayers. The 'proj4.js' file is responsible for registering and managing projections defined in proj4js, which is directly related to the issue of incorrect rendering with version 2.6.1. The 'Projection.js' file defines the projection class and its properties, including axis orientation, which is crucial given the changes in proj4js 2.6.1 regarding axis order interpretation. Lastly, 'View.js' manages the view settings, including how projections are applied to the map, which is essential for ensuring that the map layers are rendered correctly according to the specified projection.",
+        "bug_scenario": "The issue arises when using OpenLayers with proj4js version 2.6.1, where the map layers are incorrectly rendered, leading to rotation issues in both Mercator and EPSG:2180 projections. This is evident from the provided images, where the layers appear rotated and misaligned compared to the expected output with proj4js version 2.6.0."
+    }
+}

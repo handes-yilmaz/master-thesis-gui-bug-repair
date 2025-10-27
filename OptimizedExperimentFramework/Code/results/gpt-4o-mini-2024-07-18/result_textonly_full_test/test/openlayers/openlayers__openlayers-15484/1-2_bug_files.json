@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/reproj/DataTile.js",
+            "src/ol/reproj/Image.js"
+        ],
+        "explanation": "These files are directly related to the bug because `GeoTIFF.js` handles the loading and processing of GeoTIFF files, including options like `wrapX`. The `DataTile.js` and `Image.js` files in the reproj directory handle the reprojection logic and tile management, which are crucial for fixing the cropping issue when reprojection is applied.",
+        "bug_scenario": "The bug is related to the handling of GeoTIFF source tiles during reprojection, specifically the misinterpretation of the `wrapX` option, which affects how tiles are cropped to the tile grid extent. This results in unexpected behavior when users specify a non-zero nodata value, particularly when reprojection is involved."
+    }
+}

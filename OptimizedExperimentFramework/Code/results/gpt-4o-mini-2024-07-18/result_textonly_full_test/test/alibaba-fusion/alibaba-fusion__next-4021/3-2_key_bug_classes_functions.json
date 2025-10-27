@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/number-picker/number-picker.jsx//NumberPicker"
+        ],
+        "bug_functions": [
+            "src/number-picker/number-picker.jsx//onBlur",
+            "src/number-picker/number-picker.jsx//shouldFireOnChange",
+            "src/number-picker/number-picker.jsx//correctValue"
+        ],
+        "explanation": "The NumberPicker class is central to the bug as it encapsulates the functionality of the number input component. The onBlur function is responsible for handling the event when the input loses focus, which is where the automatic correction occurs. The shouldFireOnChange function determines whether the onChange event should be triggered based on the input value, which is crucial for ensuring that values exceeding the maximum limit are handled correctly. The correctValue function is responsible for adjusting the input value to fit within defined boundaries, which is directly related to the issue of allowing inputs beyond the maximum limit.",
+        "bug_scenario": "The NumberPicker component allows users to input values beyond the maximum limit without throwing an onChange event. Instead, it corrects the value on blur, leading to confusion as the displayed value changes without the user being aware of it."
+    }
+}

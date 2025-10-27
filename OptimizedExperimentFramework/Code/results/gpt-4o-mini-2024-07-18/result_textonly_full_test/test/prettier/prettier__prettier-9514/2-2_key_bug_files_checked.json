@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/language-js/parser-flow.js",
+            "src/language-js/parser-typescript.js"
+        ],
+        "explanation": "These files are key bug files because they contain the parser implementations that are currently being used by Prettier. The 'parser-babel.js' file is responsible for handling the existing Babylon parser, which needs to be replaced with Cherow. The 'parser-flow.js' and 'parser-typescript.js' files are also relevant as they handle specific parsing scenarios that may need to be adapted to ensure compatibility with Cherow, especially considering the noted lack of Flow support in Cherow.",
+        "bug_scenario": "The bug scenario involves the need to replace the current JavaScript parser (Babylon) with the Cherow parser in order to improve the speed of the Prettier code formatter. The user has provided a benchmark indicating that Cherow is significantly faster than Babylon, which is crucial for usability in format-on-save scenarios. However, there is a concern that Cherow does not support Flow syntax, which may limit its use by default."
+    }
+}

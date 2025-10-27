@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/css.js",
+            "src/languages/lib/css-shared.js",
+            "src/lib/mode_compiler.js",
+            "src/lib/html_renderer.js"
+        ],
+        "explanation": "These files are relevant to the bug because: \n1. **css.js** contains the language definitions and rules for how CSS is highlighted, including inline comments. Any issues with highlighting likely stem from this file. \n2. **css-shared.js** provides shared functionality for CSS highlighting and may include specific rules for handling comments. \n3. **mode_compiler.js** is responsible for compiling the modes, which would include the rules for comment highlighting. If there is a regression in how modes are processed, this file would be involved. \n4. **html_renderer.js** is used to render the highlighted output into HTML. If inline comments are not being rendered correctly, this file could also be a part of the problem.",
+        "bug_scenario": "The bug involves incorrect highlighting of inline comments within CSS code when using the new highlightAll API from version 10.6.0 of the library. The expected behavior is that inline comments should be highlighted similarly to how they were in version 10.5.0, which is shown in the provided images."
+    }
+}

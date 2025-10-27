@@ -1,0 +1,259 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "Formatter",
+            "file_path": "lighthouse-core/formatters/formatter.js",
+            "class_details": [
+                {
+                    "name": "Formatter",
+                    "start_line": 20,
+                    "end_line": 84,
+                    "methods": [
+                        {
+                            "name": "CAPITAL_LETTERS",
+                            "start_line": 22,
+                            "end_line": 24
+                        },
+                        {
+                            "name": "SUPPORTED_FORMATS",
+                            "start_line": 26,
+                            "end_line": 38
+                        },
+                        {
+                            "name": "_getFormatters",
+                            "start_line": 40,
+                            "end_line": 51
+                        },
+                        {
+                            "name": "_generateSupportedFormats",
+                            "start_line": 53,
+                            "end_line": 62
+                        },
+                        {
+                            "name": "getByName",
+                            "start_line": 64,
+                            "end_line": 74
+                        },
+                        {
+                            "name": "getFormatter",
+                            "start_line": 76,
+                            "end_line": 78
+                        },
+                        {
+                            "name": "getHelpers",
+                            "start_line": 83,
+                            "end_line": 83
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class Formatter {",
+                "",
+                "  static get CAPITAL_LETTERS() {",
+                "    return /([A-Z])/g;",
+                "  }",
+                "",
+                "  static get SUPPORTED_FORMATS() {",
+                "    // Get the available formatters if they don't already exist.",
+                "    if (!this._formatters) {",
+                "      this._getFormatters();",
+                "    }",
+                "",
+                "    // From the formatters we can establish a master list of supported format names.",
+                "    if (!this._supportedFormatsNames) {",
+                "      this._generateSupportedFormats();",
+                "    }",
+                "",
+                "    return this._supportedFormatsNames;",
+                "  }",
+                "",
+                "  static _getFormatters() {",
+                "    this._formatters = {",
+                "      accessibility: require('./accessibility'),",
+                "      card: require('./cards'),",
+                "      criticalRequestChains: require('./critical-request-chains'),",
+                "      urllist: require('./url-list'),",
+                "      null: require('./null-formatter'),",
+                "      speedline: require('./speedline-formatter'),",
+                "      table: require('./table'),",
+                "      userTimings: require('./user-timings')",
+                "    };",
+                "  }",
+                "",
+                "  static _generateSupportedFormats() {",
+                "    const formatNames = Object.keys(this._formatters);",
+                "    this._supportedFormatsNames = formatNames.reduce((prev, format) => {",
+                "      // Reformulates names like criticalNetworkChains to CRITICAL_NETWORK_CHAINS so they appear",
+                "      // like a bunch of constants.",
+                "      const formatName = format.replace(Formatter.CAPITAL_LETTERS, '_$1').toUpperCase();",
+                "      prev[formatName] = format;",
+                "      return prev;",
+                "    }, {});",
+                "  }",
+                "",
+                "  static getByName(name) {",
+                "    if (!this._formatters) {",
+                "      this._getFormatters();",
+                "    }",
+                "",
+                "    if (!this._formatters[name]) {",
+                "      throw new Error(`Unknown formatter: ${name}`);",
+                "    }",
+                "",
+                "    return this._formatters[name];",
+                "  }",
+                "",
+                "  static getFormatter() {",
+                "    throw new Error('Formatter must implement getPrettyFormatter()');",
+                "  }",
+                "",
+                "  /**",
+                "   * Optional function to get any Handlebars helpers this formatter expects to need.",
+                "   */",
+                "  static getHelpers() {}",
+                "}"
+            ]
+        },
+        "2": {
+            "class_name": "ComputedArtifact",
+            "file_path": "lighthouse-core/gather/computed/computed-artifact.js",
+            "class_details": [
+                {
+                    "name": "ComputedArtifact",
+                    "start_line": 20,
+                    "end_line": 54,
+                    "methods": [
+                        {
+                            "name": "constructor",
+                            "start_line": 21,
+                            "end_line": 23
+                        },
+                        {
+                            "name": "compute_",
+                            "start_line": 33,
+                            "end_line": 35
+                        },
+                        {
+                            "name": "request",
+                            "start_line": 44,
+                            "end_line": 53
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class ComputedArtifact {",
+                "  constructor() {",
+                "    this.cache = new Map();",
+                "  }",
+                "",
+                "  /* eslint-disable no-unused-vars */",
+                "",
+                "  /**",
+                "   * Override to implement a computed artifact. Can return a Promise or the",
+                "   * computed artifact itself.",
+                "   * @param {!Object} artifact Input to computation.",
+                "   * @throws {Error}",
+                "   */",
+                "  compute_(artifact) {",
+                "    throw new Error('compute_() not implemented for computed artifact ' + this.name);",
+                "  }",
+                "",
+                "  /* eslint-enable no-unused-vars */",
+                "",
+                "  /**",
+                "   * Request a computed artifact, caching the result on the input artifact.",
+                "   * @param {!OBject} artifact",
+                "   * @return {!Promise}",
+                "   */",
+                "  request(artifact) {",
+                "    if (this.cache.has(artifact)) {",
+                "      return Promise.resolve(this.cache.get(artifact));",
+                "    }",
+                "",
+                "    return Promise.resolve().then(_ => this.compute_(artifact)).then(computedArtifact => {",
+                "      this.cache.set(artifact, computedArtifact);",
+                "      return computedArtifact;",
+                "    });",
+                "  }",
+                "}"
+            ]
+        },
+        "3": {
+            "class_name": "Gatherer",
+            "file_path": "lighthouse-core/gather/gatherers/gatherer.js",
+            "class_details": [
+                {
+                    "name": "Gatherer",
+                    "start_line": 30,
+                    "end_line": 65,
+                    "methods": [
+                        {
+                            "name": "name",
+                            "start_line": 34,
+                            "end_line": 36
+                        },
+                        {
+                            "name": "beforePass",
+                            "start_line": 44,
+                            "end_line": 44
+                        },
+                        {
+                            "name": "pass",
+                            "start_line": 51,
+                            "end_line": 51
+                        },
+                        {
+                            "name": "afterPass",
+                            "start_line": 61,
+                            "end_line": 61
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class Gatherer {",
+                "  /**",
+                "   * @return {string}",
+                "   */",
+                "  get name() {",
+                "    return this.constructor.name;",
+                "  }",
+                "",
+                "  /* eslint-disable no-unused-vars */",
+                "",
+                "  /**",
+                "   * Called before navigation to target url.",
+                "   * @param {!Object} options",
+                "   */",
+                "  beforePass(options) { }",
+                "",
+                "  /**",
+                "   * Called after target page is loaded. If a trace is enabled for this pass,",
+                "   * the trace is still being recorded.",
+                "   * @param {!Object} options",
+                "   */",
+                "  pass(options) { }",
+                "",
+                "  /**",
+                "   * Called after target page is loaded, all gatherer `pass` methods have been",
+                "   * executed, and \u2014 if generated in this pass \u2014 the trace is ended. The trace",
+                "   * and record of network activity are provided in `loadData`.",
+                "   * @param {!Object} options",
+                "   * @param {networkRecords: !Array, trace: {traceEvents: !Array}} loadData",
+                "   * @return {*|!Promise<*>}",
+                "   */",
+                "  afterPass(options, loadData) { }",
+                "",
+                "  /* eslint-enable no-unused-vars */",
+                "",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

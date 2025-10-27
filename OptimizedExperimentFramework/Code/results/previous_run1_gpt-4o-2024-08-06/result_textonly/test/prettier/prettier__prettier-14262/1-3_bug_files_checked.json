@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/needs-parens.js",
+            "src/main/core.js",
+            "src/language-js/index.js"
+        ],
+        "explanation": "These files are likely involved in the bug due to their roles in the Prettier code base related to JavaScript parsing and printing: \n\n1. **src/language-js/printer-estree.js**: This file is responsible for converting the ESTree Abstract Syntax Tree into formatted code. Given that the bug involves incorrect formatting of parentheses around JSDoc comments, adjustments here could handle parentheses retention.\n\n2. **src/language-js/needs-parens.js**: This file contains logic for determining when parentheses are necessary in JavaScript expressions. It is directly related to the problem of Prettier removing parentheses that should be retained.\n\n3. **src/main/core.js**: As a central part of Prettier's core functionality, changes to handling syntax nodes often require coordination here, particularly if new rules for retaining syntax (like parentheses) are needed.\n\n4. **src/language-js/index.js**: This serves as the entry point for JavaScript processing within Prettier. Updates to how nodes are handled or parsed, especially related to new syntax or JSDoc, would require changes here.",
+        "bug_scenario": "The bug revolves around the Prettier tool incorrectly removing parentheses that are used in combination with JSDoc comments, which is causing issues with intellisense when using the @satisfies tag to enforce a record type. The desired behavior is for the parentheses to remain intact so that intellisense can work properly with this syntax."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/print/object.js",
+            "src/language-js/printer-estree.js",
+            "src/main/options.js"
+        ],
+        "explanation": "1. `src/language-js/print/object.js`: This file is likely responsible for the logic pertaining to object printing in JavaScript. Since the issue arises with the Prettier formatting removing parentheses, this file might contain the logic that incorrectly handles parens around JSDoc comments.\n\n2. `src/language-js/printer-estree.js`: This file is a core file for printing JavaScript, reading the ESTree AST structure, which JSDoc comments are a part of. The bug potentially lies in how this printer interprets and handles JSDoc with parens.\n\n3. `src/main/options.js`: As the main configuration file for parsing options, this file could be relevant in determining or specifying how JSDoc is processed, especially if any configuration changes are necessary for better handling JSDoc with parentheses.",
+        "bug_scenario": "The bug scenario involves the Prettier tool improperly formatting JSDoc with parentheses, breaking TypeScript Intellisense. The input maintains parentheses around JSDoc comments, but the output, wrongly formatted by Prettier, removes them."
+    }
+}

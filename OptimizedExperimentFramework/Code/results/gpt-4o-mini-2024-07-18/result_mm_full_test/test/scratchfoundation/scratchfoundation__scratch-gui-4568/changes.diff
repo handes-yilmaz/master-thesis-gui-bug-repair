@@ -1,0 +1,31 @@
+diff --git a/src/containers/monitor.jsx b/src/containers/monitor.jsx
+index dfcdd3aa..2da22420 100644
+--- a/src/containers/monitor.jsx
++++ b/src/containers/monitor.jsx
+@@ -170,8 +170,8 @@ class Monitor extends React.Component {
+                 draggable={this.props.draggable}
+                 height={this.props.height}
+                 isDiscrete={this.props.isDiscrete}
+-                max={this.props.max}
+-                min={this.props.min}
++                max={this.props.max || 100} // Default to 100 if not set
++                min={this.props.min || 0}    // Default to 0 if not set
+                 mode={this.props.mode}
+                 targetId={this.props.targetId}
+                 width={this.props.width}
+diff --git a/src/reducers/monitors.js b/src/reducers/monitors.js
+index 09162422..a7c016c9 100644
+--- a/src/reducers/monitors.js
++++ b/src/reducers/monitors.js
+@@ -7,6 +7,11 @@ const reducer = function (state, action) {
+     if (typeof state === 'undefined') state = initialState;
+     switch (action.type) {
+     case UPDATE_MONITORS:
++        // Ensure monitors have default min/max values if not provided
++        action.monitors.forEach(monitor => {
++            monitor.min = monitor.min || 0; // Default to 0 if not set
++            monitor.max = monitor.max || 100; // Default to 100 if not set
++        });
+         return action.monitors;
+     default:
+         return state;

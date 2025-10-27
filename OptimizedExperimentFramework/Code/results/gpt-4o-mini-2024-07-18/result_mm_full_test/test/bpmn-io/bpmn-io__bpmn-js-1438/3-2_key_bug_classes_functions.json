@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer",
+            "lib/draw/TextRenderer.js//TextRenderer",
+            "lib/util/LabelUtil.js//getExternalLabelBounds"
+        ],
+        "bug_functions": [
+            "lib/draw/BpmnRenderer.js//drawConnection",
+            "lib/draw/TextRenderer.js//createText",
+            "lib/util/LabelUtil.js//getExternalLabelMid"
+        ],
+        "explanation": "The identified classes and functions are related to the rendering and positioning of elements in the BPMN diagram. The `BpmnRenderer` class is responsible for drawing shapes and connections, which includes the message elements. The `drawConnection` function specifically handles the rendering of connections, which is crucial for displaying message flows. The `TextRenderer` class is responsible for creating and managing text elements, including the names of message elements. The `createText` function is essential for rendering the text labels. Lastly, the `LabelUtil` class contains utility functions for managing labels, including `getExternalLabelBounds` and `getExternalLabelMid`, which help determine the positioning of labels in relation to the elements they describe. These functions and classes will need to be modified to ensure that message names are rendered correctly in the diagram.",
+        "bug_scenario": "The bug scenario involves the rendering of message element names in a BPMN diagram. Currently, the names of message elements on message flows are not displayed, which affects the clarity and usability of the diagram. The user requests that these names be rendered below the message elements, considering that message flows can have their own labels."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/behavior/RemoveElementBehavior.js",
+            "lib/features/modeling/BpmnLayouter.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because they handle the behavior associated with deleting lanes and elements in the BPMN diagram. The 'DeleteLaneBehavior.js' file contains the logic for compensating lane deletions, which is directly related to the deformation issue when a child lane is removed. The 'RemoveElementBehavior.js' file manages the deletion of elements, which may also affect the layout of the diagram. Lastly, 'BpmnLayouter.js' is responsible for the layout of connections and elements in the diagram, and any issues with layout adjustments after a lane is removed could contribute to the deformation observed in the bug.",
+        "bug_scenario": "The bug occurs when a user removes a child lane from a parent lane in a BPMN diagram created using the bpmn.io online demo. After removing a child lane, the remaining lanes and the overall diagram become deformed, making it difficult to continue editing the diagram. This issue is reproducible in versions 5.x and 6.x of the library, while it does not occur in earlier versions (3.0.1 and 4.0.1)."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/reproj/Image.js",
+            "src/ol/renderer/canvas/ImageLayer.js",
+            "src/ol/proj/projections.js"
+        ],
+        "explanation": "These files are key to the bug because they handle the image reprojection and rendering processes. The 'Image.js' file contains the logic for reprojecting images, which is directly related to the misalignment issue. The 'ImageLayer.js' file is responsible for rendering the image layers on the canvas, which could be affected by how the pixels are projected. Lastly, 'projections.js' manages the projection definitions and caching, which is crucial for ensuring that the correct transformations are applied during the reprojection process.",
+        "bug_scenario": "The bug scenario involves raster reprojection where the projected pixels are displayed as squares, leading to misalignments. In the provided image, a 5x5 pixel source image is intended to cover an area of 3km by 2km, but the horizontal alignment is incorrect, causing the first column of pixels to be repeated and extending too far to the east. The user expects the destination pixels to be stretched to match the source pixel count accurately."
+    }
+}

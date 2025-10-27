@@ -1,0 +1,30 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js//DrilldownBreadcrumbs",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//DrilldownOverlayBehavior",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js//UpdateCanvasRootHandler"
+        ],
+        "bug_functions": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js//updateBreadcrumbs",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js//execute",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js//revert"
+        ],
+        "explanation": "The error 'rootElement required' implies that the drilldown functionality is not properly tracking root element changes. In `DrilldownBreadcrumbs.js`, the `updateBreadcrumbs` function interacts with the canvas to set the root element, which is where the error occurs. `DrilldownOverlayBehavior.js` is responsible for managing overlays, which may not be updating correctly during root changes. Finally, `UpdateCanvasRootHandler.js` handles changing the root element on the canvas; its `execute` and `revert` functions are likely related to the problem as they manage the root element transitions, which the drilldown features depend on.",
+        "bug_scenario": "The bug report describes an issue where an error is thrown when attempting to drill out after a root change in a BPMN diagram. The error 'rootElement required' suggests that the drilldown overlay is not aware of changes to the root element. The scenario involves wrapping a collapsed sub-process with a pool, navigating into it, and then trying to move back, which causes the error."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js//DrilldownBreadcrumbs",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//DrilldownOverlayBehavior",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js//UpdateCanvasRootHandler"
+        ],
+        "bug_functions": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js//updateBreadcrumbs",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//updateDrilldownOverlay",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js//execute"
+        ],
+        "explanation": "The issue arises because the drilldown components are not correctly handling changes to the root element. In 'DrilldownBreadcrumbs', the 'updateBreadcrumbs' function might not be updating the breadcrumb trail correctly when the root changes. In 'DrilldownOverlayBehavior', the 'updateDrilldownOverlay' function likely fails to update the overlay visibility or state when the root element is modified. Finally, in 'UpdateCanvasRootHandler', the 'execute' function is responsible for changing the root element, and any mismanagement here could lead to an incorrect root state, causing the error observed.",
+        "bug_scenario": "The bug occurs when trying to navigate back to the parent process after wrapping a collapsed subprocess with a pool. An error is thrown indicating that the drilldown overlay is not aware of root changes, resulting in a failure to return to the parent process."
+    }
+}

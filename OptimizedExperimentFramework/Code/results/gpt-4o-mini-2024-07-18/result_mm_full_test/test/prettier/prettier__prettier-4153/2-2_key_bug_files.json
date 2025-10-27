@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-js/parser-babylon.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "These files are key to fixing the bug because: 1. `parser-markdown.js` contains the logic for parsing Markdown and detecting code block languages, which needs to be modified to ignore attributes after the language identifier. 2. `parser-babylon.js` is responsible for parsing JavaScript code, and any changes in language detection may require adjustments here to ensure compatibility. 3. `printer-estree.js` handles the printing of the parsed AST, and it may need updates to ensure that the output remains consistent with the expected formatting when attributes are present.",
+        "bug_scenario": "The bug occurs when Prettier fails to detect the language of fenced code blocks in Markdown if there are any non-whitespace characters following the language identifier. This affects the formatting of code blocks with attributes, such as `{cmd=node .line-numbers}`, which should be ignored for language detection but currently are not."
+    }
+}

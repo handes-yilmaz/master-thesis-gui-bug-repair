@@ -1,0 +1,14 @@
+diff --git a/src/nav/item.jsx b/src/nav/item.jsx
+index dbb2ea1b2..753b57766 100644
+--- a/src/nav/item.jsx
++++ b/src/nav/item.jsx
+@@ -41,7 +41,8 @@ class Item extends Component {
+                 icon
+             );
+         if (iconOnly && !iconEl) {
+-            iconEl = <span className={`${prefix}nav-icon-placeholder`} />;
++            // Do not render a placeholder if no icon is provided in iconOnly mode
++            return null;
+         }
+ 
+         const item = (

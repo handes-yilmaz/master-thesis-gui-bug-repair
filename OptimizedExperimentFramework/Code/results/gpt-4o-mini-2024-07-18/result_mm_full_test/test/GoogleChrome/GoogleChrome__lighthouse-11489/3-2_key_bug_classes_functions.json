@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/large-javascript-libraries.js//LargeJavascriptLibraries"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/large-javascript-libraries.js//audit",
+            "lighthouse-core/report/html/renderer/details-renderer.js//_renderBytes",
+            "lighthouse-core/report/html/renderer/performance-category-renderer.js//_renderMetric"
+        ],
+        "explanation": "The class 'LargeJavascriptLibraries' is responsible for auditing large JavaScript libraries and their sizes. The 'audit' function within this class processes the artifacts and generates the data that includes transfer sizes. The '_renderBytes' function in 'details-renderer.js' is likely responsible for rendering the byte sizes in the report, and it will need to be modified to ensure that sizes are displayed with one decimal place. Similarly, the '_renderMetric' function in 'performance-category-renderer.js' may also need adjustments to ensure that metrics are displayed correctly with the required formatting.",
+        "bug_scenario": "The bug scenario involves the display of transfer sizes for JavaScript libraries in the Lighthouse report. Currently, sizes are shown without a decimal place, which can lead to confusion when comparing values, especially for users with vision impairments. The request is to always display one decimal place, even if it is zero, to improve accessibility and clarity."
+    }
+}

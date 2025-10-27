@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Select/Select.js//Select",
+            "src/js/components/Select/SelectContainer.js//SelectContainer"
+        ],
+        "bug_functions": [
+            "src/js/components/Select/Select.js//render",
+            "src/js/components/Select/SelectContainer.js//render"
+        ],
+        "explanation": "The class `Select` in `Select.js` is directly responsible for rendering the Select component, which includes the search input element. The `render` function within this class constructs the UI elements and manages their properties, including applying styles to input fields. Similarly, the `SelectContainer` class in `SelectContainer.js` is responsible for handling the functionality and rendering of the dropdown options, including the search input. The `render` function in `SelectContainer` is crucial as it manages the input field type and styling through the `TextInput` component. Since the issue is related to the styling of the search input, both classes' rendering functions are closely related to the bug and would need adjustments to apply the CSS fix (`-webkit-appearance: textfield;`) to ensure the input displays correctly in Safari.",
+        "bug_scenario": "The bug scenario involves a visual issue in Safari where the padding for a search input field within a Select component is ignored, leading to a smaller input appearance compared to its rendering in Chrome. This discrepancy is caused by Safari's unique handling of search input fields, which was previously resolved in version 1 by adding a specific CSS property `-webkit-appearance: textfield;` to `<input type='search' />`. The attached images show the difference in appearance between Safari and Chrome, highlighting the problem in Safari."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/Select/Select.js//Select"
+        ],
+        "bug_functions": [
+            "src/js/components/Select/SelectContainer.js//render"
+        ],
+        "explanation": "The `Select` class in `Select.js` is the main component class that renders the Select component, which includes the input field that is incorrectly styled in Safari. Since the issue is related to the appearance of the input, it is likely that modifications in this class could solve the issue. The `render` function in `SelectContainer.js` is responsible for rendering the search input with the `type='search'`. Since the issue is related to padding not being applied correctly in Safari, the styling or attributes set in this function might need adjustment to address the bug. The input field styling is likely set here, and adding CSS fixes for Safari would be relevant.",
+        "bug_scenario": "The bug scenario involves a UI issue where the Select component's search input appears very small in Safari due to ignored padding. This is shown in the images where the input field is visibly smaller in Safari compared to Chrome. The issue has been previously resolved in version 1 by adding a specific CSS property for the input element."
+    }
+}

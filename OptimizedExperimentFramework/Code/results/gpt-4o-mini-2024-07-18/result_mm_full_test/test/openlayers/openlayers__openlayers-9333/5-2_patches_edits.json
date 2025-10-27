@@ -1,0 +1,23 @@
+{
+    "1/1": {
+        "rendering/test.js": [
+            {
+                "SEARCH": [
+                    "async function render(entries, options) {",
+                    "const browser = await puppeteer.launch({",
+                    "args: options.puppeteerArgs,",
+                    "headless: options.headless",
+                    "});"
+                ],
+                "REPLACE": [
+                    "async function unifiedRender(entries, options) {",
+                    "  const browser = await puppeteer.launch({",
+                    "    args: options.puppeteerArgs,",
+                    "    headless: options.headless",
+                    "  });",
+                    "  options.log.info('Starting unified rendering tests...');"
+                ]
+            }
+        ]
+    }
+}

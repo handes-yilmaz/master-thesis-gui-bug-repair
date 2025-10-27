@@ -1,0 +1,17 @@
+diff --git a/src/upload/card.jsx b/src/upload/card.jsx
+index 4ff619d..9152f98 100644
+--- a/src/upload/card.jsx
++++ b/src/upload/card.jsx
+@@ -167,7 +167,11 @@ class Card extends Base {
+                 closable
+                 locale={locale}
+                 value={this.state.value}
+-                onRemove={onRemoveFunc}
++                onRemove={(item) => {
++                    if (onRemoveFunc) {
++                        onRemoveFunc(item);
++                    }
++                }}
+                 onCancel={onCancel}
+                 onPreview={onPreview}
+                 itemRender={itemRender}

@@ -1,0 +1,14 @@
+diff --git a/src/language-js/print/type-parameters.js b/src/language-js/print/type-parameters.js
+index c6a21670fa..e9508a6567 100644
+--- a/src/language-js/print/type-parameters.js
++++ b/src/language-js/print/type-parameters.js
+@@ -49,7 +49,8 @@ function printTypeParameters(path, options, print, paramsKey) {
+       node[paramsKey].length === 0 ||
+       (node[paramsKey].length === 1 &&
+         (node[paramsKey][0].type === "NullableTypeAnnotation" ||
+-          shouldHugType(node[paramsKey][0]))));
++          shouldHugType(node[paramsKey][0])) &&
++        !shouldPrintComma(options, "all")));
+ 
+   if (shouldInline) {
+     return [

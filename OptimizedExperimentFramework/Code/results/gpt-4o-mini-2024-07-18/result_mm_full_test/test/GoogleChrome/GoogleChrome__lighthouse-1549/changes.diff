@@ -1,0 +1,28 @@
+diff --git a/lighthouse-core/audits/user-timings.js b/lighthouse-core/audits/user-timings.js
+index 574debd..02ba0ca 100644
+--- a/lighthouse-core/audits/user-timings.js
++++ b/lighthouse-core/audits/user-timings.js
+@@ -65,10 +65,10 @@ function filterTrace(traceData) {
+         return;
+       }
+ 
+-      // Once TraceingStartedInPage has begun, the next navigationStart event
++      // Once TracingStartedInPage has begun, the next navigationStart event
+       // marks the start of navigation
+       // Make sure to not record such events hereafter
+-      if (ut.name === 'navigationStart' && traceStartFound && !navigationStartTime) {
++      if (ut.name === \'navigationStart\' && traceStartFound && (navigationStartTime === undefined || navigationStartTime === null)) {
+         navigationStartTime = ut.startTime;
+       }
+ 
+@@ -99,7 +99,9 @@ function filterTrace(traceData) {
+   });
+ 
+   userTimings.forEach(ut => {
+-    ut.startTime -= navigationStartTime;
++    if (navigationStartTime) {
++      ut.startTime -= navigationStartTime;
++    }
+     if (!ut.isMark) {
+       ut.endTime -= navigationStartTime;
+       ut.duration = ut.duration;

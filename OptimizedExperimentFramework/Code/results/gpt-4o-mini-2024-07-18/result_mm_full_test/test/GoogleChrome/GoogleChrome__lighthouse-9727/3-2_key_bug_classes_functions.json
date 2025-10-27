@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/accessibility/frame-title",
+            "lighthouse-core/gather/gatherers/iframe-elements",
+            "lighthouse-core/runner"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/gatherers/iframe-elements//afterPass",
+            "lighthouse-core/audits/accessibility/frame-title//meta",
+            "lighthouse-core/runner//run"
+        ],
+        "explanation": "The identified classes and functions are crucial for addressing the bug because they handle the auditing and gathering of iframe elements and their performance metrics. The 'afterPass' function in 'iframe-elements' is responsible for collecting iframe data, which is essential for accurate performance reporting. The 'meta' function in 'frame-title' ensures that iframes are evaluated for accessibility, which can also impact performance metrics. Lastly, the 'run' function in 'runner' orchestrates the overall Lighthouse run, including how audits are executed and results are aggregated, making it central to resolving the issue of misleading performance scores.",
+        "bug_scenario": "The Lighthouse performance report inaccurately reflects the performance of a page containing an iframe. The parent page scores higher despite including a poorly performing iframe, leading to misleading metrics."
+    }
+}

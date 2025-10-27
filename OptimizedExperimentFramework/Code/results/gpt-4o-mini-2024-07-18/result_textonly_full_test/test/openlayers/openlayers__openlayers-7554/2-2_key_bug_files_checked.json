@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/imagevector.js",
+            "src/ol/interaction/draw.js",
+            "src/ol/render/canvas/immediate.js"
+        ],
+        "explanation": "These files are key to the bug because: \n1. **src/ol/source/imagevector.js**: This file contains the implementation of the deprecated `ol.source.ImageVector`, which is directly related to the performance issues when rendering vector features as images. The deprecation note indicates that users should switch to using `ol.layer.Vector` with `renderMode: 'image'`, which is relevant to the user's problem.\n\n2. **src/ol/interaction/draw.js**: This file handles the drawing interactions in OpenLayers. Any performance issues during drawing operations would likely be rooted in this file, as it manages how features are drawn on the map.\n\n3. **src/ol/render/canvas/immediate.js**: This file is responsible for rendering features directly to the canvas. Since the user is experiencing performance issues with rendering, this file's methods for drawing geometries and handling rendering styles could be contributing to the slow performance observed in version 4.6.2.",
+        "bug_scenario": "The user is experiencing low performance when using the draw interaction in OpenLayers version 4.6.2, particularly with the 'image' render mode. This performance issue is compared to version 4.4.2, where the image vector rendering was more efficient. The user has provided links to CodePen examples demonstrating the performance differences and a test condition image showing the drawing of a triangle."
+    }
+}

@@ -1,0 +1,22 @@
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 65d960d..7e60bf5 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -491,7 +491,16 @@ class GeoTIFFSource extends DataTile {
+         }
+ 
+         sourceResolutions[level] = getResolution(image, images[0]);
+-        sourceTileSizes[level] = [image.getTileWidth(), image.getTileHeight()];
++        const tileWidth = image.getTileWidth();
++        const tileHeight = image.getTileHeight();
++        sourceTileSizes[level] = [tileWidth, tileHeight];
++        // Ensure that the aspect ratio is maintained for non-square pixels
++        if (tileWidth !== tileHeight) {
++          const aspectRatio = tileWidth / tileHeight;
++          sourceResolutions[level] = getResolution(image, images[0]) * aspectRatio;
++        } else {
++          sourceResolutions[level] = getResolution(image, images[0]);
++        }
+       }
+ 
+       if (!extent) {

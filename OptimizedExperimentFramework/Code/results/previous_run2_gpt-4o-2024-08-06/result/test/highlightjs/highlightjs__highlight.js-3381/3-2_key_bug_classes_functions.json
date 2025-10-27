@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js"
+        ],
+        "bug_functions": [
+            "src/languages/python.js//IDENT_RE",
+            "src/languages/python.js//KEYWORDS"
+        ],
+        "explanation": "The issue is related to the syntax highlighting of Python identifiers. In 'src/languages/python.js', the regular expression 'IDENT_RE' defines the structure of identifiers, which may be incorrectly matching parts of identifiers as keywords. Additionally, the 'KEYWORDS' object contains patterns for keywords, which may be causing 'def' to match inside identifiers like '_undef'. Adjusting these definitions can help prevent incorrect keyword highlighting within identifiers.",
+        "bug_scenario": "The image shows a syntax highlighting issue where part of the identifier '_undef' is incorrectly highlighted as the keyword 'def'."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/python.js//KEYWORDS"
+        ],
+        "bug_functions": [
+            "src/lib/mode_compiler.js//compileMode"
+        ],
+        "explanation": "The issue arises because the syntax highlighter is incorrectly interpreting part of the identifier as a keyword due to the regex pattern used for keywords. In `src/languages/python.js`, the regex patterns and keyword lists are defined in the `KEYWORDS` object. The incorrect highlighting is likely caused by a misconfiguration or misinterpretation of these patterns. The `compileMode` function in `src/lib/mode_compiler.js` is responsible for compiling the language modes and may not be handling the keyword pattern correctly, leading to the erroneous highlighting.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting in Python code, where part of an identifier is mistakenly highlighted as a keyword. Specifically, the identifier `_undef` is partially highlighted as the `def` keyword."
+    }
+}

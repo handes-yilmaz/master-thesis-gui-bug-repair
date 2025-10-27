@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/DeleteLaneBehavior.js": [
+            {
+                "SEARCH": [
+                    "if (!siblings.length) {",
+                    "return;",
+                    "}",
+                    "",
+                    "var offset;",
+                    "",
+                    "if (bottomAffected.length && topAffected.length) {",
+                    "offset = shape.height / 2;",
+                    "} else {",
+                    "offset = shape.height;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (!siblings.length) {",
+                    "      // Update pool boundary when no siblings are present",
+                    "      modeling.updateBounds(oldParent, {",
+                    "        x: oldParent.x,",
+                    "        y: oldParent.y,",
+                    "        width: oldParent.width,",
+                    "        height: oldParent.height - shape.height",
+                    "      });",
+                    "      return;",
+                    "    }",
+                    "",
+                    "    var offset;",
+                    "",
+                    "    if (bottomAffected.length && topAffected.length) {",
+                    "      offset = shape.height / 2;",
+                    "    } else {",
+                    "      offset = shape.height;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

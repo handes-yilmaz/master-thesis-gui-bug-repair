@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/PageHeader/PageHeader.js//PageHeader",
+            "src/js/components/Heading/StyledHeading.js//StyledHeading"
+        ],
+        "bug_functions": [],
+        "explanation": "The PageHeader component is responsible for rendering the heading, which is where the overflow issue is occurring. The component uses the Heading component to display the title, so adjustments may be needed in how the PageHeader component handles the title's styling or dimensions. The StyledHeading component in the Heading module dictates the styling of headings, including properties like max-width and overflow behavior. This component likely needs modifications to ensure long strings wrap properly instead of overflowing.",
+        "bug_scenario": "The bug scenario involves a heading containing a long string that overflows and collides with other content instead of wrapping when it runs out of space as expected. This occurs in the PageHeader component when handling user-generated headings."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/Heading/StyledHeading.js//StyledHeading"
+        ],
+        "bug_functions": [
+            "src/js/components/PageHeader/PageHeader.js//PageHeader"
+        ],
+        "explanation": "The issue is related to the styling and structure of the PageHeader component when handling long strings. The StyledHeading component in `StyledHeading.js` is responsible for the CSS styling of the heading, and it includes properties like `white-space`, `overflow`, and `text-overflow` which are crucial in controlling text wrapping and overflow behavior. The PageHeader function in `PageHeader.js` manages the layout and rendering of the header, including how the title is displayed. Adjusting the CSS styles or attributes in these files should address the overflow issue by ensuring text wraps appropriately.",
+        "bug_scenario": "The bug scenario involves a heading in the PageHeader component that overflows when the content is too long. This causes the text to collide with other elements on the page instead of wrapping appropriately."
+    }
+}

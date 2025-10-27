@@ -1,0 +1,42 @@
+diff --git a/src/js/components/DataTable/DataTable.js b/src/js/components/DataTable/DataTable.js
+index 5153325a8..d82dd5f5b 100644
+--- a/src/js/components/DataTable/DataTable.js
++++ b/src/js/components/DataTable/DataTable.js
+@@ -20,6 +20,7 @@ import { Footer } from './Footer';
+ import { Body } from './Body';
+ import { GroupedBody } from './GroupedBody';
+ import { Pagination } from '../Pagination';
++import { DataTableGroup } from './DataTableGroup';
+ import {
+   buildFooterValues,
+   buildGroups,
+@@ -89,6 +90,14 @@ const DataTable = ({
+   verticalAlign,
+   ...rest
+ }) => {
++  const [groupByValue, setGroupByValue] = useState(groupBy);
++
++  const onGroupByChange = (event) => {
++    setGroupByValue(event.value);
++    if (onUpdate) {
++      onUpdate({ groupBy: event.value });
++    }
++  };
+   const theme = useContext(ThemeContext) || defaultProps.theme;
+   const {
+     view,
+@@ -412,7 +421,14 @@ const DataTable = ({
+     );
+   }
+ 
++  const groupByOptions = columns.map((column) => column.property);
++
+   const bodyContent = groups ? (
++    <DataTableGroup
++      options={groupByOptions}
++      value={groupByValue}
++      onChange={onGroupByChange}
++    />
+     <GroupedBody
+       ref={bodyRef}
+       cellProps={cellProps.body}

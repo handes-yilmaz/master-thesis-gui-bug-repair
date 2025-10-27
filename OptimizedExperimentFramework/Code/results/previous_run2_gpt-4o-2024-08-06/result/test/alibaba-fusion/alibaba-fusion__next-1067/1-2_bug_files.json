@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/slider/index.jsx",
+            "src/slider/slider.jsx",
+            "src/slider/slick/arrow.jsx"
+        ],
+        "explanation": "1. `src/slider/index.jsx`: This file likely contains the main implementation for the Slider component, where the logic for displaying and enabling/disabling navigation controls would be defined.\n2. `src/slider/slider.jsx`: This file probably holds the core functionality or configurations for the Slider, including properties like 'slidesToShow', 'infinite', and how default active slides are managed.\n3. `src/slider/slick/arrow.jsx`: As this file seems to handle the arrow functionality, it would be crucial for fixing an issue where arrows are incorrectly disabled.",
+        "bug_scenario": "The bug report details an issue with the Slider component where the left arrow is disabled when the default active index is not set to 0, the 'slidesToShow' is greater than 'slidesCount', and 'infinite' mode is set to false. The attached image shows the left arrow of the slider being disabled when it should not be."
+    },
+    "2": {
+        "bug_files": [
+            "src/slider/slick/mixins/event-handlers.js",
+            "src/slider/slick/inner-slider.jsx",
+            "src/slider/slider.jsx"
+        ],
+        "explanation": "The issue involves the Slider component, specifically the navigation logic related to the state and behavior of the arrow buttons (left arrow in this case). The files likely involved are those that manage slider animations, handle arrow button events, and configure the main slider properties. \n\n1. **event-handlers.js**: This file likely contains the logic for enabling and disabling arrow buttons based on slider state, slidesToShow, and infinite property.\n2. **inner-slider.jsx**: This file might manage the internal mechanisms of the slider, including how slides are displayed based on props like defaultActiveIndex and slidesToShow.\n3. **slider.jsx**: This is probably the main component file that integrates the settings for arrow functionality and renders the overall slider, including the decision-making for enabling and disabling arrows.",
+        "bug_scenario": "The bug occurs in the Slider component when the number of slides to show is greater than the total number of slides, the infinite property is set to false, and the defaultActiveIndex is not zero. In this scenario, the left arrow is incorrectly disabled, as shown in the image where the left arrow is faded out, indicating it's in a disabled state."
+    }
+}

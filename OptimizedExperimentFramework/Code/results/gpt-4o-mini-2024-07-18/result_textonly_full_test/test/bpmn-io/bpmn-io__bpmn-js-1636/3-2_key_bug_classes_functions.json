@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior",
+            "lib/features/drilldown/SubprocessCompatibility",
+            "lib/features/modeling/behavior/CreateBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior//SubProcessStartEventBehavior",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior//getStartEventPosition",
+            "lib/features/drilldown/SubprocessCompatibility//SubprocessCompatibility",
+            "lib/features/drilldown/SubprocessCompatibility//handleImport",
+            "lib/features/drilldown/SubprocessCompatibility//createNewDiagrams",
+            "lib/features/drilldown/SubprocessCompatibility//movePlaneElementsToOrigin",
+            "lib/features/drilldown/SubprocessCompatibility//moveToDiPlane",
+            "lib/features/drilldown/SubprocessCompatibility//createDiagram",
+            "lib/features/modeling/behavior/CreateBehavior//CreateBehavior"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the behavior of subprocesses and their interactions within the BPMN diagram. The 'SubProcessStartEventBehavior' class is crucial as it is responsible for adding a start event when a subprocess is created. The 'SubprocessCompatibility' class manages the compatibility and rendering of subprocesses, which is relevant when morphing activities. Lastly, 'CreateBehavior' deals with the creation of shapes and their parent relationships, which may affect how the subprocess is instantiated. These elements need to be modified to ensure that the morphing process correctly adds a start event to the expanded subprocess.",
+        "bug_scenario": "The bug occurs when morphing a call activity to an expanded subprocess, resulting in a tiny subprocess that resembles a task. This is confusing for users, as the expected behavior is for the expanded subprocess to include a start event, similar to the behavior when morphing from a task."
+    }
+}

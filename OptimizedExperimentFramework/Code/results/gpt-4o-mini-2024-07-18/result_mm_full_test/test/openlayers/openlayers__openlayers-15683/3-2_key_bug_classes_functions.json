@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/renderer/canvas/VectorLayer.js//CanvasVectorLayerRenderer",
+            "src/ol/render/canvas/Builder.js//CanvasBuilder",
+            "src/ol/render/canvas/Executor.js//Executor"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/canvas/VectorLayer.js//renderFrame",
+            "src/ol/render/canvas/Builder.js//drawCustom",
+            "src/ol/render/canvas/Executor.js//execute"
+        ],
+        "explanation": "These classes and functions are related to the rendering of vector layers on a canvas. The 'CanvasVectorLayerRenderer' class is responsible for rendering the vector layer, and the 'renderFrame' function is crucial as it handles the actual rendering process, including transformations that may be affected by the map's rotation. The 'CanvasBuilder' class and its 'drawCustom' function are involved in drawing geometries, which may not be correctly adjusted for the new canvas size after rotation. Lastly, the 'Executor' class and its 'execute' function manage the rendering execution, including handling the view rotation, which is directly related to the cropping issue observed in the bug report.",
+        "bug_scenario": "The vector layer canvas is cropped when the map is rotated, which is evident from the provided images. The first image shows the map in a non-rotated state where the polygon is fully visible. In contrast, the second image illustrates the issue where the polygon is cut off after the map is rotated, indicating a problem with how the canvas handles rendering during rotation."
+    }
+}

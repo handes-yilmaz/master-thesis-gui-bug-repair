@@ -1,0 +1,22 @@
+diff --git a/src/ol/geom/MultiPolygon.js b/src/ol/geom/MultiPolygon.js
+index 0bf35c1..412ed56 100644
+--- a/src/ol/geom/MultiPolygon.js
++++ b/src/ol/geom/MultiPolygon.js
+@@ -454,11 +454,17 @@ class MultiPolygon extends SimpleGeometry {
+    * @api
+    */
+   setCoordinates(coordinates, opt_layout) {
++    if (!Array.isArray(coordinates) || coordinates.length === 0) {
++      throw new RangeError('Invalid coordinates: must be a non-empty array');
++    }
+     this.setLayout(opt_layout, coordinates, 3);
+     if (!this.flatCoordinates) {
+       this.flatCoordinates = [];
+     }
+     const endss = deflateMultiCoordinatesArray(
++    if (!Array.isArray(coordinates) || coordinates.length === 0) {
++      throw new RangeError('Invalid coordinates: must be a non-empty array');
++    }
+       this.flatCoordinates,
+       0,
+       coordinates,

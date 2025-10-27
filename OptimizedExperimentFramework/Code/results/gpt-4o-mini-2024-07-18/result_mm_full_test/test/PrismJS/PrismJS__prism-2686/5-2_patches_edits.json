@@ -1,0 +1,142 @@
+{
+    "1/1": {
+        "// Hypothetical patch for the tokenizer of the Shell session language": [
+            {
+                "SEARCH": [
+                    "// Previous tokenizer logic that may be incorrect",
+                    "tokenize: function(input) {",
+                    "// Incorrect logic that fails to recognize shell commands",
+                    "return input.split('\\n').map(line => {",
+                    "return line.includes('$') ? { type: 'command', content: line } : { type: 'output', content: line };",
+                    "});"
+                ],
+                "REPLACE": [
+                    "tokenize: function(input) {",
+                    "// Updated logic to correctly recognize shell commands and outputs",
+                    "return input.split('\\n').map(line => {",
+                    "const commandMatch = line.match(/^(.*?)(\\$.*)$/);",
+                    "if (commandMatch) {",
+                    "return [",
+                    "{ type: 'command', content: commandMatch[1].trim() },",
+                    "{ type: 'prompt', content: commandMatch[2].trim() }",
+                    "];",
+                    "}",
+                    "return { type: 'output', content: line };",
+                    "});"
+                ]
+            }
+        ]
+    },
+    "1.1/1": {
+        "// Hypothetical patch for the tokenizer of the Shell session language": [
+            {
+                "SEARCH": [
+                    "// Previous tokenizer logic that may be incorrect",
+                    "tokenize: function(input) {",
+                    "// Incorrect logic that fails to recognize shell commands",
+                    "return input.split('\\n').map(line => {",
+                    "return line.includes('$') ? { type: 'command', content: line } : { type: 'output', content: line };",
+                    "});"
+                ],
+                "REPLACE": [
+                    "tokenize: function(input) {",
+                    "// Updated logic to correctly recognize shell commands and outputs",
+                    "return input.split('\\n').map(line => {",
+                    "const commandMatch = line.match(/^(.*?)(\\$.*)$/);",
+                    "if (commandMatch) {",
+                    "return [",
+                    "{ type: 'command', content: commandMatch[1].trim() },",
+                    "{ type: 'prompt', content: commandMatch[2].trim() }",
+                    "];",
+                    "}",
+                    "return { type: 'output', content: line };",
+                    "});"
+                ]
+            }
+        ]
+    },
+    "1.2/1": {
+        "// Hypothetical patch for the tokenizer of the Shell session language": [
+            {
+                "SEARCH": [
+                    "// Previous tokenizer logic that may be incorrect",
+                    "tokenize: function(input) {",
+                    "// Incorrect logic that fails to recognize shell commands",
+                    "return input.split('\\n').map(line => {",
+                    "return line.includes('$') ? { type: 'command', content: line } : { type: 'output', content: line };",
+                    "});"
+                ],
+                "REPLACE": [
+                    "tokenize: function(input) {",
+                    "// Updated logic to correctly recognize shell commands and outputs",
+                    "return input.split('\\n').map(line => {",
+                    "const commandMatch = line.match(/^(.*?)(\\$.*)$/);",
+                    "if (commandMatch) {",
+                    "return [",
+                    "{ type: 'command', content: commandMatch[1].trim() },",
+                    "{ type: 'prompt', content: commandMatch[2].trim() }",
+                    "];",
+                    "}",
+                    "return { type: 'output', content: line };",
+                    "});"
+                ]
+            }
+        ]
+    },
+    "1.3/1": {
+        "// Hypothetical patch for the tokenizer of the Shell session language": [
+            {
+                "SEARCH": [
+                    "// Previous tokenizer logic that may be incorrect",
+                    "tokenize: function(input) {",
+                    "// Incorrect logic that fails to recognize shell commands",
+                    "return input.split('\\n').map(line => {",
+                    "return line.includes('$') ? { type: 'command', content: line } : { type: 'output', content: line };",
+                    "});"
+                ],
+                "REPLACE": [
+                    "tokenize: function(input) {",
+                    "// Updated logic to correctly recognize shell commands and outputs",
+                    "return input.split('\\n').map(line => {",
+                    "const commandMatch = line.match(/^(.*?)(\\$.*)$/);",
+                    "if (commandMatch) {",
+                    "return [",
+                    "{ type: 'command', content: commandMatch[1].trim() },",
+                    "{ type: 'prompt', content: commandMatch[2].trim() }",
+                    "];",
+                    "}",
+                    "return { type: 'output', content: line };",
+                    "});"
+                ]
+            }
+        ]
+    },
+    "1.4/1": {
+        "// Hypothetical patch for the tokenizer of the Shell session language": [
+            {
+                "SEARCH": [
+                    "// Previous tokenizer logic that may be incorrect",
+                    "tokenize: function(input) {",
+                    "// Incorrect logic that fails to recognize shell commands",
+                    "return input.split('\\n').map(line => {",
+                    "return line.includes('$') ? { type: 'command', content: line } : { type: 'output', content: line };",
+                    "});"
+                ],
+                "REPLACE": [
+                    "tokenize: function(input) {",
+                    "// Updated logic to correctly recognize shell commands and outputs",
+                    "return input.split('\\n').map(line => {",
+                    "const commandMatch = line.match(/^(.*?)(\\$.*)$/);",
+                    "if (commandMatch) {",
+                    "return [",
+                    "{ type: 'command', content: commandMatch[1].trim() },",
+                    "{ type: 'prompt', content: commandMatch[2].trim() }",
+                    "];",
+                    "}",
+                    "return { type: 'output', content: line };",
+                    "});"
+                ]
+            }
+        ]
+    }
+}

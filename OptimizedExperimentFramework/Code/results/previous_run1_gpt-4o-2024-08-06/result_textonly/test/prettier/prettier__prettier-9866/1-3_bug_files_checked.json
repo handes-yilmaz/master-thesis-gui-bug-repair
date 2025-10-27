@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/jsx.js",
+            "src/main/core.js",
+            "src/language-js/parser-babel.js"
+        ],
+        "explanation": "The bug is related to how Prettier handles JSX formatting, particularly the spacing and unicode characters. The relevant files likely involved in this bug are:\n\n1. **src/language-js/print/jsx.js**: This file is directly related to printing and formatting of JSX code, which is where the bug manifests. It would handle the specifics of JSX rendering and formatting rules.\n\n2. **src/main/core.js**: This file probably contains the core logic for how formatting changes are applied across different parts of code. Issues in this file could affect consistency of formatting results.\n\n3. **src/language-js/parser-babel.js**: As the formatting is done using Babel as the parser, there might be issues in how Babel processes the input JSX code with the specific Unicode character that is causing an unstable output.\n\nThese files collectively contribute to the processing, parsing, and formatting of JSX, where handling and representation of characters like \\u3000 are crucial for consistent output.",
+        "bug_scenario": "The bug report describes an issue with JSX formatting, specifically involving the Unicode character \\u3000 (ideographic space). The Prettier code formatter displays inconsistent behavior when dealing with this character, as demonstrated in both the output and the secondary output sections. The main issue observed is that the formatting is unstable, causing different outputs upon consecutive formatting attempts."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/print/jsx.js",
+            "src/language-js/options.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "The problem relates to formatting JSX code, specifically handling Unicode whitespace characters within JSX elements. The possible bug files include those that handle JSX syntax and formatting logic:\n\n1. **src/language-js/print/jsx.js**: This file likely contains the logic for printing and formatting JSX elements. Any issues with handling specific characters like the ideographic space would potentially be in this file or affect how elements are rendered during printing.\n\n2. **src/language-js/options.js**: Any formatting options specifically for JSX or JavaScript were set up here, influencing how different character types, including Unicode spaces, are allowed or processed.\n\n3. **src/printer-estree.js**: Given it includes extensive operations for rendering AST nodes into code, including JSX-related nodes, inconsistencies related to spaces between JSX elements could originate here.\n\nOverall, the focus is on areas interacting directly with the JSX syntax and formatting, particularly around Unicode characters and spaces, affecting Prettier's parsing and printing stability.",
+        "bug_scenario": "The issue described in the bug report is about unstable JSX formatting caused by the presence of Unicode character \\u3000 (an ideographic space) when using Prettier version 1.19.1. The problem is that when formatting the JSX, Prettier provides inconsistent formatting output if the document is formatted multiple times. This inconsistency occurs around the placement of the \\u3000 character and affects the expected stable formatting behavior of Prettier."
+    }
+}

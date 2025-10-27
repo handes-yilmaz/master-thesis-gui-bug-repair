@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "lighthouse-core/report/v2/report-generator.js": [
+            {
+                "SEARCH": [
+                    "return {score: overallScore, categories};"
+                ],
+                "REPLACE": [
+                    "    const warningMessage = {",
+                    "      id: 'headless-chrome-warning',",
+                    "      title: 'Warning',",
+                    "      description: 'Your site\\'s mobile performance may be worse than the numbers presented in this report. Lighthouse could not test on a mobile connection because Headless Chrome does not support network throttling.'",
+                    "    };",
+                    "    ",
+                    "    return {score: overallScore, categories, warnings: [warningMessage]};"
+                ]
+            }
+        ],
+        "lighthouse-core/report/v2/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "const element = container.appendChild(this._renderReport(report));"
+                ],
+                "REPLACE": [
+                    "    const warningElement = this._dom.createElement('div', 'lh-warning');",
+                    "    warningElement.textContent = report.warnings.map(warning => warning.description).join(' ');",
+                    "    container.appendChild(warningElement);",
+                    "    ",
+                    "    const element = container.appendChild(this._renderReport(report));"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/Helper.js"
+        ],
+        "explanation": "These files are related to the bug as follows: 'WebGLTile.js' is likely where the TileLayer class is defined, and modifications are needed to add the blending flag. 'TileLayer.js' in the renderer directory is responsible for rendering Tile Layers in WebGL, where the blending behavior would be implemented. 'Helper.js' contains functions that assist with WebGL operations, and changes may be necessary to implement the new blending function parameters.",
+        "bug_scenario": "The application requires the ability to blend WebGL Tile Layers using the blend function gl.blendFunc(gl.ONE, gl.ONE) for specific Tile Layers. This is not currently supported in the OpenLayers WebGL implementation, and the bug report suggests adding a flag in the TileLayer style to enable this functionality."
+    }
+}

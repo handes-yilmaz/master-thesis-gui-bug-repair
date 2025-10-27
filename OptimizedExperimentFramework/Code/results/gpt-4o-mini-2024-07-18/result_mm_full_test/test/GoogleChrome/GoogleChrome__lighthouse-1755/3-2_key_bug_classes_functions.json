@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/aggregator/aggregate.js//Aggregate"
+        ],
+        "bug_functions": [
+            "lighthouse-core/aggregator/aggregate.js//compare",
+            "lighthouse-core/aggregator/aggregate.js//_convertToWeight",
+            "lighthouse-core/aggregator/aggregate.js//aggregate"
+        ],
+        "explanation": "The 'Aggregate' class is central to the aggregation of audit results. The 'compare' function is responsible for comparing the actual audit results against expected values, which is where the failure in marking results as passing occurs. The '_convertToWeight' function determines how individual audit results contribute to the overall score, and if it incorrectly assigns weight to a passing result when it should not, it can lead to the aggregation being falsely marked as passing. Lastly, the 'aggregate' function combines all results and calculates the final score, making it crucial for ensuring that the overall result reflects the actual audit outcomes.",
+        "bug_scenario": "The bug scenario indicates that aggregations are incorrectly marked as passing even when one or more audits fail. This is evident from the image showing a failed accessibility test for background and foreground color contrast, which should affect the overall aggregation score."
+    }
+}

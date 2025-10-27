@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/document/doc-printer.js": [
+            {
+                "SEARCH": [
+                    "if (doc.literal) {",
+                    "if (ind.root) {",
+                    "out.push(newLine, ind.root.value);",
+                    "pos = ind.root.length;",
+                    "} else {",
+                    "out.push(newLine);",
+                    "pos = 0;",
+                    "}",
+                    "} else {",
+                    "pos -= trim(out);",
+                    "out.push(newLine + ind.value);",
+                    "pos = ind.length;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "              if (doc.literal) {",
+                    "                if (ind.root) {",
+                    "                  out.push(newLine, ind.root.value);",
+                    "                  pos = ind.root.length;",
+                    "                } else {",
+                    "                  out.push(newLine);",
+                    "                  pos = 0;",
+                    "                }",
+                    "              } else {",
+                    "                pos -= trim(out);",
+                    "                out.push(newLine + ind.value);",
+                    "                pos = ind.length;",
+                    "              }",
+                    "              // Check for trailing newlines when the last line is a comment",
+                    "              if (lineSuffix.length === 0 && out.length > 0 && out[out.length - 1] === newLine) {",
+                    "                out.pop(); // Remove the extra newline if the document ends with a comment",
+                    "              }"
+                ]
+            }
+        ]
+    }
+}

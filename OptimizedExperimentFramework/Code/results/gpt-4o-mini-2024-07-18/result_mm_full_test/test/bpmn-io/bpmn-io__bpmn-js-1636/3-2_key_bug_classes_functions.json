@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior",
+            "lib/features/modeling/BpmnFactory",
+            "lib/features/drilldown/SubprocessCompatibility"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior//SubProcessStartEventBehavior",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior//getStartEventPosition",
+            "lib/features/modeling/BpmnFactory//create",
+            "lib/features/drilldown/SubprocessCompatibility//createDiagram"
+        ],
+        "explanation": "The identified classes and functions are crucial for addressing the bug because they handle the creation and behavior of subprocesses and events in the BPMN model. The `SubProcessStartEventBehavior` class specifically manages the addition of a start event when a subprocess is created, which is directly related to the bug. The `BpmnFactory` class is responsible for creating BPMN elements, including subprocesses, and ensuring they have the necessary identifiers. Lastly, the `SubprocessCompatibility` class deals with the compatibility and rendering of subprocesses, which may also influence how they are displayed and interacted with in the UI.",
+        "bug_scenario": "When morphing a call activity to an expanded subprocess, the resulting subprocess does not include a start event, leading to confusion in the user experience. The expected behavior is that an expanded subprocess should be created with a start event, similar to the behavior when morphing from a task."
+    }
+}

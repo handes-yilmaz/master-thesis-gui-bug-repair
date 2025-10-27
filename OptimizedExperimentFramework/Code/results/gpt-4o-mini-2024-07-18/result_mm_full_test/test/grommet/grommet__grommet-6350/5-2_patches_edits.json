@@ -1,0 +1,51 @@
+{
+    "1/1": {
+        "src/js/components/List/List.js": [
+            {
+                "SEARCH": [
+                    "const List = React.forwardRef(",
+                    "(",
+                    "{",
+                    "a11yTitle,",
+                    "'aria-label': ariaLabel,",
+                    "action,",
+                    "as,",
+                    "background,",
+                    "border,",
+                    "..."
+                ],
+                "REPLACE": [
+                    "const List = React.forwardRef(",
+                    "  (",
+                    "    {",
+                    "      a11yTitle,",
+                    "      'aria-label': ariaLabel,",
+                    "      action,",
+                    "      as,",
+                    "      background,",
+                    "      border,",
+                    "      onOrder,",
+                    "      ..."
+                ]
+            },
+            {
+                "SEARCH": [
+                    "// Render the action button if provided",
+                    "{action && (",
+                    "<Box direction=\"row\" align=\"center\" justify=\"end\">",
+                    "{action}",
+                    "</Box>",
+                    ")}"
+                ],
+                "REPLACE": [
+                    "  // Render the action button if provided and ensure alignment",
+                    "  {action && (",
+                    "    <Box direction=\"row\" align=\"center\" justify=\"end\" style={{ marginLeft: onOrder ? 'auto' : '0' }}>",
+                    "      {action}",
+                    "    </Box>",
+                    "  )}"
+                ]
+            }
+        ]
+    }
+}

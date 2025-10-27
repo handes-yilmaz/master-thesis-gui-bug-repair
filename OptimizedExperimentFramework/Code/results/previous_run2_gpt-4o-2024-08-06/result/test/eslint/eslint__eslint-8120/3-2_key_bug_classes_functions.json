@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/no-unused-vars.js//Determine if a variable has a sibling rest property"
+        ],
+        "bug_functions": [
+            "lib/rules/no-unused-vars.js//Determine if a variable has a sibling rest property"
+        ],
+        "explanation": "The 'Determine if a variable has a sibling rest property' function in 'no-unused-vars.js' is likely responsible for handling the 'ignoreRestSiblings' logic. If this function does not correctly identify or handle variables with sibling rest properties, it would lead to the ESLint rule not behaving as expected when 'ignoreRestSiblings' is set to true. This function needs to be checked and potentially modified to ensure it correctly supports the configuration flag.",
+        "bug_scenario": "The bug is related to the ESLint rule 'no-unused-vars' which is not correctly ignoring unused variables when the 'ignoreRestSiblings' flag is set to true. This issue occurs specifically when using rest parameters in function arguments, as shown in the image where the 'children' variable is warned as unused despite the configuration."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/rules/no-unused-vars.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue lies in the ESLint rule 'no-unused-vars' implementation, specifically in how it processes variables within function arguments. The 'ignoreRestSiblings' flag should prevent warnings for unused variables with rest siblings, but it fails in this context. The file 'lib/rules/no-unused-vars.js' likely contains logic for handling variable usage checks, including the ignoreRestSiblings option. Therefore, reviewing and modifying this file is necessary to address the bug.",
+        "bug_scenario": "The bug involves ESLint's no-unused-vars rule, specifically the ignoreRestSiblings flag, not working as expected within function arguments. Despite configuring ESLint to ignore unused variables with rest siblings, a warning is still shown for unused variables inside function arguments."
+    }
+}

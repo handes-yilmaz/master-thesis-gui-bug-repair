@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/interaction/Select//Select",
+            "src/ol/layer/Layer//Layer"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Select//setMap",
+            "src/ol/interaction/Select//handleEvent",
+            "src/ol/layer/Layer//setMap"
+        ],
+        "explanation": "The `Select` class is responsible for managing the selection of features and their visual representation, including their zIndex. The `setMap` function in both the `Select` and `Layer` classes is crucial as it determines how layers are rendered on the map, which directly affects the zIndex behavior. The `handleEvent` function in the `Select` class processes user interactions and updates the selection state, which may also influence the rendering order of selected features. Adjustments in these functions could resolve the issue of selected features not respecting the zIndex.",
+        "bug_scenario": "The `ol.select.Interaction` feature is not behaving as expected, where selected features appear above other layers regardless of their zIndex settings. The user expects the selected features to respect the zIndex and allow underlying features to be visible above them."
+    }
+}

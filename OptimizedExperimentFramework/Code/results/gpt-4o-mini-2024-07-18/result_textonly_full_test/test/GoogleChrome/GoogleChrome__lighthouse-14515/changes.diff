@@ -1,0 +1,13 @@
+diff --git a/report/renderer/report-renderer.js b/report/renderer/report-renderer.js
+index b50d0ed..a911214 100644
+--- a/report/renderer/report-renderer.js
++++ b/report/renderer/report-renderer.js
+@@ -121,7 +121,7 @@ export class ReportRenderer {
+     const envValues = Util.getEmulationDescriptions(report.configSettings || {});
+ 
+ 
+-    const match = report.userAgent.match(/(\w*Chrome\/[\d.]+)/); // \w* to include 'HeadlessChrome'
++      [\'devices\',\n        `${envValues.deviceEmulation} with Lighthouse ${report.lighthouseVersion}` +\n            `\\nScreen Dimensions: ${envValues.screenDimensions}` +\n            `\\nDevice Scale Factor: ${envValues.deviceScaleFactor}`,\n        `${Util.i18n.strings.runtimeSettingsBenchmark}: ${benchmarkIndex}` +\n            `\\n${Util.i18n.strings.runtimeSettingsCPUThrottling}: ${envValues.cpuThrottling}` +\n            (axeVersion ? `\\n${Util.i18n.strings.runtimeSettingsAxeVersion}: ${axeVersion}` : \'\')],\n
+     const chromeVer = Array.isArray(match)
+       ? match[1].replace('/', ' ').replace('Chrome', 'Chromium')
+       : 'Chromium';

@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/number-picker/index.jsx",
+            "src/number-picker/number-picker.jsx",
+            "src/number-picker/style.js",
+            "src/number-picker/scss/mixin.scss",
+            "src/number-picker/scss/variable.scss"
+        ],
+        "explanation": "The files under the [src/number-picker] directory are directly related to the NumberPicker component, as indicated in the bug report.\\n1. **src/number-picker/index.jsx** and **src/number-picker/number-picker.jsx** contain JavaScript code implementing the logic and rendering of the NumberPicker component. This is where any logical changes around handling focus states need to be made to ensure the operation buttons are shown appropriately.\\n2. **src/number-picker/style.js** likely manages styling, including dynamic class additions/removals and style changes, which is relevant for addressing CSS-related issues like `:focus-within` adjustments.\\n3.**src/number-picker/scss/mixin.scss** and **variable.scss** may contain CSS/Sass styling related settings and variables, which would be essential when modifying styles to use `:focus-within` correctly and ensure consistent styling for showing hidden buttons upon focus.",
+        "bug_scenario": "When the keyboard focus is moved to the internal part of the NumberPicker component by pressing the [tab] key an additional time, the operation buttons are still hidden. Moreover, the focus state of the NumberPicker disappears. The :focus-within CSS pseudo-class should be used to maintain the focus styling, ensuring that when a user navigates with the keyboard, the operation buttons become visible, maintaining user accessibility and interface clarity."
+    },
+    "2": {
+        "bug_files": [
+            "src/number-picker/index.jsx",
+            "src/number-picker/number-picker.jsx",
+            "src/number-picker/style.js",
+            "src/number-picker/scss/mixin.scss",
+            "src/number-picker/scss/variable.scss"
+        ],
+        "explanation": "The files under the `number-picker` directory are likely to be involved in the bug because they contain the core implementation of the `NumberPicker` component. Specifically:\n\n1. `src/number-picker/index.jsx` and `src/number-picker/number-picker.jsx`: These files are responsible for rendering the `NumberPicker` component and handling user interactions, like keyboard focus events.\n\n2. `src/number-picker/style.js`: This file may contain JavaScript styling logic that affects the visibility of components when they receive focus.\n\n3. `src/number-picker/scss/mixin.scss` and `src/number-picker/scss/variable.scss`: These files define the styling and CSS rules for `NumberPicker`, including mixins and variables that could control focus states and button visibility.\n\nThe bug involves ensuring the operation buttons become visible when focused and maintaining the `focus-within` style, suggesting updates in the JavaScript logic, as well as CSS, to handle these focus states correctly.",
+        "bug_scenario": "The bug in question relates to the `NumberPicker` component. The issue is that when the keyboard focus shifts to within the `NumberPicker`, the operation buttons should appear, but they remain hidden. Additionally, when the tab key is pressed again, the focus shifts to the operation button but it still remains hidden, and the focus state of the `NumberPicker` is lost instead of being maintained with the `:focus-within` style."
+    }
+}

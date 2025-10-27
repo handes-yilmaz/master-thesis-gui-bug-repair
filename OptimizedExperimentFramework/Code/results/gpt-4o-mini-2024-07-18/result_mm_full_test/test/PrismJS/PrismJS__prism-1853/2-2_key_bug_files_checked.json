@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-json.js",
+            "components/prism-json.min.js",
+            "plugins/jsonp-highlight/prism-jsonp-highlight.js"
+        ],
+        "explanation": "These files are key bug files because they contain the definitions for the JSON language syntax highlighting in Prism. The 'prism-json.js' and 'prism-json.min.js' files define the patterns for comments, properties, strings, and other JSON elements. The 'prism-jsonp-highlight.js' file is responsible for handling JSONP responses, which may also be affected by the incorrect tokenization of JSON comments. Fixing the regex patterns in these files will likely resolve the tokenization issue.",
+        "bug_scenario": "The JSON tokenization breaks when the HTTP header 'Accept: */*' is used, causing incorrect highlighting of comments in JSON. The provided code snippet shows a JSON object where the comment is not being tokenized correctly, leading to improper display in the Prism syntax highlighter."
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/typescript.js//function",
+            "src/lib/modes.js//COMMENT",
+            "src/lib/compiler_extensions.js//compileMatch"
+        ],
+        "bug_functions": [
+            "src/languages/typescript.js//swapMode",
+            "src/languages/typescript.js//tsLanguage",
+            "src/lib/modes.js//beginKeywords",
+            "src/lib/compiler_extensions.js//scopeClassName"
+        ],
+        "explanation": "These classes and functions are related to the bug because they are involved in the syntax highlighting process for TypeScript. The `swapMode` function in `typescript.js` is responsible for modifying the behavior of highlighting modes, which could affect how generics are processed. The `tsLanguage` function initializes the TypeScript language support, and any issues in its configuration could lead to highlighting problems. The `beginKeywords` function in `modes.js` is crucial for defining how keywords are recognized, which is directly related to the use of `extends` in generics. Lastly, `scopeClassName` in `compiler_extensions.js` manages the scope of class names, which may also impact how generics are highlighted. Together, these elements are critical for ensuring that TypeScript syntax, especially generics, is highlighted correctly.",
+        "bug_scenario": "The bug scenario involves an issue with TypeScript generics using the `extends` keyword, which causes subsequent syntax highlighting to break. This was observed after upgrading from version 10.2.1 to 10.3.0 of the highlight.js library. The user provided a sample code snippet that demonstrates the problem, where the expected highlighting behavior is not achieved in the newer version."
+    }
+}

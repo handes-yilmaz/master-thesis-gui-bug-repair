@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/driver/wait-for-condition.js": [
+            {
+                "SEARCH": [
+                    "const {pauseAfterFcpMs, pauseAfterLoadMs, networkQuietThresholdMs,",
+                    "cpuQuietThresholdMs, maxWaitForLoadedMs, maxWaitForFcpMs} = options;"
+                ],
+                "REPLACE": [
+                    "  const {pauseAfterFcpMs, pauseAfterLoadMs, networkQuietThresholdMs,",
+                    "    cpuQuietThresholdMs, maxWaitForLoadedMs, maxWaitForFcpMs} = options;",
+                    "  const extendedMaxWaitForLoadedMs = maxWaitForLoadedMs * 2; // Increase wait time"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "maxTimeoutHandle = setTimeout(resolve, maxWaitForLoadedMs);"
+                ],
+                "REPLACE": [
+                    "    maxTimeoutHandle = setTimeout(resolve, extendedMaxWaitForLoadedMs); // Use extended wait time"
+                ]
+            }
+        ]
+    }
+}

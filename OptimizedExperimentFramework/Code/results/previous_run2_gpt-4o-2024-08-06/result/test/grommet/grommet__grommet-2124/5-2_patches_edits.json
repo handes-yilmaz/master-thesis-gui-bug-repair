@@ -1,0 +1,44 @@
+{
+    "1/1": {
+        "src/js/components/Calendar/StyledCalendar.js": [
+            {
+                "SEARCH": [
+                    "export const StyledWeek = styled.div`",
+                    "display: flex;",
+                    "flex-direction: row;",
+                    "flex-justify: between;",
+                    "`;"
+                ],
+                "REPLACE": [
+                    "export const StyledWeek = styled.div`",
+                    "  display: flex;",
+                    "  flex-direction: row;",
+                    "  justify-content: space-between; /* Corrected property name */",
+                    "`;"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "export const StyledDay = styled.div`",
+                    "display: flex;",
+                    "justify-content: center;",
+                    "align-items: center;",
+                    "${props => daySizeStyle(props)}",
+                    "${props => props.background && backgroundStyle(props.background, props.theme)}",
+                    "${props => props.otherMonth && 'opacity: 0.5;'}",
+                    "`;"
+                ],
+                "REPLACE": [
+                    "export const StyledDay = styled.div`",
+                    "  display: inline-block; /* Changed from flex to inline-block for IE11 compatibility */",
+                    "  text-align: center; /* Center text horizontally */",
+                    "  vertical-align: middle; /* Center text vertically */",
+                    "  ${props => daySizeStyle(props)}",
+                    "  ${props => props.background && backgroundStyle(props.background, props.theme)}",
+                    "  ${props => props.otherMonth && 'opacity: 0.5;'}",
+                    "`;"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,28 @@
+diff --git a/src/command/render/latexmk/pdf.ts b/src/command/render/latexmk/pdf.ts
+index 10c06cf..3377985 100644
+--- a/src/command/render/latexmk/pdf.ts
++++ b/src/command/render/latexmk/pdf.ts
+@@ -167,11 +167,20 @@ async function initialCompileLatex(
+       quiet,
+     );
+ 
+-    // Check whether it suceeded. We'll consider it a failure if there is an error status or output is missing despite a success status
++    // Check whether it succeeded. We'll consider it a failure if there is an error status or output is missing despite a success status
+     // (PNAS Template may eat errors when missing packages exists)
+-    // See: https://github.com/rstudio/tinytex/blob/6c0078f2c3c1319a48b71b61753f09c3ec079c0a/R/latex.R#L216
++    // Ensure that the image URLs are valid before proceeding
++    const validImageUrl = (url) => {
++      const pattern = /^(https?:\/\/[^\s]+(\.(jpg|jpeg|png|gif|bmp|svg))?)$/i;
++      return pattern.test(url);
++    };
++
+     const success = response.result.code === 0 &&
+-      (!response.output || existsSync(response.output));
++      (!response.output || existsSync(response.output)) &&
++      response.output.split('\n').every(line => {
++        const matches = line.match(/\\includegraphics\{([^}]+)\}/);
++        return matches ? validImageUrl(matches[1]) : true;
++      });
+ 
+     if (success) {
+       // See whether there are warnings about hyphenation

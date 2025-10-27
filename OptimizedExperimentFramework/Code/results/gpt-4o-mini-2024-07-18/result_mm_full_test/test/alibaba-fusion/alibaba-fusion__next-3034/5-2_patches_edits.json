@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/upload/list.jsx": [
+            {
+                "SEARCH": [
+                    "closable: false,"
+                ],
+                "REPLACE": [
+                    "        closable: true,"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "{this.props.closable ? (",
+                    "<Icon",
+                    "type=\"close\"",
+                    "size=\"large\"",
+                    "role=\"button\"",
+                    "aria-label={locale.upload.delete}",
+                    "tabIndex=\"0\"",
+                    "onClick={onClick}",
+                    "onKeyDown={onKeyDown}",
+                    "/>",
+                    ") : null}"
+                ],
+                "REPLACE": [
+                    "                    {this.props.closable ? (",
+                    "                        <Icon",
+                    "                            type=\"close\"",
+                    "                            size=\"large\"",
+                    "                            role=\"button\"",
+                    "                            aria-label={locale.upload.delete}",
+                    "                            tabIndex=\"0\"",
+                    "                            onClick={() => this.handleClose(file)} // Ensure handleClose is called",
+                    "                            onKeyDown={onKeyDown}",
+                    "                        />",
+                    "                    ) : null}"
+                ]
+            }
+        ]
+    }
+}

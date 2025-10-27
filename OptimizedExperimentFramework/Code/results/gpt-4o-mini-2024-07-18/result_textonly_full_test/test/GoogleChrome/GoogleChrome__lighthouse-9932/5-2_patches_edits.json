@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/network-rtt.js": [
+            {
+                "SEARCH": [
+                    "if (!origin.startsWith('http')) continue;"
+                ],
+                "REPLACE": [
+                    "      if (!origin.startsWith('http') && !origin.startsWith('data:')) continue;"
+                ]
+            }
+        ],
+        "lighthouse-core/audits/network-server-latency.js": [
+            {
+                "SEARCH": [
+                    "if (!origin.startsWith('http')) continue;"
+                ],
+                "REPLACE": [
+                    "      if (!origin.startsWith('http') && !origin.startsWith('data:')) continue;"
+                ]
+            }
+        ],
+        "lighthouse-core/lib/network-request.js": [
+            {
+                "SEARCH": [
+                    "this.isValid = true;"
+                ],
+                "REPLACE": [
+                    "    this.isValid = this.url.startsWith('http') || this.url.startsWith('data:');"
+                ]
+            }
+        ]
+    }
+}

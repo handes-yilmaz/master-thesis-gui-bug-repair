@@ -1,0 +1,16 @@
+diff --git a/components/cascader-select/cascader-select.tsx b/components/cascader-select/cascader-select.tsx
+index 49be8bf38..2573ebb2b 100644
+--- a/components/cascader-select/cascader-select.tsx
++++ b/components/cascader-select/cascader-select.tsx
+@@ -516,6 +516,11 @@ class CascaderSelect extends Component<CascaderSelectProps, CascaderSelectState>
+ 
+     handleSelect(value: unknown, data: CascaderSelectDataItem) {
+         const { multiple, changeOnSelect } = this.props;
++        
++        // Check if all items are selected and clear search results
++        if (multiple && this.state.value.length === this.props.dataSource.length) {
++            this.setState({ searchValue: '' });
++        }
+         const { visible, searchValue } = this.state;
+ 
+         if (!multiple && (!changeOnSelect || this.isLeaf(data) || !!searchValue)) {

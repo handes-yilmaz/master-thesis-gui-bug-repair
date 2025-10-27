@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/drilldown/DrilldownOverlayBehavior",
+            "lib/features/drilldown/SubprocessCompatibility",
+            "lib/features/label-editing/LabelEditingProvider"
+        ],
+        "bug_functions": [
+            "lib/features/drilldown/DrilldownOverlayBehavior//updateOverlayVisibility",
+            "lib/features/label-editing/LabelEditingProvider//activateDirectEdit",
+            "lib/features/label-editing/LabelEditingProvider//update"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the behavior of direct editing and overlays in the diagram. The 'DrilldownOverlayBehavior' class manages overlays for elements, which may interfere with the visibility of the editing box. The 'LabelEditingProvider' class is responsible for activating and managing direct editing, and its functions 'activateDirectEdit' and 'update' are crucial for ensuring that editing is properly canceled when switching planes. Fixing the issue will likely involve modifying these functions to ensure that direct editing is properly deactivated when the user navigates away from the current plane.",
+        "bug_scenario": "The direct editing box remains open when switching between planes, even though the element being edited is no longer visible. This leads to a confusing user experience as the editing context is not properly cleared."
+    }
+}

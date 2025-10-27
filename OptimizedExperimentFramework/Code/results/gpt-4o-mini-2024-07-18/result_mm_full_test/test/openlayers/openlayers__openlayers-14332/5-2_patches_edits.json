@@ -1,0 +1,65 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const canvasScale =",
+                    "((tileResolution / viewResolution) * pixelRatio) / tilePixelRatio;"
+                ],
+                "REPLACE": [
+                    "    const canvasScale = ",
+                    "      ((tileResolution / viewResolution) * pixelRatio) / tilePixelRatio;",
+                    "",
+                    "    // Adjust canvas scale for rotations close to 90 and 270 degrees",
+                    "    if (Math.abs(rotation) % (Math.PI / 2) < 0.1) {",
+                    "      // Apply a correction factor to the canvas scale",
+                    "      canvasScale *= 1.1; // Example adjustment, may need fine-tuning",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const context = this.context;"
+                ],
+                "REPLACE": [
+                    "    const context = this.context;",
+                    "",
+                    "    // Save the current context state before applying transformations",
+                    "    context.save();"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.drawTileImage(",
+                    "tile,",
+                    "frameState,",
+                    "x,",
+                    "y,",
+                    "w,",
+                    "h,",
+                    "tileGutter,",
+                    "transition",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    // Apply rotation to the context before drawing the tile",
+                    "    context.rotate(rotation);",
+                    "    ",
+                    "    this.drawTileImage(",
+                    "      tile,",
+                    "      frameState,",
+                    "      x,",
+                    "      y,",
+                    "      w,",
+                    "      h,",
+                    "      tileGutter,",
+                    "      transition",
+                    "    );",
+                    "",
+                    "    // Restore the context to its original state",
+                    "    context.restore();"
+                ]
+            }
+        ]
+    }
+}

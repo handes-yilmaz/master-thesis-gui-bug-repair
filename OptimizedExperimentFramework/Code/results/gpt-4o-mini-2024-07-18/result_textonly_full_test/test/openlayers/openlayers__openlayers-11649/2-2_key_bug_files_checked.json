@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/proj/Units.js"
+        ],
+        "explanation": "These files are key bug files because they directly handle the registration and definition of projections in OpenLayers. The 'proj4.js' file contains the logic for registering proj4 definitions and setting parameters like 'units' and 'axisOrientation'. The 'Projection.js' file defines the Projection class, which includes properties for 'units' and 'axisOrientation', and is crucial for ensuring that projections are created correctly. The 'Units.js' file provides the enumeration for projection units, which is essential for setting the correct default units for geographic projections. Fixing the issues in these files will address the broken projections problem.",
+        "bug_scenario": "The bug scenario involves broken projections in OpenLayers when using proj4js definitions. Specifically, when a geographic CRS is defined using proj4js, the resulting projection lacks required parameters such as 'units' and has incorrect default values for 'axisOrientation'. This leads to improper rendering of maps, as the expected behavior is for the default unit to be 'degrees' and the axis orientation to be correctly set to 'neu'."
+    }
+}

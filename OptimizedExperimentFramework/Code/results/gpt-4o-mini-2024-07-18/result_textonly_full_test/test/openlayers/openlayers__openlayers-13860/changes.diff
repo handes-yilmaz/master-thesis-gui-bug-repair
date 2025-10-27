@@ -1,0 +1,21 @@
+diff --git a/src/ol/source/Vector.js b/src/ol/source/Vector.js
+index b0e45b5..ff34283 100644
+--- a/src/ol/source/Vector.js
++++ b/src/ol/source/Vector.js
+@@ -229,6 +229,16 @@ class VectorSource extends Source {
+       this.loader_ = options.loader;
+     } else if (this.url_ !== undefined) {
+       assert(this.format_, 7); // `format` must be set when `url` is set
++      if (this.url_ && this.url_.endsWith('.geojson')) {
++          // Additional check to ensure the GeoJSON is valid
++          this.loader_ = xhr(
++              this.url_,
++              /** @type {import("../format/Feature.js").default} */ (this.format_)
++          ).catch(error => {
++              console.error('Failed to load GeoJSON:', error);
++              throw new Error('Invalid GeoJSON format');
++          });
++      }
+       // create a XHR feature loader for "url" and "format"
+       this.loader_ = xhr(
+         this.url_,

@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/layers/LayerConfig.js": [
+            {
+                "SEARCH": [
+                    "const selectedLayer = new ol.layer.Vector({",
+                    "source: selectedSource,",
+                    "zIndex: 1, // This might be the zIndex for the selected feature layer",
+                    "});",
+                    "const hoverLayer = new ol.layer.Vector({",
+                    "source: hoverSource,",
+                    "zIndex: 2, // This should be higher than the selected layer"
+                ],
+                "REPLACE": [
+                    "const selectedLayer = new ol.layer.Vector({",
+                    "    source: selectedSource,",
+                    "    zIndex: 2, // Adjusted to ensure hover layer appears above",
+                    "});",
+                    "const hoverLayer = new ol.layer.Vector({",
+                    "    source: hoverSource,",
+                    "    zIndex: 1, // Adjusted to ensure hover layer appears below"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js": [
+            {
+                "SEARCH": [
+                    "static normalizeVersion(version) {",
+                    "if (!version) return version;",
+                    "if (semver.valid(version)) return version;",
+                    "",
+                    "// converts 1.5 -> 1.5.0",
+                    "if (/^\\d+\\.\\d+$/.test(version)) return `${version}.0`;",
+                    "// converts 1.0.0a-bunch-of-crap -> 1.0.0",
+                    "const versionMatch = version.match(SEMVER_REGEX);",
+                    "if (versionMatch) return versionMatch[1];",
+                    "// leave everything else untouched",
+                    "return version;"
+                ],
+                "REPLACE": [
+                    "  static normalizeVersion(version) {",
+                    "    if (!version) return version;",
+                    "    if (semver.valid(version)) return version;",
+                    "",
+                    "    // converts 1.5 -> 1.5.0",
+                    "    if (/^\\d+\\.\\d+$/.test(version)) return `${version}.0`;",
+                    "    // converts 1.0.0a-bunch-of-crap -> 1.0.0",
+                    "    const versionMatch = String(version).match(SEMVER_REGEX); // Ensure version is a string",
+                    "    if (versionMatch) return versionMatch[1];",
+                    "    // leave everything else untouched",
+                    "    return String(version); // Ensure return value is a string"
+                ]
+            }
+        ]
+    }
+}

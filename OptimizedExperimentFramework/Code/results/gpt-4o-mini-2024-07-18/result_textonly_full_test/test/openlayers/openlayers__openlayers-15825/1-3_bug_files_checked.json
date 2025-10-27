@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/reproj/DataTile.js",
+            "src/ol/reproj/Tile.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "These files are related to the bug for the following reasons: \n1. **GeoTIFF.js**: This file likely handles the loading and management of GeoTIFF sources. Any issues with how tiles are generated or fetched from this source could directly lead to missing tiles. \n2. **WebGLTile.js**: This file is essential for rendering tiles in the WebGL context. If there are bugs in how tiles are processed or rendered, it could cause rendering issues near the antimeridian. \n3. **proj4.js**: This file manages projections, including the custom stereographic projection defined by the user. If there is a problem with how projections are handled, it could lead to improper tile rendering. \n4. **DataTile.js** and **Tile.js**: These files are involved in the reprojection of tiles. Issues in these files could affect how tiles are transformed and displayed, particularly in edge cases like the antimeridian. \n5. **TileLayer.js**: This file handles the rendering of tile layers in WebGL. Any rendering logic errors could contribute to the missing tiles issue, especially in complex scenarios involving reprojection.",
+        "bug_scenario": "The bug occurs when using a GeoTiff source with a WebGLTileLayer, specifically after reprojection to a stereographic format. Tiles near the antimeridian fail to render, resulting in black gaps in the rendered output. This issue is observable when following the steps outlined in the bug report, particularly after initializing the WebGLTileLayer and the custom stereographic projection."
+    }
+}

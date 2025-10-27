@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-yaml.js",
+            "components/prism-yaml.min.js",
+            "prism.js"
+        ],
+        "explanation": "1. **components/prism-yaml.js**: This file is a logical candidate for the bug. Since the issue is specific to YAML syntax highlighting, any fixes or changes related to how comments and strings are parsed or highlighted should be implemented here.\n\n2. **components/prism-yaml.min.js**: This is the minified version of the YAML language component. Any changes made to `prism-yaml.js` will need to be reflected here to ensure that the minified version behaves correctly as well.\n\n3. **prism.js**: This file is the main entry point and could potentially hold logic that deals with integration or shared parsing behaviors that affect multiple components. If the parser settings are incorrect or if there is a bug in the core parsing functionality, adjustments here might be necessary to enforce correct string and comment parsing across languages, including YAML.",
+        "bug_scenario": "The issue described is with YAML string highlighting, where a string that includes a comment on the same line is not highlighted correctly. The problem appears when a YAML string has a trailing comment, and highlight only shows up to the comment."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-yaml.js",
+            "prism.js"
+        ],
+        "explanation": "The files `components/prism-yaml.js` and `prism.js` are related to this bug because:\n\n1. `components/prism-yaml.js`: This is the component specifically responsible for handling YAML syntax highlighting in the Prism library. Any issues with YAML code like the one described (handling of trailing comments on strings) would be addressed in this file.\n\n2. `prism.js`: This is the core library file for Prism.js where the main functionality related to syntax highlighting is likely implemented. If there is an oversight in handling edge cases like in-string comments, it might extend to multiple languages including YAML, ensuring proper configuration at the basic support level.",
+        "bug_scenario": "The bug scenario involves the YAML string highlighting in Prism.js, where strings are not correctly highlighted if they have a trailing comment in the YAML code. This issue is visible in the provided screenshot that shows improper syntax highlighting when a comment appears on the same line as a YAML string."
+    }
+}

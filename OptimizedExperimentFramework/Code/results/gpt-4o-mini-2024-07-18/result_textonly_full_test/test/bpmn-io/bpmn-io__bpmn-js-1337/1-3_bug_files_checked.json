@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/modeling/BpmnFactory.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/rules/BpmnRules.js"
+        ],
+        "explanation": "The files identified are related to the modeling and behavior of BPMN elements. 'SubProcessStartEventBehavior.js' is specifically responsible for handling the behavior of start events within sub-processes, making it crucial for enforcing the rule against typed start events in this context. 'BpmnFactory.js' is likely responsible for creating BPMN elements, including start events, and will need modifications to ensure that typed start events cannot be created within non-event based sub-processes. 'BpmnUpdater.js' will handle updates to BPMN elements, and changes here will be necessary to ensure that the event type is dropped when a start event is moved to a sub-process. Lastly, 'BpmnRules.js' contains the rules that govern the validity of BPMN models, so it needs to be updated to enforce the new restrictions regarding typed events in sub-processes.",
+        "bug_scenario": "The bug report indicates that typed Start Events are not allowed inside non-event based Sub Processes, and there is a need to disallow morphing to typed start events when they are moved to sub-processes. The provided GIF illustrates the incorrect behavior when trying to use typed start events in sub-processes."
+    }
+}

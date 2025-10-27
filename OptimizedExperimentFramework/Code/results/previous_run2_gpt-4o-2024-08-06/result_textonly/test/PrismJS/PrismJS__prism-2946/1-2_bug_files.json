@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-rest.js",
+            "components/prism-markup.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The bug is related to the reStructuredText (reST) functionality which is typically handled by grammar files specific to the language. In the repository structure, the file `components/prism-rest.js` is likely responsible for defining how reST code is tokenized and highlighted. Additionally, `components/prism-markup.js` could be involved because the issue involves rendering of links which are often treated as markup. Since all Prism languages depend on core highlighting functionalities within `components/prism-core.js`, this file may also contain logic that affects how the reST syntax is processed and displayed. These files need to be reviewed to ensure the hyperlink and verbatim aspects of the text are correctly highlighted in a single line.",
+        "bug_scenario": "The bug report describes an issue with hyperlink and verbatim text rendering in reStructuredText (reST) when using PrismJS highlighting. The links and verbatim elements are not rendered correctly when they appear on a single line, causing the entire line to be italicized instead. However, when the elements are split across multiple lines, they render correctly."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-rest.js",
+            "components/prism-markup.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "1. **components/prism-rest.js**: This file likely contains the language definition for reStructuredText. Since the bug is specifically about reST syntax not highlighting links and verbatim elements correctly, the issue is probably within this language definition file where reST syntax parsing rules are defined.\n\n2. **components/prism-markup.js**: This file could be relevant because Prism.js usually deals with text rendering, and markup languages (or their parsing mechanisms) often share functionality. Problems involving the incorrect rendering of text, such as italics, might be handled here.\n\n3. **components/prism-core.js**: This file is likely part of the core library responsible for the initial parsing logic for all syntax highlighting. Problems with not correctly identifying or styling syntax elements might originate from or require changes here to address integration or global parsing rule adjustments.",
+        "bug_scenario": "The bug involves the incorrect rendering of reStructuredText (reST) link and verbatim elements using the Prism.js syntax highlighter. Instead of highlighting these parts individually, the entire line is being italicized improperly when the link is on a single line. The rendering is correct when the link is split across two lines, indicating a parsing issue when processing reST in single-line structures."
+    }
+}

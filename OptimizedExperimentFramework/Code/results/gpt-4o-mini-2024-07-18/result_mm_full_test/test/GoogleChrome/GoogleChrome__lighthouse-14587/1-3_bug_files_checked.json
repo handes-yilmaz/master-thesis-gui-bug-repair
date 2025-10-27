@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "cli/cli-flags.js",
+            "cli/commands/commands.js",
+            "core/audits/manual/manual-audit.js",
+            "core/gather/driver/network.js",
+            "core/lib/emulation.js"
+        ],
+        "explanation": "These files are related to the bug for the following reasons: \n- `cli/cli-flags.js` and `cli/commands/commands.js` may contain the flags and commands that dictate how Lighthouse identifies the device type and runs the tests. \n- `core/audit.js` is responsible for managing the audit processes and reporting results, which could include device identification. \n- `gather/driver/network.js` is likely involved in gathering network-related information, including user agent strings used for device identification. \n- `lib/emulation.js` deals with emulation settings and could be linked to how the emulated devices are reported versus real devices.",
+        "bug_scenario": "When testing on a physical Moto Power G device using Lighthouse, the report incorrectly states 'Emulated Moto G4' instead of indicating that it is testing on a real device. This suggests that the device detection or reporting functionality is not correctly identifying the physical device."
+    }
+}

@@ -1,0 +1,32 @@
+diff --git a/lib/features/label-editing/LabelUtil.js b/lib/features/label-editing/LabelUtil.js
+index 25f75bd..fb22814 100644
+--- a/lib/features/label-editing/LabelUtil.js
++++ b/lib/features/label-editing/LabelUtil.js
+@@ -38,12 +38,17 @@ export function getLabel(element) {
+       attr = getLabelAttr(semantic);
+ 
+   if (attr) {
+-
++  
+     if (attr === 'categoryValueRef') {
+-
++  
+       return getCategoryValue(semantic);
+     }
+-
++  
++    // Check if the element is a message element and return its name
++    if (semantic.$type === 'bpmn:Message') {
++      return semantic.name || '';
++    }
++  
+     return semantic[attr] || '';
+   }
+ }
+@@ -64,4 +69,4 @@ export function setLabel(element, text, isExternal) {
+   }
+ 
+   return element;
+-}
+\ No newline at end of file
++}

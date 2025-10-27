@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "src/command/render/pandoc-dependencies-html.ts": [
+            {
+                "SEARCH": [
+                    "const refDestPath = join(dirname(file), targetRef);"
+                ],
+                "REPLACE": [
+                    "      const refDestPath = join(dirname(file), encodeURI(targetRef));"
+                ]
+            }
+        ],
+        "src/command/preview/preview.ts": [
+            {
+                "SEARCH": [
+                    "`body { margin: 8px 12px; background-color: ${backgroundColor} }`,"
+                ],
+                "REPLACE": [
+                    "    `body { margin: 8px 12px; background-color: ${backgroundColor}; }`,"
+                ]
+            }
+        ]
+    }
+}

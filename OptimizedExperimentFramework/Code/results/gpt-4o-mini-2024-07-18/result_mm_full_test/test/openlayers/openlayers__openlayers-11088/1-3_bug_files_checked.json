@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/proj/projections.js",
+            "src/ol/reproj/Image.js",
+            "src/ol/reproj/Tile.js",
+            "src/ol/layer/Tile.js",
+            "src/ol/layer/Image.js"
+        ],
+        "explanation": "These files are related to projections and reprojection functionalities within OpenLayers. The 'proj4.js' file specifically handles the proj4js library integration, which is crucial given the bug is linked to proj4js version 2.6.1. The 'Projection.js' and 'projections.js' files manage the definitions and transformations of coordinate systems. The 'Image.js' and 'Tile.js' files in the reproj directory deal with how raster and tiled layers are rendered and transformed, which directly impacts the display issues observed when using the faulty version of proj4js.",
+        "bug_scenario": "The issue occurs when using OpenLayers version 6.3.2 with proj4js version 2.6.1, where map layers get incorrectly rotated when projected in Mercator and EPSG:2180 projections. This is evident in the provided images where the layers do not align properly, indicating a bug introduced in proj4js 2.6.1 due to changes in axis order interpretation."
+    }
+}

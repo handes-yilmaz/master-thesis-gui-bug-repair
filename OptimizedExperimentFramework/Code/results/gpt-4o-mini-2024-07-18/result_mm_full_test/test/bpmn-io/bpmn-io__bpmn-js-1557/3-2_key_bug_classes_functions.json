@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnUpdater.js//BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnUpdater.js//updateDiParent",
+            "lib/features/modeling/BpmnUpdater.js//updateParent"
+        ],
+        "explanation": "The `BpmnUpdater` class is responsible for updating the BPMN model when changes occur, including morphing operations. The `updateDiParent` function is directly related to updating the diagram's parent elements, which is crucial when morphing elements like DataStoreReference. The `updateParent` function is also relevant as it handles the semantic parent updates, which are necessary to ensure that the DataStoreReference is correctly associated with its parent context. Both functions are likely involved in the error thrown when the morphing operation is attempted outside of a valid Pool context.",
+        "bug_scenario": "The bug occurs when attempting to morph a DataStoreReference to a DataObjectReference outside of a Pool in a BPMN model. This action results in a TypeError due to an attempt to access properties of an undefined object, indicating that the necessary parent context for the morphing operation is not properly established."
+    }
+}

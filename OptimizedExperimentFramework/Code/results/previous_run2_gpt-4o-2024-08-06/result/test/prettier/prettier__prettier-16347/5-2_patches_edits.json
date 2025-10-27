@@ -1,0 +1,47 @@
+{
+    "1/1": {
+        "src/language-markdown/print-whitespace.js": [
+            {
+                "SEARCH": [
+                    "function printWhitespace(path, value, proseWrap, isLink) {",
+                    "if (proseWrap === \"preserve\" && value === \"\\\\n\") {",
+                    "return hardline;",
+                    "}",
+                    "",
+                    "const canBeSpace =",
+                    "value === \" \" ||",
+                    "(value === \"\\\\n\" && lineBreakCanBeConvertedToSpace(path, isLink));",
+                    "",
+                    "if (isBreakable(path, value, proseWrap, isLink, canBeSpace)) {",
+                    "return canBeSpace ? line : softline;",
+                    "}",
+                    "",
+                    "return canBeSpace ? \" \" : \"\";",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function printWhitespace(path, value, proseWrap, isLink) {",
+                    "  if (proseWrap === \"preserve\") {",
+                    "    if (value === \"\\\\n\") {",
+                    "      return hardline;",
+                    "    }",
+                    "    if (value === \"\") {",
+                    "      return \"\";",
+                    "    }",
+                    "  }",
+                    "",
+                    "  const canBeSpace =",
+                    "    value === \" \" ||",
+                    "    (value === \"\\\\n\" && lineBreakCanBeConvertedToSpace(path, isLink));",
+                    "",
+                    "  if (isBreakable(path, value, proseWrap, isLink, canBeSpace)) {",
+                    "    return canBeSpace ? line : softline;",
+                    "  }",
+                    "",
+                    "  return canBeSpace ? \" \" : \"\";",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

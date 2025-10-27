@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js",
+            "lib/features/modeling/BpmnLayouter.js",
+            "lib/draw/BpmnRenderer.js"
+        ],
+        "explanation": "These files are critical for fixing the bug because they handle the layout and rendering of connections in BPMN diagrams. The LayoutConnectionBehavior.js file manages how connections are snapped and laid out, which is directly related to the issue of incorrect connection layouts when forming loops. The BpmnLayouter.js file is responsible for the overall layout of connections, including how waypoints are handled, which is essential for ensuring that loops are drawn correctly. Lastly, the BpmnRenderer.js file is involved in the rendering of the connections visually, and any issues in the layout logic will also affect how these connections appear on the canvas.",
+        "bug_scenario": "The bug occurs when attempting to reconnect flow nodes to form a loop in a BPMN diagram with more than two waypoints. The layout of the connection is incorrect, leading to visual misrepresentation of the loop. This issue is evident in both older and newer versions of the bpmn-js library, as shown in the provided GIFs."
+    }
+}

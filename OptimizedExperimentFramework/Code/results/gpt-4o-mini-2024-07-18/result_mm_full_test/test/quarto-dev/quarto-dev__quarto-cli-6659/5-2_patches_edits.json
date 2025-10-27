@@ -1,0 +1,40 @@
+{
+    "1/1": {
+        "src/command/render/render.ts": [
+            {
+                "SEARCH": [
+                    "// determine final output",
+                    "let finalInput = result.input;",
+                    "let finalOutput = result.file;"
+                ],
+                "REPLACE": [
+                    "  // Check if caption is character(0) and handle accordingly",
+                    "  if (result.caption && Array.isArray(result.caption) && result.caption.length === 0) {",
+                    "    result.caption = \"Default Caption\"; // or handle as needed",
+                    "  }",
+                    "  ",
+                    "  // determine final output",
+                    "  let finalInput = result.input;",
+                    "  let finalOutput = result.file;"
+                ]
+            }
+        ],
+        "src/command/render/render-files.ts": [
+            {
+                "SEARCH": [
+                    "// get contexts",
+                    "const fileLifetime = await waitUntilNamedLifetime(\"render-file\");"
+                ],
+                "REPLACE": [
+                    "      // Check if caption is character(0) and handle accordingly",
+                    "      if (file.caption && Array.isArray(file.caption) && file.caption.length === 0) {",
+                    "        file.caption = \"Default Caption\"; // or handle as needed",
+                    "      }",
+                    "      ",
+                    "      // get contexts",
+                    "      const fileLifetime = await waitUntilNamedLifetime(\"render-file\");"
+                ]
+            }
+        ]
+    }
+}

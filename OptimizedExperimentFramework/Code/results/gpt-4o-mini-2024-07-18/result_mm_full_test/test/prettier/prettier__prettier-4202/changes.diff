@@ -1,0 +1,23 @@
+diff --git a/src/language-markdown/printer-markdown.js b/src/language-markdown/printer-markdown.js
+index b34b913..b11c835 100644
+--- a/src/language-markdown/printer-markdown.js
++++ b/src/language-markdown/printer-markdown.js
+@@ -475,9 +475,15 @@ function printTable(path, options, print) {
+     rowContents.join(" | ").length > maxLineLength
+   );
+ 
+-  return join(hardline, [
+-    printRow(contents[0]),
+-    shouldUseSimpleSeparator ? "| :---: | :---: | :---: |" : printSeparator(),
++  // If any row exceeds the maximum length, use the simple separator
++  if (shouldUseSimpleSeparator) {
++    return join(hardline, [
++      printRow(contents[0]),
++      "| :---: | :---: | :---: |", // Fallback to simple separator
++=======
++      return join(hardline, [
++        printRow(contents[0]),
++        printSeparator(),
+     join(hardline, contents.slice(1).map(printRow))
+   ]);
+ 

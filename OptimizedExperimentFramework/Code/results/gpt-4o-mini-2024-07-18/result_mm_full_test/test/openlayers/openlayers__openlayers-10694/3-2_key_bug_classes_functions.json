@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Image.js//ImageStyle"
+        ],
+        "bug_functions": [
+            "src/ol/style/Image.js//setOpacity",
+            "src/ol/style/Image.js//getOpacity",
+            "src/ol/renderer/canvas/ImageLayer.js//renderFrame",
+            "src/ol/renderer/canvas/Layer.js//useContainer"
+        ],
+        "explanation": "The 'ImageStyle' class is crucial because it contains the 'setOpacity' method, which is directly related to the bug reported. The 'setOpacity' function is responsible for setting the opacity of the image style, and if it is not functioning correctly, it would lead to the described issue. The 'getOpacity' function is also relevant as it retrieves the current opacity value, which may be necessary for debugging or ensuring that the opacity is being set correctly. Additionally, the 'renderFrame' function in 'ImageLayer.js' is responsible for rendering the image layer, which includes applying the opacity during the rendering process. Lastly, the 'useContainer' function in 'Layer.js' is involved in managing the rendering context and could affect how the opacity is applied visually on the canvas.",
+        "bug_scenario": "The opacity setting for image styles in the UI is not functioning as expected after an update to version 6.2.0. In version 6.1.1, the feature correctly applies opacity, causing the image to blink, but in version 6.2.0, the opacity has no effect, and the image does not blink."
+    }
+}

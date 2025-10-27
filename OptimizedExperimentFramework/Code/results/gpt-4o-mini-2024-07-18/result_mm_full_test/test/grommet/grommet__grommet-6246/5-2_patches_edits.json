@@ -1,0 +1,37 @@
+{
+    "1/1": {
+        "// Assuming the relevant file is DataChart.js or similar": [
+            {
+                "SEARCH": [
+                    "// Existing chart rendering logic",
+                    "const data = [{ date: '2020-08-20', amount: -2 }, { date: '2020-08-21', amount: 2 }];",
+                    "return (",
+                    "<DataChart",
+                    "data={data}",
+                    "series={['date', 'amount']}",
+                    "chart={[",
+                    "{ property: 'amount', type: 'line', opacity: 'medium' },",
+                    "{ property: 'amount', type: 'point', point: 'star' },",
+                    "]}",
+                    "/>",
+                    ");"
+                ],
+                "REPLACE": [
+                    "const data = [{ date: '2020-08-20', amount: -2 }, { date: '2020-08-21', amount: 2 }];",
+                    "const zeroLine = Math.max(0, Math.min(...data.map(d => d.amount))); // Calculate zero line",
+                    "",
+                    "return (",
+                    "    <DataChart",
+                    "        data={data}",
+                    "        series={['date', 'amount']}",
+                    "        chart={[",
+                    "            { property: 'amount', type: 'line', opacity: 'medium', color: 'customColor' }, // Custom color for negative values",
+                    "            { property: 'amount', type: 'point', point: 'star' },",
+                    "            { property: 'amount', type: 'guide', value: zeroLine, color: 'grey' }, // Add zero line guide",
+                    "        ]}",
+                    "    />"
+                ]
+            }
+        ]
+    }
+}

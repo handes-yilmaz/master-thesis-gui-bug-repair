@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/bash.js",
+            "src/languages/shell.js",
+            "src/lib/modes.js",
+            "src/lib/utils.js"
+        ],
+        "explanation": "The issue is specific to bash highlighting, so the `src/languages/bash.js` is directly involved as it defines highlighting rules for bash syntax. Since shell language shares similarities with bash, `src/languages/shell.js` might also be involved. The highlighting engine may rely on general object mode definitions found in `src/lib/modes.js` to apply the correct syntax rules, and `src/lib/utils.js` could be utilized for handling regex patterns or other utility functions necessary for highlighting.",
+        "bug_scenario": "The bug concerns the lack of syntax highlighting for specific bash syntax elements like pipes, here documents, subshell variables, and stream redirections. In the provided images, elements such as `|`, `\\`, `>`, `<`, `<<`, `<<<`, and `$(...)` are not highlighted as expected in bash scripts."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/bash.js",
+            "src/languages/shell.js"
+        ],
+        "explanation": "The files `bash.js` and `shell.js` in the `src/languages/` directory are likely responsible for defining the syntax highlighting rules for the `bash` and `shell` languages, respectively. Since the issue is that these particular syntactic elements are not being highlighted, it is probable that the issue lies in the definitions within these files. Editing these files to include rules for the missing elements should resolve the highlighting issue.",
+        "bug_scenario": "The issue is that the `bash` and `shell` languages do not properly highlight certain syntax elements such as pipes (`|`), continuation command markers (`\\`), stream redirection operators (`<`, `>`, `<<`, `<<<`), and subshell variables (`$(...)`). The images illustrate how the syntax highlighting is expected compared to how it's actually rendered in both `shell` and `bash` contexts, where important syntax elements remain unhighlighted."
+    }
+}

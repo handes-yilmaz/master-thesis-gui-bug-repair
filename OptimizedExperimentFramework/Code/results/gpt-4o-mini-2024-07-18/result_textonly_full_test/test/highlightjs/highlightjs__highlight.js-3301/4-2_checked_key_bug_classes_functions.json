@@ -1,0 +1,57 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "MODES",
+            "file_path": "src/languages/lib/css-shared.js",
+            "function_details": [
+                {
+                    "name": "MODES",
+                    "start_line": 1,
+                    "end_line": 39
+                }
+            ],
+            "function_code": [
+                "export const MODES = (hljs) => {",
+                "  return {",
+                "    IMPORTANT: {",
+                "      scope: 'meta',",
+                "      begin: '!important'",
+                "    },",
+                "    HEXCOLOR: {",
+                "      scope: 'number',",
+                "      begin: '#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})'",
+                "    },",
+                "    ATTRIBUTE_SELECTOR_MODE: {",
+                "      scope: 'selector-attr',",
+                "      begin: /\\[/,",
+                "      end: /\\]/,",
+                "      illegal: '$',",
+                "      contains: [",
+                "        hljs.APOS_STRING_MODE,",
+                "        hljs.QUOTE_STRING_MODE",
+                "      ]",
+                "    },",
+                "    CSS_NUMBER_MODE: {",
+                "      scope: 'number',",
+                "      begin: hljs.NUMBER_RE + '(' +",
+                "        '%|em|ex|ch|rem' +",
+                "        '|vw|vh|vmin|vmax' +",
+                "        '|cm|mm|in|pt|pc|px' +",
+                "        '|deg|grad|rad|turn' +",
+                "        '|s|ms' +",
+                "        '|Hz|kHz' +",
+                "        '|dpi|dpcm|dppx' +",
+                "        ')?',",
+                "      relevance: 0",
+                "    },",
+                "    CSS_VARIABLE: {",
+                "      className: \"attr\",",
+                "      begin: /--[A-Za-z][A-Za-z0-9_-]*/",
+                "    }",
+                "  };",
+                "};"
+            ]
+        }
+    }
+}

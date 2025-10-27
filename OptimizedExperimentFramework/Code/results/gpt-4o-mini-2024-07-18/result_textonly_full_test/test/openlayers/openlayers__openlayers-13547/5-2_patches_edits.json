@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/ol/source/DataTile.js": [
+            {
+                "SEARCH": [
+                    "this.loader_ = options.loader;"
+                ],
+                "REPLACE": [
+                    "    this.loader_ = options.loader;",
+                    "    this.gutter = options.gutter || 0; // Add gutter option"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const tile = new DataTile("
+                ],
+                "REPLACE": [
+                    "    const tile = new DataTile(",
+                    "      assign({tileCoord: [z, x, y], loader: loader, gutter: this.gutter}, this.tileOptions) // Pass gutter to tile options"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "super({"
+                ],
+                "REPLACE": [
+                    "    this.gutter = options.gutter || 0; // Add gutter option",
+                    "    super({"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "tileUrlFunction: options.tileUrlFunction,"
+                ],
+                "REPLACE": [
+                    "      tileUrlFunction: options.tileUrlFunction,",
+                    "      gutter: this.gutter, // Pass gutter to tile options"
+                ]
+            }
+        ]
+    }
+}

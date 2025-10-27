@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/canvas/Immediate.js//CanvasImmediateRenderer",
+            "src/ol/style/Stroke.js//Stroke"
+        ],
+        "bug_functions": [
+            "src/ol/render/canvas/Immediate.js//setStyle",
+            "src/ol/render/canvas/Immediate.js//drawGeometry",
+            "src/ol/style/Stroke.js//getLineDash",
+            "src/ol/style/Stroke.js//setLineDash"
+        ],
+        "explanation": "The 'CanvasImmediateRenderer' class is responsible for rendering geometries directly to a canvas context, which is where the issue with lineDash scaling occurs. The 'setStyle' function is crucial as it sets the rendering style, including lineDash, which needs to be adjusted based on the pixel ratio. The 'drawGeometry' function is also relevant as it handles the actual drawing of geometries, including lines. The 'Stroke' class defines the properties of the stroke style, including lineDash. The 'getLineDash' and 'setLineDash' functions are important for retrieving and modifying the lineDash pattern, which needs to be scaled according to the pixel ratio to ensure proper rendering on high-density displays.",
+        "bug_scenario": "The bug occurs when rendering dashed lines on a canvas with a high device pixel ratio. The lineDash pattern does not scale correctly, causing the dashes to appear shorter and potentially merging into a solid line, especially with a 'round' lineCap. This results in a visual discrepancy between the expected dashed line and the rendered output on high pixel density displays."
+    }
+}

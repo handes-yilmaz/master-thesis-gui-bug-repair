@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/drilldown/SubprocessCompatibility",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior",
+            "lib/features/modeling/behavior/LabelBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/drilldown/SubprocessCompatibility//handleImport",
+            "lib/features/drilldown/SubprocessCompatibility//createNewDiagrams",
+            "lib/features/drilldown/SubprocessCompatibility//movePlaneElementsToOrigin",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior//postExecuted",
+            "lib/features/modeling/behavior/LabelBehavior//postExecute"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the behavior of subprocesses and their labels in the BPMN diagram. The 'SubprocessCompatibility' class manages the rendering and positioning of elements within subprocesses, which is crucial for ensuring that labels are hidden when a subprocess is collapsed. The 'SubProcessStartEventBehavior' class is responsible for creating start events when a task is replaced with a subprocess, which may affect the visibility of labels. Lastly, the 'LabelBehavior' class manages the positioning and visibility of labels, making it essential for addressing the issue of labels not being hidden correctly when a subprocess is collapsed.",
+        "bug_scenario": "The bug occurs when a user interacts with a BPMN diagram by collapsing a subprocess that contains start, task, and end events. After collapsing, the labels of these events are not hidden as expected, and the start event label moves outside the intended area. This issue arises specifically when the user clicks through the steps to reproduce the scenario, and it does not occur during import or export of the diagram."
+    }
+}

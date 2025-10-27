@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/document/doc-printer.js"
+        ],
+        "bug_functions": [
+            "src/language-js/printer-estree.js//resolveParser"
+        ],
+        "explanation": "The bug is related to how newline characters are handled when printing code. The key issue is in the logic that deals with formatting and output of newlines, likely found in the document printing logic. The function `resolveParser` in `printer-estree.js` is important because it determines which parser is used, and the behavior is specific to the babylon parser.",
+        "bug_scenario": "Prettier ends the file with two newlines instead of one when a directive is followed by a comment. This issue is reproducible with the babylon parser."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [
+            "src/language-js/printer-estree.js//parse"
+        ],
+        "explanation": "The function `parse` in `src/language-js/printer-estree.js` is likely responsible for handling how the Babylon parser processes lines and whitespace. Given the problem with trailing newlines, this function is a key candidate for where the newline handling logic might be incorrectly implemented or needs adjustment.",
+        "bug_scenario": "The issue is related to Prettier formatting, where a directive followed by a comment ends with two newlines instead of one when using the Babylon parser. The expected behavior is to have a single newline after the comment."
+    }
+}

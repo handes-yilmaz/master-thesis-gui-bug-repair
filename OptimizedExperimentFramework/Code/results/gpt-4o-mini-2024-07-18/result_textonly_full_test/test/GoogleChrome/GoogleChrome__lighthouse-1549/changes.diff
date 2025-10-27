@@ -1,0 +1,20 @@
+diff --git a/lighthouse-core/audits/user-timings.js b/lighthouse-core/audits/user-timings.js
+index 574debd..0efce12 100644
+--- a/lighthouse-core/audits/user-timings.js
++++ b/lighthouse-core/audits/user-timings.js
+@@ -99,10 +99,11 @@ function filterTrace(traceData) {
+   });
+ 
+   userTimings.forEach(ut => {
+-    ut.startTime -= navigationStartTime;
+-    if (!ut.isMark) {
+-      ut.endTime -= navigationStartTime;
+-      ut.duration = ut.duration;
++    if (navigationStartTime) {
++      ut.startTime -= navigationStartTime;
++      if (!ut.isMark) {
++        ut.endTime -= navigationStartTime;
++        ut.duration = ut.duration;
+     }
+   });
+ 

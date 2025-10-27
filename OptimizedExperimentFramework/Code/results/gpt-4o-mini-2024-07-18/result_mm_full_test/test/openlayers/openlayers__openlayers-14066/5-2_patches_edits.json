@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "/**",
+                    "* @type {'readRasters' | 'readRGB'}",
+                    "*/",
+                    "this.readMethod_ = options.convertToRGB ? 'readRGB' : 'readRasters';"
+                ],
+                "REPLACE": [
+                    "    /** ",
+                    "     * @type {'readRasters' | 'readRGB'} ",
+                    "     */ ",
+                    "    if (options.convertToRGB === 'auto') {",
+                    "      const samplesPerPixel = this.sourceInfo_.map(source => source.bands ? source.bands.length : 1);",
+                    "      const isAutoRGB = samplesPerPixel.every(samples => samples === 3) && ",
+                    "                        this.sourceInfo_.some(source => ",
+                    "                          ['CMYK', 'YCbCr', 'CIELab', 'ICCLab'].includes(source.photometric));",
+                    "      this.readMethod_ = isAutoRGB ? 'readRGB' : 'readRasters';",
+                    "    } else {",
+                    "      this.readMethod_ = options.convertToRGB ? 'readRGB' : 'readRasters';",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/dart.js//hljs.COMMENT",
+            "src/lib/token_tree.js//TokenTreeEmitter"
+        ],
+        "bug_functions": [
+            "src/languages/dart.js//export default function(hljs)",
+            "src/lib/token_tree.js//addKeyword",
+            "src/lib/token_tree.js//addText"
+        ],
+        "explanation": "The `hljs.COMMENT` function in `dart.js` is responsible for defining how comments are handled in Dart syntax highlighting. Since the bug is related to how an empty block comment is processed, this function is directly relevant. The `TokenTreeEmitter` class in `token_tree.js` is also significant because it manages the structure of the token tree, including how keywords and text are added. The `addKeyword` and `addText` functions are crucial as they handle the addition of text and keywords to the token tree, which could be affected by the presence of empty comments, leading to the highlighting issue.",
+        "bug_scenario": "The bug occurs when an empty block comment in Dart code breaks the syntax highlighting, causing further code to not be highlighted correctly. The provided images illustrate the issue, showing the expected highlighting behavior versus the actual behavior when the empty comment is present."
+    }
+}

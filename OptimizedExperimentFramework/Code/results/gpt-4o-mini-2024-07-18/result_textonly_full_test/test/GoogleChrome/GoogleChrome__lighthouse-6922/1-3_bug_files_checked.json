@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/connections/connection.js",
+            "lighthouse-core/gather/gatherers/anchor-elements.js",
+            "lighthouse-core/gather/gatherers/html-without-javascript.js",
+            "lighthouse-core/gather/gatherers/scripts.js",
+            "lighthouse-core/gather/gatherers/service-worker.js",
+            "lighthouse-core/gather/gatherers/seo/embedded-content.js"
+        ],
+        "explanation": "The identified files are relevant to the bug because they involve gathering performance and network data from the web pages being audited. Specifically, `connection.js` handles network connections which may need to be updated to support target discovery for OOPIFs. The gatherers like `anchor-elements.js`, `html-without-javascript.js`, and others are responsible for extracting various elements and data from the page, and their functionality could be limited if they do not account for iframes. Updating these files may be necessary to enable Lighthouse to access and analyze requests from iframes effectively.",
+        "bug_scenario": "The bug scenario describes that Lighthouse, a web performance auditing tool, does not handle Out-of-Process Iframes (OOPIFs) properly. It suggests that Lighthouse can only analyze requests from the main frame, which could limit its ability to gather data from iframes, as indicated by the user's observation of Chrome DevTools interacting with targets via `Target.sendMessageToTarget` and receiving messages through `Target.receivedMessageFromTarget`. The user expected to find target discovery functionality in the Lighthouse source code, particularly in the `lighthouse-core/gather` folder, but was unable to locate it."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/modeling/BpmnFactory.js",
+            "lib/features/drilldown/SubprocessCompatibility.js"
+        ],
+        "explanation": "These files are key to fixing the bug because: 1. **SubProcessStartEventBehavior.js**: This file contains the logic for adding a start event when a subprocess is created. Modifying this file will directly address the issue of the missing start event during the morphing process. 2. **BpmnFactory.js**: This file is responsible for creating BPMN elements, including subprocesses. Changes here may be necessary to ensure that the subprocess is created correctly with the required start event. 3. **SubprocessCompatibility.js**: This file handles the compatibility of subprocesses and their rendering. It may need adjustments to ensure that the expanded subprocess behaves correctly and is visually distinct from tasks.",
+        "bug_scenario": "The bug occurs when morphing a call activity to an expanded subprocess, resulting in a tiny subprocess that resembles a task, which is confusing for users. The expected behavior is that the morphing process should include a start event, similar to the behavior when morphing from a task."
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "1/1": {
+        "src/menu/view/group.jsx": [
+            {
+                "SEARCH": [
+                    "const newChildren = children.map(child => {",
+                    "const { className } = child.props;",
+                    "const newChildClassName = cx({",
+                    "[`${prefix}menu-group-item`]: true,",
+                    "[className]: !!className,",
+                    "});",
+                    "",
+                    "return cloneElement(child, {",
+                    "parentMode,",
+                    "className: newChildClassName,",
+                    "});",
+                    "});"
+                ],
+                "REPLACE": [
+                    "const newChildren = React.Children.map(children, child => {",
+                    "    if (React.isValidElement(child)) {",
+                    "        const { className } = child.props;",
+                    "        const newChildClassName = cx({",
+                    "            [`${prefix}menu-group-item`]: true,",
+                    "            [className]: !!className,",
+                    "        });",
+                    "",
+                    "        return cloneElement(child, {",
+                    "            parentMode,",
+                    "            className: newChildClassName,",
+                    "        });",
+                    "    }",
+                    "    return child;",
+                    "});"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/tree/view/tree.jsx//Tree",
+            "src/tree/view/tree-node.jsx//TreeNode"
+        ],
+        "bug_functions": [
+            "src/tree/view/util.js//convertChildren2Data",
+            "src/tree/view/util.js//normalizeToArray"
+        ],
+        "explanation": "The Tree class in 'src/tree/view/tree.jsx' and the TreeNode class in 'src/tree/view/tree-node.jsx' are central to the tree component functionality, making them key suspects for issues arising from changes to how keys are handled. The function 'convertChildren2Data' in 'src/tree/view/util.js' is responsible for converting children of a tree into a data source, a process that directly deals with keys and could be affected by changes in key handling. Similarly, 'normalizeToArray' is a utility function that processes keys, making it relevant to the issue of immutable data handling. These classes and functions are involved in key assignments and transformations, which are critical to resolving the bug.",
+        "bug_scenario": "The bug scenario involves a tree component where a key has been added to immutable data, causing issues in version 1.20.23, while it worked fine in version 1.19.x. The images provided in the bug report likely show the error messages or problematic tree renders that resulted from this change, highlighting the discrepancies between the two versions."
+    },
+    "2": {
+        "bug_classes": [
+            "src/tree/view/tree.jsx//Tree",
+            "src/tree/view/tree-node.jsx//TreeNode"
+        ],
+        "bug_functions": [
+            "src/tree/view/util.js//convertChildren2Data",
+            "src/tree/view/util.js//getAllCheckedKeys",
+            "src/tree/view/util.js//normalizeToArray"
+        ],
+        "explanation": "The bug is related to how the Tree component handles its nodes and keys, especially in the context of immutable data. The classes and functions identified are responsible for key operations related to the Tree's nodes:\n\n1. **Tree Class (src/tree/view/tree.jsx)**: This is the main component class for the Tree, where the logic for rendering and handling tree data resides. Any changes in key handling or node management would likely be implemented here.\n\n2. **TreeNode Class (src/tree/view/tree-node.jsx)**: Represents individual tree nodes. Modifications to key handling at the node level would be relevant here, especially if node properties need to be adjusted to prevent keys from being added to immutable data.\n\n3. **convertChildren2Data Function (src/tree/view/util.js)**: This function converts children of the Tree into a data source. It involves handling node keys and properties, making it a potential point of failure if immutable data is improperly managed.\n\n4. **getAllCheckedKeys Function (src/tree/view/util.js)**: This function manages the collection of checked keys, which is crucial for ensuring key immutability and correct tree state.\n\n5. **normalizeToArray Function (src/tree/view/util.js)**: Normalizes input into an array, which may involve key manipulation. Improper handling here could lead to mutability issues.\n\nThe functions and classes are closely tied to the management of keys and node data in the Tree component, making them critical areas to inspect and potentially modify to address the bug.",
+        "bug_scenario": "The bug report indicates an issue with the Tree component, where a key is added to immutable data resulting in unexpected behavior. The images provided show screenshots of the Tree component UI, likely presenting the differences in behavior between versions 1.19.x and 1.20.23. The issue appears to be a regression introduced in the newer version, causing the component to behave incorrectly when handling certain data or actions."
+    }
+}

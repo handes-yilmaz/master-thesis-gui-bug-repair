@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/render/canvas/Builder.js",
+            "src/ol/render/canvas/Executor.js"
+        ],
+        "explanation": "These files are critical for rendering vector layers on the canvas. The 'VectorLayer.js' file contains the main renderer for vector layers, which is responsible for drawing the polygons. The 'Builder.js' file handles the construction of rendering instructions, which may be affected by the rotation logic. The 'Executor.js' file manages the execution of rendering instructions, including how features are drawn on the canvas. Any issues with the rendering logic in these files could lead to the cropping behavior observed when the map is rotated.",
+        "bug_scenario": "The bug occurs when the vector layer canvas is cropped after the map is rotated. This issue has been present since version 9.1.0 and is likely related to a specific pull request that introduced changes to the rendering logic. The expected behavior is that the polygon should remain fully visible and not be cut off when the map is rotated."
+    }
+}

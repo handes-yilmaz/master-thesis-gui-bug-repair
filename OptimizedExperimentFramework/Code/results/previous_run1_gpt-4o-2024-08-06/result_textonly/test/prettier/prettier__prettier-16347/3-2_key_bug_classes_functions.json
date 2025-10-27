@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/utils/front-matter/parse.js"
+        ],
+        "bug_functions": [
+            "src/language-markdown/unified-plugins/front-matter.js//tokenizer",
+            "src/utils/front-matter/parse.js//parse"
+        ],
+        "explanation": "1. **src/language-markdown/unified-plugins/front-matter.js//tokenizer**: This function is responsible for tokenizing the front matter in markdown. Since the issue is related to parsing the front matter and retaining empty lines, the tokenizer function is a key part of the process and might not be handling the input correctly.\n\n2. **src/utils/front-matter/parse.js//parse**: This function performs the actual parsing of the front matter. It uses a regular expression to match the front matter and its delimiters. Given the issue with empty lines being removed, the logic within this function, particularly the regular expression and how it processes lines, is crucial to addressing the bug.\n\nThe classes and functions identified are involved in parsing and tokenizing the front matter of markdown files, which is directly related to the bug described, where empty lines are incorrectly removed during the parsing process.",
+        "bug_scenario": "The bug is related to the Prettier tool, where it is incorrectly removing empty lines in markdown YAML frontmatter. This is affecting the formatting of markdown files when Prettier is used."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-markdown/unified-plugins/front-matter.js//frontMatter",
+            "src/utils/front-matter/parse.js//parse"
+        ],
+        "bug_functions": [
+            "src/language-markdown/unified-plugins/front-matter.js//tokenizer",
+            "src/utils/front-matter/parse.js//parse"
+        ],
+        "explanation": "The bug is related to the handling and processing of markdown YAML frontmatter, which is likely implemented in the `frontMatter` plugin and `parse` function. The `frontMatter` plugin in `src/language-markdown/unified-plugins/front-matter.js` is responsible for parsing the frontmatter blocks in markdown, where the `tokenizer` function is a key component for recognizing and processing these blocks. The `parse` function in `src/utils/front-matter/parse.js` contains logic to parse the frontmatter and manage delimiters, which may involve handling empty lines in the frontmatter section. If the empty lines are not correctly recognized and preserved during parsing, it could lead to the observed bug where they are removed in the output.",
+        "bug_scenario": "The bug scenario involves a markdown YAML frontmatter where some empty lines are not preserved after processing with Prettier 3.3.0. This results in unexpected output where empty lines that should remain in the 'blogs' section are removed."
+    }
+}

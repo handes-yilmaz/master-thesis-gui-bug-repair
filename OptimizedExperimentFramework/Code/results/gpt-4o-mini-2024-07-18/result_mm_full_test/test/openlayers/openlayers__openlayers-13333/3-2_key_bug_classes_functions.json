@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//getSources",
+            "src/ol/layer/WebGLTile.js//renderSources",
+            "src/ol/layer/WebGLTile.js//setStyle",
+            "src/ol/source/GeoTIFF.js//getImagesForSource",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "The identified classes and functions are critical for rendering the WebGLTile layer correctly. The `WebGLTileLayer` class manages the layer's properties and rendering behavior, while `getSources` and `renderSources` are responsible for fetching and rendering the appropriate tile sources based on the current extent. The `GeoTIFFSource` class handles the loading of GeoTIFF images, which are essential for the layer's data. The `renderFrame` function in the `WebGLTileLayerRenderer` class is responsible for the actual rendering process, and any issues in this function could lead to incorrect rendering outside the specified extent.",
+        "bug_scenario": "The WebGLTile layer is rendering images outside of the original extent, as indicated by the red box in the images. The correct extent is not being respected, leading to visual artifacts and incorrect rendering when zooming in."
+    }
+}

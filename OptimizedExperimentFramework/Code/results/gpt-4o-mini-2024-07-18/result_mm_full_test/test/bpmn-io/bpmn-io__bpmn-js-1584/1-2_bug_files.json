@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/modeling/behavior/RemoveParticipantBehavior.js",
+            "lib/modeling/BpmnFactory.js",
+            "lib/copy-paste/BpmnCopyPaste.js"
+        ],
+        "explanation": "These files are likely responsible for handling participant creation and removal within the model. 'CreateParticipantBehavior.js' and 'RemoveParticipantBehavior.js' manage the addition and deletion of participants, which directly relates to the ID issue. 'BpmnFactory.js' is crucial for generating process IDs and managing their consistency. 'BpmnCopyPaste.js' is relevant for the duplicate ID issue when copying pools, as it handles the logic for copying elements in the model.",
+        "bug_scenario": "The bug involves inconsistent behavior in the process ID when adding and removing participants in the model. When a participant is added and then removed, the process ID remains the same. However, when the participant is re-added, the process ID changes unexpectedly. Additionally, deleting the last participant changes the process ID, which is not the expected behavior."
+    }
+}

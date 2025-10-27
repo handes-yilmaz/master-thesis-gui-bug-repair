@@ -1,0 +1,111 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "DOMSize",
+            "file_path": "core/audits/dobetterweb/dom-size.js",
+            "class_details": [
+                {
+                    "name": "DOMSize",
+                    "start_line": 45,
+                    "end_line": 119,
+                    "methods": [
+                        {
+                            "name": "meta",
+                            "start_line": 49,
+                            "end_line": 58
+                        },
+                        {
+                            "name": "defaultOptions",
+                            "start_line": 63,
+                            "end_line": 70
+                        },
+                        {
+                            "name": "audit",
+                            "start_line": 78,
+                            "end_line": 118
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class DOMSize extends Audit {",
+                "  /**",
+                "   * @return {LH.Audit.Meta}",
+                "   */",
+                "  static get meta() {",
+                "    return {",
+                "      id: 'dom-size',",
+                "      title: str_(UIStrings.title),",
+                "      failureTitle: str_(UIStrings.failureTitle),",
+                "      description: str_(UIStrings.description),",
+                "      scoreDisplayMode: Audit.SCORING_MODES.NUMERIC,",
+                "      requiredArtifacts: ['DOMStats'],",
+                "    };",
+                "  }",
+                "",
+                "  /**",
+                "   * @return {LH.Audit.ScoreOptions}",
+                "   */",
+                "  static get defaultOptions() {",
+                "    return {",
+                "      // https://bigquery.cloud.google.com/table/httparchive:lighthouse.2018_04_01_mobile?pli=1",
+                "      // see https://www.desmos.com/calculator/tsunbwqt3f",
+                "      p10: 818,",
+                "      median: 1400,",
+                "    };",
+                "  }",
+                "",
+                "",
+                "  /**",
+                "   * @param {LH.Artifacts} artifacts",
+                "   * @param {LH.Audit.Context} context",
+                "   * @return {LH.Audit.Product}",
+                "   */",
+                "  static audit(artifacts, context) {",
+                "    const stats = artifacts.DOMStats;",
+                "",
+                "    const score = Audit.computeLogNormalScore(",
+                "      {p10: context.options.p10, median: context.options.median},",
+                "      stats.totalBodyElements",
+                "    );",
+                "",
+                "    /** @type {LH.Audit.Details.Table['headings']} */",
+                "    const headings = [",
+                "      {key: 'statistic', valueType: 'text', label: str_(UIStrings.columnStatistic)},",
+                "      {key: 'node', valueType: 'node', label: str_(i18n.UIStrings.columnElement)},",
+                "      {key: 'value', valueType: 'numeric', label: str_(UIStrings.columnValue)},",
+                "    ];",
+                "",
+                "    /** @type {LH.Audit.Details.Table['items']} */",
+                "    const items = [",
+                "      {",
+                "        statistic: str_(UIStrings.statisticDOMElements),",
+                "        value: stats.totalBodyElements,",
+                "      },",
+                "      {",
+                "        node: Audit.makeNodeItem(stats.depth),",
+                "        statistic: str_(UIStrings.statisticDOMDepth),",
+                "        value: stats.depth.max,",
+                "      },",
+                "      {",
+                "        node: Audit.makeNodeItem(stats.width),",
+                "        statistic: str_(UIStrings.statisticDOMWidth),",
+                "        value: stats.width.max,",
+                "      },",
+                "    ];",
+                "",
+                "    return {",
+                "      score,",
+                "      numericValue: stats.totalBodyElements,",
+                "      numericUnit: 'element',",
+                "      displayValue: str_(UIStrings.displayValue, {itemCount: stats.totalBodyElements}),",
+                "      details: Audit.makeTableDetails(headings, items),",
+                "    };",
+                "  }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

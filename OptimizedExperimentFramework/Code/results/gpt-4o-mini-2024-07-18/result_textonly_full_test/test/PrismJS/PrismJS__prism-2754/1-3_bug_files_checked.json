@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-jsx.js",
+            "components/prism-jsx.min.js",
+            "plugins/autoloader/prism-autoloader.js",
+            "plugins/autoloader/prism-autoloader.min.js",
+            "prism.js"
+        ],
+        "explanation": "These files are related to the bug since 'prism-jsx.js' and 'prism-jsx.min.js' specifically handle the JSX syntax highlighting. The presence of the autoloader files suggests that there may be an issue with how components are being loaded or parsed, which could lead to improper syntax highlighting. Finally, 'prism.js' is the main file that might integrate all the languages and their corresponding highlighting logic, and any issue there could propagate to the JSX handling.",
+        "bug_scenario": "The issue arises when using JSX components in the code, specifically when spreading props like {...props}. This syntax causes Prism's syntax highlighting to malfunction, failing to correctly highlight the component's props compared to GitHub's syntax highlighting which works as expected. The images illustrate the difference in syntax highlighting where the first button with spread props appears incorrectly highlighted."
+    }
+}

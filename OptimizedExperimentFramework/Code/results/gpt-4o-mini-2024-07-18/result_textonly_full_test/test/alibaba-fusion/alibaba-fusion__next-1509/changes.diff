@@ -1,0 +1,43 @@
+diff --git a/src/config-provider/config.jsx b/src/config-provider/config.jsx
+index e5b61b8..4cd474d 100644
+--- a/src/config-provider/config.jsx
++++ b/src/config-provider/config.jsx
+@@ -99,6 +99,9 @@ export function config(Component, options = {}) {
+             popupContainer: PropTypes.oneOfType([
+                 PropTypes.string,
+                 PropTypes.func,
++                PropTypes.node,
++                PropTypes.string,
++                PropTypes.func,
+             ]),
+             errorBoundary: PropTypes.oneOfType([
+                 PropTypes.bool,
+diff --git a/src/dialog/dialog.jsx b/src/dialog/dialog.jsx
+index 1b20eb2..6e32e44 100644
+--- a/src/dialog/dialog.jsx
++++ b/src/dialog/dialog.jsx
+@@ -378,7 +378,7 @@ export default class Dialog extends Component {
+             rtl,
+             maskClass: useCSS ? `${prefix}dialog-container` : '',
+             isChildrenInMask: useCSS && hasMask,
+-            container: this.props.popupContainer || overlayProps.container,
++            container: this.props.popupContainer || overlayProps.container || document.body,
+         };
+         if (!useCSS) {
+             newOverlayProps.beforePosition = this.beforePosition;
+diff --git a/src/dialog/index.jsx b/src/dialog/index.jsx
+index 65c7da1..dd88568 100644
+--- a/src/dialog/index.jsx
++++ b/src/dialog/index.jsx
+@@ -24,7 +24,10 @@ Dialog.confirm = config => {
+     if (warning !== false) {
+         config = processProps(config, log.deprecated);
+     }
+-    return confirm(config);
++    return confirm({
++        ...config,
++        container: config.popupContainer || ConfigProvider.getContextProps(config, 'Dialog').nextPopupContainer,
++    });
+ };
+ 
+ /* istanbul ignore next */

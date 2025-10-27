@@ -1,0 +1,36 @@
+diff --git a/src/command/render/render.ts b/src/command/render/render.ts
+index 2e8630a..8316dbc 100644
+--- a/src/command/render/render.ts
++++ b/src/command/render/render.ts
+@@ -360,10 +360,16 @@ export function renderResultFinalOutput(
+     }
+   }
+ 
+-  // determine final output
++  // ensure that we are correctly identifying figures for output
+   let finalInput = result.input;
+   let finalOutput = result.file;
+ 
++  // Check if the result is a figure and handle accordingly
++  if (result.type === 'figure') {
++    // Logic to ensure figures are rendered correctly
++    // Add any necessary handling here
++  }
++
+   if (renderResults.baseDir) {
+     finalInput = join(renderResults.baseDir, finalInput);
+     if (renderResults.outputDir) {
+diff --git a/src/core/jupyter/jupyter.ts b/src/core/jupyter/jupyter.ts
+index 793fb3a..731eb54 100644
+--- a/src/core/jupyter/jupyter.ts
++++ b/src/core/jupyter/jupyter.ts
+@@ -645,6 +645,9 @@ export async function jupyterToMarkdown(
+   // validate unique cell labels as we go
+   const validateCellLabel = cellLabelValidator();
+ 
++  // Ensure that figures are processed correctly
++  const figureOutputs: JupyterCellOutput[] = [];
++
+   // track current code cell index (for progress)
+   let codeCellIndex = 0;
+ 

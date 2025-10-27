@@ -1,0 +1,17 @@
+{
+    "1/1": {
+        "src/table/util.js": [
+            {
+                "SEARCH": [
+                    "const field = path.match(/([^[.\\\\]]+)/g);"
+                ],
+                "REPLACE": [
+                    "    const field = path.match(/([^[.\\\\]]+)/g) || [];",
+                    "    if (path.startsWith('[') && path.endsWith(']')) {",
+                    "        field.push(...path.slice(1, -1).split(',').map(item => item.trim()));",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/service-worker.js": [
+            {
+                "SEARCH": [
+                    "const matchingSW = versions.filter(v => v.status === 'activated')",
+                    ".find(v => new URL(v.scriptURL).origin === origin);"
+                ],
+                "REPLACE": [
+                    "    const matchingSW = versions.filter(v => v.status === 'activated')",
+                    "        .find(v => new URL(v.scriptURL).origin === origin && v.scriptURL);"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/start-url.js": [
+            {
+                "SEARCH": [
+                    "resolve();"
+                ],
+                "REPLACE": [
+                    "          resolve(data.response.status);"
+                ]
+            }
+        ]
+    }
+}

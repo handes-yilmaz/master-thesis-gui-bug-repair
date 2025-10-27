@@ -1,0 +1,86 @@
+{
+    "1/1": {
+        "src/field/index.js": [
+            {
+                "SEARCH": [
+                    "if (name in this.fieldsMeta) {",
+                    "this.fieldsMeta[name].value = value;",
+                    "}",
+                    "if (this.options.parseName) {",
+                    "this.values = setIn(this.values, name, value);",
+                    "} else {",
+                    "this.values[name] = value;",
+                    "}",
+                    "reRender && this._reRender();"
+                ],
+                "REPLACE": [
+                    "        if (name in this.fieldsMeta) {",
+                    "            this.fieldsMeta[name].value = value;",
+                    "        }",
+                    "        if (this.options.parseName) {",
+                    "            this.values = setIn({}, this.values, name, value); // Create a new object",
+                    "        } else {",
+                    "            this.values = { ...this.values, [name]: value }; // Create a new object",
+                    "        }",
+                    "        reRender && this._reRender();"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (!this.options.parseName) {",
+                    "Object.keys(fieldsValue).forEach(name => {",
+                    "this.setValue(name, fieldsValue[name], false);",
+                    "});",
+                    "} else {",
+                    "// NOTE: this is a shallow merge",
+                    "// Ex. we have two values a.b.c=1 ; a.b.d=2, and use setValues({a:{b:{c:3}}}) , then because of shallow merge a.b.d will be lost, we will get only {a:{b:{c:3}}}",
+                    "this.values = Object.assign({}, this.values, fieldsValue);",
+                    "const fields = this.getNames();",
+                    "fields.forEach(name => {",
+                    "const value = getIn(this.values, name);",
+                    "if (value !== undefined) {",
+                    "// copy over values that are in this.values",
+                    "this.fieldsMeta[name].value = value;",
+                    "} else {",
+                    "// if no value then copy values from fieldsMeta to keep initialized component data",
+                    "this.values = setIn(",
+                    "this.values,",
+                    "name,",
+                    "this.fieldsMeta[name].value",
+                    ");",
+                    "}",
+                    "});",
+                    "}",
+                    "reRender && this._reRender();"
+                ],
+                "REPLACE": [
+                    "        if (!this.options.parseName) {",
+                    "            Object.keys(fieldsValue).forEach(name => {",
+                    "                this.setValue(name, fieldsValue[name], false);",
+                    "            });",
+                    "        } else {",
+                    "            // NOTE: this is a shallow merge",
+                    "            // Ex. we have two values a.b.c=1 ; a.b.d=2, and use setValues({a:{b:{c:3}}}) , then because of shallow merge a.b.d will be lost, we will get only {a:{b:{c:3}}}",
+                    "            this.values = { ...this.values, ...fieldsValue }; // Create a new object",
+                    "            const fields = this.getNames();",
+                    "            fields.forEach(name => {",
+                    "                const value = getIn(this.values, name);",
+                    "                if (value !== undefined) {",
+                    "                    // copy over values that are in this.values",
+                    "                    this.fieldsMeta[name].value = value;",
+                    "                } else {",
+                    "                    // if no value then copy values from fieldsMeta to keep initialized component data",
+                    "                    this.values = setIn(",
+                    "                        this.values,",
+                    "                        name,",
+                    "                        this.fieldsMeta[name].value",
+                    "                    );",
+                    "                }",
+                    "            });",
+                    "        }",
+                    "        reRender && this._reRender();"
+                ]
+            }
+        ]
+    }
+}

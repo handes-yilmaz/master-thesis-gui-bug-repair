@@ -1,0 +1,20 @@
+diff --git a/lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js b/lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js
+index adaadf9..5198ea7 100644
+--- a/lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js
++++ b/lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js
+@@ -236,10 +236,12 @@ function getOptimalPosition(element) {
+     return takenAlignments.indexOf(alignment) === -1;
+   });
+ 
+-  // NOTHING TO DO; label already aligned a.O.K.
+-  if (freeAlignments.indexOf(labelOrientation) !== -1) {
+-    return;
++  // Apply AdaptiveLabelPositioningBehavior after pasting
++  if (element.isPasted) {
++    return getOptimalPosition(element);
+   }
++  
++  // NOTHING TO DO; label already aligned a.O.K.
+ 
+   return freeAlignments[0];
+ }

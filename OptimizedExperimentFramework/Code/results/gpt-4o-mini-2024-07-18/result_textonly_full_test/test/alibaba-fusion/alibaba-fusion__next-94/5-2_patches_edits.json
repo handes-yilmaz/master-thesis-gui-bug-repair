@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "src/number-picker/index.jsx": [
+            {
+                "SEARCH": [
+                    "const precision = this.getPrecision();",
+                    "if (precision > 0) {",
+                    "result = Number(result.toFixed(precision));",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        const precision = this.getPrecision();",
+                    "        if (precision > 0) {",
+                    "            result = Math.round(result * this.getPrecisionFactor()) / this.getPrecisionFactor();",
+                    "        }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.props.onChange(isNaN(v) || v === '' ? undefined : v, {...e, triggerType});"
+                ],
+                "REPLACE": [
+                    "        this.props.onChange(isNaN(v) || v === '' ? undefined : Math.round(v * this.getPrecisionFactor()) / this.getPrecisionFactor(), {...e, triggerType});"
+                ]
+            }
+        ]
+    }
+}

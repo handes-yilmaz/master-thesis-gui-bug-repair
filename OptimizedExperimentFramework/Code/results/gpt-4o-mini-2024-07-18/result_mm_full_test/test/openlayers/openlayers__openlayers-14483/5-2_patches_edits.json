@@ -1,0 +1,19 @@
+{
+    "1/1": {
+        "src/ol/layer/Vector.js": [
+            {
+                "SEARCH": [
+                    "createRenderer() {",
+                    "return new CanvasVectorLayerRenderer(this);"
+                ],
+                "REPLACE": [
+                    "  createRenderer() {",
+                    "    const renderer = new CanvasVectorLayerRenderer(this);",
+                    "    // Ensure that the renderer accounts for rotation and translation",
+                    "    renderer.setRotationTranslationHandler(this.handleRotationTranslation.bind(this));",
+                    "    return renderer;"
+                ]
+            }
+        ]
+    }
+}

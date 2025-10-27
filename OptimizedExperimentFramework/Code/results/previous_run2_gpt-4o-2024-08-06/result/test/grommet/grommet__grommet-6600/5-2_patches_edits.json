@@ -1,0 +1,38 @@
+{
+    "1/1": {
+        "src/js/components/DataFilters/DataFilters.js": [
+            {
+                "SEARCH": [
+                    "export const DataFilters = ({ drop, children, heading, ...rest }) => {",
+                    "const { clearFilters, data, messages, properties, view } =",
+                    "useContext(DataContext);",
+                    "const { format } = useContext(MessageContext);",
+                    "const [showContent, setShowContent] = useState();"
+                ],
+                "REPLACE": [
+                    "export const DataFilters = ({ drop, layer, children, heading, ...rest }) => {",
+                    "  const { clearFilters, data, messages, properties, view } =",
+                    "    useContext(DataContext);",
+                    "  const { format } = useContext(MessageContext);",
+                    "  const [showContent, setShowContent] = useState(layer ? true : undefined);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const controlled = useMemo(() => drop, [drop]);"
+                ],
+                "REPLACE": [
+                    "  const controlled = useMemo(() => drop || layer, [drop, layer]);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (!controlled) return content;"
+                ],
+                "REPLACE": [
+                    "  if (!controlled) return layer ? <Layer>{content}</Layer> : content;"
+                ]
+            }
+        ]
+    }
+}

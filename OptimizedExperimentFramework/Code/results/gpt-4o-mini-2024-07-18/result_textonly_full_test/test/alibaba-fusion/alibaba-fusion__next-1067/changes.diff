@@ -1,0 +1,21 @@
+diff --git a/src/slider/slider.jsx b/src/slider/slider.jsx
+index 667617b..47d3b63 100644
+--- a/src/slider/slider.jsx
++++ b/src/slider/slider.jsx
+@@ -221,12 +221,14 @@ export default class Slider extends Component {
+ 
+         if (slideCount === 0) {
+             // 没有 item 时不显示 slider
+-            return null;
+-        } else if (slideCount === 1) {
++        if (slideCount === 1 || (this.props.slidesToShow > slideCount && !this.props.infinite && this.props.defaultActiveIndex === 0)) {
+             // 单个 item 时不显示箭头和控制器
+             sliderProps.arrows = false;
+             sliderProps.autoplay = false;
+             sliderProps.draggable = false;
++        } else {
++            sliderProps.arrows = true; // Enable arrows if conditions are met
++        }
+         }
+ 
+         const clazz = classNames(

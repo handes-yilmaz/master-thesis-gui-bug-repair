@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageArcGISRest.js//ImageArcGISRest",
+            "src/ol/layer/Image.js//ImageLayer",
+            "src/ol/renderer/canvas/ImageLayer.js//CanvasImageLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageArcGISRest.js//constructor",
+            "src/ol/source/ImageArcGISRest.js//getImageInternal",
+            "src/ol/source/ImageArcGISRest.js//getRequestUrl_",
+            "src/ol/layer/Image.js//constructor",
+            "src/ol/renderer/canvas/ImageLayer.js//prepareFrame",
+            "src/ol/renderer/canvas/ImageLayer.js//renderFrame"
+        ],
+        "explanation": "The classes and functions identified are directly related to the bug because they handle the image source and rendering logic for the ArcGIS layers. The 'ImageArcGISRest' class contains the ratio parameter that is causing the mismatch, and its constructor initializes this parameter. The 'getImageInternal' function is responsible for fetching the image based on the current extent and resolution, which is affected by the ratio. The 'ImageLayer' class is responsible for managing the image layer, while the 'CanvasImageLayerRenderer' class handles the rendering of the image layer on the canvas. The 'prepareFrame' and 'renderFrame' functions in the renderer are crucial for ensuring that the images are drawn correctly on the map, and any issues in these functions could exacerbate the layer-map mismatch problem.",
+        "bug_scenario": "In OpenLayers version 7.4, the default ratio parameter in the ImageArcGISRest source is set to 1.5, which causes a mismatch between the layer and the map when the zoom or scaling ratio is not 100%. This results in misalignment or incorrect rendering of the layer, especially after map rotation."
+    }
+}

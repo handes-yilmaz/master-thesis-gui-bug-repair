@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/layer/Tile.js",
+            "src/ol/source/Tile.js"
+        ],
+        "explanation": "These files are critical to the bug because they define the behavior and properties of the WebGLTileLayer and the standard TileLayer. The WebGLTile.js file contains the implementation of the WebGLTileLayer, which is directly involved in rendering tiles using WebGL. The Tile.js file defines the standard TileLayer, which is expected to behave correctly when the WebGLTileLayer is used. The source/Tile.js file is essential as it manages the tile sources and their configurations, including the tile grid, which is crucial for the WebGL renderer's expectations. Modifications in these files are necessary to ensure that the WebGLTileLayer can handle sources without a tile grid correctly.",
+        "bug_scenario": "The bug occurs when using view projection with wrapX set to false in conjunction with the WebGLTileLayer. The WebGL renderer incorrectly expects the source to have a tile grid, which leads to rendering issues. The expected behavior is that the WebGLTileLayer should function similarly to the standard TileLayer."
+    }
+}

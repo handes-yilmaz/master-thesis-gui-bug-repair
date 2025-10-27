@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/crossref/crossref.lua//crossref",
+            "src/resources/filters/quarto-pre/theorems.lua//theorems"
+        ],
+        "bug_functions": [
+            "src/resources/filters/crossref/crossref.lua//import",
+            "src/resources/filters/quarto-pre/theorems.lua//theorems"
+        ],
+        "explanation": "The classes and functions identified are crucial for handling the rendering of theorems and proofs. The 'crossref' class manages cross-referencing and filtering, which is directly related to the error encountered. The 'theorems' function is responsible for processing theorem elements, including their headers and content. The error message indicates a problem with inserting elements into a table, which suggests that the handling of theorem references and their associated content is flawed, particularly when headers are missing or improperly formatted.",
+        "bug_scenario": "The bug occurs when using theorems and proofs with code blocks that lack headers or labels, causing the Lua filter to throw an error. Specifically, the error arises when the theorem's caption is incorrectly included as part of a list, leading to unexpected rendering issues."
+    }
+}

@@ -1,0 +1,24 @@
+diff --git a/src/table/base/header.jsx b/src/table/base/header.jsx
+index 58b796224..661fec07a 100644
+--- a/src/table/base/header.jsx
++++ b/src/table/base/header.jsx
+@@ -145,6 +145,10 @@ export default class Header extends React.Component {
+                     }
+                     attrs.rowSpan = rowSpan - index;
+                 }
++                const cellContent = dataIndex === 'selectAll' ? (
++                    <CustomSelectAllComponent />
++                ) : title;
++
+                 return (
+                     <Cell
+                         {...others}
+@@ -153,7 +157,7 @@ export default class Header extends React.Component {
+                         prefix={prefix}
+                         pure={pure}
+                         rtl={rtl}
+-                        cell={title}
++                        cell={cellContent}
+                         component="th"
+                         align={alignHeader ? alignHeader : align}
+                         className={className}

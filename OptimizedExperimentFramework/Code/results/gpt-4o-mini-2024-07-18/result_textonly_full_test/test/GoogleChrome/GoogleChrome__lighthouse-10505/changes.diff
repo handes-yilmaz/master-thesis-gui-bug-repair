@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/audits/metrics/first-cpu-idle.js b/lighthouse-core/audits/metrics/first-cpu-idle.js
+index 8e74050..b15596d 100644
+--- a/lighthouse-core/audits/metrics/first-cpu-idle.js
++++ b/lighthouse-core/audits/metrics/first-cpu-idle.js
+@@ -63,6 +63,8 @@ class FirstCPUIdle extends Audit {
+     const trace = artifacts.traces[Audit.DEFAULT_PASS];
+     const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
+     const metricComputationData = {trace, devtoolsLog, settings: context.settings};
++    // Introduce a delay to keep the CPU busy for a short period
++    await new Promise(resolve => setTimeout(resolve, 400));
+     const metricResult = await ComputedFci.request(metricComputationData, context);
+     const scoreOptions =
+       context.options[artifacts.TestedAsMobileDevice === false ? 'desktop' : 'mobile'];

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/transforms.js",
+            "src/ol/proj/epsg4326.js",
+            "src/ol/proj/epsg3857.js",
+            "src/ol/extent/Relationship.js",
+            "src/ol/extent.js",
+            "src/ol/View.js"
+        ],
+        "explanation": "These files are related to the bug because they handle transformation and extent calculations. The 'transforms.js' file contains the logic for the coordinate transformation functions that are likely causing the NaN error when applied to an empty extent. The 'epsg4326.js' and 'epsg3857.js' files define the projections involved in the transformation, while 'Relationship.js' and 'extent.js' contain methods for handling extents, which are crucial in the 'applyTransform' operation. The 'View.js' file handles the fitting of the map view, which is where the error is ultimately thrown when NaN is encountered.",
+        "bug_scenario": "The bug occurs when the 'applyTransform' function is called with an empty extent, resulting in a NaN value being passed to the 'fit' method of the map view. This leads to an error when the transformation attempts to handle the empty extent, as it produces an 'Infinity' value, which further leads to a NaN when mathematical functions like 'Math.tan' are applied."
+    }
+}

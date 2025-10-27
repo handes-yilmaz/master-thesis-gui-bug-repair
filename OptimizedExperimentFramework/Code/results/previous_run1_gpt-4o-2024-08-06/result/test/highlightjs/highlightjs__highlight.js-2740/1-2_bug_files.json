@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/sql.js",
+            "src/languages/pgsql.js",
+            "highlight.js"
+        ],
+        "explanation": "The issue involves SQL, specifically with string escape sequences, so the files related to SQL handling in highlight.js are likely involved\u2014specifically `src/languages/sql.js` and `src/languages/pgsql.js` as they define SQL syntax. Additionally, `highlight.js` itself may need adjustments to handle edge cases with escape sequences.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting of escape sequences in SQL or TSQL using highlight.js. This issue is apparent when defining dynamic SQL strings containing single quotes within code blocks tagged for SQL syntax. The provided image shows code that includes such escape sequences, and the issue likely stems from misinterpretation by the syntax highlighting engine."
+    },
+    "2": {
+        "bug_files": [
+            "src/sql.js",
+            "src/tsql.js",
+            "src/languages/lib/ecmascript.js",
+            "src/lib/utils.js",
+            "src/lib/modes.js",
+            "src/highlight.js"
+        ],
+        "explanation": "The problem is related to syntax highlighting of SQL code, specifically the handling of escape sequences and nested quotes in dynamic SQL. \\n1. **src/sql.js** and **src/tsql.js** are directly related to SQL language specifications and likely contain the token parsing logic.\\n2. **src/languages/lib/ecmascript.js** might be involved if the highlighting process involves JavaScript regex or similar parsing logic.\\n3. **src/lib/utils.js** and **src/lib/modes.js** generally contain utility functions for handling tokens and modes, likely contributing to how escape sequences are processed.\\n4. **highlight.js** is the core file orchestrating the highlighting process, and if there's a bug related to escape sequences, it might require a fix or adjustment for correct implementation.",
+        "bug_scenario": "The bug report describes an issue where highlight.js incorrectly parses SQL escape sequences, causing the syntax highlighting to break, especially on dynamic SQL statements with escape sequences and quotes."
+    }
+}

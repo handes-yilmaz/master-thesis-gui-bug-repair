@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/printer-estree.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The file 'src/language-js/printer-estree.js' is likely responsible for how code is formatted, especially regarding parentheses around objects. The comments indicate handling of parentheses and decorators, relevant to the bug where parentheses are improperly removed, impacting intellisense.",
+        "bug_scenario": "The bug involves Prettier removing parentheses around an object in a JSDoc comment which breaks intellisense. The expected behavior is to keep parentheses to maintain correct functionality."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/print/object.js//printObject"
+        ],
+        "explanation": "The bug is related to how Prettier formats code, specifically how it handles parentheses around JSDoc annotations. The function `printObject` in `src/language-js/print/object.js` is responsible for formatting object literals, which is where the parentheses issue occurs. The file `src/language-js/printer-estree.js` likely contains logic related to how different nodes, including JSDoc annotations, are printed and might be where the decision to remove parentheses is made.",
+        "bug_scenario": "The bug involves the Prettier code formatter removing parentheses needed for JSDoc annotations, which breaks intellisense in IDEs. The expected behavior is to maintain these parentheses to support proper JSDoc annotation parsing."
+    }
+}

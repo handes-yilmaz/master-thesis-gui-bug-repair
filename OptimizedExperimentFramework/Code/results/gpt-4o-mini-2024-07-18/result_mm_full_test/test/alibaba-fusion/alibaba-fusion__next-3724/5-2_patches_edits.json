@@ -1,0 +1,69 @@
+{
+    "1/1": {
+        "src/transfer/view/transfer.jsx": [
+            {
+                "SEARCH": [
+                    "searchProps: PropTypes.object,"
+                ],
+                "REPLACE": [
+                    "        searchProps: PropTypes.shape({",
+                    "            left: PropTypes.object,",
+                    "            right: PropTypes.object,",
+                    "        }),"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "searchProps,\\n"
+                ],
+                "REPLACE": [
+                    "            searchProps = { left: {}, right: {} },\\n"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "<TransferPanel\\n",
+                    "{...panelProps}\\n",
+                    "position=\"left\"\\n",
+                    "dataSource={leftDatasource}\\n",
+                    "disabled={leftDisabled || disabled}\\n",
+                    "value={leftCheckedValue}\\n",
+                    "title={titles[0]}\\n",
+                    "searchProps={searchProps.left}\\n"
+                ],
+                "REPLACE": [
+                    "            <TransferPanel\\n",
+                    "                {...panelProps}\\n",
+                    "                position=\"left\"\\n",
+                    "                dataSource={leftDatasource}\\n",
+                    "                disabled={leftDisabled || disabled}\\n",
+                    "                value={leftCheckedValue}\\n",
+                    "                title={titles[0]}\\n",
+                    "                searchProps={searchProps.left || {}}\\n"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "<TransferPanel\\n",
+                    "{...panelProps}\\n",
+                    "position=\"right\"\\n",
+                    "dataSource={rightDatasource}\\n",
+                    "disabled={rightDisabled || disabled}\\n",
+                    "value={rightCheckedValue}\\n",
+                    "title={titles[1]}\\n",
+                    "searchProps={searchProps}\\n"
+                ],
+                "REPLACE": [
+                    "            <TransferPanel\\n",
+                    "                {...panelProps}\\n",
+                    "                position=\"right\"\\n",
+                    "                dataSource={rightDatasource}\\n",
+                    "                disabled={rightDisabled || disabled}\\n",
+                    "                value={rightCheckedValue}\\n",
+                    "                title={titles[1]}\\n",
+                    "                searchProps={searchProps.right || {}}\\n"
+                ]
+            }
+        ]
+    }
+}

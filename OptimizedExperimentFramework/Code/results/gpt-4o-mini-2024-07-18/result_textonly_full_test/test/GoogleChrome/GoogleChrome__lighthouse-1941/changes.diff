@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/report/report-generator.js b/lighthouse-core/report/report-generator.js
+index 2fb6776..dcfa556 100644
+--- a/lighthouse-core/report/report-generator.js
++++ b/lighthouse-core/report/report-generator.js
+@@ -37,7 +37,7 @@ class ReportGenerator {
+    * @return {string}
+    */
+   _escapeScriptTags(jsonStr) {
+-    return jsonStr.replace(/<\/script>/g, '<\\/script>');
++    return jsonStr.replace(/<\\/script>/g, '<\\\\/script>').replace(/[$&'"]/g, '\\$&');
+   }
+ 
+   /**

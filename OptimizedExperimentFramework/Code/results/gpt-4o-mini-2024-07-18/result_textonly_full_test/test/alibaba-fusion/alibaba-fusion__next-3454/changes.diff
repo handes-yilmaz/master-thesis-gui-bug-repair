@@ -1,0 +1,20 @@
+diff --git a/src/number-picker/number-picker.jsx b/src/number-picker/number-picker.jsx
+index 13702f1..92706cc 100644
+--- a/src/number-picker/number-picker.jsx
++++ b/src/number-picker/number-picker.jsx
+@@ -206,11 +206,13 @@ class NumberPicker extends React.Component {
+         // 一般受控render逻辑
+         let { value, max, min, stringMode } = nextProps;
+         value = value === undefined || value === null ? '' : stringMode ? `${value}` : value;
++        const updatedMax = max !== MAX_SAFE_INTEGER ? max : prevState.max;
++        const updatedMin = min !== MIN_SAFE_INTEGER ? min : prevState.min;
+         return {
+             value: 'value' in nextProps ? value : prevState.value,
+             displayValue: 'value' in nextProps ? value : prevState.displayValue,
+-            max: max !== MAX_SAFE_INTEGER ? max : prevState.max,
+-            min: min !== MIN_SAFE_INTEGER ? min : prevState.min,
++            max: updatedMax,
++            min: updatedMin,
+         };
+ 
+         return null;

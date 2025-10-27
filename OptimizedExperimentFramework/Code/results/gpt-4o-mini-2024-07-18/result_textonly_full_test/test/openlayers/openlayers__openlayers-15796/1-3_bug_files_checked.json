@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Vector.js",
+            "src/ol/layer/VectorImage.js",
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/renderer/webgl/VectorLayer.js",
+            "src/ol/render/VectorContext.js"
+        ],
+        "explanation": "These files are related to the VectorLayer rendering and behavior in the OpenLayers library. The `Vector.js` and `VectorImage.js` files define the properties and methods related to vector layers, including rendering logic. The `VectorLayer.js` in both the canvas and webgl directories handles the actual rendering process for vector layers. The `VectorContext.js` manages the rendering context for vector features, which is crucial for ensuring that previous frames are cleared correctly. Given the nature of the bug related to rendering behavior, modifications in these files will be necessary to address the issue.",
+        "bug_scenario": "The bug relates to the rendering of VectorLayer components in the application. When using the `declutter` feature along with an opacity of less than 1, the previous frames are not cleared properly upon re-rendering the layer after panning the map. This issue was observed while testing a specific version of the library, where the layer fails to visually clear previous drawings, leading to overlapping graphics on the map."
+    }
+}

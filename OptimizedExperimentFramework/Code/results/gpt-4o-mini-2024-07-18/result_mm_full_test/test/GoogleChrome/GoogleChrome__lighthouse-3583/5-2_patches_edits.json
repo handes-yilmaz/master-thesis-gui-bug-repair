@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/critical-request-chains.js": [
+            {
+                "SEARCH": [
+                    "return [\\'VeryHigh\\', \\'High\\', \\'Medium\\'].includes(request.priority());"
+                ],
+                "REPLACE": [
+                    "    const isIframe = request._url && request._url.includes('iframe');",
+                    "    const isDataURI = request._url && request._url.startsWith('data:');",
+                    "    ",
+                    "    return !isIframe && !isDataURI && [\\'VeryHigh\\', \\'High\\', \\'Medium\\'].includes(request.priority());"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/computed/critical-request-chains.js": [
+            {
+                "SEARCH": [
+                    "const criticalRequests = networkRecords.filter(CriticalRequestChains.isCritical);"
+                ],
+                "REPLACE": [
+                    "    const criticalRequests = networkRecords.filter(request => {",
+                    "      return CriticalRequestChains.isCritical(request) && !request._url.includes('iframe') && !request._url.startsWith('data:');",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

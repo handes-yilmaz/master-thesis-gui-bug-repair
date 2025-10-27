@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/form/item.jsx": [
+            {
+                "SEARCH": [
+                    "getLabelForErrorMessage() {",
+                    "let label = this.props.errorMessageLabel || this.props.label;",
+                    "",
+                    "if (!label || typeof label !== 'string') {",
+                    "return null;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    getLabelForErrorMessage() {",
+                    "        let label = this.props.errorMessageLabel;",
+                    "",
+                    "        if (this.props.useLabelForErrorMessage) {",
+                    "            label = label || this.props.label;",
+                    "        }",
+                    "",
+                    "        if (!label || typeof label !== 'string') {",
+                    "            return null;",
+                    "        }"
+                ]
+            }
+        ],
+        "src/form/form.jsx": [
+            {
+                "SEARCH": [
+                    "return React.cloneElement(child, pickerDefined(childrenProps));"
+                ],
+                "REPLACE": [
+                    "            const newChildProps = {",
+                    "                ...pickerDefined(childrenProps),",
+                    "                errorMessageLabel: this.props.errorMessageLabel, // Pass down the errorMessageLabel",
+                    "            };",
+                    "            return React.cloneElement(child, newChildProps);"
+                ]
+            }
+        ]
+    }
+}

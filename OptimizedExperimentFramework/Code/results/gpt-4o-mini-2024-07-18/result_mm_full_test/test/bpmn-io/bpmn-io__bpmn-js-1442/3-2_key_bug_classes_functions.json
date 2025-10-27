@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste",
+            "lib/features/modeling/behavior/DropOnFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//removeProperties",
+            "lib/features/modeling/behavior/DropOnFlowBehavior//insertShape",
+            "lib/features/modeling/behavior/DropOnFlowBehavior//preExecute",
+            "lib/features/modeling/behavior/DropOnFlowBehavior//postExecuted"
+        ],
+        "explanation": "The classes and functions identified are crucial for handling the copy-paste and drop behavior of shapes in the BPMN diagram. The `BpmnCopyPaste` class manages the properties of copied elements, which is essential when pasting multiple shapes. The `DropOnFlowBehavior` class contains the logic for how shapes are inserted onto flows, particularly the `insertShape` function, which determines how connections are made. The `preExecute` and `postExecuted` functions manage the execution order of these operations, which is critical for ensuring that the shapes connect correctly. Any issues in these areas could lead to the unexpected connections described in the bug report.",
+        "bug_scenario": "The bug occurs when multiple shapes are pasted onto a connection in a BPMN diagram, resulting in unexpected connections between the shapes. The expected behavior is that the shapes should either not connect or connect in a logical manner."
+    }
+}

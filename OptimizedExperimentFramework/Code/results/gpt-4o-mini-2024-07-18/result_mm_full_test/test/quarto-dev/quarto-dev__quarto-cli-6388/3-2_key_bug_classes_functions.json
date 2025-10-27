@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/render/pandoc-html.ts//resolveSassBundles",
+            "src/command/render/pandoc-html.ts//resolveQuartoSyntaxHighlighting",
+            "src/command/render/render.ts//renderPandoc"
+        ],
+        "bug_functions": [
+            "src/command/render/pandoc-html.ts//processCssIntoExtras",
+            "src/command/render/render.ts//runHtmlPostprocessors"
+        ],
+        "explanation": "These classes and functions are related to the rendering and processing of Markdown and HTML outputs. The `resolveSassBundles` and `resolveQuartoSyntaxHighlighting` functions handle the generation of styles and syntax highlighting, which may affect how lists are rendered. The `renderPandoc` function is responsible for executing the rendering process, and `processCssIntoExtras` and `runHtmlPostprocessors` are involved in processing the output, which could be where the Markdown formatting issues are introduced.",
+        "bug_scenario": "The output from the `pander` package is incorrectly formatted, introducing sub-bullets in the Markdown output. The intermediary Markdown generated is not parsing correctly, leading to formatting issues in the final rendered output."
+    }
+}

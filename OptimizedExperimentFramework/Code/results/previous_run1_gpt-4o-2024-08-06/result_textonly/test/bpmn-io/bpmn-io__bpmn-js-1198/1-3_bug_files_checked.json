@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "The issue pertains to the modification of properties in the process model, specifically the 'default' attribute of an exclusive gateway. Within the repository structure, the following files are likely related:\n\n1. **lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js**: This file is likely involved in managing or altering the behavior of default flows in BPMN elements. Given that the bug removes the default attribute, any logic for unsetting the default attribute would likely be in this file.\n\n2. **lib/features/modeling/behavior/AttachEventBehavior.js**: Since the bug is related to adding a Timer Intermediate Catch Event, this file might contain behavior modifications or event attachment logic that inadvertently affect the gateway's properties.\n\n3. **lib/features/modeling/cmd/UpdatePropertiesHandler.js**: This file likely handles updates to BPMN element properties, and could be related to the incorrect handling or updating of the 'default' attribute when an event is attached to a flow.\n\nThese files are integral to the modeling and behavior of BPMN elements, particularly with respect to states and properties that can change during user interactions, like adding or modifying events on sequence flows.",
+        "bug_scenario": "The bug report describes an issue with an exclusive gateway in a BPMN diagram. The bug occurs when a Timer Intermediate Catch Event is added to a non-default flow of the gateway, resulting in the removal of the 'default' attribute from the gateway, despite the default flow still being rendered. The bug seems to be related to handling different types of catch events, although not all have been verified."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "The files identified as bug-related are selected based on their functionality and potential to affect flow properties in the BPMN model:\n\n1. **lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js**: This file is directly related to the behavior of default flows, handling scenarios when a default flow is unset. Since the bug involves the unwarranted removal of the '_default_' attribute, this file's logic needs to be checked to ensure it correctly maintains or handles default flow states when modifying other elements around the gateway.\n\n2. **lib/features/modeling/cmd/UpdatePropertiesHandler.js**: This file is responsible for updating properties within the BPMN model. Since adding a timer event affects the properties of sequence flows and possibly alters the defaultness of a flow, modifications in this file could inadvertently result in the removal of the '_default_' attribute when they are applied.\n\n3. **lib/features/modeling/Modeling.js**: This script likely coordinates various modeling actions, including handling updates to gateway flows and the inclusion of intermediate events. It should be reviewed to ensure that when a new element like a timer event is introduced, it does not accidentally disrupt existing flow properties, such as default attributes.\n\nThese files are essential to check because they are directly involved in handling and updating properties and behaviors of the flow elements which are affected by this bug.",
+        "bug_scenario": "In the given bug scenario, the issue arises when a 'Timer Intermediate Catch Event' is added to a non-default flow in an exclusive gateway. This action inadvertently removes the '_default_' attribute from the gateway, though the default flow remains rendered visually. The primary problem is that the logical identification of the default flow is lost even though it is visually present."
+    }
+}

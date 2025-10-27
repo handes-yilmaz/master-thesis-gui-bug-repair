@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/metrics/first-contentful-paint.js//FirstContentfulPaint",
+            "lighthouse-core/audits/metrics/speed-index.js//SpeedIndex",
+            "lighthouse-core/gather/gatherers/trace-elements.js//TraceElements"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/metrics/first-contentful-paint.js//audit",
+            "lighthouse-core/audits/metrics/speed-index.js//audit",
+            "lighthouse-core/gather/gatherers/trace-elements.js//afterPass"
+        ],
+        "explanation": "The identified classes and functions are critical for measuring performance metrics in Lighthouse. The 'FirstContentfulPaint' class is directly responsible for calculating the FCP metric, which is essential for the reported NO_FCP error. The 'SpeedIndex' class also plays a role in performance measurement, and its audit function may be affected by the same underlying issue. The 'TraceElements' class gathers necessary data for these metrics, and its 'afterPass' function is crucial for processing the trace data that could be failing when the tab is in the background.",
+        "bug_scenario": "The Lighthouse tool fails to measure performance metrics such as First Contentful Paint (FCP) when the tab is in the background, resulting in a NO_FCP error. This issue occurs regardless of whether the server is remote or local, and it persists even in a clean Chrome profile."
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/user-timings.js": [
+            {
+                "SEARCH": [
+                    "ut.startTime -= navigationStartTime;",
+                    "if (!ut.isMark) {",
+                    "ut.endTime -= navigationStartTime;",
+                    "ut.duration = ut.duration;"
+                ],
+                "REPLACE": [
+                    "    if (navigationStartTime) {",
+                    "      ut.startTime -= navigationStartTime;",
+                    "      if (!ut.isMark) {",
+                    "        ut.endTime -= navigationStartTime;",
+                    "        ut.duration = ut.duration;"
+                ]
+            }
+        ]
+    }
+}

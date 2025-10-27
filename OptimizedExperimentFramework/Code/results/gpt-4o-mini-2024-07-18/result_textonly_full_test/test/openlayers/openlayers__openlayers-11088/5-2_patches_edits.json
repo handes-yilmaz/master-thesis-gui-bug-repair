@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/ol/proj/Projection.js": [
+            {
+                "SEARCH": [
+                    "this.axisOrientation_ =",
+                    "options.axisOrientation !== undefined ? options.axisOrientation : 'enu';"
+                ],
+                "REPLACE": [
+                    "    this.axisOrientation_ =",
+                    "      options.axisOrientation !== undefined ? options.axisOrientation : 'neu'; // Changed from 'enu' to 'neu' to match proj4js 2.6.1"
+                ]
+            }
+        ],
+        "src/ol/proj/proj4.js": [
+            {
+                "SEARCH": [
+                    "axisOrientation: def.axis,"
+                ],
+                "REPLACE": [
+                    "          axisOrientation: def.axis === 'enu' ? 'neu' : def.axis, // Adjusting axis orientation to match proj4js 2.6.1"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//setStyle",
+            "src/ol/layer/WebGLTile.js//createRenderer",
+            "src/ol/layer/WebGLTile.js//updateStyleVariables",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer",
+            "src/ol/webgl/Helper.js//setUniforms"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the rendering and styling of WebGLTile layers. The 'WebGLTileLayer' class is responsible for managing the tile layer's properties, including styles. The 'setStyle' function allows updating the layer's style, which is where the blending options need to be added. The 'createRenderer' function is crucial for rendering the layer with the specified styles, and 'updateStyleVariables' is used to update any variables that affect rendering. The 'WebGLTileLayerRenderer' class is responsible for rendering the tile layers using WebGL, and the 'setUniforms' function in 'Helper.js' is essential for passing the necessary parameters to the shaders, including the blend function. Therefore, modifications in these areas are necessary to implement the required blending functionality.",
+        "bug_scenario": "The application requires a feature to blend WebGLTile layers using a specific blend function (gl.blendFunc(gl.ONE, gl.ONE)). Currently, there is no parameter in the WebGLTile layer style to set different blending options, which is necessary for visualizing microscopy images effectively."
+    }
+}

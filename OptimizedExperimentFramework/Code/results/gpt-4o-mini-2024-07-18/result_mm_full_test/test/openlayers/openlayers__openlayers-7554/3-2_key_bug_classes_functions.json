@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/interaction/draw.js//ol.interaction.Draw",
+            "src/ol/source/imagevector.js//ol.source.ImageVector",
+            "src/ol/render/canvas/immediate.js//ol.render.canvas.Immediate"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/draw.js//handleEvent",
+            "src/ol/source/imagevector.js//canvasFunctionInternal_",
+            "src/ol/render/canvas/immediate.js//drawGeometry"
+        ],
+        "explanation": "The identified classes and functions are critical for rendering geometries and handling drawing interactions. The 'ol.interaction.Draw' class manages the drawing of features, and its 'handleEvent' function is responsible for processing user input during drawing, which may be causing performance issues. The 'ol.source.ImageVector' class is deprecated and its 'canvasFunctionInternal_' function is responsible for rendering vector features onto a canvas, which is likely where the performance degradation is occurring. Lastly, the 'ol.render.canvas.Immediate' class and its 'drawGeometry' function are directly involved in rendering geometries to the canvas, making them essential for diagnosing and fixing the performance issues.",
+        "bug_scenario": "The performance of the draw interaction has degraded after upgrading from version 4.4.2 to 4.6.2, particularly when using renderMode: 'image'. The user is experiencing slow rendering when drawing geometries, such as triangles, in the specified resolution."
+    }
+}

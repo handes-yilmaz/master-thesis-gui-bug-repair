@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "src/document/doc-printer.js": [
+            {
+                "SEARCH": [
+                    "if (lineSuffix.length) {",
+                    "cmds.push([ind, mode, doc]);",
+                    "cmds.push(...lineSuffix.reverse());",
+                    "lineSuffix = [];",
+                    "break;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "if (lineSuffix.length) {",
+                    "  cmds.push([ind, mode, doc]);",
+                    "  cmds.push(...lineSuffix.reverse());",
+                    "  lineSuffix = [];",
+                    "  break;",
+                    "} else if (cmds.length === 0 && out.length > 0 && out[out.length - 1] === newLine) {",
+                    "  // Remove the extra newline if the document ends with a comment",
+                    "  out.pop();",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

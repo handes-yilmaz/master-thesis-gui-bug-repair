@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/tree-select/tree-select.jsx//TreeSelect"
+        ],
+        "bug_functions": [
+            "src/tree/view/util.js//isNodeChecked",
+            "src/tree/view/util.js//getAllCheckedKeys"
+        ],
+        "explanation": "The issue is related to the handling of tree nodes when they are disabled and have default selections. The 'TreeSelect' class in 'tree-select.jsx' is the main component dealing with the tree structure and selection logic. The functions 'isNodeChecked' and 'getAllCheckedKeys' in 'util.js' are involved in determining the checked state of nodes and managing the keys, which can lead to duplication if not handled correctly. Ensuring unique keys and correct handling of disabled nodes is crucial for fixing this bug.",
+        "bug_scenario": "The bug involves the TreeSelect component where disabling and setting default selections leads to duplicate labels in the input box. This occurs upon initialization and results in a warning about non-unique keys, which can cause unexpected behavior."
+    },
+    "2": {
+        "bug_classes": [
+            "src/tree-select/tree-select.jsx//TreeSelect",
+            "src/tree/view/tree-node.jsx//TreeNode"
+        ],
+        "bug_functions": [
+            "src/tree/view/util.js//isNodeChecked",
+            "src/tree/view/util.js//getAllCheckedKeys"
+        ],
+        "explanation": "The TreeSelect class likely handles the rendering of items and needs adjustments to manage unique keys properly. The TreeNode class is involved in node rendering and interaction, which is crucial for handling disabled nodes. The isNodeChecked function is responsible for checking node statuses, including whether they are disabled or enabled, which affects key uniqueness. The getAllCheckedKeys function manages the collection of checked keys, which is directly related to handling duplicates or omissions in the key management.",
+        "bug_scenario": "The bug involves a TreeSelect component where disabled items with default values cause duplicate labels in the input field. This results in a warning about non-unique keys, which leads to duplicated or omitted children, affecting component behavior."
+    }
+}

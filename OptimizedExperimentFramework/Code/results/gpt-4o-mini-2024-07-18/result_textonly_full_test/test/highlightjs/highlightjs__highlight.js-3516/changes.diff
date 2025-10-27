@@ -1,0 +1,23 @@
+diff --git a/src/highlight.js b/src/highlight.js
+index 64373ac..b0059f5 100644
+--- a/src/highlight.js
++++ b/src/highlight.js
+@@ -163,7 +163,7 @@ const HLJS = function(hljs) {
+ 
+     // a before plugin can usurp the result completely by providing it's own
+     // in which case we don't even need to call highlight
+-    const result = context.result
++const result = context.result || highlightAuto(context.code, top.subLanguage); // Ensure fallback to highlightAuto
+       ? context.result
+       : _highlight(context.language, context.code, ignoreIllegals);
+ 
+@@ -184,7 +184,8 @@ const HLJS = function(hljs) {
+    * @returns {HighlightResult} - result of the highlight operation
+   */
+   function _highlight(languageName, codeToHighlight, ignoreIllegals, continuation) {
+-    const keywordHits = Object.create(null);
++const keywordHits = Object.create(null);
++const stringPattern = /(["'])(?:(?=(\\?))\2|.)*?\1|(\(.*?\))/g; // Updated pattern to include parentheses
+ 
+     /**
+      * Return keyword data if a match is a keyword

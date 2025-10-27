@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/language-js/parse/typescript.js": [
+            {
+                "SEARCH": [
+                    "opts.originalText = text;",
+                    "opts.tsParseResult = result;",
+                    "return postprocess(result.ast, opts);"
+                ],
+                "REPLACE": [
+                    "  // Ensure that empty array types are formatted correctly",
+                    "  if (result.ast && result.ast.body) {",
+                    "    result.ast.body.forEach(node => {",
+                    "      if (node.type === 'TSArrayType' && node.elementType.type === 'TSNeverKeyword') {",
+                    "        node.elementType = { type: 'TSVoidKeyword' }; // Adjust the type to avoid comma insertion",
+                    "      }",
+                    "    });",
+                    "  }",
+                    "  opts.originalText = text;",
+                    "  opts.tsParseResult = result;",
+                    "  return postprocess(result.ast, opts);"
+                ]
+            }
+        ]
+    }
+}

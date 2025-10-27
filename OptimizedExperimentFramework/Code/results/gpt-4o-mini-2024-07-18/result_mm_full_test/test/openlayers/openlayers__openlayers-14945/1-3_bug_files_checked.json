@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/ImageArcGISRest.js",
+            "src/ol/layer/BaseImage.js",
+            "src/ol/layer/Image.js",
+            "src/ol/renderer/canvas/ImageLayer.js",
+            "src/ol/renderer/canvas/VectorImageLayer.js"
+        ],
+        "explanation": "The files related to the bug primarily involve the ImageArcGISRest source and its interaction with layers. The ImageArcGISRest.js file is crucial because it contains the logic for handling the image source, including the ratio parameter that is causing the bug. Other files like BaseImage.js and Image.js are responsible for how image layers are rendered and displayed on the map. Additionally, the rendering files (ImageLayer.js and VectorImageLayer.js) are important as they define how these layers interact with the map and are rendered, which could be affected by the incorrect ratio. Modifying these files will help implement the workaround to set the ratio to 1, thus resolving the mismatch issues.",
+        "bug_scenario": "In OpenLayers version 7.4, there is a default ratio bug related to the ImageArcGISRest source where the ratio parameter's default value is set incorrectly. This leads to layer-map mismatch issues when the scaling ratio is not 100%, and misalignment after map rotation occurs even with the correct ratio set. The workaround suggests forcibly setting the ratio to 1 to prevent these issues."
+    }
+}

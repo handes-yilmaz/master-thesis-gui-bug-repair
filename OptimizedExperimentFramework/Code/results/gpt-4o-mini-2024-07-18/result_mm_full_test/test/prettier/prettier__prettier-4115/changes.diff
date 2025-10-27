@@ -1,0 +1,22 @@
+diff --git a/src/language-markdown/parser-markdown.js b/src/language-markdown/parser-markdown.js
+index 8ad3be3..2c0f659 100644
+--- a/src/language-markdown/parser-markdown.js
++++ b/src/language-markdown/parser-markdown.js
+@@ -50,7 +50,7 @@ function transformInlineCode() {
+       }
+ 
+       return Object.assign({}, node, {
+-        value: node.value.replace(/\s+/g, " ")
++        value: node.value.replace(/\\s+/g, " ").trim() // Trim whitespace to prevent excess indentation
+       });
+     });
+ }
+@@ -69,7 +69,7 @@ function restoreUnescapedCharacter(originalText) {
+                 ? originalText.slice(
+                     node.position.start.offset,
+                     node.position.end.offset
+-                  )
++                  ).trim() // Trim whitespace to prevent excess indentation
+                 : node.value
+           });
+     });

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLPoints.js//WebGLPointsLayer",
+            "src/ol/renderer/webgl/PointsLayer.js//WebGLPointsLayerRenderer",
+            "src/ol/render/webgl/VectorStyleRenderer.js//VectorStyleRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLPoints.js//createRenderer",
+            "src/ol/renderer/webgl/PointsLayer.js//rebuildBuffers_",
+            "src/ol/render/webgl/VectorStyleRenderer.js//generateBuffersForType_"
+        ],
+        "explanation": "The identified classes and functions are critical to the rendering process of the `WebGLPoints` layer. The `WebGLPointsLayer` class is responsible for managing the layer's properties and rendering logic, including the handling of styles. The `createRenderer` function is essential as it initializes the rendering process with the appropriate shaders and attributes, which directly impacts how icons are displayed. The `WebGLPointsLayerRenderer` class handles the actual rendering of points, and the `rebuildBuffers_` function is crucial for updating the WebGL buffers based on the current view, which can lead to distortion if not handled correctly. Lastly, the `VectorStyleRenderer` class and its `generateBuffersForType_` function are involved in generating the necessary buffers for rendering, which can also contribute to the distortion issue if the viewport's aspect ratio is not properly accounted for.",
+        "bug_scenario": "The icons on the `WebGLPoints` layer are distorted when the `icon-rotate-with-view` property is set to true and the viewport is non-square. This issue arises during the rendering process, where the icons do not maintain their intended shape and orientation due to the aspect ratio of the viewport affecting their display."
+    }
+}

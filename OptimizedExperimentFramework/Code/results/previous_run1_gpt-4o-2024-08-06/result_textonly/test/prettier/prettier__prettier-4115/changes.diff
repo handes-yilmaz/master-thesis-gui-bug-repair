@@ -1,0 +1,16 @@
+diff --git a/src/language-markdown/parser-markdown.js b/src/language-markdown/parser-markdown.js
+index 39c711021..8ad3be395 100644
+--- a/src/language-markdown/parser-markdown.js
++++ b/src/language-markdown/parser-markdown.js
+@@ -119,6 +119,11 @@ function splitText() {
+         }
+       }
+ 
++      // Preserve indentation for nested code blocks or raw HTML
++      if (parentNode.type === "html" || parentNode.type === "code") {
++        value = node.value;
++      }
++
+       return {
+         type: "sentence",
+         position: node.position,

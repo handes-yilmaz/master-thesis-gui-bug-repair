@@ -1,0 +1,15 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index c4847b6..6e50f61 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -303,7 +303,10 @@ class WebGLTileLayer extends BaseTileLayer {
+       'bandCount' in source ? source.bandCount : 4
+     );
+ 
++    const tileGrid = this.getSource().getTileGrid();
++    const tileSize = tileGrid.getTileSize(tileGrid.getMaxZoom());
+     return new WebGLTileLayerRenderer(this, {
++        tileSize: tileSize,
+       vertexShader: parsedStyle.vertexShader,
+       fragmentShader: parsedStyle.fragmentShader,
+       uniforms: parsedStyle.uniforms,

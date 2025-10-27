@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/render/render.ts",
+            "src/render/render-files.ts",
+            "src/render/pandoc.ts",
+            "src/render/output.ts",
+            "src/render/layout.ts"
+        ],
+        "explanation": "These files are related to the rendering process of Quarto documents. Specifically, `render.ts` handles the overall rendering logic, `render-files.ts` deals with managing the files to be rendered, `pandoc.ts` is responsible for interfacing with Pandoc (which handles the actual conversion process), and `output.ts` and `layout.ts` manage the output format and layout. Modifications in these files may address how expressions are evaluated and how rendering behaves when encountering `character(0)`.",
+        "bug_scenario": "The issue arises when the `fig-cap: !expr ...` in R code blocks does not render figures if the expression evaluates to `character(0)`, causing the figure to disappear in the Quarto document output."
+    }
+}

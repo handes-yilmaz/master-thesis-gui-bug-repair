@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/lh-error.js",
+            "lighthouse-core/lib/i18n/i18n.js",
+            "lighthouse-cli/run.js"
+        ],
+        "explanation": "These files are key to fixing the problem because: 1. `lh-error.js` contains the error definitions and messages that are displayed when an invalid URL is encountered. Modifications here may help ensure that the error messages are properly translated. 2. `i18n.js` handles internationalization, which is crucial for ensuring that error messages are translated correctly. Fixing issues in this file can help resolve the translation problem. 3. `run.js` is responsible for executing the Lighthouse CLI commands and handling the results, including error handling. Changes here may be necessary to ensure that the CLI properly processes and displays error messages.",
+        "bug_scenario": "The CLI command `node lighthouse-cli www.example.com --view` fails to translate internationalized text, resulting in an error message indicating an invalid URL. The error is logged in the console, showing that the Lighthouse run encountered a runtime error related to the URL being invalid."
+    }
+}

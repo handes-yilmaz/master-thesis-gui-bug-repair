@@ -1,0 +1,14 @@
+diff --git a/lib/rules/indent.js b/lib/rules/indent.js
+index 6babe29c9..41bdd79c5 100644
+--- a/lib/rules/indent.js
++++ b/lib/rules/indent.js
+@@ -751,6 +751,9 @@ module.exports = {
+ 
+                     if (previousElement && sourceCode.getLastToken(previousElement).loc.start.line > startToken.loc.end.line) {
+                         offsets.matchIndentOf(firstTokenOfPreviousElement, getFirstToken(element));
++                    } else if (astUtils.isOpeningParenToken(sourceCode.getTokenBefore(getFirstToken(element)))) {
++                        // Adjust for additional indentation level due to parentheses
++                        offsets.increaseOffset(getFirstToken(element), 1);
+                     }
+                 }
+             });

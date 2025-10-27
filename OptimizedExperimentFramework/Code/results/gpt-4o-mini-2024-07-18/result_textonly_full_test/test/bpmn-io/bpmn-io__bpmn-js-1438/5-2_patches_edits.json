@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "lib/features/label-editing/LabelUtil.js": [
+            {
+                "SEARCH": [
+                    "if (attr) {",
+                    "",
+                    "if (attr === 'categoryValueRef') {",
+                    "",
+                    "return getCategoryValue(semantic);",
+                    "}",
+                    "",
+                    "return semantic[attr] || '';",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (attr) {",
+                    "  ",
+                    "    if (attr === 'categoryValueRef') {",
+                    "  ",
+                    "      return getCategoryValue(semantic);",
+                    "    }",
+                    "  ",
+                    "    // Check if the element is a message element and return its name",
+                    "    if (semantic.$type === 'bpmn:Message') {",
+                    "      return semantic.name || '';",
+                    "    }",
+                    "  ",
+                    "    return semantic[attr] || '';",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

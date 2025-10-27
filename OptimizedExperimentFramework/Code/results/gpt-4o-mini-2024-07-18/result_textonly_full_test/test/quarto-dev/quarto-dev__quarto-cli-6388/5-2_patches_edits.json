@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "src/command/render/pandoc.ts": [
+            {
+                "SEARCH": [
+                    "return cleaned;",
+                    "}\\n\\nasync function resolveExtras(\\n  projectExtras: FormatExtras,\\n  formatExtras: FormatExtras,\\n  format: Format,\\n  inputDir: string,\\n  libDir: string,\\n  temp: TempContext,\\n  dependenciesFile: string,\\n  project?: ProjectContext,\\n..."
+                ],
+                "REPLACE": [
+                    "  // Ensure that the Markdown output is correctly formatted",
+                    "  cleaned[kClassOption] = ld.uniqBy(",
+                    "    classoption.reverse(),",
+                    "    (option: string) => {",
+                    "      return option.replace(/=.+$/, \"\");",
+                    "    },",
+                    "  ).reverse();",
+                    "",
+                    "  // Additional processing to ensure proper list formatting",
+                    "  if (cleaned[kClassOption].some(option => option.includes(\"* \"))) {",
+                    "    cleaned[kClassOption] = cleaned[kClassOption].map(option => option.replace(/^\\* /, \"- \"));",
+                    "  }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "export function shortcodeUnescapePostprocessor(output: string): Promise<void> {\\n  // unescape shortcodes\\n  Deno.writeTextFileSync(\\n    output,\\n    Deno.readTextFileSync(output)\\n      .replaceAll(\"{{\\\\\\\\<\", \"{{<\")\\n      .replaceAll(\"\\\\\\\\>}}\", \">}}\"),\\n  );\\n  return Promise.resolve();\\n}\\n\\nexport function gfmFormat(): Format {\\n  return createFormat(kDisplayNameGFM, \"md\", markdownFormat(kDisplayNameGFM), {\\n    pandoc: {\\n      to: \"commonmark\",\\n    },\\n    render: {\\n      [kVariant]: kGfmCommonmarkVariant,\\n    },\\n    resolveFormat: (format: Format) => {\\n..."
+                ],
+                "REPLACE": [
+                    "export function shortcodeUnescapePostprocessor(output: string): Promise<void> {\\n  // unescape shortcodes\\n  Deno.writeTextFileSync(\\n    output,\\n    Deno.readTextFileSync(output)\\n      .replaceAll(\"{{\\\\\\\\<\", \"{{<\")\\n      .replaceAll(\"\\\\\\\\>}}\", \">}}\"),\\n  );\\n  // Ensure proper list formatting after unescaping\\n  Deno.writeTextFileSync(\\n    output,\\n    Deno.readTextFileSync(output)\\n      .replaceAll(\"- \", \"* \"),\\n  );\\n  return Promise.resolve();\\n}\\n\\nexport function gfmFormat(): Format {\\n  return createFormat(kDisplayNameGFM, \"md\", markdownFormat(kDisplayNameGFM), {\\n    pandoc: {\\n      to: \"commonmark\",\\n    },\\n    render: {\\n      [kVariant]: kGfmCommonmarkVariant,\\n    },\\n    resolveFormat: (format: Format) => {\\n..."
+                ]
+            }
+        ]
+    }
+}

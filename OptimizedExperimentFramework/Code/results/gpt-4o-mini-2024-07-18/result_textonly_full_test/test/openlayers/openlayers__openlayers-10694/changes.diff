@@ -1,0 +1,27 @@
+diff --git a/src/ol/style/Image.js b/src/ol/style/Image.js
+index 3e01ddc..1b4e9b9 100644
+--- a/src/ol/style/Image.js
++++ b/src/ol/style/Image.js
+@@ -191,14 +191,20 @@ class ImageStyle {
+     return abstract();
+   }
+ 
+-  /**
++  /** 
+    * Set the opacity.
+    *
+    * @param {number} opacity Opacity.
+    * @api
+    */
+   setOpacity(opacity) {
+-    this.opacity_ = opacity;
++    if (opacity < 0) {
++      this.opacity_ = 0; // Ensure opacity is not less than 0
++    } else if (opacity > 1) {
++      this.opacity_ = 1; // Ensure opacity is not greater than 1
++    } else {
++      this.opacity_ = opacity; // Set the opacity
++    }
+   }
+ 
+   /**

@@ -1,0 +1,15 @@
+diff --git a/src/document/doc-printer.js b/src/document/doc-printer.js
+index 67a5b71..7dbc9c2 100644
+--- a/src/document/doc-printer.js
++++ b/src/document/doc-printer.js
+@@ -515,6 +515,10 @@ if (lineSuffix.length) {
+                 out.push(newLine + ind.value);
+                 pos = ind.length;
+               }
++              // Check for trailing newlines when the last line is a comment
++              if (lineSuffix.length === 0 && out.length > 0 && out[out.length - 1] === newLine) {
++                out.pop(); // Remove the extra newline if the document ends with a comment
++              }
+               break;
+           }
+           break;

@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/ol/source/Vector.js": [
+            {
+                "SEARCH": [
+                    "assert(this.format_, 7); // `format` must be set when `url` is set"
+                ],
+                "REPLACE": [
+                    "      assert(this.format_, 7); // `format` must be set when `url` is set",
+                    "      if (this.url_ && this.url_.endsWith('.geojson')) {",
+                    "          // Additional check to ensure the GeoJSON is valid",
+                    "          this.loader_ = xhr(",
+                    "              this.url_,",
+                    "              /** @type {import(\"../format/Feature.js\").default} */ (this.format_)",
+                    "          ).catch(error => {",
+                    "              console.error('Failed to load GeoJSON:', error);",
+                    "              throw new Error('Invalid GeoJSON format');",
+                    "          });",
+                    "      }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const geometry = readGeometry(geoJSONFeature['geometry'], opt_options);"
+                ],
+                "REPLACE": [
+                    "    const geometry = readGeometry(geoJSONFeature['geometry'], opt_options);",
+                    "    if (!geometry) {",
+                    "        console.error('Invalid geometry in GeoJSON feature:', geoJSONFeature);",
+                    "        return null; // Return null for invalid geometries",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

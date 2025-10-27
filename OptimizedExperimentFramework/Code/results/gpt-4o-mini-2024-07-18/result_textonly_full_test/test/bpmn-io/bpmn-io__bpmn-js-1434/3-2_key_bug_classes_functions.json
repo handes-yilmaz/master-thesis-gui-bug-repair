@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior",
+            "lib/features/modeling/Modeling"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//pasteElement",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior//postExecuted",
+            "lib/features/modeling/Modeling//updateProperties"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the copy-paste functionality and the behavior of subprocesses in the BPMN model. The 'BpmnCopyPaste' class manages the copying and pasting of elements, including the logic that needs to be modified to prevent pasting typed start events onto subprocesses. The 'SubProcessStartEventBehavior' class contains logic that executes after a shape is replaced, which could be relevant for ensuring that start events are not incorrectly added to subprocesses. Lastly, the 'Modeling' class includes methods for updating properties of elements, which may need to be adjusted to enforce the expected behavior regarding typed start events.",
+        "bug_scenario": "The bug scenario involves the ability to copy and paste typed start events onto a subprocess, which is not allowed. The expected behavior is that pasting should be restricted, but the current implementation allows it, leading to potential issues in the BPMN diagram structure."
+    }
+}

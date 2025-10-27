@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-typescript.js",
+            "components/prism-core.js",
+            "plugins/highlight-keywords/prism-highlight-keywords.js"
+        ],
+        "explanation": "These files are likely responsible for keyword highlighting logic in the TypeScript language implementation and plugins dealing with keyword highlighting. The issue seems to be with the logic that incorrectly identifies keywords within identifiers in TypeScript code. Modifying these files might involve adjusting the logic to correctly distinguish between actual keywords and other uses of similar text in variable names or paths.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting in TypeScript where certain keywords like `infer` and `type` are highlighted incorrectly in `import` statements when followed by alphabetic characters. The expected behavior is that such keywords should not be treated as keywords, but rather as part of variable names or module paths."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-tsx.js",
+            "components/prism-typescript.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The issue is related to syntax highlighting in TypeScript files. The relevant files are likely `prism-tsx.js` and `prism-typescript.js`, as they handle TypeScript and JSX syntax highlighting. The core functionality of the Prism library is in `prism-core.js`, which might contain base patterns affecting keyword recognition. These files likely contain the logic determining how keywords are identified and highlighted.",
+        "bug_scenario": "In TypeScript, some keywords like `infer` and `type` are incorrectly highlighted as keywords even when they are part of longer words. For example, 'infer' in 'inference' and 'type' in 'typeDefs' are highlighted as keywords, which is incorrect."
+    }
+}

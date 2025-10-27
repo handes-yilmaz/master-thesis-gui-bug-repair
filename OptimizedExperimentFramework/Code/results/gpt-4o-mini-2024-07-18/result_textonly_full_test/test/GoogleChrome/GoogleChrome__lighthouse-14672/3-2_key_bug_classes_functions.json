@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_classes": [
+            "clients/devtools/devtools-entry.js//createConfig",
+            "core/lib/emulation.js//emulate"
+        ],
+        "bug_functions": [],
+        "explanation": "The `createConfig` function in `devtools-entry.js` is responsible for setting up the configuration for the Devtools, including the `screenEmulation` settings. Since the bug report indicates that the issue arises from the `screenEmulation.disabled` property being set to true, this function is directly related to the bug. The `emulate` function in `emulation.js` handles the emulation settings and is also relevant because it checks the `screenEmulation.disabled` property to determine whether to apply emulation settings. Both functions are critical to resolving the issue of incorrect emulation display in Devtools.",
+        "bug_scenario": "The Devtools is incorrectly displaying 'no emulation' for mobile runs due to a change in the `getEmulationDescriptions` function, which now returns this message when `screenEmulation.disabled` is set to true. This is problematic because it prevents users from seeing the expected emulation settings when running mobile tests."
+    }
+}

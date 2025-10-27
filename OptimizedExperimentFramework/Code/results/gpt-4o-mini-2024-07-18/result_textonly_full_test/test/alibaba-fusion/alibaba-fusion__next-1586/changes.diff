@@ -1,0 +1,33 @@
+diff --git a/src/tree/view/tree-node.jsx b/src/tree/view/tree-node.jsx
+index 9914528..94aabc1 100644
+--- a/src/tree/view/tree-node.jsx
++++ b/src/tree/view/tree-node.jsx
+@@ -186,6 +186,8 @@ export default class TreeNode extends Component {
+         const newSelectedState = !selected;
+         root.handleSelect(newSelectedState, eventKey, this, e);
+         this.setState({ selected: newSelectedState });
++        // Ensure the parent Tree component is aware of the selection change
++        root.setFocusKey(); // Update focus key to reflect the current selection
+     }
+ 
+     handleCheck() {
+diff --git a/src/tree/view/tree.jsx b/src/tree/view/tree.jsx
+index fa27611..bb17cec 100644
+--- a/src/tree/view/tree.jsx
++++ b/src/tree/view/tree.jsx
+@@ -668,8 +668,14 @@ export default class Tree extends Component {
+             selectedKeys = [key];
+         }
+ 
+-        if (!('selectedKeys' in this.props)) {
++        if (!(\'selectedKeys\' in this.props)) {
+             this.setState({ selectedKeys });
++        } else {
++            // Ensure the selected state toggles correctly
++            const newSelectedKeys = selectedKeys.includes(key)
++                ? selectedKeys.filter(k => k !== key) // Remove key if already selected
++                : [...selectedKeys, key]; // Add key if not selected
++            this.setState({ selectedKeys: newSelectedKeys });
+         }
+         onSelect(selectedKeys, {
+             selectedNodes: this.getNodes(selectedKeys),

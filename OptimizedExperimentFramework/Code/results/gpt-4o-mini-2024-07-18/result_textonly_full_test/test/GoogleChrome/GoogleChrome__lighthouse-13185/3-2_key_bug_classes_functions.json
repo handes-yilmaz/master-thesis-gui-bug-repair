@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/full-page-screenshot.js//FullPageScreenshot",
+            "lighthouse-core/audits/image-size-responsive.js//ImageSizeResponsive",
+            "flow-report/src/summary/summary.tsx//SummaryFlowStep"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/full-page-screenshot.js//audit",
+            "lighthouse-core/audits/image-size-responsive.js//audit",
+            "flow-report/src/summary/summary.tsx//SummaryFlowStep"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle image rendering and auditing in the report generation process. The 'FullPageScreenshot' class is directly responsible for generating full-page screenshots, which is the desired asset to replace the thumbnail images. The 'ImageSizeResponsive' class audits image sizes, ensuring they meet certain criteria, which is relevant when considering the transition from thumbnails to full-page screenshots. The 'SummaryFlowStep' function is involved in rendering the summary of the report, where the images are displayed, making it crucial for implementing the changes needed to remove hotlinking.",
+        "bug_scenario": "The bug involves removing image hotlinking from reports by replacing thumbnail images with full-page screenshots. This change aims to simplify content security policy (CSP) and mixed content issues when displaying reports over HTTPS."
+    }
+}

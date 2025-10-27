@@ -1,0 +1,27 @@
+diff --git a/components/index.js b/components/index.js
+index b2edcc2a..f5d34181 100644
+--- a/components/index.js
++++ b/components/index.js
+@@ -29,12 +29,16 @@ function loadLanguages(languages) {
+ 	const loaded = [...loadedLanguages, ...Object.keys(Prism.languages)];
+ 
+ 	getLoader(components, languages, loaded).load(lang => {
+-		if (!(lang in components.languages)) {
+-			if (!loadLanguages.silent) {
+-				console.warn('Language does not exist: ' + lang);
+-			}
+-			return;
+-		}
++if (!(lang in components.languages)) {
++if (lang === 'apex') {
++lang = 'java'; // Alias Apex to Java
++} else {
++if (!loadLanguages.silent) {
++console.warn('Language does not exist: ' + lang);
++}
++return;
++}
++}
+ 
+ 		const pathToLanguage = './prism-' + lang;
+ 

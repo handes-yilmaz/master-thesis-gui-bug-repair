@@ -1,0 +1,28 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/number-picker/index.jsx//NumberPicker"
+        ],
+        "bug_functions": [
+            "src/number-picker/index.jsx//getPrecision",
+            "src/number-picker/index.jsx//getPrecisionFactor",
+            "src/number-picker/index.jsx//upStep",
+            "src/number-picker/index.jsx//step",
+            "src/number-picker/index.jsx//setInputValue"
+        ],
+        "explanation": "The 'NumberPicker' class in 'src/number-picker/index.jsx' is directly responsible for handling the numeric operations and rendering of the picker component. The functions 'getPrecision' and 'getPrecisionFactor' are key because they determine the precision of the numeric operations, which is at the heart of the floating-point precision problem. 'upStep' and 'step' functions are responsible for incrementing the number, which is where the floating-point addition occurs. 'setInputValue' is involved in updating the displayed value, which needs to correctly handle precision to avoid displaying incorrect values like 4.029999999999999.",
+        "bug_scenario": "The bug scenario involves a display error in the 'NumberPicker' component when using Safari. The issue arises due to JavaScript's floating-point precision limitations, where an addition operation like 4.02 + 0.01 results in 4.029999999999999 instead of the expected 4.03. This causes the NumberPicker to display incorrect values when incrementing decimal numbers."
+    },
+    "2": {
+        "bug_classes": [
+            "src/number-picker/index.jsx//NumberPicker"
+        ],
+        "bug_functions": [
+            "src/number-picker/index.jsx//upStep",
+            "src/number-picker/index.jsx//getPrecision",
+            "src/number-picker/index.jsx//getPrecisionFactor"
+        ],
+        "explanation": "The bug is related to the floating-point precision issue in JavaScript, which affects how numbers are calculated and displayed in the NumberPicker component. The class `NumberPicker` is directly responsible for handling number display and increment operations. The `upStep` function is critical for incrementing the number and needs to handle precision correctly. The `getPrecision` and `getPrecisionFactor` functions are related to determining the precision of the numbers being handled, which directly impacts how numbers like 4.02 + 0.01 are represented and displayed. Addressing the floating-point accuracy in these functions is necessary to ensure the correct display of incremented values.",
+        "bug_scenario": "The bug occurs in the NumberPicker component when using Safari browser and involves a JavaScript float precision issue. Specifically, when incrementing a value by a small step (e.g., 0.01), the resulting number is not correctly represented due to floating-point precision errors (e.g., 4.02 + 0.01 results in 4.029999999999999 instead of 4.03). This causes a display error, as the NumberPicker does not show the expected value of 4.03."
+    }
+}

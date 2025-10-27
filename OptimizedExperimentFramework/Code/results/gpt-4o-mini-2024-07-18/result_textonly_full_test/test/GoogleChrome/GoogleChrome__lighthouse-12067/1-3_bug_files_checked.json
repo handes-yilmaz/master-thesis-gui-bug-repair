@@ -1,0 +1,9 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/minification-estimator.js"
+        ],
+        "explanation": "The `minification-estimator.js` file contains the `hasPunctuatorBefore` function, which is crucial for correctly identifying JavaScript syntax, particularly regular expressions versus division operators. The bug arises from this function incorrectly parsing the code, leading to erroneous minification reports. The suggested fix is to modify the `PUNCTUATOR_REGEX` within this file to include the `case` keyword, which is directly related to the issue at hand.",
+        "bug_scenario": "The minification-estimator is incorrectly reporting that JavaScript is not minified due to a bug in the `hasPunctuatorBefore` function. This function misidentifies punctuation and treats parts of the code as comments, affecting the minification process."
+    }
+}

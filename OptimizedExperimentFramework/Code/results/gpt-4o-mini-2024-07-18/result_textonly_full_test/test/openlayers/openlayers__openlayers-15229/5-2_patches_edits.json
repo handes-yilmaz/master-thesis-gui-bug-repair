@@ -1,0 +1,16 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/PointsLayer.js": [
+            {
+                "SEARCH": [
+                    "this.helper.makeProjectionTransform(frameState, this.currentTransform_);"
+                ],
+                "REPLACE": [
+                    "      const aspectRatio = frameState.size[0] / frameState.size[1];",
+                    "      this.helper.makeProjectionTransform(frameState, this.currentTransform_);",
+                    "      this.currentTransform_[0] *= aspectRatio; // Adjust the x scale based on aspect ratio"
+                ]
+            }
+        ]
+    }
+}

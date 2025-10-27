@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/modeling/behavior/RemoveEmbeddedLabelBoundsBehavior.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "explanation": "These files are related to the handling of labels in the BPMN model. `UpdateLabelHandler.js` likely manages the logic for updating or removing labels from tasks. `RemoveEmbeddedLabelBoundsBehavior.js` may be responsible for adjusting the diagram's layout when a label is removed, and `LabelBehavior.js` defines the behavior associated with labels in the modeling context. Adjustments in these files are essential to ensure that the `di.label` property is completely removed when a label is cleared.",
+        "bug_scenario": "The bug occurs when the label of a Task is removed. Despite the removal, the property `di.label` still exists but is set to `null`. This creates issues, particularly with linting tools that do not expect this property to be present if it has no value."
+    }
+}

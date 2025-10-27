@@ -1,0 +1,37 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "super(options);"
+                ],
+                "REPLACE": [
+                    "    this.blendOption_ = options.blendOption || null; // New property for blend option",
+                    "    super(options);",
+                    "    ",
+                    "    // Additional logic to handle blending options can be added here"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return new WebGLTileLayerRenderer(this, {"
+                ],
+                "REPLACE": [
+                    "    const rendererOptions = {",
+                    "        vertexShader: parsedStyle.vertexShader,",
+                    "        fragmentShader: parsedStyle.fragmentShader,",
+                    "        uniforms: parsedStyle.uniforms,",
+                    "        cacheSize: this.cacheSize_,",
+                    "    };",
+                    "",
+                    "    // Set the blend option if it exists",
+                    "    if (this.blendOption_) {",
+                    "        rendererOptions.blendOption = this.blendOption_;",
+                    "    }",
+                    "",
+                    "    return new WebGLTileLayerRenderer(this, rendererOptions);"
+                ]
+            }
+        ]
+    }
+}

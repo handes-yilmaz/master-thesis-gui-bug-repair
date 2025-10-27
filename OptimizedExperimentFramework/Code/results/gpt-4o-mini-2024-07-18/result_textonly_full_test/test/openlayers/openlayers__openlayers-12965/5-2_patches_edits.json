@@ -1,0 +1,43 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "super(options);"
+                ],
+                "REPLACE": [
+                    "    // Check if a shared WebGL context is provided",
+                    "    if (options.sharedContext) {",
+                    "      this.sharedContext = options.sharedContext;",
+                    "    } else {",
+                    "      this.sharedContext = createWebGLContext(); // Create a new context if not shared",
+                    "    }",
+                    "    super(assign({}, options, { context: this.sharedContext }));"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "super(tileLayer, {"
+                ],
+                "REPLACE": [
+                    "    // Pass the shared context to the renderer",
+                    "    super(tileLayer, {",
+                    "      context: tileLayer.sharedContext,"
+                ]
+            }
+        ],
+        "src/ol/webgl/Helper.js": [
+            {
+                "SEARCH": [
+                    "this.gl_ = getContext(this.canvas_);"
+                ],
+                "REPLACE": [
+                    "    // Use the shared context if available",
+                    "    this.gl_ = options.sharedContext || getContext(this.canvas_);"
+                ]
+            }
+        ]
+    }
+}

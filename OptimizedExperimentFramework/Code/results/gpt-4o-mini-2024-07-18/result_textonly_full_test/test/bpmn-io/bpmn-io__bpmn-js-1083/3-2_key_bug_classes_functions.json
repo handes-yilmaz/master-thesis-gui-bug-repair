@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/snapping/BpmnConnectSnapping",
+            "lib/features/snapping/BpmnCreateMoveSnapping",
+            "lib/features/grid-snapping/BpmnGridSnapping"
+        ],
+        "bug_functions": [
+            "lib/features/snapping/BpmnConnectSnapping//snapInsideTarget",
+            "lib/features/snapping/BpmnConnectSnapping//snapBoundaryEventLoop",
+            "lib/features/snapping/BpmnConnectSnapping//snapToPosition",
+            "lib/features/snapping/BpmnCreateMoveSnapping//snapBoundaryEvent",
+            "lib/features/snapping/BpmnCreateMoveSnapping//setSnappedIfConstrained"
+        ],
+        "explanation": "These classes and functions are related to the snapping functionality of elements in the diagramming tool. The 'BpmnConnectSnapping' class handles the snapping behavior during connection events, which is crucial for ensuring that elements snap to their docking points. The functions 'snapInsideTarget', 'snapBoundaryEventLoop', and 'snapToPosition' within this class directly manage how elements snap to targets. Similarly, the 'BpmnCreateMoveSnapping' class manages snapping during creation and movement of elements, with the 'snapBoundaryEvent' and 'setSnappedIfConstrained' functions ensuring that elements snap correctly to boundaries and constraints. The 'BpmnGridSnapping' class also plays a role in managing grid snapping, which may affect how elements are positioned relative to each other. Together, these classes and functions are essential for restoring the expected snapping behavior that was present in version 3.x.",
+        "bug_scenario": "The bug scenario involves the snapping functionality for connected elements in a diagramming tool. In version 3.x, elements would snap to their docking points correctly, as shown in the first image. However, in version 4-beta, this snapping feature is broken, as demonstrated in the second image where the elements do not snap to their intended positions when moved."
+    }
+}

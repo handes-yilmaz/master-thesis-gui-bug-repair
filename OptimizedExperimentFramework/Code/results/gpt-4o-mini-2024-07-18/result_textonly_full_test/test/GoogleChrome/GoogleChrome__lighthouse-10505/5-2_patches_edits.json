@@ -1,0 +1,16 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/metrics/first-cpu-idle.js": [
+            {
+                "SEARCH": [
+                    "const metricResult = await ComputedFci.request(metricComputationData, context);"
+                ],
+                "REPLACE": [
+                    "    // Introduce a delay to keep the CPU busy for a short period",
+                    "    await new Promise(resolve => setTimeout(resolve, 400));",
+                    "    const metricResult = await ComputedFci.request(metricComputationData, context);"
+                ]
+            }
+        ]
+    }
+}

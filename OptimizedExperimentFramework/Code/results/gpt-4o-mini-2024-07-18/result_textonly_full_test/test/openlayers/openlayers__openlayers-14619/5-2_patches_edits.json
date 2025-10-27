@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "path/to/Icon.js": [
+            {
+                "SEARCH": [
+                    "this.scale = [height, width]; // Incorrectly setting scale as an array"
+                ],
+                "REPLACE": [
+                    "this.scale = height || width ? undefined : scale; // Correctly retain the scale as a number"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "clone() {",
+                    "return new Icon(this.setScale(this.scale)); // Incorrectly calling setScale"
+                ],
+                "REPLACE": [
+                    "clone() {",
+                    "    return new Icon(this.scale); // Directly use the scale value"
+                ]
+            }
+        ]
+    }
+}

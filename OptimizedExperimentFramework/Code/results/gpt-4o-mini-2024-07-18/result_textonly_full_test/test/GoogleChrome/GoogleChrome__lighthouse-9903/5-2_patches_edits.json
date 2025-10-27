@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/uses-rel-preconnect.js": [
+            {
+                "SEARCH": [
+                    "if (preconnectOrigins.has(securityOrigin)) {",
+                    "// Add a warning for any origin the user tried to preconnect to but failed",
+                    "warnings.push(str_(UIStrings.crossoriginWarning, {securityOrigin}));",
+                    "return;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "      if (preconnectOrigins.has(securityOrigin) && !firstRecordOfOrigin.crossOrigin) {",
+                    "        // Add a warning for any origin the user tried to preconnect to but failed",
+                    "        warnings.push(str_(UIStrings.crossoriginWarning, {securityOrigin}));",
+                    "        return;",
+                    "      }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (!firstRecordOfOrigin.timing) return;"
+                ],
+                "REPLACE": [
+                    "      if (!firstRecordOfOrigin.timing || !firstRecordOfOrigin.timing.connectEnd) return;"
+                ]
+            }
+        ]
+    }
+}

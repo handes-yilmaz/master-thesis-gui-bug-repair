@@ -1,0 +1,23 @@
+{
+    "1/1": {
+        "BpmnUpdater.js": [
+            {
+                "SEARCH": [
+                    "updateDiParent() {",
+                    "// existing code",
+                    "const parent = this.getParent();",
+                    "// existing code"
+                ],
+                "REPLACE": [
+                    "    updateDiParent() {",
+                    "        // existing code",
+                    "        const parent = this.getParent();",
+                    "        if (!this.isInsidePool(parent)) {",
+                    "            console.error(\"Cannot morph DataStoreReference to DataObjectReference outside of Pool\");",
+                    "            return; // Prevent morphing if outside of pool",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,25 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index 8c778193..f3fc8f3f 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -48,7 +48,7 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+ 
+     descriptor.type = element.type;
+ 
+-    copyProperties(businessObject, descriptor, 'name');
++    copyProperties(businessObject, descriptor, ['name', 'asyncBefore', 'asyncAfter', 'jobPriority']);
+ 
+     descriptor.di = {};
+ 
+@@ -153,7 +153,10 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+ 
+     copyProperties(descriptor, newBusinessObject, [
+       'isExpanded',
+-      'name'
++      'name',
++      'asyncBefore',
++      'asyncAfter',
++      'jobPriority'
+     ]);
+ 
+     removeProperties(descriptor, 'oldBusinessObject');

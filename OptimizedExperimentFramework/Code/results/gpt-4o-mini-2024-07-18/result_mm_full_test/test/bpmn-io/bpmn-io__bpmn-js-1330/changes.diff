@@ -1,0 +1,13 @@
+diff --git a/lib/features/rules/BpmnRules.js b/lib/features/rules/BpmnRules.js
+index c94ddbc..56ff14c 100644
+--- a/lib/features/rules/BpmnRules.js
++++ b/lib/features/rules/BpmnRules.js
+@@ -400,7 +400,7 @@ function canConnect(source, target, connection) {
+   }
+ 
+   // Disallow message flows to boundary events
+-  if (is(target, 'bpmn:BoundaryEvent')) {
++  if (is(target, 'bpmn:BoundaryEvent') || is(source, 'bpmn:BoundaryEvent')) {
+     return false;
+   }
+ 

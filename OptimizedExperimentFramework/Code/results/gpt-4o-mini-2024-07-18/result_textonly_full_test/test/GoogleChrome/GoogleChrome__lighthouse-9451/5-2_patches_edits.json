@@ -1,0 +1,43 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/gatherers/offline.js": [
+            {
+                "SEARCH": [
+                    "return passContext.driver.goOnline(passContext)",
+                    ".then(_ => navigationRecord ? navigationRecord.statusCode : -1);"
+                ],
+                "REPLACE": [
+                    "    return passContext.driver.goOnline(passContext).then(_ => {",
+                    "      if (!navigationRecord || !navigationRecord.fetchedViaServiceWorker) {",
+                    "        throw new Error('No valid navigation record found for offline pass.');",
+                    "      }",
+                    "      return navigationRecord.statusCode;",
+                    "    });"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/start-url.js": [
+            {
+                "SEARCH": [
+                    "return this._attemptStartURLFetch(passContext.driver, startUrlInfo.startUrl).catch(() => {"
+                ],
+                "REPLACE": [
+                    "    return this._attemptStartURLFetch(passContext.driver, startUrlInfo.startUrl).then(result => {",
+                    "      if (result.statusCode !== 200) {",
+                    "        throw new Error('Failed to fetch start URL via service worker.');",
+                    "      }"
+                ]
+            }
+        ],
+        "lighthouse-core/audits/offline-start-url.js": [
+            {
+                "SEARCH": [
+                    "const hasOfflineStartUrl = artifacts.StartUrl.statusCode === 200;"
+                ],
+                "REPLACE": [
+                    "    const hasOfflineStartUrl = artifacts.StartUrl.statusCode === 200 && artifacts.StartUrl.explanation.includes('fetched by service worker');"
+                ]
+            }
+        ]
+    }
+}

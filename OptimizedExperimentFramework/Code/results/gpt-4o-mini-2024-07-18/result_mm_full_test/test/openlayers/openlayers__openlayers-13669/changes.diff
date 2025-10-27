@@ -1,0 +1,24 @@
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 4f7fb30..d8cb2cf 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -681,8 +681,8 @@ class GeoTIFFSource extends DataTile {
+ 
+       /** @type {number|Array<number>} */
+       let fillValue;
+-      if (!isNaN(source.nodata)) {
+-        fillValue = source.nodata;
++      if (isNaN(source.nodata)) {
++        fillValue = NaN; // Explicitly set fillValue to NaN if source.nodata is NaN
+       } else {
+         if (!samples) {
+           fillValue = nodataValues[sourceIndex];
+@@ -778,7 +778,7 @@ class GeoTIFFSource extends DataTile {
+                   nodata = nodataValues[sourceIndex][bandIndex];
+                 }
+ 
+-                if (sourceValue !== nodata) {
++                if (sourceValue !== nodata && !isNaN(sourceValue)) { // Ensure sourceValue is not NaN
+                   transparent = false;
+                   data[dataIndex] = value;
+                 }

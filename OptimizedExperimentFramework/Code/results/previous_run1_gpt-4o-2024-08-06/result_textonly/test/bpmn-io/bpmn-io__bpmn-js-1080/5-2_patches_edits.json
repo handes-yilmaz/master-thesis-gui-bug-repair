@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/DeleteLaneBehavior.js": [
+            {
+                "SEARCH": [
+                    "if (!siblings.length) {",
+                    "return;",
+                    "}",
+                    "",
+                    "var offset;",
+                    "",
+                    "if (bottomAffected.length && topAffected.length) {",
+                    "offset = shape.height / 2;",
+                    "} else {",
+                    "offset = shape.height;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (!siblings.length) {",
+                    "      // Update the pool boundary to match the single lane's boundary",
+                    "      modeling.updateBounds(oldParent, {",
+                    "        x: oldParent.x,",
+                    "        y: shape.y,",
+                    "        width: oldParent.width,",
+                    "        height: shape.height",
+                    "      });",
+                    "      return;",
+                    "    }",
+                    "",
+                    "    var offset;",
+                    "",
+                    "    if (bottomAffected.length && topAffected.length) {",
+                    "      offset = shape.height / 2;",
+                    "    } else {",
+                    "      offset = shape.height;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

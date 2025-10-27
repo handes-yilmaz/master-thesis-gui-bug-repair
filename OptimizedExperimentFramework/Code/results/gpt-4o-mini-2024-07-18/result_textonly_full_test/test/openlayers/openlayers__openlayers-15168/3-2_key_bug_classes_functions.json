@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/reproj/Image.js//ReprojImage",
+            "src/ol/reproj/Tile.js//ReprojTile",
+            "src/ol/reproj/DataTile.js//ReprojDataTile"
+        ],
+        "bug_functions": [
+            "src/ol/reproj/Image.js//reproject_",
+            "src/ol/reproj/Tile.js//reproject_",
+            "src/ol/reproj/DataTile.js//reproject_"
+        ],
+        "explanation": "The classes and functions identified are directly related to the raster reprojection process. The 'ReprojImage', 'ReprojTile', and 'ReprojDataTile' classes encapsulate the logic for handling reprojected images, tiles, and data tiles, respectively. The 'reproject_' functions within these classes are responsible for the actual reprojection logic, which is where the misalignment issue arises. Since the bug report indicates that the reprojection is incorrectly assuming square pixels, these classes and functions are critical to address the problem and implement a solution that allows for non-square pixel handling.",
+        "bug_scenario": "The bug scenario involves raster reprojection where the projected pixels are displayed as squares, leading to misalignments. The user intended for each pixel of the source image to cover a specific area (3km by 2km), but the reprojection process resulted in a misalignment, particularly in the horizontal direction. This is evident in the provided screenshot where the first column of pixels is repeated, causing the projected image to appear wider than intended."
+    }
+}

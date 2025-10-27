@@ -1,0 +1,19 @@
+{
+    "1/1": {
+        "src/ol/layer/Group.js": [
+            {
+                "SEARCH": [
+                    "this.set(Property.LAYERS, layers);"
+                ],
+                "REPLACE": [
+                    "    this.set(Property.LAYERS, layers);",
+                    "    layers.forEach(layer => {",
+                    "        if (layer instanceof WebGLTileLayer) {",
+                    "            layer.setVisible(this.getVisible());",
+                    "        }",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

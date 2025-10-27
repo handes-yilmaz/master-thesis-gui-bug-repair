@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Image.js",
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/style.js"
+        ],
+        "explanation": "These files are key to the bug because they contain the definitions and implementations of the Image and Text styles, which are directly related to how images and labels are rendered in the OpenLayers library. The Image.js file defines the ImageStyle class, which includes the declutterMode property that needs to be modified to support the new options requested in the bug report. The Text.js file defines the Text class, which is also affected by the declutterMode settings. The canvas/style.js file is responsible for rendering styles on the canvas, and it likely contains logic that needs to be adjusted to accommodate the new declutter options.",
+        "bug_scenario": "The bug involves issues with image and label combinations in the OpenLayers library when the declutterMode is set to something other than 'declutter'. The user requests an enhancement to allow for more granular control over decluttering, specifically the ability to declutter only text or geometry, rather than both together. This is particularly relevant for layers that return both imagery and text, such as point markers and labels."
+    }
+}

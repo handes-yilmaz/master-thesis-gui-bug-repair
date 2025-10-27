@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/core/handlers/embed.ts//EmbedHandler",
+            "src/core/knitr.ts//knitrCapabilities",
+            "src/format/reveal/format-reveal.ts//revealjsFormat"
+        ],
+        "bug_functions": [
+            "src/core/handlers/embed.ts//handle",
+            "src/core/handlers/embed.ts//directive",
+            "src/core/knitr.ts//knitrCapabilities",
+            "src/format/reveal/format-reveal.ts//revealHtmlPostprocessor"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the embedding of code and the rendering of the reveal.js format. The 'EmbedHandler' class and its 'handle' and 'directive' functions are crucial for processing the embed directives, which are responsible for including the R code in the presentation. The 'knitrCapabilities' function checks the capabilities of the knitr package, which is essential for ensuring that the embedded code is processed correctly. Lastly, the 'revealjsFormat' and 'revealHtmlPostprocessor' functions are involved in generating the HTML output for the reveal.js presentation, making them key components in diagnosing why the embedded code is not appearing as expected.",
+        "bug_scenario": "The bug scenario involves using the Quarto tool to embed R code into a reveal.js presentation. The embedded code does not appear in the generated HTML output when using the reveal.js format, while it does appear correctly when using a different format. This indicates a potential issue with how the embed engine processes and renders embedded code within the reveal.js context."
+    }
+}

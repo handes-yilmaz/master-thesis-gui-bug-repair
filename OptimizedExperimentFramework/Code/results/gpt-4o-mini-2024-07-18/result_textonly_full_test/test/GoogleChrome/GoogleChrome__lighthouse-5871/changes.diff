@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/gather/gather-runner.js b/lighthouse-core/gather/gather-runner.js
+index 20ae470..d36f7db 100644
+--- a/lighthouse-core/gather/gather-runner.js
++++ b/lighthouse-core/gather/gather-runner.js
+@@ -374,7 +374,7 @@ class GatherRunner {
+     return {
+       fetchTime: (new Date()).toJSON(),
+       LighthouseRunWarnings: [],
+-      UserAgent: await options.driver.getUserAgent(),
++      UserAgent: options.settings.userAgent || await options.driver.getUserAgent(),
+       traces: {},
+       devtoolsLogs: {},
+       settings: options.settings,

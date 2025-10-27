@@ -1,0 +1,15 @@
+diff --git a/lighthouse-core/audits/font-display.js b/lighthouse-core/audits/font-display.js
+index d5b4e06..c9ad316 100644
+--- a/lighthouse-core/audits/font-display.js
++++ b/lighthouse-core/audits/font-display.js
+@@ -59,7 +59,9 @@ class FontDisplay extends Audit {
+     const failingURLs = new Set();
+ 
+     // Go through all the stylesheets to find all @font-face declarations
+-    for (const stylesheet of artifacts.CSSUsage.stylesheets) {
++    // Ensure that CSSUsage contains stylesheets
++    if (artifacts.CSSUsage && artifacts.CSSUsage.stylesheets) {
++        for (const stylesheet of artifacts.CSSUsage.stylesheets) {
+       // Eliminate newlines so we can more easily scan through with a regex
+       const newlinesStripped = stylesheet.content.replace(/(\r|\n)+/g, ' ');
+       // Find the @font-faces

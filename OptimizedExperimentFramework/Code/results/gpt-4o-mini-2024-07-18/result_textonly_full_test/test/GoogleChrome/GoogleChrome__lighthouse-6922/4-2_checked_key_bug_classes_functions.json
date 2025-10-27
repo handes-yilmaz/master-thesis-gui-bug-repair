@@ -1,0 +1,303 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "Connection",
+            "file_path": "lighthouse-core/gather/connections/connection.js",
+            "class_details": [
+                {
+                    "name": "Connection",
+                    "start_line": 21,
+                    "end_line": 159,
+                    "methods": [
+                        {
+                            "name": "constructor",
+                            "start_line": 22,
+                            "end_line": 28
+                        },
+                        {
+                            "name": "connect",
+                            "start_line": 33,
+                            "end_line": 35
+                        },
+                        {
+                            "name": "disconnect",
+                            "start_line": 40,
+                            "end_line": 42
+                        },
+                        {
+                            "name": "wsEndpoint",
+                            "start_line": 47,
+                            "end_line": 49
+                        },
+                        {
+                            "name": "sendCommand",
+                            "start_line": 58,
+                            "end_line": 70
+                        },
+                        {
+                            "name": "on",
+                            "start_line": 77,
+                            "end_line": 86
+                        },
+                        {
+                            "name": "sendRawMessage",
+                            "start_line": 94,
+                            "end_line": 96
+                        },
+                        {
+                            "name": "handleRawMessage",
+                            "start_line": 105,
+                            "end_line": 137
+                        },
+                        {
+                            "name": "emitProtocolEvent",
+                            "start_line": 142,
+                            "end_line": 148
+                        },
+                        {
+                            "name": "dispose",
+                            "start_line": 153,
+                            "end_line": 158
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class Connection {",
+                "  constructor() {",
+                "    this._lastCommandId = 0;",
+                "    /** @type {Map<number, CommandCallback>} */",
+                "    this._callbacks = new Map();",
+                "",
+                "    this._eventEmitter = /** @type {?CrdpEventMessageEmitter} */ (new EventEmitter());",
+                "  }",
+                "",
+                "  /**",
+                "   * @return {Promise<void>}",
+                "   */",
+                "  connect() {",
+                "    return Promise.reject(new Error('Not implemented'));",
+                "  }",
+                "",
+                "  /**",
+                "   * @return {Promise<void>}",
+                "   */",
+                "  disconnect() {",
+                "    return Promise.reject(new Error('Not implemented'));",
+                "  }",
+                "",
+                "  /**",
+                "   * @return {Promise<string>}",
+                "   */",
+                "  wsEndpoint() {",
+                "    return Promise.reject(new Error('Not implemented'));",
+                "  }",
+                "",
+                "  /**",
+                "   * Call protocol methods",
+                "   * @template {keyof LH.CrdpCommands} C",
+                "   * @param {C} method",
+                "   * @param {LH.CrdpCommands[C]['paramsType']} paramArgs,",
+                "   * @return {Promise<LH.CrdpCommands[C]['returnType']>}",
+                "   */",
+                "  sendCommand(method, ...paramArgs) {",
+                "    // Reify params since we need it as a property so can't just spread again.",
+                "    const params = paramArgs.length ? paramArgs[0] : undefined;",
+                "",
+                "    log.formatProtocol('method => browser', {method, params}, 'verbose');",
+                "    const id = ++this._lastCommandId;",
+                "    const message = JSON.stringify({id, method, params});",
+                "    this.sendRawMessage(message);",
+                "",
+                "    return new Promise(resolve => {",
+                "      this._callbacks.set(id, {method, resolve});",
+                "    });",
+                "  }",
+                "",
+                "  /**",
+                "   * Bind listeners for connection events.",
+                "   * @param {'protocolevent'} eventName",
+                "   * @param {function(LH.Protocol.RawEventMessage): void} cb",
+                "   */",
+                "  on(eventName, cb) {",
+                "    if (eventName !== 'protocolevent') {",
+                "      throw new Error('Only supports \"protocolevent\" events');",
+                "    }",
+                "",
+                "    if (!this._eventEmitter) {",
+                "      throw new Error('Attempted to add event listener after connection disposed.');",
+                "    }",
+                "    this._eventEmitter.on(eventName, cb);",
+                "  }",
+                "",
+                "  /* eslint-disable no-unused-vars */",
+                "",
+                "  /**",
+                "   * @param {string} message",
+                "   * @protected",
+                "   */",
+                "  sendRawMessage(message) {",
+                "    throw new Error('Not implemented');",
+                "  }",
+                "",
+                "  /* eslint-enable no-unused-vars */",
+                "",
+                "  /**",
+                "   * @param {string} message",
+                "   * @return {void}",
+                "   * @protected",
+                "   */",
+                "  handleRawMessage(message) {",
+                "    const object = /** @type {LH.Protocol.RawMessage} */(JSON.parse(message));",
+                "",
+                "    // Responses to commands carry \"id\" property, while events do not.",
+                "    if (!('id' in object)) {",
+                "      log.formatProtocol('<= event',",
+                "          {method: object.method, params: object.params}, 'verbose');",
+                "      this.emitProtocolEvent(object);",
+                "      return;",
+                "    }",
+                "",
+                "    const callback = this._callbacks.get(object.id);",
+                "    if (callback) {",
+                "      this._callbacks.delete(object.id);",
+                "",
+                "      return callback.resolve(Promise.resolve().then(_ => {",
+                "        if (object.error) {",
+                "          log.formatProtocol('method <= browser ERR', {method: callback.method}, 'error');",
+                "          throw LHError.fromProtocolMessage(callback.method, object.error);",
+                "        }",
+                "",
+                "        log.formatProtocol('method <= browser OK',",
+                "          {method: callback.method, params: object.result}, 'verbose');",
+                "        return object.result;",
+                "      }));",
+                "    } else {",
+                "      // In DevTools we receive responses to commands we did not send which we cannot act on, so we",
+                "      // just log these occurrences.",
+                "      const error = object.error && object.error.message;",
+                "      log.formatProtocol(`disowned method <= browser ${error ? 'ERR' : 'OK'}`,",
+                "          {method: 'UNKNOWN', params: error || object.result}, 'verbose');",
+                "    }",
+                "  }",
+                "",
+                "  /**",
+                "   * @param {LH.Protocol.RawEventMessage} eventMessage",
+                "   */",
+                "  emitProtocolEvent(eventMessage) {",
+                "    if (!this._eventEmitter) {",
+                "      throw new Error('Attempted to emit event after connection disposed.');",
+                "    }",
+                "",
+                "    this._eventEmitter.emit('protocolevent', eventMessage);",
+                "  }",
+                "",
+                "  /**",
+                "   * @protected",
+                "   */",
+                "  dispose() {",
+                "    if (this._eventEmitter) {",
+                "      this._eventEmitter.removeAllListeners();",
+                "      this._eventEmitter = null;",
+                "    }",
+                "  }",
+                "}"
+            ]
+        },
+        "2": {
+            "class_name": "AnchorElements",
+            "file_path": "lighthouse-core/gather/gatherers/anchor-elements.js",
+            "class_details": [
+                {
+                    "name": "AnchorElements",
+                    "start_line": 61,
+                    "end_line": 78,
+                    "methods": [
+                        {
+                            "name": "afterPass",
+                            "start_line": 66,
+                            "end_line": 77
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class AnchorElements extends Gatherer {",
+                "  /**",
+                "   * @param {LH.Gatherer.PassContext} passContext",
+                "   * @return {Promise<LH.Artifacts['AnchorElements']>}",
+                "   */",
+                "  async afterPass(passContext) {",
+                "    const driver = passContext.driver;",
+                "    const expression = `(() => {",
+                "      ${pageFunctions.getOuterHTMLSnippetString};",
+                "      ${pageFunctions.getElementsInDocumentString};",
+                "",
+                "      return (${collectAnchorElements})();",
+                "    })()`;",
+                "",
+                "    /** @type {Array<LH.Artifacts.AnchorElement>} */",
+                "    return driver.evaluateAsync(expression, {useIsolation: true});",
+                "  }",
+                "}"
+            ]
+        },
+        "3": {
+            "class_name": "HTMLWithoutJavaScript",
+            "file_path": "lighthouse-core/gather/gatherers/html-without-javascript.js",
+            "class_details": [
+                {
+                    "name": "HTMLWithoutJavaScript",
+                    "start_line": 27,
+                    "end_line": 54,
+                    "methods": [
+                        {
+                            "name": "beforePass",
+                            "start_line": 31,
+                            "end_line": 33
+                        },
+                        {
+                            "name": "afterPass",
+                            "start_line": 39,
+                            "end_line": 53
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class HTMLWithoutJavaScript extends Gatherer {",
+                "  /**",
+                "   * @param {LH.Gatherer.PassContext} passContext",
+                "   */",
+                "  beforePass(passContext) {",
+                "    passContext.disableJavaScript = true;",
+                "  }",
+                "",
+                "  /**",
+                "   * @param {LH.Gatherer.PassContext} passContext",
+                "   * @return {Promise<LH.Artifacts['HTMLWithoutJavaScript']>}",
+                "   */",
+                "  async afterPass(passContext) {",
+                "    // Reset the JS disable.",
+                "    passContext.disableJavaScript = false;",
+                "",
+                "    const expression = `(${getBodyText.toString()}())`;",
+                "    const {bodyText, hasNoScript} = await passContext.driver.evaluateAsync(expression);",
+                "    if (typeof bodyText !== 'string') {",
+                "      throw new Error('document body innerText returned by protocol was not a string');",
+                "    }",
+                "",
+                "    return {",
+                "      bodyText,",
+                "      hasNoScript,",
+                "    };",
+                "  }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

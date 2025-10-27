@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/format/GeoJSON//GeoJSON"
+        ],
+        "bug_functions": [
+            "src/ol/format/GeoJSON//readFeatureFromObject",
+            "src/ol/format/GeoJSON//writeFeatureObject",
+            "src/ol/style/expressions//Operators"
+        ],
+        "explanation": "The `GeoJSON` class is central to handling GeoJSON data, including reading and writing features. The `readFeatureFromObject` function is responsible for reading features from a GeoJSON object, which is where the fetching of the `id` property would need to be implemented or modified. The `writeFeatureObject` function is involved in encoding features back into GeoJSON format, which may also need adjustments to ensure the `id` is handled correctly. The `Operators` in the `expressions` module define how expressions are evaluated, including the `get` operator, which needs to be extended or modified to support fetching the `id` property directly.",
+        "bug_scenario": "The bug scenario involves the inability to fetch the `id` property of a feature using the existing style expressions, which currently only support fetching properties through `['get', 'attributeName']`. The user prefers not to duplicate the `id` in both the root and properties collection of the GeoJSON data."
+    }
+}

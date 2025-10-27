@@ -1,0 +1,18 @@
+diff --git a/src/format/reveal/format-reveal.ts b/src/format/reveal/format-reveal.ts
+index 1ad2d72..f1223c3 100644
+--- a/src/format/reveal/format-reveal.ts
++++ b/src/format/reveal/format-reveal.ts
+@@ -313,6 +313,13 @@ function revealMarkdownAfterBody(format: Format) {
+     );
+     lines.push("\n");
+   }
++  // Ensure that standalone images retain their hyperlinks
++  if (format.metadata[kSlideLogo]) {
++    lines.push(
++      `<a href="${format.metadata[kSlideLogoLink]}"><img src="${format.metadata[kSlideLogo]}" class="slide-logo" /></a>`,
++    );
++    lines.push("\\n");
++  }
+   lines.push("::: {.footer .footer-default}");
+   if (format.metadata[kSlideFooter]) {
+     lines.push(String(format.metadata[kSlideFooter]));

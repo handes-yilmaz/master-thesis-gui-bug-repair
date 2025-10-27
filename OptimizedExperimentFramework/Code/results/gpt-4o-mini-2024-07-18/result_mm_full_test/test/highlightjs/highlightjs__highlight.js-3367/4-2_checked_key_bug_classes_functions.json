@@ -1,0 +1,48 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "scoreForKeyword",
+            "file_path": "src/lib/compile_keywords.js",
+            "function_details": [
+                {
+                    "name": "scoreForKeyword",
+                    "start_line": 74,
+                    "end_line": 82
+                }
+            ],
+            "function_code": [
+                "function scoreForKeyword(keyword, providedScore) {",
+                "  // manual scores always win over common keywords",
+                "  // so you can force a score of 1 if you really insist",
+                "  if (providedScore) {",
+                "    return Number(providedScore);",
+                "  }",
+                "",
+                "  return commonKeyword(keyword) ? 0 : 1;",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "either",
+            "file_path": "src/lib/regex.js",
+            "function_details": [
+                {
+                    "name": "either",
+                    "start_line": 75,
+                    "end_line": 82
+                }
+            ],
+            "function_code": [
+                "export function either(...args) {",
+                "  /** @type { object & {capture?: boolean} }  */",
+                "  const opts = stripOptionsFromArgs(args);",
+                "  const joined = '('",
+                "    + (opts.capture ? \"\" : \"?:\")",
+                "    + args.map((x) => source(x)).join(\"|\") + \")\";",
+                "  return joined;",
+                "}"
+            ]
+        }
+    }
+}

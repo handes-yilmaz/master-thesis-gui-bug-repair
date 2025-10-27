@@ -1,0 +1,14 @@
+diff --git a/lighthouse-core/audits/uses-rel-preconnect.js b/lighthouse-core/audits/uses-rel-preconnect.js
+index f17d1ba..2644de5 100644
+--- a/lighthouse-core/audits/uses-rel-preconnect.js
++++ b/lighthouse-core/audits/uses-rel-preconnect.js
+@@ -64,7 +64,8 @@ class UsesRelPreconnectAudit extends Audit {
+     return (
+       !!record.timing &&
+       record.timing.dnsEnd - record.timing.dnsStart === 0 &&
+-      record.timing.connectEnd - record.timing.connectStart === 0
++      record.timing.connectEnd - record.timing.connectStart === 0 &&
++      record.initiator && record.initiator.url.includes('preconnect')
+     );
+   }
+ 

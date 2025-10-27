@@ -1,0 +1,26 @@
+diff --git a/lib/features/modeling/behavior/GroupBehavior.js b/lib/features/modeling/behavior/GroupBehavior.js
+index 2cba2453..680d5a5a 100644
+--- a/lib/features/modeling/behavior/GroupBehavior.js
++++ b/lib/features/modeling/behavior/GroupBehavior.js
+@@ -165,8 +165,13 @@ export default function GroupBehavior(
+       var definitions = getDefinitions(),
+           categoryValue = createCategoryValue(definitions, bpmnFactory);
+ 
+-      // link the reference to the Group
++      // Ensure the category value is correctly linked to the group
+       businessObject.categoryValueRef = categoryValue;
++
++      // Add the category value to the definitions if not already present
++      if (!definitions.get('rootElements').includes(categoryValue.$parent)) {
++        collectionAdd(definitions.get('rootElements'), categoryValue.$parent);
++      }
+     }
+   });
+ 
+@@ -208,4 +213,4 @@ GroupBehavior.$inject = [
+   'moddleCopy'
+ ];
+ 
+-inherits(GroupBehavior, CommandInterceptor);
+\ No newline at end of file
++inherits(GroupBehavior, CommandInterceptor);

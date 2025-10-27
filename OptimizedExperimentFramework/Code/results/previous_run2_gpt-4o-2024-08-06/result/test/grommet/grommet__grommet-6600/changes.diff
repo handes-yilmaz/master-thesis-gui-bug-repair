@@ -1,0 +1,34 @@
+diff --git a/src/js/components/DataFilters/DataFilters.js b/src/js/components/DataFilters/DataFilters.js
+index c1fa3bf5ff..6e55cc3721 100644
+--- a/src/js/components/DataFilters/DataFilters.js
++++ b/src/js/components/DataFilters/DataFilters.js
+@@ -16,17 +16,17 @@ const dropProps = {
+   align: { top: 'bottom', right: 'right' },
+ };
+ 
+-export const DataFilters = ({ drop, children, heading, ...rest }) => {
++export const DataFilters = ({ drop, layer, children, heading, ...rest }) => {
+   const { clearFilters, data, messages, properties, view } =
+     useContext(DataContext);
+   const { format } = useContext(MessageContext);
+-  const [showContent, setShowContent] = useState();
++  const [showContent, setShowContent] = useState(layer ? true : undefined);
+   // touched is a map of form field name to its value, it only has fields that
+   // were changed as part of the DataForm here. This is so we can track based
+   // on what's inside DataFilters as opposed to trying to track from the view
+   // object.
+   const [touched, setTouched] = useState({});
+-  const controlled = useMemo(() => drop, [drop]);
++  const controlled = useMemo(() => drop || layer, [drop, layer]);
+   // generate the badge value based on touched fields that have a value
+   const badge = useMemo(
+     () =>
+@@ -106,7 +106,7 @@ export const DataFilters = ({ drop, children, heading, ...rest }) => {
+     </DataForm>
+   );
+ 
+-  if (!controlled) return content;
++  if (!controlled) return layer ? <Layer>{content}</Layer> : content;
+ 
+   // drop
+   const control = (

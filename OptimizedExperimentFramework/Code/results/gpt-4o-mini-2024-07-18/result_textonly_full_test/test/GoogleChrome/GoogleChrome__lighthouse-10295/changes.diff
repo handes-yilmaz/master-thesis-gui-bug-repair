@@ -1,0 +1,17 @@
+diff --git a/lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js b/lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js
+index 7e875b6..84ac89a 100644
+--- a/lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js
++++ b/lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js
+@@ -106,10 +106,10 @@ class NoVulnerableLibrariesAudit extends Audit {
+     // converts 1.5 -> 1.5.0
+     if (/^\d+\.\d+$/.test(version)) return `${version}.0`;
+     // converts 1.0.0a-bunch-of-crap -> 1.0.0
+-    const versionMatch = version.match(SEMVER_REGEX);
++    const versionMatch = String(version).match(SEMVER_REGEX); // Ensure version is a string
+     if (versionMatch) return versionMatch[1];
+     // leave everything else untouched
+-    return version;
++    return String(version); // Ensure return value is a string
+   }
+ 
+   /**

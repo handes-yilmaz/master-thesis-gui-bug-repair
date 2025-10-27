@@ -1,0 +1,35 @@
+diff --git a/lib/features/label-editing/LabelEditingProvider.js b/lib/features/label-editing/LabelEditingProvider.js
+index c0520ad8..f31b248d 100644
+--- a/lib/features/label-editing/LabelEditingProvider.js
++++ b/lib/features/label-editing/LabelEditingProvider.js
+@@ -58,15 +58,15 @@ export default function LabelEditingProvider(
+     }
+   });
+ 
+-  eventBus.on([
+-    'shape.remove',
+-    'connection.remove'
+-  ], function(event) {
++eventBus.on([
++  'shape.remove',
++  'connection.remove'
++], function(event) {
+ 
+-    if (directEditing.isActive(event.element)) {
+-      directEditing.cancel();
+-    }
+-  });
++  if (directEditing.isActive()) {
++    directEditing.cancel();
++  }
++});
+ 
+   // cancel on command stack changes
+   eventBus.on([ 'commandStack.changed' ], function(e) {
+@@ -443,4 +443,4 @@ function isExpandedPool(element) {
+ 
+ function isEmptyText(label) {
+   return !label || !label.trim();
+-}
+\ No newline at end of file
++}

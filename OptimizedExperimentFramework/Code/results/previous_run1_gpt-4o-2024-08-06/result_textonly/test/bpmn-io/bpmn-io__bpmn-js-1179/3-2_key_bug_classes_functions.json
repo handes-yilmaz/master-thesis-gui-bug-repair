@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//preExecute",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//postExecuted"
+        ],
+        "explanation": "The bug report and scenario indicate that the issue occurs when an element is dropped onto a sequence flow, disrupting the layout. The `DropOnFlowBehavior` class in `DropOnFlowBehavior.js` is directly responsible for managing the behavior of elements when they are dropped onto flows. The `insertShape` function within this class is crucial as it handles the reconnections of the sequence flow with the dropped element, determining the positions of waypoints before and after the drop. Additionally, the `preExecute` and `postExecuted` functions are involved in the element move and shape creation processes, which are directly related to how elements are managed and inserted into flows. These functions likely contain the logic that needs to be adjusted to ensure the correct layout and docking behavior.",
+        "bug_scenario": "The bug scenario involves a sequence flow layout in a BPMN diagram being broken after an element is dropped onto the sequence flow. The layout issue is that the docking of the new incoming sequence flow is incorrectly positioned at the top left corner, as shown in the attached image."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//preExecute",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//postExecuted"
+        ],
+        "explanation": "The class `DropOnFlowBehavior` in `DropOnFlowBehavior.js` is directly responsible for handling behaviors related to dropping elements on flows in a BPMN diagram. The `insertShape` function is crucial as it handles the reconnection logic of the flow when a new shape is inserted. The `preExecute` and `postExecuted` functions are involved in setting up the context and executing the logic to modify the flow when elements are moved or created. These functions are likely responsible for the incorrect docking behavior observed in the bug scenario, as they manage the positioning and attachment of elements to sequence flows.",
+        "bug_scenario": "The bug scenario describes a problem where dropping any element onto a sequence flow in a BPMN diagram breaks the layout. The issue involves the docking of the new incoming sequence flow defaulting to the top left corner, instead of attaching correctly to the flow."
+    }
+}

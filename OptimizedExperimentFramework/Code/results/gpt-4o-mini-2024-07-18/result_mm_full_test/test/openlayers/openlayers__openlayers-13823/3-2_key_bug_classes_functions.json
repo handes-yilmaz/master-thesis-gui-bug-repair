@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/canvas/ImageBuilder//CanvasImageBuilder",
+            "src/ol/renderer/canvas/ImageLayer//CanvasImageLayerRenderer",
+            "src/ol/source/ImageWMS//ImageWMS"
+        ],
+        "bug_functions": [
+            "src/ol/render/canvas/ImageBuilder//setImageStyle",
+            "src/ol/renderer/canvas/ImageLayer//prepareFrame",
+            "src/ol/source/ImageWMS//getImageInternal"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the rendering and management of image layers. The 'CanvasImageBuilder' class is responsible for building the canvas for images, and its 'setImageStyle' function sets the image properties, including pixel ratio, which directly affects the canvas size. The 'CanvasImageLayerRenderer' class manages the rendering of image layers, and its 'prepareFrame' function determines how images are prepared for rendering, including their dimensions based on pixel ratio. Lastly, the 'ImageWMS' class's 'getImageInternal' function retrieves images from WMS sources, which may also contribute to the memory issue if the images are requested at an unnecessarily high resolution.",
+        "bug_scenario": "The image layer renderer is consuming excessive memory due to the creation of a canvas that is larger than necessary for high-resolution displays. This results in a canvas size that is twice as large as required, leading to four times the memory usage."
+    }
+}

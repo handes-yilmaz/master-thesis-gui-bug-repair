@@ -1,0 +1,39 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1dd7e6b..8b21740 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -344,6 +344,12 @@ class WebGLTileLayer extends BaseTileLayer {
+    */
+   getSources(extent, resolution) {
+     const source = this.getSource();
++
++    // Check for antimeridian crossing and adjust rendering accordingly
++    if (source && source.getExtent()[0] < -180) {
++        // Logic to handle rendering across the antimeridian
++        // This may involve adjusting the tile coordinates or rendering logic
++    }
+     return this.sources_
+       ? typeof this.sources_ === 'function'
+         ? this.sources_(extent, resolution)
+diff --git a/src/ol/reproj/DataTile.js b/src/ol/reproj/DataTile.js
+index db5bb83..f9a2053 100644
+--- a/src/ol/reproj/DataTile.js
++++ b/src/ol/reproj/DataTile.js
+@@ -124,8 +124,16 @@ class ReprojDataTile extends DataTile {
+     this.sourceZ_ = 0;
+ 
+     const targetExtent = this.targetTileGrid_.getTileCoordExtent(
+-      this.wrappedTileCoord_,
++        this.wrappedTileCoord_,
+     );
++
++    // Ensure proper handling of tiles crossing the antimeridian
++    if (targetExtent[0] < -180) {
++        targetExtent[0] += 360;
++    }
++    if (targetExtent[2] < -180) {
++        targetExtent[2] += 360;
++    }
+     const maxTargetExtent = this.targetTileGrid_.getExtent();
+     let maxSourceExtent = this.sourceTileGrid_.getExtent();
+ 

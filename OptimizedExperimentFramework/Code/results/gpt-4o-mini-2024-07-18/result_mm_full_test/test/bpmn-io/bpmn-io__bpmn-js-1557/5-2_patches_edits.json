@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "BpmnUpdater.js": [
+            {
+                "SEARCH": [
+                    "const parent = this.getParent(element);",
+                    "parent.get('someProperty'); // This line causes the error"
+                ],
+                "REPLACE": [
+                    "    const parent = this.getParent(element);",
+                    "    if (parent) {",
+                    "        parent.get('someProperty'); // Safely access the property",
+                    "    } else {",
+                    "        console.warn('Parent is undefined, cannot update.');",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

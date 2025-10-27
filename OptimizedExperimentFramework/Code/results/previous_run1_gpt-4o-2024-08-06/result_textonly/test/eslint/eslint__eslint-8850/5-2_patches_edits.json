@@ -1,0 +1,51 @@
+{
+    "1/1": {
+        "lib/rules/indent.js": [
+            {
+                "SEARCH": [
+                    "elements.forEach((element, index) => {",
+                    "if (offset === \"off\") {",
+                    "offsets.ignoreToken(getFirstToken(element));",
+                    "}",
+                    "if (index === 0 || !element) {",
+                    "return;",
+                    "}",
+                    "if (offset === \"first\" && tokenInfo.isFirstTokenOfLine(getFirstToken(element))) {",
+                    "offsets.matchOffsetOf(getFirstToken(elements[0]), getFirstToken(element));",
+                    "} else {",
+                    "const previousElement = elements[index - 1];",
+                    "const firstTokenOfPreviousElement = previousElement && getFirstToken(previousElement);",
+                    "",
+                    "if (previousElement && sourceCode.getLastToken(previousElement).loc.start.line > startToken.loc.end.line) {",
+                    "offsets.matchIndentOf(firstTokenOfPreviousElement, getFirstToken(element));",
+                    "}",
+                    "}",
+                    "});"
+                ],
+                "REPLACE": [
+                    "            elements.forEach((element, index) => {",
+                    "                if (offset === \"off\") {",
+                    "                    offsets.ignoreToken(getFirstToken(element));",
+                    "                }",
+                    "                if (index === 0 || !element) {",
+                    "                    return;",
+                    "                }",
+                    "                if (offset === \"first\" && tokenInfo.isFirstTokenOfLine(getFirstToken(element))) {",
+                    "                    offsets.matchOffsetOf(getFirstToken(elements[0]), getFirstToken(element));",
+                    "                } else {",
+                    "                    const previousElement = elements[index - 1];",
+                    "                    const firstTokenOfPreviousElement = previousElement && getFirstToken(previousElement);",
+                    "",
+                    "                    if (previousElement && sourceCode.getLastToken(previousElement).loc.start.line > startToken.loc.end.line) {",
+                    "                        offsets.matchIndentOf(firstTokenOfPreviousElement, getFirstToken(element));",
+                    "                    } else if (astUtils.isOpeningParenToken(sourceCode.getTokenBefore(getFirstToken(element)))) {",
+                    "                        // Adjust for additional indentation level due to parentheses",
+                    "                        offsets.increaseOffset(getFirstToken(element), 1);",
+                    "                    }",
+                    "                }",
+                    "            });"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/call-expression.js",
+            "src/language-js/print/object.js",
+            "src/language-js/print/assignment.js",
+            "src/language-js/utils/get-shebang.js",
+            "src/language-js/needs-parens.js",
+            "src/language-js/print/function.js"
+        ],
+        "explanation": "These files are related to the bug because they handle the printing and formatting of JavaScript code in Prettier. The 'call-expression.js' and 'object.js' files are specifically responsible for how objects and function calls are formatted, which directly affects the handling of parentheses in JSDoc. The 'needs-parens.js' file likely contains logic to determine when parentheses are required, which is critical to resolving this bug. The 'assignment.js' and 'function.js' files are also relevant as they manage object and function assignments where JSDoc annotations like @satisfies commonly appear. Lastly, the utility function 'get-shebang.js' may assist in parsing and processing the code correctly. Fixing the issue may require modifying these files to ensure parentheses are retained in the output.",
+        "bug_scenario": "The bug involves the Prettier code formatter removing parentheses around an object in JSDoc comments, which breaks intellisense functionality. The expected output is for Prettier to preserve the parentheses to maintain the desired intellisense behavior when using the @satisfies annotation in JSDoc."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLPoints.js",
+            "src/ol/proj/epsg4326.js",
+            "src/ol/proj/epsg3857.js"
+        ],
+        "explanation": "The `WebGLPoints.js` file contains the implementation of the `WebGLPointsLayer`, which is directly responsible for rendering the points. Any issues with how the layer handles projections will need to be addressed here. The `epsg4326.js` and `epsg3857.js` files define the projection parameters and transformations between the two coordinate systems. Since the bug involves incorrect handling of these projections, modifications in these files may be necessary to ensure that the `WebGLPointsLayer` correctly interprets and applies the EPSG:4326 projection when rendering.",
+        "bug_scenario": "The `WebGLPointsLayer` is not rendering points correctly when using the `useGeographic()` function, resulting in points being plotted in the wrong geographical locations, specifically near Africa instead of their intended locations. This issue arises because the layer does not respect the specified feature projection (EPSG:4326) and instead uses the EPSG:3857 projection."
+    }
+}

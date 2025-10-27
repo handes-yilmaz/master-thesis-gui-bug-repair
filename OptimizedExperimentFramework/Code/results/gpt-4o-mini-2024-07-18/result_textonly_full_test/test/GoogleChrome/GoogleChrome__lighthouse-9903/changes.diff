@@ -1,0 +1,22 @@
+diff --git a/lighthouse-core/audits/uses-rel-preconnect.js b/lighthouse-core/audits/uses-rel-preconnect.js
+index 8b652eb..60f2611 100644
+--- a/lighthouse-core/audits/uses-rel-preconnect.js
++++ b/lighthouse-core/audits/uses-rel-preconnect.js
+@@ -145,7 +145,7 @@ class UsesRelPreconnectAudit extends Audit {
+       });
+ 
+       // Skip the origin if we don't have timing information
+-      if (!firstRecordOfOrigin.timing) return;
++      if (!firstRecordOfOrigin.timing || !firstRecordOfOrigin.timing.connectEnd) return;
+ 
+       const securityOrigin = firstRecordOfOrigin.parsedURL.securityOrigin;
+ 
+@@ -165,7 +165,7 @@ class UsesRelPreconnectAudit extends Audit {
+       const wastedMs = Math.min(connectionTime, timeBetweenMainResourceAndDnsStart);
+       if (wastedMs < IGNORE_THRESHOLD_IN_MS) return;
+ 
+-      if (preconnectOrigins.has(securityOrigin)) {
++      if (preconnectOrigins.has(securityOrigin) && !firstRecordOfOrigin.crossOrigin) {
+         // Add a warning for any origin the user tried to preconnect to but failed
+         warnings.push(str_(UIStrings.crossoriginWarning, {securityOrigin}));
+         return;

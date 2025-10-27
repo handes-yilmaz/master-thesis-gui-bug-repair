@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/main/parser.js",
+            "src/main/options.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "These files are key bug files because they contain the core logic for parsing and formatting code in Prettier. The 'parser.js' file is responsible for resolving parsers and handling the parsing logic, which is crucial for understanding how directives and comments are processed. The 'options.js' file manages the configuration options, including how parsers are inferred and applied, which directly affects the formatting behavior. Lastly, 'printer-estree.js' contains the printing logic that formats the output, including how newlines are handled, making it essential for addressing the trailing newline issue.",
+        "bug_scenario": "The bug occurs when a file contains only a directive followed by a comment, resulting in Prettier formatting the file with two trailing newlines instead of one. This issue is reproducible using the Babylon parser, as shown in the provided images and code snippets."
+    }
+}

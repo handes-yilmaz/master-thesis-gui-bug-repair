@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/latex.js//MAGIC_COMMENT"
+        ],
+        "bug_functions": [],
+        "explanation": "The MAGIC_COMMENT class is responsible for identifying and highlighting TeX magic comments in the LaTeX syntax. The current implementation only matches the specific case of the comment, which leads to the bug where variations in case (like 'TeX' vs 'TEX') are not recognized. To fix the issue, the regex pattern used in the MAGIC_COMMENT class needs to be modified to be case insensitive.",
+        "bug_scenario": "The issue arises from the case sensitivity of the MAGIC_COMMENT rule in the LaTeX language definition, which fails to highlight both variations of the TeX magic comments as intended. The expected behavior is that both '% !TeX program = lualatex' and '% !TEX encoding = UTF-8' should be highlighted as MAGIC_COMMENT, but currently only the first line is highlighted."
+    }
+}

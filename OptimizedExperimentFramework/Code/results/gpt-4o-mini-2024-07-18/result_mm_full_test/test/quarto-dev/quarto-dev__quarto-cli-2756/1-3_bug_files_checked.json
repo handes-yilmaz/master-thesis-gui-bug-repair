@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "package/src/common/dependencies/pandoc.ts",
+            "src/resources/filters/crossref/crossref.lua",
+            "src/resources/filters/quarto-pre/theorems.lua",
+            "src/project/types/book/book-render.ts"
+        ],
+        "explanation": "These files are related to the bug because: \n1. `pandoc.ts` is responsible for handling the conversion logic for Markdown to HTML, and it likely interacts with the Lua filters. \n2. `crossref.lua` and `theorems.lua` are Lua filter scripts that directly process theorem and cross-reference elements in the Markdown documents. The error in the Lua filter indicates that an issue exists in those scripts when handling certain inputs. \n3. `render.ts` handles the rendering process and may involve how the filters are applied during the output generation, making it crucial for debugging the rendering process.",
+        "bug_scenario": "The error arises when attempting to generate HTML output from Theorems and Proofs in Markdown files that do not include a header or label, which causes a Lua filter error. Specifically, the caption of a theorem is being incorrectly rendered as part of the list items, leading to unexpected behavior."
+    }
+}

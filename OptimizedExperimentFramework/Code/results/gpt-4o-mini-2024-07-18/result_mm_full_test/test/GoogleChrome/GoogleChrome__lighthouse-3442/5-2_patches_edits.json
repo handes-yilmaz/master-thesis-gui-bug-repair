@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "lighthouse-core/report/v2/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "this._dom.find('.lh-config__timestamp', header).textContent =",
+                    "Util.formatDateTime(report.generatedTime);"
+                ],
+                "REPLACE": [
+                    "    if (report && report.generatedTime) {",
+                    "        this._dom.find('.lh-config__timestamp', header).textContent =",
+                    "            Util.formatDateTime(report.generatedTime);",
+                    "    } else {",
+                    "        this._dom.find('.lh-config__timestamp', header).textContent = 'N/A';",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this._dom.find('.lh-footer__timestamp', footer).textContent =",
+                    "Util.formatDateTime(report.generatedTime);"
+                ],
+                "REPLACE": [
+                    "    if (report && report.generatedTime) {",
+                    "        this._dom.find('.lh-footer__timestamp', footer).textContent =",
+                    "            Util.formatDateTime(report.generatedTime);",
+                    "    } else {",
+                    "        this._dom.find('.lh-footer__timestamp', footer).textContent = 'N/A';",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

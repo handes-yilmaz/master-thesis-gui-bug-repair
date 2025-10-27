@@ -1,0 +1,28 @@
+diff --git a/src/ol/source/DataTile.js b/src/ol/source/DataTile.js
+index 3836457..1663809 100644
+--- a/src/ol/source/DataTile.js
++++ b/src/ol/source/DataTile.js
+@@ -66,6 +66,7 @@ class DataTileSource extends TileSource {
+       });
+     }
+ 
++    this.gutter = options.gutter || 0; // Add gutter option
+     super({
+       cacheSize: 0.1, // don't cache on the source
+       attributions: options.attributions,
+@@ -90,6 +91,7 @@ class DataTileSource extends TileSource {
+      * @private
+      */
+     this.loader_ = options.loader;
++    this.gutter = options.gutter || 0; // Add gutter option
+ 
+     this.handleTileChange_ = this.handleTileChange_.bind(this);
+ 
+@@ -130,6 +132,7 @@ class DataTileSource extends TileSource {
+     }
+ 
+     const tile = new DataTile(
++      assign({tileCoord: [z, x, y], loader: loader, gutter: this.gutter}, this.tileOptions) // Pass gutter to tile options
+       assign({tileCoord: [z, x, y], loader: loader}, this.tileOptions)
+     );
+     tile.key = this.getKey();

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/context-pad/ContextPadProvider",
+            "lib/features/replace/BpmnReplace",
+            "lib/features/modeling/behavior/CreateDataObjectBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/context-pad/ContextPadProvider//getContextPadEntries",
+            "lib/features/replace/BpmnReplace//replaceElement",
+            "lib/features/modeling/behavior/CreateDataObjectBehavior//preExecute"
+        ],
+        "explanation": "The identified classes and functions are crucial for addressing the bug. The ContextPadProvider's getContextPadEntries function is responsible for populating the context pad menu, which needs to be modified to include options for switching between DataObjectReference and DataStoreReference. The BpmnReplace class's replaceElement function handles the logic for replacing BPMN elements, which is essential for implementing the switch functionality. Lastly, the CreateDataObjectBehavior's preExecute function ensures that a DataObject is created whenever a DataObjectReference is instantiated, which is relevant for maintaining the integrity of the references in the menu.",
+        "bug_scenario": "The DataObjectReference replace menu currently only contains the collection marker, making it feel empty. The request is to allow switching between DataObjectReference and DataStoreReference to ensure the menu is populated."
+    }
+}

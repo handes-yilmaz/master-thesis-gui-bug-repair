@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/cascader-select/cascader-select.jsx//CascaderSelect"
+        ],
+        "bug_functions": [
+            "src/cascader-select/index.jsx//transform"
+        ],
+        "explanation": "The class 'CascaderSelect' in 'src/cascader-select/cascader-select.jsx' is the main component that is reportedly modifying the input properties, leading to the errors with immer. The 'transform' function in 'src/cascader-select/index.jsx' is likely responsible for manipulating component properties by transforming deprecated props to new ones, which could be inadvertently modifying input properties. These elements are central to the issue because they directly involve the handling and transformation of props, which is the core problem reported in the bug.",
+        "bug_scenario": "The bug scenario describes an issue with the CascaderSelect component, where it modifies the properties passed to it, causing errors when used with the immer library. The bug report includes an image indicating that the component should not alter user-provided values."
+    },
+    "2": {
+        "bug_classes": [
+            "src/cascader-select/cascader-select.jsx//CascaderSelect"
+        ],
+        "bug_functions": [
+            "src/cascader-select/index.jsx//ConfigProvider.config"
+        ],
+        "explanation": "The class 'CascaderSelect' in 'src/cascader-select/cascader-select.jsx' is a key element because it represents the main component that is reported to be altering the properties passed to it. This behavior is likely implemented within this class, making it a direct point of investigation for the bug. The function 'ConfigProvider.config' in 'src/cascader-select/index.jsx' is related because it involves transforming properties (e.g., 'shape', 'container', 'expandTrigger') passed to the CascaderSelect component. This transformation could potentially include modifications that lead to the reported issue of altering user-provided values.",
+        "bug_scenario": "The bug is related to the CascaderSelect component, which modifies the properties passed to it internally, causing an error when used with the immer library. The issue is that the component should not alter the values provided by the user."
+    }
+}

@@ -1,0 +1,83 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "parseUseragentIntoMetadata",
+            "file_path": "core/lib/emulation.js",
+            "function_details": [
+                {
+                    "name": "parseUseragentIntoMetadata",
+                    "start_line": 25,
+                    "end_line": 58
+                }
+            ],
+            "function_code": [
+                "function parseUseragentIntoMetadata(userAgent, formFactor) {",
+                "  const match = userAgent.match(/Chrome\\/([\\d.]+)/); // eg 'Chrome/(71.0.3577.0)'",
+                "  const fullVersion = match?.[1] || '99.0.1234.0';",
+                "  const [version] = fullVersion.split('.', 1);",
+                "  const brands = [",
+                "    {brand: 'Chromium', version},",
+                "    {brand: 'Google Chrome', version},",
+                "    {brand: 'Lighthouse', version: lighthouseVersion},",
+                "  ];",
+                "",
+                "  const motoG4Details = {",
+                "    platform: 'Android',",
+                "    platformVersion: '6.0',",
+                "    architecture: '',",
+                "    model: 'Moto G4',",
+                "  };",
+                "  const macDesktopDetails = {",
+                "    platform: 'macOS',",
+                "    platformVersion: '10.15.7',",
+                "    architecture: 'x86',",
+                "    model: '',",
+                "  };",
+                "  const mobile = formFactor === 'mobile';",
+                "",
+                "  return {",
+                "    brands,",
+                "    fullVersion,",
+                "    // Since config users can supply a custom useragent, they likely are emulating something",
+                "    // other than Moto G4 and MacOS Desktop.",
+                "    // TODO: Determine how to thoughtfully expose this metadata/client-hints configurability.",
+                "    ...(mobile ? motoG4Details : macDesktopDetails),",
+                "    mobile,",
+                "  };",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "emulate",
+            "file_path": "core/lib/emulation.js",
+            "function_details": [
+                {
+                    "name": "emulate",
+                    "start_line": 65,
+                    "end_line": 82
+                }
+            ],
+            "function_code": [
+                "async function emulate(session, settings) {",
+                "  if (settings.emulatedUserAgent !== false) {",
+                "    const userAgent = /** @type {string} */ (settings.emulatedUserAgent);",
+                "    await session.sendCommand('Network.setUserAgentOverride', {",
+                "      userAgent,",
+                "      userAgentMetadata: parseUseragentIntoMetadata(userAgent, settings.formFactor),",
+                "    });",
+                "  }",
+                "  // See devtools-entry for one usecase for disabling screenEmulation",
+                "  if (settings.screenEmulation.disabled !== true) {",
+                "    const {width, height, deviceScaleFactor, mobile} = settings.screenEmulation;",
+                "    const params = {width, height, deviceScaleFactor, mobile};",
+                "    await session.sendCommand('Emulation.setDeviceMetricsOverride', params);",
+                "    await session.sendCommand('Emulation.setTouchEmulationEnabled', {",
+                "      enabled: params.mobile,",
+                "    });",
+                "  }",
+                "}"
+            ]
+        }
+    }
+}

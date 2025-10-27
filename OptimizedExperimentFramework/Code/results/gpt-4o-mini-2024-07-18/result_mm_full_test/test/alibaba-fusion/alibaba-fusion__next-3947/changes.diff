@@ -1,0 +1,16 @@
+diff --git a/src/form/item.jsx b/src/form/item.jsx
+index 2a634b4..4bc7082 100644
+--- a/src/form/item.jsx
++++ b/src/form/item.jsx
+@@ -311,9 +311,9 @@ export default class Item extends React.Component {
+     }
+ 
+     getLabelForErrorMessage() {
+-        let label = this.props.errorMessageLabel || this.props.label;
++        let label = this.props.errorMessageLabel || this.props.label || this.props.labelText;
+ 
+-        if (!label || typeof label !== 'string') {
++        if (!label || typeof label !== 'string' || !this.props.errorMessageLabel) {
+             return null;
+         }
+ 

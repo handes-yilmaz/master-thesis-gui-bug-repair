@@ -1,0 +1,73 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "for (let z = initialZ; z >= minZ; --z) {",
+                    "const tileRange = tileGrid.getTileRangeForExtentAndZ(",
+                    "extent,",
+                    "z,",
+                    "this.tempTileRange_",
+                    ");",
+                    "",
+                    "const tileResolution = tileGrid.getResolution(z);",
+                    "",
+                    "for (let x = tileRange.minX; x <= tileRange.maxX; ++x) {",
+                    "for (let y = tileRange.minY; y <= tileRange.maxY; ++y) {",
+                    "const tileCoord = createTileCoord(z, x, y, this.tempTileCoord_);",
+                    "const cacheKey = getCacheKey(tileSource, tileCoord);",
+                    "...",
+                    "if (tile.getState() === TileState.IDLE) {",
+                    "if (!frameState.tileQueue.isKeyQueued(tileQueueKey)) {",
+                    "frameState.tileQueue.enqueue([",
+                    "tile,",
+                    "tileSourceKey,",
+                    "tileGrid.getTileCoordCenter(tileCoord),",
+                    "tileResolution,",
+                    "]);",
+                    "}",
+                    "}",
+                    "}",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const tilePromises = []; // Array to hold promises for concurrent loading",
+                    "    for (let z = initialZ; z >= minZ; --z) {",
+                    "      const tileRange = tileGrid.getTileRangeForExtentAndZ(",
+                    "        extent,",
+                    "        z,",
+                    "        this.tempTileRange_",
+                    "      );",
+                    "",
+                    "      const tileResolution = tileGrid.getResolution(z);",
+                    "",
+                    "      for (let x = tileRange.minX; x <= tileRange.maxX; ++x) {",
+                    "        for (let y = tileRange.minY; y <= tileRange.maxY; ++y) {",
+                    "          const tileCoord = createTileCoord(z, x, y, this.tempTileCoord_);",
+                    "          const cacheKey = getCacheKey(tileSource, tileCoord);",
+                    "          ...",
+                    "          if (tile.getState() === TileState.IDLE) {",
+                    "            if (!frameState.tileQueue.isKeyQueued(tileQueueKey)) {",
+                    "              tilePromises.push(",
+                    "                new Promise((resolve) => {",
+                    "                  frameState.tileQueue.enqueue([",
+                    "                    tile,",
+                    "                    tileSourceKey,",
+                    "                    tileGrid.getTileCoordCenter(tileCoord),",
+                    "                    tileResolution,",
+                    "                  ]);",
+                    "                  resolve();",
+                    "                })",
+                    "              );",
+                    "            }",
+                    "          }",
+                    "        }",
+                    "      }",
+                    "    }",
+                    "    await Promise.all(tilePromises); // Wait for all tile requests to complete"
+                ]
+            }
+        ]
+    }
+}

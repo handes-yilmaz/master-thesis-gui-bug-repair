@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/ReplaceConnectionBehavior.js": [
+            {
+                "SEARCH": [
+                    "// replace SequenceFlow <> MessageFlow",
+                    "",
+                    "if (replacementType) {",
+                    "modeling.connect(source, target, {",
+                    "type: replacementType,",
+                    "waypoints: connection.waypoints.slice()",
+                    "});",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    // replace SequenceFlow <> MessageFlow",
+                    "",
+                    "    if (replacementType) {",
+                    "      var newConnection = modeling.connect(source, target, {",
+                    "        type: replacementType,",
+                    "        waypoints: connection.waypoints.slice()",
+                    "      });",
+                    "",
+                    "      // Ensure the new connection is part of the correct parent",
+                    "      if (newConnection && parent !== newConnection.parent) {",
+                    "        modeling.updateSemanticParent(newConnection, parent);",
+                    "      }",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

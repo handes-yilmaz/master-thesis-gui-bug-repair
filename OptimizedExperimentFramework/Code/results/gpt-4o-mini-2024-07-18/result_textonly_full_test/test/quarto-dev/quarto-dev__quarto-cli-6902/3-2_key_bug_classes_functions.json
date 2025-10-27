@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/editor-support/crossref.ts//crossrefCommand",
+            "src/resources/filters/crossref/crossref.lua//crossref_mark_subfloats",
+            "src/command/render/output-tex.ts//texToPdfOutputRecipe"
+        ],
+        "bug_functions": [],
+        "explanation": "The identified classes and functions are related to the bug as follows: 1. **crossrefCommand** in `crossref.ts` is responsible for indexing cross-references in the content, which is crucial for ensuring that subfigures are correctly referenced. 2. **crossref_mark_subfloats** in `crossref.lua` is likely the function that processes subfigures and should be modified to ensure that they are labeled correctly. 3. **texToPdfOutputRecipe** in `output-tex.ts` is involved in generating the final LaTeX output, and any changes to how figures are processed will need to be reflected in this function to ensure the correct LaTeX is produced.",
+        "bug_scenario": "The bug scenario involves the generation of LaTeX documents from Quarto markdown files where subfigures are not being labeled correctly. In the provided minimal working example, the subfigures are labeled as normal figures, leading to confusion in cross-referencing. The expected behavior is that subfigures should have their own labels for proper referencing, which is demonstrated in the patched version of the example."
+    }
+}

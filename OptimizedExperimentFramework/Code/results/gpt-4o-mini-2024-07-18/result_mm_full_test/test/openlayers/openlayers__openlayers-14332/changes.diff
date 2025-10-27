@@ -1,0 +1,64 @@
+diff --git a/src/ol/renderer/canvas/TileLayer.js b/src/ol/renderer/canvas/TileLayer.js
+index a57967c..e6692b7 100644
+--- a/src/ol/renderer/canvas/TileLayer.js
++++ b/src/ol/renderer/canvas/TileLayer.js
+@@ -365,9 +365,15 @@ class CanvasTileLayerRenderer extends CanvasLayerRenderer {
+       }
+     }
+ 
+-    const canvasScale =
++    const canvasScale = 
+       ((tileResolution / viewResolution) * pixelRatio) / tilePixelRatio;
+ 
++    // Adjust canvas scale for rotations close to 90 and 270 degrees
++    if (Math.abs(rotation) % (Math.PI / 2) < 0.1) {
++      // Apply a correction factor to the canvas scale
++      canvasScale *= 1.1; // Example adjustment, may need fine-tuning
++    }
++
+     // set forward and inverse pixel transforms
+     composeTransform(
+       this.pixelTransform,
+@@ -384,6 +390,9 @@ class CanvasTileLayerRenderer extends CanvasLayerRenderer {
+ 
+     this.useContainer(target, canvasTransform, this.getBackground(frameState));
+     const context = this.context;
++
++    // Save the current context state before applying transformations
++    context.save();
+     const canvas = context.canvas;
+ 
+     makeInverse(this.inversePixelTransform, this.pixelTransform);
+@@ -516,16 +525,22 @@ class CanvasTileLayerRenderer extends CanvasLayerRenderer {
+             context.clearRect(x, y, w, h);
+           }
+         }
+-        this.drawTileImage(
+-          tile,
+-          frameState,
+-          x,
+-          y,
+-          w,
+-          h,
+-          tileGutter,
+-          transition
+-        );
++    // Apply rotation to the context before drawing the tile
++    context.rotate(rotation);
++    
++    this.drawTileImage(
++      tile,
++      frameState,
++      x,
++      y,
++      w,
++      h,
++      tileGutter,
++      transition
++    );
++
++    // Restore the context to its original state
++    context.restore();
+         if (clips && !inTransition) {
+           if (contextSaved) {
+             context.restore();

@@ -1,0 +1,32 @@
+diff --git a/src/js/components/DataChart/DataChart.js b/src/js/components/DataChart/DataChart.js
+index 0e6d79524..0c46afd1f 100644
+--- a/src/js/components/DataChart/DataChart.js
++++ b/src/js/components/DataChart/DataChart.js
+@@ -298,8 +298,8 @@ const DataChart = forwardRef(
+         chartBounds.forEach((bounds) => {
+           alignedBounds[0][0] = Math.min(alignedBounds[0][0], bounds[0][0]);
+           alignedBounds[0][1] = Math.max(alignedBounds[0][1], bounds[0][1]);
+-          alignedBounds[1][0] = Math.min(alignedBounds[1][0], bounds[1][0]);
+-          alignedBounds[1][1] = Math.max(alignedBounds[1][1], bounds[1][1]);
++          alignedBounds[1][0] = Math.min(alignedBounds[1][0], bounds[1][0], 0);
++          alignedBounds[1][1] = Math.max(alignedBounds[1][1], bounds[1][1], 0);
+         });
+         chartBounds = chartBounds.map(() => alignedBounds);
+       }
+@@ -312,8 +312,15 @@ const DataChart = forwardRef(
+       return chartValues.map((values, index) => {
+         const { thickness, type } = charts[index];
+         const calcValues = stackedChartType[type] ? values[0] : values;
++        const adjustedBounds = {
++          ...chartBounds[index],
++          y: [
++            Math.min(chartBounds[index][1][0], 0),
++            Math.max(chartBounds[index][1][1], 0),
++          ],
++        };
+         return calcs(calcValues, {
+-          bounds: chartBounds[index],
++          bounds: adjustedBounds,
+           steps,
+           thickness,
+         });

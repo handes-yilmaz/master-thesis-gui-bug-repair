@@ -1,0 +1,18 @@
+diff --git a/src/cascader/cascader.jsx b/src/cascader/cascader.jsx
+index b290e81..175d985 100644
+--- a/src/cascader/cascader.jsx
++++ b/src/cascader/cascader.jsx
+@@ -139,8 +139,11 @@ export default class Cascader extends Component {
+         useVirtual: false,
+         checkStrictly: false,
+         itemRender: item => {
+-            const title = this.props.showTitle ? item.label : undefined;
+-            return <span title={title}>{item.label}</span>;
++            return this.props.showTitle ? (
++                <span title={item.label}>{item.label}</span>
++            ) : (
++                <span>{item.label}</span>
++            );
+         },
+     };
+ 

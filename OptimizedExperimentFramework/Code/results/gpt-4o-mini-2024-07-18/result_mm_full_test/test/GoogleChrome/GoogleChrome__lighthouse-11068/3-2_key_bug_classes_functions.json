@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/font-display.js//FontDisplay"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/font-display.js//findFontDisplayDeclarations",
+            "lighthouse-core/audits/font-display.js//audit",
+            "lighthouse-core/gather/gatherers/css-usage.js//afterPass"
+        ],
+        "explanation": "The 'FontDisplay' class in 'font-display.js' is crucial as it handles the audit for font-display values, which is directly related to the reported issue. The 'findFontDisplayDeclarations' function is responsible for identifying font-display declarations in stylesheets, which is essential for resolving the warnings. The 'audit' function evaluates the results of the font-display checks, and the 'afterPass' function in 'css-usage.js' gathers the necessary CSS data, which is also relevant to the problem since it collects stylesheets that may not be referencing the fonts correctly.",
+        "bug_scenario": "The Lighthouse tool is unable to automatically check the font-display value for several web fonts, leading to warnings about text visibility during webfont loads. This issue is highlighted in the audit report, indicating that the CSSUsage artifact does not reference the necessary stylesheets for these fonts."
+    }
+}

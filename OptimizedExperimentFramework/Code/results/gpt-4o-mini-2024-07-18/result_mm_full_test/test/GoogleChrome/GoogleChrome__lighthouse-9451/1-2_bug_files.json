@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/gatherers/offline.js",
+            "lighthouse-core/gather/gatherers/service-worker.js",
+            "lighthouse-core/gather/gatherers/start-url.js",
+            "lighthouse-core/audits/offline-start-url.js"
+        ],
+        "explanation": "These files are related to the offline functionality of Lighthouse. The `offline.js` file likely contains logic for determining if the application can work offline. The `service-worker.js` file handles service worker interactions, which are critical for offline functionality. The `start-url.js` gatherer checks if the start URL can be loaded offline, and the `offline-start-url.js` audit verifies that the page loads correctly when offline. Modifying these files may resolve the issues related to offline detection.",
+        "bug_scenario": "The offline pass in Lighthouse does not consistently indicate that the page is offline, as it sometimes loads the desktop version of the site instead of the expected offline content. This issue is evidenced by the `fromServiceWorker` and `fromDiskCache` flags being false during an offline test, which should not occur when offline."
+    }
+}

@@ -1,0 +1,26 @@
+diff --git a/flow-report/src/summary/summary.tsx b/flow-report/src/summary/summary.tsx
+index bac2fa9..e88d894 100644
+--- a/flow-report/src/summary/summary.tsx
++++ b/flow-report/src/summary/summary.tsx
+@@ -63,7 +63,7 @@ export const SummaryFlowStep: FunctionComponent<{
+             <Separator/>
+           </div>
+       }
+-      <FlowStepThumbnail reportResult={reportResult} width={THUMBNAIL_WIDTH}/>
++      <FullPageScreenshot reportResult={reportResult} width={FULL_PAGE_SCREENSHOT_WIDTH}/>
+       <FlowSegment mode={lhr.gatherMode}/>
+       <div className="SummaryFlowStep__label">
+         <div className="SummaryFlowStep__mode">{modeDescription}</div>
+diff --git a/lighthouse-core/audits/image-size-responsive.js b/lighthouse-core/audits/image-size-responsive.js
+index 9a85d90..47702ac 100644
+--- a/lighthouse-core/audits/image-size-responsive.js
++++ b/lighthouse-core/audits/image-size-responsive.js
+@@ -263,7 +263,7 @@ class ImageSizeResponsive extends Audit {
+ 
+     /** @type {LH.Audit.Details.Table['headings']} */
+     const headings = [
+-      {key: 'url', itemType: 'thumbnail', text: ''},
++      {key: 'url', itemType: 'fullpage-screenshot', text: ''},
+       {key: 'elidedUrl', itemType: 'url', text: str_(i18n.UIStrings.columnURL)},
+       {key: 'displayedSize', itemType: 'text', text: str_(UIStrings.columnDisplayed)},
+       {key: 'actualSize', itemType: 'text', text: str_(UIStrings.columnActual)},

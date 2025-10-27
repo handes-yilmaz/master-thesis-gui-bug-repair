@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "1. `UnsetDefaultFlowBehavior.js`: This file is likely responsible for the behavior of unsetting the default flow attribute when an event is attached to the workflow. The bug involves the incorrect removal of the default attribute, so this behavior needs to be investigated.\n\n2. `AttachEventBehavior.js`: Since the bug occurs when a Timer Intermediate Catch Event is attached, this file is relevant because it probably includes logic related to attaching events and could affect the default flow attribute.\n\n3. `Modeling.js`: This is a core file related to modeling the BPMN elements, including gateways and their sequence flows. Changes in modeling logic, particularly in how elements interact, could cause the observed bug.",
+        "bug_scenario": "The bug report describes an issue where adding a Timer Intermediate Catch Event to a non-default sequence flow of an exclusive gateway removes the default attribute of the gateway, even though the default flow remains visually rendered. This problem occurs with other types of catch events as well."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js"
+        ],
+        "explanation": "These files are likely related based on their role in handling event attachment, element replacement, and flow behavior changes. 'AttachEventBehavior.js' might be responsible for attaching events like Timer Intermediate Catch Event, which triggers the issue. 'ReplaceElementBehaviour.js' may affect behavior when elements are replaced, potentially causing the default attribute to be inadvertently removed. 'UnsetDefaultFlowBehavior.js' is directly related to managing default flows and could be where the default attribute is removed during these operations.",
+        "bug_scenario": "In the provided animation, adding a Timer Intermediate Catch Event to a sequence flow connected to an exclusive gateway removes the 'default' attribute from the gateway, although the default flow remains visually rendered. This issue seems to occur with other types of catch events as well."
+    }
+}

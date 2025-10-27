@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Image.js",
+            "src/ol/style/Text.js",
+            "src/ol/render/canvas/style.js",
+            "src/ol/render/webgl/VectorStyleRenderer.js"
+        ],
+        "explanation": "These files are directly related to the rendering of styles in OpenLayers. The Image.js and Text.js files define how image and text styles are applied to layers, which is crucial for modifying their rendering behavior based on the new declutter options. The style.js file in the canvas rendering section is responsible for applying these styles during the rendering process. Lastly, the VectorStyleRenderer.js file in the webgl rendering section is likely responsible for handling vector styles, including text and images, in a GPU-accelerated manner, which may also require changes to accommodate the new declutter logic.",
+        "bug_scenario": "The bug pertains to the handling of image and label combinations in declutter mode, particularly when the declutterMode is set to a value other than 'declutter'. The user requests an enhancement that allows for selective decluttering of just text, rather than both images and text together. This requires modifications to the style handling of images and text in the rendering pipeline."
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/replace/ReplaceOptions.js",
+            "lib/features/replace/BpmnReplace.js",
+            "lib/features/replace/index.js",
+            "lib/features/modeling/behavior/CreateDataObjectBehavior.js",
+            "lib/features/modeling/behavior/DataStoreBehavior.js"
+        ],
+        "explanation": "The identified files are related to the `replace` functionality and data object handling within the BPMN tool:\n\n1. **lib/features/replace/ReplaceOptions.js**: This file likely contains the options available in the replace menu, which would need to be modified to add `DataStoreReference` and `DataObjectReference` as options.\n\n2. **lib/features/replace/BpmnReplace.js**: This file handles the replacement logic for BPMN elements. It is responsible for executing the switch between `DataObjectReference` and `DataStoreReference`.\n\n3. **lib/features/replace/index.js**: This is likely the entry point for the replace feature, coordinating the available actions and options.\n\n4. **lib/features/modeling/behavior/CreateDataObjectBehavior.js**: This file handles the creation behavior for Data Objects, which might need adjustments to account for dynamic switching between different data references.\n\n5. **lib/features/modeling/behavior/DataStoreBehavior.js**: Similar to `CreateDataObjectBehavior.js`, this file probably manages Data Store specific behaviors, which needs to consider interchangeable options with data objects.\n\nModifying these files would implement the requested feature by expanding the menu options and ensuring proper handling of newly added options during element replacement.",
+        "bug_scenario": "The bug scenario involves the user interface for the `DataObjectReference` replace menu in a BPMN (Business Process Model and Notation) tool. The current implementation only allows switching with a collection marker, which makes the menu look empty and less functional. The requested improvement is to enable switching between `DataObjectReference` and `DataStoreReference`, thereby enhancing the menu's usability and ensuring it is consistently populated. The image provided in the bug report shows an example of the menu, highlighting its limited options as the issue."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/replace/ReplaceOptions.js",
+            "lib/features/popup-menu/ReplaceMenuProvider.js",
+            "lib/features/modeling/behavior/CreateDataObjectBehavior.js",
+            "lib/features/modeling/behavior/DataStoreBehavior.js"
+        ],
+        "explanation": "1. **ReplaceOptions.js**: This file likely defines the available options in the replacement menu. To add the DataStoreReference and DataObjectReference as switchable options, modifications in this file are necessary to include these elements.\n\n2. **ReplaceMenuProvider.js**: This file is responsible for providing the menu in the UI. Changes here would be required to handle new menu logic that allows switching between a DataObjectReference and a DataStoreReference.\n\n3. **CreateDataObjectBehavior.js**: This behavior handles actions related to creating a DataObject. If new options allow switching from a DataObjectReference, this behavior may need adjustment to support such operations.\n\n4. **DataStoreBehavior.js**: This file manages behaviors linked with DataStore elements. Adding functionality to switch to DataStoreReference will require modifications here so that the behavior correctly handles references being switched from DataObject.",
+        "bug_scenario": "The bug is related to the functionality of the replace menu in a BPMN (Business Process Model and Notation) web application. The reported issue is that the DataObjectReference replace menu feels incomplete and lacks entries as it currently only contains the collection marker. The request is to allow DataObjectReference to be switched to a DataStoreReference and vice versa to ensure the menu is always populated."
+    }
+}

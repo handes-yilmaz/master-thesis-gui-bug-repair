@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_file": "rendering/cases/heatmap-layer/main.js",
+        "compressed": "NO",
+        "line_numbers": 44,
+        "compressed_line_numbers": 44,
+        "compressed_bug_file_content": "import Map from '../../../src/ol/Map.js';\nimport View from '../../../src/ol/View.js';\nimport TileLayer from '../../../src/ol/layer/Tile.js';\nimport XYZ from '../../../src/ol/source/XYZ';\nimport {Heatmap as HeatmapLayer} from '../../../src/ol/layer';\nimport VectorSource from '../../../src/ol/source/Vector';\nimport KML from '../../../src/ol/format/KML';\n\nconst vector = new HeatmapLayer({\n  source: new VectorSource({\n    url: '/data/2012_Earthquakes_Mag5.kml',\n    format: new KML({\n      extractStyles: false\n    })\n  }),\n  blur: 3,\n  radius: 3\n});\n\nvector.getSource().on('addfeature', function(event) {\n  const name = event.feature.get('name');\n  const magnitude = parseFloat(name.substr(2));\n  event.feature.set('weight', magnitude - 5);\n});\n\nconst raster = new TileLayer({\n  source: new XYZ({\n    url: '/data/tiles/satellite/{z}/{x}/{y}.jpg',\n    transition: 0\n  })\n});\n\nnew Map({\n  layers: [raster, vector],\n  target: 'map',\n  view: new View({\n    center: [0, 0],\n    zoom: 0\n  })\n});\n\nrender({\n  message: 'Heatmap layer renders properly using webgl'\n});"
+    },
+    "2": {
+        "bug_file": "rendering/cases/icon-symbol/main.js",
+        "compressed": "NO",
+        "line_numbers": 46,
+        "compressed_line_numbers": 46,
+        "compressed_bug_file_content": "import Map from '../../../src/ol/Map.js';\nimport View from '../../../src/ol/View.js';\nimport {Vector as VectorLayer, Tile as TileLayer} from '../../../src/ol/layer.js';\nimport {Vector as VectorSource, XYZ} from '../../../src/ol/source.js';\nimport Point from '../../../src/ol/geom/Point.js';\nimport Feature from '../../../src/ol/Feature.js';\nimport {fromLonLat} from '../../../src/ol/proj.js';\nimport {Style, Icon} from '../../../src/ol/style.js';\n\nconst center = fromLonLat([8.6, 50.1]);\n\nnew Map({\n  layers: [\n    new TileLayer({\n      source: new XYZ({\n        url: '/data/tiles/satellite/{z}/{x}/{y}.jpg'\n      })\n    }),\n    new VectorLayer({\n      style: function() {\n        return new Style({\n          image: new Icon({\n            src: '/data/icon.png',\n            anchor: [0.5, 46],\n            anchorXUnits: 'fraction',\n            anchorYUnits: 'pixels'\n          })\n        });\n      },\n      source: new VectorSource({\n        features: [\n          new Feature(\n            new Point(center)\n          )\n        ]\n      })\n    })\n  ],\n  target: 'map',\n  view: new View({\n    center: center,\n    zoom: 3\n  })\n});\n\nrender();"
+    },
+    "3": {
+        "bug_file": "rendering/cases/layer-tile-simple/main.js",
+        "compressed": "NO",
+        "line_numbers": 25,
+        "compressed_line_numbers": 25,
+        "compressed_bug_file_content": "import Map from '../../../src/ol/Map.js';\nimport View from '../../../src/ol/View.js';\nimport TileLayer from '../../../src/ol/layer/Tile.js';\nimport {fromLonLat} from '../../../src/ol/proj';\nimport XYZ from '../../../src/ol/source/XYZ';\n\nconst center = fromLonLat([8.6, 50.1]);\n\nnew Map({\n  layers: [\n    new TileLayer({\n      source: new XYZ({\n        url: '/data/tiles/satellite/{z}/{x}/{y}.jpg',\n        transition: 0\n      })\n    })\n  ],\n  target: 'map',\n  view: new View({\n    center: center,\n    zoom: 3\n  })\n});\n\nrender();"
+    }
+}

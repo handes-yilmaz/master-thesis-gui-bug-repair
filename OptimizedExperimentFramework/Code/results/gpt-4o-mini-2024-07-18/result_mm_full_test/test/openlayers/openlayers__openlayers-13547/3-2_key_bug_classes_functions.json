@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/TileWMS//TileWMS",
+            "src/ol/source/XYZ//XYZ",
+            "src/ol/layer/WebGLTile//WebGLTileLayer"
+        ],
+        "bug_functions": [
+            "src/ol/source/TileWMS//getFeatureInfoUrl",
+            "src/ol/source/TileWMS//tileUrlFunction",
+            "src/ol/source/XYZ//constructor",
+            "src/ol/layer/WebGLTile//render"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they handle tile rendering and the management of tile sources. The TileWMS class currently implements the gutter option, which needs to be extended to other classes like XYZ and WebGLTileLayer to ensure consistent rendering across different tile sources. The functions getFeatureInfoUrl and tileUrlFunction in TileWMS are crucial for generating the correct tile requests, while the constructor in XYZ needs to be modified to include gutter handling. The render function in WebGLTileLayer is also relevant as it deals with how tiles are displayed, which is directly impacted by the gutter settings.",
+        "bug_scenario": "The bug scenario involves the need for a gutter option for more tile sources, specifically for XYZ and DataTile, to prevent edge effects when rendering tiles. The current implementation only supports this for TileWMS, and the edge effects can be seen in the provided image where datatiles join."
+    }
+}

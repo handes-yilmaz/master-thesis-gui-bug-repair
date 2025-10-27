@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/Image.js",
+            "src/ol/source/ImageWMS.js",
+            "src/ol/renderer/canvas/ImageLayer.js",
+            "src/ol/layer/BaseImage.js",
+            "src/ol/proj/proj4.js"
+        ],
+        "explanation": "The files identified are directly related to the rendering and handling of WMS images in the library. 'Image.js' and 'ImageWMS.js' manage the loading and representation of WMS images, which are likely where the aspect ratio and dimension checks need to be implemented or corrected. 'ImageLayer.js' is responsible for rendering image layers on the map, and may require changes to ensure proper scaling. 'BaseImage.js' is a superclass for image layers and may contain common logic that could affect all derived classes. Lastly, 'proj4.js' handles projections that may influence how dimensions are calculated and rendered, which could also contribute to the blurriness if not handled correctly.",
+        "bug_scenario": "The WMS image becomes blurry when the aspect ratio is not a round integer, or when the map dimensions (width or height) are not even. This issue can be reproduced on the specified URL, where the map does not render sharply."
+    }
+}

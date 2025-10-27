@@ -1,0 +1,12 @@
+diff --git a/src/ol/control/Attribution.js b/src/ol/control/Attribution.js
+index 0ca804a..5dd3366 100644
+--- a/src/ol/control/Attribution.js
++++ b/src/ol/control/Attribution.js
+@@ -194,6 +194,7 @@ class Attribution extends Control {
+       new Set(
+         this.getMap()
+           .getAllLayers()
++          .filter(layer => layer.getVisible()) // Check if the layer is visible
+           .flatMap((layer) => layer.getAttributions(frameState))
+       )
+     );

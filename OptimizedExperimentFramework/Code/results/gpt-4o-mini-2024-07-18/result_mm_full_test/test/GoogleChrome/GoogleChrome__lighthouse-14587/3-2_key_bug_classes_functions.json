@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "cli/cli-flags.js//getFlags",
+            "core/lib/emulation.js//parseUseragentIntoMetadata",
+            "core/lib/emulation.js//emulate"
+        ],
+        "bug_functions": [
+            "core/lib/emulation.js//emulate",
+            "core/lib/emulation.js//parseUseragentIntoMetadata"
+        ],
+        "explanation": "The `getFlags` function in `cli-flags.js` is responsible for parsing command-line arguments, which may include settings related to device emulation. The `parseUseragentIntoMetadata` function in `emulation.js` is crucial for determining the user agent details based on the device being tested, which directly affects how the report is generated. The `emulate` function is responsible for setting the emulation parameters, including the user agent and device metrics. If these functions do not correctly identify the physical device, the report will incorrectly state that it is emulating a Moto G4 instead of recognizing the actual device being used.",
+        "bug_scenario": "The Lighthouse report incorrectly states 'Emulated Moto G4' when testing on a real Moto Power G device, instead of indicating that it is testing on a physical device."
+    }
+}

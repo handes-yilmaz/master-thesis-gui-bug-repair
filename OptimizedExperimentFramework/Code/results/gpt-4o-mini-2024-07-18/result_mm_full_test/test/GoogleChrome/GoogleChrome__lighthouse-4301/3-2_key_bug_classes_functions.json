@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/gatherers/service-worker.js//ServiceWorker",
+            "lighthouse-core/gather/gatherers/start-url.js//StartUrl"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/gatherers/service-worker.js//beforePass",
+            "lighthouse-core/gather/gatherers/start-url.js//executeFetchRequest",
+            "lighthouse-core/gather/gatherers/start-url.js//pass",
+            "lighthouse-core/gather/gatherers/start-url.js//afterPass"
+        ],
+        "explanation": "The identified classes and functions are critical to the auditing process of the PWA. The 'ServiceWorker' class is responsible for gathering information about the service worker, which is essential for the audit. The 'StartUrl' class handles fetching the start URL and managing the network requests associated with it. The functions 'executeFetchRequest', 'pass', and 'afterPass' in the 'StartUrl' class are particularly relevant as they deal with fetching the start URL and processing the results, which are likely where the hang issue is occurring. If there are problems in these areas, it could lead to the indefinite loading state described in the bug report.",
+        "bug_scenario": "The Lighthouse tool hangs indefinitely on the 'Loading page & waiting for onload' step when auditing a specific webpage. This issue occurs with both the native audit and the Lighthouse extension, indicating a potential problem with how the tool interacts with the service worker or the start URL of the Progressive Web App (PWA)."
+    }
+}

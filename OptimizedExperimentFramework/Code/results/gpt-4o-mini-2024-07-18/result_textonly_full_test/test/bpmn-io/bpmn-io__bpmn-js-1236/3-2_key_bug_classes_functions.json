@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/ResizeBehavior",
+            "lib/features/modeling/BpmnUpdater",
+            "lib/features/auto-resize/BpmnAutoResize"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/ResizeBehavior//resize.start",
+            "lib/features/modeling/BpmnUpdater//updateBounds",
+            "lib/features/auto-resize/BpmnAutoResize//resize"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the resizing and updating of BPMN elements. The 'ResizeBehavior' class is responsible for setting minimum bounds and resize constraints, which directly affects how the dimensions of the subprocess are managed. The 'BpmnUpdater' class includes methods for updating the bounds of elements, which is crucial when the subprocess is collapsed and its dimensions are expected to remain stable. Lastly, the 'BpmnAutoResize' class implements a specific resize function for BPMN elements, and its 'resize' method is invoked during the resizing process, making it relevant to the issue of unexpected dimension changes.",
+        "bug_scenario": "The bug scenario involves an Ad Hoc Collapsed Subprocess that exhibits unexpected dimensions when it is collapsed. The user expects the dimensions to remain unchanged after the subprocess is collapsed and converted into an Ad Hoc Subprocess, but they do not."
+    }
+}

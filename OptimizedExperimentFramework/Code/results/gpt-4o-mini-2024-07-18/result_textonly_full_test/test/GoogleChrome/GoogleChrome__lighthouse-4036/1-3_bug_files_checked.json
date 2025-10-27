@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js"
+        ],
+        "explanation": "The file `external-anchors-use-rel-noopener.js` likely contains the audit logic that checks for external anchors using the `rel=\"noopener\"` attribute. Since the bug report mentions that `mailto:` links should be ignored in this context, this file is relevant for modifying the audit check to exclude `mailto:` links. The file `anchors-with-no-rel-noopener.js` may contain the gatherer logic that collects links and checks their attributes, and thus needs to be reviewed and possibly modified to prevent the addition of `rel=\"noopener\"` for `mailto:` links.",
+        "bug_scenario": "The bug scenario involves the `rel=\"noopener\"` attribute being improperly applied to `mailto:` links, which causes them to fail on Chrome for Android and iOS Safari. The report indicates that this issue was encountered in production, where the support link fails to open correctly due to the `rel=\"noopener\"` attribute being present."
+    }
+}

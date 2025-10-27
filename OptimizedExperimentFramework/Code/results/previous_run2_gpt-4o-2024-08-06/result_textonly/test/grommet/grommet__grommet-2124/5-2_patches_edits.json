@@ -1,0 +1,76 @@
+{
+    "1/1": {
+        "src/js/components/Calendar/StyledCalendar.js": [
+            {
+                "SEARCH": [
+                    "export const StyledWeek = styled.div`",
+                    "display: flex;",
+                    "flex-direction: row;",
+                    "flex-justify: between;",
+                    "`;"
+                ],
+                "REPLACE": [
+                    "export const StyledWeek = styled.div`",
+                    "  display: -ms-flexbox;",
+                    "  display: flex;",
+                    "  -ms-flex-direction: row;",
+                    "  flex-direction: row;",
+                    "  -ms-flex-pack: justify;",
+                    "  justify-content: space-between;",
+                    "`;"
+                ]
+            }
+        ],
+        "src/js/components/Calendar/Calendar.js": [
+            {
+                "SEARCH": [
+                    "const buildState = (props) => {",
+                    "const { date, dates, firstDayOfWeek } = props;",
+                    "let reference;",
+                    "if (date) {",
+                    "reference = new Date(date);",
+                    "} else if (dates && dates.length > 0) {",
+                    "if (typeof dates[0] === 'string') {",
+                    "reference = new Date(dates[0]);",
+                    "} else if (Array.isArray(dates[0])) {",
+                    "reference = new Date(dates[0][0]);",
+                    "} else {",
+                    "reference = new Date();",
+                    "}",
+                    "} else {",
+                    "reference = new Date();",
+                    "}",
+                    "return {",
+                    "...buildStartEnd(reference, firstDayOfWeek),",
+                    "reference,",
+                    "active: new Date(reference),",
+                    "};",
+                    "};"
+                ],
+                "REPLACE": [
+                    "const buildState = (props) => {",
+                    "  const { date, dates, firstDayOfWeek } = props;",
+                    "  let reference;",
+                    "  if (date) {",
+                    "    reference = new Date(date);",
+                    "  } else if (dates && dates.length > 0) {",
+                    "    if (typeof dates[0] === 'string') {",
+                    "      reference = new Date(dates[0]);",
+                    "    } else if (Array.isArray(dates[0])) {",
+                    "      reference = new Date(dates[0][0]);",
+                    "    } else {",
+                    "      reference = new Date();",
+                    "    }",
+                    "  } else {",
+                    "    reference = new Date();",
+                    "  }",
+                    "  return Object.assign({}, buildStartEnd(reference, firstDayOfWeek), {",
+                    "    reference: reference,",
+                    "    active: new Date(reference),",
+                    "  });",
+                    "};"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,81 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "canCopy",
+            "file_path": "lib/features/rules/BpmnRules.js",
+            "function_details": [
+                {
+                    "name": "canCopy",
+                    "start_line": 902,
+                    "end_line": 916
+                }
+            ],
+            "function_code": [
+                "function canCopy(elements, element) {",
+                "  if (isLabel(element)) {",
+                "    return true;",
+                "  }",
+                "",
+                "  if (is(element, 'bpmn:Lane') && !includes(elements, element.parent)) {",
+                "    return false;",
+                "  }",
+                "",
+                "  if (is(element, 'bpmn:BoundaryEvent') && !includes(elements, element.host)) {",
+                "    return false;",
+                "  }",
+                "",
+                "  return true;",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "copyProperties",
+            "file_path": "lib/features/copy-paste/BpmnCopyPaste.js",
+            "function_details": [
+                {
+                    "name": "copyProperties",
+                    "start_line": 14,
+                    "end_line": 24
+                }
+            ],
+            "function_code": [
+                "function copyProperties(source, target, properties) {",
+                "  if (!isArray(properties)) {",
+                "    properties = [ properties ];",
+                "  }",
+                "",
+                "  forEach(properties, function(property) {",
+                "    if (!isUndefined(source[property])) {",
+                "      target[property] = source[property];",
+                "    }",
+                "  });",
+                "}"
+            ]
+        },
+        "3": {
+            "function_name": "removeProperties",
+            "file_path": "lib/features/copy-paste/BpmnCopyPaste.js",
+            "function_details": [
+                {
+                    "name": "removeProperties",
+                    "start_line": 26,
+                    "end_line": 36
+                }
+            ],
+            "function_code": [
+                "function removeProperties(element, properties) {",
+                "  if (!isArray(properties)) {",
+                "    properties = [ properties ];",
+                "  }",
+                "",
+                "  forEach(properties, function(property) {",
+                "    if (element[property]) {",
+                "      delete element[property];",
+                "    }",
+                "  });",
+                "}"
+            ]
+        }
+    }
+}

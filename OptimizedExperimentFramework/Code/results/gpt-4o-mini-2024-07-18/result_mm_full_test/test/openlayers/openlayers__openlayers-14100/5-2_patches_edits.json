@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/ol/layer/Group.js": [
+            {
+                "SEARCH": [
+                    "this.setLayers(layers);"
+                ],
+                "REPLACE": [
+                    "    this.setLayers(layers);",
+                    "    this.requestTilesConcurrently(layers);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "/** @private */",
+                    "handleLayersAdd_(collectionEvent) {",
+                    "const layer = collectionEvent.element;",
+                    "this.registerLayerListeners_(layer);",
+                    "this.dispatchEvent(new GroupEvent('addlayer', layer));",
+                    "this.changed();",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  /** @private */",
+                    "  handleLayersAdd_(collectionEvent) {",
+                    "    const layer = collectionEvent.element;",
+                    "    this.registerLayerListeners_(layer);",
+                    "    this.dispatchEvent(new GroupEvent('addlayer', layer));",
+                    "    this.changed();",
+                    "    this.requestTilesConcurrently(layer); // Ensure tiles are requested concurrently",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

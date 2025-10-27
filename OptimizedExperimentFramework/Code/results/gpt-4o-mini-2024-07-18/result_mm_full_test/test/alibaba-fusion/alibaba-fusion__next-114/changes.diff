@@ -1,0 +1,42 @@
+diff --git a/src/number-picker/index.jsx b/src/number-picker/index.jsx
+index dcd8027..e75d92b 100644
+--- a/src/number-picker/index.jsx
++++ b/src/number-picker/index.jsx
+@@ -233,13 +233,8 @@ class NumberPicker extends React.Component {
+                 val = props.max;
+             }
+ 
+-            // precision=2  and input from 1.99 to 1.999, should stay with 1.99 not 2
+-            const strValue = `${val}`;
+-            const pointPos = strValue.indexOf('.');
+-            const cutPos = pointPos + 1 + this.getPrecision();
+-            if (pointPos !== -1 && strValue.length > cutPos) {
+-                val = Number(strValue.substr(0, cutPos));
+-            }
++            // Round the value to the specified precision
++            val = Number(val.toFixed(this.getPrecision()));
+ 
+         } else {
+             val = this.state.value;
+@@ -300,17 +295,11 @@ class NumberPicker extends React.Component {
+ 
+ upStep(val) {
+     const {step, min} = this.props;
+-    const precisionFactor = this.getPrecisionFactor();
+-    let result;
+-    if (typeof val === 'number') {
+-        result = (precisionFactor * val + precisionFactor * step) / precisionFactor;
+         const precision = this.getPrecision();
+-        if (precision > 0) {
+-            result = Number(result.toFixed(precision));
+-        }
+-    } else {
+-        result = min === -Infinity ? step : min;
+-    }
++        let result;
++        if (typeof val === 'number') {
++            result = (precisionFactor * val - precisionFactor * step) / precisionFactor;
++            result = Number(result.toFixed(precision)); // Ensure rounding
+     return result;
+ }
+ 

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/source/Tile.js//TileSource",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//handleSourceUpdate_",
+            "src/ol/source/Tile.js//expireCache",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "These classes and functions are related to the bug because they manage the caching and rendering of tile layers. The `WebGLTileLayer` class is responsible for the tile layer's behavior, including how it handles updates to its source. The `handleSourceUpdate_` function is crucial for invalidating and updating the cache when the source changes. The `TileSource` class and its `expireCache` function are responsible for managing the tile cache, ensuring that outdated tiles are removed. Finally, the `WebGLTileLayerRenderer` class and its `renderFrame` function handle the rendering process, which is affected by the state of the tile cache. Together, these elements need to be modified to ensure that the cache is properly invalidated and updated when the source or projection changes.",
+        "bug_scenario": "The bug occurs when the WebGL tile layers do not update their cached textures after the source is replaced using `setSource()` or when the view projection is changed. This leads to the display of incorrect tiles from the old source or projection when panning or zooming."
+    }
+}

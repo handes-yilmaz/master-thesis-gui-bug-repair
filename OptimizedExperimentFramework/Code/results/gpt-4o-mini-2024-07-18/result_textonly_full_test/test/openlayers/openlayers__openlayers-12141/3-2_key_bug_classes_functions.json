@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/Vector.js//VectorSource"
+        ],
+        "bug_functions": [
+            "src/ol/featureloader.js//loadFeaturesXhr",
+            "src/ol/featureloader.js//xhr"
+        ],
+        "explanation": "The VectorSource class is crucial because it manages the features and their extents. The loadFeaturesXhr function is responsible for loading features via an XHR request and calling the success callback with the loaded features. The xhr function wraps this functionality and is called to load features into the VectorSource. If features are not added to the source before the success callback is executed, it can lead to incorrect extent values, as seen in the bug report.",
+        "bug_scenario": "The bug occurs when trying to retrieve the extent of a VectorSource after the featuresloadend event is triggered. Instead of returning the expected extent values, it returns [Infinity, Infinity, -Infinity, -Infinity], indicating that the features have not been properly loaded or added to the source before the callback is executed."
+    }
+}

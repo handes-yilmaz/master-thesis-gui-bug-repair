@@ -1,0 +1,13 @@
+diff --git a/src/lib/html_renderer.js b/src/lib/html_renderer.js
+index 831b3e0..e9f782e 100644
+--- a/src/lib/html_renderer.js
++++ b/src/lib/html_renderer.js
+@@ -49,7 +49,7 @@ export default class HTMLRenderer {
+    *
+    * @param {Node} node */
+   openNode(node) {
+-    if (!emitsWrappingTags(node)) return;
++if (!emitsWrappingTags(node) && node.kind !== 'function') return;
+ 
+     let className = node.kind;
+     if (!node.sublanguage) {

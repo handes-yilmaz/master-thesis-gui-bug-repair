@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/geom/Circle.js",
+            "src/ol/geom/Polygon.js",
+            "src/ol/interaction/Draw.js",
+            "src/ol/proj/projections.js",
+            "src/ol/render/canvas/PolygonBuilder.js",
+            "src/ol/reproj/common.js"
+        ],
+        "explanation": "These files are related to the rendering and geometric calculations of shapes in the geographic context. 'Circle.js' and 'Polygon.js' define the geometries that are being affected by the bug. 'Draw.js' handles the drawing interactions and could be where the issue in handling pointer positions occurs. The 'projections.js' file deals with the geographic projections and could be contributing to the irregular rendering at higher latitudes. 'PolygonBuilder.js' is responsible for rendering polygons on the canvas, and 'common.js' in reproj deals with reprojection logic that could be impacting how geometries are displayed in different projections.",
+        "bug_scenario": "The bug is related to the rendering of drawn geometries such as circles and polygons in a geographic context. Specifically, when using the 'useGeographic' option, the shapes do not appear as expected, particularly at higher latitudes where circles may not extend to the pointer position and regular polygons can appear irregular. This issue is compounded when the view projection is not parallel to WGS84, affecting the ability to draw regular shapes accurately."
+    }
+}

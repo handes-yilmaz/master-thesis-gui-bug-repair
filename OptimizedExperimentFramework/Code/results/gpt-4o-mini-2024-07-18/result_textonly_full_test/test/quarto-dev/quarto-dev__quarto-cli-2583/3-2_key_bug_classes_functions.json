@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/table-captions.lua//tableCaptions",
+            "src/resources/filters/layout/layout.lua//layoutPanels",
+            "src/resources/filters/normalize/extractquartodom.lua//process_quarto_markdown_input_element"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/table-captions.lua//tableCaptionsAndLabels",
+            "src/resources/filters/quarto-pre/table-captions.lua//applyTableCaptions",
+            "src/resources/filters/quarto-pre/table-captions.lua//extractTblCapAttrib"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the processing and rendering of table captions in Quarto. The 'tableCaptions' function is responsible for managing how captions are applied to tables, while 'tableCaptionsAndLabels' and 'applyTableCaptions' specifically deal with the formatting and application of captions, which is where the markdown styling issue arises. The 'extractTblCapAttrib' function extracts attributes related to table captions, which is crucial for understanding how captions are processed. The 'layoutPanels' function in 'layout.lua' may also influence how captions are rendered in different output formats, making it relevant to the bug. Lastly, 'process_quarto_markdown_input_element' in 'extractquartodom.lua' is responsible for processing markdown input elements, which could affect how markdown is interpreted in table captions.",
+        "bug_scenario": "The bug scenario involves the inability to apply markdown styling (like italics) in table captions when using Quarto, which contrasts with the successful application of such styling in figure captions. The provided screenshot illustrates the issue, showing that the table caption does not render the intended markdown formatting."
+    }
+}

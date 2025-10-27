@@ -1,0 +1,38 @@
+diff --git a/lighthouse-core/formatters/formatter.js b/lighthouse-core/formatters/formatter.js
+index 5eeee94..d1e310e 100644
+--- a/lighthouse-core/formatters/formatter.js
++++ b/lighthouse-core/formatters/formatter.js
+@@ -34,7 +34,7 @@ class Formatter {
+       this._generateSupportedFormats();
+     }
+ 
+-    return this._supportedFormatsNames;
++    return this._supportedFormatsNames.map(name => escapeMarkdown(name));
+   }
+ 
+   static _getFormatters() {
+diff --git a/lighthouse-core/gather/computed/computed-artifact.js b/lighthouse-core/gather/computed/computed-artifact.js
+index d1fcd0c..b47c9ca 100644
+--- a/lighthouse-core/gather/computed/computed-artifact.js
++++ b/lighthouse-core/gather/computed/computed-artifact.js
+@@ -47,6 +47,7 @@ class ComputedArtifact {
+     }
+ 
+     return Promise.resolve().then(_ => this.compute_(artifact)).then(computedArtifact => {
++        computedArtifact = escapeMarkdown(computedArtifact);
+       this.cache.set(artifact, computedArtifact);
+       return computedArtifact;
+     });
+diff --git a/lighthouse-core/gather/gatherers/gatherer.js b/lighthouse-core/gather/gatherers/gatherer.js
+index 3c10d2a..84a8c81 100644
+--- a/lighthouse-core/gather/gatherers/gatherer.js
++++ b/lighthouse-core/gather/gatherers/gatherer.js
+@@ -32,7 +32,7 @@ class Gatherer {
+    * @return {string}
+    */
+   get name() {
+-    return this.constructor.name;
++    return escapeMarkdown(this.constructor.name);
+   }
+ 
+   /* eslint-disable no-unused-vars */

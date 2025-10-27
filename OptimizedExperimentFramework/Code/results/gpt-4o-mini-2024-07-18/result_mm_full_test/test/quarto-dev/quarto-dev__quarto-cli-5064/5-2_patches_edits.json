@@ -1,0 +1,39 @@
+{
+    "1/1": {
+        "src/core/handlers/base.ts": [
+            {
+                "SEARCH": [
+                    "languageName:",
+                    "\"<<<< baseHandler: languageName should have been overridden >>>>\","
+                ],
+                "REPLACE": [
+                    "  languageName: \"C/C++\", // Set the correct language name for C/C++"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (handler.comment !== undefined) {"
+                ],
+                "REPLACE": [
+                    "  if (handler.comment !== undefined && handler.languageName === \"C/C++\") {"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (handler.comment !== undefined) {",
+                    "addLanguageComment(language, handler.comment);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  if (handler.comment !== undefined) {",
+                    "    addLanguageComment(language, handler.comment);",
+                    "    // Additional handling for VHDL",
+                    "    if (handler.languageName === \"VHDL\") {",
+                    "      // Implement VHDL specific comment handling",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

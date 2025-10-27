@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/no-unused-vars//Rule",
+            "lib/rules/no-unused-vars//isVariableUsed",
+            "lib/rules/no-unused-vars//isLastParameterIgnored"
+        ],
+        "bug_functions": [
+            "lib/rules/no-unused-vars//checkUnusedVariables",
+            "lib/rules/no-unused-vars//getUnusedVariables",
+            "lib/rules/no-unused-vars//validateUnusedVariable"
+        ],
+        "explanation": "The classes and functions listed are directly related to the implementation of the 'no-unused-vars' rule in ESLint. The 'Rule' class defines the behavior of the rule, while functions like 'checkUnusedVariables' and 'getUnusedVariables' are responsible for identifying unused variables based on the provided configuration, including the 'ignoreRestSiblings' flag. If this flag is not being respected, it indicates a potential bug in the logic within these functions or the way they interact with the rule's configuration.",
+        "bug_scenario": "The ESLint rule 'no-unused-vars' is not functioning as expected. Specifically, the 'ignoreRestSiblings' flag is supposed to prevent warnings for unused variables when they are part of a rest parameter in function arguments, but it is not working correctly, leading to unnecessary warnings."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/PaletteTexture.js"
+        ],
+        "explanation": "These files are critical to the bug because they contain the core logic for rendering WebGLTileLayers and managing their textures. The 'WebGLTile.js' file defines the WebGLTileLayer class and its methods, including how styles are applied and updated. The 'TileLayer.js' file is responsible for rendering the tile layers using WebGL, including binding textures and handling rendering states. The 'PaletteTexture.js' file manages the palette textures used in the styles, which are essential for rendering the correct visual output. Issues in any of these files could lead to the described rendering problems when toggling the layer's visibility.",
+        "bug_scenario": "The WebGLTileLayer with a palette style fails to render correctly after being removed and added back to the map. Specifically, when switching to a style that includes a palette and repeatedly toggling the layer's visibility, the layer appears black, indicating a problem with the WebGL context or texture binding."
+    }
+}

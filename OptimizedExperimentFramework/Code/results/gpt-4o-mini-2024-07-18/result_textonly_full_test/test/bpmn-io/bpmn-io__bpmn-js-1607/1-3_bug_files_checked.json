@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/GroupBehavior.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/import/BpmnImporter.js",
+            "lib/draw/BpmnRenderUtil.js"
+        ],
+        "explanation": "These files are related to the bug for the following reasons: \n- **GroupBehavior.js**: This file likely contains the logic for handling group elements within the BPMN model, including their behavior when nested inside other elements like sub-processes. Issues in this file may directly lead to the unresolved reference error. \n- **BpmnUpdater.js**: This file is responsible for updating the BPMN model when elements are added or modified. If the references for groups inside collapsed sub-processes are not being updated correctly, it could cause the unresolved reference issue. \n- **BpmnImporter.js**: This file handles the importation of BPMN diagrams. If it does not correctly recognize or handle groups within collapsed sub-processes, it would lead to the import warnings observed. \n- **BpmnRenderUtil.js**: This file is involved in rendering the BPMN elements. If the rendering logic does not account for groups correctly within collapsed structures, it could lead to inconsistencies and unresolved references.",
+        "bug_scenario": "Creating groups inside collapsed sub-processes results in unresolved references during BPMN export. When a group is added to a collapsed sub-process and the diagram is saved, an unresolved reference warning is encountered upon re-importing the diagram."
+    }
+}

@@ -1,0 +1,38 @@
+diff --git a/src/ol/layer/VectorTile.js b/src/ol/layer/VectorTile.js
+index 37faf81..d108104 100644
+--- a/src/ol/layer/VectorTile.js
++++ b/src/ol/layer/VectorTile.js
+@@ -160,7 +160,12 @@ class VectorTileLayer extends BaseVectorLayer {
+   }
+ 
+   createRenderer() {
+-    return new CanvasVectorTileLayerRenderer(this);
++    const renderer = new CanvasVectorTileLayerRenderer(this);
++    // Ensure the renderer is aware of the fill style
++    if (this.getStyle() && this.getStyle().getFill()) {
++      renderer.setFill(this.getStyle().getFill());
++    }
++    return renderer;
+   }
+ 
+   /**
+diff --git a/src/ol/style/Style.js b/src/ol/style/Style.js
+index 0286089..e769c9e 100644
+--- a/src/ol/style/Style.js
++++ b/src/ol/style/Style.js
+@@ -327,7 +327,14 @@ class Style {
+    * @api
+    */
+   setFill(fill) {
+-    this.fill_ = fill;
++    if (fill && fill.getColor() && fill.getColor().includes('rgba')) {
++      // Ensure that the fill color is handled correctly to avoid ghost layers
++      const color = fill.getColor();
++      // Adjust the color handling logic if necessary
++      this.fill_ = new Fill({ color: color });
++    } else {
++      this.fill_ = fill;
++    }
+   }
+ 
+   /**

@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/form/form.jsx//Form"
+        ],
+        "bug_functions": [
+            "src/form/form.jsx//getNewChildren"
+        ],
+        "explanation": "The `Form` class in `form.jsx` contains the existing `useLabelForErrorMessage` functionality, which is central to the issue described. Modifying or extending this class with an `errorMessageLabel` API would address the problem. The `getNewChildren` function is responsible for managing child components and their properties, including label-related settings, making it relevant to fixing the propagation of label information for error messages.",
+        "bug_scenario": "The bug report describes an issue with the `Form` component where the `useLabelForErrorMessage` API is not working as expected due to additional DOM structures being added. This causes the error message label functionality to break. The report suggests adding an `errorMessageLabel` API to work alongside `useLabelForErrorMessage`. The provided image shows a code snippet using `BizFormItem` and `FormItem` with potential usage of the `useLabelForErrorMessage` feature."
+    },
+    "2": {
+        "bug_classes": [
+            "src/form/form.jsx//Form"
+        ],
+        "bug_functions": [
+            "src/form/enhance.jsx//getRules",
+            "src/form/enhance.jsx//getFieldInitCfg"
+        ],
+        "explanation": "The `Form` class in `form.jsx` contains the `useLabelForErrorMessage` prop, which is directly related to the issue described. The `getRules` and `getFieldInitCfg` functions in `enhance.jsx` handle the configuration and validation rules, including the potential use of labels for error messages. These functions need to be adjusted to incorporate the new `errorMessageLabel` API.",
+        "bug_scenario": "The issue is related to the inability of the `useLabelForErrorMessage` API to function when additional DOM structure is added by business layer styling. The proposal is to introduce a new `errorMessageLabel` API to work alongside `useLabelForErrorMessage`."
+    }
+}

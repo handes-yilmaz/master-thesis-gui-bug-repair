@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/EventBasedGatewayBehavior",
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/EventBasedGatewayBehavior//preExecuted",
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior//preExecute"
+        ],
+        "explanation": "The `EventBasedGatewayBehavior` class contains logic that handles the connections and sequence flows related to event-based gateways. The `preExecuted` function within this class is responsible for managing the connections when a new event is added, which could be where the default attribute is being removed. The `UnsetDefaultFlowBehavior` class specifically deals with the default flow property of sequence flows. The `preExecute` function in this class checks if a connection being deleted is the default flow and updates the properties accordingly. Both of these functions are critical in understanding and fixing the issue of the default attribute being removed when a Timer Intermediate Catch Event is added.",
+        "bug_scenario": "The bug occurs when a Timer Intermediate Catch Event is added to a non-default flow of an exclusive gateway, which inadvertently removes the default attribute from the gateway. This leads to incorrect behavior in the flow rendering."
+    }
+}

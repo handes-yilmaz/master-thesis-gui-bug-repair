@@ -1,0 +1,23 @@
+diff --git a/src/dialog/inner.jsx b/src/dialog/inner.jsx
+index 623146683..d3cc41d29 100644
+--- a/src/dialog/inner.jsx
++++ b/src/dialog/inner.jsx
+@@ -142,15 +142,17 @@ export default class Inner extends Component {
+     }
+ 
+     renderCloseLink() {
+-        const { prefix, closeable, onClose, locale } = this.props;
++        const { prefix, closeable, onClose, locale, title } = this.props;
+ 
+         if (closeable) {
++            const closeLinkStyle = title ? {} : { top: '10px' }; // Adjust top position if no title
+             return (
+                 <a
+                     role="button"
+                     aria-label={locale.close}
+                     className={`${prefix}dialog-close`}
+                     onClick={onClose}
++                    style={closeLinkStyle}
+                 >
+                     <Icon
+                         className={`${prefix}dialog-close-icon`}

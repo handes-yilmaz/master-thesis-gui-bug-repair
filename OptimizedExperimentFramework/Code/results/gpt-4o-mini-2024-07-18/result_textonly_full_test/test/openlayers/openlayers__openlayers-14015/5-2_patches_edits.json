@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "this.enqueueTiles(frameState, extent, z, tileTexturesByZ);"
+                ],
+                "REPLACE": [
+                    "    // Clear the tile texture cache when the source or projection changes",
+                    "    if (tileLayer.getRenderSource().getKey() !== this.tileTextureCache_.getKey()) {",
+                    "      this.tileTextureCache_.clear();",
+                    "    }",
+                    "    this.enqueueTiles(frameState, extent, z, tileTexturesByZ);"
+                ]
+            }
+        ],
+        "src/ol/source/Tile.js": [
+            {
+                "SEARCH": [
+                    "clear() {",
+                    "this.tileCache.clear();"
+                ],
+                "REPLACE": [
+                    "  /** ",
+                    "   * Clear the tile cache and reset the key to ensure new tiles are fetched.",
+                    "   */",
+                    "  clear() {",
+                    "    this.tileCache.clear();",
+                    "    this.setKey(''); // Resetting the key to trigger cache invalidation"
+                ]
+            }
+        ]
+    }
+}

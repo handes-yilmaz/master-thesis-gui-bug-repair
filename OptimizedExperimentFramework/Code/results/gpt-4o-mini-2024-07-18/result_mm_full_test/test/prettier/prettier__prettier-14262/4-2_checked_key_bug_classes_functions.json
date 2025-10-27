@@ -1,0 +1,62 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "isCommonsJsOrAmdCall",
+            "file_path": "src/language-js/print/call-expression.js",
+            "function_details": [
+                {
+                    "name": "isCommonsJsOrAmdCall",
+                    "start_line": 107,
+                    "end_line": 129
+                }
+            ],
+            "function_code": [
+                "function isCommonsJsOrAmdCall(node, parentNode) {",
+                "  if (node.callee.type !== \"Identifier\") {",
+                "    return false;",
+                "  }",
+                "",
+                "  if (node.callee.name === \"require\") {",
+                "    return true;",
+                "  }",
+                "",
+                "  if (node.callee.name === \"define\") {",
+                "    const args = getCallArguments(node);",
+                "    return (",
+                "      parentNode.type === \"ExpressionStatement\" &&",
+                "      (args.length === 1 ||",
+                "        (args.length === 2 && args[0].type === \"ArrayExpression\") ||",
+                "        (args.length === 3 &&",
+                "          isStringLiteral(args[0]) &&",
+                "          args[1].type === \"ArrayExpression\"))",
+                "    );",
+                "  }",
+                "",
+                "  return false;",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "printJSDocType",
+            "file_path": "src/language-js/print/type-annotation.js",
+            "function_details": [
+                {
+                    "name": "printJSDocType",
+                    "start_line": 315,
+                    "end_line": 322
+                }
+            ],
+            "function_code": [
+                "function printJSDocType(path, print, token) {",
+                "  const node = path.getValue();",
+                "  return [",
+                "    node.postfix ? \"\" : token,",
+                "    print(\"typeAnnotation\"),",
+                "    node.postfix ? token : \"\",",
+                "  ];",
+                "}"
+            ]
+        }
+    }
+}

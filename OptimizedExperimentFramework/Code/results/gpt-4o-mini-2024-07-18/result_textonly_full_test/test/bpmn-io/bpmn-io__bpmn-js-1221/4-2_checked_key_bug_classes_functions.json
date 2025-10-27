@@ -1,0 +1,50 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "getOptimalPosition",
+            "file_path": "lib/features/modeling/behavior/AdaptiveLabelPositioningBehavior.js",
+            "function_details": [
+                {
+                    "name": "getOptimalPosition",
+                    "start_line": 214,
+                    "end_line": 245
+                }
+            ],
+            "function_code": [
+                "function getOptimalPosition(element) {",
+                "",
+                "  var labelMid = getMid(element.label);",
+                "",
+                "  var elementMid = getMid(element);",
+                "",
+                "  var labelOrientation = getApproximateOrientation(elementMid, labelMid);",
+                "",
+                "  if (!isAligned(labelOrientation)) {",
+                "    return;",
+                "  }",
+                "",
+                "  var takenAlignments = getTakenConnectionAlignments(element);",
+                "",
+                "  if (element.host) {",
+                "    var takenHostAlignments = getTakenHostAlignments(element);",
+                "",
+                "    takenAlignments = takenAlignments.concat(takenHostAlignments);",
+                "  }",
+                "",
+                "  var freeAlignments = ALIGNMENTS.filter(function(alignment) {",
+                "",
+                "    return takenAlignments.indexOf(alignment) === -1;",
+                "  });",
+                "",
+                "  // NOTHING TO DO; label already aligned a.O.K.",
+                "  if (freeAlignments.indexOf(labelOrientation) !== -1) {",
+                "    return;",
+                "  }",
+                "",
+                "  return freeAlignments[0];",
+                "}"
+            ]
+        }
+    }
+}

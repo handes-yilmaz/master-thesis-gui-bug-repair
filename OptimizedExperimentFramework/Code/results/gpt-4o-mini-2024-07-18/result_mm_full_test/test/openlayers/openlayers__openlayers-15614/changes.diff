@@ -1,0 +1,56 @@
+diff --git a/src/ol/renderer/canvas/VectorLayer.js b/src/ol/renderer/canvas/VectorLayer.js
+index 169bf87..c1512ff 100644
+--- a/src/ol/renderer/canvas/VectorLayer.js
++++ b/src/ol/renderer/canvas/VectorLayer.js
+@@ -159,7 +159,7 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+      * @private
+      * @type {number}
+      */
+-    this.opacity_ = 1;
++    this.opacity_ = options.opacity !== undefined ? options.opacity : 1;
+   }
+ 
+   /**
+@@ -259,7 +259,9 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+     }
+     this.setupCompositionContext_(); //FIXME Check if this works, or if we need to defer something.
+     this.renderWorlds(this.replayGroup_, frameState, true);
+-    this.releaseCompositionContext_();
++    if (this.getLayer().getDeclutter()) {
++        this.releaseCompositionContext_();
++    }
+   }
+ 
+   /**
+@@ -320,7 +322,9 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+     const projection = viewState.projection;
+ 
+     this.opacity_ = layerState.opacity;
+-    this.setupCompositionContext_();
++    if (this.getLayer().getDeclutter()) {
++        this.setupCompositionContext_();
++    }
+ 
+     // clipped rendering if layer extent is set
+     let clipped = false;
+diff --git a/src/ol/renderer/webgl/VectorLayer.js b/src/ol/renderer/webgl/VectorLayer.js
+index a67975a..5d62c55 100644
+--- a/src/ol/renderer/webgl/VectorLayer.js
++++ b/src/ol/renderer/webgl/VectorLayer.js
+@@ -319,12 +319,14 @@ class WebGLVectorLayerRenderer extends WebGLLayerRenderer {
+ 
+     // draw the normal canvas
+     this.helper.prepareDraw(frameState);
+-    this.renderWorlds(frameState, false, startWorld, endWorld, worldWidth);
++    if (this.getLayer().getDeclutter()) {
++        this.renderWorlds(frameState, false, startWorld, endWorld, worldWidth);
++    }
+     this.helper.finalizeDraw(frameState);
+ 
+     const canvas = this.helper.getCanvas();
+     const layerState = frameState.layerStatesArray[frameState.layerIndex];
+-    const opacity = layerState.opacity;
++    const opacity = layerState.opacity !== undefined ? layerState.opacity : 1;
+     if (opacity !== parseFloat(canvas.style.opacity)) {
+       canvas.style.opacity = String(opacity);
+     }

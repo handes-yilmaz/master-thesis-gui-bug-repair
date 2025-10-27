@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-shell-session.js//Prism.languages['shell-session']"
+        ],
+        "bug_functions": [],
+        "explanation": "The problem is likely within the 'Prism.languages['shell-session']' definition in the 'prism-shell-session.js' file. This is where the shell session language pattern is set up, and any changes to the regex patterns or token structures could affect how shell commands are tokenized and highlighted. The issue surfaced between different downloads of the same version, suggesting that changes in this part of the code affect the tokenizer's functionality.",
+        "bug_scenario": "The bug scenario involves the incorrect tokenization of the 'Shell session' language in Prism.js versions 1.22 and 1.23. The issue is observed when the shell session code is not highlighted properly, unlike previous versions where the highlighting worked fine. The screenshots show the expected and actual results, with the latter missing proper token highlights."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-shell-session.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The file 'components/prism-shell-session.js' defines the language definition for 'shell-session'. The issue is likely in this file because it contains the regular expression patterns and logic for tokenizing shell session commands. The broken highlighting suggests a problem with the pattern used to match and differentiate command parts, which is defined in this file.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for the 'Shell session' language in Prism.js. The tokenizer for shell session commands is broken in recent downloads of versions 1.22 and 1.23, causing the entire command and its output to be treated as a single token without proper highlighting. The issue is visible in the DOM as a single 'output' span class, indicating that tokenization isn't happening as expected."
+    }
+}

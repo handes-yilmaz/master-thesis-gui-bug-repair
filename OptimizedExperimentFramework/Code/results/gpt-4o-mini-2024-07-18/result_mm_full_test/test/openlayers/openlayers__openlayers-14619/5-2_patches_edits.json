@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "// Hypothetical bug file path": [
+            {
+                "SEARCH": [
+                    "this.scale = [width, height]; // Incorrectly setting scale as an array"
+                ],
+                "REPLACE": [
+                    "    this.scale = scale; // Correctly retain the numeric scale value"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const newIcon = new Icon(); // Cloning the icon",
+                    "newIcon.setScale(this.width, this.height); // This might be causing the issue"
+                ],
+                "REPLACE": [
+                    "    const newIcon = new Icon();",
+                    "    newIcon.setScale(this.scale); // Use the numeric scale directly"
+                ]
+            }
+        ]
+    }
+}

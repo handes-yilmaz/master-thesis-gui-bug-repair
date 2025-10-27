@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/layer/Tile.js//TileLayer",
+            "src/ol/tilegrid/TileGrid.js//TileGrid"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//createRenderer",
+            "src/ol/layer/WebGLTile.js//setStyle",
+            "src/ol/layer/WebGLTile.js//updateStyleVariables",
+            "src/ol/layer/Tile.js//createRenderer",
+            "src/ol/tilegrid/TileGrid.js//getExtent",
+            "src/ol/tilegrid/TileGrid.js//getMaxZoom",
+            "src/ol/tilegrid/TileGrid.js//getMinZoom"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they are responsible for rendering tile layers and managing tile grids. The WebGLTileLayer class is specifically designed for rendering tiles using WebGL, and any issues in its methods (like createRenderer, setStyle, and updateStyleVariables) could directly affect how tiles are displayed. The TileLayer class serves as a base for tile layers, and its createRenderer function is crucial for rendering behavior. The TileGrid class manages the grid structure for tiles, and its methods for getting extent and zoom levels are essential for ensuring that tiles are correctly aligned and displayed, especially when wrapX is false.",
+        "bug_scenario": "The WebGL renderer is not functioning correctly when the source uses view projection with wrapX set to false. This results in the WebGLTileLayer not behaving as expected, particularly in relation to tile grids."
+    }
+}

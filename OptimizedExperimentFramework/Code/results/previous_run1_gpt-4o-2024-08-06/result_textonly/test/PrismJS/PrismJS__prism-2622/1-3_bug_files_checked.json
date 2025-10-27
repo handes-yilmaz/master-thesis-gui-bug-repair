@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-clike.js",
+            "components/prism-java.js",
+            "components/index.js",
+            "prism.js"
+        ],
+        "explanation": "1. **components/prism-clike.js**: This file is likely related because Prism often uses a base clike language definition to handle languages that are syntactically similar to Java, such as Apex. Modifications to add aliasing could involve referencing this base if Apex needs special treatment similar to Java but not exactly identical.\n\n2. **components/prism-java.js**: Since the request is to map or alias Apex to Java, any updates to ensure that the Java definition effectively covers the Apex syntax would occur here. If any language-specific adjustments are needed, this file would be directly relevant.\n\n3. **components/index.js**: This file probably acts as a manifest or a point of import/export for all supported languages. To register Apex and ensure it points to the Java definition, modifications in this file would likely be necessary.\n\n4. **prism.js**: As the core file for Prism, any overarching logic or registration of languages including setting up aliases between existing and new languages would be handled here. Depending on how languages are activated or initialized, this file could require updates to include Apex as an alias of Java.",
+        "bug_scenario": "The bug is requesting support for the Apex language within the Prism highlighter. The report suggests adding an alias for Apex to use the existing Java language definition, as Apex is syntactically similar to Java. This saves the effort of creating a new language definition from scratch."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-java.js",
+            "components/prism-clike.js",
+            "prism.js"
+        ],
+        "explanation": "1. **components/prism-java.js**: This file contains the syntax definitions and rules for Java. Since Apex is akin to Java, this file is likely involved in reusing its definitions or modifying them slightly for Apex. This is indicated in the bug report's suggested workaround where Apex syntax might leverage Java's existing rules.\n\n2. **components/prism-clike.js**: Prism.js often uses clike as a base for Java-like languages including Java, and likely also for Apex. Changes here might support adjustments needed to map shared features between Java and Apex.\n\n3. **prism.js**: This is the core file which handles language definition imports and running the main logic for syntax highlighting. Modifications here might include aliasing Apex to use the existing definitions set out in the Java syntax logic, or adding a necessary setup for an additional language 'Apex.'",
+        "bug_scenario": "The bug report indicates a need for supporting the Apex language within a syntax highlighting framework that currently supports Java. The report suggests that since Apex is similar to Java, the existing Java setup can be used to support Apex with minimal changes. The associated image seems to be a screenshot showing an error or limited functionality related to the lack of Apex support, hinting at the attempt to recognize Apex syntax which falls back to Java."
+    }
+}

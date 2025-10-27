@@ -1,0 +1,17 @@
+diff --git a/src/ol/render/webgl/VectorStyleRenderer.js b/src/ol/render/webgl/VectorStyleRenderer.js
+index 7bdbde5..91f8f1f 100644
+--- a/src/ol/render/webgl/VectorStyleRenderer.js
++++ b/src/ol/render/webgl/VectorStyleRenderer.js
+@@ -311,7 +311,11 @@ class VectorStyleRenderer {
+           new Float32Array(0),
+           this.customAttributes_,
+           transform
+-        )
++        ).map(instruction => {
++          // Ensure the winding order is counter-clockwise
++          instruction.vertices = instruction.vertices.reverse();
++          return instruction;
++        })
+       : null;
+     const lineStringInstructions = this.hasStroke_
+       ? generateLineStringRenderInstructions(

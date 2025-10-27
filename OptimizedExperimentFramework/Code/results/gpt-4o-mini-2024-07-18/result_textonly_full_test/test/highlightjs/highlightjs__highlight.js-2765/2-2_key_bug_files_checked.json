@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/handlebars.js",
+            "src/lib/modes.js",
+            "src/highlight.js"
+        ],
+        "explanation": "These files are critical for fixing the bug because: \n1. **src/languages/handlebars.js**: This file contains the syntax definitions and regex patterns for Handlebars, which are essential for correctly parsing and highlighting the Handlebars syntax in templates. Any issues with the highlighting of `if` and `else` statements will likely originate from this file.\n\n2. **src/lib/modes.js**: This file defines common regex patterns and modes used for syntax highlighting. It may contain relevant definitions that affect how Handlebars expressions are recognized and highlighted, impacting the rendering of the block statements.\n\n3. **src/highlight.js**: This is the core file responsible for the highlighting functionality. It manages how different languages are processed and highlighted. Any changes to improve the highlighting behavior for Handlebars will need to be implemented here to ensure that the highlighting works as expected across the application.",
+        "bug_scenario": "The bug scenario involves the incorrect rendering of Handlebars block `if` and `else` statements in Glimmer templates. The expected behavior is that values and keywords should be highlighted distinctly and consistently, but the current implementation fails to do so, leading to confusion in the rendered output."
+    }
+}

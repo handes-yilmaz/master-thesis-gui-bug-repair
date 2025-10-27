@@ -1,0 +1,59 @@
+{
+    "1/1": {
+        "src/models/ProcessManager.js": [
+            {
+                "SEARCH": [
+                    "function addParticipant(participant) {",
+                    "this.process.id = this.generateProcessId(); // Incorrect ID handling",
+                    "this.participants.push(participant);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function addParticipant(participant) {",
+                    "    if (this.participants.length === 0) {",
+                    "        // Keep the same ID for the first participant",
+                    "        this.process.id = this.process.id; ",
+                    "    } else {",
+                    "        this.process.id = this.generateProcessId(); // Generate new ID for subsequent participants",
+                    "    }",
+                    "    this.participants.push(participant);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "function redoLastAction() {",
+                    "const lastAction = this.actionHistory.pop();",
+                    "if (lastAction.type === 'ADD_PARTICIPANT') {",
+                    "this.addParticipant(lastAction.participant);",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function redoLastAction() {",
+                    "    const lastAction = this.actionHistory.pop();",
+                    "    if (lastAction.type === 'ADD_PARTICIPANT') {",
+                    "        this.addParticipant(lastAction.participant);",
+                    "        // Ensure the process ID remains consistent",
+                    "        this.process.id = lastAction.processId; ",
+                    "    }"
+                ]
+            }
+        ],
+        "src/models/PoolManager.js": [
+            {
+                "SEARCH": [
+                    "function copyPool(pool) {",
+                    "const newPool = { ...pool, id: pool.id }; // Incorrect ID handling",
+                    "this.pools.push(newPool);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function copyPool(pool) {",
+                    "    const newPoolId = this.generateUniquePoolId(pool.id); // Generate a unique ID",
+                    "    const newPool = { ...pool, id: newPoolId };",
+                    "    this.pools.push(newPool);"
+                ]
+            }
+        ]
+    }
+}

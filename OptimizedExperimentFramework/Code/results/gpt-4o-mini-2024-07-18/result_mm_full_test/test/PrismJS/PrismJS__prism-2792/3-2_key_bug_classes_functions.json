@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-bash.js//Prism.languages.bash",
+            "components/prism-bash.js//insideString",
+            "components/prism-bash.js//commandAfterHeredoc"
+        ],
+        "bug_functions": [
+            "components/prism-bash.js//getCommandLineInfo",
+            "components/prism-bash.js//repeat"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the syntax highlighting rules for Bash scripts. The 'Prism.languages.bash' class defines how different elements of Bash syntax, including strings and escape sequences, should be highlighted. The 'insideString' variable specifically deals with string patterns, which are crucial for correctly interpreting ANSI-C quoting. The 'commandAfterHeredoc' class is also relevant as it manages the highlighting of commands following heredoc syntax. The functions 'getCommandLineInfo' and 'repeat' are involved in processing command line inputs and outputs, which may indirectly affect how the highlighting is applied in the context of command line scripts.",
+        "bug_scenario": "The bug scenario involves incorrect highlighting of ANSI-C quoting in Bash scripts, specifically when using escape sequences like '\\n'. The highlighting fails to properly recognize these sequences, leading to visual errors in the code display."
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "src/js/components/DataTable/Header.js": [
+            {
+                "SEARCH": [
+                    "import React, {",
+                    "forwardRef,",
+                    "useCallback,",
+                    "useContext,",
+                    "useEffect,",
+                    "useState,",
+                    "} from 'react';"
+                ],
+                "REPLACE": [
+                    "import React, {",
+                    "  forwardRef,",
+                    "  useCallback,",
+                    "  useContext,",
+                    "  useEffect,",
+                    "  useState,",
+                    "  useLayoutEffect,",
+                    "} from 'react';"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const theme = useContext(ThemeContext) || defaultProps.theme;"
+                ],
+                "REPLACE": [
+                    "    const theme = useContext(ThemeContext) || defaultProps.theme;",
+                    "    ",
+                    "    // Function to update sort state based on URL",
+                    "    const updateSortFromURL = useCallback(() => {",
+                    "      const params = new URLSearchParams(window.location.search);",
+                    "      const property = params.get('property');",
+                    "      const direction = params.get('direction');",
+                    "      if (property && direction) {",
+                    "        onSort({ property, direction });",
+                    "      }",
+                    "    }, [onSort]);",
+                    "",
+                    "    // Listen for URL changes",
+                    "    useLayoutEffect(() => {",
+                    "      window.addEventListener('popstate', updateSortFromURL);",
+                    "      updateSortFromURL(); // Initial check",
+                    "      return () => {",
+                    "        window.removeEventListener('popstate', updateSortFromURL);",
+                    "      };",
+                    "    }, [updateSortFromURL]);"
+                ]
+            }
+        ]
+    }
+}

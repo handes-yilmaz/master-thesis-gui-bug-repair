@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-shell-session.js",
+            "components/prism-shell-session.min.js",
+            "plugins/keep-markup/prism-keep-markup.js"
+        ],
+        "explanation": "These files are key to fixing the bug because they contain the definitions and logic for the 'Shell session' language tokenizer. The 'prism-shell-session.js' file includes the main tokenizer patterns and rules, while 'prism-shell-session.min.js' is the minified version that may be used in production. The 'prism-keep-markup.js' file is relevant as it handles the markup preservation during highlighting, which could be affecting how the tokens are rendered in the DOM.",
+        "bug_scenario": "The tokenizer for the 'Shell session' language in Prism is not functioning correctly, resulting in improper syntax highlighting. This issue is evident when comparing the output of the same code snippet between different versions of Prism, where the earlier version highlights correctly while the newer versions do not. The DOM inspection also shows that the expected tokenization is not occurring, leading to a lack of proper class assignments for the highlighted elements."
+    }
+}

@@ -1,0 +1,28 @@
+diff --git a/src/ol/interaction/DragPan.js b/src/ol/interaction/DragPan.js
+index d889830..65affe5 100644
+--- a/src/ol/interaction/DragPan.js
++++ b/src/ol/interaction/DragPan.js
+@@ -147,7 +147,7 @@ class DragPan extends PointerInteraction {
+    * @inheritDoc
+    */
+   handleDownEvent(mapBrowserEvent) {
+-    if (this.targetPointers.length > 0 && this.condition_(mapBrowserEvent)) {
++      if (this.targetPointers.length > 0 && this.condition_(mapBrowserEvent) && !this.panning_) {
+       const map = mapBrowserEvent.map;
+       const view = map.getView();
+       this.lastCentroid = null;
+diff --git a/src/ol/interaction/Draw.js b/src/ol/interaction/Draw.js
+index 4ef5e4f..7ab80d7 100644
+--- a/src/ol/interaction/Draw.js
++++ b/src/ol/interaction/Draw.js
+@@ -583,6 +583,10 @@ class Draw extends PointerInteraction {
+       this.finishCoordinate_ = null;
+       this.abortDrawing_();
+     }
++    // Reset shouldHandle_ to ensure other interactions can proceed
++    this.shouldHandle_ = false;
++    this.lastDragTime_ = undefined; // Reset last drag time
++    this.finishCoordinate_ = null; // Ensure finishCoordinate is reset
+     if (!pass && this.stopClick_) {
+       event.stopPropagation();
+     }

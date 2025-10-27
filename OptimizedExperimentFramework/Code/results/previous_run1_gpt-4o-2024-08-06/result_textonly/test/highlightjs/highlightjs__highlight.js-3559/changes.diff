@@ -1,0 +1,32 @@
+diff --git a/src/languages/kotlin.js b/src/languages/kotlin.js
+index 2e50992e9..cb25327d5 100644
+--- a/src/languages/kotlin.js
++++ b/src/languages/kotlin.js
+@@ -219,13 +219,20 @@ export default function(hljs) {
+             excludeEnd: true,
+             relevance: 0
+           },
+-          {
+-            className: 'type',
+-            begin: /[,:]\s*/,
+-            end: /[<\(,]|$/,
+-            excludeBegin: true,
+-            returnEnd: true
+-          },
++{
++className: 'type',
++begin: /[,:]\s*/,
++end: /[<\(,]|$/,
++excludeBegin: true,
++returnEnd: true,
++contains: [
++{
++className: 'punctuation',
++begin: /[<>()]/,
++relevance: 0
++}
++]
++},
+           ANNOTATION_USE_SITE,
+           ANNOTATION
+         ]

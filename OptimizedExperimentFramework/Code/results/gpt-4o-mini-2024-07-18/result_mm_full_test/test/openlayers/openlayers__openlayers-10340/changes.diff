@@ -1,0 +1,19 @@
+diff --git a/src/ol/geom/Circle.js b/src/ol/geom/Circle.js
+index 25010f9..e3b94ef 100644
+--- a/src/ol/geom/Circle.js
++++ b/src/ol/geom/Circle.js
+@@ -28,7 +28,13 @@ class Circle extends SimpleGeometry {
+     if (opt_layout !== undefined && opt_radius === undefined) {
+       this.setFlatCoordinates(opt_layout, center);
+     } else {
+-      const radius = opt_radius ? opt_radius : 0;
++    const radius = opt_radius ? opt_radius : 0; // Ensure radius is calculated correctly
++    if (useGeographic) {
++        // Adjust radius calculation for geographic coordinates
++        const adjustedRadius = calculateGeographicRadius(center, radius);
++        this.setCenterAndRadius(center, adjustedRadius, opt_layout);
++        return;
++    }
+       this.setCenterAndRadius(center, radius, opt_layout);
+     }
+   }

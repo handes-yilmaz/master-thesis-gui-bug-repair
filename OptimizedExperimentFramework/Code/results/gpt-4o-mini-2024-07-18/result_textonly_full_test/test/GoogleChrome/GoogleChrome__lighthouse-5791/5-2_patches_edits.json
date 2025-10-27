@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "lighthouse-core/report/html/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "container.appendChild(this._renderReport(clone));"
+                ],
+                "REPLACE": [
+                    "    // Ensure the container has enough space for the redirects opportunity",
+                    "    container.style.overflow = 'auto'; // Allow scrolling if necessary",
+                    "    container.appendChild(this._renderReport(clone));"
+                ]
+            }
+        ],
+        "lighthouse-core/report/html/renderer/performance-category-renderer.js": [
+            {
+                "SEARCH": [
+                    "const groupEl = this.renderAuditGroup(groups['load-opportunities'], {expandable: false});"
+                ],
+                "REPLACE": [
+                    "      const groupEl = this.renderAuditGroup(groups['load-opportunities'], {expandable: true}); // Allow expansion for better visibility"
+                ]
+            }
+        ]
+    }
+}

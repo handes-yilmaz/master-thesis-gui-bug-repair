@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "lib/features/rules/BpmnRules.js": [
+            {
+                "SEARCH": [
+                    "// Disallow message flows to boundary events",
+                    "if (is(target, 'bpmn:BoundaryEvent')) {",
+                    "return false;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  // Disallow message flows to boundary events",
+                    "  if (is(target, 'bpmn:BoundaryEvent') || is(source, 'bpmn:BoundaryEvent')) {",
+                    "    return false;",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

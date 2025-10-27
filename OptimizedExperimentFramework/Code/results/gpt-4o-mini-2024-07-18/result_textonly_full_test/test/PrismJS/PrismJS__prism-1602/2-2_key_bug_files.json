@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-yaml.js",
+            "components/prism-yaml.min.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "These files are key bug files because they contain the definitions and patterns used for syntax highlighting in Prism.js. The 'prism-yaml.js' and 'prism-yaml.min.js' files specifically define how YAML syntax, including strings and comments, should be highlighted. The 'prism-core.js' file is essential as it manages the overall syntax highlighting process and may need adjustments to handle cases where comments follow strings in YAML. Fixing the regex patterns in these files will likely resolve the issue with trailing comments in YAML strings.",
+        "bug_scenario": "The bug scenario involves YAML string highlighting not functioning correctly when a string contains a comment on the same line. This is evident in the provided HTML example where the YAML string 'hello: - \"world\" # test' fails to highlight properly due to the trailing comment."
+    }
+}

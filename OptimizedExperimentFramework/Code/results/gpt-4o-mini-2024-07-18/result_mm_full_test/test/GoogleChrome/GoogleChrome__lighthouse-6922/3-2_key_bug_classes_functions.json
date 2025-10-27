@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/connections/connection.js//Connection",
+            "lighthouse-core/gather/gatherers/gatherer.js//Gatherer",
+            "lighthouse-core/gather/gather-runner.js//GatherRunner"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/connections/connection.js//sendCommand",
+            "lighthouse-core/gather/gatherers/gatherer.js//beforePass",
+            "lighthouse-core/gather/gather-runner.js//pass"
+        ],
+        "explanation": "The `Connection` class is responsible for managing the communication with the browser, including sending commands and handling responses. The `sendCommand` function is crucial as it sends commands to the browser, which may need to be modified to ensure that requests from OOPIFs are also captured. The `Gatherer` class defines the lifecycle methods for gathering data, and the `beforePass` function may need to be adjusted to ensure that it prepares for gathering data from iframes. Lastly, the `GatherRunner` class orchestrates the gathering process, and the `pass` function is where the actual data gathering occurs, which should be updated to include iframe requests.",
+        "bug_scenario": "The bug scenario involves Lighthouse not handling Out-of-Process IFrames (OOPIFs) correctly. The user observed that Chrome DevTools uses the `Target.sendMessageToTarget` method to send commands to discovered targets, but Lighthouse may only be analyzing requests from the main frame, missing out on requests from iframes."
+    }
+}

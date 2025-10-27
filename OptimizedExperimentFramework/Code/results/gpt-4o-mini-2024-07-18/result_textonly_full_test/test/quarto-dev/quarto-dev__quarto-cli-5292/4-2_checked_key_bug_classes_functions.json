@@ -1,0 +1,69 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "pdfFormat",
+            "file_path": "src/format/pdf/format-pdf.ts",
+            "function_details": [
+                {
+                    "name": "pdfFormat",
+                    "start_line": 56,
+                    "end_line": 65
+                }
+            ],
+            "function_code": [
+                "export function pdfFormat(): Format {",
+                "  return mergeConfigs(",
+                "    createPdfFormat(\"PDF\"),",
+                "    {",
+                "      extensions: {",
+                "        book: pdfBookExtension,",
+                "      },",
+                "    },",
+                "  );",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "latexFormat",
+            "file_path": "src/format/pdf/format-pdf.ts",
+            "function_details": [
+                {
+                    "name": "latexFormat",
+                    "start_line": 83,
+                    "end_line": 110
+                }
+            ],
+            "function_code": [
+                "export function latexFormat(displayName: string): Format {",
+                "  return createFormat(",
+                "    displayName,",
+                "    \"tex\",",
+                "    mergeConfigs(",
+                "      createPdfFormat(displayName),",
+                "      {",
+                "        extensions: {",
+                "          book: {",
+                "            onSingleFilePreRender: (",
+                "              format: Format,",
+                "              _config?: ProjectConfig,",
+                "            ) => {",
+                "              // If we're targeting LaTeX output, be sure to keep",
+                "              // the supporting files around (since we're not building",
+                "              // them into a PDF)",
+                "              format.render[kKeepTex] = true;",
+                "              return format;",
+                "            },",
+                "            formatOutputDirectory: () => {",
+                "              return \"book-latex\";",
+                "            },",
+                "          },",
+                "        },",
+                "      },",
+                "    ),",
+                "  );",
+                "}"
+            ]
+        }
+    }
+}

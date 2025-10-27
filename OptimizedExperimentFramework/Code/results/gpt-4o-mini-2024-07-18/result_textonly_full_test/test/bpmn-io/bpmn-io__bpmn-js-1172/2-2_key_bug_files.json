@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/import/BpmnImporter.js",
+            "lib/import/BpmnTreeWalker.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: \n1. **BoundaryEventBehavior.js**: This file contains the behavior logic for boundary events, including how they are managed during diagram interactions. If the associations are not being handled correctly, this file is likely where the issue lies.\n2. **BpmnImporter.js**: This file is responsible for importing BPMN elements into the canvas. If boundary event associations are not being recognized during the import process, this file's logic for handling boundary events needs to be reviewed and potentially modified.\n3. **BpmnTreeWalker.js**: This file handles the traversal of BPMN elements during import. It is crucial for ensuring that all elements, including boundary events and their associations, are processed correctly. If the associations are not being rendered, this file may contain logic that fails to handle boundary events appropriately.",
+        "bug_scenario": "The bug scenario involves creating boundary event associations in a BPMN diagram, which are not rendered correctly upon importing the diagram back after export. The user creates a task, adds a signal boundary event, associates it with a data object, and then exports the diagram. Upon refreshing and importing the diagram, the associations are missing, indicating a failure in the import process to recognize and render these associations."
+    }
+}

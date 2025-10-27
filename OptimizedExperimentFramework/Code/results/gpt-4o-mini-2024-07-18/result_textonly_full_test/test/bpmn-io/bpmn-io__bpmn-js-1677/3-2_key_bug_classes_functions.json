@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler",
+            "lib/features/label-editing/LabelEditingProvider",
+            "lib/features/modeling/Modeling"
+        ],
+        "bug_functions": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler//execute",
+            "lib/features/label-editing/cmd/UpdateLabelHandler//revert",
+            "lib/features/label-editing/LabelEditingProvider//update",
+            "lib/features/modeling/Modeling//updateLabel"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the updating and management of element labels within the BPMN editor. The 'UpdateLabelHandler' class contains the 'execute' and 'revert' functions, which are directly involved in updating the label of an element. The 'LabelEditingProvider' class has the 'update' function that is responsible for updating the label during direct editing. The 'Modeling' class includes the 'updateLabel' function, which triggers the label update process. The bug arises when these functions are called while direct editing is active and an element is deleted, leading to the illegal invocation error.",
+        "bug_scenario": "The bug occurs when an element is deleted while direct editing is active, leading to an 'illegal invocation' exception during the execution of the 'element.updateLabel' action. This is demonstrated in the provided GIF, where the editor crashes upon attempting to remove an element directly."
+    }
+}

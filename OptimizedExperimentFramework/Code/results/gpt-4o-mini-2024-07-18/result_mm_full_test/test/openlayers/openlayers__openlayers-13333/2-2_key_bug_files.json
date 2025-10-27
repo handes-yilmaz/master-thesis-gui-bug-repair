@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "These files are key to the bug because: 1. **WebGLTile.js**: This file contains the main class for the WebGLTile layer, which is responsible for rendering tiles. Any issues with how the extent is defined or how tiles are rendered will likely be found here. 2. **GeoTIFF.js**: This file handles the GeoTIFF source, which is crucial for loading the correct data and ensuring that the extent is properly set. If the source is not configured correctly, it can lead to rendering issues. 3. **TileLayer.js**: This file is responsible for the WebGL rendering logic. It manages how tiles are drawn on the canvas, and any bugs in the rendering logic could cause tiles to be displayed incorrectly, such as rendering outside the intended extent.",
+        "bug_scenario": "The WebGLTile layer is rendering images outside of the original extent, as indicated by the images showing a red box that marks the correct extent, while the rendered output extends beyond this area. This issue is further illustrated by the images showing incorrect rendering when zooming in, where the expected area is not properly displayed."
+    }
+}

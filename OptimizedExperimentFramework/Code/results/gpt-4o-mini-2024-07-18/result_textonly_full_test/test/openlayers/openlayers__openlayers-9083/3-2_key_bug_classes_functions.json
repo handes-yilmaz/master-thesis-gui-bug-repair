@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/interaction/Draw.js//Draw",
+            "src/ol/interaction/DragPan.js//DragPan",
+            "src/ol/events/condition.js//altKeyOnly"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Draw.js//finishDrawing",
+            "src/ol/interaction/Draw.js//handleEvent",
+            "src/ol/interaction/DragPan.js//handleDragEvent",
+            "src/ol/interaction/DragPan.js//handleUpEvent",
+            "src/ol/events/condition.js//noModifierKeys"
+        ],
+        "explanation": "The 'Draw' class is responsible for handling the drawing of geometries, including polygons. The 'finishDrawing' function is crucial as it finalizes the drawing process and triggers the 'drawend' event, which is where the issue arises. The 'DragPan' class manages the dragging of the map, and its 'handleDragEvent' and 'handleUpEvent' functions are essential for ensuring that the map can be dragged after drawing. The 'altKeyOnly' condition from the 'condition' module is relevant because it determines whether the dragging action is allowed based on the key modifiers, which may be affecting the dragging functionality after drawing is completed.",
+        "bug_scenario": "The user is experiencing an issue where they cannot drag the map after finishing drawing a polygon using OpenLayers 5.3.0. This issue occurs specifically after the 'drawend' event, and the user has noted that the problem does not occur in version 4.6.5. The setup involves using an 'altkeyonly' condition, which may be related to the dragging functionality."
+    }
+}

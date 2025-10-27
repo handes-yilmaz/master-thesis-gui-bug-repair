@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/format/html/format-html.ts",
+            "src/filters/crossref/crossref.lua",
+            "src/command/render/cmd.ts"
+        ],
+        "explanation": "1. `src/format/html/format-html.ts` - This file likely contains the logic for formatting HTML output, including how to handle the `crossref` parameter. If the `crossref: false` setting is not being respected, this file may need to be modified to correctly implement that behavior. \n\n2. `src/filters/crossref/crossref.lua` - This Lua filter is directly referenced in the configuration and is responsible for handling cross-references in the output. Since it is being used when `crossref: false` is set, it is crucial to review and potentially modify this file to ensure it does not interfere when the parameter is false. \n\n3. `src/command/render/cmd.ts` - This file may handle the rendering commands and could be responsible for invoking the relevant formatting and filter logic. If the command structure does not correctly account for the `crossref: false` setting, it could lead to unexpected behavior.",
+        "bug_scenario": "The issue arises when the parameter `crossref: false` is set in the configuration for the HTML format, but the expected behavior is not occurring as intended. The associated image shows a configuration snippet indicating that a filter named 'testcrossref.lua' is being used, which is likely involved in handling cross-references in the output but is not functioning correctly when `crossref` is set to false."
+    }
+}

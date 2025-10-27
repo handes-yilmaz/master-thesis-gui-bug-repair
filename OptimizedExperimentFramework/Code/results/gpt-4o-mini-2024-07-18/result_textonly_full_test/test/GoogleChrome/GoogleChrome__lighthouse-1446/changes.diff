@@ -1,0 +1,22 @@
+diff --git a/lighthouse-core/aggregator/aggregate.js b/lighthouse-core/aggregator/aggregate.js
+index 2573c62..67b0671 100644
+--- a/lighthouse-core/aggregator/aggregate.js
++++ b/lighthouse-core/aggregator/aggregate.js
+@@ -146,7 +146,7 @@ class Aggregate {
+    */
+   static compare(results, items, aggregationIsScored) {
+     return items.map(item => {
+-      const expectedNames = Object.keys(item.audits);
++      const expectedNames = Object.keys(item.audits).filter(name => name !== 'missingMetric');
+ 
+       // Filter down and remap the results to something more comparable to
+       // the expected set of results.
+@@ -166,7 +166,7 @@ class Aggregate {
+         // TODO(paullewis): Remove once coming soon audits have landed
+         if (item.audits[e].comingSoon) {
+           subItems.push({
+-            score: '¯\\_(ツ)_/¯',
++      return template({\n      url: results.url,\n      lighthouseVersion: results.lighthouseVersion,\n      generatedTime: results.generatedTime,\n      lhresults: this._escapeScriptTags(JSON.stringify(results, null, 2)),\n      stylesheets: this.getReportCSS(),\n      reportContext: reportContext,\n      scripts: this.getReportJS(reportContext),\n      aggregations: results.aggregations,\n      auditsByCategory: this._createPWAAuditsByCategory(results.aggregations),\n      runtimeConfig: results.runtimeConfig,\n      reportsCatalog,\n      missingMetric: results.missingMetric\n    });
+             name: 'coming-soon',
+             category: item.audits[e].category,
+             description: item.audits[e].description,

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/network-requests.js",
+            "lighthouse-core/network-rtt.js",
+            "lighthouse-core/network-server-latency.js",
+            "lighthouse-core/gather/gatherers/network-analysis.js",
+            "lighthouse-core/gather/gatherers/response-compression.js"
+        ],
+        "explanation": "These files are related to network request handling and response time calculations. They are likely responsible for how different types of URLs (including non-network URLs) are processed and how their response times are calculated. Modifications in these files would help in correctly distinguishing between network and non-network URLs, ensuring accurate reporting of response times.",
+        "bug_scenario": "The bug scenario involves handling non-network URLs as actual network requests, leading to incorrect server response times being recorded. The request should ideally have a minimal response time of around 5-10ms, but currently, it may show a non-zero response time that is not appropriate for non-network URIs."
+    }
+}

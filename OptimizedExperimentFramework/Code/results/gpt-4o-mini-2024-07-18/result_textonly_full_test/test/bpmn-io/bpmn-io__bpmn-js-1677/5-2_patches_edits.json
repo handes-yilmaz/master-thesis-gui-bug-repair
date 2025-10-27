@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "./node_modules/bpmn-js/lib/features/modeling/Modeling.js": [
+            {
+                "SEARCH": [
+                    "if (element) {",
+                    "// existing code to update label",
+                    "element.updateLabel(newLabel);"
+                ],
+                "REPLACE": [
+                    "    if (element && !element.isDeleted) {",
+                    "        // existing code to update label",
+                    "        element.updateLabel(newLabel);"
+                ]
+            }
+        ],
+        "./node_modules/diagram-js/lib/command/CommandStack.js": [
+            {
+                "SEARCH": [
+                    "this._pushAction(action);",
+                    "this.execute(action);"
+                ],
+                "REPLACE": [
+                    "    if (!action.element.isDeleted) {",
+                    "        this._pushAction(action);",
+                    "        this.execute(action);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

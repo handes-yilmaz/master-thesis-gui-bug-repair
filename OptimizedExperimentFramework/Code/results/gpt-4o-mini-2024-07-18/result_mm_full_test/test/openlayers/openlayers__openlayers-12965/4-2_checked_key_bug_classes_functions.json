@@ -1,0 +1,100 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "WebGLTileLayer",
+            "file_path": "src/ol/layer/WebGLTile.js",
+            "class_details": [
+                {
+                    "name": "WebGLTileLayer",
+                    "start_line": 264,
+                    "end_line": 327,
+                    "methods": [
+                        {
+                            "name": "constructor",
+                            "start_line": 268,
+                            "end_line": 296
+                        },
+                        {
+                            "name": "createRenderer",
+                            "start_line": 303,
+                            "end_line": 316
+                        },
+                        {
+                            "name": "updateStyleVariables",
+                            "start_line": 323,
+                            "end_line": 326
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class WebGLTileLayer extends BaseTileLayer {",
+                "  /**",
+                "   * @param {Options} opt_options Tile layer options.",
+                "   */",
+                "  constructor(opt_options) {",
+                "    const options = opt_options ? assign({}, opt_options) : {};",
+                "",
+                "    const style = options.style || {};",
+                "    delete options.style;",
+                "",
+                "    const cacheSize = options.cacheSize;",
+                "    delete options.cacheSize;",
+                "",
+                "    super(options);",
+                "",
+                "    /**",
+                "     * @type {Style}",
+                "     * @private",
+                "     */",
+                "    this.style_ = style;",
+                "",
+                "    /**",
+                "     * @type {number}",
+                "     * @private",
+                "     */",
+                "    this.cacheSize_ = cacheSize;",
+                "",
+                "    /**",
+                "     * @type {Object<string, (string|number)>}",
+                "     * @private",
+                "     */",
+                "    this.styleVariables_ = this.style_.variables || {};",
+                "  }",
+                "",
+                "  /**",
+                "   * Create a renderer for this layer.",
+                "   * @return {import(\"../renderer/Layer.js\").default} A layer renderer.",
+                "   * @protected",
+                "   */",
+                "  createRenderer() {",
+                "    const source = this.getSource();",
+                "    const parsedStyle = parseStyle(",
+                "      this.style_,",
+                "      'bandCount' in source ? source.bandCount : 4",
+                "    );",
+                "",
+                "    return new WebGLTileLayerRenderer(this, {",
+                "      vertexShader: parsedStyle.vertexShader,",
+                "      fragmentShader: parsedStyle.fragmentShader,",
+                "      uniforms: parsedStyle.uniforms,",
+                "      cacheSize: this.cacheSize_,",
+                "    });",
+                "  }",
+                "",
+                "  /**",
+                "   * Update any variables used by the layer style and trigger a re-render.",
+                "   * @param {Object<string, number>} variables Variables to update.",
+                "   * @api",
+                "   */",
+                "  updateStyleVariables(variables) {",
+                "    assign(this.styleVariables_, variables);",
+                "    this.changed();",
+                "  }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

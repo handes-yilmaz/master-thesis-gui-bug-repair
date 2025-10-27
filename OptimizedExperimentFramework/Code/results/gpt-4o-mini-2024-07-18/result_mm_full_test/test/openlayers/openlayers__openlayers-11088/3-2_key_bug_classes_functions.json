@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/proj/proj4.js//register",
+            "src/ol/proj/Projection.js//Projection",
+            "src/ol/proj/projections.js//get"
+        ],
+        "bug_functions": [],
+        "explanation": "The 'register' function in 'proj4.js' is responsible for integrating proj4 definitions into OpenLayers, which is crucial for handling projections correctly. The 'Projection' class in 'Projection.js' defines how projections are managed, including axis orientation, which is likely affected by the changes in proj4js 2.6.1. The 'get' function in 'projections.js' retrieves cached projections, which may also be impacted by the new definitions in proj4js. These elements are central to the bug as they directly relate to how projections are interpreted and rendered in OpenLayers.",
+        "bug_scenario": "The issue arises when using OpenLayers with proj4js version 2.6.1, where the map layers are incorrectly rendered, resulting in rotation issues for both Mercator and EPSG:2180 projections. This is evident in the provided images, where the layers do not align correctly compared to the previous version (2.6.0) which works as expected."
+    }
+}

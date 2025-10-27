@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-jsx.js",
+            "components/prism-jsx.min.js",
+            "components/prism-javascript.js",
+            "components/prism-core.js",
+            "plugins/file-highlight/prism-file-highlight.js"
+        ],
+        "explanation": "The files likely responsible for this bug are related to Prism's implementation of JSX syntax highlighting. \"components/prism-jsx.js\" and \"components/prism-jsx.min.js\" directly handle the JSX syntax, including spread operator parsing. \"components/prism-javascript.js\" may also play a role if there are shared syntax rules between JavaScript and JSX. \"components/prism-core.js\" is engaged in the core functionality of Prism and may need adjustments for proper propagation of syntax rules. Finally, \"plugins/file-highlight/prism-file-highlight.js\" could be relevant if the bug involves file-level highlights or integrations with React Markdown.",
+        "bug_scenario": "In JSX components, using the spread operator for props breaks syntax highlighting when using Prism with React Markdown and React Syntax Highlighter. The issue is observed in the first button component where the syntax highlighting is incorrect as compared to the second button component, which highlights correctly when individual props are used."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-jsx.js",
+            "components/prism-jsx.min.js",
+            "components/prism-core.js",
+            "components/prism-core.min.js",
+            "plugins/file-highlight/prism-file-highlight.js",
+            "plugins/file-highlight/prism-file-highlight.min.js"
+        ],
+        "explanation": "Since the issue is with JSX syntax highlighting when using the spread operator, the files responsible for JSX syntax parsing and core Prism logic are likely involved. `components/prism-jsx.js` and its minified version handle JSX syntax. The `core` files are essential as they implement general syntax parsing logic. Additionally, the `file-highlight` plugin may be relevant if it affects how files are parsed and highlighted by Prism.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting in JSX components when props are spread using the spread operator (e.g., `{...props}`). Image 1 shows Prism incorrectly highlighting the JSX syntax due to the spread syntax. In contrast, Image 2 shows correct syntax highlighting from GitHub, suggesting the spreading mechanism causes the issue in Prism."
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/cascader-select/cascader-select.jsx//CascaderSelect",
+            "src/cascader/cascader.jsx//Cascader"
+        ],
+        "bug_functions": [
+            "src/cascader-select/cascader-select.jsx//handleChange",
+            "src/cascader/cascader.jsx//handleSelect",
+            "src/cascader/cascader.jsx//processValue"
+        ],
+        "explanation": "The classes and functions identified are related to the handling of properties and state within the CascaderSelect and Cascader components. The CascaderSelect class is responsible for rendering the component and managing its state, while the handleChange function is likely where the props are being modified. The Cascader class and its handleSelect and processValue functions are also crucial as they deal with the selection logic and data processing, which may inadvertently modify the input props. Fixing the issue will require ensuring that these functions do not alter the original props, maintaining immutability.",
+        "bug_scenario": "The CascaderSelect component is modifying the properties passed to it, which leads to errors when using Immer, as it expects the original state to remain immutable. The error message indicates that an attempt was made to add a property to an object that is not extensible, likely due to the modification of props."
+    }
+}

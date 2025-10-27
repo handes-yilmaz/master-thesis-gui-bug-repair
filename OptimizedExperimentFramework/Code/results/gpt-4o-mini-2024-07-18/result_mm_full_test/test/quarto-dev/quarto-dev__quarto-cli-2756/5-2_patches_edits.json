@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "// Hypothetical patch for the theorem processing function": [
+            {
+                "SEARCH": [
+                    "if (isListItem(currentItem)) {",
+                    "// Existing logic that incorrectly includes headings",
+                    "addToList(currentItem);"
+                ],
+                "REPLACE": [
+                    "if (isHeading(currentItem)) {",
+                    "    // New logic to handle headings separately",
+                    "    addToHeadings(currentItem);",
+                    "} else if (isListItem(currentItem)) {",
+                    "    addToList(currentItem);"
+                ]
+            }
+        ]
+    }
+}

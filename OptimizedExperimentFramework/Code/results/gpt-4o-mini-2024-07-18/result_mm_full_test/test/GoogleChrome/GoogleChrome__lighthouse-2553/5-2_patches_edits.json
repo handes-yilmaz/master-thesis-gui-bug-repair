@@ -1,0 +1,38 @@
+{
+    "1/1": {
+        "lighthouse-core/report/v2/renderer/util.js": [
+            {
+                "SEARCH": [
+                    "return number.toLocaleString(undefined, {maximumFractionDigits: 1});"
+                ],
+                "REPLACE": [
+                    "    return number.toLocaleString(undefined, {maximumFractionDigits: 1, minimumFractionDigits: 1});"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return (size / 1024).toLocaleString(undefined, {maximumFractionDigits: decimalPlaces});"
+                ],
+                "REPLACE": [
+                    "    return (size / 1024).toLocaleString(undefined, {maximumFractionDigits: decimalPlaces, minimumFractionDigits: decimalPlaces});"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return `${coarseTime.toLocaleString()}${NBSP}ms`;"
+                ],
+                "REPLACE": [
+                    "    return `${coarseTime.toLocaleString(undefined, {maximumFractionDigits: 0})}${NBSP}ms`;"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return Util.formatNumber((endTime - startTime) * 1000);"
+                ],
+                "REPLACE": [
+                    "    return Util.formatNumber((endTime - startTime) * 1000).toLocaleString(undefined, {maximumFractionDigits: 0});"
+                ]
+            }
+        ]
+    }
+}

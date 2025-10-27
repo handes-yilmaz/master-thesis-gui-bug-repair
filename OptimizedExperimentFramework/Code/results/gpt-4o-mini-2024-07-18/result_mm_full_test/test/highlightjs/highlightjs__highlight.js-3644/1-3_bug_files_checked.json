@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/cmake.js",
+            "src/lib/compile_keywords.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "These files are bug-related because 'cmake.js' is responsible for defining the CMake language syntax highlighting rules, including comments. The 'compile_keywords.js' file likely contains logic for handling keywords and comments, which may need to be adjusted to recognize the multi-line comment format. The 'modes.js' file may also be involved in determining how different language modes (like CMake) are handled, and thus could require modifications to properly support multi-line comments.",
+        "bug_scenario": "The issue arises from the improper handling of multi-line comments in CMake by the highlight.js library. The expected behavior is that content between `#[[` and `]]` is treated as a multi-line comment and should be grayed out, but instead, highlight.js is treating it as individual single-line comments due to the `#` character at the start."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnLayouter",
+            "lib/features/modeling/BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnLayouter//layoutConnection",
+            "lib/features/modeling/BpmnUpdater//updateConnectionWaypoints"
+        ],
+        "explanation": "The BpmnLayouter class is responsible for laying out connections in the BPMN diagram, and the layoutConnection function specifically handles how connections are drawn between elements. If the diagram jumps, it is likely due to incorrect handling of connection layouts. The BpmnUpdater class is responsible for updating the diagram's connections and their waypoints, which is crucial when elements are moved or wrapped in pools. The updateConnectionWaypoints function may need to be examined to ensure that it correctly updates the positions of connections when the diagram is modified.",
+        "bug_scenario": "The diagram jumps when wrapping a process in a pool, which indicates that the layout or rendering of the diagram is not maintaining the expected viewport position during this operation."
+    }
+}

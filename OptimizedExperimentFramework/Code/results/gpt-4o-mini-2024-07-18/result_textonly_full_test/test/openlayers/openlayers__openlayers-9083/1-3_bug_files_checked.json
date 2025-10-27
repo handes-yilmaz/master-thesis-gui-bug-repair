@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/interaction/Draw.js",
+            "src/ol/interaction/DragPan.js",
+            "src/ol/Map.js",
+            "src/ol/events/condition.js"
+        ],
+        "explanation": "These files are related to the bug because: \n1. **Draw.js**: This file handles drawing interactions. Since the issue occurs after the drawend event, any logic related to ending drawing and transitioning to dragging the map would be implemented here.\n2. **DragPan.js**: This file manages the dragging functionality of the map. If the dragging feature is not working correctly post-drawend, this file would likely contain the relevant logic that needs to be examined or modified.\n3. **Map.js**: This file represents the map itself and is where interactions like dragging are initialized and controlled. Changes here could influence how the map responds after drawing.\n4. **condition.js**: Since the user mentioned using an altkeyonly condition, this file (which likely defines various conditions for interactions) could contain the logic that is affecting the dragging behavior after the drawing is completed.",
+        "bug_scenario": "The bug occurs after the drawend event when a polygon is drawn, preventing users from dragging the map. This issue seems to happen inconsistently and is linked to the OpenLayers version being used, specifically in version 5.3.0, as it does not occur in 4.6.5. The bug report also mentions the use of an altkeyonly condition, which could be affecting the dragging functionality after the drawing ends."
+    }
+}

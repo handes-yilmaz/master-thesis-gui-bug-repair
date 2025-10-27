@@ -1,0 +1,22 @@
+diff --git a/src/format/pdf/format-pdf.ts b/src/format/pdf/format-pdf.ts
+index 6bd5b9a..e58f554 100644
+--- a/src/format/pdf/format-pdf.ts
++++ b/src/format/pdf/format-pdf.ts
+@@ -58,7 +58,16 @@ export function pdfFormat(): Format {
+     createPdfFormat("PDF"),
+     {
+       extensions: {
+-        book: pdfBookExtension,
++        book: {
++          onSingleFilePreRender: (format: Format, _config?: ProjectConfig) => {
++            // Ensure necessary LaTeX packages are included
++            format.render[kLatexPackages] = [
++              "tikz", // Include tikz package
++              // Add any other necessary packages here
++            ];
++            return format;
++          },
++        },
+       },
+     },
+   );

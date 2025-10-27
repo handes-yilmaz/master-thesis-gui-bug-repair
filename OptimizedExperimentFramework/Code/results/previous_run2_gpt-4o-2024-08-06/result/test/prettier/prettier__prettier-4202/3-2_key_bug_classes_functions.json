@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//parse",
+            "src/language-markdown/parser-markdown.js//transformInlineCode",
+            "src/language-markdown/parser-markdown.js//mergeContinuousTexts"
+        ],
+        "explanation": "The function `parse` in `parser-markdown.js` is responsible for processing markdown text, including handling of markdown tables. This function uses several other functions like `transformInlineCode` and `mergeContinuousTexts` which deal with text transformation and merging, crucial for controlling the structure and length of processed markdown lines. The bug likely lies in how these functions handle long table lines, failing to apply the necessary transformations to keep line lengths under control.",
+        "bug_scenario": "The bug scenario involves excessively long lines in markdown tables, particularly when processed through Prettier. The lines become very long, which can be problematic when trying to maintain readability and manageability of markdown tables. The image shows a line that is 865 characters long, indicating a failure to limit line length during markdown processing."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//mergeContinuousTexts",
+            "src/language-markdown/parser-markdown.js//transformInlineCode"
+        ],
+        "explanation": "The function `parse` in `src/language-markdown/parser-markdown.js` is responsible for processing markdown text, which includes handling the conversion of markdown tables. The issue of long lines likely arises in the `mergeContinuousTexts` function which merges text nodes, potentially creating long lines if not handled with a limit. Similarly, `transformInlineCode` replaces spaces in inline code, which can contribute to line length if not limited, making them key areas to address the bug.",
+        "bug_scenario": "The bug involves excessively long lines in markdown tables when processed, leading to readability issues. The tables, especially those containing HTML content, are not limited in line length causing very long lines, as shown in the image with a line length of 865 characters. The goal is to fall back to a simpler three-dash pattern for such cases to improve readability."
+    }
+}

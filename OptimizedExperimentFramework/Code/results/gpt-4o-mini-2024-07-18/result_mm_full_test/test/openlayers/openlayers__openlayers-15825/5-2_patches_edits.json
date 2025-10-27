@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "this.setKey(this.sourceInfo_.map((source) => source.url).join(','));"
+                ],
+                "REPLACE": [
+                    "    this.setKey(this.sourceInfo_.map((source) => source.url).join(','));",
+                    "    this.wrapX = options.wrapX !== undefined ? options.wrapX : true; // Ensure wrapping is enabled"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const source = this.getSource();"
+                ],
+                "REPLACE": [
+                    "    const source = this.getSource();",
+                    "    if (source && source.wrapX) { // Check if wrapping is enabled",
+                    "        this.setStyle(this.style_);",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/reproj/DataTile.js": [
+            {
+                "SEARCH": [
+                    "const targetResolution = this.targetTileGrid_.getResolution("
+                ],
+                "REPLACE": [
+                    "    const targetResolution = this.targetTileGrid_.getResolution(",
+                    "    if (this.sourceTileGrid_.getExtent()[0] < 0 && this.targetTileGrid_.getExtent()[0] > 0) {",
+                    "        // Adjust for antimeridian crossing",
+                    "        this.sourceZ_ = this.sourceTileGrid_.getZForResolution(sourceResolution);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

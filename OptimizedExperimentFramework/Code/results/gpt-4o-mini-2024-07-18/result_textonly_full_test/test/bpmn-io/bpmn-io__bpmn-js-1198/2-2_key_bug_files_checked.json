@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/auto-place/AutoPlace.js"
+        ],
+        "explanation": "The file 'UnsetDefaultFlowBehavior.js' is crucial because it contains the logic that unsets the default property of a sequence flow when a connection is deleted. This behavior is directly related to the issue described in the bug report. The 'BpmnUpdater.js' file is important as it handles updates to the BPMN model, including the default and conditional flows, which may be affected by the addition of catch events. Lastly, 'AutoPlace.js' is relevant because it manages the placement of elements in the diagram, which could indirectly influence how elements interact with each other, including the default flow behavior.",
+        "bug_scenario": "The bug scenario involves an exclusive gateway in a BPMN diagram that has two output sequence flows, one of which is designated as the default flow. When a Timer Intermediate Catch Event is added to the non-default flow, it inadvertently removes the default attribute from the exclusive gateway, which is not the expected behavior. The expected behavior is that the default attribute should remain intact regardless of the addition of catch events."
+    }
+}

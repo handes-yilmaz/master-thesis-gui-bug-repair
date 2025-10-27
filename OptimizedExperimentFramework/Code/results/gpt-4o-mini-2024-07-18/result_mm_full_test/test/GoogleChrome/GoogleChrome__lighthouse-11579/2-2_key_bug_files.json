@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/first-contentful-paint.js",
+            "lighthouse-core/gather/gatherers/trace-elements.js",
+            "lighthouse-core/audits/metrics/speed-index.js"
+        ],
+        "explanation": "These files are key to addressing the bug because: 1. **first-contentful-paint.js**: This file directly relates to the calculation and reporting of the First Contentful Paint metric, which is central to the reported issue. 2. **trace-elements.js**: This file handles the gathering of trace data, which is essential for measuring performance metrics like FCP. If the trace is not recorded correctly, it will lead to errors in performance metrics. 3. **speed-index.js**: This file is also involved in measuring performance metrics and may be affected by the same underlying issue that causes the NO_FCP error.",
+        "bug_scenario": "The bug scenario involves the Lighthouse tool failing to measure performance metrics, specifically resulting in a 'NO_FCP' (No First Contentful Paint) error when the tab is in the background. This issue occurs regardless of whether the URL is a remote server or localhost, and it persists even in a clean Chrome profile. The expected behavior is for Lighthouse to evaluate performance and check the PWA checklist, but instead, it fails to record the trace over the page load, leading to errors in multiple performance metrics."
+    }
+}

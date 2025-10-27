@@ -1,0 +1,32 @@
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 65d960d..896e1ad 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -89,7 +89,7 @@ function getBoundingBox(image) {
+     return image.getBoundingBox();
+   } catch (_) {
+     const fileDirectory = image.fileDirectory;
+-    return [0, 0, fileDirectory.ImageWidth, fileDirectory.ImageLength];
++    return [0, 0, fileDirectory.ImageWidth * fileDirectory.PixelScale[0], fileDirectory.ImageLength * fileDirectory.PixelScale[1]];
+   }
+ }
+ 
+@@ -103,7 +103,7 @@ function getOrigin(image) {
+   try {
+     return image.getOrigin().slice(0, 2);
+   } catch (_) {
+-    return [0, image.fileDirectory.ImageLength];
++    return [0, image.fileDirectory.ImageLength * image.fileDirectory.PixelScale[1]];
+   }
+ }
+ 
+@@ -116,7 +116,8 @@ function getOrigin(image) {
+  */
+ function getResolution(image, referenceImage) {
+   try {
+-    return image.getResolution(referenceImage)[0];
++    const resolution = image.getResolution(referenceImage);
++    return [resolution[0] * image.fileDirectory.PixelScale[0], resolution[1] * image.fileDirectory.PixelScale[1]];
+   } catch (_) {
+     return (
+       referenceImage.fileDirectory.ImageWidth / image.fileDirectory.ImageWidth

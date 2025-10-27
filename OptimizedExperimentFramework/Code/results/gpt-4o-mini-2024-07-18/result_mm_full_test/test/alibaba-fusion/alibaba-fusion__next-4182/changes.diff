@@ -1,0 +1,17 @@
+diff --git a/src/cascader-select/cascader-select.jsx b/src/cascader-select/cascader-select.jsx
+index 25bbe41..6ee704a 100644
+--- a/src/cascader-select/cascader-select.jsx
++++ b/src/cascader-select/cascader-select.jsx
+@@ -595,10 +595,8 @@ class CascaderSelect extends Component {
+         }
+ 
+         const { prefix, popupProps } = this.props;
+-        const dropDownNode = this.popup
+-            .getInstance()
+-            .overlay.getInstance()
+-            .getContentNode();
++        const popupInstance = this.popup && this.popup.getInstance();
++        const dropDownNode = popupInstance ? popupInstance.overlay.getInstance().getContentNode() : null;
+         const cascaderNode = dropDownNode.querySelector(`.${prefix}cascader`);
+         if (cascaderNode) {
+             this.cascaderHeight = getStyle(cascaderNode, 'height');

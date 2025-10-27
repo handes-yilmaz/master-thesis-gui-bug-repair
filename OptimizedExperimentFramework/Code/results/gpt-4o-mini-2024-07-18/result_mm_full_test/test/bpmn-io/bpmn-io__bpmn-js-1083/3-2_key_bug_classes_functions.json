@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/snapping/BpmnConnectSnapping",
+            "lib/features/grid-snapping/BpmnGridSnapping",
+            "lib/features/snapping/BpmnCreateMoveSnapping"
+        ],
+        "bug_functions": [
+            "lib/features/snapping/BpmnConnectSnapping//snapInsideTarget",
+            "lib/features/snapping/BpmnConnectSnapping//snapBoundaryEventLoop",
+            "lib/features/snapping/BpmnConnectSnapping//snapToPosition",
+            "lib/features/snapping/BpmnCreateMoveSnapping//snapBoundaryEvent",
+            "lib/features/snapping/BpmnCreateMoveSnapping//setSnappedIfConstrained"
+        ],
+        "explanation": "The identified classes and functions are crucial for the snapping functionality. The `BpmnConnectSnapping` class handles the snapping behavior during connection events, while the `BpmnCreateMoveSnapping` class manages snapping during creation and movement of elements. Functions like `snapInsideTarget`, `snapBoundaryEventLoop`, and `snapToPosition` are directly responsible for implementing the snapping logic, which is essential for restoring the expected behavior of docking elements. The failure in these functions likely contributes to the observed bug.",
+        "bug_scenario": "The bug scenario involves the failure of the docking snapping feature in version 4.0.0-beta.1, which previously worked in version 3.x. Users are unable to snap connected elements to their docking points when moving them, as demonstrated in the provided images."
+    }
+}

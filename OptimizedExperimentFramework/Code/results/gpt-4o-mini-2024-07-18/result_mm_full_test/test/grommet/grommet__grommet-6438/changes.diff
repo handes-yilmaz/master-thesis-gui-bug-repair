@@ -1,0 +1,44 @@
+diff --git a/src/js/components/DateInput/DateInput.js b/src/js/components/DateInput/DateInput.js
+index 057eebc..c457f0e 100644
+--- a/src/js/components/DateInput/DateInput.js
++++ b/src/js/components/DateInput/DateInput.js
+@@ -31,19 +31,27 @@ import {
+ import { DateInputPropTypes } from './propTypes';
+ import { getOutputFormat } from '../Calendar/Calendar';
+ 
+-const getReference = (value) => {
+-  let adjustedDate;
+-  let res;
+-  if (typeof value === 'string') res = value;
+-  else if (Array.isArray(value) && Array.isArray(value[0]))
+-    res = value[0].find((date) => date);
+-  else if (Array.isArray(value) && value.length) [res] = value;
++  const isDateInBounds = (date, bounds) => {
++    const [start, end] = bounds;
++    return date >= new Date(start) && date <= new Date(end);
++  };
+ 
+-  if (res) {
+-    adjustedDate = setHoursWithOffset(res);
+-  }
+-  return adjustedDate;
+-};
++  const getReference = (value) => {
++    let adjustedDate;
++    let res;
++    if (typeof value === 'string') res = value;
++    else if (Array.isArray(value) && Array.isArray(value[0]))
++      res = value[0].find((date) => date);
++    else if (Array.isArray(value) && value.length) [res] = value;
++
++    if (res) {
++      adjustedDate = setHoursWithOffset(res);
++      if (!isDateInBounds(adjustedDate, calendarProps.bounds)) {
++        return null; // or handle the out-of-bounds case appropriately
++      }
++    }
++    return adjustedDate;
++  };
+ 
+ const DateInput = forwardRef(
+   (

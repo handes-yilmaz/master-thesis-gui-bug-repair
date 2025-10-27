@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-cpp.js",
+            "components/prism-c.js"
+        ],
+        "explanation": "1. `components/prism-cpp.js`: This file is responsible for syntax highlighting rules specific to C++. The regex for numbers must be updated to correctly handle single quotes in floating point and integer literals.\n\n2. `components/prism-c.js`: As it's mentioned that the regex was adapted from this file, any relevant changes or improvements to the base functionality also need to be reflected here.\n\n3. `tests/languages/cpp/separating_single_quotes_feature.test`: This test file contains the testing logic to verify if the syntax highlighting for numbers with single quotes is functioning correctly. It needs to be reviewed or updated to ensure the tests accurately check for this functionality.",
+        "bug_scenario": "The images show a discrepancy in syntax highlighting for C++ floating point and integer literals that use single quotes for digit separation. The left side displays the incorrect highlighting, where parts of the numbers are mistakenly interpreted as strings or not highlighted as numbers. The right side shows the intended correct highlighting with numbers properly recognized, despite the single quotes."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-cpp.js"
+        ],
+        "explanation": "The file 'components/prism-cpp.js' is relevant because it handles the syntax highlighting rules for C++. The issue arises from the regex used to match number patterns, which needs adjustment to correctly include single quotes. The test file 'tests/languages/cpp/separating_single_quotes_feature.test' is relevant because it is used to verify that the regex correctly handles single-quoted numbers.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting for C++ literals containing single quotes. The images show the wrong highlights on the left side and the correct highlights on the right. For instance, numbers such as '1'048'576' and 'tau / 1'000' should be treated as single numbers but are currently incorrectly parsed as strings."
+    }
+}

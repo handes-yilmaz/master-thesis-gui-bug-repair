@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/modeling/behavior/UnsetDefaultFlowBehavior.js",
+            "lib/modeling/BpmnUpdater.js",
+            "lib/features/auto-place/AutoPlace.js",
+            "lib/features/auto-resize/BpmnAutoResize.js"
+        ],
+        "explanation": "These files are likely to be related to the bug because they contain behavior and updating logic for managing the flow of elements in the BPMN model. The UnsetDefaultFlowBehavior.js file specifically suggests functions related to managing default flows, which may need to be adjusted to prevent the removal of the default attribute when a Timer Intermediate Catch Event is added. BpmnUpdater.js may also be responsible for updating the properties of elements in the model, including the default flow settings. The AutoPlace.js and BpmnAutoResize.js files may influence how elements are positioned and resized in the model, which could indirectly impact the behavior of the exclusive gateway when new events are added.",
+        "bug_scenario": "The bug occurs when a Timer Intermediate Catch Event is added to a non-default output sequence flow of an exclusive gateway, resulting in the removal of the default attribute from the gateway. This is a critical issue because it affects the expected behavior of the flow, where the default behavior should remain intact regardless of additional events."
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/common/util-shared.js"
+        ],
+        "explanation": "1. **parser-markdown.js**: This file likely handles parsing of markdown files, which includes identifying tables and interpreting their structure. Adjustments here might be necessary to identify long lines within tables.\n2. **printer-markdown.js**: Responsible for output formatting, this file would control how markdown tables are printed. Modifications may be required to prevent excessively long lines by altering the current formatting routine.\n3. **util-shared.js**: Common utilities shared across modules, which might include functions to check line length or apply line-breaking policies consistently across file types, making it relevant for this bug fix.",
+        "bug_scenario": "The bug involves extremely long lines resulting from cleaned markdown table columns in prettier output. These lines grow excessively long due to the absence of a length limit on table elements."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/doc/printer.js"
+        ],
+        "explanation": "The issue pertains to how markdown tables are processed, particularly focusing on long lines created during cleaning and formatting in Prettier. The `parser-markdown.js` file in `src/language-markdown/` is responsible for parsing markdown files, making it a primary candidate for adjustments. Similarly, the `printer.js` file in `src/doc/` deals with document printing and formatting, hence adjustments may be needed to handle long lines by implementing logic to fall back to a three-dash pattern or another solution.",
+        "bug_scenario": "The bug report describes an issue with markdown table formatting where very long lines occur when processed through Prettier. This happens because there's no limit on line length when cleaning markdown tables, leading to excessively long lines in cases like HTML embedded in markdown tables."
+    }
+}

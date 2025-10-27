@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/interaction/draw.js",
+            "src/ol/source/imagevector.js",
+            "src/ol/render/canvas/immediate.js"
+        ],
+        "explanation": "These files are key to addressing the performance issue reported in the bug. The 'src/ol/interaction/draw.js' file contains the logic for handling drawing interactions, which is directly related to the performance of drawing features. The 'src/ol/source/imagevector.js' file is relevant because it is deprecated and the user is transitioning from this to a new method, which may be causing performance issues. Lastly, 'src/ol/render/canvas/immediate.js' is crucial as it handles the immediate rendering of features to the canvas, which is likely where the performance bottleneck is occurring.",
+        "bug_scenario": "The bug scenario involves low performance when using the draw interaction in OpenLayers version 4.6.2, specifically with the renderMode set to 'image'. The user has reported that drawing a triangle at a certain resolution is significantly slower compared to version 4.4.2, which used the image vector rendering method. The provided image shows a map with a drawn triangle and various points, indicating the performance issue during the drawing process."
+    }
+}

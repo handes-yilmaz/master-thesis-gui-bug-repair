@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/php.js//HTMLRenderer"
+        ],
+        "bug_functions": [
+            "src/languages/php.js//export default function",
+            "src/lib/html_renderer.js//openNode",
+            "src/lib/html_renderer.js//span"
+        ],
+        "explanation": "The 'HTMLRenderer' class in 'src/languages/php.js' is responsible for rendering the highlighted code, and the 'openNode' function is crucial as it determines when to open a new HTML node (like a span) for highlighting. The 'span' function is directly involved in creating the span elements with the appropriate class names. The bug is related to how these functions handle the 'language-php' class, leading to the addition of an extra PHP tag, which is the core of the reported issue.",
+        "bug_scenario": "The issue arises when the 'language-php' class is added to a code element, resulting in an extra PHP tag being applied. This behavior is not observed with other language classes, indicating a specific problem with the PHP language handling in the highlighting library."
+    }
+}

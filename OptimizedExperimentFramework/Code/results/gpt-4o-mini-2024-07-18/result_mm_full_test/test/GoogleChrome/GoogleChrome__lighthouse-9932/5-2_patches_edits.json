@@ -1,0 +1,61 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/network-requests.js": [
+            {
+                "SEARCH": [
+                    "return {",
+                    "url: URL.elideDataURI(record.url),",
+                    "startTime: timeToMs(record.startTime),",
+                    "endTime: timeToMs(record.endTime),",
+                    "transferSize: record.transferSize,",
+                    "resourceSize: record.resourceSize,",
+                    "statusCode: record.statusCode,",
+                    "mimeType: record.mimeType,",
+                    "resourceType: record.resourceType,",
+                    "lrEndTimeDeltaMs: endTimeDeltaMs, // Only exists on Lightrider runs",
+                    "lrTCPMs: TCPMs, // Only exists on Lightrider runs",
+                    "lrRequestMs: requestMs, // Only exists on Lightrider runs",
+                    "lrResponseMs: responseMs, // Only exists on Lightrider runs"
+                ],
+                "REPLACE": [
+                    "        if (!record.url.startsWith('http')) {",
+                    "          return null; // Skip non-network URLs",
+                    "        }",
+                    "        return {",
+                    "          url: URL.elideDataURI(record.url),",
+                    "          startTime: timeToMs(record.startTime),",
+                    "          endTime: timeToMs(record.endTime),",
+                    "          transferSize: record.transferSize,",
+                    "          resourceSize: record.resourceSize,",
+                    "          statusCode: record.statusCode,",
+                    "          mimeType: record.mimeType,",
+                    "          resourceType: record.resourceType,",
+                    "          lrEndTimeDeltaMs: endTimeDeltaMs, // Only exists on Lightrider runs",
+                    "          lrTCPMs: TCPMs, // Only exists on Lightrider runs",
+                    "          lrRequestMs: requestMs, // Only exists on Lightrider runs",
+                    "          lrResponseMs: responseMs, // Only exists on Lightrider runs"
+                ]
+            }
+        ],
+        "lighthouse-core/audits/network-rtt.js": [
+            {
+                "SEARCH": [
+                    "if (!origin.startsWith('http')) continue;"
+                ],
+                "REPLACE": [
+                    "      if (!origin.startsWith('http') || !origin.includes('.')) continue; // Skip non-network URLs"
+                ]
+            }
+        ],
+        "lighthouse-core/audits/network-server-latency.js": [
+            {
+                "SEARCH": [
+                    "if (!origin.startsWith('http')) continue;"
+                ],
+                "REPLACE": [
+                    "      if (!origin.startsWith('http') || !origin.includes('.')) continue; // Skip non-network URLs"
+                ]
+            }
+        ]
+    }
+}

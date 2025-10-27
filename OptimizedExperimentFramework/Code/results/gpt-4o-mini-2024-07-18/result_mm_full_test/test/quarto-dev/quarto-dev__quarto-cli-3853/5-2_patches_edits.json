@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/format/pdf/format-pdf.ts": [
+            {
+                "SEARCH": [
+                    "const lineProcessors: LineProcessor[] = [",
+                    "sidecaptionLineProcessor(),",
+                    "calloutFigureHoldLineProcessor(),",
+                    "// Add a processor to remove unwanted vertical space",
+                    "removeExtraVerticalSpaceProcessor(),",
+                    "];"
+                ],
+                "REPLACE": [
+                    "    const lineProcessors: LineProcessor[] = [",
+                    "      sidecaptionLineProcessor(),",
+                    "      calloutFigureHoldLineProcessor(),",
+                    "    ];"
+                ]
+            }
+        ],
+        "src/command/render/latexmk/quarto-latexmk.ts": [
+            {
+                "SEARCH": [
+                    "// Ensure proper formatting of proof environments",
+                    "const proofContent = formatProofContent(proof);",
+                    "return `\\\\begin{proof}\\n\\n${proofContent}\\n\\n\\\\end{proof}`;"
+                ],
+                "REPLACE": [
+                    "    // Ensure proper formatting of proof environments",
+                    "    const proofContent = formatProofContent(proof);",
+                    "    return `\\\\begin{proof}\\n${proofContent}\\n\\\\end{proof}`;"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/epsg4326.js",
+            "src/ol/proj/transforms.js",
+            "src/ol/extent/Relationship.js",
+            "src/ol/View.js"
+        ],
+        "explanation": "The 'epsg4326.js' file contains the fromEPSG4326 function which is directly related to the transformation issue causing NaN values. The 'transforms.js' file likely handles the transformation logic between coordinate systems, and any bugs here could also contribute to the problem. The 'Relationship.js' file may define how extents are handled, which could be relevant in cases of empty extents. Lastly, 'View.js' is involved in fitting views to extents, thus it could be impacted by or contribute to issues arising from empty extents.",
+        "bug_scenario": "The bug occurs when the function applyTransform is called with an empty extent created by createEmpty. This leads to NaN values being generated, especially when using the EPSG:4326 to EPSG:3857 transformation. The issue arises from the fromEPSG4326 function, which does not handle cases where the input extent is empty (Infinity), resulting in NaN values in the output."
+    }
+}

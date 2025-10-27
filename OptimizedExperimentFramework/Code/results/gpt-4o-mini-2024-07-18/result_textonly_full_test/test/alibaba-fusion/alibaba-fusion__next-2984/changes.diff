@@ -1,0 +1,22 @@
+diff --git a/src/cascader-select/cascader-select.jsx b/src/cascader-select/cascader-select.jsx
+index 03a0db3..f6710ce 100644
+--- a/src/cascader-select/cascader-select.jsx
++++ b/src/cascader-select/cascader-select.jsx
+@@ -311,7 +311,7 @@ class CascaderSelect extends Component {
+         const st = {};
+ 
+         if ('value' in props) {
+-            st.value = normalizeValue(props.value);
++            st.value = normalizeValue(JSON.parse(JSON.stringify(props.value))); // Create a deep copy
+         }
+         if ('visible' in props) {
+             st.visible = props.visible;
+@@ -592,7 +592,7 @@ class CascaderSelect extends Component {
+         }
+ 
+         if (!('value' in this.props)) {
+-            st.value = value;
++            st.value = JSON.parse(JSON.stringify(value)); // Create a deep copy
+         }
+         if (!multiple && searchValue) {
+             st.searchValue = '';

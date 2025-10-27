@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/SubprocessCompatibility.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "explanation": "These files are key to the bug because they handle the behavior and rendering of subprocesses and their labels. The 'SubprocessCompatibility.js' file manages the import and rendering of diagrams with collapsed subprocesses, which is directly related to the visibility issue. The 'SubProcessStartEventBehavior.js' file deals with the creation of start events when a task is replaced with a subprocess, which may affect how labels are positioned. Lastly, the 'LabelBehavior.js' file is responsible for managing label visibility and positioning, which is crucial for ensuring that labels are hidden when a subprocess is collapsed.",
+        "bug_scenario": "The bug occurs when a user interacts with a collapsed subprocess in a BPMN diagram. After appending tasks and end events, changing a task to a subprocess, and adding labels, clicking on the collapsed subprocess causes the labels to become visible instead of being hidden as expected. This issue is particularly tricky to reproduce, as it may depend on the positioning of the start event within the subprocess."
+    }
+}

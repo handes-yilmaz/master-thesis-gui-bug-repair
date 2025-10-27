@@ -1,0 +1,52 @@
+{
+    "1/1": {
+        "lib/linter/code-path-analysis/code-path-analyzer.js": [
+            {
+                "SEARCH": [
+                    "if (isHandledLogicalOperator(node.operator)) {",
+                    "state.pushChoiceContext(",
+                    "node.operator,",
+                    "isForkingByTrueOrFalse(node)",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "            if (isHandledLogicalOperator(node.operator)) {",
+                    "                if (node.operator === \"&&\") {",
+                    "                    // Add logic to handle short-circuiting for `&&`",
+                    "                    state.pushChoiceContext(",
+                    "                        node.operator,",
+                    "                        isForkingByTrueOrFalse(node) || isForkingByTrueOrFalse(node.right)",
+                    "                    );",
+                    "                } else {",
+                    "                    state.pushChoiceContext(",
+                    "                        node.operator,",
+                    "                        isForkingByTrueOrFalse(node)",
+                    "                    );",
+                    "                }",
+                    "            }"
+                ]
+            }
+        ],
+        "lib/linter/code-path-analysis/code-path-state.js": [
+            {
+                "SEARCH": [
+                    "context.trueForkContext.add(headSegments);",
+                    "context.falseForkContext.add(headSegments);",
+                    "context.qqForkContext.add(headSegments);"
+                ],
+                "REPLACE": [
+                    "                if (context.kind === \"&&\") {",
+                    "                    // Ensure that the true and false paths are correctly set for `&&`",
+                    "                    context.trueForkContext.add(headSegments);",
+                    "                    context.falseForkContext.add(headSegments);",
+                    "                } else {",
+                    "                    context.trueForkContext.add(headSegments);",
+                    "                    context.falseForkContext.add(headSegments);",
+                    "                    context.qqForkContext.add(headSegments);",
+                    "                }"
+                ]
+            }
+        ]
+    }
+}

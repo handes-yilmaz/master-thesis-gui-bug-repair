@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/BpmnFactory.js",
+            "lib/features/editor-actions/BpmnEditorActions.js"
+        ],
+        "explanation": "These files are likely to be bug related because 'BpmnUpdater.js' is responsible for updating BPMN elements in the model, including the loop characteristics. 'BpmnFactory.js' may contain the logic for creating the correct XML structure for these elements. 'BpmnEditorActions.js' might handle the user interactions for toggling between Parallel and Sequential, thus needing to ensure the correct updates are made to the XML when these actions are performed.",
+        "bug_scenario": "The bug occurs when toggling between Parallel and Sequential multi-instance loop labels in a task. The expected behavior is that the XML label updates to reflect the selected toggle, specifically to either '<bpmn:multiInstanceLoopCharacteristics />' for Parallel or '<bpmn:multiInstanceLoopCharacteristics isSequential=\"true\" />' for Sequential. However, no updates occur when toggling, indicating a problem with how the application handles these toggles."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/works-offline.js",
+            "lighthouse-core/audits/critical-request-chains.js",
+            "lighthouse-core/audits/service-worker.js",
+            "lighthouse-core/gather/gatherers/service-worker.js",
+            "lighthouse-core/gather/gatherers/offline.js",
+            "lighthouse-core/gather/gatherers/start-url.js"
+        ],
+        "explanation": "These files are related to the bug because they handle critical aspects of how Lighthouse interacts with the web application being audited, particularly regarding Progressive Web Apps (PWAs). The 'works-offline.js' and 'service-worker.js' audits check for the correct implementation of service workers, which is vital for a PWA's offline capabilities. The 'critical-request-chains.js' audit assesses the loading performance of resources, which could contribute to the hanging issue during the loading phase. Additionally, the 'offline.js' and 'start-url.js' gatherers are crucial for gathering data about the service worker and how the app behaves when offline, which may be relevant to the hanging issue described in the bug report.",
+        "bug_scenario": "The Lighthouse tool hangs indefinitely during the 'Loading page & waiting for onload' step when auditing a Progressive Web App (PWA). This issue occurs in both the native audit and the Lighthouse extension versions. The user has described the problem occurring on a specific URL and suggests that it may not be related to common issues such as server failure or HTTP support."
+    }
+}

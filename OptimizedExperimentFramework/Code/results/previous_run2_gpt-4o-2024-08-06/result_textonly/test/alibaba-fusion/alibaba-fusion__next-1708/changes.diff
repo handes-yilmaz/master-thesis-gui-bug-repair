@@ -1,0 +1,101 @@
+diff --git a/src/tree-select/tree-select.jsx b/src/tree-select/tree-select.jsx
+index 99cc5778f..a7646875a 100644
+--- a/src/tree-select/tree-select.jsx
++++ b/src/tree-select/tree-select.jsx
+@@ -260,51 +260,55 @@ export default class TreeSelect extends Component {
+         }
+     }
+ 
+-    updateCache(props) {
+-        this._k2n = {};
+-        this._p2n = {};
+-        this._v2n = {};
+-
+-        if ('dataSource' in props) {
+-            const loop = (data, prefix = '0') =>
+-                data.map((item, index) => {
+-                    const { value, children } = item;
+-                    const pos = `${prefix}-${index}`;
+-                    const key = item.key || pos;
+-                    const newItem = { ...item, key, pos };
+-                    if (children && children.length) {
+-                        newItem.children = loop(children, pos);
+-                    }
++updateCache(props) {
++    this._k2n = {};
++    this._p2n = {};
++    this._v2n = {};
+ 
+-                    this._k2n[key] = this._p2n[pos] = this._v2n[
+-                        value
+-                    ] = newItem;
+-                    return newItem;
+-                });
+-            loop(props.dataSource);
+-        } else if ('children' in props) {
+-            const loop = (children, prefix = '0') =>
+-                Children.map(children, (node, index) => {
+-                    if (!React.isValidElement(node)) {
+-                        return;
+-                    }
++    const generateUniqueKey = (item, pos) => {
++        return item.key || `${pos}-${item.value}`;
++    };
+ 
+-                    const { value, children } = node.props;
+-                    const pos = `${prefix}-${index}`;
+-                    const key = node.key || pos;
+-                    const newItem = { ...node.props, key, pos };
+-                    if (children && Children.count(children)) {
+-                        newItem.children = loop(children, pos);
+-                    }
++    if ('dataSource' in props) {
++        const loop = (data, prefix = '0') =>
++            data.map((item, index) => {
++                const { value, children } = item;
++                const pos = `${prefix}-${index}`;
++                const key = generateUniqueKey(item, pos);
++                const newItem = { ...item, key, pos };
++                if (children && children.length) {
++                    newItem.children = loop(children, pos);
++                }
+ 
+-                    this._k2n[key] = this._p2n[pos] = this._v2n[
+-                        value
+-                    ] = newItem;
+-                    return newItem;
+-                });
+-            loop(props.children);
+-        }
++                this._k2n[key] = this._p2n[pos] = this._v2n[
++                    value
++                ] = newItem;
++                return newItem;
++            });
++        loop(props.dataSource);
++    } else if ('children' in props) {
++        const loop = (children, prefix = '0') =>
++            Children.map(children, (node, index) => {
++                if (!React.isValidElement(node)) {
++                    return;
++                }
++
++                const { value, children } = node.props;
++                const pos = `${prefix}-${index}`;
++                const key = generateUniqueKey(node.props, pos);
++                const newItem = { ...node.props, key, pos };
++                if (children && Children.count(children)) {
++                    newItem.children = loop(children, pos);
++                }
++
++                this._k2n[key] = this._p2n[pos] = this._v2n[
++                    value
++                ] = newItem;
++                return newItem;
++            });
++        loop(props.children);
+     }
++}
+ 
+     getKeysByValue(value) {
+         return value.reduce((ret, v) => {

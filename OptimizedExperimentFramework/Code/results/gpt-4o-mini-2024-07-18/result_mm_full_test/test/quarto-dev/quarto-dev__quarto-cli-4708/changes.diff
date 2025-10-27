@@ -1,0 +1,22 @@
+diff --git a/src/format/reveal/format-reveal.ts b/src/format/reveal/format-reveal.ts
+index 81ed58b..6057b3d 100644
+--- a/src/format/reveal/format-reveal.ts
++++ b/src/format/reveal/format-reveal.ts
+@@ -385,13 +385,10 @@ function revealHtmlPostprocessor(
+       }
+     }
+ 
+-    // if we are using 'number' as our hash type then remove the
+-    // title slide id
+-    if (format.metadata[kHashType] === "number") {
+-      const titleSlide = doc.getElementById("title-slide");
+-      if (titleSlide) {
+-        titleSlide.removeAttribute("id");
+-      }
++    // Ensure title slide retains its ID for proper alignment
++    const titleSlide = doc.getElementById("title-slide");
++    if (titleSlide) {
++      titleSlide.setAttribute("id", "title-slide"); // Ensure ID is set
+     }
+ 
+     // find reveal initialization and perform fixups

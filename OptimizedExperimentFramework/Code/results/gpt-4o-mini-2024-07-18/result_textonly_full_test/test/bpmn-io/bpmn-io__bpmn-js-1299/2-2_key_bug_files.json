@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/draw/TextRenderer.js"
+        ],
+        "explanation": "These files are critical to the bug because: \n1. **UpdateLabelHandler.js**: This file handles the updating of labels for BPMN elements. The bug is related to resizing elements when labels are empty, which is directly managed in this file. The logic for setting and removing labels is crucial to understanding why elements resize incorrectly.\n\n2. **ResizeBehavior.js**: This file defines the behavior for resizing BPMN elements. Since the bug involves elements changing size unexpectedly, this file likely contains the logic that determines how and when elements can be resized, making it essential for diagnosing the issue.\n\n3. **TextRenderer.js**: This file is responsible for rendering text elements, including labels. Since the bug involves label rendering and the resulting size of elements, this file is important for understanding how text dimensions are calculated and how they affect the overall size of BPMN elements.",
+        "bug_scenario": "The bug occurs when selecting events or gateways in a BPMN diagram, causing the elements to resize incorrectly or disappear entirely. This issue arises after direct editing of an element with an empty label, leading to unexpected behavior in the rendering of the elements."
+    }
+}

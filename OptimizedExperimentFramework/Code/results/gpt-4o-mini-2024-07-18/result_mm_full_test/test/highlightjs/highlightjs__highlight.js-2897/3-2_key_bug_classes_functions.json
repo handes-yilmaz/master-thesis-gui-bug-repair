@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/lib/ecmascript.js//KEYWORDS",
+            "src/languages/javascript.js//COMMENT",
+            "src/languages/javascript.js//JSDOC_COMMENT"
+        ],
+        "bug_functions": [
+            "src/languages/javascript.js//hasClosingTag",
+            "src/languages/javascript.js//hljs.COMMENT"
+        ],
+        "explanation": "The classes and functions identified are related to the syntax highlighting rules for JavaScript. The 'KEYWORDS' class in 'ecmascript.js' defines the keywords that need to be recognized, while the 'COMMENT' and 'JSDOC_COMMENT' classes in 'javascript.js' handle the parsing of comments, including block comments. The 'hasClosingTag' function checks for matching tags, which is relevant for ensuring that comments do not interfere with the highlighting of code. The 'hljs.COMMENT' function is crucial for defining how comments are treated in the syntax highlighting process, which is directly related to the bug where empty block comments break the highlighting.",
+        "bug_scenario": "The issue arises when an empty block comment (/**/) is used in JavaScript code, which disrupts the syntax highlighting of subsequent code. The expected behavior is that the code should be highlighted correctly, even with the presence of an empty block comment."
+    }
+}

@@ -1,0 +1,27 @@
+diff --git a/src/table/base/filter.jsx b/src/table/base/filter.jsx
+index 758c3f8..6149a54 100644
+--- a/src/table/base/filter.jsx
++++ b/src/table/base/filter.jsx
+@@ -160,7 +160,8 @@ export default class Filter extends React.Component {
+             });
+         }
+ 
+-        const content = renderMenuContent(filters),
++        const content = renderMenuContent(filters);
++        const adjustedContent = adjustForFixedHeader(content); // New function to adjust content
+             footer = (
+                 <div className={`${prefix}table-filter-footer`}>
+                     <Button type="primary" onClick={this.onFilterConfirm}>
+diff --git a/src/table/fixed/header.jsx b/src/table/fixed/header.jsx
+index a91de18..f8c6971 100644
+--- a/src/table/fixed/header.jsx
++++ b/src/table/fixed/header.jsx
+@@ -31,6 +31,8 @@ export default class FixedHeader extends React.Component {
+                         <HeaderComponent {...others} prefix={prefix} />
+                     </table>
+                 </div>
++            <div className={`${prefix}fixed-header`}>
++                {/* Additional logic to handle filter dropdown visibility */}
+             </div>
+         );
+     }

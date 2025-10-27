@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "src/ol/geom/MultiPolygon.js": [
+            {
+                "SEARCH": [
+                    "this.setLayout(opt_layout, coordinates, 3);"
+                ],
+                "REPLACE": [
+                    "    if (!Array.isArray(coordinates) || coordinates.length === 0) {",
+                    "      throw new RangeError('Invalid coordinates: must be a non-empty array');",
+                    "    }",
+                    "    this.setLayout(opt_layout, coordinates, 3);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const endss = deflateMultiCoordinatesArray("
+                ],
+                "REPLACE": [
+                    "    const endss = deflateMultiCoordinatesArray(",
+                    "    if (!Array.isArray(coordinates) || coordinates.length === 0) {",
+                    "      throw new RangeError('Invalid coordinates: must be a non-empty array');",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

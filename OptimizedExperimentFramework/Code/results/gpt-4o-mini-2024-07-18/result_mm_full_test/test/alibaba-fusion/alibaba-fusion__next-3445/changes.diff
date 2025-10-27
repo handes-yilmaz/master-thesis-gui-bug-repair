@@ -1,0 +1,22 @@
+diff --git a/src/rating/rating.jsx b/src/rating/rating.jsx
+index da8704a..b105895 100644
+--- a/src/rating/rating.jsx
++++ b/src/rating/rating.jsx
+@@ -309,7 +309,7 @@ class Rating extends Component {
+         if (this.state.disabled) {
+             return;
+         }
+-        const { allowClear } = this.props;
++        const { allowClear, id } = this.props;
+         const { value } = this.state;
+         const newValue = this.getValue(e);
+         let isReset = false;
+@@ -321,7 +321,7 @@ class Rating extends Component {
+             return;
+         }
+ 
+-        if (!('value' in this.props)) {
++        if (!(\'value\' in this.props) && e.target.tagName === 'INPUT') {
+             this.setState({ value: isReset ? 0 : newValue, clicked: true });
+         }
+ 

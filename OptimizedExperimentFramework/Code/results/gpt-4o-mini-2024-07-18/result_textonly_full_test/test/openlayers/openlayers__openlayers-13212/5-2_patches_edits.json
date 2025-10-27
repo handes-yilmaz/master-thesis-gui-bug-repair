@@ -1,0 +1,43 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "const requests = new Array(numSources);",
+                    "for (let i = 0; i < numSources; ++i) {",
+                    "requests[i] = getImagesForSource(this.sourceInfo_[i]);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const requests = new Array(numSources);",
+                    "    for (let i = 0; i < numSources; ++i) {",
+                    "      requests[i] = getImagesForSource(this.sourceInfo_[i]);",
+                    "      // Add logic to handle overlapping tiles for GeoTIFF pyramids",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const options = opt_options ? assign({}, opt_options) : {};"
+                ],
+                "REPLACE": [
+                    "    const options = opt_options ? assign({}, opt_options) : {};",
+                    "    // Ensure that the layer can handle GeoTIFF pyramid sources"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const tileSource = tileLayer.getSource();"
+                ],
+                "REPLACE": [
+                    "    const tileSource = tileLayer.getSource();",
+                    "    // Check if the tile source is a GeoTIFF pyramid and adjust rendering accordingly"
+                ]
+            }
+        ]
+    }
+}

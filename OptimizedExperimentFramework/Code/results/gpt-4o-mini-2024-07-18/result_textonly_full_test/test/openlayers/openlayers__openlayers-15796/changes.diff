@@ -1,0 +1,24 @@
+diff --git a/src/ol/renderer/canvas/VectorLayer.js b/src/ol/renderer/canvas/VectorLayer.js
+index c5025e4..3c00bfd 100644
+--- a/src/ol/renderer/canvas/VectorLayer.js
++++ b/src/ol/renderer/canvas/VectorLayer.js
+@@ -331,6 +331,9 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+       context.restore();
+     }
+ 
++    if (this.opacity_ < 1) {
++      this.resetDrawContext_();
++    }
+     this.postRender(context, frameState);
+ 
+     if (this.renderedRotation_ !== viewState.rotation) {
+@@ -634,7 +637,8 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+       this.renderedResolution_ == resolution &&
+       this.renderedRevision_ == vectorLayerRevision &&
+       this.renderedRenderOrder_ == vectorLayerRenderOrder &&
+-      this.renderedFrameDeclutter_ === !!frameState.declutter &&
++    this.renderedFrameDeclutter_ === !!frameState.declutter &&\n
++    this.resetDrawContext_();\n
+       containsExtent(this.wrappedRenderedExtent_, extent)
+     ) {
+       if (!equals(this.renderedExtent_, renderedExtent)) {

@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/ol/style/Image.js": [
+            {
+                "SEARCH": [
+                    "/**",
+                    "* Set the opacity.",
+                    "*",
+                    "* @param {number} opacity Opacity.",
+                    "* @api",
+                    "*/",
+                    "setOpacity(opacity) {",
+                    "this.opacity_ = opacity;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  /** ",
+                    "   * Set the opacity.",
+                    "   *",
+                    "   * @param {number} opacity Opacity.",
+                    "   * @api",
+                    "   */",
+                    "  setOpacity(opacity) {",
+                    "    if (opacity < 0) {",
+                    "      this.opacity_ = 0; // Ensure opacity is not less than 0",
+                    "    } else if (opacity > 1) {",
+                    "      this.opacity_ = 1; // Ensure opacity is not greater than 1",
+                    "    } else {",
+                    "      this.opacity_ = opacity; // Set the opacity",
+                    "    }",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

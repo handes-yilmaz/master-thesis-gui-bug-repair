@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "hypothetical_file_path.js": [
+            {
+                "SEARCH": [
+                    "map.addInteraction(draw);"
+                ],
+                "REPLACE": [
+                    "draw.on('drawend', function() {",
+                    "    // Re-enable dragging after drawing ends",
+                    "    map.getInteractions().forEach(function(interaction) {",
+                    "        if (interaction instanceof ol.interaction.Translate) {",
+                    "            interaction.setActive(true);",
+                    "        }",
+                    "    });",
+                    "});",
+                    "map.addInteraction(draw);"
+                ]
+            }
+        ]
+    }
+}

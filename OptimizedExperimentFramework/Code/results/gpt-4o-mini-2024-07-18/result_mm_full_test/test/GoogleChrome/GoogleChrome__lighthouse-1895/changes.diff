@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/audits/first-meaningful-paint.js b/lighthouse-core/audits/first-meaningful-paint.js
+index 32718ac..e3b6668 100644
+--- a/lighthouse-core/audits/first-meaningful-paint.js
++++ b/lighthouse-core/audits/first-meaningful-paint.js
+@@ -84,7 +84,7 @@ class FirstMeaningfulPaint extends Audit {
+   }
+ 
+   static calculateScore(evts) {
+-    const getTs = evt => evt && evt.ts;
++    const getTs = evt => evt ? evt.ts : undefined;
+     const getTiming = evt => {
+       if (!evt) {
+         return undefined;

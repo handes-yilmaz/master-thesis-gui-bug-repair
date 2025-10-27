@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "lighthouse-core/aggregator/aggregate.js": [
+            {
+                "SEARCH": [
+                    "const expectedNames = Object.keys(item.audits);"
+                ],
+                "REPLACE": [
+                    "      const expectedNames = Object.keys(item.audits).filter(name => name !== 'missingMetric');"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const firstMeaningfulPaint = frameEvents.find(e =>\\n        e.name === 'firstMeaningfulPaint' && e.ts >= (firstFCP.ts - TraceOfTab.fmpToleranceMs));"
+                ],
+                "REPLACE": [
+                    "    const firstMeaningfulPaint = frameEvents.find(e =>\\n        e.name === 'firstMeaningfulPaint' && e.ts >= firstFCP.ts);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return template({\\n      url: results.url,\\n      lighthouseVersion: results.lighthouseVersion,\\n      generatedTime: results.generatedTime,\\n      lhresults: this._escapeScriptTags(JSON.stringify(results, null, 2)),\\n      stylesheets: this.getReportCSS(),\\n      reportContext: reportContext,\\n      scripts: this.getReportJS(reportContext),\\n      aggregations: results.aggregations,\\n      auditsByCategory: this._createPWAAuditsByCategory(results.aggregations),\\n      runtimeConfig: results.runtimeConfig,\\n      reportsCatalog\\n    });"
+                ],
+                "REPLACE": [
+                    "      return template({\\n      url: results.url,\\n      lighthouseVersion: results.lighthouseVersion,\\n      generatedTime: results.generatedTime,\\n      lhresults: this._escapeScriptTags(JSON.stringify(results, null, 2)),\\n      stylesheets: this.getReportCSS(),\\n      reportContext: reportContext,\\n      scripts: this.getReportJS(reportContext),\\n      aggregations: results.aggregations,\\n      auditsByCategory: this._createPWAAuditsByCategory(results.aggregations),\\n      runtimeConfig: results.runtimeConfig,\\n      reportsCatalog,\\n      missingMetric: results.missingMetric\\n    });"
+                ]
+            }
+        ]
+    }
+}

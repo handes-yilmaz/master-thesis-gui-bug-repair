@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/drilldown/SubprocessCompatibility",
+            "lib/features/context-pad/ContextPadProvider",
+            "lib/features/modeling/behavior/ResizeBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/drilldown/SubprocessCompatibility//handleImport",
+            "lib/features/drilldown/SubprocessCompatibility//createNewDiagrams",
+            "lib/features/context-pad/ContextPadProvider//getContextPadEntries",
+            "lib/features/modeling/behavior/ResizeBehavior//resize.start"
+        ],
+        "explanation": "The identified classes and functions are related to the bug as they handle the behavior and rendering of subprocesses and call activities. The 'SubprocessCompatibility' class manages the import and rendering of subprocesses, which is crucial for ensuring that the UI reflects the correct state of the elements. The 'ContextPadProvider' class is responsible for the context menu options available for elements, which directly affects the user's ability to revert changes. Lastly, the 'ResizeBehavior' class sets constraints on resizing elements, which may impact how the subprocess is visually represented and interacted with in the UI.",
+        "bug_scenario": "The user is unable to revert a call activity back to its original state after converting it to a subprocess due to confusing UI elements and limited options in the wrench menu. This leads to a dead end where the user cannot change the element back to a call activity."
+    }
+}

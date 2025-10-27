@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/ImageBuilder.js",
+            "src/ol/renderer/canvas/ImageLayer.js",
+            "src/ol/layer/Image.js",
+            "src/ol/source/Image.js",
+            "src/ol/source/ImageWMS.js"
+        ],
+        "explanation": "These files are related to rendering and managing image layers. The 'ImageBuilder.js' and 'ImageLayer.js' files are responsible for constructing and rendering image layers, thus directly impacting how the canvas is created and sized. The 'Image.js' and 'ImageWMS.js' files manage the image sources and their properties, which are integral to how the image data is loaded and displayed. Modifications in these files will likely address the excessive memory usage issue by adjusting how the canvas size is calculated based on the actual image ratio rather than the display pixel ratio.",
+        "bug_scenario": "The bug relates to the image layer renderer using excessive memory due to creating a canvas that is larger than necessary for high-resolution displays. Specifically, when the pixel ratio is 1, a canvas is created for the display pixel ratio instead of the source's image ratio, leading to a canvas size that is twice as large and consequently consumes four times the memory needed."
+    }
+}

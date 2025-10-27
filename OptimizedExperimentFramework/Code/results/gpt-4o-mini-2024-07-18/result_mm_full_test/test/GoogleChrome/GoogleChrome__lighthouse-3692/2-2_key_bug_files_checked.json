@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/report-generator.js",
+            "lighthouse-core/report/v2/renderer/report-renderer.js",
+            "lighthouse-core/audits/audit.js"
+        ],
+        "explanation": "These files are key to addressing the bug because: 1. `report-generator.js` is responsible for generating the report JSON and HTML, where the warning message needs to be integrated. 2. `report-renderer.js` handles the rendering of the report, including how the warning is displayed to users. 3. `audit.js` contains the logic for audits and may need to be modified to ensure that the warning is triggered appropriately based on the audit results.",
+        "bug_scenario": "The bug scenario involves a warning message that should be displayed in the Lighthouse report when performance metrics are generated using Headless Chrome. The report indicates that the mobile performance may be worse than the numbers presented due to limitations of Headless Chrome, which does not support network throttling. The goal is to ensure that users are warned about this limitation prominently in the report."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/TileWMS.js",
+            "src/ol/layer/Tile.js",
+            "src/ol/control/Attribution.js"
+        ],
+        "explanation": "These files are relevant to the bug because: 1. 'TileWMS.js' handles the WMS layer source, including the attribution logic. Changes in how attributions are displayed based on layer visibility should be implemented here. 2. 'Tile.js' pertains to the handling of tile layers, including their visibility management and how they interact with their parent group layers. 3. 'Attribution.js' is responsible for rendering attributions in the UI; any adjustments to prevent displaying attributions for invisible layers will be managed here.",
+        "bug_scenario": "The issue arises when the info popup displays attributions from a WMS layer even when its group layer is set to invisible. This occurs specifically when the group layer is invisible, but a sub-layer within it is visible, leading to unexpected attribution being shown in the popup. The provided image shows the 'i' icon popup incorrectly displaying attributions that should not be shown due to the group's visibility setting."
+    }
+}

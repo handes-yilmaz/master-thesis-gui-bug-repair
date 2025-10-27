@@ -1,0 +1,16 @@
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 4f7fb30..beddd9e 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -778,7 +778,10 @@ class GeoTIFFSource extends DataTile {
+                   nodata = nodataValues[sourceIndex][bandIndex];
+                 }
+ 
+-                if (sourceValue !== nodata) {
++                if (isNaN(nodata) && isNaN(sourceValue)) {
++                  transparent = true; // Treat NaN as transparent
++                  data[dataIndex] = value; // Keep the value as is
++                } else if (sourceValue !== nodata) {
+                   transparent = false;
+                   data[dataIndex] = value;
+                 }

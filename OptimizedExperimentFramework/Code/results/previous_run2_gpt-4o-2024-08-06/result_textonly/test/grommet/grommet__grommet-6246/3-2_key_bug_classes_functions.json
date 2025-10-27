@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/DataChart/DataChart.js//DataChart"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the `DataChart` component, as identified in the file `src/js/components/DataChart/DataChart.js`. This component is responsible for rendering the chart, including handling data with negative values. The problem likely lies in how the component calculates or renders the bars when negative values are present. The absence of any specific function in the skeleton format suggests that the issue may be with how the entire chart component is handling data, rather than a specific function within it. The `YAxis.js` file does not appear to directly relate to the rendering issue but rather handles axis values, which are displayed correctly in the images.",
+        "bug_scenario": "The provided images show an empty chart area where bars should be rendered. The bug report indicates that when the data includes negative values, the DataChart component fails to render any bars, resulting in a blank chart."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/DataChart/DataChart.js//DataChart",
+            "src/js/components/DataChart/YAxis.js//YAxis"
+        ],
+        "bug_functions": [],
+        "explanation": "The DataChart class in DataChart.js is the main component responsible for rendering the entire chart, including bars. The issue with not rendering bars for negative values likely stems from how the data is processed and rendered within this class. The class contains logic for normalizing data, calculating bounds, and rendering charts, which are all crucial for handling datasets with negative values. The YAxis class in YAxis.js is responsible for rendering the Y-axis of the chart, which includes handling the values displayed on the axis. Since negative values affect the Y-axis representation, this class also needs to accurately render negative values and potentially adjust the axis to include a zero line guide.",
+        "bug_scenario": "The bug scenario is that the DataChart component is unable to render bar charts when the dataset includes negative values. Instead of displaying the chart with a zero line guide and custom attributes for negative values, the chart shows nothing."
+    }
+}

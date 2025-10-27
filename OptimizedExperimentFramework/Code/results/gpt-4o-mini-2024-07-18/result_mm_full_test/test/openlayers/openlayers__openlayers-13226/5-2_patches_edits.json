@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const parsedStyle = parseStyle(this.style_, this.getSourceBandCount_());"
+                ],
+                "REPLACE": [
+                    "    const source = this.getSource();",
+                    "    if (!source || !source.getTileGrid()) {",
+                    "      throw new Error('Source must have a valid tile grid for WebGLTileLayer.');",
+                    "    }",
+                    "    const parsedStyle = parseStyle(this.style_, this.getSourceBandCount_());"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return new WebGLTileLayerRenderer(this, {"
+                ],
+                "REPLACE": [
+                    "    const tileGrid = source.getTileGrid();",
+                    "    if (!tileGrid) {",
+                    "      throw new Error('Tile grid is required for rendering.');",
+                    "    }",
+                    "    return new WebGLTileLayerRenderer(this, {"
+                ]
+            }
+        ]
+    }
+}

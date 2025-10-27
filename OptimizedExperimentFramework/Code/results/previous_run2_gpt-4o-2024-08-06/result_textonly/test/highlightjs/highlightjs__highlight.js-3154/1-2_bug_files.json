@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/ruby.js"
+        ],
+        "explanation": "The issue pertains to Ruby syntax highlighting, which means the bug is likely related to files responsible for defining how Ruby code is parsed and highlighted. The file 'src/languages/ruby.js' is the logical choice as it likely contains the grammar rules and patterns used to highlight Ruby code. This file would define how heredocs (with and without interpolation) are recognized and styled, making it the root cause of improper highlighting as described in the bug report.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for Ruby heredocs without interpolation. Standard heredocs are highlighted correctly, but when using a single-quoted ('MESSAGE') delimiter to indicate no interpolation, the text is not highlighted correctly. The expected behavior is that the entire heredoc should be highlighted as a string."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/ruby.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "The file `src/languages/ruby.js` is likely responsible for defining the syntax rules and highlighting patterns specific to Ruby, including support for heredoc syntax. Modifying this file would be necessary to ensure that heredocs without interpolation are correctly highlighted.\\n\\nAdditionally, `src/lib/modes.js` might be involved since it handles the general mechanism of parsing and applying highlighting modes across languages, including the detection of start and end patterns which are critical for correctly parsing heredocs.\\n\\nThese files collectively would need to be reviewed and potentially modified to fix the identified bug with heredoc highlighting in Ruby.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for Ruby heredocs that are defined without interpolation. In Ruby, heredocs without interpolation are defined using single quotes in their delimiters, such as <<-'MESSAGE', and this form is not being highlighted correctly by the syntax highlighter. The provided screenshot illustrates how the heredoc text is not being highlighted as expected, with the end of the heredoc not detected properly."
+    }
+}

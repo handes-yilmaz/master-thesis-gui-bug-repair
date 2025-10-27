@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/prefer-const",
+            "lib/rules/no-undef-init"
+        ],
+        "bug_functions": [
+            "lib/rules/prefer-const//create",
+            "lib/rules/no-undef-init//create"
+        ],
+        "explanation": "The `prefer-const` rule is responsible for suggesting the use of `const` for variables that are never reassigned. The `create` function in this rule handles the logic for determining when a variable can be converted to `const`, which is directly related to the bug since it fails to account for the initialization of `undefined`. The `no-undef-init` rule flags unnecessary initializations to `undefined`, which is also relevant because it may conflict with the `prefer-const` rule's logic. Both classes and their respective functions are critical to understanding and fixing the bug, as they dictate how ESLint processes variable declarations and their initializations.",
+        "bug_scenario": "The bug occurs when ESLint's `--fix` command is used on a variable initialized to `undefined`. Instead of transforming the variable to a constant while retaining its initialization, ESLint incorrectly removes the initialization, leading to a JavaScript error in the codebase."
+    }
+}

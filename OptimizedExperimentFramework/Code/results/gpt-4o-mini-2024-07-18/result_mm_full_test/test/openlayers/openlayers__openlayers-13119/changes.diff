@@ -1,0 +1,36 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index d801be0..6b65398 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -279,7 +279,10 @@ class WebGLTileLayer extends BaseTileLayer {
+     const cacheSize = options.cacheSize;
+     delete options.cacheSize;
+ 
++    this.blendOption_ = options.blendOption || null; // New property for blend option
+     super(options);
++    
++    // Additional logic to handle blending options can be added here
+ 
+     /**
+      * @type {Style}
+@@ -307,7 +310,19 @@ class WebGLTileLayer extends BaseTileLayer {
+       'bandCount' in source ? source.bandCount : 4
+     );
+ 
+-    return new WebGLTileLayerRenderer(this, {
++    const rendererOptions = {
++        vertexShader: parsedStyle.vertexShader,
++        fragmentShader: parsedStyle.fragmentShader,
++        uniforms: parsedStyle.uniforms,
++        cacheSize: this.cacheSize_,
++    };
++
++    // Set the blend option if it exists
++    if (this.blendOption_) {
++        rendererOptions.blendOption = this.blendOption_;
++    }
++
++    return new WebGLTileLayerRenderer(this, rendererOptions);
+       vertexShader: parsedStyle.vertexShader,
+       fragmentShader: parsedStyle.fragmentShader,
+       uniforms: parsedStyle.uniforms,

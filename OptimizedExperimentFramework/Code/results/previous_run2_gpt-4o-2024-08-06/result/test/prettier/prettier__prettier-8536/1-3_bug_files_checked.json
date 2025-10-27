@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/document/doc-printer.js",
+            "src/language-js/printer-estree.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "The bug relates to how the Prettier formatter handles trailing newlines in specific scenarios. The files involved include the core document printing logic and JavaScript language printing logic. The file `src/document/doc-printer.js` is likely handling the document printing logic that applies the formatting rules, `src/language-js/printer-estree.js` may contain language-specific formatting rules for JavaScript, and `src/main/parser.js` may involve parsing logic that affects how tokens are interpreted and formatted. These areas are crucial for addressing formatting anomalies.",
+        "bug_scenario": "The bug involves trailing newline issues when formatting code with Prettier version 1.10.2. When a file contains only a directive followed by a comment, Prettier incorrectly adds an extra newline at the end, which deviates from the expected behavior of a single newline. This issue appears when using the Babylon parser."
+    },
+    "2": {
+        "bug_files": [
+            "src/document/doc-printer.js",
+            "src/language-js/printer-estree.js",
+            "src/index.js"
+        ],
+        "explanation": "1. `src/document/doc-printer.js`: This file could be responsible for the document printing logic, including handling trailing newlines.\n2. `src/language-js/printer-estree.js`: As the issue is observed in JavaScript files, this printer file for the ESTree AST format used by JS parsers is likely involved.\n3. `src/index.js`: This file may coordinate the main formatting process, including document creation and final output handling. The issue with newline may propagate from here.",
+        "bug_scenario": "The bug is related to prettier formatting, specifically the issue where a directive followed by a comment ends with an extra trailing newline when formatted. The problem is visible when only a directive is followed by a new line and then a comment, and the output ends in two newlines instead of one."
+    }
+}

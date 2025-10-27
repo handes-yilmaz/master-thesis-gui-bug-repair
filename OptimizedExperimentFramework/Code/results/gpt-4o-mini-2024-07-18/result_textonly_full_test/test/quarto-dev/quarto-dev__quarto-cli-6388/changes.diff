@@ -1,0 +1,13 @@
+diff --git a/src/command/render/pandoc.ts b/src/command/render/pandoc.ts
+index 6e1a712..f3d3b9d 100644
+--- a/src/command/render/pandoc.ts
++++ b/src/command/render/pandoc.ts
+@@ -548,7 +548,7 @@ export async function runPandoc(
+ 
+           if (!hasAtLeastOnePartial) {
+             const errorMsg =
+-              `The format '${allDefaults.to}' only supports the following partials:\n${
++export function shortcodeUnescapePostprocessor(output: string): Promise<void> {\n  // unescape shortcodes\n  Deno.writeTextFileSync(\n    output,\n    Deno.readTextFileSync(output)\n      .replaceAll("{{\\\\<", "{{<")\n      .replaceAll("\\\\>}}", ">}}"),\n  );\n  // Ensure proper list formatting after unescaping\n  Deno.writeTextFileSync(\n    output,\n    Deno.readTextFileSync(output)\n      .replaceAll("- ", "* "),\n  );\n  return Promise.resolve();\n}\n\nexport function gfmFormat(): Format {\n  return createFormat(kDisplayNameGFM, "md", markdownFormat(kDisplayNameGFM), {\n    pandoc: {\n      to: "commonmark",\n    },\n    render: {\n      [kVariant]: kGfmCommonmarkVariant,\n    },\n    resolveFormat: (format: Format) => {\n...
+                 templateNames.join("\n")
+               }\n\nPlease provide one or more of these partials.`;
+             throw new Error(errorMsg);

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/replace/BpmnReplace.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "The file `BpmnReplace.js` is likely responsible for handling the morphing of BPMN elements, including transitions between different types of processes. Modifications here would ensure correct behavior when morphing call activities into sub-processes. `SubProcessStartEventBehavior.js` is critical because it seems to specifically manage behaviors related to start events in sub-processes. Therefore, adjustments might be necessary to automatically insert a start event during morph transitions. `Modeling.js` could manage the overall modeling logic and behaviors, so it's relevant for implementing the expected morphing behaviors across the application.",
+        "bug_scenario": "Morphing a call activity into a sub-process does not automatically add a start event, causing the sub-process to appear similar to a task. Users find this confusing. The expected behavior is for the sub-process to include a start event on morphing, as shown in the task morphing process."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/replace/BpmnReplace.js",
+            "lib/features/replace/ReplaceOptions.js"
+        ],
+        "explanation": "The issue is likely related to the behavior during the morphing process, which involves determining what elements should be included when a 'call activity' changes to a 'sub-process'. \\n1. `SubProcessStartEventBehavior.js` is likely responsible for automatically adding a start event when a subprocess is created. This file needs reinforcement to handle the specific morph from call activity. \\n2. `BpmnReplace.js` manages the morphing of elements and will have logic dictating which elements are created during the morphing operation. Adjustments here should ensure the addition of a start event during the morphing. \\n3. `ReplaceOptions.js` could define options and configurations for morphing operations, including the elements that appear in different scenarios. Updating this would ensure the correct elements are configured during morphing.",
+        "bug_scenario": "The bug arises from the incorrect behavior when morphing a 'call activity' to an expanded 'sub-process', where it should automatically include a 'start event'. The images demonstrate the issue, showing the sub-process being created without the expected start event. This leads to confusion as the process visually resembles a task rather than a sub-process."
+    }
+}

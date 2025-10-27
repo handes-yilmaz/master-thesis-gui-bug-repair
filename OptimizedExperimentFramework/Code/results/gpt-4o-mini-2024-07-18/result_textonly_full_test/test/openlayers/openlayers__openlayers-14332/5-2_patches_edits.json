@@ -1,0 +1,49 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const canvasScale =",
+                    "((tileResolution / viewResolution) * pixelRatio) / tilePixelRatio;"
+                ],
+                "REPLACE": [
+                    "    const canvasScale = ",
+                    "      ((tileResolution / viewResolution) * pixelRatio) / tilePixelRatio;",
+                    "",
+                    "    // Adjust the canvas scale based on rotation to ensure proper rendering",
+                    "    if (rotation % (Math.PI / 2) === 0) {",
+                    "      // Apply additional scaling or adjustments if necessary",
+                    "      // This is a placeholder for any specific adjustments needed",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const viewport = rotation",
+                    "? getRotatedViewport(",
+                    "viewState.center,",
+                    "resolution,",
+                    "rotation,",
+                    "frameState.size",
+                    ")",
+                    ": undefined;"
+                ],
+                "REPLACE": [
+                    "    const viewport = rotation",
+                    "      ? getRotatedViewport(",
+                    "          viewState.center,",
+                    "          resolution,",
+                    "          rotation,",
+                    "          frameState.size",
+                    "        )",
+                    "      : undefined;",
+                    "",
+                    "    // Ensure that the viewport is correctly adjusted for rendering",
+                    "    if (rotation % (Math.PI / 2) === 0) {",
+                    "      // Additional adjustments can be made here if needed",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

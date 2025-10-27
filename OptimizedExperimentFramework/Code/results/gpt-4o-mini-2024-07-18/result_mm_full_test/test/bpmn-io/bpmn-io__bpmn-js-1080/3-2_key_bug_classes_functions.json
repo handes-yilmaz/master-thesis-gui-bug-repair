@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/CreateBehavior",
+            "lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior",
+            "lib/features/modeling/BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/CreateBehavior//constructor",
+            "lib/features/modeling/behavior/UpdateFlowNodeRefsBehavior//constructor",
+            "lib/features/modeling/BpmnUpdater//updateFlowNodeRefs"
+        ],
+        "explanation": "The identified classes and functions are crucial for handling the creation and updating of elements within the BPMN model. The 'CreateBehavior' class manages the behavior when creating and moving elements, which is directly related to how message flows are connected. The 'UpdateFlowNodeRefsBehavior' class is responsible for updating references when lanes are added or removed, which could affect the ability to connect flows correctly. Lastly, the 'BpmnUpdater' class includes methods for updating flow node references, which is essential for ensuring that connections are maintained correctly after changes to the pool structure.",
+        "bug_scenario": "The user is unable to connect message flows to the boundary of a pool that previously had multiple lanes. The connection can only be made at the header of the pool, not within the lane itself, which is not the expected behavior."
+    }
+}

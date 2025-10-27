@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/TileWMS//TileWMS",
+            "src/ol/source/DataTile.js//DataTileSource",
+            "src/ol/source/XYZ.js//XYZ"
+        ],
+        "bug_functions": [
+            "src/ol/source/TileWMS//getFeatureInfoUrl",
+            "src/ol/source/TileWMS//tileUrlFunction",
+            "src/ol/source/DataTile.js//getTile",
+            "src/ol/source/XYZ.js//constructor"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they handle the rendering and loading of tile data. The TileWMS class already has a gutter option implemented, which is crucial for avoiding edge artifacts. The DataTileSource and XYZ classes need to be modified to include similar gutter handling to ensure consistent rendering across different tile sources. The functions getFeatureInfoUrl and tileUrlFunction in TileWMS are responsible for generating URLs for tile requests, which would need to incorporate gutter logic. The getTile function in DataTileSource and the constructor in XYZ are critical for initializing tile sources and should be updated to support the gutter feature.",
+        "bug_scenario": "The bug scenario involves the need for a gutter option for more tile sources, specifically for XYZ and DataTile, to prevent edge effects when rendering tiles. The current implementation only supports this feature for TileWMS, and the lack of it in other tile sources leads to visible artifacts at the edges of tiles when they are interpolated."
+    }
+}

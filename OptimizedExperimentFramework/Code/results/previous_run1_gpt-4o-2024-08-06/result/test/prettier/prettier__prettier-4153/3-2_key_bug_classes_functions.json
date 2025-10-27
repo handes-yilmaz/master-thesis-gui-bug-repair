@@ -1,0 +1,27 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse",
+            "src/language-markdown/printer-markdown.js"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//parse"
+        ],
+        "explanation": "The `parse` function in `src/language-markdown/parser-markdown.js` is responsible for parsing markdown content and needs to handle the detection of language in fenced code blocks, even when additional attributes are present. The `printer-markdown.js` file likely handles the formatting and output of markdown content, so adjustments here may also be necessary to ensure that the attributes following the language specifier are ignored for detection purposes.",
+        "bug_scenario": "The bug occurs when Prettier fails to detect the language of a fenced code block if there are any non-whitespace characters following the language specifier. This causes issues with syntax highlighting and formatting, particularly when additional attributes are present, as shown in the image where the js block with options is not formatted correctly."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse",
+            "src/main/parser.js//parse"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//transformInlineCode",
+            "src/language-markdown/parser-markdown.js//restoreUnescapedCharacter",
+            "src/language-markdown/parser-markdown.js//mergeContinuousTexts",
+            "src/main/parser.js//resolveParser"
+        ],
+        "explanation": "The `parse` function in `parser-markdown.js` is responsible for processing markdown text and should handle the detection of the language in fenced code blocks. The `transformInlineCode`, `restoreUnescapedCharacter`, and `mergeContinuousTexts` functions are part of this parsing process and might need modifications to properly handle attributes in code blocks. In `parser.js`, the `parse` and `resolveParser` functions are responsible for parsing and resolving parsers, which could be involved in the bug if they do not correctly handle or pass along the language detection when attributes are present.",
+        "bug_scenario": "The bug scenario involves Prettier failing to detect the language in fenced code blocks if there are non-whitespace characters following the language identifier (e.g., `js {cmd=node .line-numbers}`). The expected behavior is for Prettier to ignore additional attributes following the language identifier and format the code block correctly."
+    }
+}

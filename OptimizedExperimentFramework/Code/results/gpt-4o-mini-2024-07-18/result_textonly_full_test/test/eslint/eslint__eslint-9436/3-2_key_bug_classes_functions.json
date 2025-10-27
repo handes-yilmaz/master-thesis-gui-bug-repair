@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/no-constant-condition.js//module.exports",
+            "lib/rules/no-constant-condition.js//isConstant",
+            "lib/rules/no-constant-condition.js//reportIfConstant"
+        ],
+        "bug_functions": [
+            "lib/rules/no-constant-condition.js//isLogicalIdentity",
+            "lib/rules/no-constant-condition.js//trackConstantConditionLoop",
+            "lib/rules/no-constant-condition.js//checkConstantConditionLoopInSet"
+        ],
+        "explanation": "The identified classes and functions are directly related to the implementation of the 'no-constant-condition' rule in ESLint. The 'module.exports' is the main entry point for the rule, which defines its behavior. The 'isConstant' function checks if a node has a constant truthiness value, which is crucial for determining whether a condition is constant. The 'reportIfConstant' function is responsible for reporting the constant condition, and thus, it is essential to modify how the reporting is done to ensure that only the constant condition itself is highlighted. The other functions, 'isLogicalIdentity', 'trackConstantConditionLoop', and 'checkConstantConditionLoopInSet', are involved in the logic that determines how conditions are evaluated and reported, making them relevant for fixing the bug.",
+        "bug_scenario": "The bug scenario involves the ESLint rule 'no-constant-condition' which is incorrectly reporting error ranges that are too broad. Instead of highlighting only the constant conditions (like 'true'), it includes the entire statement or expression that contains the constant condition. This leads to confusion as the reported ranges do not accurately reflect the actual issue."
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/themes/dark.js"
+        ],
+        "bug_functions": [
+            "src/js/components/Select/Select.js//render"
+        ],
+        "explanation": "The issue is related to the arrow icon's visibility on a dark background, which suggests that the problem is likely with the styling or color assignment of the icon. In the \"src/js/themes/dark.js\" file, color definitions for different themes are specified, including the text color and icon color, which are used throughout to ensure components are visible against dark backgrounds. Adjusting these values, especially the icon color, could resolve the issue. The render function in \"src/js/components/Select/Select.js\" is responsible for rendering the Select component, including its children like the arrow icon. Therefore, changes here might be needed to ensure the correct icon styling or color is applied based on the theme. This could involve adjusting the theme values or adding logic to dynamically apply styles based on the background color.",
+        "bug_scenario": "The bug report describes an issue where the arrow icon for a Select component is not visible on a dark background. The provided screenshot shows a Select component with a dark background and the arrow icon is indeed not visible, likely because it does not contrast well against the background color."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/Select/Select.js//Select"
+        ],
+        "bug_functions": [
+            "src/js/components/Select/stories/components/icons/ArrowDown.js//ArrowDown"
+        ],
+        "explanation": "The 'Select' class in 'Select.js' is responsible for rendering the Select component, which includes the arrow icon that is not visible. This class includes the logic for displaying the arrow icon using the theme's icon settings. Additionally, the 'ArrowDown' function in 'ArrowDown.js' defines the SVG for the arrow icon, and its fill color is hardcoded to 'rgba(0, 0, 0, 0.54)', which does not contrast well with dark backgrounds. This hardcoded color is likely causing the visibility issue against the dark theme, necessitating a revision to ensure it adapts correctly to the background color, such as using a dynamic color from the theme.",
+        "bug_scenario": "The bug scenario involves the arrow icon in a Select component not being visible when rendered on a dark background. This issue is highlighted in the bug report and demonstrated in the provided screenshot, where the arrow icon blends into the dark background, making it difficult to see."
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-json.js//Prism.languages.json",
+            "components/prism-json.min.js//Prism.languages.json",
+            "plugins/jsonp-highlight/prism-jsonp-highlight.js//highlight"
+        ],
+        "bug_functions": [],
+        "explanation": "The classes 'Prism.languages.json' in both 'prism-json.js' and 'prism-json.min.js' define the language rules for JSON, including how comments are handled. The incorrect handling of comments is likely the root cause of the bug. The 'highlight' function in 'prism-jsonp-highlight.js' is responsible for processing and highlighting the JSON content, which may also need adjustments to ensure proper tokenization and highlighting of comments.",
+        "bug_scenario": "The JSON tokenization breaks when the HTTP header 'Accept: */*' is used, causing incorrect highlighting of comments in JSON strings. The issue is illustrated in the provided image, where the comment '/*' is incorrectly highlighted as part of the JSON structure."
+    }
+}

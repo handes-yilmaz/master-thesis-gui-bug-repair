@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js"
+        ],
+        "explanation": "These files are critical to the bug because they directly handle the functionality related to the drilldown feature and root element management. 'DrilldownBreadcrumbs.js' is responsible for updating the breadcrumbs when the root element changes, which is where the error is triggered. 'DrilldownOverlayBehavior.js' manages the overlays that allow users to drill down into sub-processes, and it listens for root changes, which is essential for ensuring that the drilldown functionality is aware of the current root element. 'UpdateCanvasRootHandler.js' is responsible for changing the root element in the canvas and notifying other components of this change, which is crucial for maintaining the integrity of the drilldown feature.",
+        "bug_scenario": "The bug occurs when a user attempts to drill out of a sub-process after changing the root element. An error is thrown indicating that a 'rootElement' is required, suggesting that the drilldown overlay is not properly handling changes to the root element."
+    }
+}

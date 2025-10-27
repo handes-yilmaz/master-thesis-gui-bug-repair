@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste",
+            "lib/features/copy-paste/ModdleCopy",
+            "lib/import/BpmnImporter"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//pasteElement",
+            "lib/features/copy-paste/ModdleCopy//copyElement",
+            "lib/features/copy-paste/ModdleCopy//copyProperty",
+            "lib/import/BpmnImporter//add"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the copying and pasting of BPMN elements, including Pools. The 'BpmnCopyPaste' class manages the copy and paste operations, while 'ModdleCopy' deals with the properties of the elements being copied. The 'BpmnImporter' class is responsible for adding elements to the canvas, which is crucial when importing the copied Pools. The duplication of Pool IDs likely stems from how these functions manage the IDs during the copy-paste process.",
+        "bug_scenario": "The bug scenario involves an error occurring when attempting to copy a Pool in a BPMN diagram, resulting in duplicate Pool IDs. The expected behavior is to create a Pool with a Task inside, copy the Pool, and then export and import the file without ID conflicts."
+    }
+}

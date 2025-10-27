@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "explanation": "The files related to the bug are likely part of the copy-paste functionality and the label handling process, as described in the bug report. The file `lib/features/copy-paste/BpmnCopyPaste.js` is a key component in the copying and pasting process within the BPMN model, suggesting that it might be involved in mishandling or omitting labels during paste operations. Additionally, `lib/features/label-editing/LabelUtil.js` and `lib/features/label-editing/cmd/UpdateLabelHandler.js` are involved in managing how labels are handled and updated, which might be where the label continuity issue arises. \n\nThe `lib/modeling/behavior/LabelBehavior.js` file could also be implicated as it contains logic determining how labels behave and are rendered in the model; a flaw here might lead to them not being copied or displayed appropriately. Overall, these files together manage label handling from a copy-paste perspective and within the modeling context that could be affecting the proper functionality as described in the bug report.",
+        "bug_scenario": "The bug scenario involves a loss of labels when copying participant contents from one section of a diagram to another. The user copies contents with labels, but upon pasting them into a diagram, the labels do not appear, leading to a loss of information and broken visual representation in diagrams."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "explanation": "The files identified are likely related to the bug because:\n\n1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file is crucial as it may contain the logic for handling what gets copied and pasted. Since the labels are missing after the paste operation, the issue might reside in this function, causing labels to not be included correctly.\n\n2. **lib/features/label-editing/LabelUtil.js**: This utility file likely handles various label operations. Any malfunction here can affect label rendering during the paste operation, suggesting why labels might be lost.\n\n3. **lib/features/label-editing/cmd/UpdateLabelHandler.js**: This command handler would be responsible for label updates. If labels are not updated correctly during or after the paste process, it might be due to issues within this file.\n\n4. **lib/modeling/behavior/LabelBehavior.js**: This file might contain behaviors specific to label manipulation during different modeling actions, including paste. Inadequate handling within could result in the labels not being rendered or considered during paste.",
+        "bug_scenario": "The bug scenario describes a problem where labels are missing when users try to copy and paste participant contents within the same diagram. The expected behavior is that labels should be pasted along with the elements, but due to quirky label handling during copy/paste, they are not, as seen in the provided GIF image."
+    }
+}

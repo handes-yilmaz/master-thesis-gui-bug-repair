@@ -1,0 +1,216 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "CumulativeLayoutShift",
+            "file_path": "lighthouse-core/audits/metrics/cumulative-layout-shift.js",
+            "class_details": [
+                {
+                    "name": "CumulativeLayoutShift",
+                    "start_line": 23,
+                    "end_line": 76,
+                    "methods": [
+                        {
+                            "name": "meta",
+                            "start_line": 27,
+                            "end_line": 35
+                        },
+                        {
+                            "name": "defaultOptions",
+                            "start_line": 40,
+                            "end_line": 48
+                        },
+                        {
+                            "name": "audit",
+                            "start_line": 55,
+                            "end_line": 75
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class CumulativeLayoutShift extends Audit {",
+                "  /**",
+                "   * @return {LH.Audit.Meta}",
+                "   */",
+                "  static get meta() {",
+                "    return {",
+                "      id: 'cumulative-layout-shift',",
+                "      title: str_(i18n.UIStrings.cumulativeLayoutShiftMetric),",
+                "      description: str_(UIStrings.description),",
+                "      scoreDisplayMode: Audit.SCORING_MODES.NUMERIC,",
+                "      requiredArtifacts: ['traces'],",
+                "    };",
+                "  }",
+                "",
+                "  /**",
+                "   * @return {LH.Audit.ScoreOptions}",
+                "   */",
+                "  static get defaultOptions() {",
+                "    return {",
+                "      // https://web.dev/cls/#what-is-a-good-cls-score",
+                "      // This 0.1 target score was determined through both manual evaluation and large-scale analysis.",
+                "      // see https://www.desmos.com/calculator/ksp7q91nop",
+                "      p10: 0.1,",
+                "      median: 0.25,",
+                "    };",
+                "  }",
+                "",
+                "  /**",
+                "   * @param {LH.Artifacts} artifacts",
+                "   * @param {LH.Audit.Context} context",
+                "   * @return {Promise<LH.Audit.Product>}",
+                "   */",
+                "  static async audit(artifacts, context) {",
+                "    const trace = artifacts.traces[Audit.DEFAULT_PASS];",
+                "    const metricResult = await ComputedCLS.request(trace, context);",
+                "",
+                "    /** @type {LH.Audit.Details.DebugData} */",
+                "    const details = {",
+                "      type: 'debugdata',",
+                "      items: [metricResult.debugInfo],",
+                "    };",
+                "",
+                "    return {",
+                "      score: Audit.computeLogNormalScore(",
+                "        {p10: context.options.p10, median: context.options.median},",
+                "        metricResult.value",
+                "      ),",
+                "      numericValue: metricResult.value,",
+                "      numericUnit: 'unitless',",
+                "      displayValue: metricResult.value.toLocaleString(context.settings.locale),",
+                "      details,",
+                "    };",
+                "  }",
+                "}"
+            ]
+        },
+        "2": {
+            "class_name": "CumulativeLayoutShift",
+            "file_path": "lighthouse-core/computed/metrics/cumulative-layout-shift.js",
+            "class_details": [
+                {
+                    "name": "CumulativeLayoutShift",
+                    "start_line": 12,
+                    "end_line": 74,
+                    "methods": [
+                        {
+                            "name": "compute_",
+                            "start_line": 18,
+                            "end_line": 73
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class CumulativeLayoutShift {",
+                "  /**",
+                "   * @param {LH.Trace} trace",
+                "   * @param {LH.Audit.Context} context",
+                "   * @return {Promise<{value: number, debugInfo: Record<string,boolean> | null}>}",
+                "   */",
+                "  static async compute_(trace, context) {",
+                "    const traceOfTab = await TraceOfTab.request(trace, context);",
+                "",
+                "    // Find the last LayoutShift event, if any.",
+                "    let finalLayoutShift;",
+                "    for (let i = traceOfTab.mainThreadEvents.length - 1; i >= 0; i--) {",
+                "      const evt = traceOfTab.mainThreadEvents[i];",
+                "      if (evt.name === 'LayoutShift' && evt.args && evt.args.data && evt.args.data.is_main_frame) {",
+                "        finalLayoutShift = evt;",
+                "        break;",
+                "      }",
+                "    }",
+                "",
+                "    const finalLayoutShiftTraceEventFound = !!finalLayoutShift;",
+                "    // tdresser sez: In about 10% of cases, layout instability is 0, and there will be no trace events.",
+                "    // TODO: Validate that. http://crbug.com/1003459",
+                "    if (!finalLayoutShift) {",
+                "      return {",
+                "        value: 0,",
+                "        debugInfo: {",
+                "          finalLayoutShiftTraceEventFound,",
+                "        },",
+                "      };",
+                "    }",
+                "",
+                "    let cumulativeLayoutShift =",
+                "      finalLayoutShift.args &&",
+                "      finalLayoutShift.args.data &&",
+                "      finalLayoutShift.args.data.cumulative_score;",
+                "",
+                "    if (cumulativeLayoutShift === undefined) {",
+                "      throw new LHError(LHError.errors.LAYOUT_SHIFT_MISSING_DATA);",
+                "    }",
+                "",
+                "    // Chromium will set `had_recent_input` if there was recent user input, which",
+                "    // skips shift events from contributing to CLS. This flag is also set when Lighthouse changes",
+                "    // the emulation size. This consistently results in the first few shift event always being",
+                "    // ignored for CLS. Since we don't expect any user input, we add the score of these",
+                "    // shift events to CLS.",
+                "    // See https://bugs.chromium.org/p/chromium/issues/detail?id=1094974.",
+                "    for (let i = 0; i < traceOfTab.mainThreadEvents.length; i++) {",
+                "      const evt = traceOfTab.mainThreadEvents[i];",
+                "      if (evt.name === 'LayoutShift' && evt.args && evt.args.data && evt.args.data.is_main_frame) {",
+                "        if (!evt.args.data.had_recent_input) break;",
+                "        if (typeof evt.args.data.score !== 'number') continue;",
+                "        cumulativeLayoutShift += evt.args.data.score;",
+                "      }",
+                "    }",
+                "",
+                "    return {",
+                "      value: cumulativeLayoutShift,",
+                "      debugInfo: {",
+                "        finalLayoutShiftTraceEventFound,",
+                "      },",
+                "    };",
+                "  }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {
+        "3": {
+            "function_name": "waitForLoadEvent",
+            "file_path": "lighthouse-core/gather/driver/wait-for-condition.js",
+            "function_details": [
+                {
+                    "name": "waitForLoadEvent",
+                    "start_line": 265,
+                    "end_line": 292
+                }
+            ],
+            "function_code": [
+                "function waitForLoadEvent(session, pauseAfterLoadMs) {",
+                "  /** @type {(() => void)} */",
+                "  let cancel = () => {",
+                "    throw new Error('waitForLoadEvent.cancel() called before it was defined');",
+                "  };",
+                "",
+                "  const promise = new Promise((resolve, reject) => {",
+                "    /** @type {NodeJS.Timer|undefined} */",
+                "    let loadTimeout;",
+                "    const loadListener = function() {",
+                "      loadTimeout = setTimeout(resolve, pauseAfterLoadMs);",
+                "    };",
+                "    session.once('Page.loadEventFired', loadListener);",
+                "",
+                "    let canceled = false;",
+                "    cancel = () => {",
+                "      if (canceled) return;",
+                "      canceled = true;",
+                "      session.off('Page.loadEventFired', loadListener);",
+                "      loadTimeout && clearTimeout(loadTimeout);",
+                "    };",
+                "  });",
+                "",
+                "  return {",
+                "    promise,",
+                "    cancel,",
+                "  };",
+                "}"
+            ]
+        }
+    }
+}

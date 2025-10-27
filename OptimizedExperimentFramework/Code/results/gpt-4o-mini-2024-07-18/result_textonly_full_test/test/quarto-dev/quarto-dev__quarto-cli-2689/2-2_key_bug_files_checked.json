@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/crossref.ts",
+            "src/command/render/types.ts",
+            "src/project/project-crossrefs.ts"
+        ],
+        "explanation": "These files are key bug files because they directly handle the cross-referencing functionality and its associated metadata. The `crossref.ts` file contains the logic for filtering and processing cross-references, including the `crossrefFilterActive` function that checks the `crossref` metadata option. The `types.ts` file defines the `PandocOptions` interface, which includes the metadata structure that needs to be checked for the `crossref` option. Lastly, the `project-crossrefs.ts` file manages the cross-reference index and its metadata, which is crucial for ensuring that the cross-referencing feature behaves as expected when the `crossref` option is set to false.",
+        "bug_scenario": "The bug scenario involves the incorrect handling of the `crossref` metadata option in the rendering process. The user expects that when `crossref: false` is specified in the formats, the cross-referencing feature should be disabled, but it appears that the system is still processing cross-references, leading to unwanted behavior as shown in the provided images."
+    }
+}

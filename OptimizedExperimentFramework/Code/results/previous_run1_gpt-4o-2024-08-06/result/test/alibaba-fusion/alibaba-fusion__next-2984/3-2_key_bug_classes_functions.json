@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/cascader-select/cascader-select.jsx//CascaderSelect",
+            "src/cascader/cascader.jsx//Cascader"
+        ],
+        "bug_functions": [
+            "src/cascader/cascader.jsx//setCache",
+            "src/cascader/cascader.jsx//updateCache"
+        ],
+        "explanation": "The components or functions identified are involved in handling the properties of the CascaderSelect component. The bug is related to modifying properties, which should not happen. Specifically, the functions `setCache` and `updateCache` in `Cascader` are directly mentioned in the error stack trace, indicating they are attempting to modify a non-extensible object, leading to the error.",
+        "bug_scenario": "The issue is that the CascaderSelect component modifies the properties passed to it, which leads to an error when using the immer library. The error message indicates that an attempt was made to add a property to an object that is not extensible."
+    },
+    "2": {
+        "bug_classes": [
+            "src/cascader/cascader.jsx//Cascader",
+            "src/cascader-select/cascader-select.jsx//CascaderSelect"
+        ],
+        "bug_functions": [
+            "src/cascader/cascader.jsx//setCache",
+            "src/cascader/cascader.jsx//updateCache"
+        ],
+        "explanation": "The error occurs due to the CascaderSelect component modifying the properties passed to it. This is evident from the error trace that points to the 'setCache' and 'updateCache' functions in the Cascader class. These functions likely alter the input properties, which conflicts with the immutability enforced by libraries like Immer. The CascaderSelect class is directly involved as it is the component utilizing the Cascader class, and it exhibits the behavior of modifying input properties.",
+        "bug_scenario": "The bug scenario involves a TypeError where the CascaderSelect component modifies properties passed to it, causing an error with the Immer library. The error message indicates that an attempt is made to modify an object that is not extensible."
+    }
+}

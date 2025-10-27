@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Icon",
+            "src/ol/style/IconImage"
+        ],
+        "bug_functions": [
+            "src/ol/render/canvas/hitdetect.js//createHitDetectionImageData",
+            "src/ol/render/canvas/hitdetect.js//hitDetect",
+            "src/ol/style/IconImage.js//getHitDetectionImage"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the rendering and hit detection of icons on the map. The 'Icon' class is responsible for defining the properties of the icon, including its scale and rotation, which are critical to the bug scenario. The 'IconImage' class manages the image representation of the icon, including how it is drawn and how its hit detection image is generated. The functions 'createHitDetectionImageData' and 'hitDetect' are directly involved in the hit detection process, determining whether a hit occurs based on the icon's properties. The issue with negative scaling affects how these functions interpret the icon's position and visibility, leading to the described bug.",
+        "bug_scenario": "The bug occurs when an icon is rendered with a negative scale and a rotation of 0. In this scenario, the hit detection fails, and the icon does not appear at the edge of the map as expected. Instead of being cut off at the edge, the icon disappears entirely, leading to a failure in hit detection when interacting with the icon."
+    }
+}

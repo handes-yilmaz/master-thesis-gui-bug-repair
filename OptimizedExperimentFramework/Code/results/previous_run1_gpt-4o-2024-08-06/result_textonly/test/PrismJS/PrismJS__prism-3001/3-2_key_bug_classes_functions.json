@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-typescript.js//Prism.languages.typescript"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the language definitions in the `prism-typescript.js` file, specifically within the `Prism.languages.typescript` configuration. The regular expressions defined for keywords like 'infer' and 'type' include a negative lookahead that is supposed to prevent them from being matched when followed by an alphabetic character. However, these expressions are not correctly preventing matches in all cases, leading to incorrect syntax highlighting. The `typescript` language configuration is a critical area as it directly handles the syntax rules and keyword recognition that are causing the bug.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting in TypeScript code where certain keywords like 'infer' and 'type' are treated as keywords even when followed by alphabetic characters. This leads to incorrect highlighting in contexts such as imports, where 'infer' and 'type' should only be recognized as keywords when standalone and not part of longer identifiers like 'inference' or 'typeDefs'. The expected behavior is that only standalone keywords should be highlighted, while the actual behavior highlights them inappropriately."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-typescript.js//Prism.languages.typescript"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the regular expressions used in the `Prism.languages.typescript` definition in the `prism-typescript.js` file. Specifically, the issue arises from the regex patterns that define the TypeScript keywords and their contexts. The keywords `infer` and `type` should not be treated as keywords when followed by other alphabetic characters, which suggests that the regex pattern used to identify these keywords in the `Prism.languages.typescript.keyword.push` method is too broad. Adjusting these regex patterns would likely resolve the issue, ensuring that only standalone keywords are highlighted.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting of certain TypeScript keywords in code using the Prism syntax highlighter. The keywords `infer` and `type` are being incorrectly treated as keywords even when they are followed by alphabetic characters within import statements, leading to improper highlighting. This is evident from the images showing the expected highlighting (where only the keywords themselves should be highlighted) versus the actual highlighting (where parts of words like `inference` and `typeDefs` are also highlighted)."
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/connections/connection.js//Connection",
+            "lighthouse-core/gather/gatherers/anchor-elements.js//AnchorElements",
+            "lighthouse-core/gather/gatherers/html-without-javascript.js//HTMLWithoutJavaScript"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/connections/connection.js//sendCommand",
+            "lighthouse-core/gather/connections/connection.js//handleRawMessage",
+            "lighthouse-core/gather/gatherers/anchor-elements.js//afterPass",
+            "lighthouse-core/gather/gatherers/html-without-javascript.js//afterPass"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the communication and data gathering processes in Lighthouse. The 'Connection' class manages the websocket connection and command sending, which is crucial for target discovery and data retrieval. The 'sendCommand' and 'handleRawMessage' functions are essential for sending commands to the browser and processing the responses, respectively. The 'AnchorElements' and 'HTMLWithoutJavaScript' classes are responsible for gathering specific data from the page, and their 'afterPass' methods are where the data collection occurs. If Lighthouse is to handle OOPIFs, modifications in these areas are likely necessary to enable it to communicate with and analyze iframe requests.",
+        "bug_scenario": "The bug scenario involves Lighthouse not being able to handle OOPIFs (Out-of-Process IFrames), which means it cannot analyze requests from iframes. The user observed that Chrome DevTools uses a websocket connection to discover targets and send messages to them, but Lighthouse seems limited to analyzing only the main frame's requests."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/lib/minification-estimator.js//hasPunctuatorBefore"
+        ],
+        "bug_functions": [
+            "lighthouse-core/lib/minification-estimator.js//hasPunctuatorBefore",
+            "lighthouse-core/lib/minification-estimator.js//computeTokenLength",
+            "lighthouse-core/lib/minification-estimator.js//computeJSTokenLength"
+        ],
+        "explanation": "The function 'hasPunctuatorBefore' is directly related to the bug as it is responsible for determining whether a '/' character is part of a regular expression or a division operator. The incorrect logic in this function leads to the misclassification of the JavaScript code. Additionally, 'computeTokenLength' and 'computeJSTokenLength' are relevant because they rely on the output of 'hasPunctuatorBefore' to accurately compute the length of JavaScript tokens, which is essential for determining if the code is minified.",
+        "bug_scenario": "The minification estimator in Lighthouse incorrectly identifies a JavaScript code snippet as not minified due to a misinterpretation of the '/' character in a switch-case statement. This leads to Lighthouse reporting that the JavaScript is not minified when it actually is."
+    }
+}

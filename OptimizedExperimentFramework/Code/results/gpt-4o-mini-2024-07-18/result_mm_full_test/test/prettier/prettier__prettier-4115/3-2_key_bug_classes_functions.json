@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse",
+            "src/language-markdown/parser-markdown.js//splitText",
+            "src/language-markdown/printer-markdown.js//printTable",
+            "src/main/options.js//normalize"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//transformInlineCode",
+            "src/language-markdown/parser-markdown.js//restoreUnescapedCharacter",
+            "src/language-markdown/parser-markdown.js//mergeContinuousTexts"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the parsing and printing of Markdown content, which includes the formatting of nested code blocks and raw HTML. The 'parse' function is responsible for processing the Markdown text, while 'splitText' manages how text is split and formatted, which is crucial for maintaining indentation. The 'printTable' function is involved in rendering HTML tables, and the functions 'transformInlineCode', 'restoreUnescapedCharacter', and 'mergeContinuousTexts' are essential for ensuring that inline code and text are formatted correctly without introducing unwanted indentation. The 'normalize' function in options.js is also relevant as it manages the configuration settings that could affect how formatting is applied.",
+        "bug_scenario": "The bug scenario involves the formatting of Markdown files where nested code blocks or raw HTML are incorrectly indented each time the file is saved. This results in the HTML table being pushed further out of sync with the surrounding text, particularly when using Prettier in VS Code."
+    }
+}

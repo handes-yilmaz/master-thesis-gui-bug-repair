@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Graticule.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/reproj/Image.js",
+            "src/ol/reproj/Tile.js"
+        ],
+        "explanation": "The Graticule.js file is directly responsible for rendering the grid lines on the map, and any issues with how it calculates or displays these lines when crossing the dateline would be critical in fixing the bug. The proj4.js file is relevant because it deals with coordinate transformations, which are essential for determining the correct longitude and latitude positions of the grid lines. The Projection.js file helps in managing different projections, including those that cross the dateline. Lastly, the Image.js and Tile.js files in the reproj directory are important as they handle the rendering of map tiles, which could also influence how the graticule is displayed when the projection crosses the dateline.",
+        "bug_scenario": "The bug is related to the rendering of the graticule when the view projection crosses the dateline. Specifically, meridians do not display correctly, and parallels either start or extend incorrectly at the dateline. The expected behavior is for all meridians and parallels to be displayed accurately within the projection extent, which involves correctly determining their locations in relation to the dateline."
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/tree/view/tree-node.jsx",
+            "src/tree/view/util.js",
+            "src/tree/index.jsx"
+        ],
+        "explanation": "The issue involves the toggle logic of node selection in the Tree component. The file `tree-node.jsx` handles individual node interactions where the toggle logic would be implemented. The `util.js` file likely contains utility functions that could include toggling logic or state management that impact the selection state. The `index.jsx` may manage overall state or delegate interactions to child components, requiring updates to fix the toggle logic.",
+        "bug_scenario": "The bug occurs in the Tree component where the node selection toggle does not work as expected. Clicking on a node the first time changes the 'selected' state to false, but subsequent clicks do not change the state or visual styling, failing to toggle between true and false states. The expected behavior is that each click should alternate the state between true and false, with corresponding CSS changes."
+    },
+    "2": {
+        "bug_files": [
+            "src/tree/view/tree.jsx",
+            "src/tree/view/util.js",
+            "src/tree/index.jsx"
+        ],
+        "explanation": "The problem lies in the tree component's selection handling. The files `tree.jsx` and `util.js` under the `src/tree/view/` directory likely contain the logic for handling selection changes and updating the `selected` state. Similarly, `index.jsx` under `src/tree/` serves as the main entry point for the component, potentially orchestrating state updates and rendering logic. Reviewing these files should provide insights into why the state does not toggle as expected.",
+        "bug_scenario": "The issue occurs with the tree component where node selection does not toggle correctly. When a node is clicked, the `selected` parameter in `extra` should toggle between `true` and `false` with each click, updating the corresponding style. However, after the initial selection, the `selected` state remains static and the CSS style does not change, making it indistinguishable whether the node is selected or not."
+    }
+}

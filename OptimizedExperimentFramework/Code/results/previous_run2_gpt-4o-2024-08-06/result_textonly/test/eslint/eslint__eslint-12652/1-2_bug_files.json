@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/linter/source-code-fixer.js",
+            "lib/rules/key-spacing.js"
+        ],
+        "explanation": "1. `lib/rules/key-spacing.js`: This file is directly responsible for handling the `key-spacing` rule, which is specified in the bug report as causing re-alignment issues in JSX objects. Since the rule in question is `key-spacing` with the `align: value` option, any fix will involve modifying how this rule interprets and formats code.\n\n2. `lib/linter/source-code-fixer.js`: This file is responsible for applying fixes to the source code as per ESLint rules. Given that the issue involves a misapplied or undesirable formatting change during the fix process, this code segment is likely involved in the application of the `key-spacing` fixes, especially in a JSX context where spacing must be calculated and applied accurately.",
+        "bug_scenario": "The bug is related to ESLint automatically re-aligning objects in JSX curly braces in a way that the user finds undesirable. The issue is highlighted by the images showing how an object styling format is altered after running the ESLint fix command, resulting in misalignment that affects readability."
+    },
+    "2": {
+        "bug_files": [
+            "lib/rules/key-spacing.js",
+            "lib/rules/object-curly-newline.js",
+            "lib/rules/object-property-newline.js",
+            "lib/rules/object-curly-spacing.js"
+        ],
+        "explanation": "The files in the 'lib/rules/' directory are related to the bug because they contain the implementations of the ESLint rules mentioned in the bug report. Specifically, these rules are 'key-spacing', 'object-curly-newline', 'object-property-newline', and 'object-curly-spacing'. These rules are responsible for formatting object structures within code, including key alignment in objects and consistency of newline usage inside object curly braces. Since the bug report focuses on unintended realignment of objects, it directly relates to the configurations and enforcement performed by these linting rules.",
+        "bug_scenario": "The bug scenario involves the ESLint configuration for key alignment in JSX objects, which causes these objects to be rearranged in an undesirable way when the 'eslint --fix' command is executed. The expected behavior is for JSX objects not to be realigned by ESLint, which maintains the original formatting of the JSX curlies."
+    }
+}

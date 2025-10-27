@@ -1,0 +1,34 @@
+diff --git a/lib/cli-engine/cli-engine.js b/lib/cli-engine/cli-engine.js
+index e3647018d..ca859aff8 100644
+--- a/lib/cli-engine/cli-engine.js
++++ b/lib/cli-engine/cli-engine.js
+@@ -995,7 +995,7 @@ class CLIEngine {
+      * @throws {any} As may be thrown by requiring of formatter
+      * @returns {(Function|null)} The formatter function or null if the `format` is not a string.
+      */
+-    getFormatter(format) {
++    async getFormatter(format) {
+ 
+         // default is stylish
+         const resolvedFormatName = format || "stylish";
+@@ -1003,8 +1003,8 @@ class CLIEngine {
+         // only strings are valid formatters
+         if (typeof resolvedFormatName === "string") {
+ 
+-            // replace \ with / for Windows compatibility
+-            const normalizedFormatName = resolvedFormatName.replace(/\\/gu, "/");
++            // replace \\ with / for Windows compatibility
++            const normalizedFormatName = resolvedFormatName.replace(/\\\\/gu, "/");
+ 
+             const slots = internalSlotsMap.get(this);
+             const cwd = slots ? slots.options.cwd : process.cwd();
+@@ -1026,7 +1026,8 @@ class CLIEngine {
+             }
+ 
+             try {
+-                return require(formatterPath);
++                const formatter = require(formatterPath);
++                return formatter instanceof Promise ? await formatter : formatter;
+             } catch (ex) {
+                 if (format === "table" || format === "codeframe") {
+                     ex.message = `The ${format} formatter is no longer part of core ESLint. Install it manually with \`npm install -D eslint-formatter-${format}\``;

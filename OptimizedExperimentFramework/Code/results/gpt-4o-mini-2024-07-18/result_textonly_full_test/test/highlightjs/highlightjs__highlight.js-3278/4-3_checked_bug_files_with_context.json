@@ -1,0 +1,33 @@
+{
+    "src/lib/compiler_extensions.js": [
+        "...",
+        "  const before = match.input[match.index - 1];",
+        "  if (before === \".\") {",
+        "    response.ignoreMatch();",
+        "  }",
+        "}",
+        "",
+        "/**",
+        " *",
+        " * @type {CompilerExt}",
+        " */",
+        "export function scopeClassName(mode, _parent) {",
+        "  // eslint-disable-next-line no-undefined",
+        "  if (mode.className !== undefined) {",
+        "    mode.scope = mode.className;",
+        "    delete mode.className;",
+        "  }",
+        "}",
+        "",
+        "/**",
+        " * `beginKeywords` syntactic sugar",
+        " * @type {CompilerExt}",
+        " */",
+        "export function beginKeywords(mode, parent) {",
+        "  if (!parent) return;",
+        "  if (!mode.beginKeywords) return;",
+        "",
+        "  // for languages with keywords that include non-word characters checking for",
+        "..."
+    ]
+}

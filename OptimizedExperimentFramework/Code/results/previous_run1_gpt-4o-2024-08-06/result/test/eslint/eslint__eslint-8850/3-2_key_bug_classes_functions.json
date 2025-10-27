@@ -1,0 +1,27 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/indent.js//OffsetStorage"
+        ],
+        "bug_functions": [
+            "lib/rules/indent.js//checkIndentInFunctionParams",
+            "lib/rules/indent.js//addRHSIndent",
+            "lib/rules/indent.js//checkNodeIndent",
+            "lib/rules/indent.js//checkIndentInBlock",
+            "lib/rules/indent.js//checkIndentForBinaryExpressions"
+        ],
+        "explanation": "The issue is related to how ESLint calculates and checks indentation levels, specifically for JSX with binary expressions and parentheses. The `OffsetStorage` class manages desired offsets for tokens, which could affect indentation calculations. Functions like `checkIndentInFunctionParams`, `addRHSIndent`, `checkNodeIndent`, `checkIndentInBlock`, and `checkIndentForBinaryExpressions` are involved in determining and validating the indentation of various code structures, including binary expressions and JSX elements. These components are likely responsible for the regression in indentation handling, thus needing examination and potential adjustment.",
+        "bug_scenario": "The image shows indentation errors in the JSX code where the expected indentation doesn't match the actual indentation due to changes in how ESLint handles binary expressions with parentheses in JSX. The expected indentation levels are not met, resulting in errors."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/rules/indent.js"
+        ],
+        "bug_functions": [
+            "lib/rules/indent.js//checkIndentationForBinaryExpressions",
+            "lib/rules/indent.js//checkIndentationForParenthesizedValues"
+        ],
+        "explanation": "The issue is related to how the indent rule processes JSX binary expressions and parenthesized values. The functions handling these cases are responsible for calculating and verifying the correct indentation levels. The error messages indicate a mismatch between expected and actual indentation, suggesting that logic within these functions needs revision to correctly handle indentation when parentheses are involved.",
+        "bug_scenario": "The bug scenario involves incorrect indentation reporting by ESLint when using parentheses in JSX binary expressions. The expected indentations differ from the actual indentations, causing errors."
+    }
+}

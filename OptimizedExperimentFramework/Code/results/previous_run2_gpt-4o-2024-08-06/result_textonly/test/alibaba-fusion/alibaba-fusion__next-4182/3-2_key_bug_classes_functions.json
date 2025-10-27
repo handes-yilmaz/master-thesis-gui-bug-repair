@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/overlay/index.jsx//Overlay",
+            "src/overlay/index.jsx//Popup"
+        ],
+        "bug_functions": [
+            "src/overlay/popup-v2.jsx//Popup"
+        ],
+        "explanation": "The issue is related to the integration of the CascaderSelect component with the popup version 2. The compressed files reveal that the `Overlay` and `Popup` classes in `src/overlay/index.jsx` are responsible for deciding which version of the overlay or popup to use based on the `v2` property. The `Popup` function in `src/overlay/popup-v2.jsx` is directly involved in handling the popup logic when v2 is enabled. This function includes the logic for managing visibility, animations, and rendering of the overlay, which are critical when enabling popup v2. Any errors with the popup rendering or visibility changes when v2 is enabled would likely be traced back to these elements.",
+        "bug_scenario": "The bug scenario involves an error that occurs when using the CascaderSelect component with the popup v2 enabled. The specific setup includes setting the popupProps to use version 2 and enabling the search feature, which leads to an error displayed in the console (as shown in the image)."
+    },
+    "2": {
+        "bug_classes": [
+            "src/overlay/popup-v2.jsx//Popup",
+            "src/overlay/index.jsx//Overlay",
+            "src/overlay/index.jsx//Popup"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug report indicates an issue with the `CascaderSelect` component when using `popupProps={v2: true}`. The `src/overlay/popup-v2.jsx` file contains the `Popup` component, which is likely involved since the error appears when enabling the v2 popup. The `src/overlay/index.jsx` file includes classes for both `Overlay` and `Popup`, which manage the conditional rendering between v1 and v2 versions. The presence of versioning logic in these files, particularly for handling `v2` attributes, makes them relevant to the bug, as they might not be handling the `v2` conditions correctly or might be missing some necessary updates to support the `v2` functionality in the `CascaderSelect` component.",
+        "bug_scenario": "The bug scenario involves the `CascaderSelect` component throwing an error when the `popupProps` has the `v2` attribute set to true. This suggests a problem with the integration or compatibility of the `popup-v2` functionality within the `CascaderSelect` component."
+    }
+}

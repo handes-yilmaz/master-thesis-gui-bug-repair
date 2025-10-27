@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/config-provider/index.jsx",
+            "src/config-provider/cache.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "These files are related to the ConfigProvider component. The `index.jsx` file contains the main implementation of the component, while `cache.js` likely manages the internal cache that is causing the memory leak. The `config.jsx` file may define configuration settings relevant to the component's behavior, including any potential API for manually clearing the cache.",
+        "bug_scenario": "The ConfigProvider component experiences a memory leak under server-side rendering (SSR) situations due to the failure of the `componentWillUnmount` lifecycle method to execute, which prevents the internal cache from being garbage collected. The report suggests implementing a manual cache clearing API to address this issue."
+    }
+}

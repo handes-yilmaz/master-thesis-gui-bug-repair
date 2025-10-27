@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js//DrilldownBreadcrumbs",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//DrilldownOverlayBehavior",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js//UpdateCanvasRootHandler"
+        ],
+        "bug_functions": [
+            "lib/features/drilldown/DrilldownBreadcrumbs.js//updateBreadcrumbs",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//updateDrilldownOverlay",
+            "lib/features/modeling/cmd/UpdateCanvasRootHandler.js//execute"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the updating of the drilldown overlays and the root element changes. The 'DrilldownBreadcrumbs' class is responsible for managing the breadcrumb navigation, which is affected by root changes. The 'DrilldownOverlayBehavior' class updates the visibility of overlays based on the current root, and the 'UpdateCanvasRootHandler' class executes the logic for changing the root element, which triggers the error when the drilldown overlay is not aware of the new root.",
+        "bug_scenario": "The user encounters an error when trying to drill out of a sub-process after a root change. The error message indicates that a required root element is missing, suggesting that the drilldown overlay is not properly updated to reflect the root changes."
+    }
+}

@@ -1,0 +1,13 @@
+diff --git a/src/config-provider/index.jsx b/src/config-provider/index.jsx
+index d7eaedd..de64223 100644
+--- a/src/config-provider/index.jsx
++++ b/src/config-provider/index.jsx
+@@ -244,6 +244,8 @@ class ConfigProvider extends Component {
+ 
+     componentWillUnmount() {
+         childContextCache.remove(this);
++        // Clear cache to prevent memory leaks in SSR scenarios
++        ConfigProvider.clearCache();
+     }
+ 
+     /**

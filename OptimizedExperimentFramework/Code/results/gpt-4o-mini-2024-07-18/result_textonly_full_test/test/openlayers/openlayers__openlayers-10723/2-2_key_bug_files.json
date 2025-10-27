@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Graticule.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js"
+        ],
+        "explanation": "The file 'src/ol/layer/Graticule.js' is crucial because it contains the logic for rendering the graticule lines, including meridians and parallels, which are directly affected by the projection crossing the dateline. The 'src/ol/proj/proj4.js' file is important as it handles the projection definitions and transformations, which are necessary for correctly interpreting the coordinates when crossing the dateline. Lastly, 'src/ol/proj/Projection.js' defines the projection behavior and properties, including how the projection can wrap around the globe, which is essential for ensuring that the graticule displays correctly in such scenarios.",
+        "bug_scenario": "The graticule does not display correctly when the view projection crosses the dateline, resulting in missing meridians and incorrectly positioned parallels. The expected behavior is for all meridians and parallels within the projection extent to be displayed correctly, which requires adjustments to how these lines are rendered based on their positions relative to the dateline."
+    }
+}

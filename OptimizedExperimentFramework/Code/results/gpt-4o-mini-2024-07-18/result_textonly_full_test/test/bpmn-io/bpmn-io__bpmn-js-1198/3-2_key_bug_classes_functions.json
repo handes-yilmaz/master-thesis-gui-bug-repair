@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior",
+            "lib/features/modeling/BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior//preExecute",
+            "lib/features/modeling/BpmnUpdater//updateFlowNodeRefs"
+        ],
+        "explanation": "The `UnsetDefaultFlowBehavior` class contains logic that unsets the default property of a sequence flow when a connection is deleted. The `preExecute` function is crucial because it checks if the connection being deleted is the default flow and removes the default attribute. This is directly related to the bug since adding a Timer Intermediate Catch Event may trigger this behavior unintentionally. The `BpmnUpdater` class is responsible for updating the BPMN model, including handling default and conditional flows. The `updateFlowNodeRefs` function is relevant as it may need to ensure that the default flow remains intact when changes are made to the flow, which is essential to prevent the bug from occurring.",
+        "bug_scenario": "The bug occurs when a Timer Intermediate Catch Event is added to a non-default flow of an exclusive gateway, which inadvertently removes the default attribute from the gateway. This leads to the default flow being rendered incorrectly, causing issues in the flow logic."
+    }
+}

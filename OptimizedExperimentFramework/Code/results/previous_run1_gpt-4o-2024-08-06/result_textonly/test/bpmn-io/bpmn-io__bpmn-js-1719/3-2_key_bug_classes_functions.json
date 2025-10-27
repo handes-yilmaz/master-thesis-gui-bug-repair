@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//ToggleElementCollapseBehaviour"
+        ],
+        "bug_functions": [],
+        "explanation": "The `LabelBehavior` class in `LabelBehavior.js` manages the visibility and positioning of labels. It includes logic for updating labels when properties are updated, and for creating, deleting, and moving label shapes. The issue with labels becoming visible or moving outside their intended bounds upon collapsing a sub process suggests that this class is directly responsible for handling such behavior.\n\nThe `ToggleElementCollapseBehaviour` class in `ToggleElementCollapseBehaviour.js` manages the collapsing and expanding of elements, specifically sub processes. It controls the visibility of child elements and their labels when a sub process is collapsed or expanded. Since the bug involves issues with label visibility upon collapsing a sub process, this class is relevant as it directly handles the collapse behavior that should ideally hide the labels inside the sub process.",
+        "bug_scenario": "The bug scenario involves labels of elements within a sub process being visible or moving outside their intended bounds after the sub process is collapsed. This issue occurs when clicking through the steps in the diagram editor. The expected behavior is that the labels inside the sub process should be hidden when the sub process is collapsed. The steps to reproduce involve creating a task and an end event, changing the task to an expanded sub process, adding elements inside it, labeling them, and then collapsing the sub process. The bug affects the visibility and positioning of labels, especially upon collapsing a sub process."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//ToggleElementCollapseBehaviour"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js//hideEmptyLabels"
+        ],
+        "explanation": "The bug is related to the functionality of toggling the collapse state of a sub-process, which is implemented in the `ToggleElementCollapseBehaviour` class. This class handles the behavior of elements when they are collapsed or expanded. The function `hideEmptyLabels` within this class is particularly relevant as it is responsible for hiding labels when a sub-process is collapsed. Since the reported bug involves labels remaining visible when they should be hidden upon collapsing a sub-process, the handling of labels in this function is directly related to the bug.",
+        "bug_scenario": "The scenario involves an issue with the visibility of labels in a BPMN (Business Process Model and Notation) diagram when a sub-process is collapsed. Specifically, labels that are supposed to be hidden remain visible after collapsing the sub-process. This issue is observed when following a series of steps that involve appending tasks and events, changing tasks into sub-processes, and collapsing these sub-processes. The problem is visually depicted in a provided GIF animation, which shows the labels moving outside their expected boundaries."
+    }
+}

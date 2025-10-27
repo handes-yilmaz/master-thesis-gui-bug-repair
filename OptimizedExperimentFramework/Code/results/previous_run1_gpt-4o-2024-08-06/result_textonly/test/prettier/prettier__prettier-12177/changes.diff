@@ -1,0 +1,25 @@
+diff --git a/src/language-js/print/statement.js b/src/language-js/print/statement.js
+index b8575744fc..2ae9418e3b 100644
+--- a/src/language-js/print/statement.js
++++ b/src/language-js/print/statement.js
+@@ -161,7 +161,19 @@ function printBody(path, options, print) {
+ }
+ 
+ function printSwitchCaseConsequent(path, options, print) {
+-  return printStatementSequence(path, options, print, "consequent");
++  const node = path.getValue();
++  const parts = [];
++
++  if (node.consequent.length === 0) {
++    // Handle comments after case/default
++    const comments = path.getComments();
++    if (comments && comments.length > 0) {
++      parts.push(" ", printDanglingComments(path, options, true));
++    }
++  }
++
++  parts.push(printStatementSequence(path, options, print, "consequent"));
++  return parts;
+ }
+ 
+ const isClassProperty = ({ type }) =>

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/critical-request-chains//CriticalRequestChains",
+            "lighthouse-core/audits/uses-rel-preload//UsesRelPreloadAudit",
+            "lighthouse-core/gather/computed/critical-request-chains//CriticalRequestChains"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/critical-request-chains//audit",
+            "lighthouse-core/audits/uses-rel-preload//audit",
+            "lighthouse-core/gather/computed/critical-request-chains//isCritical"
+        ],
+        "explanation": "These classes and functions are related to the bug because they are responsible for auditing and analyzing critical request chains in the context of web performance. The `CriticalRequestChains` class in both the audits and computed artifacts is directly involved in determining which requests are considered critical based on their loading behavior. The `UsesRelPreloadAudit` class specifically addresses the use of `rel=preload`, which is central to the user's issue. The `audit` functions in these classes execute the logic that leads to the classification of requests, making them key elements in understanding and potentially fixing the reported issue.",
+        "bug_scenario": "The bug scenario involves the use of `link[rel=preload]` to fetch a stylesheet asynchronously. The stylesheet is flagged by Lighthouse as part of a 'critical request chain', despite it not blocking page rendering and containing no CSS styles. The user is questioning the criteria used by Lighthouse to classify this as a critical request."
+    }
+}

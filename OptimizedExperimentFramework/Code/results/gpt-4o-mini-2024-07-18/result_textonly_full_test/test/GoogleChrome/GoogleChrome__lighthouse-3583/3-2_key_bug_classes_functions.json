@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/critical-request-chains.js//CriticalRequestChains",
+            "lighthouse-core/gather/computed/critical-request-chains.js//CriticalRequestChains"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/critical-request-chains.js//audit",
+            "lighthouse-core/gather/computed/critical-request-chains.js//isCritical",
+            "lighthouse-core/gather/computed/critical-request-chains.js//extractChain"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the logic for determining which requests are considered critical in the context of performance audits. The 'CriticalRequestChains' class in both files is responsible for analyzing network requests and their relationships. The 'audit' function evaluates the critical request chains, while 'isCritical' determines if a request should be classified as critical based on its type and priority. The 'extractChain' function builds a tree of critical requests, which is essential for implementing the proposed changes to exclude iframes and data URIs from being treated as critical.",
+        "bug_scenario": "The bug report discusses the classification of iframes as critical requests in the context of critical request chains (CRC). It suggests that iframes should not be treated as critical because they do not block rendering. The report also mentions the need to exclude data URIs from the CRC tree, as they are not considered network requests. The provided images illustrate examples of iframes and data URIs in the CRC tree."
+    }
+}

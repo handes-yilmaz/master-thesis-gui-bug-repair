@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/cmd/SetColorHandler",
+            "lib/features/modeling/Modeling"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/cmd/SetColorHandler//postExecute",
+            "lib/features/modeling/Modeling//setColor"
+        ],
+        "explanation": "The `SetColorHandler` class contains the `postExecute` function, which is responsible for applying the color changes to elements, including labels. This function needs to be modified to ensure that external labels are set to the 'stroke' color instead of the 'fill' color. The `Modeling` class includes the `setColor` function, which triggers the color change process. This function is crucial as it initiates the command that leads to the bug, making it a key element to review for fixing the issue.",
+        "bug_scenario": "The bug occurs when the `setColor` function is called to change the color of external labels. Instead of setting the external label color to the specified 'stroke' color, it incorrectly sets it to the 'fill' color. This leads to a poor user experience as the external label color is too light and does not match the expected behavior seen in embedded labels."
+    }
+}

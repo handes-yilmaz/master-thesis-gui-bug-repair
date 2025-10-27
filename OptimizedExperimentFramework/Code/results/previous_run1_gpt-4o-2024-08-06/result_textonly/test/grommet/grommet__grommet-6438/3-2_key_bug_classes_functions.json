@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/DateInput/DateInput.js//DateInput",
+            "src/js/components/Calendar/Calendar.js//Calendar"
+        ],
+        "bug_functions": [
+            "src/js/components/Calendar/utils.js//withinDates",
+            "src/js/components/Calendar/utils.js//betweenDates"
+        ],
+        "explanation": "The DateInput component is responsible for rendering the date input field and handling user interactions with the calendar. It utilizes the calendarProps to set bounds on selectable dates, which is the area where the bug is occurring. Thus, the DateInput class in 'src/js/components/DateInput/DateInput.js' is directly related to the bug.\n\nThe Calendar component, found in 'src/js/components/Calendar/Calendar.js', is also a key element because it renders the actual calendar interface and manages the selection logic, including enforcing any bounds specified via calendarProps.\n\nThe utility functions 'withinDates' and 'betweenDates' in 'src/js/components/Calendar/utils.js' are likely involved in the logic that checks whether a date falls within the specified bounds. If the logic in these functions is flawed, it could result in dates outside the bounds being selectable, thus contributing to the bug.",
+        "bug_scenario": "The bug involves the DateInput component allowing users to select days that are outside the specified bounds in the calendarProps, particularly the last day of the previous month, which should be disabled."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/DateInput/DateInput.js//DateInput"
+        ],
+        "bug_functions": [
+            "src/js/components/Calendar/Calendar.js//getOutputFormat",
+            "src/js/components/Calendar/utils.js//betweenDates",
+            "src/js/components/Calendar/utils.js//withinDates"
+        ],
+        "explanation": "1. **DateInput.js//DateInput**: This is the main component responsible for rendering the date input and handling its properties, including the calendarProps which should enforce the bounds of the calendar. It is directly related to the bug because any logic that deals with the selection of dates within the allowed range would likely be implemented here.\n\n2. **Calendar.js//getOutputFormat**: This function is involved in formatting the date or dates for output and potentially interacts with the bounds of the date selection. If the output format does not correctly take bounds into consideration, it might contribute to the issue.\n\n3. **utils.js//betweenDates**: This utility function checks if a given date is between two dates, inclusive. It is relevant because properly implementing the bounds logic might involve validating dates using this function.\n\n4. **utils.js//withinDates**: Similar to betweenDates, withinDates checks whether a date falls within a range of dates. It is likely used in the context of enforcing calendar bounds, and any bugs in its logic could lead to the observed behavior of selecting dates outside of bounds.",
+        "bug_scenario": "The bug scenario involves the ability to select a date outside the specified bounds of a date input calendar. The bounds are set to a specific month, but the issue allows users to select a date from the previous month, which should be disabled according to the expected behavior."
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/font-display.js": [
+            {
+                "SEARCH": [
+                    "const fontDisplayMatch = declaration.match(/font-display\\\\s*:\\\\s*(\\\\w+)\\\\s*(;|\\\\})/);"
+                ],
+                "REPLACE": [
+                    "        const fontDisplayMatch = declaration.match(/font-display\\\\s*:\\\\s*(\\\\w+|\\\\s*)\\\\s*(;|\\\\})/);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const hasPassingFontDisplay = PASSING_FONT_DISPLAY_REGEX.test(rawFontDisplay);"
+                ],
+                "REPLACE": [
+                    "        const hasPassingFontDisplay = PASSING_FONT_DISPLAY_REGEX.test(rawFontDisplay.trim());"
+                ]
+            }
+        ]
+    }
+}

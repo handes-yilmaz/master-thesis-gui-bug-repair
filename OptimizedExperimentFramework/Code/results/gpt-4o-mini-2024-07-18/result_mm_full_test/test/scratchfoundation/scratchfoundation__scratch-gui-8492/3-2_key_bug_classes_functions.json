@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/components/record-modal/record-modal.jsx//RecordModal",
+            "src/components/modal/modal.jsx//ModalComponent",
+            "src/components/audio-trimmer/audio-selector.jsx//AudioSelector"
+        ],
+        "bug_functions": [
+            "src/components/modal/modal.jsx//onRequestClose",
+            "src/components/audio-trimmer/audio-selector.jsx//onNewSelectionMouseDown",
+            "src/components/audio-trimmer/audio-selector.jsx//onTrimStartMouseDown",
+            "src/components/audio-trimmer/audio-selector.jsx//onTrimEndMouseDown"
+        ],
+        "explanation": "The classes and functions identified are related to the modal and audio selection functionality. The 'RecordModal' class is responsible for rendering the recording modal, while 'ModalComponent' handles the modal's open/close behavior. The functions 'onRequestClose', 'onNewSelectionMouseDown', 'onTrimStartMouseDown', and 'onTrimEndMouseDown' are critical as they manage mouse events that can lead to the modal closing unexpectedly. Adjustments to these functions may prevent the modal from closing when the mouse is dragged outside, thus preserving user work.",
+        "bug_scenario": "The user is dragging the mouse outside of the sound recording modal, which unexpectedly closes the modal and results in the loss of unsaved work. The expected behavior is that the modal should remain open while dragging the sound selection handles."
+    }
+}

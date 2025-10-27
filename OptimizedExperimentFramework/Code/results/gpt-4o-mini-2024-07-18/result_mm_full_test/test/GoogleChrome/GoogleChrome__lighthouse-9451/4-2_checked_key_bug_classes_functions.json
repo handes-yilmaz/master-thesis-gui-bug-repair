@@ -1,0 +1,229 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "Offline",
+            "file_path": "lighthouse-core/gather/gatherers/offline.js",
+            "class_details": [
+                {
+                    "name": "Offline",
+                    "start_line": 11,
+                    "end_line": 33,
+                    "methods": [
+                        {
+                            "name": "beforePass",
+                            "start_line": 15,
+                            "end_line": 17
+                        },
+                        {
+                            "name": "afterPass",
+                            "start_line": 24,
+                            "end_line": 32
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class Offline extends Gatherer {",
+                "  /**",
+                "   * @param {LH.Gatherer.PassContext} passContext",
+                "   */",
+                "  beforePass(passContext) {",
+                "    return passContext.driver.goOffline();",
+                "  }",
+                "",
+                "  /**",
+                "   * @param {LH.Gatherer.PassContext} passContext",
+                "   * @param {LH.Gatherer.LoadData} loadData",
+                "   * @return {Promise<LH.Artifacts['Offline']>}",
+                "   */",
+                "  afterPass(passContext, loadData) {",
+                "    const navigationRecord = loadData.networkRecords.filter(record => {",
+                "      return URL.equalWithExcludedFragments(record.url, passContext.url) &&",
+                "        record.fetchedViaServiceWorker;",
+                "    }).pop(); // Take the last record that matches.",
+                "",
+                "    return passContext.driver.goOnline(passContext)",
+                "      .then(_ => navigationRecord ? navigationRecord.statusCode : -1);",
+                "  }",
+                "}"
+            ]
+        },
+        "2": {
+            "class_name": "StartUrl",
+            "file_path": "lighthouse-core/gather/gatherers/start-url.js",
+            "class_details": [
+                {
+                    "name": "StartUrl",
+                    "start_line": 12,
+                    "end_line": 92,
+                    "methods": [
+                        {
+                            "name": "afterPass",
+                            "start_line": 18,
+                            "end_line": 28
+                        },
+                        {
+                            "name": "_readManifestStartUrl",
+                            "start_line": 35,
+                            "end_line": 48
+                        },
+                        {
+                            "name": "_attemptStartURLFetch",
+                            "start_line": 57,
+                            "end_line": 91
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class StartUrl extends Gatherer {",
+                "  /**",
+                "   * Grab the manifest, extract it's start_url, attempt to `fetch()` it while offline",
+                "   * @param {LH.Gatherer.PassContext} passContext",
+                "   * @return {Promise<LH.Artifacts['StartUrl']>}",
+                "   */",
+                "  async afterPass(passContext) {",
+                "    const manifest = passContext.baseArtifacts.WebAppManifest;",
+                "    const startUrlInfo = this._readManifestStartUrl(manifest);",
+                "    if (startUrlInfo.isReadFailure) {",
+                "      return {statusCode: -1, explanation: startUrlInfo.reason};",
+                "    }",
+                "",
+                "    return this._attemptStartURLFetch(passContext.driver, startUrlInfo.startUrl).catch(() => {",
+                "      return {statusCode: -1, explanation: 'Unable to fetch start URL via service worker.'};",
+                "    });",
+                "  }",
+                "",
+                "  /**",
+                "   * Read the parsed manifest and return failure reasons or the startUrl",
+                "   * @param {LH.Artifacts.Manifest|null} manifest",
+                "   * @return {{isReadFailure: true, reason: string}|{isReadFailure: false, startUrl: string}}",
+                "   */",
+                "  _readManifestStartUrl(manifest) {",
+                "    if (!manifest || !manifest.value) {",
+                "      const detailedMsg = manifest && manifest.warning;",
+                "",
+                "      if (detailedMsg) {",
+                "        return {isReadFailure: true, reason: `Error fetching web app manifest: ${detailedMsg}.`};",
+                "      } else {",
+                "        return {isReadFailure: true, reason: `No usable web app manifest found on page.`};",
+                "      }",
+                "    }",
+                "",
+                "    // Even if the start URL had a parser warning, the browser will still supply a fallback URL.",
+                "    return {isReadFailure: false, startUrl: manifest.value.start_url.value};",
+                "  }",
+                "",
+                "  /**",
+                "   * Try to `fetch(start_url)`, return true if fetched by SW",
+                "   * Resolves when we have a matched network request",
+                "   * @param {Driver} driver",
+                "   * @param {string} startUrl",
+                "   * @return {Promise<{statusCode: number, explanation: string}>}",
+                "   */",
+                "  _attemptStartURLFetch(driver, startUrl) {",
+                "    // TODO(phulce): clean up this setTimeout once the response has happened",
+                "    // Wait up to 3s to get a matched network request from the fetch() to work",
+                "    const timeoutPromise = new Promise(resolve =>",
+                "      setTimeout(",
+                "        () => resolve({statusCode: -1, explanation: 'Timed out waiting for fetched start_url.'}),",
+                "        3000",
+                "      )",
+                "    );",
+                "",
+                "    const fetchPromise = new Promise(resolve => {",
+                "      driver.on('Network.responseReceived', onResponseReceived);",
+                "",
+                "      /** @param {LH.Crdp.Network.ResponseReceivedEvent} responseEvent */",
+                "      function onResponseReceived(responseEvent) {",
+                "        const {response} = responseEvent;",
+                "        // ignore mismatched URLs",
+                "        if (response.url !== startUrl) return;",
+                "        driver.off('Network.responseReceived', onResponseReceived);",
+                "",
+                "        if (!response.fromServiceWorker) {",
+                "          return resolve({",
+                "            statusCode: -1,",
+                "            explanation: 'Unable to fetch start URL via service worker.',",
+                "          });",
+                "        }",
+                "        // Successful SW-served fetch of the start_URL",
+                "        return resolve({statusCode: response.status});",
+                "      }",
+                "    });",
+                "",
+                "    return driver",
+                "      .evaluateAsync(`window.location = '${startUrl}'`)",
+                "      .then(() => Promise.race([fetchPromise, timeoutPromise]));",
+                "  }",
+                "}"
+            ]
+        },
+        "3": {
+            "class_name": "OfflineStartUrl",
+            "file_path": "lighthouse-core/audits/offline-start-url.js",
+            "class_details": [
+                {
+                    "name": "OfflineStartUrl",
+                    "start_line": 29,
+                    "end_line": 65,
+                    "methods": [
+                        {
+                            "name": "meta",
+                            "start_line": 33,
+                            "end_line": 41
+                        },
+                        {
+                            "name": "audit",
+                            "start_line": 47,
+                            "end_line": 64
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class OfflineStartUrl extends Audit {",
+                "  /**",
+                "   * @return {LH.Audit.Meta}",
+                "   */",
+                "  static get meta() {",
+                "    return {",
+                "      id: 'offline-start-url',",
+                "      title: str_(UIStrings.title),",
+                "      failureTitle: str_(UIStrings.failureTitle),",
+                "      description: str_(UIStrings.description),",
+                "      requiredArtifacts: ['WebAppManifest', 'StartUrl'],",
+                "    };",
+                "  }",
+                "",
+                "  /**",
+                "   * @param {LH.Artifacts} artifacts",
+                "   * @return {LH.Audit.Product}",
+                "   */",
+                "  static audit(artifacts) {",
+                "    // StartUrl gatherer will give explanations for failures, but need to take manifest parsing",
+                "    // warnings from the manifest itself (e.g. invalid `start_url`, so fell back to document URL).",
+                "    const warnings = [];",
+                "    const manifest = artifacts.WebAppManifest;",
+                "    if (manifest && manifest.value && manifest.value.start_url.warning) {",
+                "      const manifestWarning = manifest.value.start_url.warning;",
+                "      warnings.push(str_(UIStrings.warningCantStart, {manifestWarning}));",
+                "    }",
+                "",
+                "    const hasOfflineStartUrl = artifacts.StartUrl.statusCode === 200;",
+                "",
+                "    return {",
+                "      score: Number(hasOfflineStartUrl),",
+                "      explanation: artifacts.StartUrl.explanation,",
+                "      warnings,",
+                "    };",
+                "  }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

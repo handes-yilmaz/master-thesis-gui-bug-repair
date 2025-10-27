@@ -1,0 +1,30 @@
+diff --git a/lighthouse-core/audits/first-meaningful-paint.js b/lighthouse-core/audits/first-meaningful-paint.js
+index ca97a83..e1052d4 100644
+--- a/lighthouse-core/audits/first-meaningful-paint.js
++++ b/lighthouse-core/audits/first-meaningful-paint.js
+@@ -54,8 +54,8 @@ class FirstMeaningfulPaint extends Audit {
+     const trace = artifacts.traces[this.DEFAULT_PASS];
+     return artifacts.requestTraceOfTab(trace).then(tabTrace => {
+       // Sometimes fMP is triggered before fCP
+-      if (!tabTrace.firstMeaningfulPaintEvt) {
+-        throw new Error('No usable `firstMeaningfulPaint` event found in trace');
++      if (!tabTrace.firstMeaningfulPaintEvt || !tabTrace.firstContentfulPaintEvt) {
++        throw new Error('No usable `firstMeaningfulPaint` or `firstContentfulPaint` event found in trace');
+       }
+ 
+       // navigationStart is currently essential to FMP calculation.
+diff --git a/lighthouse-core/audits/time-to-interactive.js b/lighthouse-core/audits/time-to-interactive.js
+index 725c389..408df1b 100644
+--- a/lighthouse-core/audits/time-to-interactive.js
++++ b/lighthouse-core/audits/time-to-interactive.js
+@@ -70,8 +70,8 @@ class TTIMetric extends Audit {
+     return Promise.all([pendingSpeedline, pendingFMP]).then(results => {
+       const speedline = results[0];
+       const fmpResult = results[1];
+-      if (fmpResult.rawValue === -1) {
+-        return generateError(fmpResult.debugString);
++      if (fmpResult.rawValue === -1 || fmpResult.extendedInfo.value.timestamps.fMP === undefined) {
++        return generateError('Invalid First Meaningful Paint data');
+       }
+ 
+       // Process the trace

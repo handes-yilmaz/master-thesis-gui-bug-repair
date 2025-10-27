@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/cpp.js//LanguageFn"
+        ],
+        "bug_functions": [
+            "src/languages/cpp.js//default function",
+            "src/languages/arduino.js//default function"
+        ],
+        "explanation": "The class and functions identified are related to the bug because they handle language syntax definitions, including keywords and types, for syntax highlighting. The `default function` in `src/languages/cpp.js` is responsible for defining how C++ code is highlighted, which directly relates to the issue with primitive types not being highlighted as keywords. Similarly, the `default function` in `src/languages/arduino.js` incorporates C++ highlighting rules, which would be affected by changes to how C++ types and keywords are defined and highlighted. These elements need to be modified to revert the behavior to highlight primitive types as keywords, thus addressing the bug described in the report.",
+        "bug_scenario": "The bug scenario involves the highlighting behavior of primitive types (such as `int`, `char`) in C++ code in version 11.0.0 of a syntax highlighting library. Previously, these types were highlighted as keywords, which is consistent with how many C++ IDEs and text editors handle them. However, a recent change split primitive types and keywords, resulting in C++ code that appears unnatural and confusing in terms of syntax highlighting. The request is to revert to the previous behavior where primitive types are highlighted as keywords."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/cpp.js//LanguageFn"
+        ],
+        "bug_functions": [
+            "src/languages/cpp.js//default function"
+        ],
+        "explanation": "The bug is related to how C++ primitive types are highlighted as keywords. The function in 'src/languages/cpp.js' is responsible for defining the language highlighting rules for C++. This function imports necessary regex utilities and defines how different C++ language constructs, including keywords and types, should be highlighted. Since the issue is about highlighting primitive types as keywords, the logic in this function needs to be reviewed to ensure primitive types are categorized correctly according to the desired highlighting behavior. The 'LanguageFn' export from this file is crucial as it directly influences the parsing and highlighting rules.",
+        "bug_scenario": "The bug report discusses a change in the highlighting behavior of C++ primitive types in version 11.0.0 of a library. Previously, primitive types were highlighted as keywords. The change, which separated primitive types and keywords, is perceived as making the highlighting look unnatural and confusing. The report suggests that primitive types should be highlighted as keywords, as is common in many popular C++ IDEs and text editors."
+    }
+}

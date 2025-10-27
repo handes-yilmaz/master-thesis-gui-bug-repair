@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLPoints.js//WebGLPointsLayer",
+            "src/ol/renderer/webgl/PointsLayer.js//WebGLPointsLayerRenderer",
+            "src/ol/proj/epsg4326.js//EPSG4326Projection"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLPoints.js//createRenderer",
+            "src/ol/layer/WebGLPoints.js//updateStyleVariables",
+            "src/ol/renderer/webgl/PointsLayer.js//rebuildBuffers_",
+            "src/ol/renderer/webgl/PointsLayer.js//renderFrame",
+            "src/ol/proj/epsg4326.js//EPSG4326Projection"
+        ],
+        "explanation": "The `WebGLPointsLayer` class is directly responsible for rendering the points on the map, and its `createRenderer` function initializes the rendering process. The `updateStyleVariables` function allows for dynamic updates to the layer's style, which may be necessary to ensure correct rendering based on the geographic projection. The `WebGLPointsLayerRenderer` class handles the actual rendering logic, including the `rebuildBuffers_` function that prepares the data for rendering based on the current view and projection. The `renderFrame` function is crucial for rendering the layer each frame, and the `EPSG4326Projection` class defines the projection that should be respected when rendering features. These classes and functions are essential to address the bug as they directly influence how the points are rendered in relation to the specified geographic projection.",
+        "bug_scenario": "The `WebGLPointsLayer` is not rendering points correctly when using the `useGeographic()` function, leading to incorrect geographical placements of features. This issue arises because the layer does not respect the specified feature projection (EPSG:4326) and instead uses the default projection (EPSG:3857), causing points to appear in incorrect locations, such as near Africa."
+    }
+}

@@ -1,0 +1,46 @@
+diff --git a/src/form/enhance.jsx b/src/form/enhance.jsx
+index 7da6fc3a3..1b7802971 100644
+--- a/src/form/enhance.jsx
++++ b/src/form/enhance.jsx
+@@ -97,9 +97,10 @@ export function getRules(props, labelForErrorMessage) {
+         });
+     }
+ 
+-    if (labelForErrorMessage) {
++    const aliasName = labelForErrorMessage || props.errorMessageLabel;
++    if (aliasName) {
+         result.forEach(r => {
+-            r.aliasName = labelForErrorMessage;
++            r.aliasName = aliasName;
+         });
+     }
+ 
+diff --git a/src/form/form.jsx b/src/form/form.jsx
+index c70432118..5d5ff975f 100644
+--- a/src/form/form.jsx
++++ b/src/form/form.jsx
+@@ -137,11 +137,15 @@ export default class Form extends React.Component {
+          * @version 1.19
+          */
+         isPreview: PropTypes.bool,
+-        /**
++        /** 
+          * 是否使用 label 替换校验信息的 name 字段
+          * @version 1.20
+          */
+         useLabelForErrorMessage: PropTypes.bool,
++        /**
++         * 自定义错误信息标签
++         */
++        errorMessageLabel: PropTypes.string,
+         /**
+          * 表示是否显示 label 后面的冒号
+          * @version 1.22
+@@ -260,6 +264,7 @@ export default class Form extends React.Component {
+             responsive,
+             gap,
+             colon,
++            errorMessageLabel: this.props.errorMessageLabel,
+         } = this.props;
+ 
+         const formClassName = classNames({

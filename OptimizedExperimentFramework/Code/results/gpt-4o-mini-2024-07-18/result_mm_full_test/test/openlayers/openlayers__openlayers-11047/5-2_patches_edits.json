@@ -1,0 +1,57 @@
+{
+    "1/1": {
+        "src/ol/source/Raster.js": [
+            {
+                "SEARCH": [
+                    "/**",
+                    "* Set the operation.",
+                    "* @param {Operation} operation New operation.",
+                    "* @param {Object=} opt_lib Functions that will be available to operations run",
+                    "*     in a worker.",
+                    "* @api",
+                    "*/",
+                    "setOperation(operation, opt_lib) {",
+                    "this.worker_ = new Processor({",
+                    "operation: operation,",
+                    "imageOps: this.operationType_ === RasterOperationType.IMAGE,",
+                    "queue: 1,",
+                    "lib: opt_lib,",
+                    "threads: this.threads_,",
+                    "});",
+                    "this.changed();",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  /**",
+                    "   * Terminate all active workers.",
+                    "   * @private",
+                    "   */",
+                    "  terminateWorkers() {",
+                    "    if (this.worker_) {",
+                    "      this.worker_.terminate();",
+                    "      this.worker_ = null;",
+                    "    }",
+                    "  }",
+                    "",
+                    "  /**",
+                    "   * Set the operation.",
+                    "   * @param {Operation} operation New operation.",
+                    "   * @param {Object=} opt_lib Functions that will be available to operations run",
+                    "   *     in a worker.",
+                    "   * @api",
+                    "   */",
+                    "  setOperation(operation, opt_lib) {",
+                    "    this.terminateWorkers(); // Terminate existing workers before setting a new operation",
+                    "    this.worker_ = new Processor({",
+                    "      operation: operation,",
+                    "      imageOps: this.operationType_ === RasterOperationType.IMAGE,",
+                    "      queue: 1,",
+                    "      lib: opt_lib,",
+                    "      threads: this.threads_,",
+                    "    });",
+                    "    this.changed();"
+                ]
+            }
+        ]
+    }
+}

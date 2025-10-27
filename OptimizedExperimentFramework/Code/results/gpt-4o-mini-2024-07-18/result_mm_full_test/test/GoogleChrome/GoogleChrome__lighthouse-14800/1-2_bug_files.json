@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "core/audits/audit.js",
+            "core/gather/driver/navigation.js",
+            "lib/lh-trace-processor.js"
+        ],
+        "explanation": "These files are related to the functioning of Lighthouse's auditing and rendering processes. The 'audit.js' file contains the core logic for audits, 'navigation.js' handles the navigation logic which includes tracing events, and 'lh-trace-processor.js' processes trace events where the error originates. Fixing the way process IDs are handled in these files should resolve the bug.",
+        "bug_scenario": "The error 'Unable to determine tid for renderer process' occurs because the 'FrameCommittedInBrowser' event has a 'processPseudoId' instead of a 'processId'. This leads to 'mainFramePids' containing 'undefined', causing Lighthouse to fail."
+    }
+}

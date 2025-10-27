@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "src/ol/control/Attribution.js": [
+            {
+                "SEARCH": [
+                    "const visibleAttributions = Array.from(",
+                    "new Set(",
+                    "this.getMap()",
+                    ".getAllLayers()",
+                    ".flatMap((layer) => layer.getAttributions(frameState))",
+                    ")",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const visibleAttributions = Array.from(",
+                    "      new Set(",
+                    "        this.getMap()",
+                    "          .getAllLayers()",
+                    "          .filter(layer => layer.getVisible()) // Check if the layer is visible",
+                    "          .flatMap((layer) => layer.getAttributions(frameState))",
+                    "      )",
+                    "    );"
+                ]
+            }
+        ]
+    }
+}

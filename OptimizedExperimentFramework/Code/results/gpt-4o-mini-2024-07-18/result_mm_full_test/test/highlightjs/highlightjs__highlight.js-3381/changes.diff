@@ -1,0 +1,28 @@
+diff --git a/src/lib/compile_keywords.js b/src/lib/compile_keywords.js
+index 31d9a7f..1495b43 100644
+--- a/src/lib/compile_keywords.js
++++ b/src/lib/compile_keywords.js
+@@ -58,7 +58,9 @@ export function compileKeywords(rawKeywords, caseInsensitive, scopeName = DEFAUL
+     }
+     keywordList.forEach(function(keyword) {
+       const pair = keyword.split('|');
+-      compiledKeywords[pair[0]] = [scopeName, scoreForKeyword(pair[0], pair[1])];
++if (!pair[0].startsWith('_')) { // Prevent matching keywords that are part of identifiers
++compiledKeywords[pair[0]] = [scopeName, scoreForKeyword(pair[0], pair[1])];
++}
+     });
+   }
+ }
+diff --git a/src/lib/modes.js b/src/lib/modes.js
+index 5bbff22..206eb73 100644
+--- a/src/lib/modes.js
++++ b/src/lib/modes.js
+@@ -56,7 +56,7 @@ export const QUOTE_STRING_MODE = {
+   contains: [BACKSLASH_ESCAPE]
+ };
+ export const PHRASAL_WORDS_MODE = {
+-  begin: /\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\b/
++begin: /\\b(?!_)(a|an|the|are|I\'m|isn\'t|don\'t|doesn\'t|won\'t|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\\b/
+ };
+ /**
+  * Creates a comment mode

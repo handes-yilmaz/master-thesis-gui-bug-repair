@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/formatters/formatter.js//Formatter",
+            "lighthouse-core/gather/computed/computed-artifact.js//ComputedArtifact",
+            "lighthouse-core/gather/gatherers/gatherer.js//Gatherer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/formatters/formatter.js//getFormatter",
+            "lighthouse-core/gather/computed/computed-artifact.js//compute_",
+            "lighthouse-core/gather/gatherers/gatherer.js//pass"
+        ],
+        "explanation": "The identified classes and functions are related to the formatting and gathering of data. The `Formatter` class is responsible for formatting outputs, which may include handling markdown syntax. The `compute_` function in `ComputedArtifact` is crucial for processing artifacts, and if it doesn't handle markdown correctly, it could lead to rendering issues. The `pass` function in `Gatherer` is part of the lifecycle for gathering data, and if it processes markdown incorrectly, it could also contribute to the rendering bug.",
+        "bug_scenario": "The bug occurs when code snippets containing markdown characters (`_` and `[]()`) are rendered incorrectly, leading to unexpected markup. This happens when a string starts with a backtick (`), which should not be altered."
+    }
+}

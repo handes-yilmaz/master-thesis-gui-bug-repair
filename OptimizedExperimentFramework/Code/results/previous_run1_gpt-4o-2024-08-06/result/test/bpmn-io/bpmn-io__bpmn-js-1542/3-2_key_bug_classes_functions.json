@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//findNewLabelLineStartIndex",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//getLabelAdjustment"
+        ],
+        "bug_functions": [],
+        "explanation": "The error is triggered by attempting to read 'segmentIndex' from an undefined object, which is likely related to label layout calculations during the insertion of a gateway. The functions 'findNewLabelLineStartIndex' and 'getLabelAdjustment' in 'LabelLayoutUtil.js' are involved in determining label positions and adjustments during connection updates, making them central to the issue as they utilize 'segmentIndex'.",
+        "bug_scenario": "The bug occurs when attempting to insert a gateway onto a flow in a BPMN diagram, resulting in an error due to undefined properties related to 'segmentIndex'. This breaks the editor's state, rendering it non-interactive."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//LabelLayoutUtil",
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//findNewLabelLineStartIndex",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//getLabelAdjustment",
+            "lib/features/modeling/behavior/LabelBehavior.js//getVisibleLabelAdjustment",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape"
+        ],
+        "explanation": "The error is related to label layout calculations when a gateway is inserted. The 'LabelLayoutUtil.js' file contains functions 'findNewLabelLineStartIndex' and 'getLabelAdjustment' that rely on 'segmentIndex'. In 'LabelBehavior.js', the function 'getVisibleLabelAdjustment' uses 'getLabelAdjustment' and might not handle undefined 'segmentIndex'. 'DropOnFlowBehavior.js' includes 'insertShape', which manipulates connections and could be mismanaging waypoints and label placements, leading to 'segmentIndex' being undefined.",
+        "bug_scenario": "The bug occurs when inserting a gateway into a flow in a diagram editor, resulting in a JavaScript error `TypeError: Cannot read properties of undefined (reading 'segmentIndex')`. The error is triggered during label layout calculations when the 'segmentIndex' property is undefined, causing the editor to become unusable."
+    }
+}

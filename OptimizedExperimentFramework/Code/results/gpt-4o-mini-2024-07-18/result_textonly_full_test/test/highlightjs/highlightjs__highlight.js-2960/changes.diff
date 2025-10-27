@@ -1,0 +1,23 @@
+diff --git a/src/lib/regex.js b/src/lib/regex.js
+index db62fcf..f6ac613 100644
+--- a/src/lib/regex.js
++++ b/src/lib/regex.js
+@@ -46,7 +46,17 @@ export function optional(re) {
+  * @returns {string}
+  */
+ export function concat(...args) {
+-  const joined = args.map((x) => source(x)).join("");
++const joined = args.map((x) => {
++// Check if x is a string and starts with 'm' for m-style regex
++if (typeof x === 'string' && x.startsWith('m')) {
++// Extract the regex pattern and delimiter
++const parts = x.match(/^m([^\w\s])(.+?)\1$/);
++if (parts) {
++return parts[2]; // Return the regex pattern without the m and delimiter
++}
++}
++return source(x);
++}).join("");
+   return joined;
+ }
+ 

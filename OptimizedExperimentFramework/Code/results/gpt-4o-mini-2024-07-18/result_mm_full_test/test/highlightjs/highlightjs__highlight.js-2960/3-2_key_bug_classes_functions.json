@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/perl.js//PERL_DEFAULT_CONTAINS",
+            "src/languages/perl.js//REGEX_MODIFIERS",
+            "src/lib/regex.js//concat"
+        ],
+        "bug_functions": [
+            "src/languages/perl.js//export default function(hljs)",
+            "src/lib/regex.js//escape"
+        ],
+        "explanation": "The `PERL_DEFAULT_CONTAINS` class in `perl.js` is responsible for defining how various elements of Perl code, including regex patterns, are highlighted. The `REGEX_MODIFIERS` constant defines valid regex modifiers, which are crucial for correctly parsing regex patterns. The `concat` function in `regex.js` is used to build regex patterns, and any issues in its implementation could lead to incorrect regex parsing. The main function in `perl.js` initializes the highlighting rules, and the `escape` function in `regex.js` is responsible for escaping characters in regex patterns, which is essential for ensuring that the regex is correctly interpreted by the parser.",
+        "bug_scenario": "The regex detection fails for the Perl match operator `m` when using arbitrary delimiters, such as slashes. The expected behavior is that only the regex pattern `/$` should be highlighted correctly, but it is not being recognized due to the current implementation of the regex parser in the highlighting library."
+    }
+}

@@ -1,0 +1,15 @@
+diff --git a/lighthouse-core/audits/dobetterweb/js-libraries.js b/lighthouse-core/audits/dobetterweb/js-libraries.js
+index ac1e4d1..c9c45f0 100644
+--- a/lighthouse-core/audits/dobetterweb/js-libraries.js
++++ b/lighthouse-core/audits/dobetterweb/js-libraries.js
+@@ -43,8 +43,9 @@ class JsLibrariesAudit extends Audit {
+    */
+   static audit(artifacts) {
+     const libDetails = artifacts.Stacks
+-      .filter(stack => stack.detector === 'js')
++      .filter(stack => stack.detector === 'js' && !stack.experimental) // Exclude experimental stacks
+       .map(stack => ({
++        id: stack.id, // Add id property for unique identification
+         name: stack.name,
+         version: stack.version,
+         npm: stack.npm,

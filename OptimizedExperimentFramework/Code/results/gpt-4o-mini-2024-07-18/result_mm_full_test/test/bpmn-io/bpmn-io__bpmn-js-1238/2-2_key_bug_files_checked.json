@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js"
+        ],
+        "explanation": "These files are key to fixing the bug because they handle the updating of semantic and visual parents for elements in the BPMN model. The `UpdateSemanticParentHandler.js` is responsible for executing the update of the semantic parent when elements are moved, which is directly related to the bug. The `BpmnUpdater.js` contains methods for updating the parent relationships in the BPMN model, ensuring that associations are correctly re-parented when elements are moved. Lastly, `AttachEventBehavior.js` manages the behavior when elements are created or moved, which is crucial for ensuring that the associations are updated correctly.",
+        "bug_scenario": "The bug scenario shows an issue where moving a source or target element out of a subprocess does not update the association's parent, leading to potential data loss when the subprocess is deleted. The animation illustrates the problem visually, indicating that the association remains tied to the subprocess even after the elements are moved."
+    }
+}

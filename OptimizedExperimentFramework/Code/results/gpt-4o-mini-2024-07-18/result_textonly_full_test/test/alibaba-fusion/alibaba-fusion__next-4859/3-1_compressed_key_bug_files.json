@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_file": "components/cascader-select/index.tsx",
+        "compressed": "NO",
+        "line_numbers": 36,
+        "compressed_line_numbers": 36,
+        "compressed_bug_file_content": "import ConfigProvider from '../config-provider';\nimport CascaderSelect from './cascader-select';\n\nexport type { CascaderSelectProps, CascaderSelectDataItem } from './types';\n\nexport default ConfigProvider.config(CascaderSelect, {\n    exportNames: ['focus'],\n    transform: (props, deprecated) => {\n        if ('shape' in props) {\n            deprecated('shape', 'hasBorder', 'CascaderSelect');\n            const { shape, hasBorder, ...others } = props;\n            props = { hasBorder: hasBorder ?? shape !== 'arrow-only', ...others };\n        }\n\n        if ('container' in props) {\n            deprecated('container', 'popupContainer', 'CascaderSelect');\n            const { container, ...others } = props;\n            props = { popupContainer: container, ...others };\n        }\n\n        if ('expandTrigger' in props) {\n            deprecated('expandTrigger', 'expandTriggerType', 'CascaderSelect');\n            const { expandTrigger, expandTriggerType, ...others } = props;\n            props = { expandTriggerType: expandTriggerType ?? expandTrigger, ...others };\n        }\n\n        if ('showItemCount' in props) {\n            deprecated('showItemCount', 'listStyle | listClassName', 'CascaderSelect');\n        }\n        if ('labelWidth' in props) {\n            deprecated('labelWidth', 'listStyle | listClassName', 'CascaderSelect');\n        }\n\n        return props;\n    },\n});"
+    },
+    "2": {
+        "bug_file": "components/cascader-select/style.ts",
+        "compressed": "NO",
+        "line_numbers": 3,
+        "compressed_line_numbers": 3,
+        "compressed_bug_file_content": "import '../select/style';\nimport '../cascader/style';\nimport './main.scss';"
+    },
+    "3": {
+        "bug_file": "components/cascader-select/main.scss",
+        "compressed": "NO",
+        "line_numbers": 35,
+        "compressed_line_numbers": 35,
+        "compressed_bug_file_content": "@import \"../core/index-noreset.scss\";\n@import \"./scss/variable\";\n\n#{$cascader-select-prefix} {\n    @include box-sizing;\n\n    &-dropdown {\n        @include box-sizing;\n\n        border: $popup-local-border-width $popup-local-border-style $popup-local-border-color;\n        border-radius: $popup-local-corner;\n        box-shadow: $popup-local-shadow;\n\n        .#{$css-prefix}cascader {\n            display: block;\n            border: none;\n            box-shadow: none;\n        }\n    }\n\n    &-not-found {\n        padding: 0;\n        border: none;\n        box-shadow: none;\n        overflow: auto;\n        color: $color-text1-2;\n\n        .#{$css-prefix}menu-item:hover {\n            color: $color-text1-2;\n            /* TODO */\n            background: $color-white;\n            cursor: default;\n        }\n    }\n}"
+    }
+}

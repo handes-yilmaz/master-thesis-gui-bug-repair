@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/grid-snapping/BpmnGridSnapping.js",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js",
+            "lib/features/modeling/BpmnLayouter.js"
+        ],
+        "explanation": "These files are key to the bug because they handle the grid snapping and layout behavior of connections in the BPMN diagram. The 'BpmnGridSnapping.js' file manages the grid snapping context, which is crucial for ensuring that connections can snap to the correct locations. The 'LayoutConnectionBehavior.js' file contains logic for snapping connections, including how waypoints are updated, which directly affects the ability to connect tasks center-to-center. Lastly, 'BpmnLayouter.js' is responsible for the overall layout of connections, including determining the waypoints for connections, which is essential for fixing the snapping issue.",
+        "bug_scenario": "The bug scenario involves the inability to connect two tasks center-to-center in a BPMN diagram due to the introduction of connection previews and grid snapping. The expected behavior is that connections should easily snap from the center of one task to the center of another, which is not happening in the current implementation."
+    }
+}

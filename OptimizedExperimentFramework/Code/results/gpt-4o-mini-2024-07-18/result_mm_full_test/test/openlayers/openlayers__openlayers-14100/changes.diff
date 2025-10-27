@@ -1,0 +1,29 @@
+diff --git a/src/ol/layer/Group.js b/src/ol/layer/Group.js
+index be4d0d9..3843672 100644
+--- a/src/ol/layer/Group.js
++++ b/src/ol/layer/Group.js
+@@ -139,6 +139,7 @@ class LayerGroup extends BaseLayer {
+     }
+ 
+     this.setLayers(layers);
++    this.requestTilesConcurrently(layers);
+   }
+ 
+   /**
+@@ -215,13 +216,14 @@ class LayerGroup extends BaseLayer {
+ 
+   /**
+    * @param {import("../Collection.js").CollectionEvent<import("./Base.js").default>} collectionEvent CollectionEvent.
+-   * @private
+-   */
++  /** @private */
+   handleLayersAdd_(collectionEvent) {
+     const layer = collectionEvent.element;
+     this.registerLayerListeners_(layer);
+     this.dispatchEvent(new GroupEvent('addlayer', layer));
+     this.changed();
++    this.requestTilesConcurrently(layer); // Ensure tiles are requested concurrently
++  }
+   }
+ 
+   /**

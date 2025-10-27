@@ -1,0 +1,16 @@
+diff --git a/lib/rules/key-spacing.js b/lib/rules/key-spacing.js
+index 994c35627..991842f8c 100644
+--- a/lib/rules/key-spacing.js
++++ b/lib/rules/key-spacing.js
+@@ -552,6 +552,11 @@ module.exports = {
+             let targetWidth = Math.max(...widths),
+                 beforeColon, afterColon, mode;
+ 
++            // Skip alignment for JSX objects
++            if (properties.some(property => property.parent.type === 'JSXExpressionContainer')) {
++                return;
++            }
++
+             if (alignmentOptions && length > 1) { // When aligning values within a group, use the alignment configuration.
+                 beforeColon = alignmentOptions.beforeColon;
+                 afterColon = alignmentOptions.afterColon;

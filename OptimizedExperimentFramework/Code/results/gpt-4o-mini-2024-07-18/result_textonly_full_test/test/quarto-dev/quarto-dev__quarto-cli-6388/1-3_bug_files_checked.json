@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "package/src/common/dependencies/pandoc.ts",
+            "src/command/render/pandoc.ts",
+            "src/execute/markdown.ts",
+            "src/format/markdown/format-markdown.ts"
+        ],
+        "explanation": "These files are likely responsible for handling the conversion and rendering of Markdown content in the application. The `pandoc.ts` files specifically deal with Pandoc-related output, which the `pander` package utilizes for rendering Markdown. The `markdown.ts` and `format-markdown.ts` files are crucial as they manage the formatting and processing of Markdown input and output, which is where the incorrect parsing and formatting issues may originate. Editing these files could help identify the source of the formatting error and implement the necessary fixes.",
+        "bug_scenario": "The `pander` package is producing incorrectly formatted Markdown output, specifically introducing unintended sub-bullet points in the generated Markdown. This issue arises during the processing of the input Markdown code, which is expected to produce a simple list without sub-bullets. The intermediary Markdown output shows that the list items are incorrectly formatted, leading to a complicated structure that does not match the expected format."
+    }
+}

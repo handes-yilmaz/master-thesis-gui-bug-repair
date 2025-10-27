@@ -1,0 +1,26 @@
+diff --git a/src/document/doc-printer.js b/src/document/doc-printer.js
+index 4f27b0444..67a5b71c7 100644
+--- a/src/document/doc-printer.js
++++ b/src/document/doc-printer.js
+@@ -492,12 +492,15 @@ function printDocToString(doc, options) {
+             // fallthrough
+ 
+             case MODE_BREAK:
+-              if (lineSuffix.length) {
+-                cmds.push([ind, mode, doc]);
+-                cmds.push(...lineSuffix.reverse());
+-                lineSuffix = [];
+-                break;
+-              }
++if (lineSuffix.length) {
++  cmds.push([ind, mode, doc]);
++  cmds.push(...lineSuffix.reverse());
++  lineSuffix = [];
++  break;
++} else if (cmds.length === 0 && out.length > 0 && out[out.length - 1] === newLine) {
++  // Remove the extra newline if the document ends with a comment
++  out.pop();
++}
+ 
+               if (doc.literal) {
+                 if (ind.root) {

@@ -1,0 +1,23 @@
+diff --git a/src/number-picker/number-picker.jsx b/src/number-picker/number-picker.jsx
+index 322a0e9..3c836b5 100644
+--- a/src/number-picker/number-picker.jsx
++++ b/src/number-picker/number-picker.jsx
+@@ -376,7 +376,8 @@ class NumberPicker extends React.Component {
+             });
+         }
+ 
+-        this.props.onChange(isNaN(value) || value === '' ? undefined : value, {
++        if (this.withinMinMax(value)) {
++            this.props.onChange(isNaN(value) || value === '' ? undefined : value, {
+             ...e,
+             triggerType,
+         });
+@@ -429,7 +430,7 @@ class NumberPicker extends React.Component {
+ 
+         let value = this.state.value;
+         // 受控下，可能强制回填非法值
+-        if (isNaN(value)) {
++        if (isNaN(value) || !this.withinMinMax(value)) {
+             return;
+         }
+ 

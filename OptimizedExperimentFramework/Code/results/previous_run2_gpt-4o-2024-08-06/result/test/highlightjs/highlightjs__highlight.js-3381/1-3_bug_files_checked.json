@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/mode_compiler.js"
+        ],
+        "explanation": "1. `src/languages/python.js`: This file likely contains the language definition rules for Python in highlight.js, including keyword and identifier handling. The syntax issue involving `_undef` being partially highlighted suggests an error in how identifiers are parsed and highlighted in this rule set.\n\n2. `src/lib/mode_compiler.js`: The mode compiler is responsible for processing language definitions to convert them into modes that the highlight engine can use. Since the problem involves incorrect application of syntax highlighting, a bug in this file could mistakenly trigger the keyword highlighting on identifiers.",
+        "bug_scenario": "The issue involves incorrect syntax highlighting in Python code where part of an identifier, `_undef`, is incorrectly highlighted as the keyword `def`. This occurs during the highlighting process in version 11.0.0 and does not exist in version 10.7.3. The JSFiddle example and HTML output show the class `hljs-keyword` being applied to `def` in `_undef` instead of treating `_undef` as a whole identifier."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/python.js"
+        ],
+        "explanation": "The problem is related to syntax highlighting for Python code. The file 'src/languages/python.js' is likely responsible for defining the rules and patterns for highlighting Python code. Errors in this file could lead to incorrect highlighting behaviors, such as misclassifying identifiers as keywords.",
+        "bug_scenario": "The issue involves incorrect syntax highlighting where part of an identifier in Python, specifically '_undef', is being highlighted as if it were the 'def' keyword. The problem appears to affect how syntax tokens are recognized and classified, leading to incorrect interpretation visually."
+    }
+}

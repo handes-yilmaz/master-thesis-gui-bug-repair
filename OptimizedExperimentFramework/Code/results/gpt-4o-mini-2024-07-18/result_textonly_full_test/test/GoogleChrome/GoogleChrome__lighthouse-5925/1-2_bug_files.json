@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.js",
+            "lighthouse-core/audits/byte-efficiency/unminified-css.js",
+            "lighthouse-core/audits/byte-efficiency/total-byte-weight.js",
+            "lighthouse-core/config/config.js",
+            "lighthouse-core/audits/audit.js"
+        ],
+        "explanation": "These files are related to the bug because they contain the logic for auditing JavaScript files for minification and byte efficiency. The unminified-javascript.js file specifically checks if JavaScript files are minified. The unminified-css.js and total-byte-weight.js files are also relevant as they might be affected by similar issues with file size and minification. The config.js and audit.js files provide configuration and foundational structures for Lighthouse audits, which involve checking the properties of the scripts being tested.",
+        "bug_scenario": "The bug arises when running Lighthouse tests on AMP pages where a specific JavaScript file, amp-date-picker-0.1.js, is reported as not being minified. The issue is caused by a hard-coded copyright notice in the script that includes carriage returns and whitespace, which prevents it from being recognized as minified. The Lighthouse tool flags this as an issue, even though the AMPHTML team cannot modify the copyright notice in the file."
+    }
+}

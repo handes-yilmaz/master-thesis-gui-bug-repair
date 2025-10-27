@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/print-whitespace.js//printWhitespace",
+            "src/language-markdown/utils.js//splitText",
+            "src/language-markdown/parser-markdown.js//createParse"
+        ],
+        "bug_functions": [],
+        "explanation": "The identified classes and functions are related to the bug because they handle whitespace management and parsing of markdown content. The 'printWhitespace' function in 'print-whitespace.js' is responsible for determining how whitespace (including new lines) is printed in the output. The 'splitText' function in 'utils.js' is crucial for breaking down text into nodes, including whitespace nodes, which could affect how empty lines are treated. Lastly, the 'createParse' function in 'parser-markdown.js' sets up the parsing process for markdown, which includes handling frontmatter. Any issues in these functions could lead to the unintended removal of empty lines in the output.",
+        "bug_scenario": "The bug scenario involves the removal of empty lines in the markdown YAML frontmatter when using Prettier version 3.3.0. This issue is particularly evident in the 'blogs' section of the markdown where multiple entries are listed. The expected output should retain the empty lines between these entries, but they are being removed, leading to a formatting issue."
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Graticule.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/render/canvas/VectorContext.js"
+        ],
+        "explanation": "These files are related to the rendering and projection of the map layers. The 'Graticule.js' file handles the drawing of the graticule lines, which are affected by the projection crossing the dateline. The 'proj4.js' file deals with coordinate transformations that may not correctly handle the dateline, leading to the observed issues. The 'Projection.js' file is essential for defining how projections transform coordinates, which is crucial for displaying the graticule accurately. Lastly, 'VectorContext.js' is involved in rendering vector layers, including the graticule, and may need adjustments to correctly handle the rendering when crossing the dateline.",
+        "bug_scenario": "The graticule does not display correctly when the view projection crosses the dateline, leading to missing meridians and improperly placed parallels. The expected behavior is that all meridians and parallels within the visible projection should be correctly displayed without crossing the dateline incorrectly."
+    }
+}

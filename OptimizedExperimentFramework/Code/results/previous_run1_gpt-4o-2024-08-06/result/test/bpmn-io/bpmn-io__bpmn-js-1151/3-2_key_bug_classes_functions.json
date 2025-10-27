@@ -1,0 +1,33 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//removeProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences",
+            "lib/features/label-editing/LabelUtil.js//getLabel",
+            "lib/features/label-editing/LabelUtil.js//setLabel"
+        ],
+        "explanation": "The issue is related to the handling of labels during the copy-paste process. In the `BpmnCopyPaste` function, the properties of elements are copied and references are resolved, but labels might not be handled correctly, leading to them being lost. The `copyProperties` and `removeProperties` functions manage element properties, which should include labels. The `resolveReferences` function handles the resolution of references which might need adjustments for labels. In `LabelUtil.js`, `getLabel` and `setLabel` are responsible for retrieving and setting labels, which are crucial for ensuring labels are maintained during copy-paste operations.",
+        "bug_scenario": "The bug scenario involves labels being lost when extracting participant contents into a process diagram. The image shows a simple BPMN diagram with elements labeled 'A' and 'B'. After extracting and pasting, these labels are missing."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste",
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//removeProperties",
+            "lib/features/label-editing/LabelUtil.js//getLabel",
+            "lib/features/label-editing/LabelUtil.js//setLabel",
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior"
+        ],
+        "explanation": "The issue seems to be related to the handling of labels during the copy-paste operation. The `BpmnCopyPaste` function in `BpmnCopyPaste.js` is responsible for copying and pasting elements, but may not be handling label properties correctly. Functions like `copyProperties` and `removeProperties` might not be transferring label data as expected. In `LabelUtil.js`, `getLabel` and `setLabel` are critical for retrieving and setting label text, which might not be functioning properly during copy-paste. Finally, `LabelBehavior` in `LabelBehavior.js` manages label updating and creation, ensuring labels are correctly associated with their elements, which could be where the label loss is occurring.",
+        "bug_scenario": "When extracting participant contents into a process diagram, labels are lost during the copy-paste operation. This issue occurs within a single diagram instance where labels do not appear after pasting copied contents."
+    }
+}

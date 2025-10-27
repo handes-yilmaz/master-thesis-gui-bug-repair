@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "src/language-js/print/jsx.js": [
+            {
+                "SEARCH": [
+                    "const fullWidthSpace = \"\\\\u3000\";",
+                    "const jsxFullWidthWhitespace = ifBreak(concat([`{\"${fullWidthSpace}\"}`, softline]), fullWidthSpace);"
+                ],
+                "REPLACE": [
+                    "  const fullWidthSpace = \"\\\\u3000\";",
+                    "  const jsxFullWidthWhitespace = ifBreak(concat([`{\"${fullWidthSpace}\"}`, softline]), fullWidthSpace);",
+                    "  ",
+                    "  // Ensure that full-width spaces are treated consistently",
+                    "  const consistentWhitespaceHandling = (child) => {",
+                    "    if (typeof child === 'string' && child.includes(fullWidthSpace)) {",
+                    "      return child.replace(new RegExp(fullWidthSpace, 'g'), jsxFullWidthWhitespace);",
+                    "    }",
+                    "    return child;",
+                    "  };"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const children = printJSXChildren(",
+                    "path,",
+                    "options,",
+                    "print,",
+                    "jsxWhitespace,",
+                    "isFacebookTranslationTag",
+                    ").map(child => {",
+                    "// Ensure full-width spaces are handled consistently",
+                    "if (typeof child === 'string' && child.includes(fullWidthSpace)) {",
+                    "return child.replace(new RegExp(fullWidthSpace, 'g'), jsxFullWidthWhitespace);",
+                    "}",
+                    "return child;",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  const children = printJSXChildren(",
+                    "    path,",
+                    "    options,",
+                    "    print,",
+                    "    jsxWhitespace,",
+                    "    isFacebookTranslationTag",
+                    "  ).map(consistentWhitespaceHandling);"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "src/table/base.jsx": [
+            {
+                "SEARCH": [
+                    "onSort = (dataIndex, order, sort) => {",
+                    "if (typeof this.props.sort === 'undefined') {",
+                    "this.setState(",
+                    "{",
+                    "sort: sort,",
+                    "},",
+                    "() => {",
+                    "this.props.onSort(dataIndex, order, sort);",
+                    "}",
+                    ");",
+                    "} else {",
+                    "this.props.onSort(dataIndex, order, sort);",
+                    "}",
+                    "};"
+                ],
+                "REPLACE": [
+                    "    onSort = (dataIndex, order, sort) => {",
+                    "        // Check if dataIndex is in the format '[start, end]'",
+                    "        if (typeof dataIndex === 'string' && dataIndex.startsWith('[') && dataIndex.endsWith(']')) {",
+                    "            // Parse the string to extract start and end",
+                    "            const range = dataIndex.slice(1, -1).split(',').map(Number);",
+                    "            // Implement custom sorting logic based on the range",
+                    "            // This is a placeholder for the actual sorting logic",
+                    "            console.log('Sorting based on range:', range);",
+                    "            // You may need to adjust how sorting is handled based on your data structure",
+                    "        }",
+                    "",
+                    "        if (typeof this.props.sort === 'undefined') {",
+                    "            this.setState(",
+                    "                {",
+                    "                    sort: sort,",
+                    "                },",
+                    "                () => {",
+                    "                    this.props.onSort(dataIndex, order, sort);",
+                    "                }",
+                    "            );",
+                    "        } else {",
+                    "            this.props.onSort(dataIndex, order, sort);",
+                    "        }",
+                    "    };"
+                ]
+            }
+        ]
+    }
+}

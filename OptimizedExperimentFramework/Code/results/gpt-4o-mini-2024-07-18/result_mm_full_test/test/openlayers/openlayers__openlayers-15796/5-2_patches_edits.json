@@ -1,0 +1,52 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "this.targetContext_ = this.context;",
+                    "this.context = createCanvasContext2D(",
+                    "this.context.canvas.width,",
+                    "this.context.canvas.height,",
+                    "canvasPool,",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    if (this.opacity_ < 1) {",
+                    "        this.targetContext_ = this.context;",
+                    "        this.context = createCanvasContext2D(",
+                    "            this.context.canvas.width,",
+                    "            this.context.canvas.height,",
+                    "            canvasPool,",
+                    "        );",
+                    "        this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height); // Clear the canvas",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const alpha = this.targetContext_.globalAlpha;",
+                    "this.targetContext_.globalAlpha = this.opacity_;",
+                    "this.targetContext_.drawImage(this.context.canvas, 0, 0);",
+                    "this.targetContext_.globalAlpha = alpha;",
+                    "releaseCanvas(this.context);",
+                    "canvasPool.push(this.context.canvas);",
+                    "this.context = this.targetContext_;",
+                    "this.targetContext_ = null;"
+                ],
+                "REPLACE": [
+                    "      if (this.opacity_ < 1) {",
+                    "          const alpha = this.targetContext_.globalAlpha;",
+                    "          this.targetContext_.globalAlpha = this.opacity_;",
+                    "          this.targetContext_.drawImage(this.context.canvas, 0, 0);",
+                    "          this.targetContext_.globalAlpha = alpha;",
+                    "          releaseCanvas(this.context);",
+                    "          canvasPool.push(this.context.canvas);",
+                    "          this.context = this.targetContext_;",
+                    "          this.targetContext_ = null;",
+                    "          this.targetContext_.clearRect(0, 0, this.targetContext_.canvas.width, this.targetContext_.canvas.height); // Clear the target context",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

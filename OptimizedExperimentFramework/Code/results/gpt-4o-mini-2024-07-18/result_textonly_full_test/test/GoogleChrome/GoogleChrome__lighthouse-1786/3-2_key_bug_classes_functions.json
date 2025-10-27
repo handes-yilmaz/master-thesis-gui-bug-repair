@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/report-generator.js//ReportGenerator",
+            "lighthouse-core/report/handlebar-helpers.js//handlebarHelpers",
+            "lighthouse-core/formatters/formatter.js//Formatter"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/report-generator.js//generateHTML",
+            "lighthouse-core/report/handlebar-helpers.js//sanitize"
+        ],
+        "explanation": "The identified classes and functions are crucial for addressing the rendering bug. The `ReportGenerator` class contains the `generateHTML` function, which is responsible for generating the HTML report, including the rendering of code snippets. The `handlebarHelpers` object includes the `sanitize` function, which is intended to sanitize input strings and handle markdown rendering. This function is directly related to the bug, as it needs to ensure that code snippets are not altered when they contain markdown characters. The `Formatter` class is relevant as it manages different formatting strategies, which may need to be adjusted to prevent markdown interference in code snippets.",
+        "bug_scenario": "The bug occurs when code snippets containing markdown characters such as `_` and `[]()` are rendered incorrectly, leading to unexpected markup in the output. This issue is particularly evident when a string starts with a backtick (`), which should not be altered. The provided images illustrate the rendering problem, showing how the markdown syntax interferes with the intended display of code snippets."
+    }
+}

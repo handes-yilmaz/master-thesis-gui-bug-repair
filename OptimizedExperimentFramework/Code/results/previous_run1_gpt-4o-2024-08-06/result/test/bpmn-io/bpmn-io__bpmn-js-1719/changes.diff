@@ -1,0 +1,16 @@
+diff --git a/lib/features/modeling/behavior/SubProcessPlaneBehavior.js b/lib/features/modeling/behavior/SubProcessPlaneBehavior.js
+index 497acfcc..826dbde8 100644
+--- a/lib/features/modeling/behavior/SubProcessPlaneBehavior.js
++++ b/lib/features/modeling/behavior/SubProcessPlaneBehavior.js
+@@ -278,9 +278,10 @@ export default function SubProcessPlaneBehavior(
+ 
+     if (!isExpanded(shape)) {
+       createRoot(context);
+-      self._showRecursively(shape.children);
++      self._showRecursively(shape.children, true); // Hide labels when collapsed
+     } else {
+       removeRoot(context);
++      self._showRecursively(shape.children, false); // Show labels when expanded
+     }
+ 
+   }, true);

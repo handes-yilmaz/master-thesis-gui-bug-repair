@@ -1,0 +1,73 @@
+{
+    "1/1": {
+        "src/config/pdf.ts": [
+            {
+                "SEARCH": [
+                    "export function pdfEngine(",
+                    "defaults: FormatPandoc,",
+                    "render: FormatRender,",
+                    "flags?: PandocFlags,",
+                    "): PdfEngine {",
+                    "// determine pdfengine",
+                    "const pdfEngine =",
+                    "(flags?.pdfEngine || defaults[kPdfEngine] as string || \"pdflatex\");"
+                ],
+                "REPLACE": [
+                    "export function pdfEngine(",
+                    "  defaults: FormatPandoc,",
+                    "  render: FormatRender,",
+                    "  flags?: PandocFlags,",
+                    "): PdfEngine {",
+                    "  // determine pdfengine",
+                    "  const pdfEngine =",
+                    "    (flags?.pdfEngine || defaults[kPdfEngine] as string || \"pdflatex\");",
+                    "",
+                    "  // Add URL validation for images",
+                    "  if (render.images) {",
+                    "    render.images = render.images.map(image => {",
+                    "      if (!isValidUrl(image)) {",
+                    "        console.warn(`Invalid image URL: ${image}`);",
+                    "        return null; // or handle accordingly",
+                    "      }",
+                    "      return image;",
+                    "    }).filter(Boolean);"
+                ]
+            }
+        ],
+        "src/command/render/output-tex.ts": [
+            {
+                "SEARCH": [
+                    "export function useContextPdfOutputRecipe(",
+                    "format: Format,",
+                    "flags?: RenderFlags,",
+                    ") {",
+                    "const kContextPdfEngine = \"context\";",
+                    "if (format.pandoc.to === \"pdf\" && format.render[kOutputExt] === \"pdf\") {",
+                    "const engine = pdfEngine(format.pandoc, format.render, flags);",
+                    "return engine.pdfEngine === kContextPdfEngine;"
+                ],
+                "REPLACE": [
+                    "export function useContextPdfOutputRecipe(",
+                    "  format: Format,",
+                    "  flags?: RenderFlags,",
+                    ") {",
+                    "  const kContextPdfEngine = \"context\";",
+                    "  if (format.pandoc.to === \"pdf\" && format.render[kOutputExt] === \"pdf\") {",
+                    "    const engine = pdfEngine(format.pandoc, format.render, flags);",
+                    "    return engine.pdfEngine === kContextPdfEngine;",
+                    "  } else {",
+                    "    return false;",
+                    "  }",
+                    "",
+                    "  // Ensure image URLs are processed correctly",
+                    "  if (format.render.images) {",
+                    "    format.render.images.forEach(image => {",
+                    "      if (!isValidUrl(image)) {",
+                    "        console.error(`Image URL is invalid: ${image}`);",
+                    "      }",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

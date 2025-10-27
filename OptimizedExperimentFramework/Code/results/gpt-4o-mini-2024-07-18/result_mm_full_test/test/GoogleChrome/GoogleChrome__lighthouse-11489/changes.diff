@@ -1,0 +1,22 @@
+diff --git a/lighthouse-core/audits/large-javascript-libraries.js b/lighthouse-core/audits/large-javascript-libraries.js
+index 934b303..a143ac8 100644
+--- a/lighthouse-core/audits/large-javascript-libraries.js
++++ b/lighthouse-core/audits/large-javascript-libraries.js
+@@ -122,7 +122,7 @@ class LargeJavascriptLibraries extends Audit {
+             text: suggestion.name,
+             url: suggestion.repository,
+           }),
+-          transferSize: suggestion.gzip,
++          transferSize: suggestion.gzip.toFixed(1),
+           wastedBytes: original.gzip - suggestion.gzip,
+         };
+       });
+@@ -133,7 +133,7 @@ class LargeJavascriptLibraries extends Audit {
+           text: original.name,
+           url: original.repository,
+         },
+-        transferSize: original.gzip,
++        transferSize: original.gzip.toFixed(1),
+         subItems: /** @type {LH.Audit.Details.TableSubItems} */ ({
+           type: 'subitems',
+           items: suggestionItems,

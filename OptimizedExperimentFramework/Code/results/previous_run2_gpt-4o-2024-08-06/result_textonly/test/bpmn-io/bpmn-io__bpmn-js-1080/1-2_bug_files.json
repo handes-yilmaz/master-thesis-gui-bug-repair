@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/modeling/behavior/ResizeLaneBehavior.js",
+            "lib/modeling/cmd/AddLaneHandler.js",
+            "lib/modeling/cmd/ResizeLaneHandler.js",
+            "lib/modeling/util/LaneUtil.js"
+        ],
+        "explanation": "The identified files are related to lane management within the modeling feature of the application:\n\n1. **lib/modeling/behavior/DeleteLaneBehavior.js**: This file likely includes logic for handling lane deletions, which is a critical part of reproducing the issue described in the bug, as the problem occurs after a lane is created and then deleted.\n\n2. **lib/modeling/behavior/CreateParticipantBehavior.js**: This file involves the creation of participants (i.e., pools), which is foundational to the issue since it deals with connecting message flows between pools.\n\n3. **lib/modeling/behavior/ResizeLaneBehavior.js**: Since the behavior of lane resizing could affect how connectors and message flows attach to lanes and pools, this is directly related.\n\n4. **lib/modeling/cmd/AddLaneHandler.js**: This command handles adding lanes, so it's important for managing the workspace layout rules.\n\n5. **lib/modeling/cmd/ResizeLaneHandler.js**: Similar to ResizeLaneBehavior, this handles changes in lane size and could affect connector points.\n\n6. **lib/modeling/util/LaneUtil.js**: Utility functions for operations on lanes are crucial as they might manage or influence how lanes are integrated into the modeling environment and how connectors interact with them.",
+        "bug_scenario": "The bug report describes a scenario where a user attempts to connect a message flow to the boundary of a pool in a workflow tool, specifically when the pool once had more than one lane. Initially, users could create connections by clicking on the pool's body. However, after adding and then removing a lane, users can only drop the connector at the pool's header, not inside the single lane."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DeleteLaneBehavior.js",
+            "lib/features/modeling/cmd/UpdateFlowNodeRefsHandler.js",
+            "lib/features/modeling/cmd/ResizeLaneHandler.js",
+            "lib/features/draw/BpmnRenderer.js"
+        ],
+        "explanation": "The bug is related to how lanes and flows are handled within the modeling framework of the application. Based on the description, the issue surfaces when lanes are altered (added and removed), which suggests a problem in recalculating or updating the visible connection points after such lane modifications.\n\n1. **lib/features/modeling/behavior/DeleteLaneBehavior.js**: This file likely handles behavior when lanes are removed. Since the bug appears after removing a lane, improper handling or incomplete cleanup of connection references might originate here.\n\n2. **lib/features/modeling/cmd/ResizeLaneHandler.js**: Resizing or managing the graphical updates of lanes might not be correctly resetting the boundary conditions for message flows, causing the limitation to connect only at the header after altering lanes.\n\n3. **lib/features/modeling/cmd/UpdateFlowNodeRefsHandler.js**: This file might play a role in updating references for flow nodes. When lanes are modified, updating flow node references correctly is crucial to maintaining proper connection capability.\n\n4. **lib/features/draw/BpmnRenderer.js**: It's responsible for rendering elements on the canvas. If the visual boundaries are recalculated improperly when lanes are removed, it could cause the message flow connection points to be incorrectly displayed or handled, thus aligning connections to pool headers instead of lane boundaries.\n\nThese files encompass the rendering, behavior, and command management aspects that are likely to contribute to the issue described in the bug report.",
+        "bug_scenario": "The bug occurs when a message flow connection is made between two pools, where one of the pools had multiple lanes at some point but now only has one lane. The problem is that after modifying the lanes by adding and then removing one, the connection can only be made to the pool's header and not directly to the lane within the pool. This is depicted in the provided GIF image, where the user is attempting to connect the message flows as described but is limited to connecting via the pool's header instead of within the lane area."
+    }
+}

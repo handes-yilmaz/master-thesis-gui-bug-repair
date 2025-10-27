@@ -1,0 +1,16 @@
+diff --git a/src/cascader/cascader.jsx b/src/cascader/cascader.jsx
+index e7a093798..c58f11647 100644
+--- a/src/cascader/cascader.jsx
++++ b/src/cascader/cascader.jsx
+@@ -24,9 +24,9 @@ const flatDataSource = (data, prefix = '0', v2n = {}, p2n = {}) => {
+         const { value, children } = item;
+         const pos = `${prefix}-${index}`;
+         const newValue = String(value);
+-        item.value = newValue;
++        const newItem = { ...item, value: newValue };
+         v2n[newValue] = p2n[pos] = {
+-            ...item,
++            ...newItem,
+             pos,
+             _source: item,
+         };

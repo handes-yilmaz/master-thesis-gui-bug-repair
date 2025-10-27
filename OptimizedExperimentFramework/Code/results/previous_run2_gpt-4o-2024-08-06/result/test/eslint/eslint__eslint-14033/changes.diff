@@ -1,0 +1,13 @@
+diff --git a/lib/rules/prefer-const.js b/lib/rules/prefer-const.js
+index 439a4db3c..0a94eb735 100644
+--- a/lib/rules/prefer-const.js
++++ b/lib/rules/prefer-const.js
+@@ -383,7 +383,7 @@ module.exports = {
+                 if (!isVarDecParentNull && varDeclParent.declarations.length > 0) {
+                     const firstDeclaration = varDeclParent.declarations[0];
+ 
+-                    if (firstDeclaration.init) {
++                    if (firstDeclaration.init && firstDeclaration.init.name !== "undefined") {
+                         const firstDecParent = firstDeclaration.init.parent;
+ 
+                         /*

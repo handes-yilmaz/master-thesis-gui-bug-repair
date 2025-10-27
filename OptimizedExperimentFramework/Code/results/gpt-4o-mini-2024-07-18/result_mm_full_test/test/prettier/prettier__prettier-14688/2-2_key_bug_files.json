@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/function-parameters.js",
+            "src/language-js/print/typescript.js",
+            "src/language-js/options.js"
+        ],
+        "explanation": "These files are key to fixing the bug because: 1. **function-parameters.js**: This file contains the logic for printing function parameters, including handling of generic type parameters. Modifications here can ensure that trailing commas are preserved when necessary. 2. **typescript.js**: This file handles the printing of TypeScript-specific syntax, including type parameters. Adjustments in this file can help enforce the requirement for trailing commas in .mts files. 3. **options.js**: This file defines the formatting options for Prettier, including the handling of trailing commas. Changes here can ensure that the configuration respects the TypeScript requirements for trailing commas.",
+        "bug_scenario": "The bug scenario involves a TypeScript function definition where a trailing comma in the generic type parameters is required but is being removed by Prettier. This leads to a syntax error in files with the .mts extension, as the TypeScript compiler expects a trailing comma or an explicit constraint in such cases."
+    }
+}

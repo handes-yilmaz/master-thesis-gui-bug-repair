@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste",
+            "lib/features/label-editing/LabelUtil",
+            "lib/features/modeling/behavior/LabelBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//removeProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//resolveReferences",
+            "lib/features/copy-paste/BpmnCopyPaste//pasteElement",
+            "lib/features/label-editing/LabelUtil//getLabel",
+            "lib/features/label-editing/LabelUtil//setLabel",
+            "lib/features/modeling/behavior/LabelBehavior//postExecute",
+            "lib/features/modeling/behavior/LabelBehavior//updateLabel"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the copy-paste functionality and label management within the BPMN diagram. The 'BpmnCopyPaste' class is responsible for copying and pasting elements, and its methods like 'copyProperties' and 'pasteElement' are crucial for ensuring that all properties, including labels, are transferred correctly. The 'LabelUtil' class provides functions to get and set labels, which are directly involved in the label handling process. Lastly, the 'LabelBehavior' class manages the behavior of labels during various diagram operations, ensuring that labels are created, updated, and positioned correctly. Any issues in these areas could lead to the observed bug where labels are lost during the copy-paste operation.",
+        "bug_scenario": "The bug scenario involves a user attempting to copy and paste participant contents within a BPMN diagram. After pasting, the labels associated with the elements are missing, which is not the expected behavior. The user expects that when they paste the copied contents, the labels should also be included along with the elements."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/large-javascript-libraries.js",
+            "lighthouse-core/report/html/renderer/details-renderer.js",
+            "lighthouse-core/report/html/renderer/report-renderer.js"
+        ],
+        "explanation": "The selected files are crucial for addressing the bug because: 1. **large-javascript-libraries.js**: This file contains the logic for auditing large JavaScript libraries, including how their sizes are calculated and displayed. Modifications here will directly impact how sizes are formatted in the audit results. 2. **details-renderer.js**: This file is responsible for rendering the details of the audit results, including the display of sizes. Changes to ensure decimal places are shown will need to be implemented here. 3. **report-renderer.js**: This file serves as the entry point for rendering the entire Lighthouse report. It will need to be updated to ensure that the new size formatting is correctly integrated into the final report output.",
+        "bug_scenario": "The bug scenario involves the display of JavaScript library sizes in the Lighthouse report. Currently, sizes are shown without a decimal place, which can lead to confusion when comparing sizes, especially for users with vision impairments. The request is to ensure that sizes are always displayed with one decimal place, even if that means showing a zero (e.g., '18.0 KiB' instead of '18 KiB'). This change aims to improve accessibility and clarity in the report."
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/uses-rel-preconnect.js": [
+            {
+                "SEARCH": [
+                    "static hasAlreadyConnectedToOrigin(record) {",
+                    "return (",
+                    "!!record.timing &&",
+                    "record.timing.dnsEnd - record.timing.dnsStart === 0 &&",
+                    "record.timing.connectEnd - record.timing.connectStart === 0",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  static hasAlreadyConnectedToOrigin(record) {",
+                    "    return (",
+                    "      !!record.timing &&",
+                    "      record.timing.dnsEnd - record.timing.dnsStart === 0 &&",
+                    "      record.timing.connectEnd - record.timing.connectStart === 0 &&",
+                    "      record.initiator && record.initiator.url.includes('preconnect')",
+                    "    );",
+                    "  }"
+                ]
+            }
+        ]
+    }
+}

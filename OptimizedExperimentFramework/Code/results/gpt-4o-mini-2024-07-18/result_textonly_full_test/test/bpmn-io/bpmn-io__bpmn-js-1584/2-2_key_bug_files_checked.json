@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/behavior/RemoveParticipantBehavior.js",
+            "lib/features/copy-paste/BpmnCopyPaste.js"
+        ],
+        "explanation": "These files are key bug files because they contain the logic for creating and removing participants in the BPMN model. The 'CreateParticipantBehavior.js' file handles the creation of participants and their associated process references, which is directly related to the issue of ID inconsistency. The 'RemoveParticipantBehavior.js' file manages the behavior when participants are removed, which is relevant to the unexpected ID change when the last participant is deleted. Lastly, 'BpmnCopyPaste.js' is included as it deals with copying and pasting elements, which may also affect how IDs are managed during these operations.",
+        "bug_scenario": "The bug scenario involves inconsistent behavior when adding, undoing, and redoing the addition of a participant in a BPMN model. Specifically, when the first participant is added, the process ID remains the same. However, upon undoing and redoing the action, the process ID changes unexpectedly. Additionally, removing the last participant also alters the process ID, which is not the expected behavior."
+    }
+}

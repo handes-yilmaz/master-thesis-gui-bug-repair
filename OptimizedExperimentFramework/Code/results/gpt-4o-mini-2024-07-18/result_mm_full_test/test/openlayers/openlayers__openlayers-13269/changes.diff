@@ -1,0 +1,53 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index c25caf4..0716d81 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -399,14 +399,17 @@ class WebGLTileLayer extends BaseTileLayer {
+    * @return {HTMLElement} Canvas.
+    */
+   renderSources(frameState, sources) {
+-    const layerRenderer = this.getRenderer();
+-    let canvas;
+-    for (let i = 0, ii = sources.length; i < ii; ++i) {
+-      this.getLayerState().source = sources[i];
+-      if (layerRenderer.prepareFrame(frameState)) {
+-        canvas = layerRenderer.renderFrame(frameState);
+-      }
+-    }
++    const layerRenderer = this.getRenderer(); 
++    let canvas; 
++    const gutter = this.getSource().getGutter(); // Get the gutter value
++    for (let i = 0, ii = sources.length; i < ii; ++i) { 
++        this.getLayerState().source = sources[i]; 
++        if (layerRenderer.prepareFrame(frameState)) { 
++            // Adjust the frame state for gutter
++            frameState.extent = buffer(frameState.extent, gutter, frameState.extent);
++            canvas = layerRenderer.renderFrame(frameState); 
++        } 
++    } 
+     return canvas;
+   }
+ 
+diff --git a/src/ol/source/TileWMS.js b/src/ol/source/TileWMS.js
+index a109455..020e7c1 100644
+--- a/src/ol/source/TileWMS.js
++++ b/src/ol/source/TileWMS.js
+@@ -194,11 +194,13 @@ class TileWMS extends TileImage {
+     let tileExtent = tileGrid.getTileCoordExtent(tileCoord, this.tmpExtent_);
+     let tileSize = toSize(tileGrid.getTileSize(tileCoord[0]), this.tmpSize);
+ 
+-    const gutter = this.gutter_;
+-    if (gutter !== 0) {
+-      tileSize = bufferSize(tileSize, gutter, this.tmpSize);
+-      tileExtent = buffer(tileExtent, tileResolution * gutter, tileExtent);
+-    }
++    const gutter = this.gutter_; 
++    if (gutter !== 0) { 
++        tileSize = bufferSize(tileSize, gutter, this.tmpSize); 
++        tileExtent = buffer(tileExtent, tileResolution * gutter, tileExtent); 
++        // Ensure the tile extent is adjusted for the gutter
++        tileExtent = buffer(tileExtent, tileResolution * gutter, tileExtent);
++    } 
+ 
+     if (sourceProjectionObj && sourceProjectionObj !== projectionObj) {
+       tileResolution = calculateSourceResolution(

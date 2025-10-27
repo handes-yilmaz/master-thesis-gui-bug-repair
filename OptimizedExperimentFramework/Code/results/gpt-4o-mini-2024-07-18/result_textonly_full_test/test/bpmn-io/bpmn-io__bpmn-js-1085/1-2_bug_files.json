@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/modeling/BpmnUpdater.js",
+            "lib/modeling/BpmnFactory.js",
+            "lib/modeling/util/ModelingUtil.js",
+            "lib/draw/BpmnRenderer.js"
+        ],
+        "explanation": "These files are related to the bug because they handle the creation, updating, and rendering of BPMN elements, including the serialization of `sequenceFlow` properties. The `BpmnUpdater.js` is likely responsible for managing the updates to the diagram structure when new tasks are created, while `BpmnFactory.js` assists in creating the appropriate BPMN elements. `ModelingUtil.js` may include utility functions for manipulating model data, and `BpmnRenderer.js` is critical for rendering the BPMN diagram, ensuring that the visual representation matches the underlying XML structure.",
+        "bug_scenario": "The bug occurs when a new task is created from an existing one, resulting in a diagram that incorrectly serializes the `waypoints` property on a `sequenceFlow` as an array of objects instead of the expected format. This issue specifically arises when the connection between tasks has a middle segment, leading to the improper display of the `waypoints` in the XML representation."
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/Feature.js//Feature",
+            "src/ol/format/GeoJSON.js//GeoJSON"
+        ],
+        "bug_functions": [
+            "src/ol/Feature.js//getId",
+            "src/ol/Feature.js//setId",
+            "src/ol/format/GeoJSON.js//writeFeatureObject",
+            "src/ol/format/GeoJSON.js//readFeatureFromObject"
+        ],
+        "explanation": "The `Feature` class in `src/ol/Feature.js` is crucial because it defines how features are structured, including their properties and methods for accessing and modifying them, such as `getId()` and `setId()`. These methods are directly related to the issue of handling the `id` property correctly. The `GeoJSON` class in `src/ol/format/GeoJSON.js` is also relevant as it handles the reading and writing of GeoJSON features, which is where the duplication of the `id` property may occur. The functions `writeFeatureObject` and `readFeatureFromObject` are responsible for encoding and decoding features, and they need to be modified to ensure that the `id` is handled appropriately without duplication.",
+        "bug_scenario": "The bug report indicates that the current implementation of style expressions does not support fetching the `id` property of a feature using the `feature.getId()` method. This is problematic when working with GeoJSON, as it leads to the duplication of the `id` in both the root and properties collection, which is not desired."
+    }
+}

@@ -1,0 +1,24 @@
+diff --git a/lighthouse-core/config/config.js b/lighthouse-core/config/config.js
+index c10975d..c538f5f 100644
+--- a/lighthouse-core/config/config.js
++++ b/lighthouse-core/config/config.js
+@@ -343,6 +343,7 @@ class Config {
+     const passes = Config.requireGatherers(passesWithDefaults, configDir);
+ 
+     /** @type {LH.Config.Settings} */
++    this.settings.userAgent = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3473.0 Mobile Safari/537.36'; // Ensure user agent is set
+     this.settings = settings;
+     /** @type {?Array<LH.Config.Pass>} */
+     this.passes = passes;
+diff --git a/lighthouse-core/gather/connections/connection.js b/lighthouse-core/gather/connections/connection.js
+index 3a687f3..18d3ca2 100644
+--- a/lighthouse-core/gather/connections/connection.js
++++ b/lighthouse-core/gather/connections/connection.js
+@@ -23,6 +23,7 @@ class Connection {
+ 
+     /** @type {?CrdpEventMessageEmitter} */
+     this._eventEmitter = new EventEmitter();
++    this.userAgent = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3473.0 Mobile Safari/537.36'; // Set the user agent
+   }
+ 
+   /**

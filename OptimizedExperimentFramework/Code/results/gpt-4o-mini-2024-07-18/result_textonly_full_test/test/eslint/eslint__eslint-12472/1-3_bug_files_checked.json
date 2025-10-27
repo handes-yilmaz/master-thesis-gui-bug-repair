@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/rules/key-spacing.js",
+            "lib/rules/object-curly-newline.js",
+            "lib/rules/object-property-newline.js",
+            "lib/rules/object-curly-spacing.js",
+            ".eslintrc.js"
+        ],
+        "explanation": "These files are related to the bug as they define the rules for spacing and formatting in JavaScript objects, including those used in JSX. The key-spacing.js file specifically addresses the spacing around object keys, while the other files handle different aspects of object formatting. The .eslintrc.js file contains the configuration that enables these rules, which directly influences how the ESLint tool behaves when applying fixes to the user's code, leading to the described alignment issues.",
+        "bug_scenario": "The bug arises when using ESLint with a specific configuration that enforces key-spacing in JSX objects, causing the alignment to break and become visually unappealing. The user has provided screenshots demonstrating the issue, where the rendered JSX code does not maintain a consistent alignment style for properties within object literals, especially when using the 'align: value' option in the key-spacing rule. The expected behavior is for the JSX objects to retain their intended formatting without being re-aligned by ESLint's --fix command."
+    },
+    "2": {
+        "bug_files": [
+            "lib/rules/key-spacing.js",
+            "lib/rules/object-curly-newline.js",
+            "lib/rules/object-property-newline.js",
+            "lib/rules/object-curly-spacing.js",
+            "lib/linter/rule-fixer.js",
+            "conf/eslint-all.js"
+        ],
+        "explanation": "The files listed are directly related to the formatting rules that ESLint applies, particularly those governing spacing and object structure in JavaScript and JSX. The 'key-spacing.js' file defines how key spacing is handled, which is central to the reported issue. The 'object-curly-newline.js', 'object-property-newline.js', and 'object-curly-spacing.js' files manage newline and spacing rules for objects, which can affect how JSX is formatted when these rules are applied. The 'rule-fixer.js' file is responsible for implementing fixes when ESLint's --fix command is invoked, and 'eslint-all.js' consolidates the configurations, potentially affecting how these rules interact. Any modifications made to these files would directly influence the behavior of ESLint regarding the formatting complaints raised in the bug report.",
+        "bug_scenario": "The issue arises when using ESLint with the 'key-spacing' rule set to align values in multiline JSX objects. This causes the JSX to become poorly formatted and visually cluttered, as indicated by the screenshots provided. The expectation is that ESLint should not re-align objects within JSX curly braces, maintaining a clean and readable structure."
+    }
+}

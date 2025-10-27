@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/style/Style.js"
+        ],
+        "explanation": "These files are related to the bug because: 1. `WebGLTile.js` is the main class that represents the WebGL tile layer, where the addition of the `setStyle` method would directly address the reported issue. 2. `TileLayer.js` in the webgl renderer may handle the rendering logic for tile layers, and modifications here might be necessary to support style updates without reinitializing the layer. 3. `Style.js` contains definitions for various styles used in the application, and changes might be needed to facilitate dynamic style updates.",
+        "bug_scenario": "The bug is about the `WebGLTile` Layer class, which currently lacks a `setStyle` method. This limitation prevents users from dynamically changing the visualization of the layer without removing and recreating it. The user expects a method that can alter the layer's style while retaining previously downloaded data, especially with raster formats like GeoTIFFs. The images provided likely illustrate the current behavior of the layer when attempting to change styles, showing the lack of functionality and possibly the resulting visual artifacts or errors."
+    }
+}

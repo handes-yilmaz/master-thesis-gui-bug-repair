@@ -1,0 +1,39 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "return new WebGLTileLayerRenderer(this, {"
+                ],
+                "REPLACE": [
+                    "    const tileGrid = this.getSource().getTileGrid();",
+                    "    const tileSize = tileGrid.getTileSize(tileGrid.getMaxZoom());",
+                    "    return new WebGLTileLayerRenderer(this, {",
+                    "        tileSize: tileSize,"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "tileGrid: tileGrid,"
+                ],
+                "REPLACE": [
+                    "      tileGrid: tileGrid || createXYZ({",
+                    "        extent: [0, -23828, 23903, 0],",
+                    "        maxResolution: options.maxResolution,",
+                    "        maxZoom: options.maxZoom,",
+                    "        minZoom: options.minZoom,",
+                    "        tileSize: options.tileSize || [240, 240],",
+                    "      }),"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.tileSizes_ = options.tileSizes;"
+                ],
+                "REPLACE": [
+                    "    this.tileSizes_ = options.tileSizes || [[240, 240], [240, 240], [240, 240], [240, 240]];"
+                ]
+            }
+        ]
+    }
+}

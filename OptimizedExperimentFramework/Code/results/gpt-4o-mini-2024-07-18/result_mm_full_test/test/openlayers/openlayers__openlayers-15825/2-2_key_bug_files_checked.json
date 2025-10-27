@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/reproj/DataTile.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: 1. **GeoTIFF.js**: This file handles the loading and processing of GeoTIFF images, which are essential for rendering the tiles. Any issues in how these images are processed could lead to missing tiles. 2. **WebGLTile.js**: This file is responsible for rendering the WebGL tile layers. If there are issues in how tiles are rendered or managed, it could directly result in the missing tiles around the antimeridian. 3. **DataTile.js**: This file deals with the reprojection of tiles. Since the bug is related to reprojection, any errors in this file could lead to incorrect rendering of tiles, especially near the edges of projections like the antimeridian.",
+        "bug_scenario": "The bug scenario involves missing tiles in a WebGLTileLayer when using a GeoTiff source after reprojection. Specifically, tiles near the antimeridian are not rendered, resulting in black gaps that vary in size based on the source tile sizes and zoom levels."
+    }
+}

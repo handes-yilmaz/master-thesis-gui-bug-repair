@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/ReplaceElementBehaviour",
+            "lib/features/modeling/behavior/AttachEventBehavior",
+            "lib/features/modeling/BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/ReplaceElementBehaviour//replaceElements",
+            "lib/features/modeling/behavior/AttachEventBehavior//preExecute",
+            "lib/features/modeling/BpmnUpdater//updateSemanticParent"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the behavior of elements in the BPMN model. The 'ReplaceElementBehaviour' class is responsible for replacing elements in the model, which is directly related to the issue of the condition expression being removed. The 'AttachEventBehavior' class manages the behavior of attaching events, which may also influence how the condition expressions are handled when events are changed. Lastly, the 'BpmnUpdater' class is responsible for updating the BPMN model, including the semantic relationships between elements, which could be crucial in ensuring that condition expressions are preserved when modifying event types.",
+        "bug_scenario": "The bug occurs when a 'Timer Intermediate Catch Event' is dropped onto a sequence flow that already has a condition expression set. The action of changing the event type results in the removal of the existing condition expression from the sequence flow, which is not the expected behavior."
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer",
+            "lib/features/modeling/Modeling.js//Modeling",
+            "lib/features/modeling/BpmnLayouter.js//BpmnLayouter"
+        ],
+        "bug_functions": [
+            "lib/draw/BpmnRenderer.js//drawShape",
+            "lib/features/modeling/Modeling.js//updateProperties",
+            "lib/features/modeling/BpmnLayouter.js//layoutConnection"
+        ],
+        "explanation": "The identified classes and functions are related to the rendering and layout of elements in the BPMN diagram. The 'BpmnRenderer' class is responsible for rendering shapes, which is directly related to how group elements are displayed. The 'Modeling' class handles properties and updates of elements, which may affect their rendering order. The 'BpmnLayouter' class manages the layout of connections, which could influence how elements overlap. Modifications in these areas are likely necessary to ensure that group elements are rendered correctly on top of other elements.",
+        "bug_scenario": "The bug scenario involves group elements not being rendered on top of other elements, which leads to visibility issues when new elements are created on the group's border. The expected behavior is that group elements should always be rendered on top of all other elements."
+    }
+}

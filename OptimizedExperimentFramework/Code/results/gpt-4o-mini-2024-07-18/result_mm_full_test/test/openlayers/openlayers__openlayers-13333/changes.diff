@@ -1,0 +1,39 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 752f4ff..3588bd1 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -418,7 +418,7 @@ class WebGLTileLayer extends BaseTileLayer {
+    */
+   render(frameState, target) {
+     const viewState = frameState.viewState;
+-    const sources = this.getSources(frameState.extent, viewState.resolution);
++    const sources = this.getSources(getRenderExtent(frameState, frameState.extent), viewState.resolution);
+     let ready = true;
+     for (let i = 0, ii = sources.length; i < ii; ++i) {
+       const source = sources[i];
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index ed48cc2..ea0e110 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -287,7 +287,7 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+       return false;
+     }
+ 
+-    if (isEmpty(getRenderExtent(frameState, frameState.extent))) {
++    if (isEmpty(getRenderExtent(frameState, frameState.extent)) || !this.getLayer().getRenderSource()) {
+       return false;
+     }
+     return source.getState() === State.READY;
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 4dc6340..e5fc2c6 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -476,7 +476,7 @@ class GeoTIFFSource extends DataTile {
+         nodataValues[sourceIndex][imageIndex] =
+           nodataValue === null ? NaN : nodataValue;
+ 
+-        const wantedSamples = this.sourceInfo_[sourceIndex].bands;
++        const wantedSamples = this.sourceInfo_[sourceIndex].bands || [];
+         samplesPerPixel[sourceIndex] = wantedSamples
+           ? wantedSamples.length
+           : image.getSamplesPerPixel();

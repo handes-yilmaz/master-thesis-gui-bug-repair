@@ -1,0 +1,23 @@
+diff --git a/components/prism-markup.js b/components/prism-markup.js
+index f73fc314..2a4c5dd9 100644
+--- a/components/prism-markup.js
++++ b/components/prism-markup.js
+@@ -164,6 +164,18 @@ Object.defineProperty(Prism.languages.markup.tag, 'addAttribute', {
+ 	}
+ });
+ 
++Prism.languages.mermaid = {
++'comment': /%%[^\n]*/,
++'keyword': /\b(?:graph|subgraph|end|classDef|style|linkStyle|click|hover|interpolate)\b/,
++'arrow': /-->|---|==>/,
++'string': {
++pattern: /"[^"]*"|'[^']*'/,
++greedy: true
++},
++'punctuation': /[{}[\];(),.:]/,
++'operator': /--|==/
++};
++
+ Prism.languages.html = Prism.languages.markup;
+ Prism.languages.mathml = Prism.languages.markup;
+ Prism.languages.svg = Prism.languages.markup;

@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "core/audits/dobetterweb/dom-size.js//DOMSize"
+        ],
+        "bug_functions": [
+            "core/audits/dobetterweb/dom-size.js//audit"
+        ],
+        "explanation": "The `DOMSize` class is responsible for auditing the size of the DOM and returning statistics about it. The `audit` function within this class computes the score based on the total number of DOM elements. The bug is related to how the total number of elements is displayed, specifically the inclusion of a decimal point. Modifications in the `audit` function will be necessary to ensure that the output is formatted as an integer, removing the unnecessary decimal point.",
+        "bug_scenario": "The bug scenario involves an audit that reports the size of the DOM, indicating that the total number of DOM elements is displayed with excessive precision, showing a decimal point (e.g., 2008.0) when it should only display whole numbers (e.g., 2008). This can lead to confusion as these values are always integers."
+    }
+}

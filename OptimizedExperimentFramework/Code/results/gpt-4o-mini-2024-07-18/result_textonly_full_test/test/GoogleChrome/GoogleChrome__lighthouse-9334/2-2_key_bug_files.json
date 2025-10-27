@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/i18n/i18n.js",
+            "lighthouse-core/lib/i18n/locales.js",
+            "lighthouse-cli/cli-flags.js"
+        ],
+        "explanation": "These files are key to the bug because: 1. 'i18n.js' contains the core logic for handling internationalization, including message formatting and locale lookups, which are essential for translating text. 2. 'locales.js' defines the available locales and their corresponding message files, which are necessary for providing the correct translations. 3. 'cli-flags.js' manages the command-line interface options, including the '--view' flag, which may affect how the application handles localization when generating reports.",
+        "bug_scenario": "The bug occurs when running the Lighthouse CLI with the command 'node lighthouse-cli www.example.com --view', where the internationalization (i18n) text is not translated, leading to a fatal error. The provided image shows the error message indicating that the i18n text is not properly translated, which is critical for users relying on localized content."
+    }
+}

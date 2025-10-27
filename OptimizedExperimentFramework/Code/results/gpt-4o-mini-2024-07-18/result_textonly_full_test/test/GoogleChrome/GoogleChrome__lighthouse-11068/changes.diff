@@ -1,0 +1,16 @@
+diff --git a/lighthouse-core/audits/font-display.js b/lighthouse-core/audits/font-display.js
+index d5b4e06..59af49c 100644
+--- a/lighthouse-core/audits/font-display.js
++++ b/lighthouse-core/audits/font-display.js
+@@ -72,9 +72,9 @@ class FontDisplay extends Audit {
+         if (!rawFontURLs) continue;
+         // Find the font-display value by matching a single token, optionally surrounded by whitespace,
+         // followed either by a semicolon or the end of a block.
+-        const fontDisplayMatch = declaration.match(/font-display\s*:\s*(\w+)\s*(;|\})/);
++        const fontDisplayMatch = declaration.match(/font-display\\s*:\\s*(\\w+|\\s*)\\s*(;|\\})/);
+         const rawFontDisplay = (fontDisplayMatch && fontDisplayMatch[1]) || '';
+-        const hasPassingFontDisplay = PASSING_FONT_DISPLAY_REGEX.test(rawFontDisplay);
++        const hasPassingFontDisplay = PASSING_FONT_DISPLAY_REGEX.test(rawFontDisplay.trim());
+         const targetURLSet = hasPassingFontDisplay ? passingURLs : failingURLs;
+ 
+         // Finally convert the raw font URLs to the absolute URLs and add them to the set.

@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/language-markdown/utils.js"
+        ],
+        "explanation": "These files are directly responsible for handling markdown parsing and printing in Prettier. The issue of removing empty lines is typically related to how the markdown is parsed and subsequently printed, so any fix would likely need to address how these files manage line breaks and whitespace preservation during formatting.",
+        "bug_scenario": "The bug is related to the removal of empty lines in the markdown YAML frontmatter when using Prettier 3.3.0. The expected output indicates that the empty lines within the 'blogs' section should remain intact but are being stripped out by the formatter, leading to incorrect formatting."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/unified-plugins/front-matter.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/utils/front-matter/parse.js",
+            "src/utils/front-matter/is-front-matter.js"
+        ],
+        "explanation": "The bug appears when formatting Markdown with YAML frontmatter, particularly concerning the removal of empty lines. Given the behavior described, the problem is likely related to how the frontmatter parsing and markdown printing are handled in Prettier. The relevant files likely to be affected include:\\n- **`src/language-markdown/unified-plugins/front-matter.js`**: This file would handle plugins related to parsing and handling frontmatter in markdown documents. Issues in this plugin could directly affect how the frontmatter is interpreted or formatted.\\n- **`src/language-markdown/printer-markdown.js`**: This should be involved in formatting markdown content. Any logic here concerning line preservation could contribute to unwanted line removals.\\n- **`src/utils/front-matter/parse.js`**: Parsing utilities dealing with frontmatter. If parsing is affected, it might lead to incorrect handling of sections within the YAML.\\n- **`src/utils/front-matter/is-front-matter.js`**: Determines what counts as frontmatter that might influence how the beginning and end of the YAML are detected. If lines are being misjudged or removed, tweaks here might be necessary.\\nThese files are integral to how frontmatter is processed and formatted, making them prime suspects in scenarios where YAML structure is unexpectedly altered.",
+        "bug_scenario": "The issue in the bug scenario is that when the YAML frontmatter of a markdown file is being processed using Prettier, some unexpected behavior occurs where empty lines in the 'blogs' section are being removed during the formatting. This could lead to a loss of intentional structuring or separation in the content, which may affect readability or intended functionality in the formatted document."
+    }
+}

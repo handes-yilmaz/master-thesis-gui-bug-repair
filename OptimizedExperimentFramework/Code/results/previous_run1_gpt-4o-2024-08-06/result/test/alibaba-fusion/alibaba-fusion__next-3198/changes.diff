@@ -1,0 +1,26 @@
+diff --git a/src/date-picker2/panels/time-panel.jsx b/src/date-picker2/panels/time-panel.jsx
+index 68c8dd41f..14fd0918c 100644
+--- a/src/date-picker2/panels/time-panel.jsx
++++ b/src/date-picker2/panels/time-panel.jsx
+@@ -65,7 +65,7 @@ class TimePanel extends React.PureComponent {
+     };
+ 
+     render() {
+-        const { prefix, rtl, locale, timePanelProps = {}, value } = this.props;
++        const { prefix, rtl, locale, timePanelProps = {}, value = timePanelProps.defaultValue } = this.props;
+         const { showHour, showMinute, showSecond } = this.getShow();
+ 
+         return (
+diff --git a/src/date-picker2/util.js b/src/date-picker2/util.js
+index 0bd79809c..ce0ad8231 100644
+--- a/src/date-picker2/util.js
++++ b/src/date-picker2/util.js
+@@ -1,7 +1,7 @@
+ import { DATE_INPUT_TYPE } from './constant';
+ 
+ export function setTime(targetVal, sourceVal) {
+-    if (sourceVal && targetVal) {
++    if (sourceVal && targetVal && sourceVal.isValid()) {
+         return targetVal
+             .hour(sourceVal.hour())
+             .minute(sourceVal.minute())

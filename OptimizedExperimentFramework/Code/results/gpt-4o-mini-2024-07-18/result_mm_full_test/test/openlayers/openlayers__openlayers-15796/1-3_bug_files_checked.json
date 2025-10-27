@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Vector.js",
+            "src/ol/render/VectorContext.js",
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/renderer/webgl/VectorLayer.js"
+        ],
+        "explanation": "The Vector.js file is fundamental as it defines the VectorLayer class, which is responsible for handling the layer's properties, including decluttering and opacity. The VectorContext.js file is involved in the rendering process, and any rendering logic issues would likely stem from here. The canvas/VectorLayer.js and webgl/VectorLayer.js files handle the actual rendering of the vector layers in both canvas and WebGL contexts, respectively. Since the bug relates to rendering behavior, changes in these files are likely necessary to correct the rendering logic.",
+        "bug_scenario": "The bug occurs when a VectorLayer with declutter and an opacity less than 1 does not clear its previous renderings upon re-rendering. This leads to overlapping graphics on the map when panning, as seen in the provided screenshot."
+    }
+}

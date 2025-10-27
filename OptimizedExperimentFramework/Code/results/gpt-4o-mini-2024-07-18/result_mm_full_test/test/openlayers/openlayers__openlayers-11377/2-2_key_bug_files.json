@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/interaction/Pointer.js",
+            "src/ol/renderer/canvas/Layer.js",
+            "src/ol/renderer/webgl/Layer.js"
+        ],
+        "explanation": "These files are critical for handling pointer events and rendering layers. The 'Pointer.js' file contains the logic for managing pointer interactions, including the handling of move events, which is directly related to the performance issue reported. The 'Layer.js' files for both canvas and webgl rendering are essential as they manage how layers are drawn and updated on the screen, which can impact the overall performance of pointer events when many features are involved.",
+        "bug_scenario": "The performance of the pointermove event in version 6.4.0 is significantly slower compared to version 6.3.1, particularly when handling a large number of features (1000 in this case). This slowdown affects various operations such as zooming and panning, making the cursor response noticeably laggy in 6.4.0 compared to the previous version."
+    }
+}

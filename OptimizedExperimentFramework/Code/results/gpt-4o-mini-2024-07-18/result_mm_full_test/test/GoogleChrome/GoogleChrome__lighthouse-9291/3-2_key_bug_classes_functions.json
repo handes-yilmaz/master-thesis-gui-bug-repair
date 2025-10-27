@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/lib/lh-error.js//LighthouseError"
+        ],
+        "bug_functions": [
+            "lighthouse-core/lib/lh-error.js//constructor",
+            "lighthouse-core/lib/lh-error.js//fromProtocolMessage"
+        ],
+        "explanation": "The `LighthouseError` class is responsible for handling error messages in the Lighthouse CLI. The constructor method is crucial as it formats the error messages, including those related to invalid URLs. If the i18n text is not properly translated or set up in this class, it could lead to the issue described in the bug report. The `fromProtocolMessage` function is also relevant as it processes protocol errors, which may include URL-related errors, and could be involved in how these errors are communicated to the user.",
+        "bug_scenario": "The CLI command to run Lighthouse encountered a runtime error indicating an invalid URL. This suggests that the internationalization (i18n) text for error messages may not be properly translated or displayed during the CLI execution, leading to confusion for the user."
+    }
+}

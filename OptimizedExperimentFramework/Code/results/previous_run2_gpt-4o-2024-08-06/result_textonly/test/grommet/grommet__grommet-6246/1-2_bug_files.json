@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/DataChart/DataChart.js",
+            "src/js/components/DataChart/utils.js",
+            "src/js/components/DataChart/XAxis.js",
+            "src/js/components/DataChart/YAxis.js"
+        ],
+        "explanation": "1. **DataChart.js**: This is the main component file responsible for rendering the DataChart. Any issue with rendering bars must be checked here to ensure that negative values are processed correctly.\\n2. **utils.js**: Utility functions that are used for calculations and data manipulations within the DataChart component, including handling data points, might have logical errors when negative data is processed.\\n3. **XAxis.js** and **YAxis.js**: These files manage axis rendering, including guides such as zero lines. Issues in displaying a zero line or handling negative range values could originate here.",
+        "bug_scenario": "The bug scenario involves a DataChart component unable to render bars when the data includes negative values. The expected behavior is for the chart to render with a zero line guide and customizable attributes for negative values, but currently, it shows nothing at all, which indicates a possible issue in the code handling the data rendering, especially for negative values."
+    },
+    "2": {
+        "bug_files": [
+            "src/components/DataChart/DataChart.js",
+            "src/components/DataChart/utils.js",
+            "src/components/DataChart/__tests__/DataChart-test.js"
+        ],
+        "explanation": "1. `src/components/DataChart/DataChart.js` is the main component responsible for rendering the data chart. Any issues related to data rendering within the chart are likely to be addressed in this file. Since the bug is related to how data, including negative values, is rendered, this file is crucial.\n\n2. `src/components/DataChart/utils.js` likely contains utility functions which assist with calculations or configurations essential for the chart's representation, including aspects like determining axis limits or rendering parameters.\n\n3. `src/components/DataChart/__tests__/DataChart-test.js` contains the test cases for the `DataChart` component and is necessary for verifying any fixes applied to handle negative values properly. It should include or be updated to include tests that replicate the issue and ensure the solution works as intended.",
+        "bug_scenario": "The images demonstrate a chart display issue where no bars are rendered on the chart, despite there being a negative value in the data input. The screenshots indicate that the expected behavior is a chart with bars above and below a zero guide line, but currently no bars are displayed at all."
+    }
+}

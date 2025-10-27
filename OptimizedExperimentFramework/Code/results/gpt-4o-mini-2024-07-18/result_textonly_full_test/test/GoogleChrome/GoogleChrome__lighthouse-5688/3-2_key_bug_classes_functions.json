@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/uses-optimized-images.UsesOptimizedImages",
+            "lighthouse-core/audits/byte-efficiency/uses-webp-images.UsesWebPImages",
+            "lighthouse-core/gather/gatherers/dobetterweb/optimized-images.OptimizedImages"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/uses-optimized-images.UsesOptimizedImages.audit_",
+            "lighthouse-core/audits/byte-efficiency/uses-webp-images.UsesWebPImages.audit_",
+            "lighthouse-core/gather/gatherers/dobetterweb/optimized-images.OptimizedImages.computeOptimizedImages"
+        ],
+        "explanation": "These classes and functions are related to the bug because they are responsible for auditing image formats and determining whether images are optimized for web use. The 'UsesOptimizedImages' and 'UsesWebPImages' classes specifically check if images can be served in more efficient formats, which is directly related to the issue of BMP images not being flagged. The 'OptimizedImages' class gathers information about images on the page, including their formats, which is essential for the audit process. Fixing the bug would likely involve modifying these classes/functions to ensure BMP images are correctly identified and flagged.",
+        "bug_scenario": "The bug scenario involves the Lighthouse tool not flagging BMP images under the 'serve images under next gen formats' audit, which is expected behavior when legacy image formats like BMP are detected. The user discovered this issue while testing the 'legacy-image-formats' feature policy on a specific webpage that contains a BMP image."
+    }
+}

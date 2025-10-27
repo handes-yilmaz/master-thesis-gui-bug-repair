@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/rules/BpmnRules.js",
+            "lib/features/editor-actions/BpmnEditorActions.js"
+        ],
+        "explanation": "These files are related to the bug because: \n1. **SubProcessStartEventBehavior.js**: This file likely contains the logic for handling behaviors associated with start events within sub-processes, which is directly impacted by the requirement to disallow typed events. \n2. **BpmnRules.js**: It defines the rules for valid BPMN elements and transitions which would include the rules governing start events in sub-processes. Changes here will enforce the restrictions on typed start events. \n3. **BpmnEditorActions.js**: This file is responsible for actions taken during editing, such as moving events. It will need modifications to ensure that typed start events cannot be moved into non-event based sub-processes.",
+        "bug_scenario": "The bug involves disallowing typed start events inside non-event based sub-processes. The requirement is to support only untyped start events in these scenarios. The images indicate a visual representation of the issue when the start events are manipulated within the sub-process context."
+    }
+}

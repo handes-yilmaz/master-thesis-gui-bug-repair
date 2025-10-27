@@ -1,0 +1,34 @@
+diff --git a/src/form/form.jsx b/src/form/form.jsx
+index 575344d..ee128f8 100644
+--- a/src/form/form.jsx
++++ b/src/form/form.jsx
+@@ -36,7 +36,11 @@ const getNewChildren = (children, props) => {
+                 size: child.props.size ? child.props.size : size,
+                 responsive: responsive,
+             };
+-            return React.cloneElement(child, pickerDefined(childrenProps));
++            const newChildProps = {
++                ...pickerDefined(childrenProps),
++                errorMessageLabel: this.props.errorMessageLabel, // Pass down the errorMessageLabel
++            };
++            return React.cloneElement(child, newChildProps);
+         }
+         return child;
+     });
+diff --git a/src/form/item.jsx b/src/form/item.jsx
+index 2a634b4..5621703 100644
+--- a/src/form/item.jsx
++++ b/src/form/item.jsx
+@@ -311,7 +311,11 @@ export default class Item extends React.Component {
+     }
+ 
+     getLabelForErrorMessage() {
+-        let label = this.props.errorMessageLabel || this.props.label;
++        let label = this.props.errorMessageLabel;
++
++        if (this.props.useLabelForErrorMessage) {
++            label = label || this.props.label;
++        }
+ 
+         if (!label || typeof label !== 'string') {
+             return null;

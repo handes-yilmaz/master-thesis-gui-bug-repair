@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "cli/cli-flags.js",
+            "core/gather/driver/environment.js",
+            "core/lib/emulation.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because they handle the command-line flags, device environment settings, and user agent emulation. Specifically, 'cli/cli-flags.js' manages the parsing of command-line arguments, which may include flags that affect how the device is identified. 'core/gather/driver/environment.js' contains logic for determining the device's environment and may need adjustments to correctly identify physical devices versus emulated ones. Lastly, 'core/lib/emulation.js' is responsible for setting the user agent and emulation parameters, which directly impacts how the report is generated and displayed. Modifications in these files could ensure that the report accurately reflects the testing environment.",
+        "bug_scenario": "The user is experiencing an issue where the Lighthouse report incorrectly states 'Emulated Moto G4' when testing on a physical Moto Power G device. The expectation is that the report should indicate that it is testing on a real device instead."
+    }
+}

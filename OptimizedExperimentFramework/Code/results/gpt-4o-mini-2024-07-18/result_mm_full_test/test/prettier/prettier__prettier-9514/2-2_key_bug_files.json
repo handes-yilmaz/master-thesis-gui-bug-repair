@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/language-js/parser-flow.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "These files are key bug files because they are directly related to the parsing functionality. The 'parser-babel.js' file is responsible for handling Babel parsing options, which may need to be modified to integrate Cherow. The 'parser-flow.js' file is relevant because it deals with Flow syntax, which is a concern when switching to Cherow. Lastly, 'parser.js' is crucial as it resolves which parser to use, and modifications here will be necessary to implement the switch to Cherow.",
+        "bug_scenario": "The bug scenario involves the need to switch from the Babylon parser to the Cherow parser for JavaScript due to performance issues. The Cherow parser is reported to be significantly faster than Babylon, which is crucial for usability in format-on-save scenarios. However, there is a limitation as Cherow does not support Flow syntax, which may block its use by default."
+    }
+}

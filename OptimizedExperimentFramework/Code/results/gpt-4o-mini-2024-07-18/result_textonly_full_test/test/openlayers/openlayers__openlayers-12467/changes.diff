@@ -1,0 +1,25 @@
+diff --git a/src/ol/renderer/canvas/VectorLayer.js b/src/ol/renderer/canvas/VectorLayer.js
+index c3aa878..1b70369 100644
+--- a/src/ol/renderer/canvas/VectorLayer.js
++++ b/src/ol/renderer/canvas/VectorLayer.js
+@@ -179,7 +179,7 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+     const viewHints = frameState.viewHints;
+     const snapToPixel = !(
+       viewHints[ViewHint.ANIMATING] || viewHints[ViewHint.INTERACTING]
+-    );
++    ) && this.getLayer().getStyle().snapToPixel; // Use snapToPixel from style options
+     const context = this.context;
+     const width = Math.round(frameState.size[0] * pixelRatio);
+     const height = Math.round(frameState.size[1] * pixelRatio);
+diff --git a/src/ol/style/Circle.js b/src/ol/style/Circle.js
+index ef890c3..b2694fb 100644
+--- a/src/ol/style/Circle.js
++++ b/src/ol/style/Circle.js
+@@ -41,6 +41,7 @@ class CircleStyle extends RegularShape {
+         options.rotateWithView !== undefined ? options.rotateWithView : false,
+       displacement:
+         options.displacement !== undefined ? options.displacement : [0, 0],
++      snapToPixel: options.snapToPixel !== undefined ? options.snapToPixel : false, // Add snapToPixel option
+     });
+   }
+ 

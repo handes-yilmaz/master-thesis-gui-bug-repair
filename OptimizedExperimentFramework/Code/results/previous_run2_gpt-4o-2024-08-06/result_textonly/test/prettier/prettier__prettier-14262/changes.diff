@@ -1,0 +1,28 @@
+diff --git a/src/language-js/needs-parens.js b/src/language-js/needs-parens.js
+index 0fd0207dbf..7f62380359 100644
+--- a/src/language-js/needs-parens.js
++++ b/src/language-js/needs-parens.js
+@@ -131,7 +131,8 @@ function needsParens(path, options) {
+     node.type === "ObjectExpression" ||
+     node.type === "FunctionExpression" ||
+     node.type === "ClassExpression" ||
+-    node.type === "DoExpression"
++    node.type === "DoExpression" ||
++    (node.type === "ObjectExpression" && path.getParentNode().type === "JSDocComment")
+   ) {
+     const expression = path.findAncestor(
+       (node) => node.type === "ExpressionStatement"
+diff --git a/src/language-js/printer-estree.js b/src/language-js/printer-estree.js
+index 6d76502f79..809fb5c24c 100644
+--- a/src/language-js/printer-estree.js
++++ b/src/language-js/printer-estree.js
+@@ -251,7 +251,8 @@ function printPathNoParens(path, options, print, args) {
+       const shouldHug =
+         !hasComment(node.expression) &&
+         (node.expression.type === "ObjectExpression" ||
+-          node.expression.type === "ArrayExpression");
++          node.expression.type === "ArrayExpression" ||
++          (node.expression.type === "ObjectExpression" && path.getParentNode().type === "JSDocComment"));
+       if (shouldHug) {
+         return ["(", print("expression"), ")"];
+       }

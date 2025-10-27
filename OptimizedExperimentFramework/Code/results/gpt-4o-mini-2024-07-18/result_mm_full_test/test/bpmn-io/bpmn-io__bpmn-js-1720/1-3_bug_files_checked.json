@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/SubprocessCompatibility.js",
+            "lib/features/context-pad/ContextPadProvider.js",
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/draw/BpmnRenderer.js"
+        ],
+        "explanation": "These files are related to the bug because: \n1. **SubprocessCompatibility.js**: This file likely contains logic related to the compatibility of subprocesses and their visual representation, which is central to the bug.\n2. **ContextPadProvider.js**: This file manages the options available in the context menu (wrench), and changes here may help prevent invalid transformations.\n3. **ResizeBehavior.js**: This could control how elements resize, which is relevant since the shape of the subprocess isn't resizing correctly.\n4. **BpmnUpdater.js**: This file is responsible for updating BPMN elements, which may include reverting element types.\n5. **BpmnRenderer.js**: This handles the rendering of BPMN elements and might need adjustments to ensure the visual representation matches the expected behavior.",
+        "bug_scenario": "The issue involves transforming a task into a call activity and then into a subprocess, which leads to a confusing state where the UI does not allow reverting back to the call activity. The expected behavior is that the wrench menu should not show unsupported options, and users should be able to revert back to previous states without encountering dead ends."
+    }
+}

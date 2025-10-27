@@ -1,0 +1,15 @@
+diff --git a/lighthouse-core/gather/computed/critical-request-chains.js b/lighthouse-core/gather/computed/critical-request-chains.js
+index 7d51fd3..75e8bf0 100644
+--- a/lighthouse-core/gather/computed/critical-request-chains.js
++++ b/lighthouse-core/gather/computed/critical-request-chains.js
+@@ -48,7 +48,9 @@ class CriticalRequestChains extends ComputedArtifact {
+ 
+     // Get all the critical requests.
+     /** @type {!Array<NetworkRequest>} */
+-    const criticalRequests = networkRecords.filter(CriticalRequestChains.isCritical);
++    const criticalRequests = networkRecords.filter(request => {
++      return CriticalRequestChains.isCritical(request) && !request._url.includes('iframe') && !request._url.startsWith('data:');
++    });
+ 
+     const flattenRequest = request => {
+       return {

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/lib/ecmascript.js//LITERALS",
+            "src/languages/javascript.js//TEMPLATE_STRING",
+            "src/languages/javascript.js//SUBST",
+            "src/languages/typescript.js//KEYWORDS"
+        ],
+        "bug_functions": [
+            "src/languages/javascript.js//hasClosingTag",
+            "src/languages/javascript.js//PARAMS_CONTAINS"
+        ],
+        "explanation": "The identified classes and functions are crucial for handling syntax highlighting in JavaScript and TypeScript. The 'LITERALS' class defines the recognized literals, which are essential for parsing template literals correctly. The 'TEMPLATE_STRING' and 'SUBST' functions in 'javascript.js' are responsible for recognizing template strings and their substitutions, which are directly related to the bug. The 'hasClosingTag' function checks for matching closing tags, which is relevant for nested structures. Lastly, 'KEYWORDS' in 'typescript.js' includes the keywords that may affect how expressions are parsed and highlighted.",
+        "bug_scenario": "The issue arises when right curly braces inside template literals confuse the highlighter, causing it to incorrectly interpret the end of the expression. This leads to incorrect syntax highlighting, particularly when nested template literals are involved."
+    }
+}

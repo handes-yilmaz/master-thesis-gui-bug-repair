@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/command/render/latexmk/quarto-latexmk.ts": [
+            {
+                "SEARCH": [
+                    "// Code that generates LaTeX for definitions",
+                    "const definitionLatex = `\\leavevmode\\vadjust pre{\\hypertarget{${id}}{}}%",
+                    "\\begin{definition}[]\\label{${id}}",
+                    "${content}",
+                    "\\end{definition}`;"
+                ],
+                "REPLACE": [
+                    "    // Code that generates LaTeX for definitions",
+                    "    const definitionLatex = `\\begin{definition}[]\\label{${id}}",
+                    "${content}",
+                    "\\end{definition}`;"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "// Code that generates LaTeX for proofs",
+                    "const proofLatex = `\\begin{proof}",
+                    "${content}",
+                    "\\end{proof}`;"
+                ],
+                "REPLACE": [
+                    "    // Code that generates LaTeX for proofs",
+                    "    const proofLatex = `\\begin{proof}",
+                    "${content}",
+                    "\\end{proof}",
+                    "`;"
+                ]
+            }
+        ]
+    }
+}

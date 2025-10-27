@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-javascript.min.js",
+            "plugins/line-highlight/prism-line-highlight.js"
+        ],
+        "explanation": "These files are key bug files because they contain the language definitions and parsing logic for JavaScript in PrismJS. The `prism-javascript.js` file defines how JavaScript syntax, including template literals, is highlighted. The `prism-javascript.min.js` file is the minified version of the same, which is also used in production environments. The `prism-line-highlight.js` file is relevant as it handles line highlighting, which may interact with the template literal parsing and could be affected by the same bug.",
+        "bug_scenario": "The bug scenario involves a highlighting issue in JavaScript template literals when using PrismJS. Specifically, the first template tag token is ignored after a certain regex pattern and a comment with a template literal, causing subsequent template literals to be incorrectly parsed. This results in broken syntax highlighting for the rest of the file."
+    }
+}

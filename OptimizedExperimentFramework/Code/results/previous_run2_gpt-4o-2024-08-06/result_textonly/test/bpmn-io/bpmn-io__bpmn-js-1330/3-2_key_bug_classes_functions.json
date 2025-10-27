@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/rules/BpmnRules.js//BpmnRules",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//BoundaryEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//postExecute('connection.create')",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//postExecute('connection.reconnect')"
+        ],
+        "explanation": "The `BpmnRules` class in `lib/features/rules/BpmnRules.js` is likely responsible for defining the rules that govern connections in BPMN diagrams. Given that the bug is related to disallowing message flow connections to boundary events, this class is a key component in implementing the necessary restrictions.\n\nThe `BoundaryEventBehavior` class in `lib/features/modeling/behavior/BoundaryEventBehavior.js` contains logic that deals with boundary events, specifically handling connections and reconnections. The `postExecute('connection.create')` and `postExecute('connection.reconnect')` functions are responsible for removing boundary events when certain connections are made, indicating that they are involved in enforcing rules related to boundary events. Therefore, these functions need to be examined and potentially updated to ensure message flows cannot target boundary events.",
+        "bug_scenario": "The images and the bug report describe a scenario where a message flow can incorrectly be connected to a boundary event in a BPMN diagram, which is against BPMN semantics. The connection should be disallowed, but currently, it is possible to attempt such a connection."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/rules/BpmnRules.js//BpmnRules",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//BoundaryEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/rules/BpmnRules.js//canConnect",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//postExecute"
+        ],
+        "explanation": "The class `BpmnRules` in `lib/features/rules/BpmnRules.js` is responsible for defining modeling rules specific to BPMN diagrams. The comments in the skeleton mention rules related to boundary events and connections, indicating this class is directly involved in enforcing the rule that should prevent message flows from connecting to boundary events. The `canConnect` function within this class likely contains the logic to allow or disallow connections, making it a key function in addressing this bug.\n\nThe `BoundaryEventBehavior` class in `lib/features/modeling/behavior/BoundaryEventBehavior.js` is responsible for specific behaviors related to boundary events. The `postExecute` function handles the removal of boundary events under certain conditions, suggesting it interacts with connections after they are established. This implies that modifications here could affect how boundary events respond to being incorrectly connected via message flows, making it relevant to the bug fix.",
+        "bug_scenario": "The bug scenario involves a BPMN model where a message flow is incorrectly allowed to connect to a boundary event, which is against BPMN semantics. The user should not be able to connect a participant to a boundary event using a message flow, as shown in the provided image. The expected behavior is that such connections should be forbidden by the rules of the BPMN library."
+    }
+}

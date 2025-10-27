@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/modeling/behavior/LabelBehavior.js"
+        ],
+        "explanation": "These files are critical to the bug because: 1. **BpmnRenderer.js** is responsible for rendering the BPMN elements, and any changes in how elements are drawn or resized would directly affect the bug. 2. **LabelUtil.js** handles label attributes and their management, which is crucial since the bug is triggered by editing labels. 3. **LabelBehavior.js** manages the behavior of labels during interactions, including resizing and updating, which is directly related to the issue of elements changing size or disappearing.",
+        "bug_scenario": "The bug involves elements in a BPMN diagram (events and gateways) resizing incorrectly or disappearing when selected. This occurs after direct editing of an element's label, particularly when the label is left empty. The issue is reproducible in the demo.bpmn.io tool and was introduced in a specific commit that altered the rendering behavior of these elements."
+    }
+}

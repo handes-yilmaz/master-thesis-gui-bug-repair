@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/GroupBehavior.js",
+            "lib/features/modeling/BpmnFactory.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "These files are critical to the bug because they handle the core functionalities related to group behavior, element creation, and modeling in the BPMN editor. The 'GroupBehavior.js' file manages how groups interact with other elements, which is directly related to the crash when adding elements after a group is created. The 'BpmnFactory.js' file is responsible for creating new BPMN elements, and any issues in element creation could lead to the observed errors. Lastly, 'Modeling.js' contains the logic for updating and managing elements on the canvas, which is essential for maintaining the editor's responsiveness when elements are added or modified.",
+        "bug_scenario": "The bug occurs when a user adds a group to an empty diagram and then attempts to add other elements, causing the editor to crash and throw multiple errors in the console. This issue arises specifically after deleting the start event and adding a group, which leads to the editor becoming unresponsive."
+    }
+}

@@ -1,0 +1,22 @@
+diff --git a/src/languages/properties.js b/src/languages/properties.js
+index 64cd341f6..254743959 100644
+--- a/src/languages/properties.js
++++ b/src/languages/properties.js
+@@ -24,11 +24,12 @@ export default function(hljs) {
+           starts: {
+             // value: everything until end of line (again, taking into account backslashes)
+             className: 'string',
+-            end: /$/,
+-            relevance: 0,
+-            contains: [
+-              { begin: '\\\\\\n' }
+-            ]
++end: /(?<!\\\\)$/,
++relevance: 0,
++contains: [
++{ begin: '\\\\n' },
++{ begin: '\\\\\\\\$', relevance: 0 } // Handle trailing escaped backslash
++]
+           }
+         };
+ 

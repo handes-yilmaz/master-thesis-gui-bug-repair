@@ -1,0 +1,13 @@
+diff --git a/src/rating/rating.jsx b/src/rating/rating.jsx
+index da8704a..49a3feb 100644
+--- a/src/rating/rating.jsx
++++ b/src/rating/rating.jsx
+@@ -424,7 +424,7 @@ class Rating extends Component {
+                         className={`${prefix}sr-only`}
+                         aria-checked={i + 1 === parseInt(hoverValue)}
+                         checked={i + 1 === parseInt(hoverValue)}
+-                        onChange={this.handleChecked.bind(this, i + 1)}
++                        onChange={e => { e.stopPropagation(); this.handleChecked.bind(this, i + 1)(e); }} 
+                         type="radio"
+                         name="rating"
+                     />

@@ -1,0 +1,45 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "this.setKey(this.sourceInfo_.map((source) => source.url).join(','));"
+                ],
+                "REPLACE": [
+                    "    this.setKey(this.sourceInfo_.map((source) => source.url).join(','));",
+                    "    this.tileGrid = new TileGrid({",
+                    "      extent: extent,",
+                    "      minZoom: minZoom,",
+                    "      origin: origin,",
+                    "      resolutions: resolutions,",
+                    "      tileSizes: tileSizes,",
+                    "    });"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "this.addChangeListener(LayerProperty.SOURCE, this.handleSourceUpdate_);"
+                ],
+                "REPLACE": [
+                    "    this.addChangeListener(LayerProperty.SOURCE, this.handleSourceUpdate_);",
+                    "    this.setStyle(this.style_);"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const tileSource = tileLayer.getSource();"
+                ],
+                "REPLACE": [
+                    "    const tileSource = tileLayer.getSource();",
+                    "    if (tileSource instanceof GeoTIFFSource) {",
+                    "      // Handle GeoTIFF specific rendering logic",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,24 @@
+diff --git a/src/language-js/print/jsx.js b/src/language-js/print/jsx.js
+index bd21710..4846591 100644
+--- a/src/language-js/print/jsx.js
++++ b/src/language-js/print/jsx.js
+@@ -119,8 +119,8 @@ function printJsxElementInternal(path, options, print) {
+     : ifBreak(concat([rawJsxWhitespace, softline]), " ");
+ 
+   // Handle full-width space (U+3000) consistently
+-  const fullWidthSpace = "\u3000";
+-  const jsxFullWidthWhitespace = ifBreak(concat([`{"${fullWidthSpace}"}`, softline]), fullWidthSpace);
++  const fullWidthSpace = "\\u3000";
++  const jsxFullWidthWhitespace = ifBreak(concat([`{" "}`, softline]), " ");
+ 
+   const isFacebookTranslationTag =
+     n.openingElement &&
+@@ -136,7 +136,7 @@ function printJsxElementInternal(path, options, print) {
+   ).map(child => {
+     // Ensure full-width spaces are handled consistently
+     if (typeof child === 'string' && child.includes(fullWidthSpace)) {
+-      return child.replace(new RegExp(fullWidthSpace, 'g'), jsxFullWidthWhitespace);
++      return child.replace(new RegExp(fullWidthSpace, 'g'), " ");
+     }
+     return child;
+   });

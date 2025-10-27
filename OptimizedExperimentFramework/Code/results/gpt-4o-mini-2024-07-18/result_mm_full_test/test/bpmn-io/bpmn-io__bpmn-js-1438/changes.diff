@@ -1,0 +1,16 @@
+diff --git a/lib/util/LabelUtil.js b/lib/util/LabelUtil.js
+index e23a633..28329d2 100644
+--- a/lib/util/LabelUtil.js
++++ b/lib/util/LabelUtil.js
+@@ -98,6 +98,11 @@ export function getExternalLabelMid(element) {
+ 
+   if (element.waypoints) {
+     return getFlowLabelPosition(element.waypoints);
++  } else if (is(element, 'bpmn:Message')) {
++    return {
++      x: element.x + element.width / 2,
++      y: element.y + DEFAULT_LABEL_SIZE.height / 2
++    };
+   } else if (is(element, 'bpmn:Group')) {
+     return {
+       x: element.x + element.width / 2,

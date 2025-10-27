@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/computed/metrics/first-contentful-paint.js",
+            "lighthouse-core/audits/metrics/first-cpu-idle.js",
+            "lighthouse-core/gather/gatherers/trace-elements.js"
+        ],
+        "explanation": "These files are key to the bug because they are directly related to the computation and gathering of performance metrics in Lighthouse. The 'first-contentful-paint.js' file is crucial as it defines how the First Contentful Paint metric is computed, which is central to the reported issue. The 'first-cpu-idle.js' file is also important as it relates to the timing of when the page becomes interactive, which can be affected by background tab behavior. Lastly, 'trace-elements.js' is involved in gathering the necessary data from the page to compute these metrics, and any issues in this file could lead to failures in measuring performance when the tab is not active.",
+        "bug_scenario": "The bug occurs when the Lighthouse tool is run on a URL while the tab is in the background, resulting in a 'NO_FCP' (No First Contentful Paint) error. This prevents the tool from measuring performance metrics, which is critical for evaluating web applications, especially for Progressive Web Apps (PWAs). The expected behavior is for Lighthouse to successfully evaluate performance and check the PWA checklist."
+    }
+}

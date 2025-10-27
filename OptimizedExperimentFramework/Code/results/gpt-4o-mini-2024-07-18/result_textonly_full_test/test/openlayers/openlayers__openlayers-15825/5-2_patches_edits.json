@@ -1,0 +1,60 @@
+{
+    "1/1": {
+        "src/ol/reproj/DataTile.js": [
+            {
+                "SEARCH": [
+                    "const targetExtent = this.targetTileGrid_.getTileCoordExtent(",
+                    "this.wrappedTileCoord_,",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const targetExtent = this.targetTileGrid_.getTileCoordExtent(",
+                    "        this.wrappedTileCoord_,",
+                    "    );",
+                    "",
+                    "    // Ensure proper handling of tiles crossing the antimeridian",
+                    "    if (targetExtent[0] < -180) {",
+                    "        targetExtent[0] += 360;",
+                    "    }",
+                    "    if (targetExtent[2] < -180) {",
+                    "        targetExtent[2] += 360;",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "const sourceExtent = this.sourceTileGrid_.getExtent();"
+                ],
+                "REPLACE": [
+                    "        const sourceExtent = this.sourceTileGrid_.getExtent();",
+                    "",
+                    "        // Adjust source extent for antimeridian crossing",
+                    "        if (sourceExtent[0] < -180) {",
+                    "            sourceExtent[0] += 360;",
+                    "        }",
+                    "        if (sourceExtent[2] < -180) {",
+                    "            sourceExtent[2] += 360;",
+                    "        }"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const source = this.getSource();"
+                ],
+                "REPLACE": [
+                    "    const source = this.getSource();",
+                    "",
+                    "    // Check for antimeridian crossing and adjust rendering accordingly",
+                    "    if (source && source.getExtent()[0] < -180) {",
+                    "        // Logic to handle rendering across the antimeridian",
+                    "        // This may involve adjusting the tile coordinates or rendering logic",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

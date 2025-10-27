@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/ImageStatic.js",
+            "src/ol/renderer/canvas/ImageLayer.js",
+            "src/ol/layer/Image.js"
+        ],
+        "explanation": "These files are related to the bug because they handle the rendering and scaling of images within the mapping library. The `ImageStatic.js` file is directly responsible for managing the static image source, where the scaling logic likely resides. The `ImageLayer.js` and `Image.js` files are involved in how the image is rendered on the canvas and how it interacts with the layer system, respectively. Modifications in these files may help adjust the scaling logic to avoid the rounding errors caused by floating-point calculations.",
+        "bug_scenario": "The bug involves rounding errors when scaling a square image to fit a square tile extent, leading to unnecessary stretching of the image. The issue arises from floating-point calculations, potentially exacerbated by the use of `Math.ceil`, which can cause loss of detail when scaling down the width of the image. The expected behavior is to scale the dimensions appropriately without losing detail."
+    }
+}

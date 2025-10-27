@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/metrics/first-cpu-idle.js//FirstCPUIdle",
+            "lighthouse-core/gather/gatherers/main-document-content.js//MainDocumentContent",
+            "lighthouse-core/runner.js//Runner"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/metrics/first-cpu-idle.js//audit",
+            "lighthouse-core/gather/gatherers/main-document-content.js//afterPass",
+            "lighthouse-core/runner.js//run"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they are integral to the Lighthouse auditing process. The 'FirstCPUIdle' class is responsible for calculating the First CPU Idle metric, which is directly linked to the reported error. The 'MainDocumentContent' class gathers the main document's content, which is essential for the audit process. The 'Runner' class orchestrates the entire Lighthouse run, including gathering artifacts and running audits, making it crucial for diagnosing and fixing the issue. Modifications in these areas could help address the NO_TTI_CPU_IDLE_PERIOD error.",
+        "bug_scenario": "The bug occurs when running Lighthouse on a page with a slow First Contentful Paint (FCP) but is idle immediately after it. This results in a NO_TTI_CPU_IDLE_PERIOD error being reported. The issue is reproducible under specific conditions, particularly when the FCP delay is set to certain values. Adding a delay (e.g., a 400ms loop) after setting the body HTML resolves the error, indicating that the timing of CPU idle periods is critical for Lighthouse's performance scoring."
+    }
+}

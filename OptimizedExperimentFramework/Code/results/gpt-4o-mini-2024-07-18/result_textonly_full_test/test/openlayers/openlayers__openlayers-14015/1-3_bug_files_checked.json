@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/BaseTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/source/Tile.js",
+            "src/ol/reproj/common.js",
+            "src/ol/render/VectorContext.js"
+        ],
+        "explanation": "These files are likely related to the bug because they deal with tile layers, rendering, and caching mechanisms. The `BaseTile.js` and `TileLayer.js` files manage tile layer behaviors and may include logic for handling source changes and cache management. The `Tile.js` file is responsible for the actual tile source and could be crucial for implementing the `setSource()` method. The `common.js` file under reproj may be involved in handling the projection changes. Lastly, the `VectorContext.js` is associated with rendering vector tiles which may also be impacted by caching issues.",
+        "bug_scenario": "The bug scenario indicates that when a new source is set using `setSource()` or when the view projection changes, the cached textures for WebGL tile layers are not properly updated. This results in displaying outdated tiles from the previous source or projection instead of the new ones. The expected behavior is that the cache should be invalidated and updated appropriately when these changes are made."
+    }
+}

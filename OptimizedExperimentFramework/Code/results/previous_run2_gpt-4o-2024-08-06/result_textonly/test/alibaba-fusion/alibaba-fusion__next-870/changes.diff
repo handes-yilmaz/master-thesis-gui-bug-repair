@@ -1,0 +1,82 @@
+diff --git a/src/number-picker/number-picker.jsx b/src/number-picker/number-picker.jsx
+index c68865fad..b8176804e 100644
+--- a/src/number-picker/number-picker.jsx
++++ b/src/number-picker/number-picker.jsx
+@@ -448,37 +448,40 @@ class NumberPicker extends React.Component {
+             }
+         }
+ 
+-        let innerAfter = null,
++        let innerBefore = null,
++            innerAfter = null,
+             innerAfterClassName = null,
+             addonBefore = null,
+             addonAfter = null;
+         if (type === 'normal') {
+-            innerAfter = [
++            innerBefore = (
+                 <Button
+-                    {...upBtnProps}
++                    {...downBtnProps}
+                     onMouseDown={this.handleMouseDown}
+                     disabled={disabled}
+-                    className={`${upBtnProps.className || ''} ${
+-                        upDisabled ? 'disabled' : ''
++                    className={`${downBtnProps.className || ''} ${
++                        downDisabled ? 'disabled' : ''
+                     }`}
+-                    onClick={this.up.bind(this, upDisabled)}
++                    onClick={this.down.bind(this, downDisabled)}
+                     key="0"
+                 >
+-                    <Icon size="xxs" type="arrow-up" />
+-                </Button>,
++                    <Icon size="xxs" type="arrow-down" />
++                </Button>
++            );
++            innerAfter = (
+                 <Button
+-                    {...downBtnProps}
++                    {...upBtnProps}
+                     onMouseDown={this.handleMouseDown}
+                     disabled={disabled}
+-                    className={`${downBtnProps.className || ''} ${
+-                        downDisabled ? 'disabled' : ''
++                    className={`${upBtnProps.className || ''} ${
++                        upDisabled ? 'disabled' : ''
+                     }`}
+-                    onClick={this.down.bind(this, downDisabled)}
++                    onClick={this.up.bind(this, upDisabled)}
+                     key="1"
+                 >
+-                    <Icon size="xxs" type="arrow-down" />
+-                </Button>,
+-            ];
++                    <Icon size="xxs" type="arrow-up" />
++                </Button>
++            );
+             innerAfterClassName = `${prefixCls}-handler`;
+         } else {
+             addonBefore = (
+diff --git a/src/overlay/position.jsx b/src/overlay/position.jsx
+index 9985a3a73..0b6f97ac6 100644
+--- a/src/overlay/position.jsx
++++ b/src/overlay/position.jsx
+@@ -100,11 +100,15 @@ export default class Position extends Component {
+             const top = getStyle(contentNode, 'top');
+             const left = getStyle(contentNode, 'left');
+ 
++            // Adjust position based on scroll
++            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
++            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
++
+             onPosition(
+                 {
+                     align: resultAlign.split(' '),
+-                    top,
+-                    left,
++                    top: top + scrollTop,
++                    left: left + scrollLeft,
+                 },
+                 contentNode
+             );

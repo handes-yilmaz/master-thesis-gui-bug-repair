@@ -1,0 +1,26 @@
+diff --git a/lighthouse-core/report/html/renderer/category-renderer.js b/lighthouse-core/report/html/renderer/category-renderer.js
+index 0fa8be2..8e365f8 100644
+--- a/lighthouse-core/report/html/renderer/category-renderer.js
++++ b/lighthouse-core/report/html/renderer/category-renderer.js
+@@ -107,7 +107,20 @@ class CategoryRenderer {
+       explEl.textContent = audit.result.explanation;
+     }
+     const warnings = audit.result.warnings;
+-    if (!warnings || warnings.length === 0) return auditEl;
++    if (warnings && warnings.length > 0) {
++      // Add list of warnings or singular warning
++      const warningsEl = this.dom.createChildOf(titleEl, 'div', 'lh-warnings');
++      if (warnings.length === 1) {
++        warningsEl.textContent = `${Util.UIStrings.warningHeader} ${warnings.join('')}`;
++      } else {
++        warningsEl.textContent = Util.UIStrings.warningHeader;
++        const warningsUl = this.dom.createChildOf(warningsEl, 'ul');
++        for (const warning of warnings) {
++          const item = this.dom.createChildOf(warningsUl, 'li');
++          item.textContent = warning;
++        }
++      }
++    }
+ 
+     // Add list of warnings or singular warning
+     const warningsEl = this.dom.createChildOf(titleEl, 'div', 'lh-warnings');

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/behavior/RemoveParticipantBehavior.js",
+            "lib/features/modeling/cmd/IdClaimHandler.js"
+        ],
+        "explanation": "These files are directly related to the bugs reported because they handle the creation, manipulation, and updating of participants and pools within the model. Specifically, 'BpmnCopyPaste.js' deals with the copying functionality which leads to the duplicate pool IDs. 'CreateParticipantBehavior.js' and 'RemoveParticipantBehavior.js' govern the behaviour of adding and removing participants, which is crucial for understanding the inconsistent ID behaviour during undo/redo actions. 'BpmnUpdater.js' is responsible for managing updates to process elements, ensuring that IDs are correctly assigned, which is essential for maintaining consistency. Lastly, 'IdClaimHandler.js' is involved in the management of IDs within the model, making it relevant to the reported issues.",
+        "bug_scenario": "The bug occurs during the process of adding and removing participants in a model, specifically revolving around the inconsistent behaviour of process IDs during undo and redo actions. When a first participant is added and then removed, the process ID remains the same. However, upon re-adding the participant, the process ID changes unexpectedly. Additionally, copying and pasting a pool results in duplicate pool IDs, which is illustrated in the attached GIF showing the erroneous behaviour."
+    }
+}

@@ -1,0 +1,26 @@
+diff --git a/lighthouse-core/report/html/renderer/performance-category-renderer.js b/lighthouse-core/report/html/renderer/performance-category-renderer.js
+index 772d277..39acaa0 100644
+--- a/lighthouse-core/report/html/renderer/performance-category-renderer.js
++++ b/lighthouse-core/report/html/renderer/performance-category-renderer.js
+@@ -165,7 +165,7 @@ class PerformanceCategoryRenderer extends CategoryRenderer {
+       const wastedMsValues = opportunityAudits.map(audit => this._getWastedMs(audit));
+       const maxWaste = Math.max(...wastedMsValues);
+       const scale = Math.max(Math.ceil(maxWaste / 1000) * 1000, minimumScale);
+-      const groupEl = this.renderAuditGroup(groups['load-opportunities'], {expandable: false});
++      const groupEl = this.renderAuditGroup(groups['load-opportunities'], {expandable: true}); // Allow expansion for better visibility
+       const tmpl = this.dom.cloneTemplate('#tmpl-lh-opportunity-header', this.templateContext);
+ 
+       this.dom.find('.lh-load-opportunity__col--one', tmpl).textContent =
+diff --git a/lighthouse-core/report/html/renderer/report-renderer.js b/lighthouse-core/report/html/renderer/report-renderer.js
+index c6011e3..601fc90 100644
+--- a/lighthouse-core/report/html/renderer/report-renderer.js
++++ b/lighthouse-core/report/html/renderer/report-renderer.js
+@@ -63,6 +63,8 @@ class ReportRenderer {
+     ReportRenderer.smooshAuditResultsIntoCategories(clone.audits, clone.reportCategories);
+ 
+     container.textContent = ''; // Remove previous report.
++    // Ensure the container has enough space for the redirects opportunity
++    container.style.overflow = 'auto'; // Allow scrolling if necessary
+     container.appendChild(this._renderReport(clone));
+ 
+     // put the UIStrings back into original state

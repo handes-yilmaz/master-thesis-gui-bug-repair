@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/powershell.js",
+            "src/lib/compile_keywords.js",
+            "src/lib/mode_compiler.js"
+        ],
+        "explanation": "1. **src/languages/powershell.js**: This file is specifically responsible for the PowerShell syntax highlighting rules. Since the bug is about the incorrect highlighting of flags in PowerShell scripts, this file likely contains the regex or logic for highlighting various PowerShell syntax elements including flags.\n\n2. **src/lib/compile_keywords.js**: This file might be involved because it deals with compiling keywords and the logic that determines how different language elements (including flags) should be recognized and highlighted.\n\n3. **src/lib/mode_compiler.js**: This file deals with compiling modes, which could affect how source code for different languages is processed, specifically in terms of recognizing patterns and applying styles based on them. If there's a mistake or missing logic in recognition patterns or modes, it can lead to the issue seen with flag highlighting.",
+        "bug_scenario": "In the given images, we see a PowerShell script where flags in the command line are being highlighted. The issue is specifically with the flag syntax: a single hyphen is highlighted correctly, but a double hyphen which should also be valid, is not highlighted as expected. This creates an inconsistency in how command line flags are visually represented. The correct behavior would involve both single and double hyphen-prefixed flags to be highlighted correctly in the code."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/powershell.js"
+        ],
+        "explanation": "The issue is specific to the way PowerShell command line flags are highlighted. In the repository structure, the file `src/languages/powershell.js` is responsible for handling the syntax highlighting rules for PowerShell scripts. This is where the pattern matching logic for command line flags (both single and double hyphenated flags) would be defined. Adjustments need to be made in this file to correct the syntax highlighting rules and handle the double hyphen use case properly, aligning it with the correct usage in PowerShell, which might include updating regex patterns or adding new rulesets.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for double flag commands (e.g., `--flag`) in PowerShell scripts. As per the report, the syntax highlighter incorrectly highlights double dashed flags as errors, even though they should be highlighted correctly, similarly to single dashed flags (`-flag`). The issue seems to be specific to PowerShell syntax highlighting."
+    }
+}

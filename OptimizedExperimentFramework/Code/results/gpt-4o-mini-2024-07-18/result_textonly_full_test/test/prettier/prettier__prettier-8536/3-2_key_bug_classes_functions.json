@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/main/parser.js//parse",
+            "src/main/options.js//normalize",
+            "src/language-js/printer-estree.js//printPathNoParens"
+        ],
+        "bug_functions": [],
+        "explanation": "The identified classes and functions are related to the bug because they handle the parsing and formatting logic of the code. The 'parse' function in 'parser.js' is responsible for processing the input code, while the 'normalize' function in 'options.js' manages the options that affect how the code is formatted. The 'printPathNoParens' function in 'printer-estree.js' is likely involved in determining how to print nodes without parentheses, which could be relevant to the handling of newlines and comments in the output. These elements are crucial for addressing the issue of trailing newlines in the formatted output.",
+        "bug_scenario": "The bug occurs when a file contains only a directive followed by a comment, resulting in Prettier formatting the file with two trailing newlines instead of one. This issue is reproducible using the Babylon parser, as shown in the provided images and code snippets."
+    }
+}

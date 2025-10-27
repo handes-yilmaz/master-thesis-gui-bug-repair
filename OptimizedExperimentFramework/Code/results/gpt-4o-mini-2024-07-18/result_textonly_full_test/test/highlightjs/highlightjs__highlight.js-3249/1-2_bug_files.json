@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/latex.js",
+            "src/lib/regex.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "The file 'latex.js' is directly responsible for defining the syntax highlighting rules for LaTeX, including MAGIC_COMMENT rules. Any adjustments needed to make these rules case insensitive would be made here. The 'regex.js' file likely contains the regular expressions that are used for matching syntax patterns, which would need to be updated to ensure both cases of magic comments are recognized. The 'modes.js' file could also play a role in how different modes of highlighting are applied and could contain logic that needs to be adjusted to handle case insensitivity.",
+        "bug_scenario": "The bug scenario involves case sensitivity issues with TeX magic comments in LaTeX files, where both '% !TeX program = lualatex' and '% !TEX encoding = UTF-8' should be highlighted as MAGIC_COMMENT, but currently, only the first line is getting highlighted due to the existing implementation. This leads to inconsistent syntax highlighting in editors that utilize the highlight.js library."
+    }
+}

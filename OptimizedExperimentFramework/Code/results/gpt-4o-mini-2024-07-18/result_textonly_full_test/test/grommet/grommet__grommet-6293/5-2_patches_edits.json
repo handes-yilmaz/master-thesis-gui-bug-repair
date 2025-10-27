@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "src/components/Meter/Meter.js": [
+            {
+                "SEARCH": [
+                    "const Meter = ({ type, values, ...rest }) => {",
+                    "// Previous rendering logic",
+                    "const lastValue = values[values.length - 1]; // This might be the issue",
+                    "return (",
+                    "<div>",
+                    "{/* Render only the last value */}",
+                    "<Circle value={lastValue.value} color={lastValue.color} />",
+                    "</div>",
+                    ");"
+                ],
+                "REPLACE": [
+                    "const Meter = ({ type, values, ...rest }) => {",
+                    "    // Updated rendering logic to render all values",
+                    "    return (",
+                    "        <div>",
+                    "            {values.map((value, index) => (",
+                    "                <Circle key={index} value={value.value} color={value.color} />",
+                    "            ))}",
+                    "        </div>",
+                    "    );"
+                ]
+            }
+        ]
+    }
+}

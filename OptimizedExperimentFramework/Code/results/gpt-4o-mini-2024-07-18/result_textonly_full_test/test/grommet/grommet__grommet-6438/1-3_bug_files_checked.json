@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/DateInput/DateInput.js",
+            "src/js/components/DateInput/utils.js",
+            "src/js/components/DateInput/__tests__/DateInput-test.tsx"
+        ],
+        "explanation": "The DateInput.js file is responsible for the main logic and rendering of the DateInput component, which includes handling date selections and enforcing the bounds defined in calendarProps. The utils.js file likely contains utility functions related to date manipulation, which may be used to check or validate the selected dates. The DateInput-test.tsx file is crucial for testing the functionality of the DateInput component, and any tests related to selecting dates and enforcing bounds should be reviewed and potentially modified to ensure they cover the bug scenario.",
+        "bug_scenario": "The bug allows users to select dates outside the bounds defined in the DateInput component's calendarProps, leading to unexpected behavior when dates are selected. The expected behavior is that any date selection should be limited to the bounds set for the DateInput, specifically between '2020-07-01' and '2020-07-31'. The provided image shows a date selection scenario where this bug is evident."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/DateInput/DateInput.js",
+            "src/js/components/DateInput/utils.js",
+            "src/js/components/DateInput/__tests__/DateInput-test.tsx",
+            "src/js/components/DateInput/stories/Simple.js"
+        ],
+        "explanation": "The DateInput.js file is the main implementation file for the DateInput component, where the logic to enforce the date selection bounds is likely implemented. The utils.js file may contain helper functions that assist with date validation processes. The DateInput-test.tsx file contains unit tests that would validate the functionality of the DateInput component, ensuring it respects the bounds defined in the bug report. Lastly, the Simple.js story file provides example usages of the DateInput component, which can be useful for visual verification and testing the component's behavior in the context of the bug.",
+        "bug_scenario": "The bug allows users to select days from the previous month that fall outside the specified bounds in the DateInput component. For example, in the given scenario, the current bounds are set to allow selections only between '2020-07-01' and '2020-07-31', yet it is possible to select dates outside this range, indicating a flaw in the validation logic of the DateInput component."
+    }
+}

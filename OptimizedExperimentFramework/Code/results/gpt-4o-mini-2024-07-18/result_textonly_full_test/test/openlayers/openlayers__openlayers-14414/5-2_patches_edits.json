@@ -1,0 +1,37 @@
+{
+    "1/1": {
+        "src/ol/source/Raster.js": [
+            {
+                "SEARCH": [
+                    "this.changed(); // Trigger change event to update the raster source"
+                ],
+                "REPLACE": [
+                    "    this.changed(); // Ensure the raster source is updated when the operation changes",
+                    "    this.updateFrameState_(extent, resolution, projection); // Update frame state to reflect changes"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "this.changed(); // Trigger a re-render of the layer"
+                ],
+                "REPLACE": [
+                    "    this.updateStyleVariables(this.styleVariables_); // Update style variables to reflect changes",
+                    "    this.changed(); // Ensure the layer is re-rendered with the new style"
+                ]
+            }
+        ],
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "this.setState('ready'); // Set the state to ready after loading"
+                ],
+                "REPLACE": [
+                    "    this.setState('ready'); // Ensure the state is set to ready after processing",
+                    "    this.changed(); // Trigger a change event to update the layer"
+                ]
+            }
+        ]
+    }
+}

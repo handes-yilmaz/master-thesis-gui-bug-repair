@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js",
+            "lighthouse-core/gather/gatherers/css-usage.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.js",
+            "lighthouse-core/config/default-config.js"
+        ],
+        "explanation": "These files are related to the bug because they deal with the analysis of CSS usage and compression. The 'unused-css-rules.js' file specifically identifies unused CSS that can be removed to optimize page speed. The 'css-usage.js' gatherer collects metrics on CSS files that are loaded but not used. The 'response-compression.js' gatherer checks for proper compression of resources. Lastly, 'default-config.js' may need updates to ensure the GZIP compression settings are aligned with expected performance metrics.",
+        "bug_scenario": "The report suggests that the default GZIP compression ratio for CSS is not optimized, resulting in a discrepancy between the reported size and actual size of styles fetched by a third-party JavaScript tool. The tool fetches styles via gzipped JSON, but PageSpeed is inaccurately reporting an inflated size and potential savings based on unused CSS."
+    }
+}

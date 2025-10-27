@@ -1,0 +1,28 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/bash.js//VAR",
+            "src/languages/bash.js//BRACED_VAR",
+            "src/languages/bash.js//SUBST",
+            "src/languages/bash.js//QUOTE_STRING",
+            "src/languages/bash.js//ARITHMETIC",
+            "src/languages/bash.js//FUNCTION"
+        ],
+        "bug_functions": [
+            "src/languages/bash.js//export default function(hljs)"
+        ],
+        "explanation": "The bug is related to the syntax highlighting rules defined for the Bash language in the file 'src/languages/bash.js'. The classes and functions listed are responsible for defining how different components of the Bash language are identified and highlighted. 'VAR', 'BRACED_VAR', 'SUBST', 'QUOTE_STRING', 'ARITHMETIC', and 'FUNCTION' are all constructs that define regex patterns for identifying and highlighting variables, substitutions, strings, arithmetic operations, and functions in Bash scripts. The function 'export default function(hljs)' is the main function where these constructs are set up and thus is directly related to the bug. The lack of proper rules for pipe '|', redirections '>', '<', and heredoc syntax '<<', '<<<' suggests that these constructs are either missing or inadequately defined, causing the highlighting issue.",
+        "bug_scenario": "The issue reported is that the Bash language syntax highlighting does not properly highlight specific shell elements like pipes, redirections, and heredoc syntax. This is demonstrated in the provided images where these elements are not highlighted as expected."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/bash.js"
+        ],
+        "bug_functions": [
+            "src/languages/bash.js//function hljs",
+            "src/lib/modes.js//function SHEBANG"
+        ],
+        "explanation": "The bug is related to syntax highlighting in the Bash language. The file `src/languages/bash.js` defines the language configuration for Bash in terms of how it should be highlighted. The function `hljs` within this file is responsible for setting up the highlighting rules, which involves defining patterns for variables, strings, functions, and other syntax elements. The issue with heredoc and other elements not being highlighted suggests that the patterns or rules for these elements need to be reviewed and potentially modified in this function.\n\nAdditionally, `src/lib/modes.js` contains common regex patterns and modes used across different languages in the library, including `SHEBANG` which is relevant for shell scripts like Bash. If the heredoc or other elements are not being correctly recognized, it might be due to missing or incorrect patterns in this file, particularly in the `SHEBANG` function which helps identify shell scripts.",
+        "bug_scenario": "The bug scenario involves the Bash language not highlighting specific characters in a heredoc properly. The expected highlighted elements are pipes (|), continue command markers (\\), stream redirections (>, <), heredoc (<<, <<<), and subshell variables ($( ... )). The bug report mentions issues with highlighting these elements in the Bash and shell languages."
+    }
+}

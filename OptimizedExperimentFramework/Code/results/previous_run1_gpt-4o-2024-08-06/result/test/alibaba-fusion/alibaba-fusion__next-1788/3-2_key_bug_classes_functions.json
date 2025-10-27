@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "types/input/index.d.ts//TextAreaProps"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is in the TypeScript definition file for the Input component's TextArea. The `onBlur` property in `TextAreaProps` is defined with an incorrect type `() => void`, which is incompatible with the actual event handler type that includes an event parameter `(event: MouseEvent<Element, MouseEvent>) => void`. This discrepancy leads to the type incompatibility error shown in the bug report.",
+        "bug_scenario": "The issue is related to the type mismatch in the onBlur event handler for the Input.TextArea component. The expected type is `() => void` but the actual type received is `(event: MouseEvent<Element, MouseEvent>) => void`, causing a type incompatibility error."
+    },
+    "2": {
+        "bug_classes": [
+            "types/input/index.d.ts//TextAreaProps"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue lies in the 'TextAreaProps' interface within 'types/input/index.d.ts'. The onBlur property is defined with an incorrect type signature. The current definition expects a function with no arguments returning void, whereas the implementation provides an event handler that takes a MouseEvent. Correcting this interface to accept an appropriate event handler type will resolve the type incompatibility error.",
+        "bug_scenario": "The bug scenario involves a type mismatch issue in TypeScript for the onBlur event in the Input.TextArea component. The onBlur property is expected to be of type '() => void', but an event handler of type '(event: MouseEvent<Element, MouseEvent>) => void' is being passed, causing a type incompatibility error."
+    }
+}

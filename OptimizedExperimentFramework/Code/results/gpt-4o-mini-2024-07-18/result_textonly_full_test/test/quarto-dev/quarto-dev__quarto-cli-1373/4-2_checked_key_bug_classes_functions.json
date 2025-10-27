@@ -1,0 +1,89 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "keepSourceBlock",
+            "file_path": "src/command/render/codetools.ts",
+            "function_details": [
+                {
+                    "name": "keepSourceBlock",
+                    "start_line": 69,
+                    "end_line": 90
+                }
+            ],
+            "function_code": [
+                "export function keepSourceBlock(format: Format, source: string) {",
+                "  if (format.render[kKeepSource]) {",
+                "    // read code",
+                "    let code = Deno.readTextFileSync(source).trimLeft();",
+                "    if (!code.endsWith(\"\\n\")) {",
+                "      code = code + \"\\n\";",
+                "    }",
+                "",
+                "    // make sure that quarto code blocks get correct highlighting",
+                "    code = code.replaceAll(",
+                "      /\\n```{(\\w+)}\\s*\\n/g,",
+                "      \"\\n\" + kKeepSourceSentinel + \"\\n\\n```$1\\n\",",
+                "    );",
+                "",
+                "    const kKeepSourceBackticks = \"```````````````````\";",
+                "    return `${kMarkdownBlockSeparator}::: {.${kEmbeddedSourceClass}}\\n${kKeepSourceBackticks}` +",
+                "      `{.markdown shortcodes=\"false\"}\\n${code}` +",
+                "      `${kKeepSourceBackticks}\\n:::\\n`;",
+                "  } else {",
+                "    return \"\";",
+                "  }",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "resolveCodeTools",
+            "file_path": "src/command/render/codetools.ts",
+            "function_details": [
+                {
+                    "name": "resolveCodeTools",
+                    "start_line": 298,
+                    "end_line": 333
+                }
+            ],
+            "function_code": [
+                "function resolveCodeTools(format: Format, doc: Document): CodeTools {",
+                "  // determine user prefs",
+                "  const kCodeCaption = format.language[kCodeToolsMenuCaption]!;",
+                "  const codeTools = format?.render[kCodeTools];",
+                "  const codeToolsResolved = {",
+                "    source: typeof (codeTools) === \"boolean\"",
+                "      ? codeTools",
+                "      : codeTools?.source !== undefined",
+                "      ? codeTools?.source",
+                "      : true,",
+                "    toggle: typeof (codeTools) === \"boolean\"",
+                "      ? codeTools",
+                "      : codeTools?.toggle !== undefined",
+                "      ? !!codeTools?.toggle",
+                "      : true,",
+                "    caption: typeof (codeTools) === \"boolean\"",
+                "      ? kCodeCaption",
+                "      : codeTools?.caption || kCodeCaption,",
+                "  };",
+                "",
+                "  // if we have request source, make sure we are able to keep source",
+                "  if (codeToolsResolved.source) {",
+                "    codeToolsResolved.source = !!format.render[kKeepSource];",
+                "  }",
+                "",
+                "  // if we have requested toggle, make sure there are things to toggle",
+                "  if (codeToolsResolved.toggle) {",
+                "    const codeDetails = doc.querySelector(\".cell > details > .sourceCode\");",
+                "    const codeHidden = doc.querySelector(\".cell .sourceCode.hidden\");",
+                "    codeToolsResolved.toggle = codeToolsResolved.toggle &&",
+                "      (!!codeDetails || !!codeHidden);",
+                "  }",
+                "",
+                "  // return resolved",
+                "  return codeToolsResolved;",
+                "}"
+            ]
+        }
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "1/1": {
+        "src/format/html/format-html.ts": [
+            {
+                "SEARCH": [
+                    "// apply defaults",
+                    "if (featureDefaults.tabby) {",
+                    "options.tabby = format.metadata[kTabsets] !== false;",
+                    "} else {",
+                    "options.tabby = format.metadata[kTabsets] || false;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  // apply defaults",
+                    "  if (featureDefaults.tabby) {",
+                    "    options.tabby = format.metadata[kTabsets] !== false;",
+                    "  } else {",
+                    "    options.tabby = format.metadata[kTabsets] || false;",
+                    "  }",
+                    "  options.tableSpanner = true; // Ensure table spanner support is enabled"
+                ]
+            }
+        ],
+        "src/command/render/layout.ts": [
+            {
+                "SEARCH": [
+                    "// look for cell-output-display (these will have overflow-x set on them which we",
+                    "// will want to disable in some conditions)",
+                    "const outputs = doc.querySelectorAll(\".cell-output-display\");"
+                ],
+                "REPLACE": [
+                    "  // look for cell-output-display (these will have overflow-x set on them which we",
+                    "  // will want to disable in some conditions)",
+                    "  const outputs = doc.querySelectorAll(\".cell-output-display\");",
+                    "  const spanners = doc.querySelectorAll(\".gt_table_spanner\"); // Select spanner elements"
+                ]
+            }
+        ],
+        "src/command/render/render.ts": [
+            {
+                "SEARCH": [
+                    "// Inject dependencies",
+                    "format.pandoc = mergePandocIncludes(",
+                    "format.pandoc,",
+                    "pandocIncludes,",
+                    ");"
+                ],
+                "REPLACE": [
+                    "  // Inject dependencies",
+                    "  format.pandoc = mergePandocIncludes(",
+                    "    format.pandoc,",
+                    "    pandocIncludes,",
+                    "  );",
+                    "  format.pandoc.push({ // Ensure spanner styles are included",
+                    "    style: \"spanner.css\",",
+                    "  });"
+                ]
+            }
+        ]
+    }
+}

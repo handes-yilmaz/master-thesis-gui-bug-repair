@@ -1,0 +1,23 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/unminified-javascript.js": [
+            {
+                "SEARCH": [
+                    "const tokens = (esprima.tokenize(scriptContent, {tolerant: true}));"
+                ],
+                "REPLACE": [
+                    "    const tokens = esprima.tokenize(scriptContent, {tolerant: true});",
+                    "    // Check for excessive whitespace or carriage returns",
+                    "    if (scriptContent.match(/[\\r\\n\\s]{2,}/)) {",
+                    "        return {",
+                    "            url: networkRecord.url,",
+                    "            totalBytes: 0,",
+                    "            wastedBytes: 0,",
+                    "            wastedPercent: 0,",
+                    "        };",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

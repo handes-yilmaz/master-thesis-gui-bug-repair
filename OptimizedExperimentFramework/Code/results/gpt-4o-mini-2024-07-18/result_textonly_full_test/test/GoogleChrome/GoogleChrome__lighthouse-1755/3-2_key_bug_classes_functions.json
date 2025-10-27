@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/aggregator/aggregate.js//Aggregate"
+        ],
+        "bug_functions": [
+            "lighthouse-core/aggregator/aggregate.js//compare",
+            "lighthouse-core/aggregator/aggregate.js//aggregate"
+        ],
+        "explanation": "The 'Aggregate' class is central to the aggregation logic, which is responsible for calculating the overall scores based on individual audit results. The 'compare' function specifically compares the audit results to the expected values and determines the overall score, which is where the bug likely resides. The 'aggregate' function orchestrates the aggregation process, and if it does not correctly account for failed audits, it could lead to the issue of marking aggregations as passing incorrectly. Therefore, these classes and functions are directly related to the bug.",
+        "bug_scenario": "The bug scenario indicates that aggregations are incorrectly marked as passing even when one of the audits within them fails. This suggests a flaw in the logic that determines the overall pass/fail status of the aggregations based on individual audit results."
+    }
+}

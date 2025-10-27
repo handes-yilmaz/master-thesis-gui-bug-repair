@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "core/lib/tracehouse/trace-processor.js": [
+            {
+                "SEARCH": [
+                    "const mainFramePids = frameCommittedEvts.length",
+                    "? frameCommittedEvts.map(e => e?.args?.data?.processId)",
+                    "// \u2026But old traces and some timespan traces may not. In these situations, we\\'ll assume the",
+                    "// primary process ID remains constant (as there were no navigations).",
+                    ": [mainFrameInfo.startingPid];"
+                ],
+                "REPLACE": [
+                    "    const mainFramePids = frameCommittedEvts.length",
+                    "      ? frameCommittedEvts.map(e => e?.args?.data?.processId || e?.args?.data?.processPseudoId)",
+                    "      // \u2026But old traces and some timespan traces may not. In these situations, we\\'ll assume the",
+                    "      // primary process ID remains constant (as there were no navigations).",
+                    "      : [mainFrameInfo.startingPid];"
+                ]
+            }
+        ]
+    }
+}

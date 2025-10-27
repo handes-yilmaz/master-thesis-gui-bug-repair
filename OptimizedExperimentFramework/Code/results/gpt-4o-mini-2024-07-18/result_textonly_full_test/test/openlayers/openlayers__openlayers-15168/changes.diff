@@ -1,0 +1,39 @@
+diff --git a/src/ol/reproj/DataTile.js b/src/ol/reproj/DataTile.js
+index 3d427e1..53caf90 100644
+--- a/src/ol/reproj/DataTile.js
++++ b/src/ol/reproj/DataTile.js
+@@ -321,7 +321,7 @@ class ReprojDataTile extends DataTile {
+     } else {
+       const z = this.wrappedTileCoord_[0];
+       const size = this.targetTileGrid_.getTileSize(z);
+-      const targetWidth = typeof size === 'number' ? size : size[0];
++      const targetWidth = typeof size === 'number' ? size * (this.sourceTileGrid_.getTileSize(this.sourceZ_)[0] / this.sourceTileGrid_.getTileSize(this.sourceZ_)[1]) : size[0] * (this.sourceTileGrid_.getTileSize(this.sourceZ_)[0] / this.sourceTileGrid_.getTileSize(this.sourceZ_)[1]);
+       const targetHeight = typeof size === 'number' ? size : size[1];
+       const targetResolution = this.targetTileGrid_.getResolution(z);
+       const sourceResolution = this.sourceTileGrid_.getResolution(
+diff --git a/src/ol/reproj/Image.js b/src/ol/reproj/Image.js
+index 58e9690..383f338 100644
+--- a/src/ol/reproj/Image.js
++++ b/src/ol/reproj/Image.js
+@@ -186,7 +186,7 @@ class ReprojImage extends ImageWrapper {
+   reproject_() {
+     const sourceState = this.sourceImage_.getState();
+     if (sourceState == ImageState.LOADED) {
+-      const width = getWidth(this.targetExtent_) / this.targetResolution_;
++      const width = getWidth(this.targetExtent_) / this.targetResolution_ * (this.sourceImage_.getWidth() / this.sourceImage_.getHeight());
+       const height = getHeight(this.targetExtent_) / this.targetResolution_;
+       this.canvas_ = renderReprojected(
+         width,
+diff --git a/src/ol/reproj/Tile.js b/src/ol/reproj/Tile.js
+index 32f0d35..1f07116 100644
+--- a/src/ol/reproj/Tile.js
++++ b/src/ol/reproj/Tile.js
+@@ -256,7 +256,7 @@ class ReprojTile extends Tile {
+     } else {
+       const z = this.wrappedTileCoord_[0];
+       const size = this.targetTileGrid_.getTileSize(z);
+-      const width = typeof size === 'number' ? size : size[0];
++      const width = typeof size === 'number' ? size * (this.sourceTileGrid_.getTileSize(this.sourceZ_)[0] / this.sourceTileGrid_.getTileSize(this.sourceZ_)[1]) : size[0] * (this.sourceTileGrid_.getTileSize(this.sourceZ_)[0] / this.sourceTileGrid_.getTileSize(this.sourceZ_)[1]);
+       const height = typeof size === 'number' ? size : size[1];
+       const targetResolution = this.targetTileGrid_.getResolution(z);
+       const sourceResolution = this.sourceTileGrid_.getResolution(

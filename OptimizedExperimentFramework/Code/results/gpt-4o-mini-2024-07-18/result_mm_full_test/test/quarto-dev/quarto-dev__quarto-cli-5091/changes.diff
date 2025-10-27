@@ -1,0 +1,43 @@
+diff --git a/src/command/render/output-tex.ts b/src/command/render/output-tex.ts
+index d60bee7..cd41fa5 100644
+--- a/src/command/render/output-tex.ts
++++ b/src/command/render/output-tex.ts
+@@ -150,6 +150,17 @@ export function useContextPdfOutputRecipe(
+   } else {
+     return false;
+   }
++
++  // Ensure image URLs are processed correctly
++  if (format.render.images) {
++    format.render.images.forEach(image => {
++      if (!isValidUrl(image)) {
++        console.error(`Image URL is invalid: ${image}`);
++      }
++    });
++  } else {
++    return false;
++  }
+ }
+ 
+ // based on: https://github.com/rstudio/rmarkdown/blob/main/R/context_document.R
+diff --git a/src/config/pdf.ts b/src/config/pdf.ts
+index a89d8a7..27f13b6 100644
+--- a/src/config/pdf.ts
++++ b/src/config/pdf.ts
+@@ -38,6 +38,16 @@ export function pdfEngine(
+   const pdfEngine =
+     (flags?.pdfEngine || defaults[kPdfEngine] as string || "pdflatex");
+ 
++  // Add URL validation for images
++  if (render.images) {
++    render.images = render.images.map(image => {
++      if (!isValidUrl(image)) {
++        console.warn(`Invalid image URL: ${image}`);
++        return null; // or handle accordingly
++      }
++      return image;
++    }).filter(Boolean);
++
+   // collect all engine opts
+   const pdfEngineOpts = defaults[kPdfEngineOpts] || [];
+   if (defaults[kPdfEngineOpt]) {

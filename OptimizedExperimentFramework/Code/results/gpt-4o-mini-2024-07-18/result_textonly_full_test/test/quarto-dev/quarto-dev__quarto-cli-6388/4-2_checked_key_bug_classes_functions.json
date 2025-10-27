@@ -1,0 +1,57 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "cleanupPandocMetadata",
+            "file_path": "src/command/render/pandoc.ts",
+            "function_details": [
+                {
+                    "name": "cleanupPandocMetadata",
+                    "start_line": 1154,
+                    "end_line": 1169
+                }
+            ],
+            "function_code": [
+                "function cleanupPandocMetadata(metadata: Metadata) {",
+                "  const cleaned = ld.cloneDeep(metadata);",
+                "",
+                "  // pdf classoption can end up with duplicaed options",
+                "  const classoption = cleaned[kClassOption];",
+                "  if (Array.isArray(classoption)) {",
+                "    cleaned[kClassOption] = ld.uniqBy(",
+                "      classoption.reverse(),",
+                "      (option: string) => {",
+                "        return option.replace(/=.+$/, \"\");",
+                "      },",
+                "    ).reverse();",
+                "  }",
+                "",
+                "  return cleaned;",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "shortcodeUnescapePostprocessor",
+            "file_path": "src/format/markdown/format-markdown.ts",
+            "function_details": [
+                {
+                    "name": "shortcodeUnescapePostprocessor",
+                    "start_line": 21,
+                    "end_line": 30
+                }
+            ],
+            "function_code": [
+                "export function shortcodeUnescapePostprocessor(output: string): Promise<void> {",
+                "  // unescape shortcodes",
+                "  Deno.writeTextFileSync(",
+                "    output,",
+                "    Deno.readTextFileSync(output)",
+                "      .replaceAll(\"{{\\\\<\", \"{{<\")",
+                "      .replaceAll(\"\\\\>}}\", \">}}\"),",
+                "  );",
+                "  return Promise.resolve();",
+                "}"
+            ]
+        }
+    }
+}

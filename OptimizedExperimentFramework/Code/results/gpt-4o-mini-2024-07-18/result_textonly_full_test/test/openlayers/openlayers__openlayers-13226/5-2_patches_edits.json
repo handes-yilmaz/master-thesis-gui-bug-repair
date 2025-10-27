@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const parsedStyle = parseStyle(this.style_, this.getSourceBandCount_());"
+                ],
+                "REPLACE": [
+                    "    const source = this.getSource();",
+                    "    const tileGrid = source.getTileGrid();",
+                    "    if (!tileGrid && !source.getWrapX()) {",
+                    "      console.warn('WebGLTileLayer requires a tile grid when wrapX is false.');",
+                    "      return null; // or handle the case appropriately",
+                    "    }",
+                    "    const parsedStyle = parseStyle(this.style_, this.getSourceBandCount_());"
+                ]
+            }
+        ]
+    }
+}

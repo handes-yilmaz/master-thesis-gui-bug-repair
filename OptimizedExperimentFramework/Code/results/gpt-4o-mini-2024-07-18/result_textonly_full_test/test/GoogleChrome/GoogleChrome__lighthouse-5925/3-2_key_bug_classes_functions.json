@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.UnminifiedJavaScript"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.UnminifiedJavaScript.computeWaste",
+            "lighthouse-core/audits/byte-efficiency/unminified-javascript.UnminifiedJavaScript.audit_"
+        ],
+        "explanation": "The class 'UnminifiedJavaScript' is directly related to the bug as it is responsible for auditing JavaScript files to determine if they are minified. The function 'computeWaste' calculates the amount of wasted bytes due to unminified content, which is crucial for identifying the issue with the copyright notice in the JavaScript file. The function 'audit_' orchestrates the auditing process, collecting data on scripts and determining if they meet the criteria for being considered minified. These elements are essential for addressing the bug as they handle the logic that leads to the incorrect reporting of the JavaScript file's minification status.",
+        "bug_scenario": "The bug scenario involves Lighthouse reporting that a specific JavaScript file (amp-date-picker-0.1.js) is not minified due to the presence of a hard-coded copyright notice that includes carriage returns and whitespace. This results in Lighthouse overestimating the savings from minification, as it fails to recognize the minifiable content properly."
+    }
+}

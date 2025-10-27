@@ -1,0 +1,14 @@
+diff --git a/src/ol/featureloader.js b/src/ol/featureloader.js
+index 6c146b1..45cba48 100644
+--- a/src/ol/featureloader.js
++++ b/src/ol/featureloader.js
+@@ -160,6 +160,9 @@ export function xhr(url, format) {
+           success(features);
+         }
+         source.addFeatures(features);
++        if (success !== undefined) {
++          success(features);
++        }
+       },
+       /* FIXME handle error */ failure ? failure : VOID
+     );

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js",
+            "lib/features/modeling/BpmnFactory.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because they handle the updating and management of BPMN elements and their properties. The 'BpmnUpdater.js' file is responsible for updating the BPMN model when changes occur, which is directly related to the issue of properties being lost during the transition between multi-instance types. The 'UpdatePropertiesHandler.js' file manages the updating of properties on BPMN elements, which is essential for ensuring that properties are retained when changing instance types. Lastly, 'BpmnFactory.js' is involved in creating and ensuring the integrity of BPMN elements, which may also play a role in how properties are assigned and maintained.",
+        "bug_scenario": "The bug scenario involves a user creating a sub-process with parallel multi-instance properties, then changing it to a sequential multi-instance. Upon this change, the multi-instance properties are lost, which is not the expected behavior. The user expects that the properties should remain intact regardless of the change in instance type."
+    }
+}

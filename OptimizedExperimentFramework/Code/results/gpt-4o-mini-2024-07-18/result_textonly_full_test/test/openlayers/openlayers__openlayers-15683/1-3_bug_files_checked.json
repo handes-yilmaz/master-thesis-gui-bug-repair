@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/VectorContext.js",
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/renderer/canvas/VectorImageLayer.js"
+        ],
+        "explanation": "These files are related to the rendering of vector layers and canvas in OpenLayers. Specifically, 'VectorContext.js' and 'VectorLayer.js' handle the drawing and context setup for vector layers on the canvas. The cropping issue during rotation likely stems from how these files manage the canvas size and coordinates during rendering. Adjustments in these files would be necessary to ensure that the entire polygon remains visible when the map is rotated.",
+        "bug_scenario": "The vector layer canvas is cropping when the map is rotated, which should not occur. This issue appears to have been introduced in version 9.1.0, as indicated in the bug report. The expected behavior is that the polygon should remain fully visible even after rotation."
+    }
+}

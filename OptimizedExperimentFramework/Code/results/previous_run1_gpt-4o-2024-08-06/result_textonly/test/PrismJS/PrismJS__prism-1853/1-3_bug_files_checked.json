@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-json.js",
+            "components/prism-json.min.js",
+            "components/prism-core.js",
+            "components/prism-core.min.js",
+            "prism.js"
+        ],
+        "explanation": "The files 'components/prism-json.js' and 'components/prism-json.min.js' are directly related to JSON parsing and syntax highlighting. Since the issue reported concerns JSON tokenization, these files are likely involved in defining how JSON is parsed and highlighted. 'prism-core.js' and its minified version are potential candidates because core functionality usually handles language definition and initial parsing processes that could be impacted by headers or unexpected characters. 'prism.js' serves as the main file for Prism, potentially involved in the application of all highlighting functions and integration, thus any overarching parsing logic or header handling would be included here. The error with the tokenization when encountering certain headers or characters probably requires adjustments in how these components interpret or ignore such cases.",
+        "bug_scenario": "The bug scenario involves JSON tokenization being incorrectly processed due to the presence of the HTTP header 'Accept: */*'. In the provided image, showing the tokenization issue, comments suggest that the asterisk (*) character is leading to broken JSON tokenization, affecting the syntax highlighting of JSON content in the server's response."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-json.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The bug is related to the JSON tokenization process, which is managed by the Prism library. Given the problem occurs when interpreting JSON, the relevant file is likely 'prism-json.js', which contains the logic specific to JSON syntax highlighting in Prism. Additionally, 'prism-core.js' may also be involved as it typically contains the core functionality for tokenization and supports extending languages like JSON. These files need to be examined to identify and fix the tokenization issue whereby '/*' is incorrectly handled within JSON strings.",
+        "bug_scenario": "The bug report describes an issue with JSON tokenization while logging a server response in JSON format using Prism library. Specifically, the issue arises when the HTTP header 'Accept: */*' is present, causing tokenization to break, likely due to the string '/*' being misinterpreted as the start of a multi-line comment."
+    }
+}

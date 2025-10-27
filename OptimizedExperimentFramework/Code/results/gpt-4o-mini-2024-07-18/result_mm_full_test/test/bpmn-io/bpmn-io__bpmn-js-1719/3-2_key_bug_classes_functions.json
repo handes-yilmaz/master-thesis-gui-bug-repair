@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior",
+            "lib/features/modeling/behavior/LabelBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior//getStartEventPosition",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior//_moveChildrenToShape",
+            "lib/features/modeling/behavior/LabelBehavior//postExecute"
+        ],
+        "explanation": "The identified classes and functions are related to the behavior of subprocesses and labels in the BPMN model. The 'SubProcessStartEventBehavior' class manages the creation of start events within subprocesses, which is crucial for ensuring that labels are positioned correctly. The 'SubProcessPlaneBehavior' class handles the visual representation of subprocesses, including how child elements are managed when a subprocess is collapsed. The 'LabelBehavior' class is responsible for managing the visibility and positioning of labels, which directly relates to the bug where labels are not hidden as expected when the subprocess is collapsed. Fixing these classes/functions will address the issue of label visibility in collapsed subprocesses.",
+        "bug_scenario": "The issue occurs when a subprocess is collapsed after adding labels to its start, task, and end events. The labels are not hidden as expected, and the start event label moves outside the subprocess boundary."
+    }
+}

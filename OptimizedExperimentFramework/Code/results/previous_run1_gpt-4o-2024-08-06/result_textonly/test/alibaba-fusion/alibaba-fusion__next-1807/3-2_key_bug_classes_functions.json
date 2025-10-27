@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/menu/view/item.jsx//Item"
+        ],
+        "bug_functions": [
+            "src/menu/view/item.jsx//Item.getTitle"
+        ],
+        "explanation": "The key bug class is `Item` in `src/menu/view/item.jsx`, which is responsible for rendering the menu items. The `getTitle` function within this class specifically constructs the 'title' attribute for these items. The bug report indicates issues with the title attribute being automatically added, causing accessibility concerns and UI issues. Therefore, modifications to this class and function are necessary to address the problem, such as potentially adopting an aria-label approach or providing configuration options to control the addition of the title attribute.",
+        "bug_scenario": "The bug scenario involves the automatic addition of a 'title' attribute to Menu Items, which is causing accessibility issues and unwanted UI elements for some users. The title is added for screen reader accessibility and to display long, collapsed text when hovered over. However, it duplicates innerText, violating WCAG guidelines when the title matches the text, and some users dislike the tooltip's appearance."
+    },
+    "2": {
+        "bug_classes": [
+            "src/menu/view/item.jsx//Item",
+            "src/config-provider/config.jsx"
+        ],
+        "bug_functions": [
+            "src/menu/view/item.jsx//Item.getTitle",
+            "src/menu/view/item.jsx//Item.render"
+        ],
+        "explanation": "The class 'Item' in 'src/menu/view/item.jsx' is responsible for rendering menu items and currently automatically sets the title attribute using the 'getTitle' function. This is directly related to the bug scenario as the issue revolves around how and when titles are applied to menu items. The 'render' function is also relevant as it constructs the JSX for the menu item, including the title attribute, thus it is part of the bug. Additionally, 'src/config-provider/config.jsx' is involved because one of the proposed solutions involves modifying configuration through a provider, potentially affecting how titles are managed across components.",
+        "bug_scenario": "The bug scenario involves the issue of whether titles should be automatically added to Menu Items in a user interface component. Currently, titles are added, and when users hover over a Menu Item for 3 seconds, they can see all collapsed text, and screen readers can read them as well. However, this violates WCAG guidelines when the title and innerText are identical, leading to a desire to remove the title. Several solutions are proposed, including changing the title to an aria-label or providing a configuration API to control title visibility."
+    }
+}

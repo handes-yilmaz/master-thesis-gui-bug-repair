@@ -1,0 +1,13 @@
+diff --git a/src/ol/render/canvas/hitdetect.js b/src/ol/render/canvas/hitdetect.js
+index eeddd24..1b73fda 100644
+--- a/src/ol/render/canvas/hitdetect.js
++++ b/src/ol/render/canvas/hitdetect.js
+@@ -104,7 +104,7 @@ export function createHitDetectionImageData(
+             offset: image.getOrigin(),
+             size: image.getSize(),
+             opacity: image.getOpacity(),
+-            scale: image.getScale(),
++            scale: Math.abs(image.getScale()), // Ensure scale is non-negative
+             rotation: image.getRotation(),
+             rotateWithView: image.getRotateWithView(),
+           })

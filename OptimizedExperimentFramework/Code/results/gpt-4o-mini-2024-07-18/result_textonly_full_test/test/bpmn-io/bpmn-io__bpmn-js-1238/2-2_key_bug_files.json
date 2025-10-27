@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/Modeling.js",
+            "lib/features/modeling/behavior/RemoveElementBehavior.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: 1) `UpdateSemanticParentHandler.js` contains the logic for updating the semantic parent of elements, which is essential for ensuring that associations are correctly re-parented when their source or target is moved. 2) `Modeling.js` manages the overall modeling operations, including how elements are connected and updated, making it crucial for implementing the necessary changes to handle parent updates. 3) `RemoveElementBehavior.js` deals with the behavior when elements are removed, and it is important to ensure that associations are not inadvertently deleted when their parent is removed.",
+        "bug_scenario": "The bug scenario involves moving a source or target element of an association to a new parent, which does not update the association's parent. This leads to issues where the association remains linked to the old parent (subprocess), causing it to be deleted when the subprocess is removed, resulting in loss of the association."
+    }
+}

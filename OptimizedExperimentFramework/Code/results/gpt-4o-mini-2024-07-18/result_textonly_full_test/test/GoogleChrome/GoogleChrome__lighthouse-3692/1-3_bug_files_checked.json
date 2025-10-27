@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/report-generator.js",
+            "lighthouse-core/report/v2/renderer/report-renderer.js",
+            "lighthouse-cli/index.js",
+            "lighthouse-core/audits/first-meaningful-paint.js"
+        ],
+        "explanation": "These files are related to the bug because: \n1. `report-generator.js` is responsible for generating the report and may need to include the warning message about the performance metrics at the top. \n2. `report-renderer.js` handles the rendering of the report and will need to be updated to ensure the warning is displayed correctly and prominently. \n3. `index.js` in the lighthouse-cli may need to be modified to trigger the warning during the execution of the module. \n4. `first-meaningful-paint.js` is an audit that may be impacted by the headless Chrome rendering, and ensuring performance metrics are correctly warned about in this context is crucial.",
+        "bug_scenario": "The bug pertains to a warning that should be displayed to users regarding performance metrics when reports are generated using headless Chrome. The intention is to ensure that users are aware of the potential inaccuracies in performance numbers due to the headless mode of Chrome. The bug report suggests enhancing visibility by placing the warning at the top of the report and mentions that the reportJSON needs to be processed through several functions in the report-renderer."
+    }
+}

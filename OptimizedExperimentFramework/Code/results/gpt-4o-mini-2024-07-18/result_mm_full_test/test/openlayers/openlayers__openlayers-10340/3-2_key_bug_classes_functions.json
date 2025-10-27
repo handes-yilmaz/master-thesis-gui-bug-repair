@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/interaction/Draw.js//Draw",
+            "src/ol/geom/Circle.js//Circle",
+            "src/ol/geom/Polygon.js//Polygon"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Draw.js//createRegularPolygon",
+            "src/ol/interaction/Draw.js//createBox",
+            "src/ol/geom/Polygon.js//makeRegular"
+        ],
+        "explanation": "The 'Draw' class is responsible for handling the drawing interactions, including the creation of geometries like circles and polygons. The 'Circle' and 'Polygon' classes define the geometric properties and behaviors of these shapes. The functions 'createRegularPolygon' and 'createBox' are directly related to the creation of regular shapes, which are affected by the geographic projection. The 'makeRegular' function in the 'Polygon' class is also relevant as it modifies the coordinates of a polygon to ensure it is regular, which is crucial for maintaining the expected shape in different projections.",
+        "bug_scenario": "The drawn circles and custom geometries do not appear as expected when using the geographic projection, particularly at higher latitudes. This results in irregular shapes and sizes for drawn features, such as circles and polygons, which should ideally maintain their intended geometry regardless of the projection used."
+    }
+}

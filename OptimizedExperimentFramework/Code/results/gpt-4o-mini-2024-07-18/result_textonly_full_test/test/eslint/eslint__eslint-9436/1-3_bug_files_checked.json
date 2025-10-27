@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/rules/no-constant-condition.js",
+            "lib/config/config-rule.js",
+            "lib/linter.js"
+        ],
+        "explanation": "The file 'no-constant-condition.js' is directly related to the bug as it contains the implementation of the 'no-constant-condition' rule, which is responsible for detecting constant conditions in the code. Modifications in this file will address the logic that determines how error ranges are reported. The 'config-rule.js' file may also need to be checked to ensure that the configuration options for the rule are set correctly. Lastly, 'linter.js' manages the overall linting process and may need adjustments to ensure that the error reporting correctly reflects the intended behavior of the 'no-constant-condition' rule.",
+        "bug_scenario": "The bug involves an ESLint rule 'no-constant-condition' that incorrectly reports error ranges that are too broad, including entire statements rather than just the constant conditions themselves. The user expected the error reporting to only highlight the specific constant conditions, such as 'true', but instead, the entire statement is highlighted in the output."
+    },
+    "2": {
+        "bug_files": [
+            "lib/rules/no-constant-condition.js",
+            "lib/linter.js",
+            "lib/report-translator.js"
+        ],
+        "explanation": "The file 'lib/rules/no-constant-condition.js' contains the implementation of the 'no-constant-condition' rule, which directly relates to the bug being reported. The issue likely lies in how this rule calculates and reports error ranges. The 'lib/linter.js' file is responsible for the linting process and may handle how rules are applied and reported, making it relevant as it may influence how errors are communicated. Lastly, 'lib/report-translator.js' deals with translating internal linting results into user-readable formats, which may also be involved in how errors are represented, hence it is included in the bug related files.",
+        "bug_scenario": "The bug is related to ESLint's 'no-constant-condition' rule, which is expected to report only the constant conditions in the code, but instead includes the entire statement or expression that contains the constant condition. For example, in the provided code snippet, the condition 'if (true) {...}' and the conditional expression 'something(true ? 1 : 0);' are incorrectly flagged with broader error ranges than intended."
+    }
+}

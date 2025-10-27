@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/interaction/Draw.js",
+            "src/ol/geom/Circle.js",
+            "src/ol/geom/Polygon.js",
+            "src/ol/proj/projections.js",
+            "src/ol/render/canvas/PolygonBuilder.js",
+            "src/ol/style/RegularShape.js"
+        ],
+        "explanation": "These files are related to the bug because they handle the drawing and rendering of geometrical shapes in the geographic context. The 'Draw.js' file includes logic for how shapes are drawn based on user interactions. The 'Circle.js' and 'Polygon.js' files define the geometrical representations of circles and polygons, respectively, which are directly impacted by the 'useGeographic' mode. The 'projections.js' file deals with projections that affect how these shapes are rendered on the map, especially at higher latitudes. 'PolygonBuilder.js' is involved in the rendering process for polygons, and 'RegularShape.js' manages the rendering of regular geometrical shapes, which is crucial for addressing the issues with 'createRegularPolygon' and 'createBox'.",
+        "bug_scenario": "The drawn circles and custom geometries do not appear as expected when 'useGeographic' is specified. This issue is highlighted particularly in higher latitude regions where shapes like circles and regular polygons (created with 'createRegularPolygon') do not maintain their intended dimensions and orientations. Additionally, the inability to draw regular shapes such as boxes using 'createBox' is noted when the view projection is not parallel to WGS84."
+    }
+}

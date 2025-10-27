@@ -1,0 +1,29 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "parse",
+            "file_path": "src/language-markdown/parser-markdown.js",
+            "function_details": [
+                {
+                    "name": "parse",
+                    "start_line": 22,
+                    "end_line": 32
+                }
+            ],
+            "function_code": [
+                "function parse(text /*, parsers, opts*/) {",
+                "  const processor = unified()",
+                "    .use(remarkParse, { footnotes: true, commonmark: true })",
+                "    .use(remarkFrontmatter, [\"yaml\", \"toml\"])",
+                "    .use(restoreUnescapedCharacter(text))",
+                "    .use(mergeContinuousTexts)",
+                "    .use(transformInlineCode)",
+                "    .use(splitText)",
+                "    .use(detectLanguageWithAttributes);",
+                "  return processor.runSync(processor.parse(text));",
+                "}"
+            ]
+        }
+    }
+}

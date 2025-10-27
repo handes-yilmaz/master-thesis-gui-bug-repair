@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Box/Box.js//Box",
+            "src/js/components/Box/StyledBox.js//StyledBoxGap"
+        ],
+        "bug_functions": [
+            "src/js/components/Box/Box.js//Box",
+            "src/js/components/Box/StyledBox.js//gapStyle"
+        ],
+        "explanation": "The `Box` component is directly involved in handling properties like `border` and `gap`. The error suggests a mismatch in handling these properties, likely in their parsing or application. The `StyledBoxGap` in `StyledBox.js` is responsible for applying the gap styling, which likely involves calculations that could fail if `gap` is not correctly parsed or handled, leading to an undefined property error. The `gapStyle` function specifically deals with how gaps are styled and positioned, which is critical when using `border=\"between\"`.",
+        "bug_scenario": "The Box component encounters a runtime error when using the properties `border=\"between\"` and `gap=\"10px\"`. The expected behavior is that it should apply half the gap value around the separator line, but instead, a TypeError occurs due to an undefined property being accessed."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/Box/Box.js//Box"
+        ],
+        "bug_functions": [],
+        "explanation": "The 'Box' class in 'Box.js' is responsible for handling properties like 'border' and 'gap'. The error suggests an issue where the 'gap' property, when set as a pixel value in combination with 'border=\"between\"', leads to a TypeError. The logic handling these properties likely fails to properly manage or validate pixel values for 'gap', causing an undefined match scenario.",
+        "bug_scenario": "The Box component throws a TypeError when using 'border=\"between\"' with a 'gap' size in pixels. The error message reads: 'TypeError: Cannot read properties of undefined (reading 'match')'. This occurs despite both properties being valid according to the documentation."
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "this.opacity_ = 1;"
+                ],
+                "REPLACE": [
+                    "    this.opacity_ = options.opacity !== undefined ? options.opacity : 1;"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (this.opacity_ !== 1) {",
+                    "const compositionContext = createCanvasContext2D(",
+                    "this.context.canvas.width,",
+                    "this.context.canvas.height,",
+                    "canvasPool,",
+                    ");",
+                    "this.compositionContext_ = compositionContext;",
+                    "} else {",
+                    "this.compositionContext_ = this.context;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    this.compositionContext_ = this.context;",
+                    "    this.context.globalAlpha = this.opacity_;"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.releaseCompositionContext_();"
+                ],
+                "REPLACE": [
+                    "    this.releaseCompositionContext_();",
+                    "    this.context.globalAlpha = this.opacity_;"
+                ]
+            }
+        ]
+    }
+}

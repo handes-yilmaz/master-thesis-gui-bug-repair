@@ -1,0 +1,31 @@
+diff --git a/src/date-picker2/panels/time-panel.jsx b/src/date-picker2/panels/time-panel.jsx
+index 68c8dd41f..baed90653 100644
+--- a/src/date-picker2/panels/time-panel.jsx
++++ b/src/date-picker2/panels/time-panel.jsx
+@@ -65,13 +65,15 @@ class TimePanel extends React.PureComponent {
+     };
+ 
+     render() {
+-        const { prefix, rtl, locale, timePanelProps = {}, value } = this.props;
++        const { prefix, rtl, locale, timePanelProps = {}, value, defaultValue } = this.props;
+         const { showHour, showMinute, showSecond } = this.getShow();
+ 
++        const displayValue = value || defaultValue;
++
+         return (
+             <div dir={rtl ? 'rtl' : undefined} className={`${prefix}date-time-picker-wrapper ${prefix}calendar2-panel`}>
+                 <div className={`${prefix}calendar2-header`}>
+-                    <div className={`${prefix}calendar2-header-text-field`}>{value ? this.formater(value) : null}</div>
++                    <div className={`${prefix}calendar2-header-text-field`}>{displayValue ? this.formater(displayValue) : null}</div>
+                 </div>
+                 <TimePickerPanel
+                     prefix={prefix}
+@@ -81,7 +83,7 @@ class TimePanel extends React.PureComponent {
+                     showSecond={showSecond}
+                     showMinute={showMinute}
+                     {...timePanelProps}
+-                    value={value}
++                    value={displayValue}
+                 />
+             </div>
+         );

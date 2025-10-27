@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "if (min === undefined) {",
+                    "min = getMinForDataType(sourceSamples[sourceIndex][0]);",
+                    "}",
+                    "if (max === undefined) {",
+                    "max = getMaxForDataType(sourceSamples[sourceIndex][0]);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "            if (min === undefined) {",
+                    "              min = source.min !== undefined ? source.min : getMinForDataType(sourceSamples[sourceIndex][0]);",
+                    "            }",
+                    "            if (max === undefined) {",
+                    "              max = source.max !== undefined ? source.max : getMaxForDataType(sourceSamples[sourceIndex][0]);",
+                    "            }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//getImagesForSource",
+            "src/ol/source/GeoTIFF.js//configure_",
+            "src/ol/source/GeoTIFF.js//composeTile_"
+        ],
+        "explanation": "The `GeoTIFFSource` class is central to handling GeoTIFF data, and modifications will likely be needed in this class to implement the new `convertToRGB: 'auto'` feature. The `getImagesForSource` function is responsible for retrieving images from the GeoTIFF source, which will need to be updated to check for the new option and apply the conversion logic. The `configure_` function is involved in setting up the tile grid based on the images, and it may need to handle the addition of an alpha band or other adjustments based on the new RGB conversion. Finally, the `composeTile_` function is responsible for composing the tile data, which will need to incorporate the RGB conversion when the new option is enabled.",
+        "bug_scenario": "The bug scenario involves adding a new option `convertToRGB: 'auto'` for GeoTIFF sources. This option should automatically convert images with specific color profiles (CMYK, YCbCr, CIELab, or ICCLab) to RGB using the `image.readRGB()` method. The implementation should ensure that this feature is integrated into the existing GeoTIFF handling functionality."
+    }
+}

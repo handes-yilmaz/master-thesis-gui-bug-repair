@@ -1,0 +1,45 @@
+diff --git a/lib/features/drilldown/DrilldownOverlayBehavior.js b/lib/features/drilldown/DrilldownOverlayBehavior.js
+index 7d6b690a..6594970a 100644
+--- a/lib/features/drilldown/DrilldownOverlayBehavior.js
++++ b/lib/features/drilldown/DrilldownOverlayBehavior.js
+@@ -88,6 +88,12 @@ export default function DrilldownOverlayBehavior(
+     });
+   });
+ 
++  // Listen for root changes to update overlays
++  eventBus.on('root.changed', function(event) {
++    self.updateDrilldownOverlay(event.newRoot);
++    self.updateDrilldownOverlay(event.oldRoot);
++  });
++
+ }
+ 
+ inherits(DrilldownOverlayBehavior, CommandInterceptor);
+@@ -178,4 +184,4 @@ DrilldownOverlayBehavior.$inject = [
+   'eventBus',
+   'elementRegistry',
+   'overlays'
+-];
+\ No newline at end of file
++];
+diff --git a/lib/features/modeling/cmd/UpdateCanvasRootHandler.js b/lib/features/modeling/cmd/UpdateCanvasRootHandler.js
+index 70aced78..61e57119 100644
+--- a/lib/features/modeling/cmd/UpdateCanvasRootHandler.js
++++ b/lib/features/modeling/cmd/UpdateCanvasRootHandler.js
+@@ -32,6 +32,9 @@ UpdateCanvasRootHandler.prototype.execute = function(context) {
+   canvas.setRootElement(newRoot);
+   canvas.removeRootElement(oldRoot);
+ 
++  // Notify drilldown overlay of root change
++  this._modeling.get('eventBus').fire('root.changed', { newRoot: newRoot, oldRoot: oldRoot });
++
+   // (2) update root elements
+   collectionAdd(bpmnDefinitions.rootElements, newRootBusinessObject);
+   newRootBusinessObject.$parent = bpmnDefinitions;
+@@ -82,4 +85,4 @@ UpdateCanvasRootHandler.prototype.revert = function(context) {
+ 
+   // TODO(nikku): return changed elements?
+   // return [ newRoot, oldRoot ];
+-};
+\ No newline at end of file
++};

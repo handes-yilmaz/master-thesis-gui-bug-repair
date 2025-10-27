@@ -1,0 +1,46 @@
+{
+    "1/1": {
+        "src/js/components/DateInput/DateInput.js": [
+            {
+                "SEARCH": [
+                    "const getReference = (value) => {",
+                    "let adjustedDate;",
+                    "let res;",
+                    "if (typeof value === 'string') res = value;",
+                    "else if (Array.isArray(value) && Array.isArray(value[0]))",
+                    "res = value[0].find((date) => date);",
+                    "else if (Array.isArray(value) && value.length) [res] = value;",
+                    "",
+                    "if (res) {",
+                    "adjustedDate = setHoursWithOffset(res);",
+                    "}",
+                    "return adjustedDate;",
+                    "};"
+                ],
+                "REPLACE": [
+                    "  const isDateInBounds = (date, bounds) => {",
+                    "    const [start, end] = bounds;",
+                    "    return date >= new Date(start) && date <= new Date(end);",
+                    "  };",
+                    "",
+                    "  const getReference = (value) => {",
+                    "    let adjustedDate;",
+                    "    let res;",
+                    "    if (typeof value === 'string') res = value;",
+                    "    else if (Array.isArray(value) && Array.isArray(value[0]))",
+                    "      res = value[0].find((date) => date);",
+                    "    else if (Array.isArray(value) && value.length) [res] = value;",
+                    "",
+                    "    if (res) {",
+                    "      adjustedDate = setHoursWithOffset(res);",
+                    "      if (!isDateInBounds(adjustedDate, calendarProps.bounds)) {",
+                    "        return null; // or handle the out-of-bounds case appropriately",
+                    "      }",
+                    "    }",
+                    "    return adjustedDate;",
+                    "  };"
+                ]
+            }
+        ]
+    }
+}

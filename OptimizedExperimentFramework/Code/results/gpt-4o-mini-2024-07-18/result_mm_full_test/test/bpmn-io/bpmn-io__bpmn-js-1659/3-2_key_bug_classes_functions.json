@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior",
+            "lib/features/modeling/behavior/ResizeBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/LabelBehavior//postExecute",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior//postExecute",
+            "lib/features/modeling/behavior/ResizeBehavior//resize.start"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the behavior of labels and connections during layout changes. The 'LabelBehavior' class manages how labels are updated and moved when their associated shapes are modified. The 'LayoutConnectionBehavior' class ensures that connections and their associated labels are adjusted correctly when the connection layout changes. The 'ResizeBehavior' class sets constraints during resizing, which is crucial for maintaining the correct positioning of labels and connections when a shape is resized.",
+        "bug_scenario": "When a connection is resized after a connected shape is resized, the labels and associations do not move with the connection, leaving them misaligned."
+    }
+}

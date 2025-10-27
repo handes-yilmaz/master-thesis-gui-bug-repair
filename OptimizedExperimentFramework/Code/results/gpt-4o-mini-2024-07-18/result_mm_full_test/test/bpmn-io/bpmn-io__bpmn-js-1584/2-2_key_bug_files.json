@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/behavior/RemoveParticipantBehavior.js",
+            "lib/features/copy-paste/BpmnCopyPaste.js"
+        ],
+        "explanation": "These files are key to the bug because they handle the behaviors related to creating and removing participants in the BPMN model. The `CreateParticipantBehavior.js` file manages the logic for adding participants and ensuring the process ID remains consistent. The `RemoveParticipantBehavior.js` file deals with the removal of participants and the implications for the process ID. The `BpmnCopyPaste.js` file is relevant for the copy-paste functionality that may also affect how IDs are managed when duplicating pools.",
+        "bug_scenario": "The bug scenario involves inconsistent behavior when adding, removing, and re-adding participants in a BPMN model. Specifically, when the first participant is added, the process ID remains the same. However, upon undoing and redoing this action, the process ID changes unexpectedly. Additionally, removing the last participant alters the process ID, which is not the expected behavior."
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "1/1": {
+        "lib/rules/key-spacing.js": [
+            {
+                "SEARCH": [
+                    "function verifyGroupAlignment(properties) {",
+                    "const length = properties.length,",
+                    "widths = properties.map(getKeyWidth), // Width of keys, including quotes",
+                    "align = alignmentOptions.on; // \"value\" or \"colon\"",
+                    "let targetWidth = Math.max(...widths),",
+                    "beforeColon, afterColon, mode;",
+                    "",
+                    "if (alignmentOptions && length > 1) { // When aligning values within a group, use the alignment configuration.",
+                    "beforeColon = alignmentOptions.beforeColon;",
+                    "afterColon = alignmentOptions.afterColon;",
+                    "mode = alignmentOptions.mode;",
+                    "} else {",
+                    "beforeColon = multiLineOptions.beforeColon;",
+                    "afterColon = multiLineOptions.afterColon;",
+                    "mode = alignmentOptions.mode;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        function verifyGroupAlignment(properties) {",
+                    "            const length = properties.length,",
+                    "                widths = properties.map(getKeyWidth), // Width of keys, including quotes",
+                    "                align = alignmentOptions.on; // \"value\" or \"colon\"",
+                    "            let targetWidth = Math.max(...widths),",
+                    "                beforeColon, afterColon, mode;",
+                    "",
+                    "            // Skip alignment for JSX objects",
+                    "            if (properties.some(property => property.parent.type === 'JSXExpressionContainer')) {",
+                    "                return;",
+                    "            }",
+                    "",
+                    "            if (alignmentOptions && length > 1) { // When aligning values within a group, use the alignment configuration.",
+                    "                beforeColon = alignmentOptions.beforeColon;",
+                    "                afterColon = alignmentOptions.afterColon;",
+                    "                mode = alignmentOptions.mode;",
+                    "            } else {",
+                    "                beforeColon = multiLineOptions.beforeColon;",
+                    "                afterColon = multiLineOptions.afterColon;",
+                    "                mode = alignmentOptions.mode;",
+                    "            }"
+                ]
+            }
+        ]
+    }
+}

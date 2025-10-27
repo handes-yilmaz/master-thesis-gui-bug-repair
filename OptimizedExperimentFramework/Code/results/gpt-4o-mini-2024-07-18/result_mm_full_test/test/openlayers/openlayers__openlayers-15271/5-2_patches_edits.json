@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/ol/Feature.js": [
+            {
+                "SEARCH": [
+                    "/**",
+                    "* Get the feature identifier.  This is a stable identifier for the feature and",
+                    "* is either set when reading data from a remote source or set explicitly by",
+                    "* calling {@link module:ol/Feature~Feature#setId}.",
+                    "* @return {number|string|undefined} Id.",
+                    "* @api",
+                    "*/",
+                    "getId() {",
+                    "return this.id_;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  /** ",
+                    "   * Get the feature identifier.  This is a stable identifier for the feature and",
+                    "   * is either set when reading data from a remote source or set explicitly by",
+                    "   * calling {@link module:ol/Feature~Feature#setId}.",
+                    "   * @return {number|string|undefined} Id.",
+                    "   * @api",
+                    "   */",
+                    "  getId() {",
+                    "    return this.id_ !== undefined ? this.id_ : null; // Ensure it returns null if id_ is undefined",
+                    "  }"
+                ]
+            }
+        ],
+        "src/ol/format/GeoJSON.js": [
+            {
+                "SEARCH": [
+                    "const id = feature.getId();",
+                    "if (id !== undefined) {",
+                    "object.id = id;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const id = feature.getId();",
+                    "    if (id !== null) { // Check for null instead of undefined",
+                    "      object.id = id; // Include id in the GeoJSON object",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

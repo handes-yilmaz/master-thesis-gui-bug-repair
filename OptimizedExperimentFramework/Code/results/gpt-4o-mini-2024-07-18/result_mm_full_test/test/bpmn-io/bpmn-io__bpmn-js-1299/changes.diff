@@ -1,0 +1,30 @@
+diff --git a/lib/features/label-editing/LabelUtil.js b/lib/features/label-editing/LabelUtil.js
+index 25f75bd..ae85f87 100644
+--- a/lib/features/label-editing/LabelUtil.js
++++ b/lib/features/label-editing/LabelUtil.js
+@@ -52,16 +52,21 @@ export function getLabel(element) {
+ export function setLabel(element, text, isExternal) {
+   var semantic = element.businessObject,
+       attr = getLabelAttr(semantic);
+-
+   if (attr) {
+-
++    if (text === '') {
++      // Prevent setting the label to an empty string
++      return element; // Early return to avoid resizing issues
++    }
++    
+     if (attr === 'categoryValueRef') {
+       semantic['categoryValueRef'].value = text;
+     } else {
+       semantic[attr] = text;
+     }
++  }
++    }
+ 
+   }
+ 
+   return element;
+-}
+\ No newline at end of file
++}

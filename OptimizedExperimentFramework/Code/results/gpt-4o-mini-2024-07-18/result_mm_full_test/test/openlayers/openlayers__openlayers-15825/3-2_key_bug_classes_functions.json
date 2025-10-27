@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/reproj/DataTile.js//ReprojDataTile"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//determineProjection",
+            "src/ol/source/GeoTIFF.js//configure_",
+            "src/ol/layer/WebGLTile.js//getSources",
+            "src/ol/layer/WebGLTile.js//renderSources",
+            "src/ol/reproj/DataTile.js//reproject_"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the core functionalities of loading and rendering GeoTIFF data in a WebGL context. The 'GeoTIFFSource' class is responsible for managing the GeoTIFF data, including determining the projection and configuring the tile grid, which are crucial for correctly rendering tiles. The 'WebGLTileLayer' class manages the rendering of tiles, including fetching the appropriate sources based on the current view and resolution. The 'ReprojDataTile' class is specifically designed for handling reprojection of tiles, which is directly related to the issue of missing tiles after reprojection. Functions like 'determineProjection' and 'configure_' are critical for ensuring that the tiles are correctly projected and configured, while 'getSources' and 'renderSources' are essential for fetching and rendering the tiles. The 'reproject_' function in 'ReprojDataTile' is particularly relevant as it handles the actual reprojection process, which is where the bug likely originates.",
+        "bug_scenario": "The bug scenario involves missing tiles in a WebGLTileLayer when using a GeoTiff source after reprojection into a stereographic projection. The issue is particularly noticeable near the antimeridian, where black gaps appear instead of the expected tiles. The size of these gaps varies based on the source tile sizes and the zoom level."
+    }
+}

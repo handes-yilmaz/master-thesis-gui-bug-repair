@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js",
+            "src/ol/proj/projections.js"
+        ],
+        "explanation": "These files are critical for handling projections and transformations in OpenLayers. The 'proj4.js' file is responsible for registering proj4 definitions, which is essential for the correct interpretation of projection parameters. The 'Projection.js' file defines the projection class and its properties, including axis orientation, which is likely affected by the changes in proj4js 2.6.1. The 'projections.js' file manages the caching and retrieval of projection definitions, which may also be impacted by the changes in proj4js, leading to the observed rotation issues.",
+        "bug_scenario": "The issue arises when using OpenLayers (OL) version 6.3.2-dev.1589843798021 with proj4js version 2.6.1. The WMTS layer (EPSG:2180) appears rotated when viewed with a Mercator projection, and the OSM layer (Mercator) is also rotated when viewed with EPSG:2180 projection. This problem does not occur with proj4js version 2.6.0, indicating a compatibility issue introduced in version 2.6.1."
+    }
+}

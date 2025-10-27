@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/style/Stroke.js",
+            "src/ol/render/VectorContext.js"
+        ],
+        "explanation": "These files are related to the bug for the following reasons: 1. **Immediate.js**: This file likely contains the logic for rendering immediate graphics to the canvas, including handling stroke styles such as lineDash. Adjustments will be necessary here to scale the lineDash values based on the pixel ratio. 2. **Stroke.js**: This file defines the Stroke style for lines, including properties like lineDash. It is essential to ensure that this file correctly implements scaling logic for dashed lines. 3. **VectorContext.js**: This file manages vector drawing contexts and may include methods that apply styles to geometries. Modifications in this file will be necessary to ensure that the scaling of styles is applied consistently when rendering geometries.",
+        "bug_scenario": "The bug involves the rendering of dashed lines on a canvas when using high device pixel ratios. The lineDash property of the stroke style is not scaled properly, causing dashed lines to appear continuous when they should not. This issue arises specifically when rendering with Canvas Immediate, leading to a visual inconsistency between the map rendering and the immediate canvas rendering."
+    }
+}

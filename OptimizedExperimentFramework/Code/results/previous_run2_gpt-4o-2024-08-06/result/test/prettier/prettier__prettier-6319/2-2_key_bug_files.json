@@ -1,0 +1,9 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parser-babel.js"
+        ],
+        "explanation": "The file `src/language-js/parser-babel.js` is responsible for configuring the Babel parser options, including the plugins used for parsing JavaScript syntax. The bug is related to the pipeline operator proposal, which is configured in this file with the line `['pipelineOperator', { proposal: 'minimal' }]`. The issue arises because the current configuration does not support the 'smart' proposal, which is more convenient for the user's needs. Adjusting the parser options in this file to include support for the 'smart' proposal would address the bug.",
+        "bug_scenario": "The bug report indicates an issue with the pipeline operator in Prettier 1.17.1, where the syntax `5 |> # * 2` results in a syntax error due to the unexpected character '#'. The expected behavior is to support the minimal proposal for the pipeline operator, but the current implementation does not recognize the syntax correctly. The image shows that only 'minimal' and 'smart' proposals are supported, while 'fsharp' is still in progress."
+    }
+}

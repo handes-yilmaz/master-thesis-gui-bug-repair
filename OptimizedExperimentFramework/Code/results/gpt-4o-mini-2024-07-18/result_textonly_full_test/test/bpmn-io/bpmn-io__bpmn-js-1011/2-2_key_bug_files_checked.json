@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/draw/BpmnRenderer.js",
+            "lib/features/modeling/BpmnLayouter.js",
+            "lib/draw/BpmnRenderUtil.js"
+        ],
+        "explanation": "These files are key bug files because they are responsible for rendering and laying out elements in the graphical interface. 'BpmnRenderer.js' handles the drawing of shapes and connections, which is directly related to how group elements are displayed. 'BpmnLayouter.js' manages the layout of connections and elements, which could affect the stacking order of elements. 'BpmnRenderUtil.js' provides utility functions for rendering elements, including path generation, which may influence how elements are visually layered. Modifications in these files are likely necessary to ensure that group elements are rendered correctly on top of other elements.",
+        "bug_scenario": "The bug scenario involves group elements not being rendered on top of other elements in a graphical interface. When a new element is created on the border of a group, the group borders are not hidden behind the new element, which is contrary to the expected behavior where groups should always be rendered on top."
+    }
+}

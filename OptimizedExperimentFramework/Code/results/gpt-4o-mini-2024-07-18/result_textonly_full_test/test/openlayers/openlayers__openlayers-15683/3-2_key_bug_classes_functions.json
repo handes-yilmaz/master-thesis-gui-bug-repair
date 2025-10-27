@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/renderer/canvas/VectorLayer.js//CanvasVectorLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/canvas/VectorLayer.js//renderFrame",
+            "src/ol/renderer/canvas/VectorLayer.js//prepareFrame"
+        ],
+        "explanation": "The 'CanvasVectorLayerRenderer' class is responsible for rendering vector layers on a canvas. The 'renderFrame' function is crucial as it handles the actual rendering of the layer, including setting up the context and managing how the layer is displayed. The 'prepareFrame' function is important for preparing the rendering state before the actual rendering occurs. Both functions are likely involved in the cropping issue when the map is rotated, as they manage how the vector layer is drawn and how the canvas context is set up, which directly affects the rendering of geometries like polygons.",
+        "bug_scenario": "The vector layer canvas is cropped when the map is rotated, which is not the expected behavior. The issue has been present since version 9.1.0 and is likely related to changes made in a specific pull request. The expected behavior is that the polygon should not be cut off when the map is rotated."
+    }
+}

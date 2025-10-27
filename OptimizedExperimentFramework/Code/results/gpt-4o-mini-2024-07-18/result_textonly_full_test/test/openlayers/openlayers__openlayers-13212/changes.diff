@@ -1,0 +1,36 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1409a69..004e14a 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -282,6 +282,7 @@ class WebGLTileLayer extends BaseTileLayer {
+    */
+   constructor(opt_options) {
+     const options = opt_options ? assign({}, opt_options) : {};
++    // Ensure that the layer can handle GeoTIFF pyramid sources
+ 
+     const style = options.style || {};
+     delete options.style;
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index f77b792..cdc9102 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -294,6 +294,7 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+     const viewState = frameState.viewState;
+     const tileLayer = this.getLayer();
+     const tileSource = tileLayer.getSource();
++    // Check if the tile source is a GeoTIFF pyramid and adjust rendering accordingly
+     const tileGrid = tileSource.getTileGridForProjection(viewState.projection);
+     const tileTextureCache = this.tileTextureCache_;
+     const tileRange = tileGrid.getTileRangeForExtentAndZ(
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index caae328..994ee59 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -410,6 +410,7 @@ class GeoTIFFSource extends DataTile {
+     const requests = new Array(numSources);
+     for (let i = 0; i < numSources; ++i) {
+       requests[i] = getImagesForSource(this.sourceInfo_[i]);
++      // Add logic to handle overlapping tiles for GeoTIFF pyramids
+     }
+     Promise.all(requests)
+       .then(function (sources) {

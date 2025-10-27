@@ -1,0 +1,14 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1dd7e6b..2e2caa4 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -439,7 +439,8 @@ class WebGLTileLayer extends BaseTileLayer {
+         const onChange = () => {
+           if (source.getState() == 'ready') {
+             source.removeEventListener('change', onChange);
+-            this.changed();
++    this.dispose(); // Ensure resources are cleaned up when the layer is removed
++    this.changed(); // Notify that the layer has changed
+           }
+         };
+         source.addEventListener('change', onChange);

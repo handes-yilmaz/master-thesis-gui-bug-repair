@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-js-templates.js"
+        ],
+        "explanation": "The bug is related to JavaScript syntax highlighting, specifically involving template literals and comments. The PrismJS files responsible for handling JavaScript syntax ('prism-javascript.js') and JavaScript templates ('prism-js-templates.js') would be directly involved in parsing and rendering the JavaScript code. The error seems to be in how these files parse template literals after certain patterns appear in the code, causing incorrect highlighting for subsequent code sections.",
+        "bug_scenario": "The bug scenario involves the incorrect parsing of JavaScript template literals in a syntax highlighting library. The issue starts with a regex containing a single quote being parsed correctly, followed by a comment with template literals also being handled correctly. However, subsequent template literals are not parsed correctly, leading to broken rendering for the rest of the file. This results in improperly highlighted JavaScript code where the syntax coloring is not applying correctly to template literals after the initial setup lines."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-js-templates.js",
+            "components/prism-markup-templating.js"
+        ],
+        "explanation": "1. **components/prism-javascript.js**: This file is specifically responsible for JavaScript syntax highlighting, which is where the issue is occurring, given the bug report mentioning JavaScript code.\n\n2. **components/prism-js-templates.js**: This file likely handles template literal syntax as it is directly related to the issue of template literal parsing and might contain logic pertinent to highlighting them.\n\n3. **components/prism-markup-templating.js**: Given the name, this file may handle the templating logic which includes template literals used in the bug scenario.",
+        "bug_scenario": "There is a syntax highlighting bug where a template literal gets parsed incorrectly after specific usage of regex and template literals in a specific order. This incorrect parsing affects other template tags later in the file. The bug requires two setup lines in a specific order: a regex with a single quote followed by a template literal and a comment with a template literal, which is then followed by a template literal that breaks."
+    }
+}

@@ -1,0 +1,44 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1409a69..13be113 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -310,6 +310,7 @@ class WebGLTileLayer extends BaseTileLayer {
+     this.styleVariables_ = this.style_.variables || {};
+ 
+     this.addChangeListener(LayerProperty.SOURCE, this.handleSourceUpdate_);
++    this.setStyle(this.style_);
+   }
+ 
+   /**
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index f77b792..728c8fe 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -294,6 +294,9 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+     const viewState = frameState.viewState;
+     const tileLayer = this.getLayer();
+     const tileSource = tileLayer.getSource();
++    if (tileSource instanceof GeoTIFFSource) {
++      // Handle GeoTIFF specific rendering logic
++    }
+     const tileGrid = tileSource.getTileGridForProjection(viewState.projection);
+     const tileTextureCache = this.tileTextureCache_;
+     const tileRange = tileGrid.getTileRangeForExtentAndZ(
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index caae328..9ee273f 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -405,6 +405,13 @@ class GeoTIFFSource extends DataTile {
+     this.readMethod_ = options.convertToRGB ? 'readRGB' : 'readRasters';
+ 
+     this.setKey(this.sourceInfo_.map((source) => source.url).join(','));
++    this.tileGrid = new TileGrid({
++      extent: extent,
++      minZoom: minZoom,
++      origin: origin,
++      resolutions: resolutions,
++      tileSizes: tileSizes,
++    });
+ 
+     const self = this;
+     const requests = new Array(numSources);

@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/first-meaningful-paint.js": [
+            {
+                "SEARCH": [
+                    "if (!tabTrace.firstMeaningfulPaintEvt) {",
+                    "throw new Error('No usable `firstMeaningfulPaint` event found in trace');",
+                    "}"
+                ],
+                "REPLACE": [
+                    "      if (!tabTrace.firstMeaningfulPaintEvt || !tabTrace.firstContentfulPaintEvt) {",
+                    "        throw new Error('No usable `firstMeaningfulPaint` or `firstContentfulPaint` event found in trace');",
+                    "      }"
+                ]
+            }
+        ],
+        "lighthouse-core/audits/time-to-interactive.js": [
+            {
+                "SEARCH": [
+                    "const fmpResult = results[1];",
+                    "if (fmpResult.rawValue === -1) {",
+                    "return generateError(fmpResult.debugString);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "      const fmpResult = results[1];",
+                    "      if (fmpResult.rawValue === -1 || fmpResult.extendedInfo.value.timestamps.fMP === undefined) {",
+                    "        return generateError('Invalid First Meaningful Paint data');",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

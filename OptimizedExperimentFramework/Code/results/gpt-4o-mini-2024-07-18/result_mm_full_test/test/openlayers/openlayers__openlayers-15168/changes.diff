@@ -1,0 +1,28 @@
+diff --git a/src/ol/renderer/canvas/ImageLayer.js b/src/ol/renderer/canvas/ImageLayer.js
+index 14b4188..9ed82b9 100644
+--- a/src/ol/renderer/canvas/ImageLayer.js
++++ b/src/ol/renderer/canvas/ImageLayer.js
+@@ -171,7 +171,8 @@ class CanvasImageLayerRenderer extends CanvasLayerRenderer {
+     const resolution = viewState.resolution;
+     const rotation = viewState.rotation;
+     // desired dimensions of the canvas in pixels
+-    const width = Math.round((getWidth(extent) / resolution) * pixelRatio);
++    const sourceAspectRatio = 3 / 2; // Assuming source pixels cover 3km by 2km
++    const width = Math.round((getWidth(extent) / resolution) * pixelRatio * sourceAspectRatio);
+     const height = Math.round((getHeight(extent) / resolution) * pixelRatio);
+ 
+     // set forward and inverse pixel transforms
+diff --git a/src/ol/reproj/Image.js b/src/ol/reproj/Image.js
+index 58e9690..a2ed041 100644
+--- a/src/ol/reproj/Image.js
++++ b/src/ol/reproj/Image.js
+@@ -186,7 +186,8 @@ class ReprojImage extends ImageWrapper {
+   reproject_() {
+     const sourceState = this.sourceImage_.getState();
+     if (sourceState == ImageState.LOADED) {
+-      const width = getWidth(this.targetExtent_) / this.targetResolution_;
++      const sourceAspectRatio = 3 / 2; // Assuming source pixels cover 3km by 2km
++      const width = (getWidth(this.targetExtent_) / this.targetResolution_) * sourceAspectRatio;
+       const height = getHeight(this.targetExtent_) / this.targetResolution_;
+       this.canvas_ = renderReprojected(
+         width,

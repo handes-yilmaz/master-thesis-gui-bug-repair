@@ -1,0 +1,22 @@
+diff --git a/src/number-picker/index.jsx b/src/number-picker/index.jsx
+index dcd8027..99bd4ba 100644
+--- a/src/number-picker/index.jsx
++++ b/src/number-picker/index.jsx
+@@ -259,7 +259,7 @@ class NumberPicker extends React.Component {
+             });
+         }
+ 
+-        this.props.onChange(isNaN(v) || v === '' ? undefined : v, {...e, triggerType});
++        this.props.onChange(isNaN(v) || v === '' ? undefined : Math.round(v * this.getPrecisionFactor()) / this.getPrecisionFactor(), {...e, triggerType});
+     }
+ 
+     setInputValue(v, e) {
+@@ -306,7 +306,7 @@ upStep(val) {
+         result = (precisionFactor * val + precisionFactor * step) / precisionFactor;
+         const precision = this.getPrecision();
+         if (precision > 0) {
+-            result = Number(result.toFixed(precision));
++            result = Math.round(result * this.getPrecisionFactor()) / this.getPrecisionFactor();
+         }
+     } else {
+         result = min === -Infinity ? step : min;

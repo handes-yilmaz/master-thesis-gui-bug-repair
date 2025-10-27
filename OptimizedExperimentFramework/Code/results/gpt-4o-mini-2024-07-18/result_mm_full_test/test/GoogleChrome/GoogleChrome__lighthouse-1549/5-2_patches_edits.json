@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/user-timings.js": [
+            {
+                "SEARCH": [
+                    "// Once TraceingStartedInPage has begun, the next navigationStart event",
+                    "// marks the start of navigation",
+                    "// Make sure to not record such events hereafter",
+                    "if (ut.name === \\'navigationStart\\' && traceStartFound && !navigationStartTime) {",
+                    "navigationStartTime = ut.startTime;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "      // Once TracingStartedInPage has begun, the next navigationStart event",
+                    "      // marks the start of navigation",
+                    "      // Make sure to not record such events hereafter",
+                    "      if (ut.name === \\'navigationStart\\' && traceStartFound && (navigationStartTime === undefined || navigationStartTime === null)) {",
+                    "        navigationStartTime = ut.startTime;",
+                    "      }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "ut.startTime -= navigationStartTime;"
+                ],
+                "REPLACE": [
+                    "    if (navigationStartTime) {",
+                    "      ut.startTime -= navigationStartTime;",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

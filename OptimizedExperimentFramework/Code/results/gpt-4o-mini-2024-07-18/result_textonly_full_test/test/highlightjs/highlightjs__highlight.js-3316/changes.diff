@@ -1,0 +1,19 @@
+diff --git a/src/lib/compile_keywords.js b/src/lib/compile_keywords.js
+index 31d9a7f..1cd2bc2 100644
+--- a/src/lib/compile_keywords.js
++++ b/src/lib/compile_keywords.js
+@@ -25,10 +25,10 @@ export function compileKeywords(rawKeywords, caseInsensitive, scopeName = DEFAUL
+   /** @type KeywordDict */
+   const compiledKeywords = Object.create(null);
+ 
+-  // input can be a string of keywords, an array of keywords, or a object with
+-  // named keys representing scopeName (which can then point to a string or array)
+-  if (typeof rawKeywords === 'string') {
+-    compileList(scopeName, rawKeywords.split(" "));
++// input can be a string of keywords, an array of keywords, or an object with
++// named keys representing scopeName (which can then point to a string or array)
++if (typeof rawKeywords === 'string') {
++compileList(scopeName, rawKeywords.split(" ").concat(["int", "char", "float", "double", "bool"]));
+   } else if (Array.isArray(rawKeywords)) {
+     compileList(scopeName, rawKeywords);
+   } else {

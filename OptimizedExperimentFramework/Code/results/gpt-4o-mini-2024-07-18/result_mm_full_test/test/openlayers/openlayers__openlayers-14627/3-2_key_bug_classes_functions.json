@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/proj/epsg4326.js//EPSG4326Projection",
+            "src/ol/proj/transforms.js//get",
+            "src/ol/View.js//fit"
+        ],
+        "bug_functions": [
+            "src/ol/proj/transforms.js//add",
+            "src/ol/proj/transforms.js//get",
+            "src/ol/View.js//fit"
+        ],
+        "explanation": "The `EPSG4326Projection` class is relevant because it defines the projection used in the transformation, which is causing the NaN issue. The `get` function in `transforms.js` retrieves the transformation function, which is critical for converting coordinates between projections. The `fit` function in `View.js` is directly involved in applying the extent to the map view, and thus needs to handle cases where the extent is invalid (NaN). The `add` function is also relevant as it registers transformation functions, which may need to be adjusted to handle empty extents correctly.",
+        "bug_scenario": "The function `applyTransform` is producing an extent with NaN values when called with an empty extent. This leads to an error when this NaN extent is used as a parameter in the `fit` method of the map view, which expects valid extent values."
+    }
+}

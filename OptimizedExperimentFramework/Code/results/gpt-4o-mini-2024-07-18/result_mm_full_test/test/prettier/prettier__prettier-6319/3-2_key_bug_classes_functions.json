@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/parser-babel.js//babelOptions",
+            "src/language-js/parser-babel.js//createParse",
+            "src/language-js/parser-babel.js//tryCombinations"
+        ],
+        "bug_functions": [
+            "src/language-js/parser-babel.js//babelOptions",
+            "src/language-js/parser-babel.js//createParse",
+            "src/language-js/parser-babel.js//tryCombinations"
+        ],
+        "explanation": "The functions 'babelOptions', 'createParse', and 'tryCombinations' in 'parser-babel.js' are crucial for handling the parsing options and error management for the pipeline operator. The 'babelOptions' function specifically configures the plugins, including the pipeline operator's proposal type. The error arises because the current configuration uses the 'smart' proposal, which is not supported for the given input. Adjusting the proposal in 'babelOptions' to 'minimal' would resolve the issue.",
+        "bug_scenario": "The bug occurs when using the pipeline operator with a smart proposal in Prettier, resulting in a SyntaxError due to an unexpected character '#'. The expected behavior is to support the minimal proposal instead."
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//LabelLayoutUtil"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//findNewLabelLineStartIndex",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//getLabelAdjustment"
+        ],
+        "explanation": "The error message explicitly mentions 'segmentIndex', which is primarily used in the 'LabelLayoutUtil.js' file within the 'findNewLabelLineStartIndex' function. This function is responsible for determining the new starting index of a label line segment, which is critical when labels are adjusted after connection waypoints change. The 'getLabelAdjustment' function also uses 'segmentIndex' to calculate label position adjustments, which aligns with the error context of label movement or connection layout. The 'LabelBehavior' class is involved due to its role in updating label positions and handling connection and shape events that impact label layout. Thus, these classes and functions are directly related to the bug, as they manage the elements and actions that lead to the undefined 'segmentIndex' error.",
+        "bug_scenario": "The bug scenario involves inserting a gateway into a flow using a diagram editor, which results in an error due to the editor failing to read 'segmentIndex' properties of an undefined object. This error occurs during the label adjustment or connection modification process when executing commands related to element movement or connection creation, leading to a broken editor state that cannot be interacted with."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//findNewLabelLineStartIndex",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js//getLabelAdjustment"
+        ],
+        "explanation": "The bug is likely related to the handling of diagram elements and their labels, as indicated by the error involving 'segmentIndex'. The functions 'findNewLabelLineStartIndex' and 'getLabelAdjustment' in 'LabelLayoutUtil.js' are directly involved in managing label positions and adjustments when segments move, which is relevant to the 'segmentIndex' error. The 'LabelBehavior' class in 'LabelBehavior.js' also interacts with label elements during shape and connection operations, making it a potential source of the issue. The problem seems to arise from incorrect handling or updating of the segment index during these operations.",
+        "bug_scenario": "The bug scenario involves inserting a gateway into a flow diagram, which causes an error stating 'Cannot read properties of undefined (reading 'segmentIndex')'. This error typically occurs when an undefined object is accessed, likely due to missing or incorrect data handling during the insertion operation. The error leads to the editor crashing and becoming unresponsive, preventing further interaction."
+    }
+}

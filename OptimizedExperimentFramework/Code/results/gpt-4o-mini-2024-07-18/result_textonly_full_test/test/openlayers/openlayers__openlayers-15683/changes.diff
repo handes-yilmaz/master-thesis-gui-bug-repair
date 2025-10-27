@@ -1,0 +1,29 @@
+diff --git a/src/ol/renderer/canvas/VectorLayer.js b/src/ol/renderer/canvas/VectorLayer.js
+index 4a86f6b..6b4ae17 100644
+--- a/src/ol/renderer/canvas/VectorLayer.js
++++ b/src/ol/renderer/canvas/VectorLayer.js
+@@ -185,8 +185,8 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+       viewHints[ViewHint.ANIMATING] || viewHints[ViewHint.INTERACTING]
+     );
+     const context = this.context;
+-    const width = Math.round((getWidth(extent) / resolution) * pixelRatio);
+-    const height = Math.round((getHeight(extent) / resolution) * pixelRatio);
++    const width = Math.round((getWidth(extent) / resolution) * pixelRatio) + 2 * vectorLayerRenderBuffer * pixelRatio;
++    const height = Math.round((getHeight(extent) / resolution) * pixelRatio) + 2 * vectorLayerRenderBuffer * pixelRatio;
+ 
+     const multiWorld = vectorSource.getWrapX() && projection.canWrapX();
+     const worldWidth = multiWorld ? getWidth(projectionExtent) : null;
+@@ -324,9 +324,10 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+     }
+ 
+     // resize and clear
+-    if (canvas.width != width || canvas.height != height) {
+-      canvas.width = width;
+-      canvas.height = height;
++    if (canvas.width != width || canvas.height != height || this.renderedRotation_ !== viewState.rotation) {
++        canvas.width = width;
++        canvas.height = height;
++        this.renderedRotation_ = viewState.rotation;
+       if (canvas.style.transform !== canvasTransform) {
+         canvas.style.transform = canvasTransform;
+       }

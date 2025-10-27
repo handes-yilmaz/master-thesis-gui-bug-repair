@@ -1,0 +1,26 @@
+diff --git a/src/language-js/print/call-expression.js b/src/language-js/print/call-expression.js
+index bbc5864..2b98e26 100644
+--- a/src/language-js/print/call-expression.js
++++ b/src/language-js/print/call-expression.js
+@@ -101,7 +101,7 @@ function printCallExpression(path, options, print) {
+     return group(contents);
+   }
+ 
+-  return contents;
++  return group(contents);
+ }
+ 
+ function isCommonsJsOrAmdCall(node, parentNode) {
+diff --git a/src/language-js/print/type-annotation.js b/src/language-js/print/type-annotation.js
+index c7613fc..59e4589 100644
+--- a/src/language-js/print/type-annotation.js
++++ b/src/language-js/print/type-annotation.js
+@@ -308,7 +308,7 @@ function printIndexedAccessType(path, options, print) {
+   const node = path.getValue();
+   const leftDelimiter =
+     node.type === "OptionalIndexedAccessType" && node.optional ? "?.[" : "[";
+-  return [print("objectType"), leftDelimiter, print("indexType"), "]"];
++  return [print("objectType"), leftDelimiter, print("indexType"), ")"];
+ }
+ 
+ // `TSJSDocNullableType`, `TSJSDocNonNullableType`

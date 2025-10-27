@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/render/VectorContext.js",
+            "src/render/canvas/CanvasRenderer.js",
+            "src/geom/Geometry.js",
+            "src/proj/projection.js"
+        ],
+        "explanation": "The file 'VectorContext.js' contains the 'drawFeature()' function where the incorrect extent comparison is leading to the bug. The 'CanvasRenderer.js' may handle the rendering logic that utilizes 'drawFeature()', impacting how features are displayed on the canvas. 'Geometry.js' could be involved in defining the geometric properties of the features drawn, and 'projection.js' may relate to the geographic coordinates and how they are transformed, which could affect visibility when panning the map.",
+        "bug_scenario": "The function 'drawFeature()' is failing to display markers correctly when geographic coordinates are used, especially when Null Island is not in view. This is due to an incorrect extent comparison in the function, which prevents visibility of the animated marker unless Null Island is present in the viewport. The anticipated behavior is that the animation should remain visible regardless of the geographic location of Null Island."
+    }
+}

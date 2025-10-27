@@ -1,0 +1,18 @@
+diff --git a/src/menu/view/item.jsx b/src/menu/view/item.jsx
+index ccdbed71f..92c9533fe 100644
+--- a/src/menu/view/item.jsx
++++ b/src/menu/view/item.jsx
+@@ -213,10 +213,12 @@ export default class Item extends Component {
+             role = 'option';
+         }
+ 
++        const title = typeof children === 'string' ? this.getTitle(children) : undefined;
++
+         return (
+             <TagName
+                 role={role}
+-                title={this.getTitle(children)}
++                title={title}
+                 {...others}
+                 className={newClassName}
+                 onClick={this.handleClick}

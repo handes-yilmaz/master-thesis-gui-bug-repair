@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/format/reveal/format-reveal.ts//revealHtmlPostprocessor",
+            "src/format/reveal/format-reveal.ts//applyStretch",
+            "src/format/reveal/format-reveal-plugin.ts//revealPluginExtras"
+        ],
+        "bug_functions": [
+            "src/format/reveal/format-reveal.ts//revealjsFormat",
+            "src/command/render/render.ts//renderPandoc"
+        ],
+        "explanation": "The identified classes and functions are related to the rendering process of RevealJS presentations. The 'revealHtmlPostprocessor' function is likely responsible for processing the HTML output, which includes handling how images and links are rendered. The 'applyStretch' function may be involved in adjusting the layout of images, which could affect how links are associated with standalone images. The 'revealPluginExtras' function is responsible for managing additional plugins that may influence rendering behavior. Lastly, 'renderPandoc' is crucial as it handles the overall rendering process, including how markdown is converted to HTML, which is essential for ensuring that hyperlinks are preserved in the output.",
+        "bug_scenario": "The bug scenario involves a RevealJS presentation where a standalone image with a hyperlink does not render the hyperlink correctly. When the image is placed alone on a slide, the link is ignored, while it works when the image is included within text. This suggests an issue with how the rendering logic handles standalone images versus inline images."
+    }
+}

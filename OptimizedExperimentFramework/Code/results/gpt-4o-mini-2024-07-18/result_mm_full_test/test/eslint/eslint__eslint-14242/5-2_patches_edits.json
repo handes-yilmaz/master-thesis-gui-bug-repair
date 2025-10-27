@@ -1,0 +1,40 @@
+{
+    "1/1": {
+        "lib/cli-engine/cli-engine.js": [
+            {
+                "SEARCH": [
+                    "// Iterate source code files.",
+                    "for (const { config, filePath, ignored } of fileEnumerator.iterateFiles(patterns)) {",
+                    "if (ignored) {",
+                    "results.push(createIgnoreResult(filePath, cwd));",
+                    "continue;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        let totalWarnings = 0; // Initialize a counter for total warnings",
+                    "",
+                    "        // Iterate source code files.",
+                    "        for (const { config, filePath, ignored } of fileEnumerator.iterateFiles(patterns)) {",
+                    "            if (ignored) {",
+                    "                results.push(createIgnoreResult(filePath, cwd));",
+                    "                continue;",
+                    "            }",
+                    "",
+                    "            // Count warnings for the current file",
+                    "            const result = verifyText({",
+                    "                text: fs.readFileSync(filePath, \"utf8\"),",
+                    "                filePath,",
+                    "                config,",
+                    "                cwd,",
+                    "                fix,",
+                    "                allowInlineConfig,",
+                    "                reportUnusedDisableDirectives,",
+                    "                fileEnumerator,",
+                    "                linter",
+                    "            });",
+                    "            totalWarnings += result.warningCount; // Accumulate warnings"
+                ]
+            }
+        ]
+    }
+}

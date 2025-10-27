@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/LabelBehavior",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior",
+            "lib/features/auto-resize/BpmnAutoResize"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/LabelBehavior//postExecute",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior//postExecute",
+            "lib/features/auto-resize/BpmnAutoResize//resize"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the behavior of labels and connections during layout changes and resizing. The 'LabelBehavior' class manages how labels are updated and positioned when their associated shapes are modified. The 'LayoutConnectionBehavior' class ensures that connections are adjusted correctly when their waypoints change. The 'BpmnAutoResize' class is responsible for resizing shapes, which is directly related to the issue of labels not moving with the resized shape. Fixing the bug will likely involve modifying these classes to ensure that labels and associations are repositioned correctly when a shape is resized.",
+        "bug_scenario": "The bug occurs when a connection with labels and associations is resized. After resizing the connected shape (sub-process), the labels and associations do not move along with the connection, leaving them visually disconnected from the shape they are associated with."
+    }
+}

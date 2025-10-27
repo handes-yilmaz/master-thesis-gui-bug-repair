@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/gatherers/offline.js//Offline",
+            "lighthouse-core/gather/gatherers/start-url.js//StartUrl",
+            "lighthouse-core/audits/offline-start-url.js//OfflineStartUrl"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/gatherers/offline.js//beforePass",
+            "lighthouse-core/gather/gatherers/offline.js//afterPass",
+            "lighthouse-core/gather/gatherers/start-url.js//afterPass",
+            "lighthouse-core/gather/gatherers/start-url.js//_readManifestStartUrl",
+            "lighthouse-core/gather/gatherers/start-url.js//_attemptStartURLFetch",
+            "lighthouse-core/audits/offline-start-url.js//audit"
+        ],
+        "explanation": "These classes and functions are critical to the offline functionality of the Lighthouse tool. The 'Offline' class manages the offline state during the pass, while the 'StartUrl' class attempts to fetch the start URL when offline. The 'OfflineStartUrl' audit checks if the start URL responds correctly when offline. Issues in any of these components could lead to the incorrect behavior described in the bug report.",
+        "bug_scenario": "The Lighthouse tool fails to correctly report that a webpage can load offline. Instead of showing the expected offline page, it displays the desktop version of the site, indicating that the service worker is not functioning as intended."
+    }
+}

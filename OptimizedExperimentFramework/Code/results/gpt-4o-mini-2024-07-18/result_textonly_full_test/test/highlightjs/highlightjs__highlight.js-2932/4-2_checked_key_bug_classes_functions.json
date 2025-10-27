@@ -1,0 +1,51 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "inherit",
+            "file_path": "src/lib/utils.js",
+            "function_details": [
+                {
+                    "name": "inherit",
+                    "start_line": 22,
+                    "end_line": 35
+                }
+            ],
+            "function_code": [
+                "export function inherit(original, ...objects) {",
+                "  /** @type Record<string,any> */",
+                "  const result = Object.create(null);",
+                "",
+                "  for (const key in original) {",
+                "    result[key] = original[key];",
+                "  }",
+                "  objects.forEach(function(obj) {",
+                "    for (const key in obj) {",
+                "      result[key] = obj[key];",
+                "    }",
+                "  });",
+                "  return /** @type {T} */ (result);",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "source",
+            "file_path": "src/lib/regex.js",
+            "function_details": [
+                {
+                    "name": "source",
+                    "start_line": 13,
+                    "end_line": 18
+                }
+            ],
+            "function_code": [
+                "export function source(re) {",
+                "  if (!re) return null;",
+                "  if (typeof re === \"string\") return re;",
+                "",
+                "  return re.source;",
+                "}"
+            ]
+        }
+    }
+}

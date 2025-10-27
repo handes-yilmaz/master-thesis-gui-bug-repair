@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer",
+            "lib/features/modeling/behavior/IsHorizontalFix.js//IsHorizontalFix"
+        ],
+        "bug_functions": [
+            "lib/draw/BpmnRenderUtil.js//getDi"
+        ],
+        "explanation": "The 'BpmnRenderer' class is responsible for rendering BPMN elements and should account for the 'isHorizontal' property to support vertical pools. The 'IsHorizontalFix' class is involved in setting the 'isHorizontal' property but defaults it to true, which may override intended vertical layouts. The 'getDi' function in 'BpmnRenderUtil.js' is used to retrieve diagram interchange information, including 'isHorizontal', which is critical for rendering the shape correctly.",
+        "bug_scenario": "The diagram does not correctly render vertical pools or lanes due to a lack of consideration for the 'isHorizontal' property when rendering BPMN shapes. This feature is crucial for specific diagram layouts, as shown in the reference image, where pools are not displayed in the desired orientation."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer",
+            "lib/features/modeling/behavior/IsHorizontalFix.js//IsHorizontalFix"
+        ],
+        "bug_functions": [
+            "lib/draw/BpmnRenderer.js//"
+        ],
+        "explanation": "The BpmnRenderer class is responsible for rendering BPMN elements, including pools and lanes. The issue arises because it does not consider the 'isHorizontal' property when rendering these elements, leading to incorrect alignment of labels in vertical pools. The IsHorizontalFix class ensures that pools and lanes have the correct 'isHorizontal' property, which is crucial for differentiating between vertical and horizontal orientations. Correcting and utilizing these properties in rendering logic would fix the issue.",
+        "bug_scenario": "The bug relates to the incorrect rendering of pool/lane labels when vertical pools are used in BPMN diagrams. In the image, labels are not aligned properly with vertical pools, causing confusion in diagram interpretation."
+    }
+}

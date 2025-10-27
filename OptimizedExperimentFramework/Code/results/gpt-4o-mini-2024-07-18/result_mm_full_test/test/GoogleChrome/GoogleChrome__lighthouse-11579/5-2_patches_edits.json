@@ -1,0 +1,52 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/metrics/first-contentful-paint.js": [
+            {
+                "SEARCH": [
+                    "const trace = artifacts.traces[Audit.DEFAULT_PASS];",
+                    "const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];",
+                    "const metricComputationData = {trace, devtoolsLog, settings: context.settings};",
+                    "const metricResult = await ComputedFcp.request(metricComputationData, context);"
+                ],
+                "REPLACE": [
+                    "    const trace = artifacts.traces[Audit.DEFAULT_PASS];",
+                    "    const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];",
+                    "    if (!trace || !devtoolsLog) {",
+                    "      return {",
+                    "        score: 0,",
+                    "        numericValue: 0,",
+                    "        numericUnit: 'millisecond',",
+                    "        displayValue: 'No FCP data available',",
+                    "      };",
+                    "    }",
+                    "    const metricComputationData = {trace, devtoolsLog, settings: context.settings};",
+                    "    const metricResult = await ComputedFcp.request(metricComputationData, context);"
+                ]
+            }
+        ],
+        "lighthouse-core/audits/metrics/speed-index.js": [
+            {
+                "SEARCH": [
+                    "const trace = artifacts.traces[Audit.DEFAULT_PASS];",
+                    "const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];",
+                    "const metricComputationData = {trace, devtoolsLog, settings: context.settings};",
+                    "const metricResult = await ComputedSi.request(metricComputationData, context);"
+                ],
+                "REPLACE": [
+                    "    const trace = artifacts.traces[Audit.DEFAULT_PASS];",
+                    "    const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];",
+                    "    if (!trace || !devtoolsLog) {",
+                    "      return {",
+                    "        score: 0,",
+                    "        numericValue: 0,",
+                    "        numericUnit: 'millisecond',",
+                    "        displayValue: 'No Speed Index data available',",
+                    "      };",
+                    "    }",
+                    "    const metricComputationData = {trace, devtoolsLog, settings: context.settings};",
+                    "    const metricResult = await ComputedSi.request(metricComputationData, context);"
+                ]
+            }
+        ]
+    }
+}

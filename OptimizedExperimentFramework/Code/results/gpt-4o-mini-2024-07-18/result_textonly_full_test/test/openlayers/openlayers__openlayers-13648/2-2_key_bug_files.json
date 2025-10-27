@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/reproj/Image.js",
+            "src/ol/renderer/canvas/ImageLayer.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: \n1. **GeoTIFF.js**: This file handles the loading and processing of GeoTIFF images. Any issues with how the image data is read or interpreted, especially regarding pixel dimensions and resolutions, would originate here. Fixing the loading logic could resolve the display issue.\n2. **Image.js**: This file is responsible for reprojecting images. If the reprojection logic does not correctly account for non-square pixels, it could lead to improper rendering of the image, causing only part of it to be displayed. Adjustments here could ensure that the entire image is rendered correctly.\n3. **ImageLayer.js**: This file manages the rendering of image layers on the canvas. If the rendering logic does not properly handle the dimensions or scaling of the image, it could result in only a portion of the image being visible. Modifications in this file could help ensure that the image is displayed in its entirety.",
+        "bug_scenario": "The bug occurs when loading a Cloud Optimized GeoTIFF (COG) where only the upper part of the image is displayed, indicating a potential issue with how the image is being processed or rendered, particularly with respect to non-square pixels."
+    }
+}

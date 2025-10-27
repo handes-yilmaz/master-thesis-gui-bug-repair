@@ -1,0 +1,32 @@
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index 5de570b..96d1e89 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -446,6 +446,10 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+       this.enqueueTiles(frameState, nextExtent, targetZ, tileTexturesByZ);
+     }
+ 
++    // Clear the tile texture cache when the source or projection changes
++    if (tileLayer.getRenderSource().getKey() !== this.tileTextureCache_.getKey()) {
++      this.tileTextureCache_.clear();
++    }
+     this.enqueueTiles(frameState, extent, z, tileTexturesByZ);
+ 
+     /**
+diff --git a/src/ol/source/Tile.js b/src/ol/source/Tile.js
+index 0776784..c672ce5 100644
+--- a/src/ol/source/Tile.js
++++ b/src/ol/source/Tile.js
+@@ -339,8 +339,12 @@ class TileSource extends Source {
+    * Remove all cached tiles from the source. The next render cycle will fetch new tiles.
+    * @api
+    */
++  /** 
++   * Clear the tile cache and reset the key to ensure new tiles are fetched.
++   */
+   clear() {
+     this.tileCache.clear();
++    this.setKey(''); // Resetting the key to trigger cache invalidation
+   }
+ 
+   refresh() {

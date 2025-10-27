@@ -1,0 +1,55 @@
+{
+    "1/1": {
+        "src/lib/drag-recognizer.js": [
+            {
+                "SEARCH": [
+                    "_isScroll () {",
+                    "return this._gestureState === DragRecognizer.STATE_SCROLL;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    _isRightClick(event) {",
+                    "        return event.button === 2; // Check if the right mouse button is clicked",
+                    "    }",
+                    "",
+                    "    _isScroll () {",
+                    "        return this._gestureState === DragRecognizer.STATE_SCROLL;",
+                    "    }",
+                    "",
+                    "    handleMouseDown(event) {",
+                    "        if (this._isRightClick(event)) {",
+                    "            // Prevent default context menu",
+                    "            event.preventDefault();",
+                    "            // Trigger the duplicate menu logic here",
+                    "            this.showDuplicateMenu(event);",
+                    "            return;",
+                    "        }"
+                ]
+            }
+        ],
+        "src/reducers/menus.js": [
+            {
+                "SEARCH": [
+                    "const closeMenu = menu => ({",
+                    "type: CLOSE_MENU,",
+                    "menu: menu",
+                    "});"
+                ],
+                "REPLACE": [
+                    "const closeMenu = menu => ({",
+                    "    type: CLOSE_MENU,",
+                    "    menu: menu",
+                    "});",
+                    "",
+                    "const showDuplicateMenu = (event) => {",
+                    "    // Logic to show the duplicate menu",
+                    "    return {",
+                    "        type: SHOW_DUPLICATE_MENU,",
+                    "        position: { x: event.clientX, y: event.clientY }",
+                    "    };",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

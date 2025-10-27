@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/jsx.js",
+            "src/language-js/parser-babel.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "These files are related to the bug because: 1. `jsx.js` handles the printing of JSX elements in Prettier, and any issues in handling whitespace or special characters will directly affect the output format. 2. `parser-babel.js` is responsible for parsing JSX syntax, including how whitespace is treated during parsing; thus, it may need adjustments for proper treatment of Unicode characters. 3. `parser.js` contains the main parser logic that could influence how various elements including JSX are formatted, particularly in relation to whitespace handling.",
+        "bug_scenario": "The bug involves unstable JSX formatting caused by the presence of the Unicode character \\u3000 (IDEOGRAPHIC SPACE) in the JSX code, which affects how Prettier formats the content. The expected behavior is for Prettier to consistently format JSX without unnecessary spaces, while the actual behavior shows inconsistencies in the output formatting."
+    }
+}

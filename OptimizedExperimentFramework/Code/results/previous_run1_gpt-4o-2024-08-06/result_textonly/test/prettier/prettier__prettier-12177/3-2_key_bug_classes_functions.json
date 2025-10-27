@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [
+            "src/language-js/print/statement.js//printSwitchCaseConsequent"
+        ],
+        "explanation": "The function 'printSwitchCaseConsequent' in 'src/language-js/print/statement.js' is responsible for printing the body of switch case statements, including their consequents. Since the bug involves the formatting of comments within switch statements, this function is directly related as it likely influences how the 'case' and 'default' statements and their comments are printed. Adjusting the logic within this function could ensure consistent comment positioning across different switch labels.",
+        "bug_scenario": "The bug scenario involves inconsistent formatting of comments in switch statements. Specifically, when using Prettier 2.3.2, the formatting of comments differs between the 'case' and 'default' labels in a switch statement, where the 'default' label's comment is placed on a new line rather than inline, which is not the expected behavior."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/print/statement.js"
+        ],
+        "bug_functions": [
+            "src/language-js/print/statement.js//printSwitchCaseConsequent"
+        ],
+        "explanation": "The file 'src/language-js/printer-estree.js' is likely involved because it contains many comment handling strategies and TODOs related to formatting within the language JavaScript directory, indicating it plays a role in managing how comments are treated during the formatting process. The file 'src/language-js/print/statement.js' contains functions related to printing sequences of statements, including switch cases. Specifically, the function 'printSwitchCaseConsequent' is responsible for printing the consequent of switch cases, which directly involves handling the formatting of the `case` and `default` clauses. This function would need to be examined to ensure it handles comments consistently across different parts of a switch statement.",
+        "bug_scenario": "The bug scenario involves a discrepancy in the formatting of comments following the `case` and `default` keywords in a `switch` statement. Specifically, the `case` keyword maintains the comment on the same line, while the `default` keyword moves the comment to a new line. This results in inconsistent formatting output when using Prettier."
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/report-renderer.js",
+            "lighthouse-core/report/report-generator.js"
+        ],
+        "explanation": "These files are related to the bug because `report-renderer.js` is directly responsible for rendering reports and is likely where the `String.replace` function is utilized. If this function does not properly handle user input or escape special characters appropriately, it can lead to code injection vulnerabilities. Similarly, `report-generator.js` may be involved in generating content that includes user input, making it another potential point of exploitation.",
+        "bug_scenario": "The bug scenario involves a JavaScript injection vulnerability where a malicious user can exploit the `String.replace` function to execute arbitrary JavaScript code. This is demonstrated by inserting code like `console.log('$');` into a file (`report-renderer.js`), which allows the injected code to escape the page and execute, potentially compromising the application."
+    }
+}

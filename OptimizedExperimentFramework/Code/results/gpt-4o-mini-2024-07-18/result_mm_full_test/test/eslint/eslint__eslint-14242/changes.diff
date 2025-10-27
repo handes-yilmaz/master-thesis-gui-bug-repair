@@ -1,0 +1,34 @@
+diff --git a/lib/cli-engine/cli-engine.js b/lib/cli-engine/cli-engine.js
+index b1befaa..edaf74f 100644
+--- a/lib/cli-engine/cli-engine.js
++++ b/lib/cli-engine/cli-engine.js
+@@ -766,6 +766,8 @@ class CLIEngine {
+             }
+         }
+ 
++        let totalWarnings = 0; // Initialize a counter for total warnings
++
+         // Iterate source code files.
+         for (const { config, filePath, ignored } of fileEnumerator.iterateFiles(patterns)) {
+             if (ignored) {
+@@ -773,6 +775,20 @@ class CLIEngine {
+                 continue;
+             }
+ 
++            // Count warnings for the current file
++            const result = verifyText({
++                text: fs.readFileSync(filePath, "utf8"),
++                filePath,
++                config,
++                cwd,
++                fix,
++                allowInlineConfig,
++                reportUnusedDisableDirectives,
++                fileEnumerator,
++                linter
++            });
++            totalWarnings += result.warningCount; // Accumulate warnings
++
+             /*
+              * Store used configs for:
+              * - this method uses to collect used deprecated rules.

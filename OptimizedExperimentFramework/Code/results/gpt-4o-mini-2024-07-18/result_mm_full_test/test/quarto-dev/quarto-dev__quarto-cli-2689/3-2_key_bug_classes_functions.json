@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/crossref/crossref.lua//crossref"
+        ],
+        "bug_functions": [
+            "src/resources/filters/crossref/crossref.lua//initCrossrefOptions",
+            "src/resources/filters/crossref/crossref.lua//resolveRefs",
+            "src/resources/filters/crossref/crossref.lua//crossrefMetaInject"
+        ],
+        "explanation": "The `crossref` class and its associated functions (`initCrossrefOptions`, `resolveRefs`, and `crossrefMetaInject`) are critical for managing cross-references in the document. The bug arises because the `crossref: false` setting is not being honored, which suggests that these functions may not be correctly checking or applying the user's configuration. Modifying these functions should help ensure that the cross-referencing behavior aligns with the user's intent.",
+        "bug_scenario": "The user wants to disable cross-referencing in HTML output by setting `crossref: false`, but the current implementation does not respect this setting, leading to unwanted cross-references in the rendered output."
+    }
+}

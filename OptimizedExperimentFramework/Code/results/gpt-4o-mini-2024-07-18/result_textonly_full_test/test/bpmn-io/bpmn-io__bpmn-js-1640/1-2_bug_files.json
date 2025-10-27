@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/modeling/BpmnUpdater.js",
+            "lib/modeling/BpmnFactory.js",
+            "lib/features/drilldown/SubprocessCompatibility.js",
+            "lib/features/replace/BpmnReplace.js"
+        ],
+        "explanation": "These files are crucial for handling the creation, updating, and management of BPMN elements, including multi-instance properties. The BpmnUpdater.js file is likely responsible for updating the element properties during dynamic changes. BpmnFactory.js is involved in creating new instances and ensuring that properties are correctly set. The SubprocessCompatibility.js might deal with ensuring that subprocesses maintain compatibility during changes, which is relevant to the user's issue. Lastly, BpmnReplace.js may handle the replacement logic when changing types of BPMN elements, which could directly affect property retention.",
+        "bug_scenario": "When switching from a parallel to a sequential multi-instance in the BPMN model, the properties associated with the multi-instance are lost, which is a regression issue that needs to be addressed. The expected behavior is that the properties should persist regardless of the instance type change."
+    }
+}

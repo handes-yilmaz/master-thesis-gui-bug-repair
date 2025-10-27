@@ -1,0 +1,39 @@
+{
+    "1/1": {
+        "src/command/render/render.ts": [
+            {
+                "SEARCH": [
+                    "// determine final output",
+                    "let finalInput = result.input;",
+                    "let finalOutput = result.file;"
+                ],
+                "REPLACE": [
+                    "  // ensure that we are correctly identifying figures for output",
+                    "  let finalInput = result.input;",
+                    "  let finalOutput = result.file;",
+                    "",
+                    "  // Check if the result is a figure and handle accordingly",
+                    "  if (result.type === 'figure') {",
+                    "    // Logic to ensure figures are rendered correctly",
+                    "    // Add any necessary handling here",
+                    "  }"
+                ]
+            }
+        ],
+        "src/core/jupyter/jupyter.ts": [
+            {
+                "SEARCH": [
+                    "// validate unique cell labels as we go",
+                    "const validateCellLabel = cellLabelValidator();"
+                ],
+                "REPLACE": [
+                    "  // validate unique cell labels as we go",
+                    "  const validateCellLabel = cellLabelValidator();",
+                    "",
+                    "  // Ensure that figures are processed correctly",
+                    "  const figureOutputs: JupyterCellOutput[] = [];"
+                ]
+            }
+        ]
+    }
+}

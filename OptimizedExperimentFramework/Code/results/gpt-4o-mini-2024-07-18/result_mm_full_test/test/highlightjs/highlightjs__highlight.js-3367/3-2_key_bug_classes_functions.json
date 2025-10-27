@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js//function",
+            "src/lib/compile_keywords.js//compileKeywords",
+            "src/lib/regex.js//concat"
+        ],
+        "bug_functions": [
+            "src/languages/python.js//keywords",
+            "src/lib/compile_keywords.js//scoreForKeyword",
+            "src/lib/regex.js//either"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the keyword recognition and regex patterns used for syntax highlighting in Python. The 'keywords' in 'python.js' define how keywords are recognized, which is crucial for fixing the issue of keywords following numbers. The 'compileKeywords' function in 'compile_keywords.js' compiles the keywords and their relevance, which may need adjustments to ensure proper detection. Lastly, the 'concat' function in 'regex.js' is responsible for combining regex patterns, which could be modified to ensure that the regex correctly separates numbers from keywords.",
+        "bug_scenario": "The issue arises when keywords directly following numbers are not detected correctly in Python code highlighting. The expected behavior is that the highlighting should separate the number and the keyword part, which is not happening in the current implementation."
+    }
+}

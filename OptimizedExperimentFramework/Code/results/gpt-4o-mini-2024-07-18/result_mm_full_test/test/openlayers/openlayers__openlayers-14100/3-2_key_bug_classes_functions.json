@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Group.js//LayerGroup"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/canvas/TileLayer.js//renderFrame",
+            "src/ol/renderer/canvas/TileLayer.js//prepareFrame",
+            "src/ol/renderer/canvas/TileLayer.js//manageTilePyramid"
+        ],
+        "explanation": "The LayerGroup class is responsible for managing multiple layers, and any changes in its implementation could affect how layers are rendered and loaded. The renderFrame and prepareFrame functions in the TileLayer class are critical for determining how tiles are rendered on the canvas, and the manageTilePyramid function is essential for managing the loading of tiles at different zoom levels. These functions are likely involved in the change from concurrent to sequential loading behavior.",
+        "bug_scenario": "After upgrading from version 6.1 to 7.0, the tile loading behavior for layers within a LayerGroup has changed from concurrent requests to sequential requests, resulting in slower imagery load times."
+    }
+}

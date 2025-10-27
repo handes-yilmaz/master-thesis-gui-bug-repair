@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/indent.js//TokenInfo",
+            "lib/rules/indent.js//OffsetStorage",
+            "lib/rules/indent.js//getDesiredIndent",
+            "lib/rules/indent.js//setDesiredOffset",
+            "lib/rules/indent-legacy.js//checkIndent"
+        ],
+        "bug_functions": [
+            "lib/rules/indent.js//getAllTokens",
+            "lib/rules/indent.js//getFirstTokenOfLine",
+            "lib/rules/indent.js//isFirstTokenOfLine",
+            "lib/rules/indent.js//getTokenIndent",
+            "lib/rules/indent.js//matchIndentOf",
+            "lib/rules/indent.js//setDesiredOffsets",
+            "lib/rules/indent.js//checkIndentation",
+            "lib/rules/indent-legacy.js//checkIndent"
+        ],
+        "explanation": "These classes and functions are related to the indentation rules enforced by ESLint. The `TokenInfo` and `OffsetStorage` classes manage the tokens and their desired offsets, which are crucial for determining correct indentation levels. Functions like `getDesiredIndent`, `setDesiredOffset`, and `checkIndentation` are directly involved in calculating and enforcing the expected indentation for various code structures, including binary expressions. The bug arises from how these functions handle parentheses in JSX, leading to incorrect indentation reporting.",
+        "bug_scenario": "The bug is related to indentation errors in JSX binary expressions when using parentheses. The user expected the code to pass without errors, but ESLint reported indentation issues, particularly when parentheses are used around the logical expression. The images show the specific indentation errors highlighted by ESLint."
+    }
+}

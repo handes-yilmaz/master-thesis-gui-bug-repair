@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/GroupBehavior.js",
+            "lib/import/BpmnImporter.js",
+            "lib/features/modeling/BpmnUpdater.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: \n1. **GroupBehavior.js**: This file contains the logic for handling group behaviors in BPMN diagrams, including the creation and management of category values associated with groups. The unresolved reference warning suggests that the category value is not being correctly linked or managed when groups are created inside collapsed sub-processes.\n\n2. **BpmnImporter.js**: This file is responsible for importing BPMN elements into the canvas. It handles the addition of elements and their properties, including how groups and their associated category values are processed during import. Fixing the import logic may resolve the unresolved reference issue.\n\n3. **BpmnUpdater.js**: This file manages updates to the BPMN model when changes occur in the diagram. It ensures that the underlying BPMN XML is correctly updated to reflect changes made in the UI. If the category values are not being updated or linked correctly during these operations, it could lead to the unresolved reference error upon re-import.",
+        "bug_scenario": "The bug occurs when a user creates a group inside a collapsed sub-process in a BPMN diagram. Upon saving and re-importing the diagram, a warning appears indicating an unresolved reference to a category value, specifically `<CategoryValue_01k5toe>`. This suggests that the group is not being properly linked to the BPMN model, leading to issues with the integrity of the diagram upon re-import."
+    }
+}

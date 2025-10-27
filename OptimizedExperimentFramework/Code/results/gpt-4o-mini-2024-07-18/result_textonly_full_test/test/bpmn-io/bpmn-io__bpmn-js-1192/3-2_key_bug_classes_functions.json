@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/rules/BpmnRules.js//BpmnRules",
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste"
+        ],
+        "bug_functions": [
+            "lib/features/rules/BpmnRules.js//canCopy",
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences"
+        ],
+        "explanation": "The `BpmnRules` class contains the `canCopy` function, which directly relates to the copying functionality of elements, including boundary events. Modifying this function is essential to allow copying of boundary events. The `BpmnCopyPaste` class includes functions like `copyProperties` and `resolveReferences`, which are responsible for handling the copying of properties and resolving references during the copy-paste operation. These functions are crucial for implementing the desired feature of copying boundary events, as they manage the actual data transfer and reference resolution necessary for a successful copy operation.",
+        "bug_scenario": "The bug scenario involves the inability to copy boundary events in a BPMN model due to a restriction imposed by the `element.copy` rule. The provided image illustrates the process of detaching boundary events, which is now possible, but copying them remains blocked by the existing rule."
+    }
+}

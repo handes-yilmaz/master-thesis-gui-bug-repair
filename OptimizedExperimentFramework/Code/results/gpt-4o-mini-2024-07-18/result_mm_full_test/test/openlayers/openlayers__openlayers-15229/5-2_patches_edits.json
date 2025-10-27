@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/PointsLayer.js": [
+            {
+                "SEARCH": [
+                    "const projectionTransform = createTransform();",
+                    "this.helper.makeProjectionTransform(frameState, projectionTransform);"
+                ],
+                "REPLACE": [
+                    "    const projectionTransform = createTransform();",
+                    "    const aspectRatio = frameState.size[0] / frameState.size[1];",
+                    "    this.helper.makeProjectionTransform(frameState, projectionTransform);",
+                    "    // Adjust the projection transform for non-square viewports",
+                    "    projectionTransform[0] *= aspectRatio; // Scale x-axis by aspect ratio"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.helper.makeProjectionTransform(frameState, this.currentTransform_);"
+                ],
+                "REPLACE": [
+                    "      this.helper.makeProjectionTransform(frameState, this.currentTransform_);",
+                    "      // Adjust the current transform for non-square viewports",
+                    "      this.currentTransform_[0] *= aspectRatio; // Scale x-axis by aspect ratio"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/reproj/Tile.js//ReprojTile",
+            "src/ol/layer/Tile.js//TileLayer",
+            "src/ol/source/Tile.js//TileSource"
+        ],
+        "bug_functions": [
+            "src/ol/reproj/Tile.js//reproject_",
+            "src/ol/reproj/Tile.js//load",
+            "src/ol/source/Tile.js//getTile"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the reprojecting and loading of tiles. The `ReprojTile` class is responsible for managing reprojected tiles, and its methods like `reproject_` and `load` are crucial for ensuring that tiles are correctly loaded and rendered. The `TileLayer` class manages the rendering of tile layers, while the `TileSource` class provides the underlying tile data. Modifications in these areas are necessary to prevent tiles from being disposed prematurely and to ensure that tiles in the ABORT state are handled correctly.",
+        "bug_scenario": "The bug scenario involves white areas appearing on a map when zooming in and out on a reprojected Tile layer. This occurs because the underlying Tile object has been disposed, which prevents it from being included in the stitching process for the reprojection."
+    }
+}

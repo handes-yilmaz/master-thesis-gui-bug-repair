@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/format/reveal/format-reveal.ts//revealjsFormat",
+            "src/format/reveal/format-reveal-title.ts//titleSlidePartial",
+            "src/format/reveal/constants.ts//kHashType"
+        ],
+        "bug_functions": [
+            "src/format/reveal/format-reveal.ts//revealHtmlPostprocessor",
+            "src/format/reveal/format-reveal.ts//applyStretch",
+            "src/format/reveal/format-reveal-title.ts//titleSlideScss"
+        ],
+        "explanation": "The `revealjsFormat` function is responsible for setting up the configuration for the reveal.js format, including handling different hash types. The `revealHtmlPostprocessor` function may be involved in adjusting the HTML output based on the hash type, which could affect alignment. The `titleSlidePartial` function determines which title slide template to use, and the `titleSlideScss` function handles the styling for the title slide, both of which are critical for ensuring proper alignment. The constant `kHashType` is directly related to the hash type configuration, which is the source of the bug.",
+        "bug_scenario": "The title slide alignment is broken when using `hash-type: number` in reveal.js presentations. The images show a misaligned title slide with the `hash-type: number` configuration compared to a correctly aligned title slide with `hash-type: title`."
+    }
+}

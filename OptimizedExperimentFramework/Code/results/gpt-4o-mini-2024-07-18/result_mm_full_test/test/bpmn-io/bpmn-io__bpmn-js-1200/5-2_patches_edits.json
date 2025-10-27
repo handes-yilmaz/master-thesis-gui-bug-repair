@@ -1,0 +1,21 @@
+{
+    "1/1": {
+        "// Hypothetical patch for preserving conditionExpression during event type change": [
+            {
+                "SEARCH": [
+                    "// Code that handles the event type change",
+                    "if (eventType === \"Timer Intermediate Catch Event\") {",
+                    "// Logic that modifies the sequence flow",
+                    "sequenceFlow.conditionExpression = null; // This line is problematic"
+                ],
+                "REPLACE": [
+                    "if (eventType === \"Timer Intermediate Catch Event\") {",
+                    "    // Preserve existing conditionExpression",
+                    "    const existingCondition = sequenceFlow.conditionExpression;",
+                    "    // Logic that modifies the sequence flow",
+                    "    sequenceFlow.conditionExpression = existingCondition; // Preserve the existing expression"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-javascript.js//Prism.languages.javascript",
+            "components/prism-js-templates.js//createTemplate",
+            "components/prism-js-templates.js//tokenizeEmbedded"
+        ],
+        "bug_functions": [
+            "components/prism-javascript.js//insertBefore",
+            "components/prism-js-templates.js//findTemplateStrings",
+            "components/prism-js-templates.js//tokenizeWithHooks"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the parsing and tokenization of JavaScript code, including template literals. The 'Prism.languages.javascript' class defines the language grammar, while 'createTemplate' and 'tokenizeEmbedded' in 'prism-js-templates.js' are responsible for handling template strings and their embedded code. The functions 'insertBefore' and 'findTemplateStrings' are crucial for ensuring that template literals are correctly identified and processed, which is directly related to the bug described.",
+        "bug_scenario": "The bug occurs when certain template literals in JavaScript are not parsed correctly, leading to incorrect highlighting. Specifically, when a regex containing a single quote is followed by a comment with a template literal, subsequent template literals break the parsing for the rest of the file."
+    }
+}

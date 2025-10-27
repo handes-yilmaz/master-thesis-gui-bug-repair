@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/behavior/DataStoreBehavior.js",
+            "lib/features/modeling/behavior/CreateDataObjectBehavior.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: 1. **BpmnUpdater.js**: This file contains the updateDiParent function, which is directly involved in the error when morphing the DataStoreReference. Fixing the logic here is essential to prevent the TypeError. 2. **DataStoreBehavior.js**: This file manages the behavior of DataStoreReferences, including their containment and parent updates. It may need adjustments to ensure that DataStoreReferences are correctly handled when morphing. 3. **CreateDataObjectBehavior.js**: This file defines the behavior for creating DataObjectReferences. It may require modifications to ensure that the morphing process does not lead to errors when a DataStoreReference is involved.",
+        "bug_scenario": "The bug occurs when attempting to morph a DataStoreReference to a DataObjectReference outside of a Pool in a BPMN model. This results in a TypeError due to an undefined property being accessed, specifically when the updateDiParent function is called in the BpmnUpdater.js file."
+    }
+}

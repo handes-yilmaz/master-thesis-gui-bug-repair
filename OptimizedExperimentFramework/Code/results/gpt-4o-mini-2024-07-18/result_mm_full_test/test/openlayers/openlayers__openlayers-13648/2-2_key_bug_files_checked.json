@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/reproj/Image.js",
+            "src/ol/render/canvas/ImageBuilder.js"
+        ],
+        "explanation": "These files are key to addressing the bug because: 1. **GeoTIFF.js**: This file handles the loading and processing of GeoTIFF images, which is central to the issue of displaying the COG correctly. 2. **Image.js**: This file is responsible for reprojecting images, which may be necessary if the COG has non-square pixels that need to be handled differently during rendering. 3. **ImageBuilder.js**: This file manages the rendering of images on the canvas, and any issues with how images are drawn could directly affect the visibility of the entire image.",
+        "bug_scenario": "The bug involves loading a Cloud Optimized GeoTIFF (COG) where only the upper part of the image is displayed, indicating a potential issue with how the image is being processed or rendered, particularly with non-square pixels."
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/typescript.js",
+            "src/language-js/parse/typescript.js"
+        ],
+        "explanation": "The issue is within TypeScript formatting. The files responsible for printing and parsing TypeScript in Prettier are likely causing the bug. The bug happens in the context of TypeScript generics, and involves the way arrays are printed, specifically dealing with trailing commas when the print width condition is met. The parsing and printing logic for TypeScript would be the first place to check and modify for fixing this bug.",
+        "bug_scenario": "The bug involves incorrect formatting of TypeScript generics in Prettier 2.5.0, where a comma is wrongly inserted in an empty array when the print width is set to 120 and the identifier length matches exactly. The output shows an unexpected comma, disrupting the intended format."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/print/type-parameters.js",
+            "src/language-js/print/typescript.js"
+        ],
+        "explanation": "The issue involves the formatting of TypeScript generics, specifically when handling arrays. The files likely involved are those related to TypeScript printing and type parameters. The 'type-parameters.js' and 'typescript.js' files under 'src/language-js/print/' handle the logic for printing TypeScript code, including managing type parameters and generics. These files are responsible for how generics are formatted and are the probable source of the incorrect comma insertion.",
+        "bug_scenario": "The bug report describes an issue related to formatting TypeScript generics in Prettier 2.5.0, where a spurious comma is inserted into an empty array. This happens when the 'print-width' is set to 120 and the identifier length is exactly this length, leading to incorrect formatting output compared to the expected output."
+    }
+}

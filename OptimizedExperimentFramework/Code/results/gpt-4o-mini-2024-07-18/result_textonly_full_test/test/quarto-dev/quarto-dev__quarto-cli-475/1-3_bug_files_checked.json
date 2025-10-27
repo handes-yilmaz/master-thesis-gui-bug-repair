@@ -1,0 +1,9 @@
+{
+    "1": {
+        "bug_files": [
+            "src/resources/filters/quarto-pre/callout.lua"
+        ],
+        "explanation": "The file 'callout.lua' is directly responsible for handling the markdown processing of callout blocks. The existing code uses 'pandoc.utils.stringify()' to convert captions to strings, which does not escape special characters correctly for LaTeX output. The proposed changes in the bug report suggest modifying this to use 'pandoc.write()' to properly format captions and add brackets around them. Therefore, this file is critical to fixing the reported bug.",
+        "bug_scenario": "The bug occurs when processing markdown callout block captions with special characters for LaTeX output. Specifically, captions containing special characters (like '%<-%' or commas) are not being properly escaped or processed, leading to LaTeX errors when generating PDFs from markdown files. The existing Lua filter does not handle these cases correctly, resulting in unformatted or erroneous output in the final PDF rendering. This was highlighted in multiple examples where titles with special characters either produced errors or failed to apply the intended markdown formatting."
+    }
+}

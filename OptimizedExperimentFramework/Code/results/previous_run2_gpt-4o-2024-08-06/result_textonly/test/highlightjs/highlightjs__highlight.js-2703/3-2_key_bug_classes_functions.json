@@ -1,0 +1,29 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/javascript.js//PARAMS",
+            "src/languages/scala.js//CLASS"
+        ],
+        "bug_functions": [
+            "src/lib/html_renderer.js//HTMLRenderer",
+            "src/lib/html_renderer.js//openNode",
+            "src/lib/html_renderer.js//closeNode"
+        ],
+        "explanation": "In the JavaScript file, the 'PARAMS' configuration is responsible for defining how parameters, including comments within them, should be highlighted. Since the issue is with comments inside params not being highlighted, this area likely needs adjustment.\n\nIn the Scala file, the 'CLASS' configuration defines how classes and their comments should be highlighted. This is directly related to the issue of comments being improperly rendered as part of the class title when curly brackets are on the next line.\n\nThe HTMLRenderer class and its methods ('openNode', 'closeNode') in 'html_renderer.js' are responsible for the rendering output of highlighted code. Since the bug is about incorrect rendering of comments in both Scala and JavaScript, these methods are likely involved in how the highlighted output is constructed and displayed, particularly in emitting the wrapping tags that could incorrectly position or interpret comments.",
+        "bug_scenario": "The bug involves syntax highlighting for Scala and JavaScript code where comments are not being rendered correctly. In Scala, comments within the class definition are incorrectly rendered as part of the class title when the curly bracket is on the next line. For JavaScript, comments inside parameters are not being highlighted at all."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/javascript.js",
+            "src/languages/scala.js"
+        ],
+        "bug_functions": [
+            "src/lib/html_renderer.js//openNode",
+            "src/lib/html_renderer.js//closeNode",
+            "src/languages/javascript.js//PARAMS_CONTAINS",
+            "src/languages/scala.js//METHOD"
+        ],
+        "explanation": "The bug is related to how comments are processed and rendered. In 'src/languages/javascript.js', the 'PARAMS_CONTAINS' object handles the inclusion of comments within parameters, which directly relates to the JavaScript issue of comments inside parameters not being highlighted. Similarly, 'src/languages/scala.js' defines how Scala syntax is highlighted, including class and method definitions, which relates to the Scala issue of comments being misinterpreted as class titles.\n\nThe functions 'openNode' and 'closeNode' in 'src/lib/html_renderer.js' are responsible for adding HTML elements for syntax highlighting, including wrapping text in <span> elements based on its type (e.g., comment, keyword). Errors in these functions could lead to incorrect rendering, such as comments not being highlighted correctly or being misclassified. Therefore, these functions are critical to fixing the rendering issue described in the bug report.",
+        "bug_scenario": "The bug report describes an issue with how comments are rendered in certain scenarios when using the highlight.js library for syntax highlighting. In Scala, comments within class definitions are incorrectly rendered as class titles if the curly brace is on the next line. In JavaScript, the comments inside function parameters are not highlighted as expected."
+    }
+}

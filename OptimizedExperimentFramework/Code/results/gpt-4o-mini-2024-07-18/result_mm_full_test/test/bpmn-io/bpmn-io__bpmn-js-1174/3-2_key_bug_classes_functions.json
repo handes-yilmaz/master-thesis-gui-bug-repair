@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnLayouter.js//BpmnLayouter",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js//LayoutConnectionBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnLayouter.js//layoutConnection",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior.js//snapMiddleSegments"
+        ],
+        "explanation": "The `BpmnLayouter` class contains the `layoutConnection` function, which is responsible for determining how connections between nodes are laid out. This function is crucial for fixing the layout issue when reconnecting nodes to form a loop. The `LayoutConnectionBehavior` class includes the `snapMiddleSegments` function, which adjusts the waypoints of connections. This function may also play a role in ensuring that the connection is visually correct when the layout is updated, particularly for connections with multiple waypoints.",
+        "bug_scenario": "The bug occurs when attempting to reconnect flow nodes to form a loop with more than two waypoints, resulting in an incorrect layout of the connection. The expected behavior is that the layout should resemble a newly created loop, but instead, it does not align properly, as demonstrated in the provided images."
+    }
+}

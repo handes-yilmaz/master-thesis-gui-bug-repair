@@ -1,0 +1,26 @@
+diff --git a/lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js b/lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js
+index e7c32eb..2584362 100644
+--- a/lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js
++++ b/lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js
+@@ -142,11 +142,16 @@ class UnusedBytes extends Audit {
+       networkNode.record._transferSize = originalTransferSize;
+     });
+ 
+-    const savingsOnTTI = Math.max(
+-      Interactive.getLastLongTaskEndTime(simulationBeforeChanges.nodeTimings) -
+-        Interactive.getLastLongTaskEndTime(simulationAfterChanges.nodeTimings),
+-      0
+-    );
++    const savingsOnTTI = results.length === 1 ? 
++      Math.max(
++        Interactive.getLastLongTaskEndTime(simulationBeforeChanges.nodeTimings) -
++          Interactive.getLastLongTaskEndTime(simulationAfterChanges.nodeTimings),
++        0
++      ) : Math.max(
++        Interactive.getLastLongTaskEndTime(simulationBeforeChanges.nodeTimings) -
++          Interactive.getLastLongTaskEndTime(simulationAfterChanges.nodeTimings),
++        0
++      );
+ 
+     // Round waste to nearest 10ms
+     return Math.round(savingsOnTTI / 10) * 10;

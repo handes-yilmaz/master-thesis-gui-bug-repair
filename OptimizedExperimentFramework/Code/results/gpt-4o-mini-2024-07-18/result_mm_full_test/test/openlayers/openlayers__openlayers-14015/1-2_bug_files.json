@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Tile.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/Tile.js",
+            "src/ol/reproj/Tile.js",
+            "src/ol/render/webgl/TileLayer.js"
+        ],
+        "explanation": "These files are directly related to the rendering and handling of tile layers in the WebGL context. The `Tile.js` files handle the properties and functionalities of tile layers, including caching mechanisms. The `WebGLTile.js` file is specifically meant for tiles rendered using WebGL, which would be impacted by caching issues. The reprojection file handles tile reprojection, which could be affected when the view projection is changed. Lastly, the `TileLayer.js` in the rendering context deals with how tiles are drawn and displayed, which is crucial for ensuring the correct tiles are shown after a source change.",
+        "bug_scenario": "The bug occurs when using WebGL tile layers, where cached textures do not get replaced when the data source is changed with `setSource()` or when the view projection is altered. This results in the display of old, incorrect tiles even after the source or projection has been updated, leading to inconsistencies in the rendered output."
+    }
+}

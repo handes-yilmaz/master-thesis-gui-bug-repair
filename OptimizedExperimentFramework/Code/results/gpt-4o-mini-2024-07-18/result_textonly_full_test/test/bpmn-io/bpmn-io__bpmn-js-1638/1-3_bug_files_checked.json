@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/label-editing/LabelUtil.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "The files identified are crucial for handling label updates and managing the state of the diagram elements. The `UpdateLabelHandler.js` is responsible for processing changes related to labels, and it likely contains the logic that needs adjustment to ensure that `di.label` is completely removed when a label is cleared. The `LabelUtil.js` provides utility functions related to label handling, which may include checks or operations that are relevant to this bug. Lastly, the `Modeling.js` file manages the overall modeling state and interactions, and it is essential to ensure that any label-related changes are correctly reflected in the model.",
+        "bug_scenario": "The bug occurs when a user removes the label from a task, resulting in the property `di.label` remaining in the data structure with a value of `null`. This is problematic for other tools that rely on the absence of this property when no label is set."
+    }
+}

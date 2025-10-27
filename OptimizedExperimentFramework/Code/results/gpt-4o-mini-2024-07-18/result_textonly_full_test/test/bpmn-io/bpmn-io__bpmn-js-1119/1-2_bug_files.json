@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js",
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/behavior/CreateParticipantBehavior.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "These files are related to the bug because they handle the logic for replacing connections and elements in the BPMN model. The ReplaceConnectionBehavior.js and ReplaceElementBehaviour.js files contain the code responsible for managing the creation and replacement of connections, which is directly linked to the issue of the sequence flow not being placed correctly. CreateParticipantBehavior.js manages the behavior of participants in the model, which is crucial given that the bug manifests when the previous connection source is a Participant. Lastly, Modeling.js orchestrates the overall modeling operations, making it necessary to investigate for any higher-level interactions that might contribute to the bug.",
+        "bug_scenario": "The bug occurs when replacing a message flow with a sequence flow, causing the modeler to malfunction if the previous connection source is a Participant. The expected behavior is for the sequence flow to be part of the second participant and rendered correctly. The issue can be observed when following the steps to reproduce using the provided test diagram."
+    }
+}

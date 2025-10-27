@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/print-whitespace.js",
+            "src/language-markdown/utils.js",
+            "src/language-markdown/parser-markdown.js"
+        ],
+        "explanation": "These files are critical to the bug because they handle whitespace management and parsing in markdown files. The 'print-whitespace.js' file is responsible for determining how whitespace (including empty lines) is printed, which directly affects the output formatting. The 'utils.js' file contains functions that may influence how text is split and processed, potentially impacting whitespace handling. Lastly, 'parser-markdown.js' is involved in the parsing process of markdown content, including the YAML frontmatter, and any issues in this file could lead to improper handling of whitespace, resulting in the bug described.",
+        "bug_scenario": "The bug scenario involves the removal of empty lines in the YAML frontmatter of markdown files when processed by Prettier 3.3.0. This results in the loss of intended formatting, particularly in the 'blogs' section of the markdown, where empty lines are expected to be preserved for readability."
+    }
+}

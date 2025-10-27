@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-java.js",
+            "components/prism-clike.js"
+        ],
+        "explanation": "The problem relates specifically to Java syntax highlighting, which would involve the file `prism-java.js` as it is responsible for Java language definitions. Since syntax highlighting in Prism often extends or depends on common language grammar definitions, the `prism-clike.js` file, which provides shared syntax between similar languages (like Java and C-like languages), is also relevant. Adjustments in these files would directly affect how package names are highlighted.",
+        "bug_scenario": "The bug report describes an issue where single-package names in Java are not being highlighted correctly. Typically, such package declarations should be syntax-highlighted to differentiate them from other code elements. The provided screenshot shows that both single-package and nested package declarations appear the same, lacking the expected highlighted distinction."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-java.js"
+        ],
+        "explanation": "The problem pertains to incorrect syntax highlighting of Java packages, which is handled by the language-specific syntax files. In this case, `components/prism-java.js` deals with Java syntax highlighting. Modifying this file will enable correcting the way single-package names are parsed and highlighted, ensuring consistency with multi-package names.",
+        "bug_scenario": "The issue is that single-package names in Java, such as `package baz;`, are not being highlighted correctly by the syntax highlighter. The screenshot shows `package baz` without proper highlighting while `package baz.zap;` is highlighted as expected. This inconsistency leads to confusion for users relying on syntax highlighting for code readability and correctness."
+    }
+}

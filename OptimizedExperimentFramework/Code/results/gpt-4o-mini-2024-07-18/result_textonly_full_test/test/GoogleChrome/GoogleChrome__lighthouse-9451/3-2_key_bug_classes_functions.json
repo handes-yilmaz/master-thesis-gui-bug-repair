@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/gatherers/offline.js//Offline",
+            "lighthouse-core/gather/gatherers/start-url.js//StartUrl",
+            "lighthouse-core/audits/offline-start-url.js//OfflineStartUrl"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/gatherers/offline.js//beforePass",
+            "lighthouse-core/gather/gatherers/offline.js//afterPass",
+            "lighthouse-core/gather/gatherers/start-url.js//afterPass",
+            "lighthouse-core/gather/gatherers/start-url.js//_readManifestStartUrl",
+            "lighthouse-core/gather/gatherers/start-url.js//_attemptStartURLFetch",
+            "lighthouse-core/audits/offline-start-url.js//audit"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the offline capabilities of the web application being tested by Lighthouse. The 'Offline' class manages the process of going offline and checking network records, which is crucial for determining if the page can load offline. The 'StartUrl' class is responsible for fetching the start URL defined in the web app manifest, which is essential for offline functionality. The 'OfflineStartUrl' audit checks if the start URL responds correctly when offline, which directly relates to the reported issue of Lighthouse not recognizing the page's offline capabilities. Any issues in these classes or functions could lead to the incorrect behavior described in the bug report.",
+        "bug_scenario": "The bug scenario involves Lighthouse failing to correctly report that a webpage can load offline. When running Lighthouse on a specific URL, it indicates that the page does not load offline, even though it should. The issue is observed through the Lighthouse internals, where the flags indicating whether the page was fetched from the service worker or disk cache are both false, which is incorrect when the page is supposed to be accessible offline."
+    }
+}

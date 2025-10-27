@@ -1,0 +1,27 @@
+diff --git a/src/components/sprite-info/sprite-info.jsx b/src/components/sprite-info/sprite-info.jsx
+index e9090bfe..a76b1d01 100644
+--- a/src/components/sprite-info/sprite-info.jsx
++++ b/src/components/sprite-info/sprite-info.jsx
+@@ -49,6 +49,22 @@ class SpriteInfo extends React.Component {
+             stageSize
+         } = this.props;
+ 
++        const watermark = (
++            <img
++                src={this.props.selectedSpriteWatermark} // Assuming this prop holds the watermark image URL
++                style={{
++                    position: 'absolute',
++                    top: '10px', // Adjust as necessary
++                    right: '10px', // Adjust as necessary
++                    width: '48px',
++                    height: '48px',
++                    opacity: 0.35,
++                    zIndex: -1 // Ensure it's below the blocks
++                }}
++                alt="Watermark"
++            />
++        );
++
+         const sprite = (
+             <FormattedMessage
+                 defaultMessage="Sprite"

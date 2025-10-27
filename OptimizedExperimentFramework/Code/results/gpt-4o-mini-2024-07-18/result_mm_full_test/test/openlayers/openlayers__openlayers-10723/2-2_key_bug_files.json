@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Graticule.js",
+            "src/ol/proj/proj4.js",
+            "src/ol/proj/Projection.js"
+        ],
+        "explanation": "1. **src/ol/layer/Graticule.js**: This file contains the implementation of the Graticule layer, which is responsible for rendering the grid lines (meridians and parallels). The bug is directly related to how these lines are generated and displayed, especially when crossing the dateline. Modifications here will address the rendering logic for meridians and parallels.\n\n2. **src/ol/proj/proj4.js**: This file handles the integration of proj4 projections into the application. Since the issue involves projections and their handling across the dateline, adjustments may be needed in how projections are defined and transformed, particularly in relation to the dateline.\n\n3. **src/ol/proj/Projection.js**: This file defines the projection class and its properties. Since the bug involves projection behavior, especially regarding the wrapping of coordinates around the dateline, changes in this file may be necessary to ensure that projections are correctly defined and utilized.",
+        "bug_scenario": "The graticule does not display correctly when the view projection crosses the dateline, resulting in missing meridians and incorrectly positioned parallels. The expected behavior is for all meridians and parallels within the projection extent to be displayed correctly."
+    }
+}

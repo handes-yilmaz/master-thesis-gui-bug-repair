@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-javascript.js",
+            "components/prism-js-templates.js",
+            "components/prism-javascript.min.js"
+        ],
+        "explanation": "These files are critical because they contain the definitions and patterns used by PrismJS to highlight JavaScript and template literals. The 'prism-javascript.js' file defines the JavaScript language grammar, including how template literals are recognized. The 'prism-js-templates.js' file extends this functionality to handle tagged template literals, which are essential for the bug scenario described. The 'prism-javascript.min.js' file is the minified version of the JavaScript grammar, which is also affected by the same parsing logic. Fixing the bug will require changes in these files to ensure that template literals are parsed correctly in the specified scenarios.",
+        "bug_scenario": "The bug occurs when certain template literals in JavaScript are not parsed correctly, leading to incorrect highlighting in the PrismJS syntax highlighter. Specifically, when a regex containing a single quote is followed by a template literal that also contains a single quote, it causes subsequent template literals to be parsed incorrectly, resulting in broken highlighting for those lines."
+    }
+}

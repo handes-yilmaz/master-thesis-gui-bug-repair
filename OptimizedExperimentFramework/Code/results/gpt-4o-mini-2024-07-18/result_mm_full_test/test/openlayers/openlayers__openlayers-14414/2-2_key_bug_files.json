@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/Raster.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/layer/WebGLTile.js"
+        ],
+        "explanation": "These files are key to the bug because: 1. **Raster.js**: This file contains the logic for processing raster operations, including the floodRegion function that is responsible for modifying pixel values based on the input data. Issues in this file could directly affect how pixels are processed when the slider is adjusted. 2. **GeoTIFF.js**: This file handles the loading and management of GeoTIFF data. If there are issues with how the GeoTIFF is read or interpreted, it could lead to incorrect pixel values being processed. 3. **WebGLTile.js**: This file manages the rendering of tiles using WebGL. If the style variables or rendering logic are not correctly applied, it could result in the visual discrepancies observed when adjusting the sea level.",
+        "bug_scenario": "The user is experiencing issues with a Region Growing operation using a GeoTIFF file. When adjusting the slider to increase the sea level, pixels below the level turn white, but decreasing the level does not change the pixels as expected. Additionally, the R value of a pixel printed in the console is incorrect, indicating potential issues in the pixel processing logic."
+    }
+}

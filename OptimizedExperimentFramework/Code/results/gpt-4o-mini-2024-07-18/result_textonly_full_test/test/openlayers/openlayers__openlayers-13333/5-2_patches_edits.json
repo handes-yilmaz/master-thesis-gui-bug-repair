@@ -1,0 +1,40 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const source = this.getSource();",
+                    "return this.sources_",
+                    "? typeof this.sources_ === 'function'",
+                    "? this.sources_(extent, resolution)",
+                    ": this.sources_",
+                    ": source",
+                    "? [source]",
+                    ": [];"
+                ],
+                "REPLACE": [
+                    "    const source = this.getSource();",
+                    "    const adjustedExtent = this.adjustExtent(extent); // Adjust the extent if necessary",
+                    "    return this.sources_",
+                    "      ? typeof this.sources_ === 'function'",
+                    "        ? this.sources_(adjustedExtent, resolution)",
+                    "        : this.sources_",
+                    "      : source",
+                    "      ? [source]",
+                    "      : [];"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const canvas = this.renderSources(frameState, sources);",
+                    "if (this.getRenderer().renderComplete && ready) {"
+                ],
+                "REPLACE": [
+                    "    const canvas = this.renderSources(frameState, sources);",
+                    "    if (this.getRenderer().renderComplete && ready) {",
+                    "      this.checkExtentValidity(frameState.extent); // Check if the extent is valid"
+                ]
+            }
+        ]
+    }
+}

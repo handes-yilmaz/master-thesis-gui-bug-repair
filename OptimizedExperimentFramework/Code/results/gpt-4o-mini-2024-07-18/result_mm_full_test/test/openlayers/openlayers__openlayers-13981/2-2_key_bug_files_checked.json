@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/render/VectorContext.js",
+            "src/ol/renderer/canvas/VectorLayer.js"
+        ],
+        "explanation": "These files are key bug files because they contain the core logic for rendering text and vector layers. The 'TextBuilder.js' file is responsible for building the text rendering logic, which is directly related to how text is offset and rotated. The 'VectorContext.js' file provides the context for drawing geometries, including text, and is crucial for understanding how the rendering context affects the output. Lastly, 'VectorLayer.js' is responsible for managing the vector layer rendering process, which includes handling the rendering of text in relation to the vector layer's properties. Fixing the inconsistencies in text rendering will likely require changes in these files.",
+        "bug_scenario": "The bug involves inconsistent rendering of offset and rotated text between vector layers and immediate renderers. The vector layer renderer is expected to rotate text around its offset anchor point, but the immediate renderer does not behave the same way, leading to discrepancies in how text is displayed when both offset and rotation are applied."
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [
+            "src/languages/dart.js//export default function"
+        ],
+        "explanation": "The issue is related to how empty block comments are being parsed and handled in the syntax highlighting logic for Dart. In the compressed file 'src/languages/dart.js', the function 'export default function' defines the language rules and patterns for highlighting Dart code. This function contains configurations for handling strings, comments, and block comments specifically. The problem arises because the function does not correctly account for empty block comments, leading to incorrect highlighting. Adjustments in this function's logic are necessary to properly handle such cases and ensure consistent highlighting functionality.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in the Dart language where an empty block comment (/**/) disrupts the code highlighting. The expected behavior is not achieved, causing the entire code block to display improperly when using the highlight feature in a markdown environment."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/dart.js"
+        ],
+        "bug_functions": [
+            "src/languages/dart.js//export default function"
+        ],
+        "explanation": "The key file is 'src/languages/dart.js' which contains the Dart language definition for the syntax highlighting library. The function 'export default function' within this file is responsible for defining how Dart syntax is parsed and highlighted. It includes configurations for handling different syntax elements such as strings, comments, and keywords. The issue arises because the current handling of block comments does not accommodate cases where comments are empty, which disrupts the parsing process. Therefore, adjustments need to be made within this function to correctly parse and handle empty block comments to prevent them from breaking further code highlighting.",
+        "bug_scenario": "The bug report describes an issue with the Dart syntax highlighting where an empty block comment \"/**/\" disrupts the highlighting of subsequent code. The sample code provided is \"/**/main(){print(\\\"Hello, World!\\\");}/**/\", which should be highlighted correctly, but due to the bug, it is not."
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/render/codetools.ts//codeToolsPostprocessor",
+            "src/command/render/codetools.ts//resolveKeepSource",
+            "src/command/render/codetools.ts//formatHasCodeTools"
+        ],
+        "bug_functions": [
+            "src/command/render/codetools.ts//keepSourceBlock",
+            "src/command/render/codetools.ts//resolveCodeTools"
+        ],
+        "explanation": "These classes and functions are related to the `code-tools` functionality in the rendering process. The `codeToolsPostprocessor` function is responsible for processing the document after rendering, which includes adding the `code-tools` menu. The `resolveKeepSource` function determines whether the source code should be kept based on the format and execution engine, which is crucial for the `code-tools` to function correctly. The `formatHasCodeTools` function checks if the format supports code tools, which is essential for displaying the menu. The `keepSourceBlock` function manages the source code blocks, and `resolveCodeTools` resolves user preferences for code tools, both of which are critical for ensuring that the `code-tools` menu appears correctly when a URL is specified.",
+        "bug_scenario": "The `code-tools` menu fails to appear when a URL is specified for the `source` in a Quarto markdown file. This issue is evident in the provided screenshots, where the menu is visible when `source: true` is used, but not when a URL is provided."
+    }
+}

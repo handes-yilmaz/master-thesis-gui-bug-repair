@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/v2/report-renderer.js",
+            "lighthouse-core/report/report-generator.js",
+            "lighthouse-core/report/formatter.js"
+        ],
+        "explanation": "The `report-renderer.js` file is directly mentioned in the bug report, as it is the target where the injection occurs. Modifications to this file would be essential to sanitize or validate any input passed to the `String.replace` method to prevent code injection. Additionally, `report-generator.js` and `formatter.js` may also be related because they are responsible for generating and formatting the report, which could involve the same string replacement logic or data being passed around that could lead to similar vulnerabilities.",
+        "bug_scenario": "The bug occurs when a user injects JavaScript code into the `report-renderer.js` file, specifically using the `String.replace` method. This can lead to unintended behavior where the injected code can execute, potentially allowing security vulnerabilities like XSS (Cross-Site Scripting) to occur. The provided bug report also includes an example of how injecting `console.log('$');` can break the page by executing unintended scripts."
+    }
+}

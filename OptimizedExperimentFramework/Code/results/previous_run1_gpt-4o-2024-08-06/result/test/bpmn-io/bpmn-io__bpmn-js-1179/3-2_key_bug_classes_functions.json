@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape"
+        ],
+        "explanation": "The 'DropOnFlowBehavior' class and its 'insertShape' function are responsible for handling the logic when an element is dropped onto a sequence flow. The function manages the connection and docking of shapes, which is where the layout issue occurs. The logic related to waypoints and docking points needs adjustment to ensure proper layout behavior.",
+        "bug_scenario": "The bug scenario involves a sequence flow layout breaking after dropping an element onto it. The new incoming sequence flow docks at the top left corner, disrupting the intended layout."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//preExecute",
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//postExecuted"
+        ],
+        "explanation": "The issue is related to the behavior of elements when they are dropped onto a flow. The `DropOnFlowBehavior` class is responsible for handling this behavior. The `insertShape` function manages the docking and waypoints, which are critical to maintaining the sequence flow layout. The `preExecute` and `postExecuted` functions handle the logic before and after an element is moved, which includes adjusting the parent and position of elements. These functions are directly involved in managing how elements interact with sequence flows, and they need to be adjusted to fix the docking issue.",
+        "bug_scenario": "The bug scenario involves a broken sequence flow layout when an element is dropped onto a sequence flow. It causes the docking of the sequence flow to incorrectly always be at the top left corner, disrupting the intended layout."
+    }
+}

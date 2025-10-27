@@ -1,0 +1,75 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "restoreUnescapedCharacter",
+            "file_path": "src/language-markdown/parser-markdown.js",
+            "function_details": [
+                {
+                    "name": "restoreUnescapedCharacter",
+                    "start_line": 58,
+                    "end_line": 76
+                }
+            ],
+            "function_code": [
+                "function restoreUnescapedCharacter(originalText) {",
+                "  return () => ast =>",
+                "    map(ast, node => {",
+                "      return node.type !== \"text\"",
+                "        ? node",
+                "        : Object.assign({}, node, {",
+                "            value:",
+                "              node.value !== \"*\" &&",
+                "              node.value !== \"_\" && // handle these two cases in printer",
+                "              node.value.length === 1 &&",
+                "              node.position.end.offset - node.position.start.offset > 1",
+                "                ? originalText.slice(",
+                "                    node.position.start.offset,",
+                "                    node.position.end.offset",
+                "                  )",
+                "                : node.value",
+                "          });",
+                "    });",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "mergeContinuousTexts",
+            "file_path": "src/language-markdown/parser-markdown.js",
+            "function_details": [
+                {
+                    "name": "mergeContinuousTexts",
+                    "start_line": 78,
+                    "end_line": 102
+                }
+            ],
+            "function_code": [
+                "function mergeContinuousTexts() {",
+                "  return ast =>",
+                "    map(ast, node => {",
+                "      if (!node.children) {",
+                "        return node;",
+                "      }",
+                "      const children = node.children.reduce((current, child) => {",
+                "        const lastChild = current[current.length - 1];",
+                "        if (lastChild && lastChild.type === \"text\" && child.type === \"text\") {",
+                "          current.splice(-1, 1, {",
+                "            type: \"text\",",
+                "            value: lastChild.value + child.value,",
+                "            position: {",
+                "              start: lastChild.position.start,",
+                "              end: child.position.end",
+                "            }",
+                "          });",
+                "        } else {",
+                "          current.push(child);",
+                "        }",
+                "        return current;",
+                "      }, []);",
+                "      return Object.assign({}, node, { children });",
+                "    });",
+                "}"
+            ]
+        }
+    }
+}

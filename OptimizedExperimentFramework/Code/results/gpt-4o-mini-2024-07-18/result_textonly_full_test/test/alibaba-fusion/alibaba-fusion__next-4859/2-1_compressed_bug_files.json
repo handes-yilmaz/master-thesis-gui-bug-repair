@@ -1,0 +1,37 @@
+{
+    "1": {
+        "bug_file": "components/cascader-select/index.tsx",
+        "compressed": "NO",
+        "line_numbers": 36,
+        "compressed_line_numbers": 36,
+        "compressed_bug_file_content": "import ConfigProvider from '../config-provider';\nimport CascaderSelect from './cascader-select';\n\nexport type { CascaderSelectProps, CascaderSelectDataItem } from './types';\n\nexport default ConfigProvider.config(CascaderSelect, {\n    exportNames: ['focus'],\n    transform: (props, deprecated) => {\n        if ('shape' in props) {\n            deprecated('shape', 'hasBorder', 'CascaderSelect');\n            const { shape, hasBorder, ...others } = props;\n            props = { hasBorder: hasBorder ?? shape !== 'arrow-only', ...others };\n        }\n\n        if ('container' in props) {\n            deprecated('container', 'popupContainer', 'CascaderSelect');\n            const { container, ...others } = props;\n            props = { popupContainer: container, ...others };\n        }\n\n        if ('expandTrigger' in props) {\n            deprecated('expandTrigger', 'expandTriggerType', 'CascaderSelect');\n            const { expandTrigger, expandTriggerType, ...others } = props;\n            props = { expandTriggerType: expandTriggerType ?? expandTrigger, ...others };\n        }\n\n        if ('showItemCount' in props) {\n            deprecated('showItemCount', 'listStyle | listClassName', 'CascaderSelect');\n        }\n        if ('labelWidth' in props) {\n            deprecated('labelWidth', 'listStyle | listClassName', 'CascaderSelect');\n        }\n\n        return props;\n    },\n});"
+    },
+    "2": {
+        "bug_file": "components/cascader-select/style.ts",
+        "compressed": "NO",
+        "line_numbers": 3,
+        "compressed_line_numbers": 3,
+        "compressed_bug_file_content": "import '../select/style';\nimport '../cascader/style';\nimport './main.scss';"
+    },
+    "3": {
+        "bug_file": "components/cascader-select/main.scss",
+        "compressed": "NO",
+        "line_numbers": 35,
+        "compressed_line_numbers": 35,
+        "compressed_bug_file_content": "@import \"../core/index-noreset.scss\";\n@import \"./scss/variable\";\n\n#{$cascader-select-prefix} {\n    @include box-sizing;\n\n    &-dropdown {\n        @include box-sizing;\n\n        border: $popup-local-border-width $popup-local-border-style $popup-local-border-color;\n        border-radius: $popup-local-corner;\n        box-shadow: $popup-local-shadow;\n\n        .#{$css-prefix}cascader {\n            display: block;\n            border: none;\n            box-shadow: none;\n        }\n    }\n\n    &-not-found {\n        padding: 0;\n        border: none;\n        box-shadow: none;\n        overflow: auto;\n        color: $color-text1-2;\n\n        .#{$css-prefix}menu-item:hover {\n            color: $color-text1-2;\n            /* TODO */\n            background: $color-white;\n            cursor: default;\n        }\n    }\n}"
+    },
+    "4": {
+        "bug_file": "components/cascader-select/__tests__/index-spec.tsx",
+        "compressed": "YES",
+        "line_numbers": 539,
+        "compressed_line_numbers": 33,
+        "compressed_bug_file_content": "import React, { useState } from 'react';\nimport CascaderSelect, { type CascaderSelectDataItem, type CascaderSelectProps } from '../index';\nimport '../style';\n\nfunction freeze(dataSource: NonNullable<CascaderSelectProps['dataSource']>) {\n\n\n}\n\nfunction findItem(menuIndex: number, itemIndex: number) {\n\n}\n\nfunction labelsShouldBe(expected: string[]) {\n\n}\n\nfunction findRealItem(\n    cascader: Cypress.Chainable<JQuery<HTMLElement>>,\n    listIndex: number,\n    itemIndex: number\n) {\n\n\n}\n\n\n        // 多选 multiple=true\n\n\n        // // 单选 multiple=false\n\n\n"
+    },
+    "5": {
+        "bug_file": "components/cascader-select/__tests__/issue-spec.tsx",
+        "compressed": "NO",
+        "line_numbers": 103,
+        "compressed_line_numbers": 103,
+        "compressed_bug_file_content": "import React, { forwardRef, useEffect, useState } from 'react';\nimport CascaderSelect from '../index';\nimport '../style';\n\nconst ChinaAreaData = [\n    {\n        value: '2973',\n        label: '陕西',\n        children: [\n            {\n                value: '2974',\n                label: '西安',\n                children: [\n                    { value: '2975', label: '西安市' },\n                    { value: '2976', label: '高陵县' },\n                ],\n            },\n            {\n                value: '2980',\n                label: '铜川',\n                children: [\n                    { value: '2981', label: '铜川市' },\n                    { value: '2982', label: '宜君县' },\n                ],\n            },\n        ],\n    },\n    {\n        value: '3078',\n        label: '四川',\n    },\n    {\n        children: [\n            {\n                value: '3372',\n                label: '乌鲁木齐',\n                children: [\n                    {\n                        value: '3373',\n                        label: '乌鲁木齐市',\n                    },\n                    {\n                        value: '3374',\n                        label: '乌鲁木齐县',\n                    },\n                ],\n            },\n        ],\n        value: '3371',\n        label: '新疆',\n    },\n];\n\nfunction findItem(menuIndex: number, itemIndex: number) {\n    return cy.get('.next-cascader-menu').eq(menuIndex).children().eq(itemIndex);\n}\n\nfunction shouldExpanded(text: string, menuIndex: number, itemIndex: number) {\n    const item = findItem(menuIndex, itemIndex);\n    item.should('have.text', text);\n    item.should('have.class', 'next-expanded');\n}\n\nfunction shouldSelected(text: string, menuIndex: number, itemIndex: number) {\n    const item = findItem(menuIndex, itemIndex);\n    item.should('exist');\n    item.should('have.text', text);\n    item.should('have.class', 'next-selected');\n}\n\ndescribe('CascaderSelect issues', function () {\n    it('should sync expandedValue when visible=false and props.value changed ', () => {\n        const Demo = forwardRef<unknown, { value?: string; visible?: boolean }>(props => {\n            const { value: propsValue = '2975', visible = false } = props;\n            const [value, setValue] = useState(propsValue);\n            useEffect(() => {\n                setValue(propsValue);\n            }, [propsValue]);\n            return (\n                <CascaderSelect\n                    followTrigger\n                    value={value}\n                    visible={visible}\n                    dataSource={ChinaAreaData}\n                    onChange={(v: string) => setValue(v)}\n                />\n            );\n        });\n        cy.mount(<Demo />).as('Demo');\n        cy.get('span.next-select-inner em').should('have.text', '陕西 / 西安 / 西安市');\n        cy.rerender('Demo', { visible: true });\n        shouldExpanded('陕西', 0, 0);\n        shouldExpanded('西安', 1, 0);\n        shouldSelected('西安市', 2, 0);\n        cy.rerender('Demo', { value: '3373', visible: false }).as('Demo1');\n        cy.get('span.next-select-inner em').should('have.text', '新疆 / 乌鲁木齐 / 乌鲁木齐市');\n        cy.get('.next-cascader-menu').should('not.exist');\n        cy.rerender('Demo', { value: '3373', visible: true });\n        shouldExpanded('新疆', 0, 2);\n        shouldExpanded('乌鲁木齐', 1, 0);\n        shouldSelected('乌鲁木齐市', 2, 0);\n    });\n});"
+    }
+}

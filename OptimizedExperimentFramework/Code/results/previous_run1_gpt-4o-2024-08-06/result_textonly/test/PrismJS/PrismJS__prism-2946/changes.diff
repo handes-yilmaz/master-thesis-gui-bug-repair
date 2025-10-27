@@ -1,0 +1,22 @@
+diff --git a/components/prism-rest.js b/components/prism-rest.js
+index fc9b9fb7..0f791ded 100644
+--- a/components/prism-rest.js
++++ b/components/prism-rest.js
+@@ -139,7 +139,7 @@ Prism.languages.rest = {
+ 
+ 	'inline': [
+ 		{
+-			pattern: /(^|[\s\-:\/'"<(\[{])(?::[^:]+:`.*?`|`.*?`:[^:]+:|(\*\*?|``?|\|)(?!\s).*?\S\2(?=[\s\-.,:;!?\\\/'")\]}]|$))/m,
++\t\t\tpattern: /(^|[\\s\\-:\\/\'"<(\\[{])(?::[^:]+:`.*?`|`.*?`:[^:]+:|(\\*\\*?|``?|\\|)(?!\\s).*?\\S\\2(?=[\\s\\-.,:;!?\\\\\\/\'")\\]}]|$)|`[^`]+`_)/m,
+ 			lookbehind: true,
+ 			inside: {
+ 				'bold': {
+@@ -186,7 +186,7 @@ Prism.languages.rest = {
+ 			}
+ 		},
+ 		{
+-			pattern: /(?:\b[a-z\d]+(?:[_.:+][a-z\d]+)*_?_|`[^`]+`_?_|_`[^`]+`)(?=[\s\-.,:;!?\\\/'")\]}]|$)/i,
++\t\t\tpattern: /(?:\\b[a-z\\d]+(?:[_.:+][a-z\\d]+)*_?_|`[^`]+`_?_|_`[^`]+`|`[^`]+`_)(?=[\\s\\-.,:;!?\\\\\\/\'")\\]}]|$)/i,
+ 			alias: 'string',
+ 			inside: {
+ 				'punctuation': /^_?`|`$|`?_?_$/

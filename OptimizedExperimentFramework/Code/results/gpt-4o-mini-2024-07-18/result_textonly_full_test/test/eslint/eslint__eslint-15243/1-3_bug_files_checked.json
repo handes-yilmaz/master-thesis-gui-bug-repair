@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/linter/index.js",
+            "lib/cli-engine/formatters/html.js",
+            "lib/cli-engine/formatters/stylish.js",
+            "lib/cli-engine/cli-engine.js"
+        ],
+        "explanation": "These files are related to the bug because they are part of the ESLint formatter system. The 'index.js' file in 'formatters/' serves as the entry point for all formatters, where changes will need to be made to accommodate async functions. The individual formatter files (like 'html.js' and 'stylish.js') need to be updated to handle async processing. The 'cli-engine.js' file manages the core functionality of the CLI, including how formatters are invoked, thus requiring modifications to support async operations.",
+        "bug_scenario": "The bug scenario involves a request to support asynchronous formatters in ESLint, particularly for a new formatter that uses the 'shiki' highlighter, which operates asynchronously. The current implementation does not allow for asynchronous functions as formatters, leading to issues with proper highlighting."
+    },
+    "2": {
+        "bug_files": [
+            "lib/linter/index.js",
+            "lib/cli-engine/formatters/html.js",
+            "lib/cli-engine/formatters/stylish.js",
+            "lib/cli-engine/formatters/compact.js"
+        ],
+        "explanation": "These files are related to the ESLint formatters, which are responsible for formatting the output of ESLint. Modifying these files to support async functions is necessary to implement the user's request for an async formatter that can utilize the 'shiki' highlighter. The 'index.js' file serves as the entry point for formatters, while the specific formatter files (html.js, stylish.js, compact.js) would need to be adjusted to handle async formatting.",
+        "bug_scenario": "The ESLint formatter currently does not support async functions, which prevents the use of an async highlighter from the 'shiki' library. The user wants to modify the ESLint formatter to allow async functions, as seen in the provided image that illustrates the limitations of the current setup."
+    }
+}

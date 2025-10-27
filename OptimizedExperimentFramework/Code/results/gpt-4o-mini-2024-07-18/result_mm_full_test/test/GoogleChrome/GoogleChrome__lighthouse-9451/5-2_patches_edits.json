@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/gatherers/offline.js": [
+            {
+                "SEARCH": [
+                    "return passContext.driver.goOnline(passContext)"
+                ],
+                "REPLACE": [
+                    "    return passContext.driver.goOnline(passContext).then(() => {",
+                    "      if (!navigationRecord) {",
+                    "        return -1; // No navigation record found",
+                    "      }"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/start-url.js": [
+            {
+                "SEARCH": [
+                    "return this._attemptStartURLFetch(passContext.driver, startUrlInfo.startUrl).catch(() => {"
+                ],
+                "REPLACE": [
+                    "    return this._attemptStartURLFetch(passContext.driver, startUrlInfo.startUrl).then(result => {",
+                    "      if (result.statusCode !== 200) {",
+                    "        return {statusCode: -1, explanation: 'Failed to fetch start URL while offline.'};"
+                ]
+            }
+        ]
+    }
+}

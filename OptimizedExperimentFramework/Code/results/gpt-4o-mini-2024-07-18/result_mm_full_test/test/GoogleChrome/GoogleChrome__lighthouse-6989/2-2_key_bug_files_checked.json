@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/violation-audit.js",
+            "lighthouse-core/audits/audit.js",
+            "lighthouse-core/report/html/renderer/report-renderer.js"
+        ],
+        "explanation": "These files are key to fixing the problem because: 1. **violation-audit.js**: This file handles the logic for collecting and displaying violation results, which includes warnings. Modifications here can ensure that warnings are properly fetched and displayed. 2. **audit.js**: This file contains the core audit logic and may need adjustments to how results are processed and displayed, particularly for passed audits. 3. **report-renderer.js**: This file is responsible for rendering the final report. Changes here are necessary to add the new section for displaying warnings after the 'Passed Audits' section.",
+        "bug_scenario": "The bug scenario involves ensuring that warnings related to passed audits are visible in the Lighthouse report. Currently, warnings are not displayed in the 'Passed Audits' section, which is causing confusion for users. The report should include a block of warnings following the 'Passed Audits' section to improve clarity and usability."
+    }
+}

@@ -1,0 +1,14 @@
+diff --git a/src/date-picker2/panels/date-panel.jsx b/src/date-picker2/panels/date-panel.jsx
+index dd34bc7..f7174cf 100644
+--- a/src/date-picker2/panels/date-panel.jsx
++++ b/src/date-picker2/panels/date-panel.jsx
+@@ -38,7 +38,8 @@ class DatePanel extends React.Component {
+ 
+         let defaultTime = timePanelProps.defaultValue;
+         if (defaultTime) {
+-            defaultTime = datejs(defaultTime, timePanelProps.format || 'HH:mm:ss');
++            const parsedTime = datejs(defaultTime, timePanelProps.format || 'HH:mm:ss');
++            defaultTime = parsedTime.isValid() ? parsedTime : null; // Check if parsed time is valid
+         }
+ 
+         this.state = {

@@ -1,0 +1,14 @@
+diff --git a/src/highlight.js b/src/highlight.js
+index ed0e187..5eb33cc 100644
+--- a/src/highlight.js
++++ b/src/highlight.js
+@@ -660,7 +660,8 @@ const HLJS = function(hljs) {
+   */
+   function highlightAuto(code, languageSubset) {
+     languageSubset = languageSubset || options.languages || Object.keys(languages);
+-    const plaintext = justTextHighlightResult(code);
++const plaintext = justTextHighlightResult(code);
++registerLanguage('cpp', cppLanguageDefinition); // Ensure C++ language is registered
+ 
+     const results = languageSubset.filter(getLanguage).filter(autoDetection).map(name =>
+       _highlight(name, code, false)

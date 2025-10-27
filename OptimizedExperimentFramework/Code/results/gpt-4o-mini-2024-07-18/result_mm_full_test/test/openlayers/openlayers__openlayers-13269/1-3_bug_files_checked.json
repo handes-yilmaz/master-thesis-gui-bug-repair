@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/source/TileWMS.js"
+        ],
+        "explanation": "These files are related to the bug because: \n- `WebGLTile.js` is the implementation of the WebGLTile layer, where the rendering logic is defined. If the gutter clipping logic is improperly handled here, it would directly cause the misplacement and duplication issues. \n- `TileLayer.js` in the webgl render directory is responsible for rendering tile layers in WebGL. It likely contains the rendering functions that would need to adjust how the gutter is processed in relation to the WebGL drawing commands. \n- `TileWMS.js` is the source file that handles the TileWMS configuration and interaction. Since the bug specifically mentions the gutter option from TileWMS, changes may need to be made here to ensure that the gutter is correctly passed to the rendering logic.",
+        "bug_scenario": "The bug occurs when using the WebGLTile layer renderer, which fails to clip the image gutter correctly before creating textures. This results in misplacement and duplication of the rendered images, especially when the gutter option from the TileWMS is applied."
+    }
+}

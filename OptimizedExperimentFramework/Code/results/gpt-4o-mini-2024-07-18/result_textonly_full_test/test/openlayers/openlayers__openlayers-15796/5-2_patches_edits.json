@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "this.postRender(context, frameState);"
+                ],
+                "REPLACE": [
+                    "    if (this.opacity_ < 1) {",
+                    "      this.resetDrawContext_();",
+                    "    }",
+                    "    this.postRender(context, frameState);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.renderedFrameDeclutter_ === !!frameState.declutter &&\\n"
+                ],
+                "REPLACE": [
+                    "    this.renderedFrameDeclutter_ === !!frameState.declutter &&\\n",
+                    "    this.resetDrawContext_();\\n"
+                ]
+            }
+        ]
+    }
+}

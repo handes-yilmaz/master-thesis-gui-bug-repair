@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/index.js",
+            "src/ol/render/canvas/TextBuilder.js",
+            "src/ol/render/canvas/VectorLayer.js",
+            "src/ol/layer/Vector.js",
+            "src/ol/style/Text.js"
+        ],
+        "explanation": "These files are related to the bug as follows: `index.js` contains the main application logic where the rendering of layers and styles is initiated. `TextBuilder.js` and `VectorLayer.js` handle the rendering of vector layers and text, which is crucial for correct positioning and transformations. `Vector.js` manages vector layers themselves, while `Text.js` defines text styles, including rotation, which is directly linked to the bug where the rotation affects the translation logic.",
+        "bug_scenario": "The bug occurs when rotated text styles on vector layers are clipped and translated. The text should appear at the translated location but instead shows at the original location on the map, unlike non-rotated text styles. This issue manifests when the context is translated, leading to incorrect positioning of the rotated text styles."
+    }
+}

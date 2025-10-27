@@ -1,0 +1,75 @@
+diff --git a/src/cascader-select/cascader-select.jsx b/src/cascader-select/cascader-select.jsx
+index 45fec1c54..03a0db336 100644
+--- a/src/cascader-select/cascader-select.jsx
++++ b/src/cascader-select/cascader-select.jsx
+@@ -330,11 +330,11 @@ class CascaderSelect extends Component {
+                 this._v2n[value] = this._p2n[pos] = { ...item, pos };
+ 
+                 if (children && children.length) {
+-                    loop(children, pos);
++                    loop([...children], pos); // Use a copy of children
+                 }
+             });
+ 
+-        loop(dataSource);
++        loop([...dataSource]); // Use a copy of dataSource
+     }
+ 
+     flatValue(value) {
+diff --git a/src/cascader-select/index.jsx b/src/cascader-select/index.jsx
+index 415398d07..b46dc7e01 100644
+--- a/src/cascader-select/index.jsx
++++ b/src/cascader-select/index.jsx
+@@ -3,32 +3,33 @@ import CascaderSelect from './cascader-select';
+ 
+ export default ConfigProvider.config(CascaderSelect, {
+     transform: /* istanbul ignore next */ (props, deprecated) => {
+-        if ('shape' in props) {
++        let newProps = { ...props }; // Create a copy of props
++        if ('shape' in newProps) {
+             deprecated('shape', 'hasBorder', 'CascaderSelect');
+-            const { shape, ...others } = props;
+-            props = { hasBorder: shape !== 'arrow-only', ...others };
++            const { shape, ...others } = newProps;
++            newProps = { hasBorder: shape !== 'arrow-only', ...others };
+         }
+ 
+-        if ('container' in props) {
++        if ('container' in newProps) {
+             deprecated('container', 'popupContainer', 'CascaderSelect');
+-            const { container, ...others } = props;
+-            props = { popupContainer: container, ...others };
++            const { container, ...others } = newProps;
++            newProps = { popupContainer: container, ...others };
+         }
+ 
+-        if ('expandTrigger' in props) {
++        if ('expandTrigger' in newProps) {
+             deprecated('expandTrigger', 'expandTriggerType', 'CascaderSelect');
+-            const { expandTrigger, ...others } = props;
+-            props = { expandTriggerType: expandTrigger, ...others };
++            const { expandTrigger, ...others } = newProps;
++            newProps = { expandTriggerType: expandTrigger, ...others };
+         }
+ 
+-        if ('showItemCount' in props) {
++        if ('showItemCount' in newProps) {
+             deprecated(
+                 'showItemCount',
+                 'listStyle | listClassName',
+                 'CascaderSelect'
+             );
+         }
+-        if ('labelWidth' in props) {
++        if ('labelWidth' in newProps) {
+             deprecated(
+                 'labelWidth',
+                 'listStyle | listClassName',
+@@ -36,6 +37,6 @@ export default ConfigProvider.config(CascaderSelect, {
+             );
+         }
+ 
+-        return props;
++        return newProps; // Return the modified copy
+     },
+ });

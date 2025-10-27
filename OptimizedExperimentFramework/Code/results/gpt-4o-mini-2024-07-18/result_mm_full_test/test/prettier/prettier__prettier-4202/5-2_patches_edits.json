@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "src/language-markdown/printer-markdown.js": [
+            {
+                "SEARCH": [
+                    "const maxLineLength = 80; // Define a maximum line length",
+                    "const shouldUseSimpleSeparator = contents.some(rowContents =>",
+                    "rowContents.join(\" | \").length > maxLineLength",
+                    ");",
+                    "",
+                    "return join(hardline, [",
+                    "printRow(contents[0]),",
+                    "shouldUseSimpleSeparator ? \"| :---: | :---: | :---: |\" : printSeparator(),"
+                ],
+                "REPLACE": [
+                    "  const maxLineLength = 80; // Define a maximum line length",
+                    "  const shouldUseSimpleSeparator = contents.some(rowContents =>",
+                    "    rowContents.join(\" | \").length > maxLineLength",
+                    "  );",
+                    "",
+                    "  // If any row exceeds the maximum length, use the simple separator",
+                    "  if (shouldUseSimpleSeparator) {",
+                    "    return join(hardline, [",
+                    "      printRow(contents[0]),",
+                    "      \"| :---: | :---: | :---: |\", // Fallback to simple separator",
+                    "=======",
+                    "      return join(hardline, [",
+                    "        printRow(contents[0]),",
+                    "        printSeparator(),"
+                ]
+            }
+        ]
+    }
+}

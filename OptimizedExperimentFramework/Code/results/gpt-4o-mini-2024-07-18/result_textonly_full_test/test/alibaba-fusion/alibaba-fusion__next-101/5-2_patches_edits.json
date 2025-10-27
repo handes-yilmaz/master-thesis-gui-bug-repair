@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "src/number-picker/index.jsx": [
+            {
+                "SEARCH": [
+                    "// precision=2  and input from 1.99 to 1.999, should stay with 1.99 not 2",
+                    "const strValue = `${val}`;",
+                    "const pointPos = strValue.indexOf('.');",
+                    "const cutPos = pointPos + 1 + this.getPrecision();",
+                    "if (pointPos !== -1 && strValue.length > cutPos) {",
+                    "val = Number(strValue.substr(0, cutPos));",
+                    "}"
+                ],
+                "REPLACE": [
+                    "            // Round the value to the specified precision",
+                    "            const precisionFactor = this.getPrecisionFactor();",
+                    "            val = Math.round(val * precisionFactor) / precisionFactor;",
+                    "",
+                    "            // precision=2  and input from 1.99 to 1.999, should stay with 1.99 not 2",
+                    "            const strValue = `${val}`;",
+                    "            const pointPos = strValue.indexOf('.');",
+                    "            const cutPos = pointPos + 1 + this.getPrecision();",
+                    "            if (pointPos !== -1 && strValue.length > cutPos) {",
+                    "                val = Number(strValue.substr(0, cutPos));",
+                    "            }"
+                ]
+            }
+        ]
+    }
+}

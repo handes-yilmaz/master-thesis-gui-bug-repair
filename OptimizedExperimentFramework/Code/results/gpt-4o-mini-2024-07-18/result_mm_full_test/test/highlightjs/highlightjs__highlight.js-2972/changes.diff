@@ -1,0 +1,16 @@
+diff --git a/src/lib/compile_keywords.js b/src/lib/compile_keywords.js
+index a9dda20..2a5dfde 100644
+--- a/src/lib/compile_keywords.js
++++ b/src/lib/compile_keywords.js
+@@ -39,7 +39,10 @@ export function compileKeywords(rawKeywords, caseInsensitive, className = DEFAUL
+         compileKeywords(rawKeywords[className], caseInsensitive, className)
+       );
+     });
+-  }
++// Add support for Python Type Hints
++if (keyword.match(/^[a-zA-Z_][a-zA-Z0-9_]*: [a-zA-Z_][a-zA-Z0-9_]*$/)) {
++return 1; // Score for type hints
++}
+   return compiledKeywords;
+ 
+   // ---

@@ -1,0 +1,33 @@
+{
+    "1/1": {
+        "lighthouse-core/lib/i18n/i18n.js": [
+            {
+                "SEARCH": [
+                    "const localeMessage = localeMessages[icuMessageId] && localeMessages[icuMessageId].message;"
+                ],
+                "REPLACE": [
+                    "  const localeMessage = localeMessages[icuMessageId] ? localeMessages[icuMessageId].message : fallbackMessage;"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (!localeMessages) throw new Error(`Unsupported locale \\'${locale}\\'`);"
+                ],
+                "REPLACE": [
+                    "  if (!localeMessages) {",
+                    "    console.warn(`Unsupported locale '${locale}', falling back to default locale.`);",
+                    "    return getRendererFormattedStrings('en'); // Fallback to default locale",
+                    "  }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const {icuMessageInstance, formattedString} = _resolveIcuMessageInstanceId(value, locale);"
+                ],
+                "REPLACE": [
+                    "        const {icuMessageInstance, formattedString} = _resolveIcuMessageInstanceId(value, locale) || {formattedString: fallbackMessage};"
+                ]
+            }
+        ]
+    }
+}

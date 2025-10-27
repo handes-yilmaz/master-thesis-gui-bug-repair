@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer"
+        ],
+        "bug_functions": [
+            "lib/draw/BpmnRenderer.js//drawShape",
+            "lib/draw/BpmnRenderer.js//drawConnection",
+            "lib/draw/BpmnRenderer.js//getShapePath"
+        ],
+        "explanation": "The BpmnRenderer class is responsible for rendering BPMN elements, including pools and lanes. The drawShape and drawConnection functions are crucial for rendering shapes and connections in the diagram, and they need to be modified to handle the vertical orientation of pools correctly. The getShapePath function may also need adjustments to ensure that the paths for vertical pools are calculated accurately. These functions are directly related to the rendering issue described in the bug report.",
+        "bug_scenario": "The bug involves the incorrect rendering of pool and lane labels in a BPMN diagram when the pools are oriented vertically. The issue arises because the rendering logic does not account for the 'isHorizontal' property of the BPMNShape, which is set to 'false' for vertical pools. This results in labels not being displayed correctly, as shown in the provided diagram."
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-html/embed/angular-interpolation.js",
+            "src/language-js/print/angular.js",
+            "bin/prettier.js",
+            "src/index.js",
+            "website/Playground.js"
+        ],
+        "explanation": "1. `src/language-html/embed/angular-interpolation.js` and `src/language-js/print/angular.js` are likely handling the parsing and printing logic specific to Angular expressions, including how pipes and their arguments are formatted. These files would contain logic to apply or remove spaces in Angular expressions.\n\n2. `bin/prettier.js` and `src/index.js` could be responsible for the central execution of the Prettier formatting process, thus needing adjustments to alter the default formatting behavior across all files processed.\n\n3. `website/Playground.js`: This file is part of the Prettier playground where changes can be tested and demonstrated. Any alteration in formatting logic especially default behavior should reflect here for user visualization.",
+        "bug_scenario": "The bug relates to the formatting changes introduced in Prettier 2.8.0, specifically affecting how spaces are handled in Angular pipe expressions. The input format without spaces between pipes and arguments, as seen in the Angular documentation, is being changed by Prettier to include spaces, which is different from the expected behavior."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-html/embed/angular-interpolation.js",
+            "src/language-html/printer-html.js",
+            "src/language-html/parser-html.js"
+        ],
+        "explanation": "1. **src/language-html/embed/angular-interpolation.js**: This file is likely responsible for handling Angular-style interpolations within HTML templates, including pipes. Given the nature of the bug, this part of the code could directly influence how pipe arguments are formatted.\\n\\n2. **src/language-html/printer-html.js**: This file is a core component responsible for printing or formatting HTML content. It is crucial in determining how syntax elements, such as pipes and their arguments, are rendered. Modifications here could directly impact the spacing around pipe arguments.\\n\\n3. **src/language-html/parser-html.js**: This file involves parsing HTML files, including special constructs used in Angular (pipes and other directives). Parsing rules could determine how input strings are read and subsequently handled for formatting, making it pertinent to the bug.\\n\\nGiven the repository structure, the language-html directory would contain files crucial for processing HTML features that might affect how Angular pipes are formatted. Thus, these files are likely to contribute to the new, undesired behavior in Prettier's formatting for Angular pipes.",
+        "bug_scenario": "The bug report describes an issue where Prettier 2.8.0 automatically formats Angular Pipe expressions by adding spaces around colon separators for pipe arguments. This behavior is inconsistent with Angular's official documentation, which typically shows pipe arguments positioned closely next to pipe names without spaces. The expected behavior, as per the bug report, is to revert to not adding spaces when pipe arguments are strings or numbers, but allow spaces in other cases. An example output highlights that spaces are added before and after colons in pipe expressions, which is contrary to the desired format."
+    }
+}

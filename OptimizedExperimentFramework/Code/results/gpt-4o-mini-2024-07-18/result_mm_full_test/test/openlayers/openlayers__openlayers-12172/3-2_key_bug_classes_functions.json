@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Icon//Icon",
+            "src/ol/renderer/canvas/ImageLayer//CanvasImageLayerRenderer",
+            "src/ol/layer/Vector//VectorLayer"
+        ],
+        "bug_functions": [
+            "src/ol/style/Icon//getOrigin",
+            "src/ol/style/Icon//getSize",
+            "src/ol/renderer/canvas/ImageLayer//renderFrame",
+            "src/ol/layer/Vector//createRenderer"
+        ],
+        "explanation": "The 'Icon' class is directly related to the bug as it defines the icon style and its properties, including displacement. The 'getOrigin' function is crucial because it calculates the position of the icon, which is likely where the clipping issue arises. The 'getSize' function is also relevant as it determines the dimensions of the icon, which can affect how it is rendered. The 'CanvasImageLayerRenderer' class and its 'renderFrame' function are involved in the rendering process of the image layer, which may be responsible for how the icon is displayed on the canvas. Lastly, the 'VectorLayer' class and its 'createRenderer' function are important as they manage the rendering of vector layers, which includes the icons, and any issues in this layer could contribute to the clipping problem.",
+        "bug_scenario": "The bug occurs when an icon style with a displacement property is applied, causing the icon to be clipped instead of displayed correctly. This issue can be reproduced by modifying an example to include a green cross icon with a displacement setting, which results in the icon being cut off."
+    }
+}

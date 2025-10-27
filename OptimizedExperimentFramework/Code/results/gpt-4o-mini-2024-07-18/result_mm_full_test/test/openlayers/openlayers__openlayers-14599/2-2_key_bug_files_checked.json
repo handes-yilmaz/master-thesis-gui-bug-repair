@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/control/Attribution.js",
+            "src/ol/layer/Group.js",
+            "src/ol/source/TileWMS.js"
+        ],
+        "explanation": "These files are key to addressing the bug because: 1. **Attribution.js**: This file handles the rendering of attributions in the control. Modifications may be needed to ensure that attributions are only displayed when the parent group layer is visible. 2. **Group.js**: This file manages the visibility of group layers and their sub-layers. Changes here could help enforce the visibility rules for attributions based on the group's state. 3. **TileWMS.js**: This file defines the WMS layer's behavior, including how attributions are handled. Adjustments may be necessary to prevent attributions from being shown when the group layer is not visible.",
+        "bug_scenario": "The bug occurs when the info popup displays attributions from a WMS layer even when the group layer containing that WMS layer is set to invisible. Specifically, the attributions should not be shown if the group layer is not visible, regardless of the visibility of its sub-layers."
+    }
+}

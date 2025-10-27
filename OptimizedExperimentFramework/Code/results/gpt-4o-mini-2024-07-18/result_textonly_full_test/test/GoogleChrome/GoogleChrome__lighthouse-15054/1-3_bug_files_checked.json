@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "core/audits/no-unload-listeners.js",
+            "core/audits/bf-cache.js",
+            "core/gather/gatherers/global-listeners.js",
+            "cli/commands/list-audits.js",
+            "cli/index.js"
+        ],
+        "explanation": "These files are related to the bug for several reasons: \n- 'no-unload-listeners.js': This file is directly responsible for auditing unload listeners in the context of Lighthouse. Modifications here may help to identify the listeners even when they are injected in an isolated context. \n- 'bf-cache.js': This file deals with the bfcache audit and may need adjustments to account for unload listeners that are not visible normally. \n- 'global-listeners.js': This gatherer may need to be updated to ensure that it captures listeners from content scripts injected by extensions. \n- 'list-audits.js' and 'index.js': These CLI files may need to handle the command-line interface and execution context for running audits, which is essential for reproducing the issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves an extension injecting an unload listener into the main frame, which causes the bfcache audit to fail in Lighthouse. Despite the presence of this listener, the audit for 'no unload listeners' passes due to the listener being added in an isolated context. This results in it being undetectable in the Elements panel or via the console, complicating debugging."
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "// Example of a potential patch for the toggle function": [
+            {
+                "SEARCH": [
+                    "function toggleMultiInstance(isSequential) {",
+                    "// existing code",
+                    "updateXMLLabel();",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function toggleMultiInstance(isSequential) {",
+                    "    // existing code",
+                    "    if (isSequential) {",
+                    "        updateXMLLabel('<bpmn:multiInstanceLoopCharacteristics isSequential=\"true\" />');",
+                    "    } else {",
+                    "        updateXMLLabel('<bpmn:multiInstanceLoopCharacteristics />');",
+                    "    }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

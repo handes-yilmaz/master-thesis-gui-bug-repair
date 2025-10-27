@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageWMS//ImageWMS",
+            "src/ol/renderer/canvas/ImageLayer//CanvasImageLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageWMS//getImageInternal",
+            "src/ol/source/ImageWMS//getRequestUrl_",
+            "src/ol/renderer/canvas/ImageLayer//renderFrame"
+        ],
+        "explanation": "The classes and functions identified are related to the rendering and handling of WMS images. The 'ImageWMS' class is responsible for managing WMS image sources, including how images are requested and processed. The 'getImageInternal' function is crucial as it determines how images are fetched and rendered based on the specified resolution and pixel ratio, which directly impacts image clarity. The 'getRequestUrl_' function constructs the URL for image requests, which can affect the quality of the images retrieved. The 'CanvasImageLayerRenderer' class and its 'renderFrame' function handle the actual rendering of images on the canvas, making it essential for ensuring that images are displayed correctly without blurriness. Adjustments in these areas can help resolve the blurriness issue.",
+        "bug_scenario": "The WMS image becomes blurry when the ratio is not a round integer or when the map width or height is not even. This issue can be observed on the specified URL where the map appears slightly blurry."
+    }
+}

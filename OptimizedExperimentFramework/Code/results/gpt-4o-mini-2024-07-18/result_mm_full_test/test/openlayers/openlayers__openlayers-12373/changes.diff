@@ -1,0 +1,13 @@
+diff --git a/src/ol/source/TileDebug.js b/src/ol/source/TileDebug.js
+index 36353da..e805e1f 100644
+--- a/src/ol/source/TileDebug.js
++++ b/src/ol/source/TileDebug.js
+@@ -125,6 +125,8 @@ class TileDebug extends XYZ {
+    * @return {!LabeledTile} Tile.
+    */
+   getTile(z, x, y) {
++    const invertedY = this.tileGrid.getTileCountY(z) - 1 - y; // Adjust for inverted Y
++    const tileCoord = [z, x, invertedY]; // Use inverted Y
+     const tileCoordKey = getKeyZXY(z, x, y);
+     if (this.tileCache.containsKey(tileCoordKey)) {
+       return /** @type {!LabeledTile} */ (this.tileCache.get(tileCoordKey));

@@ -1,0 +1,18 @@
+diff --git a/src/format/reveal/format-reveal.ts b/src/format/reveal/format-reveal.ts
+index 9db1e30..eaeacca 100644
+--- a/src/format/reveal/format-reveal.ts
++++ b/src/format/reveal/format-reveal.ts
+@@ -378,6 +378,13 @@ function revealHtmlPostprocessor(
+           headingEl.innerHTML = parentSlide.firstElementChild?.innerHTML || "";
+           newSlide.appendChild(headingEl);
+         }
++        // Ensure embedded code is included
++        const embeddedCode = slideOutputEl.getAttribute('data-file');
++        if (embeddedCode) {
++          const codeBlock = doc.createElement('pre');
++          codeBlock.innerText = await fetchEmbeddedCode(embeddedCode);
++          newSlide.appendChild(codeBlock);
++        }
+         newSlide.appendChild(slideOutputEl);
+         // Place the new slide after the current one
+         const nextSlide = parentSlide.nextElementSibling;

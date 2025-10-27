@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-fsharp.js//Prism.languages.fsharp",
+            "components/prism-fsharp.min.js//Prism.languages.fsharp"
+        ],
+        "bug_functions": [],
+        "explanation": "The classes `Prism.languages.fsharp` in both `prism-fsharp.js` and `prism-fsharp.min.js` contain the definitions for the F# syntax highlighting rules. The issue arises from the pattern used to match comments, which incorrectly captures the `(*)` operator as a comment. Adjusting the regex pattern for comments in these classes will help resolve the highlighting issue.",
+        "bug_scenario": "The F# syntax highlighter incorrectly interprets the multiplier operator `(*)` as a multi-line comment due to its pattern matching in the highlighter code. This leads to incorrect highlighting in the provided code example, where `(*)` is used as a function rather than a comment."
+    }
+}

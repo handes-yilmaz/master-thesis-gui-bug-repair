@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/parser-babel.js",
+            "src/language-js/embed.js"
+        ],
+        "explanation": "These files are likely responsible for handling JavaScript and JSX formatting in Prettier. The `printer-estree.js` manages the printing of the abstract syntax tree (AST) specifically for JavaScript (including JSX) and could affect how spaces are handled. `parser-babel.js` parses the JSX code, and thus issues with parsing non-breaking spaces could start here. `embed.js` may interact with how JSX elements are embedded and processed, influencing any format changes and leading to differential outputs.",
+        "bug_scenario": "The bug report describes an issue with the JSX formatting when using non-breaking space characters (\\u3000) in Prettier. When formatting certain JSX structures, the output alternates between two different spacing configurations, causing instability in the formatting results."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/jsx.js"
+        ],
+        "explanation": "1. `src/language-js/printer-estree.js`: This file likely handles AST node printing for JavaScript and JSX code. Issues with formatting might originate from how nodes are serialized back into strings, especially concerning whitespace handling in JSX.\n2. `src/language-js/jsx.js`: This file might specifically handle parsing or printing of JSX elements. The unique handling for unicode spaces (like \\u3000 in JSX) should be addressed here to ensure stable formatting.\n\nThese files are likely involved due to their direct role in parsing and printing JavaScript and JSX structures, where the bug appears to originate.",
+        "bug_scenario": "The bug involves Prettier's unstable formatting of JSX when encountering specific unicode spaces (such as \\u3000). The input code is reformatted inconsistently when run through the Prettier formatter multiple times, which can lead to confusion and errors in the development process."
+    }
+}

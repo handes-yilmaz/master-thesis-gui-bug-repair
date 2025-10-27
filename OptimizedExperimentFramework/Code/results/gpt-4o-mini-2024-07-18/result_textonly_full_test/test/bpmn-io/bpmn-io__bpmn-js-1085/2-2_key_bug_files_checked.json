@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/BpmnFactory.js",
+            "lib/draw/BpmnRenderer.js"
+        ],
+        "explanation": "These files are key to the bug because: 1. **BpmnUpdater.js** is responsible for updating the BPMN XML when changes are made to the diagram, including handling waypoints. The bug likely originates from how waypoints are processed during updates. 2. **BpmnFactory.js** is involved in creating BPMN elements and their properties, including waypoints. If the waypoints are being incorrectly generated or serialized, this file would be critical to investigate. 3. **BpmnRenderer.js** handles the rendering of the BPMN diagram. If the waypoints are not correctly formatted, this file would be responsible for how they are visually represented, which is crucial for the expected behavior of the diagram.",
+        "bug_scenario": "The bug occurs when a new task is created from an existing one, resulting in an illegal 'waypoints' property in the XML representation of a BPMN diagram. The waypoints property incorrectly contains serialized object references instead of valid coordinates, leading to improper diagram rendering."
+    }
+}

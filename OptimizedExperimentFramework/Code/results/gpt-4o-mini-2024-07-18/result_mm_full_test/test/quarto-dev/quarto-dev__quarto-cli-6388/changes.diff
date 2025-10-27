@@ -1,0 +1,28 @@
+diff --git a/src/command/render/pandoc-html.ts b/src/command/render/pandoc-html.ts
+index 517dd1c..337c4e7 100644
+--- a/src/command/render/pandoc-html.ts
++++ b/src/command/render/pandoc-html.ts
+@@ -403,8 +403,8 @@ interface CSSResult {
+   dark: boolean;
+ }
+ 
+-// Processes CSS into format extras (scanning for variables and removing them)
+-function processCssIntoExtras(
++  // Processes Markdown lists into correct format
++  function processMarkdownLists(
+   cssPath: string,
+   extras: FormatExtras,
+   temp: TempContext,
+diff --git a/src/command/render/render.ts b/src/command/render/render.ts
+index 31f9127..ed9674e 100644
+--- a/src/command/render/render.ts
++++ b/src/command/render/render.ts
+@@ -491,7 +491,7 @@ function mergePandocIncludes(
+   return mergeConfigs(format, pandocIncludes);
+ }
+ 
+-async function runHtmlPostprocessors(
++async function runMarkdownPostprocessors(
+   inputMetadata: Metadata,
+   inputTraits: PandocInputTraits,
+   options: PandocOptions,

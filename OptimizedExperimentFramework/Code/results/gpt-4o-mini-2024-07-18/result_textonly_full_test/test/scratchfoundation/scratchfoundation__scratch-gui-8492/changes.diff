@@ -1,0 +1,18 @@
+diff --git a/src/lib/drag-recognizer.js b/src/lib/drag-recognizer.js
+index da7173f8b..dbe5b8d1c 100644
+--- a/src/lib/drag-recognizer.js
++++ b/src/lib/drag-recognizer.js
+@@ -122,6 +122,13 @@ class DragRecognizer {
+     _isScroll () {
+         return this._gestureState === DragRecognizer.STATE_SCROLL;
+     }
++
++    _handleMouseLeave() {
++        // Prevent closing the modal when the mouse leaves the modal area
++        if (this._gestureState === DragRecognizer.STATE_DRAGGING) {
++            return; // Do nothing if dragging
++        }
++    }
+ }
+ 
+ export default DragRecognizer;

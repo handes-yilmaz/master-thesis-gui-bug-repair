@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnUpdater",
+            "lib/features/modeling/BpmnFactory"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnUpdater.prototype.updateConnection",
+            "lib/features/modeling/BpmnUpdater.prototype.updateSemanticParent",
+            "lib/features/modeling/BpmnFactory.prototype.create"
+        ],
+        "explanation": "The BpmnUpdater class is responsible for updating the BPMN 2.0 XML when changes occur in the diagram. The functions updateConnection and updateSemanticParent are particularly relevant as they handle the updates to the connections and the semantic structure of the BPMN elements, which would include the multi-instance characteristics. The BpmnFactory class is responsible for creating BPMN elements, and the create function is essential for ensuring that new elements are instantiated correctly with the necessary attributes, including the multi-instance loop characteristics. These classes and functions are directly related to the bug as they manage the updates and creation of the BPMN elements that are failing to reflect the expected XML changes.",
+        "bug_scenario": "The bug scenario involves a multi-instance toggle loop in a BPMN diagram where toggling between Parallel and Sequential does not update the corresponding XML labels as expected. The expected behavior is that the XML should reflect the changes with appropriate tags for multi-instance characteristics."
+    }
+}

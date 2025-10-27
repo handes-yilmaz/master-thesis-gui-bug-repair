@@ -1,0 +1,33 @@
+diff --git a/lib/rules/no-this-before-super.js b/lib/rules/no-this-before-super.js
+index 2a686ac72..8962ceb88 100644
+--- a/lib/rules/no-this-before-super.js
++++ b/lib/rules/no-this-before-super.js
+@@ -206,18 +206,19 @@ module.exports = {
+              * @returns {void}
+              */
+             onCodePathSegmentStart(segment) {
+-                if (!isInConstructorOfDerivedClass()) {
+-                    return;
+-                }
++                // Ensure segInfoMap is initialized for all segments
++                segInfoMap[segment.id] = segInfoMap[segment.id] || {
++                    superCalled: false,
++                    invalidNodes: []
++                };
+ 
+-                // Initialize info.
+-                segInfoMap[segment.id] = {
+-                    superCalled: (
++                if (isInConstructorOfDerivedClass()) {
++                    // Update info if in a constructor of a derived class
++                    segInfoMap[segment.id].superCalled = (
+                         segment.prevSegments.length > 0 &&
+                         segment.prevSegments.every(isCalled)
+-                    ),
+-                    invalidNodes: []
+-                };
++                    );
++                }
+             },
+ 
+             /**

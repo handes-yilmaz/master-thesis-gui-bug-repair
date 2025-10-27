@@ -1,0 +1,24 @@
+diff --git a/src/ol/renderer/webgl/PointsLayer.js b/src/ol/renderer/webgl/PointsLayer.js
+index be6a204..5d65f47 100644
+--- a/src/ol/renderer/webgl/PointsLayer.js
++++ b/src/ol/renderer/webgl/PointsLayer.js
+@@ -478,7 +478,10 @@ class WebGLPointsLayerRenderer extends WebGLLayerRenderer {
+   rebuildBuffers_(frameState) {
+     // saves the projection transform for the current frame state
+     const projectionTransform = createTransform();
++    const aspectRatio = frameState.size[0] / frameState.size[1];
+     this.helper.makeProjectionTransform(frameState, projectionTransform);
++    // Adjust the projection transform for non-square viewports
++    projectionTransform[0] *= aspectRatio; // Scale x-axis by aspect ratio
+ 
+     const baseInstructionLength = this.hitDetectionEnabled_ ? 7 : 2; // see below
+     const singleInstructionLength =
+@@ -620,6 +623,8 @@ class WebGLPointsLayerRenderer extends WebGLLayerRenderer {
+ 
+     do {
+       this.helper.makeProjectionTransform(frameState, this.currentTransform_);
++      // Adjust the current transform for non-square viewports
++      this.currentTransform_[0] *= aspectRatio; // Scale x-axis by aspect ratio
+       translateTransform(this.currentTransform_, world * worldWidth, 0);
+       multiplyTransform(this.currentTransform_, this.invertRenderTransform_);
+       this.helper.applyUniforms(frameState);

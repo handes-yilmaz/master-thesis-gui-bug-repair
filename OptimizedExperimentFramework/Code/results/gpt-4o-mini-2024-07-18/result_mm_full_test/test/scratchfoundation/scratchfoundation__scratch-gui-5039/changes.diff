@@ -1,0 +1,24 @@
+diff --git a/src/lib/drag-utils.js b/src/lib/drag-utils.js
+index e3f5c1bd0..5e70ecfb6 100644
+--- a/src/lib/drag-utils.js
++++ b/src/lib/drag-utils.js
+@@ -33,11 +33,14 @@ const indexForPositionOnList = ({x, y}, boxes) => {
+         const maxX = (n === boxes.length - 1 || box.right === rightEdge) ?
+             Infinity : box.right;
+ 
+-        // Check if the point is in the bounds.
+-        if (x > minX && x <= maxX && y > minY && y <= maxY) {
+-            index = n;
+-            break; // No need to keep looking.
+-        }
++    // Prevent the default context menu from appearing
++    event.preventDefault();
++    
++    // Check if the point is in the bounds.
++    if (x > minX && x <= maxX && y > minY && y <= maxY) {
++        index = n;
++        break; // No need to keep looking.
++    }
+     }
+     return index;
+ };

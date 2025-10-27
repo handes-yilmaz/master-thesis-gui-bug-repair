@@ -1,0 +1,17 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLPoints.js": [
+            {
+                "SEARCH": [
+                    "return new WebGLPointsLayerRenderer(this, {"
+                ],
+                "REPLACE": [
+                    "    const projection = this.getProjection(); // Get the current projection",
+                    "    const isGeographic = projection && projection.getCode() === 'EPSG:4326'; // Check if it's EPSG:4326",
+                    "    return new WebGLPointsLayerRenderer(this, {",
+                    "      useGeographic: isGeographic, // Pass the geographic flag to the renderer"
+                ]
+            }
+        ]
+    }
+}

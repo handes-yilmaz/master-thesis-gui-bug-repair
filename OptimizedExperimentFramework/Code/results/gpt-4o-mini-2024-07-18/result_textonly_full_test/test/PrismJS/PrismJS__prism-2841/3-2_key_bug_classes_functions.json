@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-ruby.js//Prism.languages.ruby",
+            "components/prism-ruby.js//interpolation"
+        ],
+        "bug_functions": [
+            "components/prism-ruby.js//insertBefore"
+        ],
+        "explanation": "The `Prism.languages.ruby` class is responsible for defining the syntax highlighting rules for Ruby, including regex patterns. The `interpolation` function defines how interpolation within strings and regex should be handled. The `insertBefore` function is used to add new highlighting rules for regex, which is where the bug lies. The incorrect handling of interpolation in regex patterns needs to be addressed in these classes/functions to ensure proper syntax highlighting.",
+        "bug_scenario": "The bug scenario involves the Ruby syntax highlighting for regex interpolation. Specifically, the interpolation within regex patterns using `/foo#{bar}/` is not being highlighted correctly, while the interpolation in `%r[foo#{bar}]` works as expected. This inconsistency in highlighting can lead to confusion for developers using the Ruby language."
+    }
+}

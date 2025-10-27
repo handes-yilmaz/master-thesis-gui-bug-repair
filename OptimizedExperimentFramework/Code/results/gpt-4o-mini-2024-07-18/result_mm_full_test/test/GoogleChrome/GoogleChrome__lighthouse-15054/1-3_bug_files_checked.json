@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "core/audits/no-unload-listeners.js",
+            "core/audits/bf-cache.js",
+            "core/gather/gatherers/global-listeners.js",
+            "core/gather/gatherers/console-messages.js"
+        ],
+        "explanation": "These files are relevant because they directly deal with the auditing of event listeners and the back-forward cache. The `no-unload-listeners.js` file likely contains the logic to check for unload listeners, while the `bf-cache.js` file assesses the impact of such listeners on the bfcache. The `global-listeners.js` and `console-messages.js` files may help in gathering necessary event listener data and debugging messages, which are essential for addressing the issue.",
+        "bug_scenario": "The bug scenario involves issues with unload event listeners that are preventing the page from passing the back-forward cache (bfcache) audit in Lighthouse. The problem arises because an extension can inject an unload listener which is not visible in the DevTools Elements panel or through the `getEventListeners(window)` method, making it difficult for users to debug. This occurs particularly when the unload listener is added in an isolated execution context."
+    }
+}

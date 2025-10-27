@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "src/cascader-select/cascader-select.jsx": [
+            {
+                "SEARCH": [
+                    "if ('value' in props) {",
+                    "st.value = normalizeValue(props.value);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        if ('value' in props) {",
+                    "            st.value = normalizeValue(JSON.parse(JSON.stringify(props.value))); // Create a deep copy",
+                    "        }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (!('value' in this.props)) {",
+                    "st.value = value;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        if (!('value' in this.props)) {",
+                    "            st.value = JSON.parse(JSON.stringify(value)); // Create a deep copy",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

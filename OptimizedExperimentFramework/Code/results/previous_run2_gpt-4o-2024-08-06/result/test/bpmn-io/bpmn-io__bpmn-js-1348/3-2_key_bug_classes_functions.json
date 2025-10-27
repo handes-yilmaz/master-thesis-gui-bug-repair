@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/rules/BpmnRules.js//BpmnRules",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//BoundaryEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//postExecute"
+        ],
+        "explanation": "The `BpmnRules` class in `BpmnRules.js` likely contains logic that restricts the connections of message flows to boundary events. This is where rules are defined for what elements can be connected. The `BoundaryEventBehavior` class in `BoundaryEventBehavior.js` manages boundary event interactions and behaviors, specifically with the `postExecute` function handling post-connection logic, which may include restrictions on message flow connections to boundary events. Modifying these classes and functions is necessary to allow the described message flow connections.",
+        "bug_scenario": "The bug involves disallowing message flows to target intermediate message catch boundary events, which should be allowed according to the BPMN 2.0 specification. The provided images illustrate attempts to connect message flows to such boundary events, which are currently restricted by the modeler, contrary to the expected behavior."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/rules/BpmnRules.js//BpmnRules",
+            "lib/features/modeling/behavior/BoundaryEventBehavior.js//BoundaryEventBehavior"
+        ],
+        "bug_functions": [],
+        "explanation": "The 'BpmnRules' class in 'BpmnRules.js' likely contains the logic that disallows connections to intermediate message catch boundary events, which needs to be modified to adhere to the BPMN 2.0 specification. The 'BoundaryEventBehavior' class in 'BoundaryEventBehavior.js' is responsible for handling behaviors related to boundary events. This class may also require changes to ensure that message flows are correctly allowed for intermediate message catch boundary events, aligning with the corrected rules.",
+        "bug_scenario": "The images illustrate an attempt to connect a message flow from one process participant to an intermediate message catch boundary event, which is disallowed by the modeler but should be permitted according to the BPMN 2.0 specification. The restriction is incorrect as per the specification guidelines, which state that message flows should be allowed to target intermediate message catch boundary events."
+    }
+}

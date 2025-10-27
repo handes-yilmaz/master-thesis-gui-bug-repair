@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/parser-babel.js//babelOptions",
+            "src/language-js/parser-babel.js//createParse",
+            "src/language-js/parser-flow.js//parse",
+            "src/language-js/parser-typescript.js//parse"
+        ],
+        "bug_functions": [
+            "src/language-js/parser-babel.js//isFlowFile",
+            "src/language-js/parser-babel.js//tryCombinations",
+            "src/language-js/parser-typescript.js//tryParseTypeScript"
+        ],
+        "explanation": "These classes and functions are related to the bug because they are responsible for parsing JavaScript code. The 'babelOptions' function defines the configuration for the Babel parser, which is currently being used. The 'createParse' function is crucial for creating a parsing function that can handle different types of JavaScript syntax, including Flow and TypeScript. The 'parse' function in 'parser-flow.js' is specifically for parsing Flow syntax, which is a concern when switching to Cherow. The 'isFlowFile' function checks if a file uses Flow syntax, which is important for ensuring compatibility. Lastly, 'tryParseTypeScript' in 'parser-typescript.js' is relevant as it handles TypeScript parsing, which may also be affected by the parser switch.",
+        "bug_scenario": "The bug scenario involves the need to switch the JavaScript parser used by Prettier from Babylon to Cherow to improve parsing speed. The user has noted that Cherow is significantly faster than Babylon, which impacts usability, especially in format-on-save scenarios. However, there is a concern that Cherow does not support Flow syntax, which may limit its use."
+    }
+}

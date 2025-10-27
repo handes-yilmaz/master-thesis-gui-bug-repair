@@ -1,0 +1,13 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1dd7e6b..cda2814 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -237,7 +237,7 @@ function parseStyle(style, bandCount) {
+     uniform float ${Uniforms.RESOLUTION};
+     uniform float ${Uniforms.ZOOM};
+ 
+-    ${uniformDeclarations.join('\n')}
++  /**\n   * Clean up underlying WebGL resources.\n   * @function\n   * @api\n   */\n  dispose() {\n    // Call the dispose method to clean up resources\n    if (this.getRenderer()) {\n      this.getRenderer().dispose();\n    }\n    super.dispose();\n  }\n\n  export default WebGLTileLayer;
+ 
+     ${functionDefintions.join('\n')}
+ 

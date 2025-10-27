@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js//export default function"
+        ],
+        "bug_functions": [
+            "src/lib/modes.js//COMMENT",
+            "src/lib/modes.js//HASH_COMMENT_MODE"
+        ],
+        "explanation": "The issue arises from how comments and decorators are parsed and highlighted. In `src/languages/python.js`, the main function defining Python syntax highlighting needs to handle decorators and comments on the same line correctly. In `src/lib/modes.js`, the `COMMENT` and `HASH_COMMENT_MODE` functions are responsible for defining how comments are recognized and highlighted, which is directly related to the bug where comments are not being formatted as expected when decorators are present.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting in Python code where comments on the same line as decorators are not formatted properly. The entire line gets classified as 'hljs-meta' instead of having the comment section as 'hljs-comment'. This results in inconsistent comment formatting when decorators are present."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/python.js//export default function"
+        ],
+        "bug_functions": [
+            "src/lib/modes.js//COMMENT",
+            "src/lib/modes.js//HASH_COMMENT_MODE"
+        ],
+        "explanation": "The issue stems from how the Python language syntax is defined in the `src/languages/python.js` file. The `export default function` in this file is responsible for defining the language rules, including how decorators and comments are handled. The `COMMENT` and `HASH_COMMENT_MODE` functions in `src/lib/modes.js` are related to how comments are identified and highlighted, and likely need adjustment to correctly apply the `hljs-comment` class to comments following decorators.",
+        "bug_scenario": "The bug involves a syntax highlighting issue where a comment on the same line as a decorator in Python code is incorrectly styled as `hljs-meta` instead of `hljs-comment`. This affects the visual representation of comments in code, making it unclear and inconsistent with expected behavior."
+    }
+}

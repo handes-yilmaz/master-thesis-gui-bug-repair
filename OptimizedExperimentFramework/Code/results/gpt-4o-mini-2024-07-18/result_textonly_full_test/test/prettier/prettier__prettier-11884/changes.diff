@@ -1,0 +1,19 @@
+diff --git a/src/language-js/parse/typescript.js b/src/language-js/parse/typescript.js
+index b324091..47a88ca 100644
+--- a/src/language-js/parse/typescript.js
++++ b/src/language-js/parse/typescript.js
+@@ -49,6 +49,14 @@ function parse(text, parsers, opts) {
+     throw createParseError(firstError);
+   }
+ 
++  // Ensure that empty array types are formatted correctly
++  if (result.ast && result.ast.body) {
++    result.ast.body.forEach(node => {
++      if (node.type === 'TSArrayType' && node.elementType.type === 'TSNeverKeyword') {
++        node.elementType = { type: 'TSVoidKeyword' }; // Adjust the type to avoid comma insertion
++      }
++    });
++  }
+   opts.originalText = text;
+   opts.tsParseResult = result;
+   return postprocess(result.ast, opts);

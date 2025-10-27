@@ -1,0 +1,40 @@
+{
+    "1/1": {
+        "src/ol/reproj/Image.js": [
+            {
+                "SEARCH": [
+                    "const width = getWidth(this.targetExtent_) / this.targetResolution_;",
+                    "const height = getHeight(this.targetExtent_) / this.targetResolution_;"
+                ],
+                "REPLACE": [
+                    "      const width = getWidth(this.targetExtent_) / this.targetResolution_ * (this.sourceImage_.getWidth() / this.sourceImage_.getHeight());",
+                    "      const height = getHeight(this.targetExtent_) / this.targetResolution_;"
+                ]
+            }
+        ],
+        "src/ol/reproj/Tile.js": [
+            {
+                "SEARCH": [
+                    "const width = typeof size === 'number' ? size : size[0];",
+                    "const height = typeof size === 'number' ? size : size[1];"
+                ],
+                "REPLACE": [
+                    "      const width = typeof size === 'number' ? size * (this.sourceTileGrid_.getTileSize(this.sourceZ_)[0] / this.sourceTileGrid_.getTileSize(this.sourceZ_)[1]) : size[0] * (this.sourceTileGrid_.getTileSize(this.sourceZ_)[0] / this.sourceTileGrid_.getTileSize(this.sourceZ_)[1]);",
+                    "      const height = typeof size === 'number' ? size : size[1];"
+                ]
+            }
+        ],
+        "src/ol/reproj/DataTile.js": [
+            {
+                "SEARCH": [
+                    "const targetWidth = typeof size === 'number' ? size : size[0];",
+                    "const targetHeight = typeof size === 'number' ? size : size[1];"
+                ],
+                "REPLACE": [
+                    "      const targetWidth = typeof size === 'number' ? size * (this.sourceTileGrid_.getTileSize(this.sourceZ_)[0] / this.sourceTileGrid_.getTileSize(this.sourceZ_)[1]) : size[0] * (this.sourceTileGrid_.getTileSize(this.sourceZ_)[0] / this.sourceTileGrid_.getTileSize(this.sourceZ_)[1]);",
+                    "      const targetHeight = typeof size === 'number' ? size : size[1];"
+                ]
+            }
+        ]
+    }
+}

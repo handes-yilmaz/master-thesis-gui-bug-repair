@@ -1,0 +1,21 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1409a69..0347cb0 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -329,8 +329,16 @@ class WebGLTileLayer extends BaseTileLayer {
+   }
+ 
+   createRenderer() {
++    const source = this.getSource();
++    if (!source || !source.getTileGrid()) {
++      throw new Error('Source must have a valid tile grid for WebGLTileLayer.');
++    }
+     const parsedStyle = parseStyle(this.style_, this.getSourceBandCount_());
+ 
++    const tileGrid = source.getTileGrid();
++    if (!tileGrid) {
++      throw new Error('Tile grid is required for rendering.');
++    }
+     return new WebGLTileLayerRenderer(this, {
+       vertexShader: parsedStyle.vertexShader,
+       fragmentShader: parsedStyle.fragmentShader,

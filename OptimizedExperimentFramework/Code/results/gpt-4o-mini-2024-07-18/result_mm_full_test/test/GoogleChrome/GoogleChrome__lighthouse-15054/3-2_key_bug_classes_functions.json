@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "core/audits/no-unload-listeners.js//NoUnloadListeners",
+            "core/audits/bf-cache.js//BFCache",
+            "core/gather/gatherers/global-listeners.js//GlobalListeners"
+        ],
+        "bug_functions": [
+            "core/audits/no-unload-listeners.js//audit",
+            "core/audits/bf-cache.js//audit",
+            "core/gather/gatherers/global-listeners.js//getArtifact"
+        ],
+        "explanation": "The identified classes and functions are crucial for addressing the bug because they handle the audits related to unload listeners and the back/forward cache. The NoUnloadListeners class specifically checks for unload listeners, while the BFCache class assesses the conditions under which the bfcache is not restored. The GlobalListeners class gathers information about global event listeners, which is essential for identifying the problematic unload listener injected by the extension. Modifications in these areas could help improve the detection of unload listeners and enhance the accuracy of the bfcache audit.",
+        "bug_scenario": "The issue arises when an extension injects an unload listener into the main frame, causing the bfcache audit to fail while the no-unload-listeners audit passes. This makes it difficult to detect the unload listener, as it is added in an isolated execution context, rendering it invisible to standard debugging tools."
+    }
+}

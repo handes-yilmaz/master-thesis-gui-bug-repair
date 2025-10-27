@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/core/handlers/base.ts//baseHandler",
+            "src/core/handlers/types.ts//LanguageHandler",
+            "src/core/handlers/include.ts//includeHandler"
+        ],
+        "bug_functions": [
+            "src/core/handlers/base.ts//handleLanguageCells",
+            "src/core/handlers/types.ts//document",
+            "src/core/handlers/include.ts//directive"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the processing of language cells and directives in the Quarto markdown. The 'baseHandler' and 'includeHandler' are responsible for managing how different programming languages are processed, including C/C++ and VHDL. The 'handleLanguageCells' function is crucial for interpreting the code cells, while the 'directive' function in 'includeHandler' manages how directives are processed, which is likely where the annotation handling is failing. The 'LanguageHandler' interface defines the structure for handling different languages, making it essential for ensuring that annotations are processed correctly.",
+        "bug_scenario": "The code annotation for C/C++ and VHDL is not being handled correctly, as the annotations are detected but not replaced with circle numbering. This issue is evident in the provided code snippets where comments are not being formatted as expected."
+    }
+}

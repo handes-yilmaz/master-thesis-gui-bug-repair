@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/DropOnFlowBehavior.js": [
+            {
+                "SEARCH": [
+                    "// Logic for handling drop behavior on flow",
+                    "if (isMultipleShapesDropped) {",
+                    "// Existing logic that may incorrectly connect shapes",
+                    "connectShapes(shapes, flow);"
+                ],
+                "REPLACE": [
+                    "if (isMultipleShapesDropped) {",
+                    "    // New logic to handle multiple shapes correctly",
+                    "    // Prevent connecting multiple shapes directly to a flow",
+                    "    for (let shape of shapes) {",
+                    "        if (isValidDrop(shape, flow)) {",
+                    "            connectShapeToFlow(shape, flow);",
+                    "        }",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

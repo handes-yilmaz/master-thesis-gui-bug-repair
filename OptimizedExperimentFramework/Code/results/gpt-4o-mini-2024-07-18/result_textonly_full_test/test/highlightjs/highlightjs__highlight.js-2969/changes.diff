@@ -1,0 +1,23 @@
+diff --git a/src/lib/compiler_extensions.js b/src/lib/compiler_extensions.js
+index b00ecd2..4c0a51c 100644
+--- a/src/lib/compiler_extensions.js
++++ b/src/lib/compiler_extensions.js
+@@ -50,10 +50,14 @@ export function beginKeywords(mode, parent) {
+   mode.keywords = mode.keywords || mode.beginKeywords;
+   delete mode.beginKeywords;
+ 
+-  // prevents double relevance, the keywords themselves provide
+-  // relevance, the mode doesn't need to double it
+-  // eslint-disable-next-line no-undefined
+-  if (mode.relevance === undefined) mode.relevance = 0;
++// Add support for Ruby character literals
++mode.charLiterals = [
++{ regex: /\\\//, replacement: '/' }, // Single slash character
++{ regex: /\\{2}/, replacement: '\\' }, // Escaped backslash character
++{ regex: /\\u\{([0-9A-Fa-f]{1,6})\}/, replacement: (match, code) => String.fromCharCode(parseInt(code, 16)) }, // Unicode
++{ regex: /\\C-([a-zA-Z])/, replacement: (match, char) => String.fromCharCode(char.charCodeAt(0) - 64) }, // Control characters
++{ regex: /\\M-([a-zA-Z])/, replacement: (match, char) => String.fromCharCode(char.charCodeAt(0) + 128) } // Meta characters
++];
+ }
+ 
+ /**

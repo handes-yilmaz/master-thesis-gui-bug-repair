@@ -1,0 +1,26 @@
+diff --git a/src/cascader-select/cascader-select.jsx b/src/cascader-select/cascader-select.jsx
+index 03a0db3..468edf7 100644
+--- a/src/cascader-select/cascader-select.jsx
++++ b/src/cascader-select/cascader-select.jsx
+@@ -327,7 +327,7 @@ class CascaderSelect extends Component {
+             data.forEach((item, index) => {
+                 const { value, children } = item;
+                 const pos = `${prefix}-${index}`;
+-                this._v2n[value] = this._p2n[pos] = { ...item, pos };
++                this._v2n[value] = this._p2n[pos] = Object.freeze({ ...item, pos });
+ 
+                 if (children && children.length) {
+                     loop([...children], pos); // Use a copy of children
+diff --git a/src/cascader/cascader.jsx b/src/cascader/cascader.jsx
+index e7a0937..21d7399 100644
+--- a/src/cascader/cascader.jsx
++++ b/src/cascader/cascader.jsx
+@@ -385,7 +385,7 @@ class Cascader extends Component {
+ 
+             forEachEnableNode(this.state._v2n[v], node => {
+                 if (node.checkable === false) return;
+-                this.processValue(value, node.value, checked);
++                this.processValue(value, Object.freeze(node.value), checked);
+             });
+ 
+             let currentPos = pos;

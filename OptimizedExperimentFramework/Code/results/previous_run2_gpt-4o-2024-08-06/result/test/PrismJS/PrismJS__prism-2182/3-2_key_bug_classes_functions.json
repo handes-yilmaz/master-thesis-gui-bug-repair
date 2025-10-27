@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [],
+        "explanation": "The issue is caused by the incorrect regex pattern in the file `components/prism-elixir.js`. The pattern for `'attr-name'` is `/\\w+:(?!:)/`, which does not account for attributes ending with a `?`. The suggested fix is to change this line to `'attr-name': /\\w+\\?:(?!:)/,`, allowing for the optional question mark. The file `components/prism-elixir.js` is where the syntax rules for Elixir are defined, making it the key location to address this bug.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting in Elixir code for attributes ending with a question mark (`?`). The screenshot shows that the attribute `attribute?` is not correctly highlighted as an attribute, while `attribute` is. This indicates that the regex pattern for attributes in the syntax highlighting script is missing the optional question mark at the end."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [
+            "components/prism-elixir.js"
+        ],
+        "explanation": "The bug is located in the 'components/prism-elixir.js' file, specifically in the regular expression pattern for 'attr-name'. The current pattern '\\w+:(?!:)' does not accommodate attribute names ending with '?', leading to incorrect syntax highlighting. The suggestion is to modify the pattern to '\\w+\\?:' to include the optional question mark, which will address the highlighting issue for attributes ending with '?'.",
+        "bug_scenario": "The syntax highlighting for Elixir code in Prism.js is failing to correctly identify attribute names that end with a question mark ('?'). This issue arises from the regular expression used to match attribute names, which does not account for the possibility of a trailing question mark. As a result, attributes like 'attribute?' are not correctly highlighted."
+    }
+}

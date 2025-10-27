@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/implicit-arrow-linebreak",
+            "lib/rules/arrow-body-style",
+            "lib/rules/arrow-parens",
+            "lib/util/source-code-fixer"
+        ],
+        "bug_functions": [
+            "lib/rules/implicit-arrow-linebreak//create",
+            "lib/rules/implicit-arrow-linebreak//validateExpression",
+            "lib/rules/arrow-body-style//create",
+            "lib/rules/arrow-body-style//validate",
+            "lib/rules/arrow-parens//create",
+            "lib/rules/arrow-parens//parens",
+            "lib/util/source-code-fixer//applyFixes"
+        ],
+        "explanation": "These classes and functions are related to the bug because they are part of the ESLint rule implementations that handle arrow function formatting and fixing. The 'implicit-arrow-linebreak' rule is directly responsible for the issue described in the bug report, as it governs how arrow function bodies are formatted. The 'arrow-body-style' and 'arrow-parens' rules also interact with arrow functions and could contribute to the incorrect formatting. The 'source-code-fixer' utility is crucial as it applies the fixes suggested by these rules, and any issues in its logic could lead to the generation of invalid JavaScript code.",
+        "bug_scenario": "The ESLint autofixer for the 'implicit-arrow-linebreak' rule is incorrectly modifying the code, resulting in invalid JavaScript. Specifically, it adds extra characters and breaks the structure of the code, particularly affecting the catch block in promise handling."
+    }
+}

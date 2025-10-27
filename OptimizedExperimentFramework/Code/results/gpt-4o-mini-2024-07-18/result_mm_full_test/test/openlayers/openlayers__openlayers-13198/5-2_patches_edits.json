@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "src/ol/layer/MapboxVector.js": [
+            {
+                "SEARCH": [
+                    "super({",
+                    "source: source,",
+                    "background: options.background,"
+                ],
+                "REPLACE": [
+                    "    super({",
+                    "      source: source,",
+                    "      background: options.background || 'transparent', // Ensure a default background"
+                ]
+            }
+        ],
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "if (this.getBackground(frameState) === undefined) {",
+                    "applyBackground(this, style);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (this.getBackground(frameState) === undefined && style.background) {",
+                    "      applyBackground(this, style); // Ensure background is applied if defined in style",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

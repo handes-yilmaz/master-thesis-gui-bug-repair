@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/computed/metrics/cumulative-layout-shift.js",
+            "lighthouse-core/audits/metrics.js",
+            "lighthouse-core/gather/driver/wait-for-condition.js"
+        ],
+        "explanation": "1. `cumulative-layout-shift.js` files in both `audits` and `computed` folders are likely responsible for calculating and reporting the CLS metric, which is directly related to the bug. 2. The `metrics.js` file in the gatherers directory may handle the collection of performance metrics, including CLS. 3. The `wait-for-condition.js` file in the driver may control the timing of how long Lighthouse waits for metrics to stabilize before reporting, which is crucial for fixing the timing issue described in the bug report.",
+        "bug_scenario": "The Lighthouse tool does not wait long enough to accurately measure the Cumulative Layout Shift (CLS) when the throttling method is set to 'simulate'. This leads to an incorrect performance score, as the CLS metric does not reflect the true loading behavior of the page."
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/Select/Select.js",
+            "src/js/components/Select/SelectContainer.js",
+            "src/js/components/Select/select.stories.js"
+        ],
+        "explanation": "These files are directly related to the Select component, which encapsulates the search input functionality. Modifying the CSS properties, particularly by adding '-webkit-appearance: textfield;' in the appropriate style definition, would address the padding issue in Safari. The Select.js file contains the main component logic, the SelectContainer.js might manage the overall behavior of the Select component, and the select.stories.js file likely contains visual tests or examples for the Select component that would help verify any changes made.",
+        "bug_scenario": "The search input field in Safari displays a very small size compared to how it appears in Chrome. This inconsistency in padding for the search input is causing usability issues, as noted in the provided screenshots."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/Select/Select.js",
+            "src/js/components/Select/index.js",
+            "src/js/components/Select/select.stories.js"
+        ],
+        "explanation": "The Select.js file is directly related to the bug as it contains the implementation of the Select component which is where the search input is utilized. The index.js file may contain exports or additional configurations for the Select component, which could also affect its styling. The select.stories.js file is relevant as it likely contains example stories for the Select component, which can help in testing the visual aspects in different browsers, including Safari. These files need to be reviewed and possibly modified to include the necessary CSS fix.",
+        "bug_scenario": "In Safari, the search input within the Select component appears very small due to CSS issues related to padding being ignored. The problem was previously addressed in version 1 by adding the CSS property '-webkit-appearance: textfield;' for <input type='search' /> elements."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior",
+            "lib/features/modeling/BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior//insertShape",
+            "lib/features/modeling/BpmnUpdater//updateFlowNodeRefs"
+        ],
+        "explanation": "The 'DropOnFlowBehavior' class contains the 'insertShape' function, which is responsible for handling the insertion of shapes onto flows. This function likely needs to be modified to ensure that existing condition expressions are preserved when a new event is dropped. The 'BpmnUpdater' class, particularly the 'updateFlowNodeRefs' function, is responsible for updating the flow node references and may also need to be adjusted to ensure that the condition expressions are not removed during updates.",
+        "bug_scenario": "The bug occurs when a 'Timer Intermediate Catch Event' is dropped onto a sequence flow that already has a condition expression. The action removes the existing condition expression from the sequence flow, which is not the expected behavior."
+    }
+}

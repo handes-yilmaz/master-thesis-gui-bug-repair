@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "src/config-provider/index.jsx": [
+            {
+                "SEARCH": [
+                    "componentWillUnmount() {",
+                    "childContextCache.remove(this);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    componentWillUnmount() {",
+                    "        childContextCache.remove(this);",
+                    "        // Clear cache to prevent memory leaks in SSR scenarios",
+                    "        ConfigProvider.clearCache();",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

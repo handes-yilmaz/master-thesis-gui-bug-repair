@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: 1. `WebGLTile.js` contains the implementation of the WebGLTileLayer, which is directly related to the rendering performance issues described in the bug report. 2. `GeoTIFF.js` is responsible for handling the GeoTIFF data source, which is essential for implementing the proposed solution of using a GeoTIFF pyramid. 3. `TileLayer.js` in the renderer directory is responsible for the WebGL rendering logic, which needs to be optimized to handle the new source structure effectively.",
+        "bug_scenario": "The current implementation of WebGLTileLayers does not scale well with larger GeoTIFF pyramids, leading to lost WebGL contexts and poor performance. The proposed solution involves creating a new source that uses a template string and a tile grid object to manage the tiles more efficiently, thereby maintaining a single WebGL context per layer."
+    }
+}

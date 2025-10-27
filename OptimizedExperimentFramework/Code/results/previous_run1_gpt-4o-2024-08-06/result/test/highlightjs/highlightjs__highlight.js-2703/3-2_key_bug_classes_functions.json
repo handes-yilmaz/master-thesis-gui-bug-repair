@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/scala.js//CLASS",
+            "src/languages/javascript.js//PARAMS"
+        ],
+        "bug_functions": [],
+        "explanation": "In the Scala file, the 'CLASS' construct is responsible for handling class definitions, including comments. Since the issue is with comment rendering, this part of the code needs attention to ensure comments are not treated as titles when they are on a new line. In the JavaScript file, the 'PARAMS' construct deals with function parameters, where comments are not highlighted correctly. Adjustments are needed here to ensure comments within parameter lists are recognized and highlighted properly.",
+        "bug_scenario": "The bug involves incorrect rendering of comments in Scala and JavaScript code snippets when using Highlight.js. In Scala, comments are incorrectly rendered as titles when the curly bracket is on a new line. In JavaScript, comments inside function parameters are not highlighted."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/scala.js//CLASS",
+            "src/languages/javascript.js//PARAMS"
+        ],
+        "bug_functions": [
+            "src/lib/html_renderer.js//openNode",
+            "src/lib/html_renderer.js//closeNode"
+        ],
+        "explanation": "The 'CLASS' object in 'src/languages/scala.js' is responsible for defining how Scala classes are highlighted. The issue arises because comments are incorrectly included as part of the class name when they are on a new line. The 'PARAMS' object in 'src/languages/javascript.js' manages the highlighting of function parameters in JavaScript, but it does not properly handle comments, causing them to be ignored. In 'src/lib/html_renderer.js', the 'openNode' and 'closeNode' functions manage adding and closing HTML tags during rendering. They need to ensure comments are correctly wrapped and identified to prevent them from being treated as code elements.",
+        "bug_scenario": "The bug scenario involves incorrect rendering of comments within code when using the Highlight.js library. In Scala, comments within classes are incorrectly rendered as part of the class name if the class declaration and the comment are on separate lines. In JavaScript, comments within function parameters are not highlighted, leading to a lack of proper syntax highlighting for comments in certain contexts."
+    }
+}

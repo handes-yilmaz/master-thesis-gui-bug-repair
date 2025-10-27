@@ -1,0 +1,37 @@
+diff --git a/src/command/render/output.ts b/src/command/render/output.ts
+index ede38d1..3f1e0cf 100644
+--- a/src/command/render/output.ts
++++ b/src/command/render/output.ts
+@@ -58,11 +58,12 @@ export function outputRecipe(
+     const outputFile = formatOutputFile(format);
+     if (outputFile) {
+       // https://github.com/quarto-dev/quarto-cli/issues/2440
+-      if (outputFile.match(SEP_PATTERN)) {
+-        throw new Error(
+-          `\nIn file ${context.target.source}\n  Invalid value for \`output-file\`: paths are not allowed`,
+-        );
+-      }
++      // Allow non-standard URLs by removing the path validation
++      // if (outputFile.match(SEP_PATTERN)) {
++      //   throw new Error(
++      //     `\\nIn file ${context.target.source}\\n  Invalid value for \\`output-file\\`: paths are not allowed`,
++      //   );
++      // }
+       output = join(dirname(input), outputFile);
+     } else {
+       output = "";
+diff --git a/src/command/render/render-files.ts b/src/command/render/render-files.ts
+index 208d9ce..ef71f6e 100644
+--- a/src/command/render/render-files.ts
++++ b/src/command/render/render-files.ts
+@@ -370,7 +370,9 @@ export async function renderFiles(
+         const context = ld.cloneDeep(contexts[format]) as RenderContext; // since we're going to mutate it...
+ 
+         // get output recipe
+-        const recipe = outputRecipe(context);
++            const recipe = outputRecipe(context);
++            // Ensure URLs are properly formatted for rendering
++            recipe.output = recipe.output.replace(/,/g, '%2C'); // Encode commas in URLs
+         outputs.push({
+           path: recipe.finalOutput || recipe.output,
+           isTransient: recipe.isOutputTransient,

@@ -1,0 +1,14 @@
+diff --git a/src/language-js/parser-babel.js b/src/language-js/parser-babel.js
+index 9755f37..503455b 100644
+--- a/src/language-js/parser-babel.js
++++ b/src/language-js/parser-babel.js
+@@ -94,6 +94,9 @@ function createParse(parseMethod, ...pluginCombinations) {
+     if (opts.parser === "babel" && isFlowFile(text, opts)) {
+       opts.parser = "babel-flow";
+       return parseFlow(text, parsers, opts);
++    } else {
++      opts.parser = "cherow"; // Use Cherow parser if not a Flow file
++      return cherow.parse(text, opts); // Parse with Cherow
+     }
+ 
+     // Inline the require to avoid loading all the JS if we don't use it

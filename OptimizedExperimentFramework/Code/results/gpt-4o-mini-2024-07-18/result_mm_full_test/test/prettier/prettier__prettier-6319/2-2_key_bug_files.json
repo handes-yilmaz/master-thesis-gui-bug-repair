@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/parser-babel.js",
+            "src/language-js/parser-flow.js",
+            "src/language-js/parser-typescript.js"
+        ],
+        "explanation": "These files are key bug files because they contain the parsing logic for JavaScript, Flow, and TypeScript respectively. The `parser-babel.js` file specifically includes the configuration for the pipeline operator, including the smart proposal. The other two files, `parser-flow.js` and `parser-typescript.js`, handle parsing for their respective languages and may also need adjustments to support the smart pipeline proposal correctly.",
+        "bug_scenario": "The bug scenario involves a syntax error when using the pipeline operator with a smart proposal in Prettier. The input `5 |> # * 2` results in a `SyntaxError: Unexpected character '#'`, indicating that the parser does not recognize the '#' character as part of the pipeline operator syntax. The expected behavior is that the smart proposal should be supported, allowing for more convenient syntax."
+    }
+}

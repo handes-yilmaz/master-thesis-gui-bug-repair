@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/Immediate.js",
+            "src/ol/render/canvas/VectorContext.js",
+            "src/ol/style/Stroke.js"
+        ],
+        "explanation": "The files identified are crucial for addressing the bug because: \n\n1. **Immediate.js**: This file likely contains the implementation for the immediate rendering context. Any logic related to how shapes, including dashed lines, are drawn would reside here, making it essential to modify the lineDash scaling based on pixelRatio. \n\n2. **VectorContext.js**: This file is responsible for managing the rendering context for vector graphics, including handling styles such as lineDash. Adjustments to how styles are applied to the canvas, especially in relation to pixelRatio, will need to be made here. \n\n3. **Stroke.js**: This file defines the stroke style for lines, including properties like lineDash. Changes to how lineDash values are set or calculated based on pixelRatio must be implemented here to ensure that dashed lines render correctly across devices with different pixel densities.",
+        "bug_scenario": "When rendering dashed lines on high pixel density displays using Canvas Immediate, the dashes do not scale correctly with the `pixelRatio`, resulting in visual discrepancies, specifically blurring dashed lines into solid lines based on the device's pixel density."
+    }
+}

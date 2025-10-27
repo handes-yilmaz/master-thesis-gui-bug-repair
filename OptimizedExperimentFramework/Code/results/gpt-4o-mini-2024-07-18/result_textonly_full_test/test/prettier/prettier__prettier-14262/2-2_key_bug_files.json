@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/call-expression.js",
+            "src/language-js/print/object.js",
+            "src/language-js/needs-parens.js"
+        ],
+        "explanation": "These files are key bug files because they contain the logic responsible for printing call expressions, objects, and determining the need for parentheses in various contexts. Specifically, `call-expression.js` handles how function calls are printed, which is crucial for maintaining the parentheses around the object in the JSDoc. `object.js` is responsible for printing object literals, and it may need adjustments to ensure that parentheses are preserved when necessary. Lastly, `needs-parens.js` contains the logic that decides when parentheses are required, which is directly related to the issue of maintaining the parentheses in the JSDoc annotation.",
+        "bug_scenario": "The bug scenario involves the use of parentheses in JSDoc comments to maintain intellisense functionality. The user expects that when using the `@satisfies` annotation in JSDoc, the parentheses around the object should be preserved to avoid breaking intellisense. The provided example shows that the output from Prettier removes the parentheses, which is not the expected behavior."
+    }
+}

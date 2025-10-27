@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "core/lib/lh-trace-processor.js": [
+            {
+                "SEARCH": [
+                    "const threadNameEvt = keyEvents.find(e =>",
+                    "e.cat === '_metadata' &&",
+                    "e.pid === pid &&",
+                    "e.ph === 'M' &&",
+                    "e.name === 'thread_name' &&",
+                    "e.args.name === 'CrRendererMain'",
+                    ");"
+                ],
+                "REPLACE": [
+                    "const threadNameEvt = keyEvents.find(e => ",
+                    "    e.cat === '_metadata' &&",
+                    "    (e.pid === pid || e.args.data.processPseudoId === pid) && // Check for processPseudoId",
+                    "    e.ph === 'M' &&",
+                    "    e.name === 'thread_name' &&",
+                    "    e.args.name === 'CrRendererMain'",
+                    ");"
+                ]
+            }
+        ]
+    }
+}

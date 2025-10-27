@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-ruby.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to how regex patterns are parsed and highlighted in Ruby. In `components/prism-ruby.js`, regex patterns are defined, including the handling of interpolation within regex. The existing pattern for standard regex does not account for the interpolation syntax `#{...}` in `/.../`, whereas it is correctly handled for `%r{...}`. This suggests the need for modification in the regex pattern definitions to ensure interpolation is recognized and highlighted consistently across both formats.",
+        "bug_scenario": "The bug scenario involves the incorrect highlighting of interpolation in Ruby regex when wrapped with `/.../`. The interpolation is highlighted correctly when using `%r{...}` but not for the standard Ruby regex format."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-ruby.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is likely in the `components/prism-ruby.js` file, where the handling of regex patterns and interpolation is defined. The file contains logic to tokenize Ruby syntax, including regex and interpolation patterns. The problem occurs because the interpolation within `/.../` is not being recognized properly, which suggests a need to adjust the regex pattern or tokenization logic for regex in this file.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting for interpolation in Ruby regular expressions when using the `/.../` notation. In the image, the interpolation inside `/foo#{bar}/` is not highlighted correctly, while `%r[foo#{bar}]` is highlighted as expected."
+    }
+}

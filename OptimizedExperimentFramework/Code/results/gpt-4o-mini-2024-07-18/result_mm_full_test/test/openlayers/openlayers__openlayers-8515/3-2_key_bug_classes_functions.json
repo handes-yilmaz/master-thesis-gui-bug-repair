@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/interaction/Select//Select",
+            "src/ol/layer/Vector//VectorLayer",
+            "src/ol/renderer/canvas/VectorLayer//CanvasVectorLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/interaction/Select//setMap",
+            "src/ol/interaction/Select//handleEvent",
+            "src/ol/layer/Vector//setStyle",
+            "src/ol/renderer/canvas/VectorLayer//compose"
+        ],
+        "explanation": "The `Select` class is responsible for managing the selection of features and their visual representation. The `setMap` function is crucial as it attaches the interaction to the map, which may affect how layers are rendered. The `handleEvent` function processes user interactions and updates the selection state, which is directly related to the bug. The `VectorLayer` class manages the rendering of vector features, and the `setStyle` function can influence how selected features are displayed. Finally, the `CanvasVectorLayerRenderer` class's `compose` function is responsible for rendering the layer on the canvas, which is essential for ensuring that the selected features are displayed correctly in relation to their zIndex.",
+        "bug_scenario": "The `ol.select.Interaction` feature is not displaying correctly, as the selected features (represented by red dots) are always appearing below the selected feature layer, regardless of the zIndex settings. The user expects the selected features to be visually on top of the selected layer."
+    }
+}

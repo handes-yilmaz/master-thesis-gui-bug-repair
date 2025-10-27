@@ -1,0 +1,106 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "SummaryFlowStep",
+            "file_path": "flow-report/src/summary/summary.tsx",
+            "function_details": [
+                {
+                    "name": "SummaryFlowStep",
+                    "start_line": 47,
+                    "end_line": 85
+                }
+            ],
+            "function_code": [
+                "export const SummaryFlowStep: FunctionComponent<{",
+                "  lhr: LH.Result,",
+                "  label: string,",
+                "  hashIndex: number,",
+                "}> = ({lhr, label, hashIndex}) => {",
+                "  const reportResult = useMemo(() => Util.prepareReportResult(lhr), [lhr]);",
+                "  const strings = useLocalizedStrings();",
+                "  const modeDescription = getModeDescription(lhr.gatherMode, strings);",
+                "",
+                "  return (",
+                "    <div className=\"SummaryFlowStep\">",
+                "      {",
+                "        lhr.gatherMode === 'navigation' || hashIndex === 0 ?",
+                "          <SummaryNavigationHeader lhr={lhr}/> :",
+                "          <div className=\"SummaryFlowStep__separator\">",
+                "            <FlowSegment/>",
+                "            <Separator/>",
+                "          </div>",
+                "      }",
+                "      <FlowStepThumbnail reportResult={reportResult} width={THUMBNAIL_WIDTH}/>",
+                "      <FlowSegment mode={lhr.gatherMode}/>",
+                "      <div className=\"SummaryFlowStep__label\">",
+                "        <div className=\"SummaryFlowStep__mode\">{modeDescription}</div>",
+                "        <a className=\"SummaryFlowStep__link\" href={`#index=${hashIndex}`}>{label}</a>",
+                "      </div>",
+                "      {",
+                "        DISPLAYED_CATEGORIES.map(c => (",
+                "          <SummaryCategory",
+                "            key={c}",
+                "            category={reportResult.categories[c]}",
+                "            href={`#index=${hashIndex}&anchor=${c}`}",
+                "            gatherMode={lhr.gatherMode}",
+                "            finalUrl={lhr.finalUrl}",
+                "          />",
+                "        ))",
+                "      }",
+                "    </div>",
+                "  );",
+                "};"
+            ]
+        },
+        "2": {
+            "function_name": "getScreenshot",
+            "file_path": "flow-report/src/util.ts",
+            "function_details": [
+                {
+                    "name": "getScreenshot",
+                    "start_line": 43,
+                    "end_line": 52
+                }
+            ],
+            "function_code": [
+                "export function getScreenshot(reportResult: LH.ReportResult) {",
+                "  const fullPageScreenshotAudit = reportResult.audits['full-page-screenshot'];",
+                "  const fullPageScreenshot =",
+                "    fullPageScreenshotAudit &&",
+                "    fullPageScreenshotAudit.details &&",
+                "    fullPageScreenshotAudit.details.type === 'full-page-screenshot' &&",
+                "    fullPageScreenshotAudit.details.screenshot.data;",
+                "",
+                "  return fullPageScreenshot || null;",
+                "}"
+            ]
+        },
+        "3": {
+            "function_name": "getFilmstripFrames",
+            "file_path": "flow-report/src/util.ts",
+            "function_details": [
+                {
+                    "name": "getFilmstripFrames",
+                    "start_line": 54,
+                    "end_line": 66
+                }
+            ],
+            "function_code": [
+                "export function getFilmstripFrames(",
+                "  reportResult: LH.ReportResult",
+                "): Array<{data: string}> | undefined {",
+                "  const filmstripAudit = reportResult.audits['screenshot-thumbnails'];",
+                "  if (!filmstripAudit) return undefined;",
+                "",
+                "  const frameItems =",
+                "    filmstripAudit.details &&",
+                "    filmstripAudit.details.type === 'filmstrip' &&",
+                "    filmstripAudit.details.items;",
+                "",
+                "  return frameItems || undefined;",
+                "}"
+            ]
+        }
+    }
+}

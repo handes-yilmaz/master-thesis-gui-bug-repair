@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageWMS//ImageWMS",
+            "src/ol/source/Image//ImageSource",
+            "src/ol/renderer/canvas/ImageLayer//CanvasImageLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageWMS//getImageInternal",
+            "src/ol/source/ImageWMS//getRequestUrl_",
+            "src/ol/source/Image//getImage",
+            "src/ol/renderer/canvas/ImageLayer//renderFrame"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the rendering and retrieval of images from WMS sources. The 'ImageWMS' class is responsible for managing WMS image requests, including the parameters that affect image quality, such as the ratio and dimensions. The 'getImageInternal' function retrieves the image based on the specified parameters, which can lead to blurriness if the ratio is not an integer. The 'ImageSource' class provides the base functionality for image sources, and its 'getImage' function is crucial for obtaining the correct image based on the current map state. Finally, the 'CanvasImageLayerRenderer' class is responsible for rendering the image onto the canvas, and its 'renderFrame' function determines how the image is displayed, which can also contribute to the blurriness if the dimensions are not handled correctly.",
+        "bug_scenario": "The bug occurs when the WMS image becomes blurry if the ratio is not a round integer or if the map width or height is not even. This results in a less than pixel-perfect rendering of the map."
+    }
+}

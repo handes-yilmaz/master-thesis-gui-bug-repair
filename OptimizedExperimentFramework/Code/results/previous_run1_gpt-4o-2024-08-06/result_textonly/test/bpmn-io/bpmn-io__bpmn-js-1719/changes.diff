@@ -1,0 +1,25 @@
+diff --git a/lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js b/lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js
+index 55f259fb..861b425b 100644
+--- a/lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js
++++ b/lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js
+@@ -88,6 +88,13 @@ export default function ToggleElementCollapseBehaviour(
+       getDi(shape).isExpanded = true;
+     } else {
+ 
++      // hide all labels when collapsed
++      shape.children.forEach(function(child) {
++        if (child.type === 'label') {
++          child.hidden = true;
++        }
++      });
++
+       // place collapsed marker
+       getDi(shape).isExpanded = false;
+     }
+@@ -146,4 +153,4 @@ function filterVisible(elements) {
+   return elements.filter(function(e) {
+     return !e.hidden;
+   });
+-}
+\ No newline at end of file
++}

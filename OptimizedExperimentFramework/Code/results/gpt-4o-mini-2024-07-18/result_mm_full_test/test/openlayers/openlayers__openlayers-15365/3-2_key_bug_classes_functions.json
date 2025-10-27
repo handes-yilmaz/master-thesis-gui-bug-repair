@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Group.js//LayerGroup"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Group.js//setLayers",
+            "src/ol/layer/Group.js//getLayers",
+            "src/ol/layer/VectorTile.js//getRenderMode",
+            "src/ol/layer/VectorTile.js//setPreload",
+            "src/ol/layer/VectorTile.js//setUseInterimTilesOnError"
+        ],
+        "explanation": "The `LayerGroup` class is central to managing the opacity of child layers, including vector tile layers. The `setLayers` and `getLayers` functions are crucial for modifying and retrieving the layers within the group, which directly impacts how opacity is applied. The functions in the `VectorTile` class, such as `getRenderMode`, `setPreload`, and `setUseInterimTilesOnError`, are relevant because they define how vector tiles are rendered and managed, which is essential for ensuring that opacity settings are correctly applied to all types of layers, including labels.",
+        "bug_scenario": "The bug occurs when changing the opacity of a layer group using the `setOpacity()` method. While the opacity change affects the labels of vector layers, it does not apply to the labels rendered for vector tile layers within that group. This inconsistency leads to the expectation that all child layers, including vector tile labels, should respond to the group opacity setting."
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "if (!isNaN(source.nodata)) {",
+                    "fillValue = source.nodata;",
+                    "} else {",
+                    "if (!samples) {",
+                    "fillValue = nodataValues[sourceIndex];",
+                    "} else {",
+                    "fillValue = samples.map(function (sampleIndex) {",
+                    "return nodataValues[sourceIndex][sampleIndex];",
+                    "});",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "      if (isNaN(source.nodata)) {",
+                    "        fillValue = NaN; // Explicitly set fillValue to NaN if source.nodata is NaN",
+                    "      } else {",
+                    "        if (!samples) {",
+                    "          fillValue = nodataValues[sourceIndex];",
+                    "        } else {",
+                    "          fillValue = samples.map(function (sampleIndex) {",
+                    "            return nodataValues[sourceIndex][sampleIndex];",
+                    "          });",
+                    "        }",
+                    "      }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (sourceValue !== nodata) {"
+                ],
+                "REPLACE": [
+                    "                if (sourceValue !== nodata && !isNaN(sourceValue)) { // Ensure sourceValue is not NaN"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/common/util.js",
+            "src/common/clean-ast.js"
+        ],
+        "explanation": "These files are likely related to the bug because they handle the parsing and printing of markdown content, which is where the formatting logic resides. The 'parser-markdown.js' file would be responsible for interpreting the markdown syntax, while 'printer-markdown.js' would manage how the formatted content is outputted. The 'util.js' and 'clean-ast.js' files may contain utility functions that influence how the content is cleaned and formatted before being passed to the printer, making them relevant for implementing the necessary logic to limit line lengths.",
+        "bug_scenario": "The bug scenario describes an issue where the Prettier tool fails to limit excessive lines when formatting markdown tables, leading to extremely long lines when processing tables with HTML content. In the provided example, a table that should be formatted with a three-dash pattern instead generates a line with 865 characters, which is not desirable. The user is requesting a solution to detect such cases and revert to using the simple three-dash separator format."
+    }
+}

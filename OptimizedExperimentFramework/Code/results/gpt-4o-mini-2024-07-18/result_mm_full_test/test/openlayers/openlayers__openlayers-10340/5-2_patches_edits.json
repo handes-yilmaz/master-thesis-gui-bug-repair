@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "src/ol/geom/Circle.js": [
+            {
+                "SEARCH": [
+                    "const radius = opt_radius ? opt_radius : 0;"
+                ],
+                "REPLACE": [
+                    "    const radius = opt_radius ? opt_radius : 0; // Ensure radius is calculated correctly",
+                    "    if (useGeographic) {",
+                    "        // Adjust radius calculation for geographic coordinates",
+                    "        const adjustedRadius = calculateGeographicRadius(center, radius);",
+                    "        this.setCenterAndRadius(center, adjustedRadius, opt_layout);",
+                    "        return;",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/geom/Polygon.js": [
+            {
+                "SEARCH": [
+                    "const radius = Math.sqrt(",
+                    "squaredCoordinateDistance(center, end));"
+                ],
+                "REPLACE": [
+                    "    const radius = Math.sqrt(",
+                    "      squaredCoordinateDistance(center, end));",
+                    "    if (useGeographic) {",
+                    "        // Adjust radius for geographic coordinates",
+                    "        const adjustedRadius = calculateGeographicRadius(center, radius);",
+                    "        makeRegular(geometry, center, adjustedRadius, angle);",
+                    "        return geometry;",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const boxCoordinates = [["
+                ],
+                "REPLACE": [
+                    "      const boxCoordinates = [[ // Ensure box is created correctly",
+                    "      if (useGeographic) {",
+                    "          // Adjust coordinates for geographic box creation",
+                    "          const adjustedCoordinates = adjustForGeographicBox(coordinates);",
+                    "          boxCoordinates = [["
+                ]
+            }
+        ]
+    }
+}

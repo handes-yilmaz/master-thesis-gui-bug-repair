@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/cli-engine/cli-engine.js//CLIEngine"
+        ],
+        "bug_functions": [
+            "lib/cli-engine/cli-engine.js//getFormatter"
+        ],
+        "explanation": "The 'CLIEngine' class is central to the ESLint CLI functionality, and it manages the execution of linting processes, including the use of formatters. The 'getFormatter' function is particularly relevant because it is responsible for retrieving the formatter function based on the specified format. Since the request is to support an async formatter, modifications to this function will be necessary to allow it to handle async formatters correctly.",
+        "bug_scenario": "The bug scenario involves the need to support an asynchronous formatter in ESLint, specifically for a formatter that utilizes the 'shiki' highlighter. The current ESLint implementation does not support async functions for formatters, which is required for the new highlighter to function correctly."
+    }
+}

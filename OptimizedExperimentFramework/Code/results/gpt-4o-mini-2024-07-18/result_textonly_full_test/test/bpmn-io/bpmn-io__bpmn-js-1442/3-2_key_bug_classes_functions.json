@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior",
+            "lib/features/copy-paste/BpmnCopyPaste",
+            "lib/features/modeling/behavior/AppendBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior//insertShape",
+            "lib/features/modeling/behavior/DropOnFlowBehavior//preExecute",
+            "lib/features/modeling/behavior/DropOnFlowBehavior//postExecuted",
+            "lib/features/copy-paste/BpmnCopyPaste//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//removeProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//resolveReferences",
+            "lib/features/modeling/behavior/AppendBehavior//preExecute"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the behavior of dropping and pasting shapes onto flows. The 'DropOnFlowBehavior' class contains the 'insertShape' function, which is responsible for managing how shapes are inserted onto flows, including connection logic. The 'BpmnCopyPaste' class manages the copying and pasting of elements, which is directly involved in the reproduction of the bug when multiple shapes are pasted. The 'AppendBehavior' class also plays a role in determining how shapes are appended, which may affect the connection logic when multiple shapes are involved. These elements are crucial for fixing the bug as they directly influence the connection behavior when multiple shapes are pasted onto a sequence flow.",
+        "bug_scenario": "The bug occurs when multiple shapes are pasted onto a sequence flow, resulting in unexpected connections between the shapes. The expected behavior is that the connection logic should handle multiple shapes appropriately, either by not connecting them or by connecting them in a logical manner."
+    }
+}

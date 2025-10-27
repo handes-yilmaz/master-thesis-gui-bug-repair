@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/format/html/format-html.ts//htmlFormat",
+            "src/command/render/layout.ts//overflowXPostprocessor",
+            "src/command/render/render.ts//runHtmlPostprocessors"
+        ],
+        "bug_functions": [
+            "src/format/html/format-html.ts//htmlFormatExtras",
+            "src/command/render/layout.ts//layoutFilterParams",
+            "src/command/render/render.ts//renderPandoc"
+        ],
+        "explanation": "The identified classes and functions are related to the rendering and formatting of HTML output. The 'htmlFormat' function is responsible for the overall HTML formatting, which includes handling table structures. The 'overflowXPostprocessor' function deals with post-processing of the document, which may affect how elements are displayed, including spanners. The 'runHtmlPostprocessors' function is crucial for applying any final adjustments to the HTML output, which could be where the caption and spanner alignment issues arise. The functions 'htmlFormatExtras' and 'layoutFilterParams' are also relevant as they handle additional formatting and layout parameters that could influence the final appearance of the table.",
+        "bug_scenario": "The output table generated with the gt package does not display the caption correctly when using table spanners. The desired output shows the spanner correctly aligned with the columns, while the produced output does not. This issue may be related to CSS or the table processing logic when captions are injected."
+    }
+}

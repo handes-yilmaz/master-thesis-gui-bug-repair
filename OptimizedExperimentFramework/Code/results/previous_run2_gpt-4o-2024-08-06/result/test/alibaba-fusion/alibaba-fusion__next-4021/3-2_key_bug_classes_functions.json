@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/number-picker/number-picker.jsx//NumberPicker"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue lies within the 'NumberPicker' component, specifically in handling maximum value limits. The component should prevent users from entering values exceeding the maximum limit. This involves managing the input validation logic within the NumberPicker class, ensuring that onChange is triggered appropriately when values exceed the boundary, and correcting values that exceed the maximum limit.",
+        "bug_scenario": "The bug scenario involves the NumberPicker component where users can input values beyond the maximum expected limit. The image shows a quantity input field allowing a large number (9999999), indicating that the component does not restrict input to the defined maximum value. This leads to discrepancies between the input value and the calculated price, which remains unchanged despite the input changes."
+    },
+    "2": {
+        "bug_classes": [
+            "src/number-picker/number-picker.jsx//NumberPicker"
+        ],
+        "bug_functions": [
+            "src/number-picker/number-picker.jsx//NumberPicker"
+        ],
+        "explanation": "The bug is related to the NumberPicker component's behavior when handling input values that exceed the maximum limit. The onBlur event corrects the input, but the absence of an onChange event for excessive values results in inconsistent feedback to the user. This is primarily managed within the NumberPicker class and its associated functions, which handle input validation and event triggering.",
+        "bug_scenario": "The bug scenario involves a NumberPicker component where the user is able to input values exceeding the maximum allowed value. Although the onBlur event corrects the value, users experience unexpected behavior as the value visually increases without triggering onChange, leading to discrepancies between displayed and actual values."
+    }
+}

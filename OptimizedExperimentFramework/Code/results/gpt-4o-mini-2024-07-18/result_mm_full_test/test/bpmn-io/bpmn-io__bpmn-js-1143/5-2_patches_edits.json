@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "// Hypothetical example of a patch that might be needed": [
+            {
+                "SEARCH": [
+                    "if (this.isDiagramEmpty()) {",
+                    "// Allow adding a group",
+                    "this.addGroup();",
+                    "} else {",
+                    "// Proceed with adding other elements",
+                    "this.addElement();",
+                    "}"
+                ],
+                "REPLACE": [
+                    "if (this.isDiagramEmpty()) {",
+                    "    // Prevent adding elements if a group is already present",
+                    "    console.error(\"Cannot add elements to an empty diagram with a group.\");",
+                    "    return;",
+                    "} else {",
+                    "    // Proceed with adding other elements",
+                    "    this.addElement();",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

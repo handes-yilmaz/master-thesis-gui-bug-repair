@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/proj/epsg4326.js",
+            "src/ol/proj/transforms.js",
+            "src/ol/View.js"
+        ],
+        "explanation": "These files are key to the bug because: 1. `src/ol/proj/epsg4326.js` contains the `fromEPSG4326` function that is responsible for transforming coordinates from EPSG:4326 to EPSG:3857, and it directly handles the input that leads to NaN values. 2. `src/ol/proj/transforms.js` manages the transformation functions and may need adjustments to handle empty extents correctly. 3. `src/ol/View.js` includes the `fit` method that uses the transformed extent, and it needs to ensure that it can handle cases where the extent is invalid.",
+        "bug_scenario": "The bug occurs when the `applyTransform` function is called with an empty extent, resulting in a transformation that yields NaN values. This leads to an error when attempting to use the transformed extent as a parameter for the `fit` method of the map view, which expects valid numerical values. The issue is traced back to the `fromEPSG4326` function, where the transformation of Infinity values results in NaN due to the use of `Math.tan`."
+    }
+}

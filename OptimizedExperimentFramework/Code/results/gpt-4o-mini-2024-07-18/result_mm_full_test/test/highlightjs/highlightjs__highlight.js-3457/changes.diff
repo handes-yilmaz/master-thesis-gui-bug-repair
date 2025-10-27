@@ -1,0 +1,28 @@
+diff --git a/src/lib/html_renderer.js b/src/lib/html_renderer.js
+index 9456276..e4bedc3 100644
+--- a/src/lib/html_renderer.js
++++ b/src/lib/html_renderer.js
+@@ -65,7 +65,10 @@ export default class HTMLRenderer {
+    *
+    * @param {Node} node */
+   openNode(node) {
+-    if (!emitsWrappingTags(node)) return;
++if (!emitsWrappingTags(node)) {
++this.closeNode(node); // Ensure we close any open formatting before opening a new one
++return;
++}
+ 
+     let scope = node.kind;
+     if (node.sublanguage) {
+@@ -83,7 +86,10 @@ export default class HTMLRenderer {
+   closeNode(node) {
+     if (!emitsWrappingTags(node)) return;
+ 
+-    this.buffer += SPAN_CLOSE;
++this.buffer += SPAN_CLOSE; // Close the current formatting
++if (node.kind === 'bold' || node.kind === 'italic') {
++this.buffer += SPAN_CLOSE; // Ensure we close bold/italic properly
++}
+   }
+ 
+   /**

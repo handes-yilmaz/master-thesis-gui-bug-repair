@@ -1,0 +1,16 @@
+diff --git a/lib/features/rules/BpmnRules.js b/lib/features/rules/BpmnRules.js
+index a03b5fec..c94ddbca 100644
+--- a/lib/features/rules/BpmnRules.js
++++ b/lib/features/rules/BpmnRules.js
+@@ -399,6 +399,11 @@ function canConnect(source, target, connection) {
+     return null;
+   }
+ 
++  // Disallow message flows to boundary events
++  if (is(target, 'bpmn:BoundaryEvent')) {
++    return false;
++  }
++
+   if (!is(connection, 'bpmn:DataAssociation')) {
+ 
+     if (canConnectMessageFlow(source, target)) {

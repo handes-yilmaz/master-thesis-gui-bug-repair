@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior",
+            "lib/features/modeling/behavior/AttachEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//resolveReferences",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior//preExecute",
+            "lib/features/modeling/behavior/AttachEventBehavior//preExecute"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the copying and attaching behavior of Boundary Events in the BPMN model. The 'BpmnCopyPaste' class is responsible for copying elements, and its methods like 'copyProperties' and 'resolveReferences' are crucial for ensuring that properties and references are correctly handled during the copy operation. The 'CreateBoundaryEventBehavior' class contains logic for creating Boundary Events and attaching them to shapes, specifically in the 'preExecute' method, which is triggered when a shape is created. Similarly, the 'AttachEventBehavior' class manages the behavior of attaching events to shapes, and its 'preExecute' method is relevant for ensuring that the Boundary Event is correctly attached to the new host. Fixing the bug will likely require modifications in these methods to ensure that the copied Boundary Event retains its attachment to the copied task.",
+        "bug_scenario": "The bug scenario involves copying a Boundary Event that is attached to a task. When the Boundary Event is copied along with the task, it is expected that the copied Boundary Event should also be attached to the newly copied task. However, the current implementation does not achieve this, leading to the copied Boundary Event being detached from the copied task."
+    }
+}

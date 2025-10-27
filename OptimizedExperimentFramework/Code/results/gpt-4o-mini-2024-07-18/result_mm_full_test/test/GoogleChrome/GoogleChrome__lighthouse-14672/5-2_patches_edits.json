@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "clients/devtools/devtools-entry.js": [
+            {
+                "SEARCH": [
+                    "screenEmulation: {disabled: true},"
+                ],
+                "REPLACE": [
+                    "    screenEmulation: {disabled: false}, // Allow emulation for mobile runs"
+                ]
+            }
+        ],
+        "core/lib/emulation.js": [
+            {
+                "SEARCH": [
+                    "if (settings.screenEmulation.disabled !== true) {"
+                ],
+                "REPLACE": [
+                    "  if (settings.screenEmulation.disabled === false) { // Adjust condition to allow emulation"
+                ]
+            }
+        ]
+    }
+}

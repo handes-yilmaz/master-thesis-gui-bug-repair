@@ -1,0 +1,44 @@
+{
+    "1": {
+        "bug_file": "src/overlay/index.jsx",
+        "compressed": "NO",
+        "line_numbers": 15,
+        "compressed_line_numbers": 15,
+        "compressed_bug_file_content": "import ConfigProvider from '../config-provider';\nimport Overlay from './overlay';\nimport Gateway from './gateway';\nimport Position from './position';\nimport Popup from './popup';\n\nOverlay.Gateway = Gateway;\nOverlay.Position = Position;\nOverlay.Popup = ConfigProvider.config(Popup, {\n    exportNames: ['overlay'],\n});\n\nexport default ConfigProvider.config(Overlay, {\n    exportNames: ['getContent', 'getContentNode'],\n});"
+    },
+    "2": {
+        "bug_file": "src/overlay/style.js",
+        "compressed": "NO",
+        "line_numbers": 2,
+        "compressed_line_numbers": 2,
+        "compressed_bug_file_content": "import '../animate/style.js';\nimport './main.scss';"
+    },
+    "3": {
+        "bug_file": "src/overlay/main.scss",
+        "compressed": "NO",
+        "line_numbers": 23,
+        "compressed_line_numbers": 23,
+        "compressed_bug_file_content": "@import \"../core/index-noreset.scss\";\n\n.#{$css-prefix}overlay-wrapper {\n    .#{$css-prefix}overlay-inner {\n        z-index: 1001;\n    }\n\n    .#{$css-prefix}overlay-backdrop {\n        position: fixed;\n        z-index: 1001;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background: $mask-background;\n        transition: opacity .3s;\n        opacity: 0;\n    }\n\n    &.opened .#{$css-prefix}overlay-backdrop {\n        opacity: $mask-opacity;\n    }\n}"
+    },
+    "4": {
+        "bug_file": "src/number-picker/index.jsx",
+        "compressed": "NO",
+        "line_numbers": 13,
+        "compressed_line_numbers": 13,
+        "compressed_bug_file_content": "import ConfigProvider from '../config-provider';\nimport NumberPicker from './number-picker';\nimport { log } from '../util';\n\nexport default ConfigProvider.config(NumberPicker, {\n    transform: /* istanbul ignore next */ props => {\n        if ('onDisabled' in props && typeof props.onDisabled === 'function') {\n            log.warning('[NumberPicker]: onDisabled is deleted!');\n        }\n\n        return props;\n    },\n});"
+    },
+    "5": {
+        "bug_file": "src/number-picker/style.js",
+        "compressed": "NO",
+        "line_numbers": 4,
+        "compressed_line_numbers": 4,
+        "compressed_bug_file_content": "import '../input/style.js';\nimport '../icon/style.js';\nimport '../button/style.js';\nimport './main.scss';"
+    },
+    "6": {
+        "bug_file": "src/number-picker/main.scss",
+        "compressed": "NO",
+        "line_numbers": 182,
+        "compressed_line_numbers": 182,
+        "compressed_bug_file_content": "@charset \"UTF-8\";\n\n@import \"../core/index-noreset.scss\";\n@import \"scss/mixin\";\n@import \"scss/variable\";\n\n#{$number-picker-prefix} {\n    @include box-sizing;\n    display: inline-block;\n\n    /* stylelint-disable declaration-no-important */\n    .#{$css-prefix}btn {\n        padding: 0 !important;\n        line-height: 0 !important;\n        box-shadow: none !important;\n    }\n\n    &-normal {\n        width: 80px;\n\n        .#{$css-prefix}input {\n            width: 100%;\n\n            input {\n                padding-right: 2px;\n            }\n        }\n\n        .#{$css-prefix}btn {\n            display: block;\n\n            &:hover {\n                z-index: 1;\n            }\n\n            &:first-child {\n                border-right: none;\n                border-top: none;\n                height: calc(50%);\n                border-top-left-radius: 0;\n                border-bottom-left-radius: 0;\n                border-bottom-right-radius: 0;\n            }\n\n            &:last-child {\n                border-right: none;\n                border-bottom: none;\n                margin-top: -1px;\n                height: calc(50% + 1px);\n                border-top-left-radius: 0;\n                border-bottom-left-radius: 0;\n                border-top-right-radius: 0;\n            }\n        }\n\n        #{$number-picker-prefix}-handler {\n            opacity: 0;\n            transition: opacity .24s linear .1s;\n            height: 100%;\n        }\n\n        &:hover #{$number-picker-prefix}-handler {\n            opacity: 1;\n        }\n\n        .#{$css-prefix}input.#{$css-prefix}disabled #{$number-picker-prefix}-handler {\n            opacity: 0;\n        }\n\n        &.#{$css-prefix}medium {\n            .#{$css-prefix}btn {\n                width: $number-picker-normal-m-button-width;\n            }\n\n            .#{$css-prefix}icon {\n                @include icon-size($number-picker-normal-m-button-icon-size);\n            }\n        }\n\n        &.#{$css-prefix}large {\n            .#{$css-prefix}btn {\n                width: $number-picker-normal-l-button-width;\n            }\n\n            .#{$css-prefix}icon {\n                @include icon-size($number-picker-normal-l-button-icon-size);\n            }\n        }\n    }\n\n    &-inline {\n        input {\n            text-align: center;\n        }\n\n        .#{$css-prefix}input input {\n            padding: 0;\n        }\n\n        &.#{$css-prefix}medium {\n            width: 100px;\n\n            .#{$css-prefix}icon {\n                @include icon-size($number-picker-inline-m-button-icon-size);\n            }\n\n            .#{$css-prefix}btn {\n                height: $form-element-medium-height;\n            }\n\n            .#{$css-prefix}btn:first-child {\n                margin-right: $number-picker-inline-m-button-margin;\n            }\n\n            .#{$css-prefix}btn:last-child {\n                margin-left: $number-picker-inline-m-button-margin;\n            }\n        }\n\n        &.#{$css-prefix}large {\n            width: 128px;\n\n            .#{$css-prefix}icon {\n                @include icon-size($number-picker-inline-l-button-icon-size);\n            }\n\n            .#{$css-prefix}btn {\n                height: $form-element-large-height;\n            }\n\n            .#{$css-prefix}btn:first-child {\n                margin-right: $number-picker-inline-l-button-margin;\n            }\n\n            .#{$css-prefix}btn:last-child {\n                margin-left: $number-picker-inline-l-button-margin;\n            }\n        }\n\n        .#{$css-prefix}btn {\n            &.#{$css-prefix}medium {\n                width: $form-element-medium-height;\n            }\n\n            &.#{$css-prefix}large {\n                width: $form-element-large-height;\n            }\n        }\n    }\n}\n\n#{$number-picker-prefix}-normal[dir=\"rtl\"] {\n    .#{$css-prefix}btn {\n        &:first-child {\n            border-right: 1px solid $color-line1-3;\n            border-left: 0;\n            border-top-left-radius: $form-element-medium-corner;\n            border-top-right-radius: 0;\n        }\n\n        &:last-child {\n            border-right: 1px solid $color-line1-3;\n            border-left: 0;\n            border-bottom-left-radius: $form-element-medium-corner;\n            border-bottom-right-radius: 0;\n        }\n    }\n}\n#{$number-picker-prefix}-inline[dir=\"rtl\"] {\n    .#{$css-prefix}btn {\n        border-radius: 0;\n    }\n    //TODO: remove !important in 2.x\n    .#{$css-prefix}before .#{$css-prefix}btn {\n        border-top-right-radius: $form-element-medium-corner !important;\n        border-bottom-right-radius: $form-element-medium-corner !important;\n    }\n    .#{$css-prefix}after .#{$css-prefix}btn {\n        border-top-left-radius: $form-element-medium-corner !important;\n        border-bottom-left-radius: $form-element-medium-corner !important;\n    }\n}"
+    }
+}

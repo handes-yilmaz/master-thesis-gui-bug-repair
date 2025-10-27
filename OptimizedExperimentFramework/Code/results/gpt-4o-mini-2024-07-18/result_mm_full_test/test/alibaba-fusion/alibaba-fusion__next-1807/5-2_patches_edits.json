@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "src/menu/view/item.jsx": [
+            {
+                "SEARCH": [
+                    "return (",
+                    "<li",
+                    "className={className}",
+                    "title={title} // This line needs to be modified"
+                ],
+                "REPLACE": [
+                    "    return (",
+                    "        <li",
+                    "            className={className}",
+                    "            title={typeof children === 'string' ? title : undefined} // Conditional title assignment"
+                ]
+            }
+        ],
+        "src/menu/view/menu.jsx": [
+            {
+                "SEARCH": [
+                    "newChildren.push(",
+                    "<MenuItem key={key} title={item.title}>"
+                ],
+                "REPLACE": [
+                    "        newChildren.push(",
+                    "            <MenuItem key={key} title={typeof item.children === 'string' ? item.title : undefined}> // Conditional title assignment"
+                ]
+            }
+        ]
+    }
+}

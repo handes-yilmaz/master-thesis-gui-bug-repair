@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/lh-error.js",
+            "lighthouse-cli/run.js",
+            "lighthouse-cli/index.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because:\n1. **lh-error.js**: This file contains the definitions for error messages, including the handling of internationalization (i18n) strings. The issue with untranslated text likely originates here, as it manages how error messages are constructed and displayed.\n2. **run.js**: This file is responsible for executing the Lighthouse run command. It handles the command-line flags and manages the execution flow, including error handling. Fixing the URL validation and ensuring proper error messages are displayed will require changes in this file.\n3. **index.js**: This file serves as the entry point for the CLI tool. It initializes the application and handles the initial error catching. Any changes to improve error handling or logging for the CLI execution will need to be made here.",
+        "bug_scenario": "The CLI tool is failing to translate internationalized text during a fatal run, resulting in an error message indicating an invalid URL. The error occurs when attempting to run the command `node lighthouse-cli www.example.com --view`, which is expected to launch a browser view of the Lighthouse report but fails due to the unhandled error related to URL validation."
+    }
+}

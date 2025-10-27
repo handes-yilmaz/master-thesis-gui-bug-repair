@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-json.js",
+            "components/prism-json.min.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "These files are crucial because they contain the language definitions and tokenization logic for JSON in the Prism syntax highlighter. The 'prism-json.js' file defines how JSON comments and properties are recognized, which is directly related to the bug described. The 'prism-json.min.js' is the minified version of the same file, which is often used in production environments. The 'prism-core.js' file contains the core functionality of the Prism library, including the tokenization process that would need to be adjusted to handle the specific case of JSON comments correctly.",
+        "bug_scenario": "The bug occurs when the server response is logged as JSON, specifically when the HTTP header 'Accept: */*' is used. This leads to incorrect tokenization of JSON comments, as shown in the provided image, where the comment '/*' is not being recognized properly, causing issues in the JSON structure."
+    }
+}

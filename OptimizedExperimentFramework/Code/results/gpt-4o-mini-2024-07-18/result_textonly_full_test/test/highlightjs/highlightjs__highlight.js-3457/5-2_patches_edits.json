@@ -1,0 +1,62 @@
+{
+    "1/1": {
+        "src/lib/html_renderer.js": [
+            {
+                "SEARCH": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    this.buffer += SPAN_CLOSE;\\n  }\\n"
+                ],
+                "REPLACE": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n    // Track if the node is bold or italic\\n    if (node.kind === 'bold' || node.kind === 'italic') {\\n      this.isFormattingOpen = true;\\n    }\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    // Only close if we were formatting\\n    if (this.isFormattingOpen) {\\n      this.buffer += SPAN_CLOSE;\\n      this.isFormattingOpen = false;\\n    }\\n  }\\n"
+                ]
+            }
+        ]
+    },
+    "1.1/1": {
+        "src/lib/html_renderer.js": [
+            {
+                "SEARCH": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    this.buffer += SPAN_CLOSE;\\n  }\\n"
+                ],
+                "REPLACE": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n    // Track if the node is bold or italic\\n    if (node.kind === 'bold' || node.kind === 'italic') {\\n      this.isFormattingOpen = true;\\n    }\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    // Only close if we were formatting\\n    if (this.isFormattingOpen) {\\n      this.buffer += SPAN_CLOSE;\\n      this.isFormattingOpen = false;\\n    }\\n  }\\n"
+                ]
+            }
+        ]
+    },
+    "1.2/1": {
+        "src/lib/html_renderer.js": [
+            {
+                "SEARCH": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    this.buffer += SPAN_CLOSE;\\n  }\\n"
+                ],
+                "REPLACE": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n    // Track if the node is bold or italic\\n    if (node.kind === 'bold' || node.kind === 'italic') {\\n      this.isFormattingOpen = true;\\n    }\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    // Only close if we were formatting\\n    if (this.isFormattingOpen) {\\n      this.buffer += SPAN_CLOSE;\\n      this.isFormattingOpen = false;\\n    }\\n  }\\n"
+                ]
+            }
+        ]
+    },
+    "1.3/1": {
+        "src/lib/html_renderer.js": [
+            {
+                "SEARCH": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    this.buffer += SPAN_CLOSE;\\n  }\\n"
+                ],
+                "REPLACE": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n    // Track if the node is bold or italic\\n    if (node.kind === 'bold' || node.kind === 'italic') {\\n      this.isFormattingOpen = true;\\n    }\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    // Only close if we were formatting\\n    if (this.isFormattingOpen) {\\n      this.buffer += SPAN_CLOSE;\\n      this.isFormattingOpen = false;\\n    }\\n  }\\n"
+                ]
+            }
+        ]
+    },
+    "1.4/1": {
+        "src/lib/html_renderer.js": [
+            {
+                "SEARCH": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    this.buffer += SPAN_CLOSE;\\n  }\\n"
+                ],
+                "REPLACE": [
+                    "/**\\n   * Adds a node open to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  openNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    let scope = node.kind;\\n    if (node.sublanguage) {\\n      scope = `language-${scope}`;\\n    } else {\\n      scope = expandScopeName(scope, { prefix: this.classPrefix });\\n    }\\n    this.span(scope);\\n    // Track if the node is bold or italic\\n    if (node.kind === 'bold' || node.kind === 'italic') {\\n      this.isFormattingOpen = true;\\n    }\\n  }\\n\\n  /**\\n   * Adds a node close to the output stream (if needed)\\n   *\\n   * @param {Node} node */\\n  closeNode(node) {\\n    if (!emitsWrappingTags(node)) return;\\n\\n    // Only close if we were formatting\\n    if (this.isFormattingOpen) {\\n      this.buffer += SPAN_CLOSE;\\n      this.isFormattingOpen = false;\\n    }\\n  }\\n"
+                ]
+            }
+        ]
+    }
+}

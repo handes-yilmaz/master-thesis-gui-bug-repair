@@ -1,0 +1,16 @@
+diff --git a/components/prism-shell-session.js b/components/prism-shell-session.js
+index f16b1b25..e67226a1 100644
+--- a/components/prism-shell-session.js
++++ b/components/prism-shell-session.js
+@@ -6,7 +6,10 @@
+ 	var strings = [
+ 		// normal string
+ 		// 1 capturing group
+-		/(["'])(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|(?!\1)[^\\`$])*\1/.source,
++\t\t\'output\': {
++\t\t\tpattern: /(^|\\r?\\n)(?![$#])(?:[^\\r\\n]*)/,
++\t\t\tlookbehind: true
++\t\t}
+ 
+ 		// here doc
+ 		// 2 capturing groups

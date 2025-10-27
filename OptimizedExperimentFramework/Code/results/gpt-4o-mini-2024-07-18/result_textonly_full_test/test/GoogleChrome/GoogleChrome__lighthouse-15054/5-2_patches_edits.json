@@ -1,0 +1,23 @@
+{
+    "1/1": {
+        "core/audits/no-unload-listeners.js": [
+            {
+                "SEARCH": [
+                    "const unloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload');"
+                ],
+                "REPLACE": [
+                    "    const unloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload' || l.type === 'unload' && l.executionContext === 'isolated');"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (!unloadListeners.length) {"
+                ],
+                "REPLACE": [
+                    "    const isolatedUnloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload' && l.executionContext === 'isolated');",
+                    "    if (!unloadListeners.length && !isolatedUnloadListeners.length) {"
+                ]
+            }
+        ]
+    }
+}

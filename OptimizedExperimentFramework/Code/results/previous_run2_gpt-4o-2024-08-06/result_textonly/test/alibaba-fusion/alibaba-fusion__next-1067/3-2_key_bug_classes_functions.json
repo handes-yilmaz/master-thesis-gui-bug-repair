@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/slider/slick/arrow.jsx//Arrow",
+            "src/slider/slick/inner-slider.jsx//InnerSlider"
+        ],
+        "bug_functions": [
+            "src/slider/slick/arrow.jsx//Arrow.isDisabled",
+            "src/slider/slick/mixins/helpers.js//helpers.canGoNext"
+        ],
+        "explanation": "The `Arrow` class in `src/slider/slick/arrow.jsx` is responsible for rendering the slider arrows and determining their disabled state. The `isDisabled` function within this class is directly related to the bug, as it contains the logic that disables the arrow based on the slider's state, including the `currentSlide`, `slideCount`, `slidesToShow`, and `infinite` properties. \n\nThe `InnerSlider` class in `src/slider/slick/inner-slider.jsx` uses the `Arrow` component and manages the state of the slider, including the `currentSlide`, which is crucial in determining if navigation should be allowed. \n\nAdditionally, the `helpers.canGoNext` function in `src/slider/slick/mixins/helpers.js` is relevant as it contains logic to determine if the slider can move to the next slide, which is related to the navigation logic and conditions under which arrows are enabled or disabled. \n\nThese classes and functions are key to addressing the bug because they handle the logic for enabling or disabling navigation arrows based on the current state and configuration of the slider.",
+        "bug_scenario": "The bug scenario is related to a slider component where the left arrow is disabled when the slider is set to not be infinite, and the default active index is not zero while the number of slides to show is greater than the total number of slides. This results in the inability to navigate backwards using the left arrow under these specific conditions."
+    },
+    "2": {
+        "bug_classes": [
+            "src/slider/slick/arrow.jsx//Arrow"
+        ],
+        "bug_functions": [
+            "src/slider/slick/arrow.jsx//Arrow.isDisabled",
+            "src/slider/slick/mixins/helpers.js//helpers.canGoNext"
+        ],
+        "explanation": "The `Arrow` class in `src/slider/slick/arrow.jsx` is responsible for handling the state of the navigation arrows, including whether they are enabled or disabled. The `isDisabled` static method in the `Arrow` class determines whether an arrow should be disabled based on the current state and properties of the slider (such as `infinite`, `currentSlide`, `slideCount`, and `slidesToShow`). This method is directly related to the bug as it controls the enabled/disabled state of the left arrow that is incorrectly disabled in the reported scenario. Additionally, the `canGoNext` function in `helpers.js` is relevant as it determines if navigation to the next slide is possible, involving similar logic that may affect the navigation arrows' state. Reviewing and possibly modifying these methods can resolve the issue with the slider's navigation logic.",
+        "bug_scenario": "The bug occurs in the Slider component when the number of slides to show (`slidesToShow`) is greater than the total number of slides (`slidesCount`), and the slider is not set to infinite (`infinite={false}`) while the `defaultActiveIndex` is not zero. In this scenario, the left arrow becomes disabled, preventing navigation to previous slides even when logically it should be possible to navigate back to the first slide."
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/highlight.js",
+            "src/languages/sql.js"
+        ],
+        "explanation": "The file 'highlight.js' is crucial because it contains the main functionality for syntax highlighting, which is where the bug is occurring for T-SQL syntax with escape sequences. The 'sql.js' file likely holds the definitions or rules for parsing SQL, so it needs to be inspected and potentially modified to ensure that escape sequences are handled correctly in T-SQL.",
+        "bug_scenario": "The issue arises from how highlight.js handles string escape sequences in dynamic SQL, particularly when using T-SQL syntax. The provided sample code for a stored procedure executes dynamic SQL that includes a DROP VIEW command with escape sequences, which highlight.js fails to highlight correctly. This causes the SQL syntax to break when viewed in environments like CodePen, compared to GitHub, which handles it properly."
+    }
+}

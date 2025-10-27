@@ -1,0 +1,61 @@
+diff --git a/components/prism-javascript.js b/components/prism-javascript.js
+index 2b057bfea..7b7c0ae5e 100644
+--- a/components/prism-javascript.js
++++ b/components/prism-javascript.js
+@@ -70,28 +70,34 @@ Prism.languages.insertBefore('javascript', 'keyword', {
+ });
+ 
+ Prism.languages.insertBefore('javascript', 'string', {
+-	'template-string': {
+-		pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,
+-		greedy: true,
+-		inside: {
+-			'template-punctuation': {
+-				pattern: /^`|`$/,
+-				alias: 'string'
+-			},
+-			'interpolation': {
+-				pattern: /((?:^|[^\\])(?:\\{2})*)\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
+-				lookbehind: true,
+-				inside: {
+-					'interpolation-punctuation': {
+-						pattern: /^\${|}$/,
+-						alias: 'punctuation'
+-					},
+-					rest: Prism.languages.javascript
+-				}
+-			},
+-			'string': /[\s\S]+/
+-		}
+-	}
++'template-string': {
++pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,
++greedy: true,
++inside: {
++'template-punctuation': {
++pattern: /^`|`$/,
++alias: 'string'
++},
++'interpolation': {
++pattern: /((?:^|[^\\])(?:\\{2})*)\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
++lookbehind: true,
++inside: {
++'interpolation-punctuation': {
++pattern: /^\${|}$/,
++alias: 'punctuation'
++},
++rest: Prism.languages.javascript
++}
++},
++'string': {
++pattern: /[\s\S]+/,
++inside: {
++'comment': /\/\/.*|\/\*[\s\S]*?\*\//,
++'regex': /\/(?:\\.|[^\/\\\r\n])+\/[gimyus]{0,6}/
++}
++}
++}
++}
+ });
+ 
+ if (Prism.languages.markup) {

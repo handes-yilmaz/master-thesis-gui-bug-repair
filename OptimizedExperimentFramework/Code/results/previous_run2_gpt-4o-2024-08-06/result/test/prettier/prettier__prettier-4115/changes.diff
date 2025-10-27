@@ -1,0 +1,19 @@
+diff --git a/src/language-markdown/printer-markdown.js b/src/language-markdown/printer-markdown.js
+index 4b7b03fb9..9f88e8375 100644
+--- a/src/language-markdown/printer-markdown.js
++++ b/src/language-markdown/printer-markdown.js
+@@ -210,10 +210,10 @@ function genericPrint(path, options, print) {
+       return concat(["+++", hardline, node.value, hardline, "+++"]);
+     case "html": {
+       const parentNode = path.getParentNode();
+-      return parentNode.type === "root" &&
+-        privateUtil.getLast(parentNode.children) === node
+-        ? node.value.trimRight()
+-        : node.value;
++      const isNested = parentNode.type !== "root";
++      return isNested
++        ? align(" ".repeat(options.tabWidth), node.value)
++        : node.value.trimRight();
+     }
+     case "list": {
+       const nthSiblingIndex = getNthListSiblingIndex(

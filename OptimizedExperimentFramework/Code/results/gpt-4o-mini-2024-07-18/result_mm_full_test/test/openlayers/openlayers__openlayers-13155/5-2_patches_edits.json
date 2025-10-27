@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "return new WebGLTileLayerRenderer(this, {"
+                ],
+                "REPLACE": [
+                    "    const imageSmoothing = this.getSource().getImageSmoothing() || false; // Get imageSmoothing setting",
+                    "    return new WebGLTileLayerRenderer(this, {",
+                    "      imageSmoothing: imageSmoothing, // Pass it to the renderer"
+                ]
+            }
+        ],
+        "src/ol/webgl/TileTexture.js": [
+            {
+                "SEARCH": [
+                    "gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);"
+                ],
+                "REPLACE": [
+                    "  const filter = this.imageSmoothing ? gl.LINEAR : gl.NEAREST; // Use imageSmoothing setting",
+                    "  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter);",
+                    "  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filter);",
+                    "  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);"
+                ]
+            }
+        ]
+    }
+}

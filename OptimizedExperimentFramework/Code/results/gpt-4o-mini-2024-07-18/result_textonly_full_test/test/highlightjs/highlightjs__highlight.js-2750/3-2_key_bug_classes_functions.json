@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/javascript.js//HTML_TEMPLATE",
+            "src/languages/javascript.js//CSS_TEMPLATE",
+            "src/languages/javascript.js//TEMPLATE_STRING",
+            "src/languages/typescript.js//functionDeclaration"
+        ],
+        "bug_functions": [
+            "src/languages/javascript.js//hasClosingTag",
+            "src/languages/javascript.js//isTrulyOpeningTag",
+            "src/languages/javascript.js//swapMode"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the parsing and highlighting of template literals in JavaScript and TypeScript. The 'HTML_TEMPLATE', 'CSS_TEMPLATE', and 'TEMPLATE_STRING' classes define how template literals are recognized and processed. The 'hasClosingTag' function checks for matching closing tags, which is crucial for correctly interpreting nested structures. The 'isTrulyOpeningTag' function helps determine if a tag is genuinely opening, which is relevant for nested template literals. Lastly, 'swapMode' is used to modify the behavior of the highlighter, which may need adjustments to correctly handle the curly braces in template literals.",
+        "bug_scenario": "The issue arises when right curly braces are used inside template literal expressions in JavaScript and TypeScript. The highlighter incorrectly interprets these curly braces as the end of the expression, leading to incorrect syntax highlighting. This is particularly problematic when nested template literals are involved, as the highlighter fails to recognize the correct boundaries of the expressions."
+    }
+}

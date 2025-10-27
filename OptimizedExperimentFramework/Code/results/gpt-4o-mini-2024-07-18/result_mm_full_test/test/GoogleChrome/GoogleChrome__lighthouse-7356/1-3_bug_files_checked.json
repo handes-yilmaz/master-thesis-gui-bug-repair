@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js",
+            "lighthouse-core/audits/metrics/first-contentful-paint.js",
+            "lighthouse-core/computed/load-simulator.js",
+            "lighthouse-core/config/default-config.js",
+            "lighthouse-core/config/perf-config.js"
+        ],
+        "explanation": "These files are related to the bug as they involve timing measurements and performance configurations that directly affect how the application handles rendering and loading times. Specifically, 'tags-blocking-first-paint.js' and 'first-contentful-paint.js' are crucial for monitoring and managing the rendering process, while 'load-simulator.js' is involved in simulating load scenarios which could help adjust the timeout thresholds. The configuration files may also need adjustments to optimize performance and reduce error rates.",
+        "bug_scenario": "The bug scenario involves increased error rates on the LR backend due to a 60-second timeout, particularly related to latency issues. The analysis indicates that the 'loadPage-defaultPass' timing has significantly increased, leading to more rendering errors, especially when the maximum wait time for loading exceeds 35 seconds. This situation seems exacerbated by a recent change in the codebase that involves waiting for First Contentful Paint (FCP)."
+    }
+}

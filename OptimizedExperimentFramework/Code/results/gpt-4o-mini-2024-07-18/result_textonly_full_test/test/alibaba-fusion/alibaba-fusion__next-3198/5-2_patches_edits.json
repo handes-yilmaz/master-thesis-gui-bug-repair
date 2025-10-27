@@ -1,0 +1,38 @@
+{
+    "1/1": {
+        "src/date-picker2/panels/time-panel.jsx": [
+            {
+                "SEARCH": [
+                    "export default polyfill(TimePanel);"
+                ],
+                "REPLACE": [
+                    "import React from 'react';",
+                    "import PropTypes from 'prop-types';",
+                    "",
+                    "const TimePanel = ({ defaultValue }) => {",
+                    "    const formattedValue = defaultValue ? new Date(defaultValue) : null;",
+                    "",
+                    "    if (isNaN(formattedValue)) {",
+                    "        console.error(\"Invalid date provided to TimePanel:\", defaultValue);",
+                    "        return null; // or handle the error as needed",
+                    "    }",
+                    "",
+                    "    // ... rest of the component logic",
+                    "",
+                    "    return (",
+                    "        <div>",
+                    "            {/* Render the time panel with the formatted value */}",
+                    "        </div>",
+                    "    );",
+                    "};",
+                    "",
+                    "TimePanel.propTypes = {",
+                    "    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),",
+                    "};",
+                    "",
+                    "export default polyfill(TimePanel);"
+                ]
+            }
+        ]
+    }
+}

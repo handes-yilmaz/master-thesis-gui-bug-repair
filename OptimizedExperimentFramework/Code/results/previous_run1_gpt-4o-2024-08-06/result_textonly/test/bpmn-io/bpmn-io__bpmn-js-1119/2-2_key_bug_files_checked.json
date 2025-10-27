@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/ReplaceConnectionBehavior.js**: This file contains logic for replacing connections, specifically handling the transformation between SequenceFlow and MessageFlow. The bug report indicates an issue with replacing a message flow with a sequence flow, suggesting that the logic in this file may not correctly handle the parent update when such a replacement occurs.\n\n2. **lib/features/modeling/cmd/UpdateSemanticParentHandler.js**: This file is responsible for updating the semantic parent of elements. Given the bug involves the sequence flow not being part of the correct participant, it is likely that the semantic parent is not being updated correctly during the replacement process, which would be handled by this file.",
+        "bug_scenario": "The bug scenario involves an issue with the BPMN modeler where replacing a message flow with a sequence flow does not correctly update the parent of the new connection. This results in the modeler crashing when the previous connection source is a Participant. The expected behavior is for the sequence flow to be part of the second participant/process and rendered accordingly."
+    }
+}

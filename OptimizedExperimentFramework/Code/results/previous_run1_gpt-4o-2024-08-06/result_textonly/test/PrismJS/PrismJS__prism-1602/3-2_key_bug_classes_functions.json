@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-yaml.js//scalar",
+            "components/prism-yaml.js//comment",
+            "components/prism-yaml.js//string"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to how YAML strings with trailing comments are parsed and highlighted. In the 'components/prism-yaml.js' file, the key elements responsible for YAML string parsing and highlighting are the 'scalar', 'comment', and 'string' patterns. The 'scalar' pattern is used to detect scalar values in YAML, which includes strings. The 'comment' pattern detects comments, which is crucial in this bug because the presence of comments after strings causes the highlighting to fail. The 'string' pattern is responsible for identifying and highlighting string values in YAML. These elements need to be reviewed and potentially adjusted to ensure that strings with trailing comments are correctly parsed and highlighted.",
+        "bug_scenario": "The bug scenario involves YAML string highlighting failing when a YAML string has a comment on the same line. This issue is observed when using the Prism library for syntax highlighting, specifically when YAML strings are followed by comments on the same line."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-yaml.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the YAML string highlighting functionality, which is defined in the 'components/prism-yaml.js' file. This file contains the language definition for YAML in Prism.js, including patterns for various YAML elements like scalars, comments, keys, and strings. The issue specifically involves the 'string' and 'comment' patterns, as the highlighting fails when comments are present on the same line as a YAML string. Therefore, the relevant pattern definitions need to be examined and possibly modified to correctly handle trailing comments on YAML strings.",
+        "bug_scenario": "The bug scenario involves YAML string highlighting failing when a string has a trailing comment in the same line. This results in incorrect syntax highlighting, as demonstrated in the provided HTML example where a YAML string with a comment does not render as expected in a highlighted format."
+    }
+}

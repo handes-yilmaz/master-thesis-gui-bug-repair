@@ -1,0 +1,31 @@
+diff --git a/lib/features/drilldown/DrilldownOverlayBehavior.js b/lib/features/drilldown/DrilldownOverlayBehavior.js
+index 1e845483..59b84b8b 100644
+--- a/lib/features/drilldown/DrilldownOverlayBehavior.js
++++ b/lib/features/drilldown/DrilldownOverlayBehavior.js
+@@ -25,6 +25,9 @@ export default function DrilldownOverlayBehavior(
+   this.executed('shape.toggleCollapse', LOW_PRIORITY, function(context) {
+     var shape = context.shape;
+ 
++    // Always update overlay visibility
++    self.updateOverlayVisibility(shape);
++
+     // Add overlay to the collapsed shape
+     if (self.canDrillDown(shape)) {
+       self.addOverlay(shape);
+@@ -37,6 +40,9 @@ export default function DrilldownOverlayBehavior(
+   this.reverted('shape.toggleCollapse', LOW_PRIORITY, function(context) {
+     var shape = context.shape;
+ 
++    // Always update overlay visibility
++    self.updateOverlayVisibility(shape);
++
+     // Add overlay to the collapsed shape
+     if (self.canDrillDown(shape)) {
+       self.addOverlay(shape);
+@@ -178,4 +184,4 @@ DrilldownOverlayBehavior.$inject = [
+   'eventBus',
+   'elementRegistry',
+   'overlays'
+-];
+\ No newline at end of file
++];

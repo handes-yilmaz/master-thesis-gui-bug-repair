@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/powershell.js//CMDLETS"
+        ],
+        "bug_functions": [
+            "src/lib/regex.js//escape",
+            "src/lib/regex.js//either"
+        ],
+        "explanation": "The `CMDLETS` in `src/languages/powershell.js` is responsible for defining patterns for PowerShell cmdlets, which include flags. The highlighting issue likely arises from incorrect pattern matching for double hyphen flags. The `escape` and `either` functions in `src/lib/regex.js` are key to constructing and handling regular expressions, which means any issue in how these functions process hyphenated strings could lead to incorrect highlighting.",
+        "bug_scenario": "The bug scenario involves incorrect highlighting of double hyphen flags in PowerShell code. The screenshot shows that `--bar` is not highlighted correctly, whereas `-bar` is. This inconsistency suggests a problem with how the highlighter interprets double hyphen flags in PowerShell scripts."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/powershell.js",
+            "src/lib/regex.js"
+        ],
+        "bug_functions": [
+            "src/languages/powershell.js//PS_ARGUMENTS",
+            "src/lib/regex.js//escape",
+            "src/lib/regex.js//either"
+        ],
+        "explanation": "The issue is related to how flags are recognized and highlighted in PowerShell scripts. The `PS_ARGUMENTS` object in `src/languages/powershell.js` seems to be responsible for defining literals and operators, including flag patterns. It likely does not account for the double hyphen pattern correctly. The `escape` function in `src/lib/regex.js` is crucial because it handles special characters in regex, which could affect how patterns like `--flag` are processed. The `either` function constructs regex patterns that match any of the provided expressions, which might need adjustments to accommodate double hyphen flags.",
+        "bug_scenario": "The bug involves incorrect highlighting of PowerShell flags. Specifically, when flags with double hyphens (e.g., `--flag`) are used, they are not highlighted correctly, while single hyphen flags (e.g., `-flag`) are. This is evident in the images where the double hyphen flags should be highlighted but are not."
+    }
+}

@@ -1,0 +1,39 @@
+diff --git a/lighthouse-core/audits/critical-request-chains.js b/lighthouse-core/audits/critical-request-chains.js
+index 0a0e3d3..39df19a 100644
+--- a/lighthouse-core/audits/critical-request-chains.js
++++ b/lighthouse-core/audits/critical-request-chains.js
+@@ -47,7 +47,7 @@ class CriticalRequestChains extends Audit {
+           id,
+           node: child,
+           chainDuration: (child.request.endTime - startTime) * 1000,
+-          chainTransferSize: (transferSize + child.request.transferSize)
++          chainTransferSize: (transferSize + child.request.transferSize || 0)
+         });
+ 
+         // Carry on walking.
+diff --git a/lighthouse-core/gather/computed/critical-request-chains.js b/lighthouse-core/gather/computed/critical-request-chains.js
+index 67babf9..7c7b36f 100644
+--- a/lighthouse-core/gather/computed/critical-request-chains.js
++++ b/lighthouse-core/gather/computed/critical-request-chains.js
+@@ -57,7 +57,7 @@ class CriticalRequestChains extends ComputedArtifact {
+         startTime: request.startTime,
+         endTime: request.endTime,
+         responseReceivedTime: request.responseReceivedTime,
+-        transferSize: request.transferSize
++        transferSize: request.transferSize || 0
+       };
+     };
+ 
+diff --git a/lighthouse-core/report/v2/renderer/crc-details-renderer.js b/lighthouse-core/report/v2/renderer/crc-details-renderer.js
+index 0586d0c..0e49fb6 100644
+--- a/lighthouse-core/report/v2/renderer/crc-details-renderer.js
++++ b/lighthouse-core/report/v2/renderer/crc-details-renderer.js
+@@ -160,7 +160,7 @@ class CriticalRequestChainRenderer {
+         Util.formatNumber(details.longestChain.duration) + 'ms';
+     dom.find('.lh-crc__longest_length', tmpl).textContent = details.longestChain.length;
+     dom.find('.lh-crc__longest_transfersize', tmpl).textContent =
+-        Util.formatBytesToKB(details.longestChain.transferSize);
++        Util.formatBytesToKB(details.longestChain.transferSize || 0);
+ 
+     const detailsEl = dom.find('.lh-details', tmpl);
+ 

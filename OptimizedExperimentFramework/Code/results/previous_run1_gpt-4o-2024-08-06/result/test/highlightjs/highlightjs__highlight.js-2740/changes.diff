@@ -1,0 +1,36 @@
+diff --git a/src/languages/sql.js b/src/languages/sql.js
+index 25484ef4..ec79c50e 100644
+--- a/src/languages/sql.js
++++ b/src/languages/sql.js
+@@ -140,11 +140,26 @@ export default function(hljs) {
+             'numeric real record serial serial8 smallint text time timestamp tinyint varchar varchar2 varying void'
+         },
+         contains: [
+-          {
+-            className: 'string',
+-            begin: '\'', end: '\'',
+-            contains: [{begin: '\'\''}]
+-          },
++{
++className: 'string',
++begin: '\'',
++end: '\'',
++contains: [{begin: '\'\''}],
++relevance: 0
++},
++{
++className: 'string',
++begin: '"',
++end: '"',
++contains: [{begin: '""'}],
++relevance: 0
++},
++{
++className: 'string',
++begin: '`',
++end: '`',
++relevance: 0
++},
+           {
+             className: 'string',
+             begin: '"', end: '"',

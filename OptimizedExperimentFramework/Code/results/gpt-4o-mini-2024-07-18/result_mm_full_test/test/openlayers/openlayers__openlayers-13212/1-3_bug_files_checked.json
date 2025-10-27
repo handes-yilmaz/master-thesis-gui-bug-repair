@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/source/Tile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/renderer/canvas/TileLayer.js"
+        ],
+        "explanation": "These files directly relate to the rendering and management of WebGL tiles and GeoTIFF sources. The 'WebGLTile.js' and 'TileLayer.js' files manage how tiles are rendered using WebGL, which is critical to the performance issue outlined in the bug report. The 'GeoTIFF.js' file will need to be modified to implement the new source structure for GeoTIFFs as proposed. Additionally, the 'Tile.js' file is essential for tile management and would likely need adjustments to accommodate the new source handling.",
+        "bug_scenario": "The WebGLTileLayers example does not perform well with larger pyramids, leading to lost WebGL contexts and poor rendering performance. The proposed solution is to implement a GeoTIFF source that uses a single canvas/WebGL context per layer to prevent context loss and improve performance."
+    }
+}

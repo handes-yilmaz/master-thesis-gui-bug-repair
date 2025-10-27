@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/RemoveElementBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/cmd/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/BpmnUpdater.js"
+        ],
+        "explanation": "These files are related to the bug as they handle the behaviors and commands for managing associations and elements in the modeling framework. Specifically, 'RemoveElementBehavior.js' deals with element removal, which is critical when a parent subprocess is deleted. 'AttachEventBehavior.js' may need modifications to handle updates to associations correctly when moving elements. 'UpdateSemanticParentHandler.js' is essential for ensuring that the parent-child relationships are correctly updated, while 'BpmnUpdater.js' manages updates across the model, which includes ensuring that associations reflect their correct parents.",
+        "bug_scenario": "The bug scenario involves moving a source/target out of a subprocess without updating the association's parent, thereby causing potential data loss when the subprocess is deleted. This is illustrated in the provided animation where the association remains linked to the subprocess despite the source/target being moved."
+    }
+}

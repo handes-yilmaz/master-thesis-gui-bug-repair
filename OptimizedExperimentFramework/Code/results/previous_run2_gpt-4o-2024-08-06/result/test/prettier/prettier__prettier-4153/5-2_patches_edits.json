@@ -1,0 +1,30 @@
+{
+    "1/1": {
+        "src/language-markdown/printer-markdown.js": [
+            {
+                "SEARCH": [
+                    "return concat([",
+                    "style,",
+                    "node.lang || \"\",",
+                    "hardline,",
+                    "join(hardline, node.value.split(\"\\\\n\")),",
+                    "hardline,",
+                    "style",
+                    "]);"
+                ],
+                "REPLACE": [
+                    "      // Extract language ignoring any attributes",
+                    "      const lang = node.lang ? node.lang.split(/\\s+/)[0] : \"\";",
+                    "      return concat([",
+                    "        style,",
+                    "        lang,",
+                    "        hardline,",
+                    "        join(hardline, node.value.split(\"\\\\n\")),",
+                    "        hardline,",
+                    "        style",
+                    "      ]);"
+                ]
+            }
+        ]
+    }
+}

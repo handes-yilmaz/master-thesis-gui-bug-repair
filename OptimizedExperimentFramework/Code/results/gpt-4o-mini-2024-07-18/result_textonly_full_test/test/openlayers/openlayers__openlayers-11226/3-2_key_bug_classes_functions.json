@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/geom/GeometryCollection//GeometryCollection",
+            "src/ol/interaction/Modify//Modify"
+        ],
+        "bug_functions": [
+            "src/ol/geom/GeometryCollection//setGeometries",
+            "src/ol/interaction/Modify//handleEvent",
+            "src/ol/interaction/Modify//handleDragEvent"
+        ],
+        "explanation": "The GeometryCollection class is crucial because it manages a collection of geometries, and any issues with how these geometries are handled during interactions can lead to the described bug. The Modify class is responsible for handling modifications to geometries, including dragging vertices. The functions setGeometries, handleEvent, and handleDragEvent are particularly relevant as they directly deal with the setting of geometries and the events triggered during the modification process, which are likely where the interaction bug originates.",
+        "bug_scenario": "The bug occurs when editing geometries in a GeometryCollection, specifically when dragging a common vertex of two polygons. The interaction does not work correctly, leading to unexpected behavior during the editing process."
+    }
+}

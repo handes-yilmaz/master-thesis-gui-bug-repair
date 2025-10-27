@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/python.js",
+            "src/lib/modes.js",
+            "src/lib/html_renderer.js"
+        ],
+        "explanation": "These files are key bug files because they are responsible for the syntax highlighting and rendering of Python code. The `src/languages/python.js` file defines the language rules and how decorators and comments should be treated. The `src/lib/modes.js` file contains the logic for comment modes, which is crucial for correctly identifying and highlighting comments. The `src/lib/html_renderer.js` file handles the rendering of the highlighted code into HTML, which is where the incorrect class assignment would manifest visually. Fixing the issue in these files will ensure that comments are highlighted correctly when placed on the same line as decorators.",
+        "bug_scenario": "The bug occurs when a comment is placed on the same line as a decorator in Python code. The entire line, including the comment, is incorrectly assigned the `hljs-meta` class, while the comment should be assigned the `hljs-comment` class instead. This issue affects the syntax highlighting of comments in Python code, leading to incorrect visual representation in code editors or viewers."
+    }
+}

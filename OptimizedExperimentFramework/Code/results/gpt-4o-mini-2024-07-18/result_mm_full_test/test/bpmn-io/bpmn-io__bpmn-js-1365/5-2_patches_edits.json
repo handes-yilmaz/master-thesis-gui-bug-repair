@@ -1,0 +1,45 @@
+{
+    "1/1": {
+        "src/models/DataObject.js": [
+            {
+                "SEARCH": [
+                    "class DataObject {",
+                    "constructor(name) {",
+                    "this.name = name;",
+                    "// other properties",
+                    "}"
+                ],
+                "REPLACE": [
+                    "class DataObject {",
+                    "    constructor(name) {",
+                    "        this.name = name;",
+                    "        this.isCollection = false; // Default value for isCollection",
+                    "        // other properties",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ui/DataObjectEditor.js": [
+            {
+                "SEARCH": [
+                    "function renderDataObjectEditor(dataObject) {",
+                    "// existing rendering logic",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function renderDataObjectEditor(dataObject) {",
+                    "    // existing rendering logic",
+                    "    const collectionToggle = document.createElement('input');",
+                    "    collectionToggle.type = 'checkbox';",
+                    "    collectionToggle.checked = dataObject.isCollection;",
+                    "    collectionToggle.addEventListener('change', (event) => {",
+                    "        dataObject.isCollection = event.target.checked; // Toggle isCollection",
+                    "    });",
+                    "    // Append the toggle to the UI",
+                    "    document.body.appendChild(collectionToggle);",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

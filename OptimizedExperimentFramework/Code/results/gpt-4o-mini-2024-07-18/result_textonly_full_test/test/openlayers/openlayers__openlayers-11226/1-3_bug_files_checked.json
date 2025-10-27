@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/geom/GeometryCollection.js",
+            "src/ol/interaction/Modify.js",
+            "src/ol/interaction/Interaction.js",
+            "src/ol/geom/Geometry.js"
+        ],
+        "explanation": "These files are directly related to the bug because: \n1. `GeometryCollection.js` likely contains the logic for handling collections of geometries, which is crucial for the drag interaction to work correctly. \n2. `Modify.js` handles the modify interaction itself, which is where the core functionality for editing geometries is implemented. \n3. `Interaction.js` is a base class for all interactions and may contain shared logic that is affecting how the modify interaction operates. \n4. `Geometry.js` provides fundamental methods and properties for geometries, which could be relevant when modifying their properties in the context of collections.",
+        "bug_scenario": "The bug occurs when editing geometries in a `GeometryCollection` using the modify interaction, where dragging the common vertex of two polygons does not work as expected. However, when the same geometries are assigned to features and aggregated into a `FeatureCollection`, the interaction works correctly. This indicates a potential issue in how the modify interaction handles geometries in a collection versus individual features."
+    }
+}

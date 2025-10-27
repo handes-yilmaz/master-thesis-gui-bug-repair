@@ -1,0 +1,29 @@
+diff --git a/lighthouse-core/report/v2/renderer/report-renderer.js b/lighthouse-core/report/v2/renderer/report-renderer.js
+index 732fc99..a974f71 100644
+--- a/lighthouse-core/report/v2/renderer/report-renderer.js
++++ b/lighthouse-core/report/v2/renderer/report-renderer.js
+@@ -34,6 +34,10 @@ class ReportRenderer {
+    */
+   renderReport(report, container) {
+     container.textContent = ''; // Remove previous report.
++    if (!report || !report.reportCategories || report.reportCategories.length === 0) {
++      container.textContent = 'No report data available.';
++      return container;
++    }
+     const element = container.appendChild(this._renderReport(report));
+ 
+     return /** @type {!Element} **/ (element);
+diff --git a/lighthouse-core/report/v2/report-generator.js b/lighthouse-core/report/v2/report-generator.js
+index d82e151..0ae7f4a 100644
+--- a/lighthouse-core/report/v2/report-generator.js
++++ b/lighthouse-core/report/v2/report-generator.js
+@@ -106,6 +106,9 @@ class ReportGeneratorV2 {
+       return Object.assign({}, category, {audits, score: categoryScore});
+     });
+ 
++    if (categories.length === 0) {
++      throw new Error('No categories found in the report data.');
++    }
+     const overallScore = ReportGeneratorV2.arithmeticMean(categories);
+     return {score: overallScore, categories};
+   }

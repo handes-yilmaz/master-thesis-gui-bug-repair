@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/reproj/Image.js//ReprojImage",
+            "src/ol/renderer/canvas/ImageLayer.js//CanvasImageLayerRenderer",
+            "src/ol/proj/projections.js//"
+        ],
+        "bug_functions": [
+            "src/ol/reproj/Image.js//reproject_",
+            "src/ol/reproj/Image.js//load",
+            "src/ol/renderer/canvas/ImageLayer.js//prepareFrame",
+            "src/ol/renderer/canvas/ImageLayer.js//renderFrame"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they handle the processes of image reprojection and rendering. The `ReprojImage` class is responsible for managing the reprojected image, including the logic that determines how source pixels are transformed into target pixels. The `reproject_` function specifically deals with the rendering of the image, which is where the misalignment occurs. The `CanvasImageLayerRenderer` class and its methods (`prepareFrame` and `renderFrame`) are involved in preparing and rendering the image layer on the canvas, which is crucial for displaying the projected image correctly. Any adjustments to ensure that the projected pixels reflect the intended dimensions must be made within these classes and functions.",
+        "bug_scenario": "The bug scenario involves a raster reprojection process where the projected pixels are displayed as squares, leading to misalignments when the source pixels are not square. The user expects the destination pixels to stretch according to the source pixel dimensions, which is not happening, resulting in incorrect visual representation."
+    }
+}

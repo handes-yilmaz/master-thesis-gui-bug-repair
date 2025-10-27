@@ -1,0 +1,19 @@
+diff --git a/src/ol/source/ImageWMS.js b/src/ol/source/ImageWMS.js
+index 065fa43..28a6525 100644
+--- a/src/ol/source/ImageWMS.js
++++ b/src/ol/source/ImageWMS.js
+@@ -298,11 +298,11 @@ class ImageWMS extends ImageSource {
+ 
+     resolution = this.findNearestResolution(resolution);
+ 
+-    if (pixelRatio != 1 && (!this.hidpi_ || this.serverType_ === undefined)) {
+-      pixelRatio = 1;
++    if (pixelRatio > 1 && this.hidpi_) {
++      pixelRatio = 1; // Ensure pixelRatio is set to 1 for HiDPI devices
+     }
+ 
+-    const imageResolution = resolution / pixelRatio;
++    const imageResolution = resolution / (this.hidpi_ ? pixelRatio : 1); // Adjust resolution based on hidpi_
+ 
+     const center = getCenter(extent);
+     const viewWidth = ceil(getWidth(extent) / imageResolution, DECIMALS);

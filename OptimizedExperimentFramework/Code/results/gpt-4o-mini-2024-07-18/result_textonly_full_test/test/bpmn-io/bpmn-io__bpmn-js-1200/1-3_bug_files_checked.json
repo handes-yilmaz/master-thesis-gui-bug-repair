@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/BpmnFactory.js"
+        ],
+        "explanation": "The files identified are crucial for handling the behaviors related to element replacement and event attachment in the BPMN modeler. The 'ReplaceElementBehaviour.js' likely contains logic for how elements are replaced, which could include maintaining properties like condition expressions. The 'AttachEventBehavior.js' manages the behaviors associated with attaching events to flows, which may inadvertently remove the condition expression when changing to a timer event. 'BpmnUpdater.js' is responsible for updating elements in the BPMN diagram, and 'BpmnFactory.js' helps in creating instances of BPMN elements. Changes to these files may resolve the bug by ensuring that properties like 'conditionExpression' are preserved during the transformation of sequence flows.",
+        "bug_scenario": "The user reports that converting an existing sequence flow with a condition expression into a 'Timer Intermediate Catch Event' causes the removal of the condition expression, which is not the expected behavior."
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "1/1": {
+        "src/language-markdown/parser-markdown.js": [
+            {
+                "SEARCH": [
+                    "function splitText() {",
+                    "return ast =>",
+                    "map(ast, (node, index, parentNode) => {",
+                    "if (node.type !== \"text\") {",
+                    "return node;",
+                    "}",
+                    "",
+                    "let value = node.value;",
+                    "",
+                    "if (parentNode.type === \"paragraph\") {",
+                    "if (index === 0) {",
+                    "value = value.trimLeft();",
+                    "}",
+                    "if (index === parentNode.children.length - 1) {",
+                    "value = value.trimRight();",
+                    "}",
+                    "}",
+                    "",
+                    "return {",
+                    "type: \"sentence\",",
+                    "position: node.position,",
+                    "children: util.splitText(value)",
+                    "};",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function splitText() {",
+                    "  return ast =>",
+                    "    map(ast, (node, index, parentNode) => {",
+                    "      if (node.type !== \"text\") {",
+                    "        return node;",
+                    "      }",
+                    "",
+                    "      let value = node.value;",
+                    "",
+                    "      if (parentNode.type === \"paragraph\") {",
+                    "        if (index === 0) {",
+                    "          value = value.trimLeft();",
+                    "        }",
+                    "        if (index === parentNode.children.length - 1) {",
+                    "          value = value.trimRight();",
+                    "        }",
+                    "      }",
+                    "",
+                    "      // Preserve indentation for nested code blocks or raw HTML",
+                    "      if (parentNode.type === \"html\" || parentNode.type === \"code\") {",
+                    "        value = node.value;",
+                    "      }",
+                    "",
+                    "      return {",
+                    "        type: \"sentence\",",
+                    "        position: node.position,",
+                    "        children: util.splitText(value)",
+                    "      };",
+                    "    });",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

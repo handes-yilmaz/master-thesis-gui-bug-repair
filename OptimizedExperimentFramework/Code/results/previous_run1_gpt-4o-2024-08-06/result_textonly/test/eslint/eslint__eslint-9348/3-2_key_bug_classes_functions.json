@@ -1,0 +1,27 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/constructor-super.js"
+        ],
+        "bug_functions": [
+            "lib/rules/constructor-super.js//isConstructorFunction",
+            "lib/rules/constructor-super.js//onCodePathStart",
+            "lib/rules/constructor-super.js//onCodePathEnd",
+            "lib/rules/constructor-super.js//CallExpression:exit"
+        ],
+        "explanation": "The bug is related to the handling of 'super()' in class constructors. The file 'lib/rules/constructor-super.js' is directly responsible for verifying 'super()' calls in constructors, as indicated by its purpose in the file comments and its rule definition. The functions 'isConstructorFunction', 'onCodePathStart', 'onCodePathEnd', and 'CallExpression:exit' are key because they are responsible for determining if a node is a constructor, managing the constructor's code path, ensuring 'super()' is called, and checking 'super()' calls, respectively. These functions are directly related to the error message and the issue described in the bug report, making them critical to understanding and fixing the bug.",
+        "bug_scenario": "The bug scenario involves a JavaScript class extending another class without properly handling the 'super()' call in the constructor. The error message \"Cannot read property 'superCalled' of undefined\" suggests that there is an issue with the 'super()' call handling in the constructor. The provided code snippet shows a class 'BugProof' extending 'Extender' and calling 'super(props)' in its constructor. The bug report indicates that a parsing error occurs, specifically an \"Unexpected token\" error, which seems to be related to the handling of 'super()'."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/rules/constructor-super.js"
+        ],
+        "bug_functions": [
+            "lib/rules/constructor-super.js//isConstructorFunction",
+            "lib/rules/constructor-super.js//onCodePathStart",
+            "lib/rules/constructor-super.js//onCodePathEnd"
+        ],
+        "explanation": "The class and functions identified are directly related to handling 'super()' calls in constructor functions. The file 'lib/rules/constructor-super.js' is specifically responsible for enforcing the rule that 'super()' must be called in constructors. The function 'isConstructorFunction' checks if a node is a constructor, 'onCodePathStart' and 'onCodePathEnd' manage the logic for tracking if 'super()' is called appropriately within constructors. Errors in this logic could lead to the reported issue of 'superCalled' being undefined, as it indicates a failure to properly track or enforce 'super()' calls under certain conditions.",
+        "bug_scenario": "The error message 'Cannot read property 'superCalled' of undefined' occurs when attempting to run ESLint rules, specifically related to calling 'super()' in constructor functions. The issue is visible in the provided ESLint configuration and code snippet. The code snippet involves a class 'BugProof' extending another class 'Extender', and within its constructor, 'super(props)' is called. The error seems to arise from ESLint parsing issues, possibly due to missing or incorrect handling of 'super()' calls in constructors."
+    }
+}

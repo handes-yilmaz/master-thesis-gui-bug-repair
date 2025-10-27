@@ -1,0 +1,24 @@
+diff --git a/lib/features/copy-paste/BpmnCopyPaste.js b/lib/features/copy-paste/BpmnCopyPaste.js
+index f66694f6..5ce0aacc 100644
+--- a/lib/features/copy-paste/BpmnCopyPaste.js
++++ b/lib/features/copy-paste/BpmnCopyPaste.js
+@@ -117,10 +117,10 @@ export default function BpmnCopyPaste(bpmnFactory, eventBus, moddleCopy) {
+         oldBusinessObject = descriptor.oldBusinessObject,
+         newBusinessObject;
+ 
+-    // do NOT copy business object if external label
++    // handle label elements
+     if (isLabel(descriptor)) {
+       descriptor.businessObject = getBusinessObject(cache[ descriptor.labelTarget ]);
+-
++      setLabel(descriptor, oldBusinessObject.name || '', true);
+       return;
+     }
+ 
+@@ -152,4 +152,4 @@ BpmnCopyPaste.$inject = [
+ 
+ function isLabel(element) {
+   return !!element.labelTarget;
+-}
+\ No newline at end of file
++}

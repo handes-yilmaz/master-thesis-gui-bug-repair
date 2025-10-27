@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "src/resources/filters/quarto-pre/callout.lua": [
+            {
+                "SEARCH": [
+                    "title = caption,"
+                ],
+                "REPLACE": [
+                    "    title = '{' .. caption .. '}',"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "caption = pandoc.utils.stringify(caption)"
+                ],
+                "REPLACE": [
+                    "      caption = pandoc.write(pandoc.Pandoc(pandoc.Para(caption)), FORMAT)"
+                ]
+            }
+        ]
+    }
+}

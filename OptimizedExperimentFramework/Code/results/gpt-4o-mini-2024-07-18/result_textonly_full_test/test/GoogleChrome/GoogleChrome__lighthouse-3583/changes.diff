@@ -1,0 +1,24 @@
+diff --git a/lighthouse-core/gather/computed/critical-request-chains.js b/lighthouse-core/gather/computed/critical-request-chains.js
+index 7d51fd3..3108711 100644
+--- a/lighthouse-core/gather/computed/critical-request-chains.js
++++ b/lighthouse-core/gather/computed/critical-request-chains.js
+@@ -28,13 +28,18 @@ class CriticalRequestChains extends ComputedArtifact {
+     const nonCriticalResourceTypes = [
+       WebInspector.resourceTypes.Image._category,
+       WebInspector.resourceTypes.XHR._category,
++      WebInspector.resourceTypes.Iframe._category, // Exclude iframes
+     ];
+     if (nonCriticalResourceTypes.includes(resourceTypeCategory) ||
+         request.mimeType && request.mimeType.startsWith('image/')) {
+       return false;
+     }
+ 
+-    return ['VeryHigh', 'High', 'Medium'].includes(request.priority());
++    // Exclude iframes from being considered critical
++    if (request._resourceType && request._resourceType._category === WebInspector.resourceTypes.Iframe._category) {
++      return false;
++    }
++    return [\'VeryHigh\', \'High\', \'Medium\'].includes(request.priority());
+   }
+ 
+   static extractChain(networkRecords) {

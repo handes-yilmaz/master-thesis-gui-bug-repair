@@ -1,0 +1,21 @@
+diff --git a/lighthouse-core/gather/driver/wait-for-condition.js b/lighthouse-core/gather/driver/wait-for-condition.js
+index 252ea28..5550c48 100644
+--- a/lighthouse-core/gather/driver/wait-for-condition.js
++++ b/lighthouse-core/gather/driver/wait-for-condition.js
+@@ -333,6 +333,7 @@ const DEFAULT_WAIT_FUNCTIONS = {waitForFcp, waitForLoadEvent, waitForCPUIdle, wa
+ async function waitForFullyLoaded(session, networkMonitor, options) {
+   const {pauseAfterFcpMs, pauseAfterLoadMs, networkQuietThresholdMs,
+     cpuQuietThresholdMs, maxWaitForLoadedMs, maxWaitForFcpMs} = options;
++  const extendedMaxWaitForLoadedMs = maxWaitForLoadedMs * 2; // Increase wait time
+   const {waitForFcp, waitForLoadEvent, waitForNetworkIdle, waitForCPUIdle} =
+     options._waitForTestOverrides || DEFAULT_WAIT_FUNCTIONS;
+   /** @type {NodeJS.Timer|undefined} */
+@@ -378,7 +379,7 @@ async function waitForFullyLoaded(session, networkMonitor, options) {
+   // cleanup function that removes loadEvent and network idle listeners.
+   /** @type {Promise<() => Promise<{timedOut: boolean}>>} */
+   const maxTimeoutPromise = new Promise((resolve, reject) => {
+-    maxTimeoutHandle = setTimeout(resolve, maxWaitForLoadedMs);
++    maxTimeoutHandle = setTimeout(resolve, extendedMaxWaitForLoadedMs); // Use extended wait time
+   }).then(_ => {
+     return async () => {
+       log.warn('waitFor', 'Timed out waiting for page load. Checking if page is hung...');

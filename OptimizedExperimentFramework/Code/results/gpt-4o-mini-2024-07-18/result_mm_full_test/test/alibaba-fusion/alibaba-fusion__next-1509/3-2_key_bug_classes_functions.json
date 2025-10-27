@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/config-provider/config.jsx//ConfigedComponent",
+            "src/dialog/dialog.jsx//Dialog",
+            "src/dialog/index.jsx//processProps"
+        ],
+        "bug_functions": [
+            "src/config-provider/config.jsx//config",
+            "src/dialog/dialog.jsx//adjustPosition",
+            "src/dialog/dialog.jsx//render",
+            "src/dialog/index.jsx//Dialog.show",
+            "src/dialog/index.jsx//Dialog.alert",
+            "src/dialog/index.jsx//Dialog.confirm"
+        ],
+        "explanation": "The ConfigedComponent class in ConfigProvider is responsible for managing the configuration of components, including the popupContainer. The Dialog class handles the rendering and positioning of the dialog, which is directly affected by the popupContainer setting. The adjustPosition function is crucial for ensuring the dialog appears correctly based on the provided configuration. The functions in the index file (show, alert, confirm) also utilize the configuration from ConfigProvider, making them relevant to the bug as they may not properly apply the popupContainer settings.",
+        "bug_scenario": "The popupContainer configuration in ConfigProvider is not effective for the Dialog component, leading to display issues as shown in the provided image."
+    }
+}

@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/audits/uses-rel-preconnect.js b/lighthouse-core/audits/uses-rel-preconnect.js
+index f17d1ba..697ba2d 100644
+--- a/lighthouse-core/audits/uses-rel-preconnect.js
++++ b/lighthouse-core/audits/uses-rel-preconnect.js
+@@ -112,6 +112,8 @@ class UsesRelPreconnectAudit extends Audit {
+           mainResource.parsedURL.securityOrigin === record.parsedURL.securityOrigin ||
+           // filter out all resources where origins are already resolved
+           UsesRelPreconnectAudit.hasAlreadyConnectedToOrigin(record) ||
++          // Check if the origin is already preconnected
++          record.initiator.url.includes('preconnect') ||
+           // make sure the requests are below the PRECONNECT_SOCKET_MAX_IDLE (15s) mark
+           !UsesRelPreconnectAudit.socketStartTimeIsBelowThreshold(record, mainResource)
+         ) {

@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/elixir.js//CLASS"
+        ],
+        "bug_functions": [
+            "src/languages/elixir.js//FUNCTION",
+            "src/lib/regex.js//escape"
+        ],
+        "explanation": "The issue is related to the function capture syntax in Elixir, which uses the `/` character. This character is typically used in regex patterns and other syntax elements, leading to a conflict in the language definition for Elixir in the highlighter. The `CLASS` and `FUNCTION` in `src/languages/elixir.js` are responsible for defining the syntax highlighting rules for Elixir, including how functions and class definitions are recognized. The `escape` function in `src/lib/regex.js` is relevant because it is responsible for escaping characters in regex patterns, which relates to the handling of the `/` character in the function capture syntax. Adjustments in these components could resolve the issue by ensuring the `/` character in function captures is not misinterpreted.",
+        "bug_scenario": "The bug scenario involves an issue with syntax highlighting in Elixir code snippets when using function capture syntax (e.g., `&function_name/arity`). The highlighting system mistakenly treats the `/` as part of a regex or another syntax element until it encounters the next `/`, causing incorrect code highlighting."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/elixir.js//FUNCTION"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to how Elixir function captures are parsed and highlighted. The `FUNCTION` class in `src/languages/elixir.js` is directly responsible for defining how functions are recognized and highlighted in Elixir code. This class uses regular expressions to define function patterns. Since the bug involves incorrect handling of the function capture syntax (`&function_name/arity`), modifications to the `FUNCTION` class's regular expression patterns or its parsing logic might be necessary to correctly identify and highlight the function captures without disrupting the rest of the code.",
+        "bug_scenario": "The bug report describes an issue with syntax highlighting of Elixir code snippets involving function capture syntax (`&function_name/arity`). The highlighting incorrectly interprets the slash (`/`) as a division or other operator, affecting the subsequent code until the next slash (`/`). The expected behavior is to highlight the function capture `&letter?/1` as a single token without disrupting the rest of the code."
+    }
+}

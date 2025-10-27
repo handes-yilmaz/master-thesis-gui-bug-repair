@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/computed/metrics/first-contentful-paint.FirstContentfulPaint",
+            "lighthouse-core/audits/metrics/first-cpu-idle.FirstCPUIdle",
+            "lighthouse-core/gather/gatherers/trace-elements.TraceElements"
+        ],
+        "bug_functions": [
+            "lighthouse-core/computed/metrics/first-contentful-paint.FirstContentfulPaint.computeObservedMetric",
+            "lighthouse-core/audits/metrics/first-cpu-idle.FirstCPUIdle.audit",
+            "lighthouse-core/gather/gatherers/trace-elements.TraceElements.afterPass"
+        ],
+        "explanation": "These classes and functions are related to the bug because they are responsible for computing and gathering performance metrics, including First Contentful Paint (FCP) and First CPU Idle. The 'computeObservedMetric' function in 'FirstContentfulPaint' retrieves the timing for FCP, which is crucial for performance evaluation. The 'audit' function in 'FirstCPUIdle' assesses the CPU idle time, which can also be affected by the tab's visibility state. Lastly, the 'afterPass' function in 'TraceElements' gathers trace data that is essential for calculating these metrics. Since the bug is related to measuring performance when the tab is in the background, these elements are directly involved in the issue.",
+        "bug_scenario": "The bug occurs when the Lighthouse tool is run on a URL while the tab is in the background, resulting in a 'NO_FCP' (No First Contentful Paint) error. This prevents the tool from measuring performance metrics, which is critical for evaluating web applications."
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "src/lighthouse-core/audits/iframe-performance.js": [
+            {
+                "SEARCH": [
+                    "// Existing code that evaluates the performance of the parent page",
+                    "const parentPerformanceMetrics = evaluateParentPerformance();"
+                ],
+                "REPLACE": [
+                    "const parentPerformanceMetrics = evaluateParentPerformance();",
+                    "const iframePerformanceMetrics = evaluateIframePerformance(); // New function to evaluate iframe performance",
+                    "",
+                    "// Aggregate iframe metrics into parent metrics",
+                    "parentPerformanceMetrics.total += iframePerformanceMetrics.total;",
+                    "parentPerformanceMetrics.score += iframePerformanceMetrics.score; // Adjust scoring based on iframe performance"
+                ]
+            }
+        ]
+    }
+}

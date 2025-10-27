@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-typescript.js",
+            "components/prism-typescript.min.js"
+        ],
+        "explanation": "The problem is directly related to how the TypeScript language is being parsed and highlighted. In the repository structure, there are specific files meant for handling TypeScript highlighting: `prism-typescript.js` and its minified version `prism-typescript.min.js`. These files would contain the logic for identifying TypeScript keywords and applying the correct syntax highlighting, making them the primary suspects for this bug. To fix the issue, one would need to modify these files to correctly identify when keywords such as `infer`, `type`, and `const` are actually meant as variable names versus reserved keywords based on context.",
+        "bug_scenario": "The bug is related to incorrect syntax highlighting in TypeScript for certain keywords like `infer`, `type`, and `const` when they are followed by alphabetic characters. This issue causes incorrect text coloration, treating keywords as if they were incorrectly used names."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-typescript.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "The bug pertains to how TypeScript code is analyzed and highlighted, particularly focusing on keyword detection. The file 'prism-typescript.js' is likely responsible for defining how TypeScript syntax is parsed and highlighted, making it directly related to the bug. This file would include the logic used for keyword identification and highlighting rules specific to TypeScript. Similarly, 'prism-core.js' could contain shared logic that manages syntax parsing across different languages supported by Prism, affecting the core functionality of keyword recognition and syntax processing. These files are essential to investigate and modify to ensure correct highlighting behavior as expected in the report.",
+        "bug_scenario": "The bug relates to incorrect syntax highlighting in TypeScript code where certain keywords ('infer', 'type') are not correctly distinguished when followed by alphabetic characters. Specifically, these keywords are incorrectly highlighted when part of a longer identifier (e.g., 'inference', 'typeDefs') instead of only being highlighted as standalone identifiers."
+    }
+}

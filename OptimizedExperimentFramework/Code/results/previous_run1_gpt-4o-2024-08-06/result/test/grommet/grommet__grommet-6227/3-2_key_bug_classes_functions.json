@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/js/components/Form/Form.js//Form"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue lies in how form validation is maintained for fields that are dynamically added and removed. The Form component in 'src/js/components/Form/Form.js' contains logic for validating form fields. The comments indicate that validation results are retained even for fields that have been removed, suggesting that validation cleanup isn't handled properly when fields are dynamically removed. This is likely causing the form to remain invalid even after the dynamic field is removed.",
+        "bug_scenario": "The bug scenario involves a form where dynamically adding and removing required fields affects form validation. When a checkbox is unchecked, a required text input field is added, making the form invalid as expected. However, when the checkbox is rechecked, removing the text input field, the form still remains invalid despite the field's removal."
+    },
+    "2": {
+        "bug_classes": [
+            "src/js/components/Form/Form.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the validation logic when fields are dynamically added or removed. In `Form.js`, there seems to be logic that retains validation results for fields that are removed, causing the form to be incorrectly marked as invalid. This file contains the code for handling form validation and is the likely location of the bug, as it manages the form state and validation processes.",
+        "bug_scenario": "The form remains invalid after a required field is dynamically removed. When the checkbox is toggled on, a required TextInput field appears and the form becomes invalid as expected. However, toggling the checkbox off should remove the field and make the form valid if no other validation issues exist, but the form remains invalid."
+    }
+}

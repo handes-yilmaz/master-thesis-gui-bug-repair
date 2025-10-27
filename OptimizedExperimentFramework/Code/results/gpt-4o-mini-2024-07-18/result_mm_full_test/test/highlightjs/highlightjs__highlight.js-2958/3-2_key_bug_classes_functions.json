@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/xml.js//HTMLRenderer"
+        ],
+        "bug_functions": [
+            "src/languages/xml.js//emitsWrappingTags",
+            "src/languages/xml.js//TAG_NAME_RE"
+        ],
+        "explanation": "The `HTMLRenderer` class is responsible for rendering the highlighted output, and any issues in its methods could directly affect how XML elements are displayed. The `emitsWrappingTags` function determines if a node should be wrapped in a span, which is crucial for highlighting. The `TAG_NAME_RE` regex is used to match tag names, including those with single-letter prefixes, and any issues in its definition could lead to the highlighting problem described in the bug report.",
+        "bug_scenario": "The bug scenario involves XML elements with single-letter namespace prefixes not being highlighted correctly in the syntax highlighter since version 10.4.0. The expected behavior is that all XML elements, including those with single-letter prefixes, should be highlighted appropriately, as shown in the expected output examples."
+    }
+}

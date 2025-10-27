@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-visual-basic.js//Prism.languages['visual-basic']"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue lies in the handling of comments within the Visual Basic language definition in the Prism library. The regular expression for comments may not correctly account for line continuations, causing the syntax highlighter to fail in treating the entire comment as a single token. Modifying the pattern in the 'comment' definition to correctly handle line continuation characters should resolve the issue.",
+        "bug_scenario": "The bug involves comments in Visual Basic not being highlighted correctly when they include a line continuation character. The image shows a Visual Basic code snippet with a comment that uses a line continuation, but the syntax highlighting does not treat the whole comment as a single token, resulting in incorrect highlighting."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-visual-basic.js"
+        ],
+        "bug_functions": [
+            "components/prism-visual-basic.js//Prism.languages['visual-basic'].comment",
+            "components/prism-visual-basic.js//Prism.languages['visual-basic'].directive"
+        ],
+        "explanation": "The bug is related to the handling of comments in Visual Basic code, particularly those with line continuations. The 'comment' pattern in 'prism-visual-basic.js' specifies how comments are recognized and highlighted. The 'directive' pattern also deals with sequences that could involve line continuations and comments, which may need adjustments to correctly interpret multiline comments as a single entity. These elements are crucial for fixing the issue of incorrect syntax highlighting of comments with line continuation.",
+        "bug_scenario": "The bug report highlights an issue in Visual Basic where comments using line continuation are not being highlighted as expected. The image shows a Visual Basic code snippet where a comment line is intended to be continued with an underscore ('_'), but the syntax highlighting fails to treat it as a single token."
+    }
+}

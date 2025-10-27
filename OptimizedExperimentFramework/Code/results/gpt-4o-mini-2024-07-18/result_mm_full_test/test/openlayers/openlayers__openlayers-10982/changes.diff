@@ -1,0 +1,12 @@
+diff --git a/src/ol/layer/VectorTile.js b/src/ol/layer/VectorTile.js
+index 3375b2c..7ff7b61 100644
+--- a/src/ol/layer/VectorTile.js
++++ b/src/ol/layer/VectorTile.js
+@@ -94,6 +94,7 @@ class VectorTileLayer extends BaseVectorLayer {
+     super(/** @type {import("./BaseVector.js").Options} */ (baseOptions));
+ 
+     const renderMode = options.renderMode || VectorTileRenderType.HYBRID;
++    this.scaleFactor_ = window.devicePixelRatio || 1; // Add scale factor based on device pixel ratio
+     assert(
+       renderMode == undefined ||
+         renderMode == VectorTileRenderType.IMAGE ||

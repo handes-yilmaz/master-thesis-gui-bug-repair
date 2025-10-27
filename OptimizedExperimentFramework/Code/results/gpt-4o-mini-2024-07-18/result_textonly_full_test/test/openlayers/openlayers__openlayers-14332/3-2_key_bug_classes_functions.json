@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Tile.js//TileLayer",
+            "src/ol/layer/Vector.js//VectorLayer",
+            "src/ol/renderer/canvas/TileLayer.js//CanvasTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Tile.js//createRenderer",
+            "src/ol/layer/Vector.js//createRenderer",
+            "src/ol/renderer/canvas/TileLayer.js//renderFrame",
+            "src/ol/renderer/canvas/TileLayer.js//drawTileImage"
+        ],
+        "explanation": "The classes and functions identified are crucial for addressing the rendering issues described in the bug report. The 'TileLayer' and 'VectorLayer' classes are responsible for managing the respective layer types, and their 'createRenderer' methods are essential for initializing the rendering process. The 'CanvasTileLayerRenderer' class contains the 'renderFrame' and 'drawTileImage' functions, which directly handle the rendering logic for tile layers. Modifications in these areas are likely necessary to ensure consistent rendering behavior across different rotation angles.",
+        "bug_scenario": "The bug involves incorrect rendering in the vector context of rotated tile layers, particularly when the view is rotated close to 90 and 270 degrees. This results in issues with stroke width, text scale, and geometry precision, leading to inconsistencies between the rendering of tile layers and vector layers."
+    }
+}

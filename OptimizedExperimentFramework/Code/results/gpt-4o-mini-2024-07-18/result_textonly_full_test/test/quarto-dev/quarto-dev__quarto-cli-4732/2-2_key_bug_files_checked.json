@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/core/handlers/embed.ts",
+            "src/core/knitr.ts",
+            "src/format/reveal/format-reveal.ts"
+        ],
+        "explanation": "These files are critical to the bug because: \n1. **src/core/handlers/embed.ts**: This file contains the logic for handling embedded content. The issue likely lies in how the embed handler processes the file and generates the corresponding markdown fragments for reveal.js. \n2. **src/core/knitr.ts**: This file manages the capabilities and requirements of the knitr package, which is essential for rendering R code. If there are issues with how knitr is integrated or its version requirements, it could affect the embedding functionality. \n3. **src/format/reveal/format-reveal.ts**: This file is responsible for the specific formatting and rendering of reveal.js presentations. Any misconfiguration or missing logic in this file could lead to the failure of displaying embedded code in the generated HTML.",
+        "bug_scenario": "The bug scenario involves the Quarto rendering engine failing to display embedded R code from a specified file when generating a reveal.js presentation. The embedded code is not visible in the generated HTML output, although it appears correctly when not using the reveal.js format. This issue is reproducible both in RStudio and via command-line execution."
+    }
+}

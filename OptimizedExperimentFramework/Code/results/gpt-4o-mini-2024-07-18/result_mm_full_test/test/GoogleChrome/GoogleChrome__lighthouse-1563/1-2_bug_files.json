@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/user-timings.js",
+            "lighthouse-core/gather/computed/network-throughput.js",
+            "lighthouse-core/gather/gatherers/do-better-web/console-time-usage.js"
+        ],
+        "explanation": "These files are likely related to the bug because: 1. `user-timings.js` directly deals with user timing marks and will need to be modified to implement filtering logic for irrelevant marks. 2. `network-throughput.js` may be relevant as it handles computations related to network performance including timing metrics. 3. `console-time-usage.js` could provide insights on how console timings are recorded, which might overlap with user timings from ads.",
+        "bug_scenario": "The bug involves filtering out irrelevant user timing marks injected by Google Ads during performance measurements. The report indicates that there are numerous timing marks related to ads which may be hardcoded or improperly managed, leading to cluttered performance metrics."
+    }
+}

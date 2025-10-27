@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js",
+            "lighthouse-core/audits/byte-efficiency/uses-text-compression.js",
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js",
+            "lighthouse-core/gatherers/response-compression.js"
+        ],
+        "explanation": "These files are related to the bug because they handle the analysis of CSS usage and compression efficiency within the Lighthouse tool. The 'unused-css-rules.js' file determines whether CSS rules are actually used on the page, which can affect the reported size and savings. The 'uses-text-compression.js' file checks if resources are being compressed correctly, which is crucial for understanding the discrepancies in reported sizes. Lastly, 'render-blocking-resources.js' and 'response-compression.js' are involved in analyzing how resources are loaded and whether compression is applied effectively, directly impacting the performance metrics reported by Google Pagespeed.",
+        "bug_scenario": "The bug scenario involves a third-party JavaScript tool that fetches its styles via gzipped JSON and appends them to the DOM. However, Google Pagespeed reports a significantly larger size than expected for the CSS, indicating a potential issue with how the tool calculates the compression and the unused CSS. The user expects the reported savings to be based on the actual resources fetched, not the size in the DOM."
+    }
+}

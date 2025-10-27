@@ -1,0 +1,164 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "ServiceWorker",
+            "file_path": "lighthouse-core/gather/gatherers/service-worker.js",
+            "class_details": [
+                {
+                    "name": "ServiceWorker",
+                    "start_line": 10,
+                    "end_line": 21,
+                    "methods": [
+                        {
+                            "name": "beforePass",
+                            "start_line": 11,
+                            "end_line": 20
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class ServiceWorker extends Gatherer {",
+                "  beforePass(options) {",
+                "    const driver = options.driver;",
+                "    return driver",
+                "      .getServiceWorkerVersions()",
+                "      .then(data => {",
+                "        return {",
+                "          versions: data.versions,",
+                "        };",
+                "      });",
+                "  }",
+                "}"
+            ]
+        },
+        "2": {
+            "class_name": "StartUrl",
+            "file_path": "lighthouse-core/gather/gatherers/start-url.js",
+            "class_details": [
+                {
+                    "name": "StartUrl",
+                    "start_line": 12,
+                    "end_line": 101,
+                    "methods": [
+                        {
+                            "name": "constructor",
+                            "start_line": 13,
+                            "end_line": 18
+                        },
+                        {
+                            "name": "executeFetchRequest",
+                            "start_line": 20,
+                            "end_line": 47
+                        },
+                        {
+                            "name": "pass",
+                            "start_line": 49,
+                            "end_line": 72
+                        },
+                        {
+                            "name": "afterPass",
+                            "start_line": 74,
+                            "end_line": 100
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class StartUrl extends Gatherer {",
+                "  constructor() {",
+                "    super();",
+                "",
+                "    this.startUrl = null;",
+                "    this.err = null;",
+                "  }",
+                "",
+                "  executeFetchRequest(driver, url) {",
+                "    return new Promise((resolve, reject) => {",
+                "      let requestId;",
+                "      const fetchRequestId = (data) => {",
+                "        if (URL.equalWithExcludedFragments(data.request.url, url)) {",
+                "          requestId = data.requestId;",
+                "          driver.off('Network.requestWillBeSent', fetchRequestId);",
+                "        }",
+                "      };",
+                "      const fetchDone = (data) => {",
+                "        if (data.requestId === requestId) {",
+                "          driver.off('Network.loadingFinished', fetchDone);",
+                "          driver.off('Network.loadingFailed', fetchDone);",
+                "",
+                "          resolve();",
+                "        }",
+                "      };",
+                "",
+                "      driver.on('Network.requestWillBeSent', fetchRequestId);",
+                "      driver.on('Network.loadingFinished', fetchDone);",
+                "      driver.on('Network.loadingFailed', fetchDone);",
+                "      driver.evaluateAsync(",
+                "        `fetch('${url}')",
+                "          .then(response => response.status)",
+                "          .catch(err => -1)`",
+                "      ).catch(err => reject(err));",
+                "    });",
+                "  }",
+                "",
+                "  pass(options) {",
+                "    return options.driver.getAppManifest()",
+                "      .then(response => {",
+                "        return response && manifestParser(response.data, response.url, options.url);",
+                "      })",
+                "      .then(manifest => {",
+                "        if (!manifest || !manifest.value) {",
+                "          const detailedMsg = manifest && manifest.debugString;",
+                "          this.debugString = detailedMsg ?",
+                "              `Error fetching web app manifest: ${detailedMsg}` :",
+                "              `No usable web app manifest found on page ${options.url}`;",
+                "          return;",
+                "        }",
+                "",
+                "        if (manifest.value.start_url.debugString) {",
+                "          // Even if the start URL had an error, the browser will still supply a fallback URL.",
+                "          // Therefore, we only set the debugString here and continue with the fetch.",
+                "          this.debugString = manifest.value.start_url.debugString;",
+                "        }",
+                "",
+                "        this.startUrl = manifest.value.start_url.value;",
+                "        return this.executeFetchRequest(options.driver, this.startUrl);",
+                "      });",
+                "  }",
+                "",
+                "  afterPass(options, tracingData) {",
+                "    const networkRecords = tracingData.networkRecords;",
+                "    const navigationRecord = networkRecords.filter(record => {",
+                "      return URL.equalWithExcludedFragments(record._url, this.startUrl) &&",
+                "        record._fetchedViaServiceWorker;",
+                "    }).pop(); // Take the last record that matches.",
+                "",
+                "    return options.driver.goOnline(options)",
+                "      .then(_ => {",
+                "        if (!this.startUrl) {",
+                "          return {",
+                "            statusCode: -1,",
+                "            debugString: this.debugString || 'No start URL to fetch',",
+                "          };",
+                "        } else if (!navigationRecord) {",
+                "          return {",
+                "            statusCode: -1,",
+                "            debugString: this.debugString || 'Did not fetch start URL from service worker',",
+                "          };",
+                "        } else {",
+                "          return {",
+                "            statusCode: navigationRecord.statusCode,",
+                "            debugString: this.debugString,",
+                "          };",
+                "        }",
+                "      });",
+                "  }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

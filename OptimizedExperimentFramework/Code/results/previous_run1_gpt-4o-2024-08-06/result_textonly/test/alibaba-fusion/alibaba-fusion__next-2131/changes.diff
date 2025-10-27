@@ -1,0 +1,71 @@
+diff --git a/src/tree/view/tree.jsx b/src/tree/view/tree.jsx
+index 6f2789e5c..33abf61b2 100644
+--- a/src/tree/view/tree.jsx
++++ b/src/tree/view/tree.jsx
+@@ -141,39 +141,40 @@ const preHandleData = (dataSource, props) => {
+     const k2n = {};
+     const p2n = {};
+ 
+-    const drill = (data = [], level = 1, prefix = '0', parent) =>
+-        data.map((item, index) => {
+-            // 为了兼容之前的实现 保留非法节点
+-            if (item.illegalFlag) {
+-                return item;
+-            }
++const drill = (data = [], level = 1, prefix = '0', parent) =>
++    data.map((item, index) => {
++        // 为了兼容之前的实现 保留非法节点
++        if (item.illegalFlag) {
++            return item;
++        }
+ 
+-            const { children } = item;
+-            const pos = `${prefix}-${index}`;
+-            let { key } = item;
++        const { children } = item;
++        const pos = `${prefix}-${index}`;
++        let { key } = item;
+ 
+-            item.pos = pos;
+-            item.level = level;
++        item.pos = pos;
++        item.level = level;
+ 
+-            // 判断为叶子节点
+-            // - 指定isLeaf属性
+-            // - loadData模式下 没有指定isLeaf为true
+-            // - 存在children元素
+-            if (!('isLeaf' in item)) {
+-                item.isLeaf = !((children && children.length) || props.loadData);
+-            }
+-            item.isLastChild = parent ? [].concat(parent.isLastChild || [], index === data.length - 1) : [];
++        // 判断为叶子节点
++        // - 指定isLeaf属性
++        // - loadData模式下 没有指定isLeaf为true
++        // - 存在children元素
++        if (!('isLeaf' in item)) {
++            item.isLeaf = !((children && children.length) || props.loadData);
++        }
++        item.isLastChild = parent ? [].concat(parent.isLastChild || [], index === data.length - 1) : [];
+ 
+-            if (key === undefined || key === null) {
+-                item.key = key = pos;
+-            }
++        // Use a more stable identifier for keys if available
++        if (key === undefined || key === null) {
++            item.key = key = item.id || pos; // Assuming 'id' is a unique identifier in the data
++        }
+ 
+-            !item.isLeaf && drill(children, level + 1, pos, item);
++        !item.isLeaf && drill(children, level + 1, pos, item);
+ 
+-            k2n[key] = p2n[pos] = { ...item };
++        k2n[key] = p2n[pos] = { ...item };
+ 
+-            return item;
+-        });
++        return item;
++    });
+ 
+     return { dataSource: drill(dataSource), k2n, p2n };
+ };

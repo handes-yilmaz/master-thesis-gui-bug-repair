@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/ImageArcGISRest.js",
+            "src/ol/source/TileArcGISRest.js"
+        ],
+        "explanation": "The file 'ImageArcGISRest.js' is directly related to the bug because it contains the implementation of the ImageArcGISRest source, including the handling of the ratio parameter. This is where the default ratio issue originates. The 'TileArcGISRest.js' file may also be relevant as it could involve similar logic or configuration for handling ArcGIS tiles, which might also be affected by the ratio settings. Both files would need to be reviewed and potentially modified to fix the layer-map mismatch issue.",
+        "bug_scenario": "In OpenLayers version 7.4, the default ratio parameter in ImageArcGISRest is set to 1.5. When the computer's zoom or scaling ratio is not 100%, it leads to a mismatch between the loaded ArcGIS MapServer layers and the map, causing misalignment and incorrect rendering. This issue persists even after map rotation, resulting in layers not aligning with the rotated map. The workaround is to set the ratio to 1 to solve these issues."
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "1/1": {
+        "src/language-js/print/type-parameters.js": [
+            {
+                "SEARCH": [
+                    "node[paramsKey].length === 0 ||",
+                    "(node[paramsKey].length === 1 &&",
+                    "(node[paramsKey][0].type === \"NullableTypeAnnotation\" ||",
+                    "shouldHugType(node[paramsKey][0]))));"
+                ],
+                "REPLACE": [
+                    "      node[paramsKey].length === 0 ||",
+                    "      (node[paramsKey].length === 1 &&",
+                    "        (node[paramsKey][0].type === \"NullableTypeAnnotation\" ||",
+                    "          shouldHugType(node[paramsKey][0])) &&",
+                    "        !shouldPrintComma(options, \"all\")));"
+                ]
+            }
+        ],
+        "src/language-js/print/typescript.js": [
+            {
+                "SEARCH": [
+                    "const trailingComma =",
+                    "node.type === \"TSTypeParameterInstantiation\" // https://github.com/microsoft/TypeScript/issues/21984",
+                    "? \"\"",
+                    ": getFunctionParameters(node).length === 1 &&",
+                    "isTSXFile(options) &&",
+                    "!node[paramsKey][0].constraint &&",
+                    "path.getParentNode().type === \"ArrowFunctionExpression\"",
+                    "? \",\"",
+                    ": shouldPrintComma(options, \"all\")",
+                    "? ifBreak(\",\")",
+                    ": \"\";"
+                ],
+                "REPLACE": [
+                    "      const trailingComma =",
+                    "        node.type === \"TSTypeParameterInstantiation\" // https://github.com/microsoft/TypeScript/issues/21984",
+                    "          ? \"\"",
+                    "          : getFunctionParameters(node).length === 1 &&",
+                    "            isTSXFile(options) &&",
+                    "            !node[paramsKey][0].constraint &&",
+                    "            path.getParentNode().type === \"ArrowFunctionExpression\"",
+                    "          ? \",\"",
+                    "          : shouldPrintComma(options, \"all\") && node[paramsKey].length > 0",
+                    "          ? ifBreak(\",\")",
+                    "          : \"\";"
+                ]
+            }
+        ]
+    }
+}

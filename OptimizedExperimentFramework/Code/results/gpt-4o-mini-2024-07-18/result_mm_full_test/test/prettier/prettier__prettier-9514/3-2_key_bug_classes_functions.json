@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/parser-babel.js//babelOptions",
+            "src/language-js/parser-babel.js//createParse",
+            "src/language-js/parser-flow.js//parse",
+            "src/main/parser.js//resolveParser"
+        ],
+        "bug_functions": [
+            "src/language-js/parser-babel.js//createParse",
+            "src/language-js/parser-flow.js//parse",
+            "src/main/parser.js//parse"
+        ],
+        "explanation": "These classes and functions are related to the parsing process of JavaScript code. The `babelOptions` function defines the configuration for the Babel parser, which is currently being used. The `createParse` function is responsible for creating a parsing function that can utilize different parsers, including Babel and potentially Cherow. The `parse` function in both `parser-flow.js` and `parser.js` is crucial as it handles the actual parsing of the text input. To implement the switch to Cherow, modifications will likely be needed in these functions to integrate Cherow as the primary parser, ensuring that the new parser is correctly configured and utilized.",
+        "bug_scenario": "The bug scenario involves the need to replace the current JavaScript parser (Babylon) with the Cherow parser to improve performance, particularly in format-on-save scenarios. The Cherow parser is reported to be significantly faster than Babylon, which could enhance usability."
+    }
+}

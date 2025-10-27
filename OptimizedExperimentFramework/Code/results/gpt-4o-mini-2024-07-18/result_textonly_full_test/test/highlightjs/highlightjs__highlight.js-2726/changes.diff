@@ -1,0 +1,34 @@
+diff --git a/src/lib/token_tree.js b/src/lib/token_tree.js
+index b748d6b..91957ee 100644
+--- a/src/lib/token_tree.js
++++ b/src/lib/token_tree.js
+@@ -127,9 +127,13 @@ export default class TokenTreeEmitter extends TokenTree {
+   addKeyword(text, kind) {
+     if (text === "") { return; }
+ 
+-    this.openNode(kind);
+-    this.addText(text);
+-    this.closeNode();
++const braceRegex = /{([^}]*)}/g;
++let match;
++while ((match = braceRegex.exec(text)) !== null) {
++this.openNode(kind);
++this.addText(match[1]); // Add content inside braces
++this.closeNode();
++}
+   }
+ 
+   /**
+@@ -138,7 +142,11 @@ export default class TokenTreeEmitter extends TokenTree {
+   addText(text) {
+     if (text === "") { return; }
+ 
+-    this.add(text);
++const braceRegex = /{([^}]*)}/g;
++let match;
++while ((match = braceRegex.exec(text)) !== null) {
++this.add(match[1]); // Add content inside braces
++}
+   }
+ 
+   /**

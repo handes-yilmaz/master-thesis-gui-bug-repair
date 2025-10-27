@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/draw/BpmnRenderer",
+            "lib/features/modeling/BpmnLayouter",
+            "lib/features/modeling/BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/draw/BpmnRenderer//drawShape",
+            "lib/draw/BpmnRenderer//drawConnection",
+            "lib/features/modeling/BpmnLayouter//layoutConnection",
+            "lib/features/modeling/BpmnUpdater//updateConnectionWaypoints"
+        ],
+        "explanation": "The classes and functions identified are crucial for rendering and laying out BPMN diagrams. The `BpmnRenderer` class is responsible for drawing shapes and connections, which directly affects how the diagram is displayed. The `BpmnLayouter` class handles the layout of connections, which is essential for maintaining the correct positioning of elements when processes are wrapped. Lastly, the `BpmnUpdater` class updates connection waypoints, which is necessary to ensure that the diagram remains stable and does not jump when changes are made. These elements are likely where the bug causing the diagram to jump can be addressed.",
+        "bug_scenario": "The diagram jumps when wrapping a process in a pool, which disrupts the expected behavior of the diagram remaining in the current viewport."
+    }
+}

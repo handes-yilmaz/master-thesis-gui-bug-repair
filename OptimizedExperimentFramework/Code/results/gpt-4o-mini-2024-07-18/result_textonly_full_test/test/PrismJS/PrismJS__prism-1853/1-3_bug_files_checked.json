@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-json.js",
+            "components/prism-json.min.js",
+            "plugins/jsonp-highlight/prism-jsonp-highlight.js",
+            "plugins/jsonp-highlight/prism-jsonp-highlight.min.js",
+            "components/prism-core.js",
+            "components/prism-core.min.js"
+        ],
+        "explanation": "These files are related to JSON parsing and highlighting functionality. The 'prism-json.js' and its minified version contain the logic for parsing and highlighting JSON syntax, which is directly related to the reported bug of incorrect tokenization. The 'prism-jsonp-highlight.js' files are also involved, as they handle JSONP requests, which might be relevant given the 'Accept: */*' header. Additionally, 'prism-core.js' is essential as it provides the foundational functionality for all Prism components, and any issues with JSON tokenization may stem from core logic that affects how all languages are processed.",
+        "bug_scenario": "The issue arises when logging server response as JSON with the HTTP header 'Accept: */*', which breaks the JSON tokenization. This is evidenced by the provided code snippet, where the string '/*' is being incorrectly highlighted as a comment, leading to JSON parsing issues."
+    }
+}

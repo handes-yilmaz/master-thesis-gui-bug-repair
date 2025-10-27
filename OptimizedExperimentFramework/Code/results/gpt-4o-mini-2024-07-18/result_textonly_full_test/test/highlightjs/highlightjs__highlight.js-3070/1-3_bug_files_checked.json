@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/php.js",
+            "src/lib/html_renderer.js",
+            "src/lib/compile_keywords.js",
+            "src/highlight.js"
+        ],
+        "explanation": "These files are related to the bug because 'php.js' is responsible for defining how PHP syntax highlighting is handled. The 'html_renderer.js' handles the rendering of the HTML output, which may be where the extra PHP tag is being added. The 'compile_keywords.js' file deals with compiling the keywords for the languages and may influence how classes are assigned or processed. Lastly, 'highlight.js' is the main file that orchestrates the highlighting process, including how classes are managed for different languages, so it is crucial for understanding the bug's origin.",
+        "bug_scenario": "When the 'language-php' class is added to a code block, an extra PHP tag is being applied, which is not the expected behavior. The issue specifically arises when the 'highlightAll' function is used, affecting only the PHP language, while other languages work correctly. The expected behavior is that adding the 'language-php' class should not result in an additional PHP tag being applied."
+    }
+}

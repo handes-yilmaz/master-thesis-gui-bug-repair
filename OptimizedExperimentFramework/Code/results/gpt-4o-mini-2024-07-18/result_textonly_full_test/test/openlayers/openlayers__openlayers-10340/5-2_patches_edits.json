@@ -1,0 +1,63 @@
+{
+    "1/1": {
+        "src/ol/geom/Circle.js": [
+            {
+                "SEARCH": [
+                    "this.setLayout(opt_layout, center, 0);",
+                    "if (!this.flatCoordinates) {",
+                    "this.flatCoordinates = [];",
+                    "}",
+                    "/** @type {Array<number>} */",
+                    "const flatCoordinates = this.flatCoordinates;",
+                    "let offset = deflateCoordinate(",
+                    "flatCoordinates, 0, center, this.stride);",
+                    "flatCoordinates[offset++] = flatCoordinates[0] + radius;"
+                ],
+                "REPLACE": [
+                    "    this.setLayout(opt_layout, center, 0);",
+                    "    if (!this.flatCoordinates) {",
+                    "      this.flatCoordinates = [];",
+                    "    }",
+                    "    /** @type {Array<number>} */",
+                    "    const flatCoordinates = this.flatCoordinates;",
+                    "    let offset = deflateCoordinate(",
+                    "      flatCoordinates, 0, center, this.stride);",
+                    "    flatCoordinates[offset++] = flatCoordinates[0] + radius * Math.cos(center[1]);"
+                ]
+            }
+        ],
+        "src/ol/geom/Polygon.js": [
+            {
+                "SEARCH": [
+                    "const sides = flatCoordinates.length / stride - 1;"
+                ],
+                "REPLACE": [
+                    "    const sides = Math.round(flatCoordinates.length / stride - 1);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const boxCoordinates = [[",
+                    "getBottomLeft(extent),",
+                    "getBottomRight(extent),",
+                    "getTopRight(extent),",
+                    "getTopLeft(extent),",
+                    "getBottomLeft(extent)"
+                ],
+                "REPLACE": [
+                    "    const boxCoordinates = [[",
+                    "        getBottomLeft(extent),",
+                    "        getBottomRight(extent),",
+                    "        getTopRight(extent),",
+                    "        getTopLeft(extent),",
+                    "        getBottomLeft(extent)",
+                    "    ]];",
+                    "    // Adjust coordinates for geographic projection",
+                    "    for (let i = 0; i < boxCoordinates[0].length; i++) {",
+                    "        boxCoordinates[0][i] = adjustForGeographicProjection(boxCoordinates[0][i]);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "wrapX: options.wrapX,"
+                ],
+                "REPLACE": [
+                    "      wrapX: options.wrapX !== undefined ? options.wrapX : true, // Default to true if not specified"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.setTileSizes(commonSourceTileSizes);"
+                ],
+                "REPLACE": [
+                    "    if (this.wrapX) {",
+                    "      // Ensure that wrapX is respected during reprojection",
+                    "      this.tileGrid.setWrapX(true);",
+                    "    }",
+                    "    this.setTileSizes(commonSourceTileSizes);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const pixelBounds = [",
+                    "Math.round(x * (sourceTileSize[0] * resolutionFactor)),",
+                    "Math.round(y * (sourceTileSize[1] * resolutionFactor)),",
+                    "Math.round((x + 1) * (sourceTileSize[0] * resolutionFactor)),",
+                    "Math.round((y + 1) * (sourceTileSize[1] * resolutionFactor)),",
+                    "];"
+                ],
+                "REPLACE": [
+                    "      const pixelBounds = this.wrapX ? [",
+                    "        Math.round(x * (sourceTileSize[0] * resolutionFactor)),",
+                    "        Math.round(y * (sourceTileSize[1] * resolutionFactor)),",
+                    "        Math.round((x + 1) * (sourceTileSize[0] * resolutionFactor)),",
+                    "        Math.round((y + 1) * (sourceTileSize[1] * resolutionFactor)),",
+                    "      ] : [",
+                    "        Math.max(0, Math.round(x * (sourceTileSize[0] * resolutionFactor))),",
+                    "        Math.max(0, Math.round(y * (sourceTileSize[1] * resolutionFactor))),",
+                    "        Math.min(this.tileGrid.getExtent()[2], Math.round((x + 1) * (sourceTileSize[0] * resolutionFactor))),",
+                    "        Math.min(this.tileGrid.getExtent()[3], Math.round((y + 1) * (sourceTileSize[1] * resolutionFactor))),",
+                    "      ];"
+                ]
+            }
+        ]
+    }
+}

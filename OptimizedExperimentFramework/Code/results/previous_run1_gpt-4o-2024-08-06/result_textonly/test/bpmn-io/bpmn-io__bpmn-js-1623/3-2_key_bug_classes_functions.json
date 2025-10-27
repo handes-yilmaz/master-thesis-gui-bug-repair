@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//DrilldownOverlayBehavior",
+            "lib/features/drilldown/SubprocessCompatibility.js//SubprocessCompatibility"
+        ],
+        "bug_functions": [],
+        "explanation": "The class `DrilldownOverlayBehavior` in `lib/features/drilldown/DrilldownOverlayBehavior.js` is responsible for managing the overlays that appear when a subprocess can be drilled down into. This directly relates to the bug where the overlay for deep linking disappears, as this class handles the addition and removal of these overlays. Any issue with overlay visibility is likely to originate here.\n\nThe class `SubprocessCompatibility` in `lib/features/drilldown/SubprocessCompatibility.js` is involved in handling subprocesses and their compatibility with the diagram rendering in the BPMN modeler. This includes creating new diagram planes for collapsed subprocesses, which ties into the issue of managing subprocess overlays and their visibility. Since the bug involves the interaction between subprocess navigation and overlay visibility, this class is also a critical point of interest for resolving the issue.",
+        "bug_scenario": "The bug scenario involves the interaction between a multi-diagram plugin for BPMN (Business Process Model and Notation) and a new deep linking feature in the Camunda Modeler 5.0. The plugin allows navigation between global subprocesses within BPMN diagrams, but when using the deep linking feature, the overlay indicating the ability to drill down into subprocesses disappears unexpectedly. The desired solution is to have both features work synergistically, allowing seamless navigation between multiple processes and subprocesses in the same BPMN diagram."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//DrilldownOverlayBehavior",
+            "lib/features/drilldown/SubprocessCompatibility.js//SubprocessCompatibility"
+        ],
+        "bug_functions": [
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//DrilldownOverlayBehavior.prototype.updateDrilldownOverlay",
+            "lib/features/drilldown/DrilldownOverlayBehavior.js//DrilldownOverlayBehavior.prototype.addOverlay",
+            "lib/features/drilldown/SubprocessCompatibility.js//SubprocessCompatibility.prototype.createNewDiagrams"
+        ],
+        "explanation": "The identified classes and functions are directly related to the management and creation of overlays and diagrams for subprocesses in the BPMN framework. The `DrilldownOverlayBehavior` class and its methods like `updateDrilldownOverlay` and `addOverlay` are responsible for adding and updating overlays, which are crucial in managing the visibility and functionality of deep linking in subprocesses. The `SubprocessCompatibility` class and its method `createNewDiagrams` deal with the creation of new diagram planes for subprocesses, which is related to ensuring that subprocesses are correctly represented and navigable. These components are directly tied to the issue of overlays being lost and subprocess navigation not functioning as intended, making them key bug elements.",
+        "bug_scenario": "The bug scenario involves a multi-diagram plugin for BPMN diagrams where deep linking overlays for subprocesses are not functioning as expected. Specifically, when navigating through diagrams, the deep linking overlay for subprocesses is lost, and the expected functionality of navigating between multiple processes and subprocesses within the same BPMN is not working."
+    }
+}

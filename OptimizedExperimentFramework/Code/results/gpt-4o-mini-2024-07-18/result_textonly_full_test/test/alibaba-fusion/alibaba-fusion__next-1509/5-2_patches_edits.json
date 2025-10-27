@@ -1,0 +1,40 @@
+{
+    "1/1": {
+        "src/dialog/dialog.jsx": [
+            {
+                "SEARCH": [
+                    "container: this.props.popupContainer || overlayProps.container,"
+                ],
+                "REPLACE": [
+                    "            container: this.props.popupContainer || overlayProps.container || document.body,"
+                ]
+            }
+        ],
+        "src/config-provider/config.jsx": [
+            {
+                "SEARCH": [
+                    "popupContainer: PropTypes.oneOfType(["
+                ],
+                "REPLACE": [
+                    "            popupContainer: PropTypes.oneOfType([",
+                    "                PropTypes.string,",
+                    "                PropTypes.func,",
+                    "                PropTypes.node,"
+                ]
+            }
+        ],
+        "src/dialog/index.jsx": [
+            {
+                "SEARCH": [
+                    "return confirm(config);"
+                ],
+                "REPLACE": [
+                    "    return confirm({",
+                    "        ...config,",
+                    "        container: config.popupContainer || ConfigProvider.getContextProps(config, 'Dialog').nextPopupContainer,",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/network-rtt.js",
+            "lighthouse-core/audits/network-server-latency.js",
+            "lighthouse-core/lib/network-request.js"
+        ],
+        "explanation": "These files are key bug files because they directly handle network requests and response times. The 'network-rtt.js' file calculates round-trip times, which is relevant to the user's concern about RTT for non-network URLs. The 'network-server-latency.js' file deals with server latencies, which is crucial for understanding how server response times are calculated. Lastly, 'network-request.js' manages the network request lifecycle, including how requests are processed and their associated timings, making it essential for addressing the issue of misclassifying non-network URLs.",
+        "bug_scenario": "The bug scenario involves the Lantern simulator treating non-network URLs as actual network requests, which leads to incorrect server response time calculations. The user suggests that while a non-zero round-trip time (RTT) might be reasonable, there should be no server response time for non-network URLs."
+    }
+}

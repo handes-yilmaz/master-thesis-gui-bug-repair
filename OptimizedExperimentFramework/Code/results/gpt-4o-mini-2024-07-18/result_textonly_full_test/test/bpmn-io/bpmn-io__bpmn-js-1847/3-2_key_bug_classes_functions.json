@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/create-append-anything/CreateAppendKeyboardBindings",
+            "lib/features/create-append-anything/CreateAppendEditorActions",
+            "lib/features/create-append-anything/AppendMenuProvider"
+        ],
+        "bug_functions": [
+            "lib/features/create-append-anything/CreateAppendKeyboardBindings//registerBindings",
+            "lib/features/create-append-anything/CreateAppendKeyboardBindings//addListener",
+            "lib/features/create-append-anything/CreateAppendEditorActions//registerActions",
+            "lib/features/create-append-anything/AppendMenuProvider//getPopupMenuEntries",
+            "lib/features/create-append-anything/AppendMenuProvider//_filterEntries"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the keyboard bindings and editor actions for appending and creating elements. The 'registerBindings' function in 'CreateAppendKeyboardBindings' is responsible for setting up the key listener for the 'a' key, which should trigger an append action. The 'addListener' function defines the behavior when 'a' is pressed, determining whether to append or create based on the selection state. The 'registerActions' function in 'CreateAppendEditorActions' registers the actions that can be triggered, including 'appendElement' and 'createElement'. Lastly, the 'getPopupMenuEntries' and '_filterEntries' functions in 'AppendMenuProvider' manage the available append options based on the context, which is crucial for ensuring that the append action is available when it should be.",
+        "bug_scenario": "The append shortcut 'a' is not functioning correctly in contexts where it should trigger an append action. Instead, it defaults to creating a new element, even when an append action is applicable. This issue is demonstrated in the provided GIF, where pressing 'a' does not result in any action when it should."
+    }
+}

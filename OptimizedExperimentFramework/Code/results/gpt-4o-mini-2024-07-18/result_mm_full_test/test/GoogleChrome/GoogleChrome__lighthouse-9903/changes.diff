@@ -1,0 +1,37 @@
+diff --git a/lighthouse-core/audits/uses-rel-preconnect.js b/lighthouse-core/audits/uses-rel-preconnect.js
+index 8b652eb..5e91984 100644
+--- a/lighthouse-core/audits/uses-rel-preconnect.js
++++ b/lighthouse-core/audits/uses-rel-preconnect.js
+@@ -166,8 +166,10 @@ class UsesRelPreconnectAudit extends Audit {
+       if (wastedMs < IGNORE_THRESHOLD_IN_MS) return;
+ 
+       if (preconnectOrigins.has(securityOrigin)) {
+-        // Add a warning for any origin the user tried to preconnect to but failed
++      // Check if the crossorigin attribute is set correctly
++      if (!preconnectLinks.some(link => link.href === securityOrigin && link.crossOrigin)) {
+         warnings.push(str_(UIStrings.crossoriginWarning, {securityOrigin}));
++      }
+         return;
+       }
+ 
+diff --git a/lighthouse-core/gather/gatherers/link-elements.js b/lighthouse-core/gather/gatherers/link-elements.js
+index a6961ed..8f624fc 100644
+--- a/lighthouse-core/gather/gatherers/link-elements.js
++++ b/lighthouse-core/gather/gatherers/link-elements.js
+@@ -59,13 +59,15 @@ function getLinkElementsInDOM() {
+     // https://github.com/GoogleChrome/lighthouse/issues/9764
+     if (!(link instanceof HTMLLinkElement)) continue;
+ 
++    // Ensure the crossorigin attribute is normalized
++    const crossOrigin = link.crossOrigin ? link.crossOrigin.toLowerCase() : null;
+     linkElements.push({
+       rel: link.rel,
+       href: link.href,
+       hrefRaw: link.href,
+       hreflang: link.hreflang,
+       as: link.as,
+-      crossOrigin: link.crossOrigin,
++      crossOrigin: crossOrigin,
+       source: link.closest('head') ? 'head' : 'body',
+     });
+   }

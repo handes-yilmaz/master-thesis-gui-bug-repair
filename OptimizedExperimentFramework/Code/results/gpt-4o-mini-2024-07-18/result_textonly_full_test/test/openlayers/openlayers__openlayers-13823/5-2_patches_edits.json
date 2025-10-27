@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/ol/source/ImageWMS.js": [
+            {
+                "SEARCH": [
+                    "if (pixelRatio != 1 && (!this.hidpi_ || this.serverType_ === undefined)) {",
+                    "pixelRatio = 1;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (pixelRatio > 1 && this.hidpi_) {",
+                    "      pixelRatio = 1; // Ensure pixelRatio is set to 1 for HiDPI devices",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const imageResolution = resolution / pixelRatio;"
+                ],
+                "REPLACE": [
+                    "    const imageResolution = resolution / (this.hidpi_ ? pixelRatio : 1); // Adjust resolution based on hidpi_"
+                ]
+            }
+        ]
+    }
+}

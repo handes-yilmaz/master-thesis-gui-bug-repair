@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "LabelLayoutUtil.js": [
+            {
+                "SEARCH": [
+                    "const segmentIndex = someObject.segmentIndex; // This line may cause the error"
+                ],
+                "REPLACE": [
+                    "    const segmentIndex = someObject && someObject.segmentIndex; // Added check for undefined"
+                ]
+            }
+        ],
+        "LabelBehavior.js": [
+            {
+                "SEARCH": [
+                    "const labelPosition = labelLayoutUtil.getLabelPosition(label); // This line may cause the error"
+                ],
+                "REPLACE": [
+                    "    const labelPosition = labelLayoutUtil.getLabelPosition(label) || { x: 0, y: 0 }; // Fallback to default position"
+                ]
+            }
+        ]
+    }
+}

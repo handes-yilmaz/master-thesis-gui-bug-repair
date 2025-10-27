@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-shell-session.js",
+            "components/prism-shell-session.min.js"
+        ],
+        "explanation": "Given the issue is that the \"Shell session\" language tokenizer is broken, the files specifically related to the Shell session within the Prism components directory -- `prism-shell-session.js` and its minified counterpart `prism-shell-session.min.js` -- are the most likely places where the bug resides. Any changes or errors in these files could directly affect how shell session code is highlighted, leading to the observed problem. To fix the bug, these files should be reviewed for recent changes that could have introduced the issue, such as errors in the tokenizer definition or incorrect syntax handling changes.",
+        "bug_scenario": "The bug pertains to the broken language tokenizer for \"Shell session\" in the Prism JavaScript library, affecting code highlighting when this feature is used in a web download context. The issue arises because shell session language highlighting that previously functioned in an older release of Prism version 1.22 broke in subsequent versions, including 1.23. The broken behavior manifests as a lack of syntax highlighting for shell session code blocks, suggesting a regression in the component responsible for shell session highlighting."
+    },
+    "2": {
+        "bug_files": [
+            "components/prism-shell-session.js",
+            "components/prism-shell-session.min.js",
+            "prism.js"
+        ],
+        "explanation": "The bug report indicates that the issue specifically affects the 'Shell session' language tokenization. In the repository structure, files related to different languages are observed, with each language having its corresponding JavaScript files (e.g., 'prism-shell-session.js' and its minified version 'prism-shell-session.min.js'). These files are directly responsible for the tokenization logic of the 'Shell session' language, making them central to diagnosing and fixing the observed bug. Additionally, 'prism.js' is likely a core file that may involve initializing or configuring these components, so it could also contain code that influences the shell session's tokenization behavior.",
+        "bug_scenario": "The bug pertains to the incorrect tokenization of the \"Shell session\" language in the Prism library, specifically observed in versions 1.22 and 1.23. The problem began after an internal change in the library's download generation code, which affected the behavior of the tokenizer for this language. When inspecting the DOM, it is evident that the tokenizer does not function correctly, as highlighted text does not display as expected. The issue arises in both minified and development versions."
+    }
+}

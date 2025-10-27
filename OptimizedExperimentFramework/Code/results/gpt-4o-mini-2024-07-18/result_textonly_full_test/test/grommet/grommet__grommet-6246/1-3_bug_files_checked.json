@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/DataChart/DataChart.js",
+            "src/js/components/DataChart/utils.js",
+            "src/js/components/DataChart/XAxis.js",
+            "src/js/components/DataChart/YAxis.js",
+            "src/js/components/DataChart/Legend.js"
+        ],
+        "explanation": "These files are critical to the rendering and functionality of the DataChart component. The DataChart.js file contains the main implementation of the chart, where the data is processed and rendered. The utils.js file likely contains helper functions that may handle data transformation, including how negative values are treated. The XAxis.js and YAxis.js files are responsible for rendering the axes, which should account for negative values to display a zero line correctly. The Legend.js file helps in displaying the legend of the chart, which may include color coding for negative values. Therefore, modifications in these files are essential to address the rendering issue with negative data.",
+        "bug_scenario": "The DataChart component fails to render bars when provided with data that includes negative values. Instead of displaying the chart with a zero line as expected, it shows nothing. The user expects to have a default zero line guide for negative values and the ability to customize the colors for these values."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/DataChart/DataChart.js",
+            "src/js/components/DataChart/Legend.js",
+            "src/js/components/DataChart/XAxis.js",
+            "src/js/components/DataChart/YAxis.js",
+            "src/js/components/DataChart/utils.js"
+        ],
+        "explanation": "These files are related to the DataChart component, which is at the core of the bug. The DataChart.js file likely contains the rendering logic for the chart, including how it handles data values. The Legend.js, XAxis.js, and YAxis.js files are responsible for displaying various chart elements, including the zero line guide that is missing in the case of negative values. The utils.js file might contain helper functions for processing data, which is crucial for rendering the chart correctly. Any modifications to handle negative values or improve rendering need to be made in these files.",
+        "bug_scenario": "The DataChart component fails to render bars when the dataset contains negative values, resulting in an empty chart display. The expected behavior is for the chart to show a zero line guide and allow customization of negative value attributes."
+    }
+}

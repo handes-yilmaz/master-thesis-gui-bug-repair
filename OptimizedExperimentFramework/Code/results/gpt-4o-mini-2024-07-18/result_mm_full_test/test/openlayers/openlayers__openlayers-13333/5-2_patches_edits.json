@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const sources = this.getSources(frameState.extent, viewState.resolution);"
+                ],
+                "REPLACE": [
+                    "    const sources = this.getSources(getRenderExtent(frameState, frameState.extent), viewState.resolution);"
+                ]
+            }
+        ],
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "const wantedSamples = this.sourceInfo_[sourceIndex].bands;"
+                ],
+                "REPLACE": [
+                    "        const wantedSamples = this.sourceInfo_[sourceIndex].bands || [];"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "if (isEmpty(getRenderExtent(frameState, frameState.extent))) {"
+                ],
+                "REPLACE": [
+                    "    if (isEmpty(getRenderExtent(frameState, frameState.extent)) || !this.getLayer().getRenderSource()) {"
+                ]
+            }
+        ]
+    }
+}

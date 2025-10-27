@@ -1,0 +1,72 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "bibEngine",
+            "file_path": "src/config/pdf.ts",
+            "function_details": [
+                {
+                    "name": "bibEngine",
+                    "start_line": 20,
+                    "end_line": 30
+                }
+            ],
+            "function_code": [
+                "export function bibEngine(defaults: FormatPandoc, flags?: PandocFlags) {",
+                "  return flags?.natbib",
+                "    ? \"natbib\"",
+                "    : flags?.biblatex",
+                "    ? \"biblatex\"",
+                "    : defaults[kCiteMethod] === \"natbib\"",
+                "    ? \"natbib\"",
+                "    : defaults[kCiteMethod] == \"biblatex\"",
+                "    ? \"biblatex\"",
+                "    : undefined;",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "isLatexPdfEngine",
+            "file_path": "src/config/pdf.ts",
+            "function_details": [
+                {
+                    "name": "isLatexPdfEngine",
+                    "start_line": 73,
+                    "end_line": 77
+                }
+            ],
+            "function_code": [
+                "export function isLatexPdfEngine(engine: PdfEngine) {",
+                "  return [\"pdflatex\", \"xelatex\", \"lualatex\", \"latexmk\"].includes(",
+                "    engine.pdfEngine,",
+                "  );",
+                "}"
+            ]
+        },
+        "3": {
+            "function_name": "useContextPdfOutputRecipe",
+            "file_path": "src/command/render/output-tex.ts",
+            "function_details": [
+                {
+                    "name": "useContextPdfOutputRecipe",
+                    "start_line": 142,
+                    "end_line": 153
+                }
+            ],
+            "function_code": [
+                "export function useContextPdfOutputRecipe(",
+                "  format: Format,",
+                "  flags?: RenderFlags,",
+                ") {",
+                "  const kContextPdfEngine = \"context\";",
+                "  if (format.pandoc.to === \"pdf\" && format.render[kOutputExt] === \"pdf\") {",
+                "    const engine = pdfEngine(format.pandoc, format.render, flags);",
+                "    return engine.pdfEngine === kContextPdfEngine;",
+                "  } else {",
+                "    return false;",
+                "  }",
+                "}"
+            ]
+        }
+    }
+}

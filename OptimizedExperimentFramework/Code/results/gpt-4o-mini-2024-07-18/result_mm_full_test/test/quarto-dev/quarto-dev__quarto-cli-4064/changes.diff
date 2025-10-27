@@ -1,0 +1,22 @@
+diff --git a/src/format/reveal/format-reveal.ts b/src/format/reveal/format-reveal.ts
+index 242f04a..8f571fc 100644
+--- a/src/format/reveal/format-reveal.ts
++++ b/src/format/reveal/format-reveal.ts
+@@ -81,7 +81,16 @@ export function revealResolveFormat(format: Format) {
+ }
+ 
+ export function revealjsFormat() {
+-  return mergeConfigs(
++    // Ensure width and height can accept percentage values
++    const width = format.metadata.width;
++    const height = format.metadata.height;
++    if (typeof width === 'string' && width.endsWith('%')) {
++        format.metadata.width = width; // Keep as string
++    }
++    if (typeof height === 'string' && height.endsWith('%')) {
++        format.metadata.height = height; // Keep as string
++    }
++    return mergeConfigs(
+     createHtmlPresentationFormat("RevealJS", 10, 5),
+     {
+       pandoc: {

@@ -1,0 +1,21 @@
+diff --git a/lib/features/modeling/behavior/ReplaceConnectionBehavior.js b/lib/features/modeling/behavior/ReplaceConnectionBehavior.js
+index bc21ea30..de52a8a6 100644
+--- a/lib/features/modeling/behavior/ReplaceConnectionBehavior.js
++++ b/lib/features/modeling/behavior/ReplaceConnectionBehavior.js
+@@ -78,10 +78,15 @@ export default function ReplaceConnectionBehavior(eventBus, modeling, bpmnRules,
+     // replace SequenceFlow <> MessageFlow
+ 
+     if (replacementType) {
+-      modeling.connect(source, target, {
++      const newConnection = modeling.connect(source, target, {
+         type: replacementType,
+         waypoints: connection.waypoints.slice()
+       });
++
++      // Ensure the new connection is part of the correct parent
++      if (newConnection && parent !== newConnection.parent) {
++        modeling.updateSemanticParent(newConnection, parent);
++      }
+     }
+   }
+ 

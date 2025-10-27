@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/canvas/TextBuilder",
+            "src/ol/render/VectorContext",
+            "src/ol/layer/Vector"
+        ],
+        "bug_functions": [
+            "src/ol/render/canvas/TextBuilder//drawText",
+            "src/ol/render/VectorContext//drawText",
+            "src/ol/layer/Vector//createRenderer"
+        ],
+        "explanation": "The classes and functions identified are directly related to the rendering of text in vector layers. The `TextBuilder` class is responsible for building text on the canvas, and its `drawText` function is crucial for how text is rendered, including handling offsets and rotations. The `VectorContext` class provides the context for drawing geometries, including text, and its `drawText` function is essential for ensuring that text is rendered correctly in the vector context. Lastly, the `Vector` class's `createRenderer` function is important as it initializes the rendering process for vector layers, which includes how text is handled during rendering. These elements are key to addressing the inconsistencies reported in the bug.",
+        "bug_scenario": "The bug involves inconsistent rendering of offset and rotated text between vector layers and vector context. The immediate renderer rotates text around its offset anchor point, while the vector layer renderer does not exhibit the same behavior, leading to discrepancies in how text is displayed when both offset and rotation are applied."
+    }
+}

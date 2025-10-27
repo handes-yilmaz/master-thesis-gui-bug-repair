@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/reproj/Image.js",
+            "src/ol/reproj/common.js"
+        ],
+        "explanation": "These files are related to the bug because `GeoTIFF.js` is the source file where metadata extraction occurs, and it needs to be modified to incorporate the new logic for normalization using `STATISTICS_MAXIMUM` and `STATISTICS_MINIMUM`. The `Image.js` and `common.js` files in the reproj directory may also need adjustments to ensure that the normalization process is correctly implemented within the image reprojection context.",
+        "bug_scenario": "The bug scenario involves the need to utilize the values of `STATISTICS_MAXIMUM` and `STATISTICS_MINIMUM` obtained from the `getGDALMetadata` method in the `GeoTIFF.js` file to set default maximum and minimum values for normalization processes when these statistics are available."
+    }
+}

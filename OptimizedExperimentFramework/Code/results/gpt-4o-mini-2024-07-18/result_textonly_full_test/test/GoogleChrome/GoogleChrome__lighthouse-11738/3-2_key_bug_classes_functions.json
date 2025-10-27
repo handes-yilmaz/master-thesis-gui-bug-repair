@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/metrics/cumulative-layout-shift.js//CumulativeLayoutShift"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/metrics/cumulative-layout-shift.js//audit",
+            "lighthouse-core/computed/metrics/cumulative-layout-shift.js//compute_",
+            "lighthouse-core/gather/driver/wait-for-condition.js//waitForFullyLoaded"
+        ],
+        "explanation": "The CumulativeLayoutShift class is directly related to the bug as it is responsible for calculating the CLS metric. The audit function within this class is crucial for determining the score based on the CLS value. The compute_ function in the cumulative-layout-shift.js file is responsible for processing the trace data to compute the CLS, which is essential for accurate measurement. Additionally, the waitForFullyLoaded function in wait-for-condition.js is relevant because it manages the timing of when Lighthouse considers the page fully loaded, which directly impacts the accuracy of the CLS measurement. Adjustments in these functions may be necessary to ensure that Lighthouse waits long enough to capture all relevant layout shifts.",
+        "bug_scenario": "The bug scenario indicates that Lighthouse is not waiting long enough to accurately measure the Cumulative Layout Shift (CLS) metric for certain pages. This results in potentially misleading performance scores, as the CLS may not be fully captured if the page loads slowly or has significant layout shifts after the initial load."
+    }
+}

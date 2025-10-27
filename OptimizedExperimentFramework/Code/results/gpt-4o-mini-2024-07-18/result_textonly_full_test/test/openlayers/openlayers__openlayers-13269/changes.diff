@@ -1,0 +1,26 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index c25caf4..0511b19 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -434,7 +434,7 @@ class WebGLTileLayer extends BaseTileLayer {
+       }
+       ready = ready && sourceState == SourceState.READY;
+     }
+-    const canvas = this.renderSources(frameState, sources);
++    const canvas = this.renderSources(frameState, sources, this.getGutter());
+     if (this.getRenderer().renderComplete && ready) {
+       // Fully rendered, done.
+       this.renderedResolution_ = viewState.resolution;
+diff --git a/src/ol/source/TileWMS.js b/src/ol/source/TileWMS.js
+index a109455..10bd305 100644
+--- a/src/ol/source/TileWMS.js
++++ b/src/ol/source/TileWMS.js
+@@ -194,7 +194,7 @@ class TileWMS extends TileImage {
+     let tileExtent = tileGrid.getTileCoordExtent(tileCoord, this.tmpExtent_);
+     let tileSize = toSize(tileGrid.getTileSize(tileCoord[0]), this.tmpSize);
+ 
+-    const gutter = this.gutter_;
++    const gutter = this.getGutter();
+     if (gutter !== 0) {
+       tileSize = bufferSize(tileSize, gutter, this.tmpSize);
+       tileExtent = buffer(tileExtent, tileResolution * gutter, tileExtent);

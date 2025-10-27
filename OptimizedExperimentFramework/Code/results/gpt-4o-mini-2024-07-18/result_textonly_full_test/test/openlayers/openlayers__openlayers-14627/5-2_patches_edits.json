@@ -1,0 +1,46 @@
+{
+    "1/1": {
+        "src/ol/proj/epsg4326.js": [
+            {
+                "SEARCH": [
+                    "const length = input.length;"
+                ],
+                "REPLACE": [
+                    "  if (input.length === 0) {",
+                    "    return output; // Return early for empty input",
+                    "  }",
+                    "  ",
+                    "  const length = input.length;  "
+                ]
+            }
+        ],
+        "src/ol/proj/epsg3857.js": [
+            {
+                "SEARCH": [
+                    "output[i + 1] = y;"
+                ],
+                "REPLACE": [
+                    "    if (input[i + 1] === Infinity) {",
+                    "      output[i + 1] = Infinity; // Handle Infinity case",
+                    "    } else {",
+                    "      output[i + 1] = y;",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/extent.js": [
+            {
+                "SEARCH": [
+                    "let coordinates = [];"
+                ],
+                "REPLACE": [
+                    "  if (extent[0] === Infinity || extent[1] === Infinity || extent[2] === Infinity || extent[3] === Infinity) {",
+                    "    return extent; // Return early for empty extent",
+                    "  }",
+                    "  ",
+                    "  let coordinates = [];  "
+                ]
+            }
+        ]
+    }
+}

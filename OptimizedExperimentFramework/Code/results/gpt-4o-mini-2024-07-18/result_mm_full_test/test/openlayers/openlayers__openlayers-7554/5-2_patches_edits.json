@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "src/interaction/Draw.js": [
+            {
+                "SEARCH": [
+                    "this.source = new ol.source.ImageVector({",
+                    "// existing configuration",
+                    "renderMode: 'image'"
+                ],
+                "REPLACE": [
+                    "this.source = new ol.source.Vector({",
+                    "    // existing configuration",
+                    "    renderMode: 'vector'"
+                ]
+            }
+        ],
+        "src/Map.js": [
+            {
+                "SEARCH": [
+                    "this.drawInteraction = new ol.interaction.Draw({",
+                    "source: this.source,",
+                    "type: 'Polygon',",
+                    "renderMode: 'image'"
+                ],
+                "REPLACE": [
+                    "this.drawInteraction = new ol.interaction.Draw({",
+                    "    source: this.source,",
+                    "    type: 'Polygon',",
+                    "    renderMode: 'vector'"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Vector.js//VectorLayer",
+            "src/ol/layer/VectorImage.js//VectorImageLayer",
+            "src/ol/renderer/canvas/VectorLayer.js//CanvasVectorLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Vector.js//createRenderer",
+            "src/ol/layer/VectorImage.js//constructor",
+            "src/ol/renderer/canvas/VectorLayer.js//renderWorlds",
+            "src/ol/renderer/canvas/VectorLayer.js//renderDeclutter",
+            "src/ol/renderer/canvas/VectorLayer.js//renderFrame"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the rendering logic for vector layers. The VectorLayer and VectorImageLayer classes define the properties and behaviors of the layers, including decluttering and opacity settings. The CanvasVectorLayerRenderer class is responsible for rendering these layers on a canvas, and its methods like renderWorlds, renderDeclutter, and renderFrame are crucial for managing how the layers are drawn and cleared. The issue likely lies in how these methods interact with the declutter and opacity settings during rendering, leading to the failure to clear previous frames.",
+        "bug_scenario": "The bug occurs when using a VectorLayer with declutter enabled and an opacity less than 1. The layer does not clear the previous render when the map is panned, leading to visual artifacts where old features remain visible."
+    }
+}

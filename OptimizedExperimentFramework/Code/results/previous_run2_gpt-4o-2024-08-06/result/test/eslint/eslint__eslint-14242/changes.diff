@@ -1,0 +1,25 @@
+diff --git a/lib/cli.js b/lib/cli.js
+index 4216126b6..b7ed07043 100644
+--- a/lib/cli.js
++++ b/lib/cli.js
+@@ -301,16 +301,16 @@ const cli = {
+             await ESLint.outputFixes(results);
+         }
+ 
++        const { errorCount, warningCount } = countErrors(results);
++        const tooManyWarnings =
++            options.maxWarnings >= 0 && warningCount > options.maxWarnings;
++
+         if (options.quiet) {
+             debug("Quiet mode enabled - filtering out warnings");
+             results = ESLint.getErrorResults(results);
+         }
+ 
+         if (await printResults(engine, results, options.format, options.outputFile)) {
+-            const { errorCount, warningCount } = countErrors(results);
+-            const tooManyWarnings =
+-                options.maxWarnings >= 0 && warningCount > options.maxWarnings;
+-
+             if (!errorCount && tooManyWarnings) {
+                 log.error(
+                     "ESLint found too many warnings (maximum: %s).",

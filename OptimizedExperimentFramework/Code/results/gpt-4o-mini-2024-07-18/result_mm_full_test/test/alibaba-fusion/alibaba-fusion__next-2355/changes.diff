@@ -1,0 +1,16 @@
+diff --git a/src/table/util.js b/src/table/util.js
+index f8b026f..b4393d4 100644
+--- a/src/table/util.js
++++ b/src/table/util.js
+@@ -22,7 +22,10 @@ export const fetchDataByPath = (object, path) => {
+         return false;
+     }
+     path = path.toString();
+-    const field = path.match(/([^[.\]]+)/g);
++    const field = path.match(/([^[.\\]]+)/g) || [];
++    if (path.startsWith('[') && path.endsWith(']')) {
++        field.push(...path.slice(1, -1).split(',').map(item => item.trim()));
++    }
+     let val = object;
+     for (let i = 0; i < field.length; i++) {
+         if (val === undefined) {

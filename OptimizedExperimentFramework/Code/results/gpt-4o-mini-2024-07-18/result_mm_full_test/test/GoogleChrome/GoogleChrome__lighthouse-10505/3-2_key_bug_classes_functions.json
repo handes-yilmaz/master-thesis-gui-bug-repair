@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/metrics/first-cpu-idle.js//FirstCPUIdle",
+            "lighthouse-core/computed/metrics/first-cpu-idle.js//FirstCPUIdle"
+        ],
+        "bug_functions": [
+            "lighthouse-core/computed/metrics/first-cpu-idle.js//findQuietWindow",
+            "lighthouse-core/computed/metrics/first-cpu-idle.js//computeObservedMetric"
+        ],
+        "explanation": "The classes and functions identified are directly related to the computation of the First CPU Idle metric, which is crucial for determining the Time to Interactive (TTI). The 'FirstCPUIdle' class in both files contains logic to assess when the CPU is idle enough for user interaction. The 'findQuietWindow' function is responsible for identifying periods of CPU idleness, which is essential for resolving the NO_TTI_CPU_IDLE_PERIOD error. The 'computeObservedMetric' function calculates the observed metric based on the performance trace, which is necessary for accurate reporting in Lighthouse.",
+        "bug_scenario": "The bug occurs when Lighthouse reports a NO_TTI_CPU_IDLE_PERIOD error if the page has a slow First Contentful Paint (FCP) but is idle immediately after it. This happens consistently when using specific throttling settings in DevTools or the CLI. The error indicates that the page is not interactive within an expected timeframe, which is critical for performance metrics."
+    }
+}

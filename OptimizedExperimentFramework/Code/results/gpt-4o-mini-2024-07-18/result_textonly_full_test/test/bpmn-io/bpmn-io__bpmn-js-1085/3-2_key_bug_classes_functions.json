@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnUpdater",
+            "lib/features/modeling/BpmnFactory"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnUpdater//updateConnectionWaypoints",
+            "lib/features/modeling/BpmnFactory//createDiWaypoints"
+        ],
+        "explanation": "The 'BpmnUpdater' class is responsible for updating the BPMN 2.0 XML when changes occur in the diagram. The 'updateConnectionWaypoints' function is crucial as it handles the waypoints for connections, which is directly related to the bug where waypoints are incorrectly serialized. The 'BpmnFactory' class is responsible for creating BPMN elements, including waypoints. The 'createDiWaypoints' function is relevant because it generates the waypoints for the diagram, and any issues in this function could lead to the incorrect serialization seen in the bug.",
+        "bug_scenario": "The bug occurs when a new task is created from an existing one, resulting in an illegal 'waypoints' property being serialized in the XML for a 'sequenceFlow'. The waypoints are incorrectly represented as '[object Object]' instead of a proper serialized format, which leads to issues in the diagram representation."
+    }
+}

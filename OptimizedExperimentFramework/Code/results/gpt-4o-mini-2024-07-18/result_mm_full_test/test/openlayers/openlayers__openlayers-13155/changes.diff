@@ -1,0 +1,28 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1409a69..b9805de 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -331,7 +331,9 @@ class WebGLTileLayer extends BaseTileLayer {
+   createRenderer() {
+     const parsedStyle = parseStyle(this.style_, this.getSourceBandCount_());
+ 
++    const imageSmoothing = this.getSource().getImageSmoothing() || false; // Get imageSmoothing setting
+     return new WebGLTileLayerRenderer(this, {
++      imageSmoothing: imageSmoothing, // Pass it to the renderer
+       vertexShader: parsedStyle.vertexShader,
+       fragmentShader: parsedStyle.fragmentShader,
+       uniforms: parsedStyle.uniforms,
+diff --git a/src/ol/webgl/TileTexture.js b/src/ol/webgl/TileTexture.js
+index d67a804..4f49baf 100644
+--- a/src/ol/webgl/TileTexture.js
++++ b/src/ol/webgl/TileTexture.js
+@@ -27,6 +27,9 @@ function bindAndConfigure(gl, texture) {
+ function uploadImageTexture(gl, texture, image) {
+   bindAndConfigure(gl, texture);
+ 
++  const filter = this.imageSmoothing ? gl.LINEAR : gl.NEAREST; // Use imageSmoothing setting
++  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter);
++  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filter);
+   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+ }
+ 

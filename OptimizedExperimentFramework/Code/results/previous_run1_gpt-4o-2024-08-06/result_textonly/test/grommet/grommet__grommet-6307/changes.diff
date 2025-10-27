@@ -1,0 +1,40 @@
+diff --git a/src/js/components/DataTable/Header.js b/src/js/components/DataTable/Header.js
+index 1248437ec8..7acbe2150c 100644
+--- a/src/js/components/DataTable/Header.js
++++ b/src/js/components/DataTable/Header.js
+@@ -5,6 +5,7 @@ import React, {
+   useContext,
+   useEffect,
+   useState,
++  useLayoutEffect,
+ } from 'react';
+ import styled, { css, ThemeContext } from 'styled-components';
+ 
+diff --git a/src/js/components/DataTable/Sorter.js b/src/js/components/DataTable/Sorter.js
+index 230f41c0cb..70a0364b2b 100644
+--- a/src/js/components/DataTable/Sorter.js
++++ b/src/js/components/DataTable/Sorter.js
+@@ -17,9 +17,22 @@ const Sorter = ({
+   fill,
+   onSort,
+   property,
+-  sort,
++  sort: initialSort,
+   themeProps,
+ }) => {
++  const [sort, setSort] = useState(initialSort);
++
++  useEffect(() => {
++    const handlePopState = () => {
++      const newSort = getSortFromURL(); // Assume this function extracts sort info from URL
++      setSort(newSort);
++    };
++
++    window.addEventListener('popstate', handlePopState);
++    return () => {
++      window.removeEventListener('popstate', handlePopState);
++    };
++  }, []);
+   const theme = useContext(ThemeContext) || defaultProps.theme;
+   let icon;
+   if (sort && sort.property === property) {

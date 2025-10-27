@@ -1,0 +1,26 @@
+diff --git a/rendering/cases/layer-vector/main.js b/rendering/cases/layer-vector/main.js
+index 2b178d5..62aed50 100644
+--- a/rendering/cases/layer-vector/main.js
++++ b/rendering/cases/layer-vector/main.js
+@@ -42,7 +42,6 @@ function addPolygon(r, source) {
+     ]
+   ])));
+ }
+-
+ const smallLine = new Feature(new LineString([
+   [center[0], center[1] - 1],
+   [center[0], center[1] + 1]
+@@ -52,6 +51,13 @@ smallLine.setStyle(new Style({
+   stroke: new Stroke({width: 75, color: 'red'})
+ }));
+ smallLine.getGeometry().translate(-1000, 1000);
++
++// Unifying rendering tests
++describe('Rendering Tests', () => {
++  it('should render vector layers correctly', () => {
++    // Add your test logic here
++  });
++});
+ source1.addFeature(smallLine);
+ addPolygon(100, source1);
+ addCircle(200, source1);

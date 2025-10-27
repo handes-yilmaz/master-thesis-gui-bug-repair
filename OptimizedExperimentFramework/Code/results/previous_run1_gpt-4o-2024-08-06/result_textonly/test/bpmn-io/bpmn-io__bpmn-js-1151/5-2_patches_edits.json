@@ -1,0 +1,66 @@
+{
+    "1/1": {
+        "lib/features/copy-paste/BpmnCopyPaste.js": [
+            {
+                "SEARCH": [
+                    "eventBus.on('copyPaste.pasteElement', function(context) {",
+                    "var cache = context.cache,",
+                    "descriptor = context.descriptor,",
+                    "oldBusinessObject = descriptor.oldBusinessObject,",
+                    "newBusinessObject;",
+                    "",
+                    "// do NOT copy business object if external label",
+                    "if (isLabel(descriptor)) {",
+                    "descriptor.businessObject = getBusinessObject(cache[ descriptor.labelTarget ]);",
+                    "",
+                    "return;",
+                    "}",
+                    "",
+                    "newBusinessObject = bpmnFactory.create(oldBusinessObject.$type);",
+                    "",
+                    "descriptor.businessObject = moddleCopy.copyElement(",
+                    "oldBusinessObject,",
+                    "newBusinessObject",
+                    ");",
+                    "",
+                    "// resolve references e.g. default sequence flow",
+                    "resolveReferences(descriptor);",
+                    "",
+                    "copyProperties(descriptor, newBusinessObject, 'isExpanded');",
+                    "",
+                    "removeProperties(descriptor, 'oldBusinessObject');",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  eventBus.on('copyPaste.pasteElement', function(context) {",
+                    "    var cache = context.cache,",
+                    "        descriptor = context.descriptor,",
+                    "        oldBusinessObject = descriptor.oldBusinessObject,",
+                    "        newBusinessObject;",
+                    "",
+                    "    // handle label elements",
+                    "    if (isLabel(descriptor)) {",
+                    "      descriptor.businessObject = getBusinessObject(cache[ descriptor.labelTarget ]);",
+                    "      setLabel(descriptor, oldBusinessObject.name || '', true);",
+                    "      return;",
+                    "    }",
+                    "",
+                    "    newBusinessObject = bpmnFactory.create(oldBusinessObject.$type);",
+                    "",
+                    "    descriptor.businessObject = moddleCopy.copyElement(",
+                    "      oldBusinessObject,",
+                    "      newBusinessObject",
+                    "    );",
+                    "",
+                    "    // resolve references e.g. default sequence flow",
+                    "    resolveReferences(descriptor);",
+                    "",
+                    "    copyProperties(descriptor, newBusinessObject, 'isExpanded');",
+                    "",
+                    "    removeProperties(descriptor, 'oldBusinessObject');",
+                    "  });"
+                ]
+            }
+        ]
+    }
+}

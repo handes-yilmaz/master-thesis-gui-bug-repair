@@ -1,0 +1,45 @@
+{
+    "1/1": {
+        "// Assuming the file is src/components/DataTable/DataTableHeader.js": [
+            {
+                "SEARCH": [
+                    "// Existing code that initializes the header",
+                    "const DataTableHeader = () => {",
+                    "// existing state and props"
+                ],
+                "REPLACE": [
+                    "import { useEffect } from 'react';",
+                    "import { useLocation } from 'react-router-dom';",
+                    "",
+                    "const DataTableHeader = () => {",
+                    "    const location = useLocation();",
+                    "    // existing state and props"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "// Existing sorting logic",
+                    "const handleSort = (property) => {",
+                    "// existing sorting logic"
+                ],
+                "REPLACE": [
+                    "    useEffect(() => {",
+                    "        // Logic to update sorting state based on URL parameters",
+                    "        const params = new URLSearchParams(location.search);",
+                    "        const property = params.get('property');",
+                    "        const direction = params.get('direction');",
+                    "        ",
+                    "        // Update the sorting state based on URL parameters",
+                    "        if (property && direction) {",
+                    "            // Update the state to reflect the sorting",
+                    "            setSorting({ property, direction });",
+                    "        }",
+                    "    }, [location.search]);",
+                    "",
+                    "    const handleSort = (property) => {",
+                    "        // existing sorting logic"
+                ]
+            }
+        ]
+    }
+}

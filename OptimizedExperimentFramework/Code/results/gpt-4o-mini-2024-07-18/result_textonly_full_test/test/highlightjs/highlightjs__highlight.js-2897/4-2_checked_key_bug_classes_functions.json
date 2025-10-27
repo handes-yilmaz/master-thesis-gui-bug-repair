@@ -1,0 +1,102 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "TokenTreeEmitter",
+            "file_path": "src/lib/token_tree.js",
+            "class_details": [
+                {
+                    "name": "TokenTreeEmitter",
+                    "start_line": 114,
+                    "end_line": 164,
+                    "methods": [
+                        {
+                            "name": "constructor",
+                            "start_line": 118,
+                            "end_line": 121
+                        },
+                        {
+                            "name": "addKeyword",
+                            "start_line": 127,
+                            "end_line": 133
+                        },
+                        {
+                            "name": "addText",
+                            "start_line": 138,
+                            "end_line": 142
+                        },
+                        {
+                            "name": "addSublanguage",
+                            "start_line": 148,
+                            "end_line": 154
+                        },
+                        {
+                            "name": "toHTML",
+                            "start_line": 156,
+                            "end_line": 159
+                        },
+                        {
+                            "name": "finalize",
+                            "start_line": 161,
+                            "end_line": 163
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "export default class TokenTreeEmitter extends TokenTree {",
+                "  /**",
+                "   * @param {*} options",
+                "   */",
+                "  constructor(options) {",
+                "    super();",
+                "    this.options = options;",
+                "  }",
+                "",
+                "  /**",
+                "   * @param {string} text",
+                "   * @param {string} kind",
+                "   */",
+                "  addKeyword(text, kind) {",
+                "    if (text === \"\") { return; }",
+                "",
+                "    this.openNode(kind);",
+                "    this.addText(text);",
+                "    this.closeNode();",
+                "  }",
+                "",
+                "  /**",
+                "   * @param {string} text",
+                "   */",
+                "  addText(text) {",
+                "    if (text === \"\") { return; }",
+                "",
+                "    this.add(text);",
+                "  }",
+                "",
+                "  /**",
+                "   * @param {Emitter & {root: DataNode}} emitter",
+                "   * @param {string} name",
+                "   */",
+                "  addSublanguage(emitter, name) {",
+                "    /** @type DataNode */",
+                "    const node = emitter.root;",
+                "    node.kind = name;",
+                "    node.sublanguage = true;",
+                "    this.add(node);",
+                "  }",
+                "",
+                "  toHTML() {",
+                "    const renderer = new HTMLRenderer(this, this.options);",
+                "    return renderer.value();",
+                "  }",
+                "",
+                "  finalize() {",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

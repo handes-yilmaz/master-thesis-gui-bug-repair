@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "lighthouse-core/aggregator/aggregate.js": [
+            {
+                "SEARCH": [
+                    "overallScore += Aggregate._convertToWeight(",
+                    "filteredAndRemappedResults[e],",
+                    "item.audits[e],",
+                    "e);"
+                ],
+                "REPLACE": [
+                    "        const weight = Aggregate._convertToWeight(",
+                    "            filteredAndRemappedResults[e],",
+                    "            item.audits[e],",
+                    "            e);",
+                    "        overallScore += weight;",
+                    "",
+                    "        // If any audit fails, set overallScore to 0",
+                    "        if (weight === 0) {",
+                    "          overallScore = 0;",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

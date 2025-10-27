@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-javascript.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the way numeric literals are processed in the Prism.js library, specifically within the JavaScript language component. The file 'components/prism-javascript.js' defines syntax highlighting rules for JavaScript, including patterns for numbers. The bug arises because the existing pattern for numbers does not account for numeric separators, which are a part of the JavaScript numeric literal syntax. Therefore, the patterns for numbers in this file need to be updated to correctly recognize numbers with separators, making 'components/prism-javascript.js' the key file to address for fixing this bug.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting of JavaScript numeric literals when numeric separators are used. Numeric literals like '1_000_000_000_000' and '1_019_436_871.42' are highlighted incorrectly according to the user report. This issue arises due to the lack of support for numeric separators in the syntax highlighting logic of the Prism.js library."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [
+            "components/prism-javascript.js//Prism.languages.javascript"
+        ],
+        "explanation": "The issue is related to how numeric literals are defined and parsed in the JavaScript syntax highlighter. The relevant code responsible for handling JavaScript syntax highlighting is in the 'Prism.languages.javascript' function within 'components/prism-javascript.js'. This section of the code defines patterns for recognizing different elements of JavaScript syntax, including numbers. The current pattern for numbers does not account for numeric separators, which is why they are being highlighted incorrectly. Adjusting this pattern to correctly recognize numeric literals with separators will solve the bug.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting for JavaScript numeric literals that use numeric separators (e.g., 1_000_000). These separators are not being recognized correctly by the syntax highlighter, leading to improper highlighting of numeric literals in JavaScript."
+    }
+}

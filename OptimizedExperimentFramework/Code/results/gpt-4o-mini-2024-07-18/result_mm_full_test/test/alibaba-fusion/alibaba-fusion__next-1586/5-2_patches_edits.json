@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "src/tree/view/tree.jsx": [
+            {
+                "SEARCH": [
+                    "if (multiple) {",
+                    "this.processKey(selectedKeys, key, select);",
+                    "} else {",
+                    "selectedKeys = [key];",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        if (multiple) {",
+                    "            this.processKey(selectedKeys, key, select);",
+                    "        } else {",
+                    "            selectedKeys = select ? [key] : []; // Toggle selection",
+                    "        }"
+                ]
+            }
+        ],
+        "src/tree/view/tree-node.jsx": [
+            {
+                "SEARCH": [
+                    "const newSelectedState = !selected;",
+                    "root.handleSelect(newSelectedState, eventKey, this, e);",
+                    "this.setState({ selected: newSelectedState });"
+                ],
+                "REPLACE": [
+                    "        const newSelectedState = !selected;",
+                    "        root.handleSelect(newSelectedState, eventKey, this, e);",
+                    "        this.setState({ selected: newSelectedState }); // Ensure state updates correctly"
+                ]
+            }
+        ]
+    }
+}

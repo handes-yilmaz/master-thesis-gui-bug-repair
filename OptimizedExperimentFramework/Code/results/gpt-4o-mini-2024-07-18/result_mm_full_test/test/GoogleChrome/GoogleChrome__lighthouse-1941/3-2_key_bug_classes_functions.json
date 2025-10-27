@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/v2/report-renderer.js//ReportRenderer",
+            "lighthouse-core/report/report-generator.js//ReportGenerator"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/v2/report-renderer.js//render",
+            "lighthouse-core/report/report-generator.js//_escapeScriptTags",
+            "lighthouse-core/report/report-generator.js//generateHTML"
+        ],
+        "explanation": "The `ReportRenderer` class is responsible for rendering the report, and its `render` function directly manipulates the DOM, which could be exploited if untrusted input is not properly sanitized. The `ReportGenerator` class contains the `_escapeScriptTags` function, which is intended to escape closing script tags to prevent script injection. However, if the escaping is not comprehensive, it may not prevent all forms of injection. The `generateHTML` function constructs the HTML output for the report, and if it includes unsanitized data, it could lead to the same injection vulnerabilities. Therefore, these classes and functions are critical to address the bug related to file injection and ensure proper sanitization of inputs.",
+        "bug_scenario": "The bug scenario involves a file injection vulnerability where inserting JavaScript code into the `report-renderer.js` file can lead to unintended JavaScript execution on the page. This occurs because the `String.replace` method is used in a way that allows the injected code to escape the intended context, potentially leading to security issues."
+    }
+}

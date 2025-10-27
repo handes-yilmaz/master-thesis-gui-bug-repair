@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/menu/view/item.jsx//Item",
+            "src/menu/view/menu.jsx//Menu",
+            "src/config-provider/config.jsx//ConfigedComponent"
+        ],
+        "bug_functions": [
+            "src/menu/view/item.jsx//getTitle",
+            "src/menu/view/menu.jsx//handleItemClick",
+            "src/menu/view/menu.jsx//handleItemKeyDown"
+        ],
+        "explanation": "The 'Item' class is responsible for rendering individual menu items, and the 'getTitle' function within it determines how titles are set based on the children content. The 'Menu' class manages the overall menu behavior, including item clicks and keyboard interactions, which are crucial for accessibility. The functions 'handleItemClick' and 'handleItemKeyDown' are directly related to user interactions that could trigger the title display, making them relevant to the bug. The 'ConfigedComponent' class may also play a role in how configurations are applied, including the title settings.",
+        "bug_scenario": "The issue arises from the title attribute being automatically added to Menu Items, which can lead to duplicate text being read by screen readers when the title matches the innerText. This violates accessibility guidelines (WCAG) and affects user experience, especially for those using screen readers. The proposed solutions involve modifying how titles are set based on the content type of Menu Items."
+    }
+}

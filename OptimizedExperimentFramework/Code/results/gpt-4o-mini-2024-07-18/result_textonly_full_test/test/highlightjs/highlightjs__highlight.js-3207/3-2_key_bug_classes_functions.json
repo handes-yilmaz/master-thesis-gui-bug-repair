@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/elixir.js//FUNCTION",
+            "src/languages/elixir.js//CLASS"
+        ],
+        "bug_functions": [
+            "src/languages/elixir.js//export default function"
+        ],
+        "explanation": "The `FUNCTION` and `CLASS` classes in the Elixir language definition are crucial for parsing and highlighting Elixir code. The `FUNCTION` class specifically handles the syntax for defining functions, which includes the function capture syntax that is causing the bug. The `CLASS` class extends this functionality to handle class definitions. The main function exported from the file is responsible for setting up the language highlighting rules, including how function captures are recognized and highlighted. Therefore, these classes and the main function are directly related to the bug as they define how the Elixir syntax should be processed and highlighted.",
+        "bug_scenario": "The bug occurs when highlighting Elixir code that includes function captures, specifically using the syntax `&function_name/arity`. The highlighting incorrectly interprets the `/` character, leading to improper syntax highlighting until the next `/` is encountered. This results in the function capture not being highlighted correctly, as shown in the provided screenshots."
+    }
+}

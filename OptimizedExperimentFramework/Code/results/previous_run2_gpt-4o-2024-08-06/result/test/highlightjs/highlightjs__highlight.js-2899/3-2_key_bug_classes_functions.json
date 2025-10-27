@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/dart.js//LanguageFn"
+        ],
+        "bug_functions": [
+            "src/languages/dart.js//export default function"
+        ],
+        "explanation": "The key bug elements are within the Dart language highlighting configuration. The function `export default function(hljs)` is responsible for defining how Dart code is highlighted, including handling comments. The issue likely stems from how block comments are processed. Adjustments in handling empty block comments within this function are necessary to ensure highlighting continues correctly.",
+        "bug_scenario": "The bug involves Dart language code highlighting where an empty block comment (/**/) disrupts syntax highlighting beyond it. The highlighting should continue correctly after such comments, but it fails, hence the issue."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [
+            "src/languages/dart.js//export default function"
+        ],
+        "explanation": "The function `export default function` in `src/languages/dart.js` is responsible for defining the Dart language syntax highlighting rules. This function includes the comment handling logic, which appears to not properly manage cases with empty block comments, leading to broken highlighting.",
+        "bug_scenario": "The issue is with Dart syntax highlighting in which an empty block comment (`/**/`) breaks the highlighting functionality. The sample code and expected behavior show how the highlighting is disrupted due to the empty comment block."
+    }
+}

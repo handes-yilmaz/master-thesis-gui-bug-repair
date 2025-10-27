@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js": [
+            {
+                "SEARCH": [
+                    "// Ignore href's that are not real links",
+                    "return !anchor.href || !anchor.href.toLowerCase().startsWith('javascript:');"
+                ],
+                "REPLACE": [
+                    "        // Ignore href's that are not real links and mailto links",
+                    "        return !anchor.href || !anchor.href.toLowerCase().startsWith('javascript:') && !anchor.href.toLowerCase().startsWith('mailto:');"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js": [
+            {
+                "SEARCH": [
+                    "const selector = 'a[target=\"_blank\"]:not([rel~=\"noopener\"])';"
+                ],
+                "REPLACE": [
+                    "      const selector = 'a[target=\"_blank\"]:not([rel~=\"noopener\"]):not([href^=\"mailto:\"])';"
+                ]
+            }
+        ]
+    }
+}

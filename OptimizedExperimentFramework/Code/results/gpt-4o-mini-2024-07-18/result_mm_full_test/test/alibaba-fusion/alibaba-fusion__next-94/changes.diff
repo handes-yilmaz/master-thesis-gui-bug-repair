@@ -1,0 +1,31 @@
+diff --git a/src/number-picker/index.jsx b/src/number-picker/index.jsx
+index dcd8027..b029eb6 100644
+--- a/src/number-picker/index.jsx
++++ b/src/number-picker/index.jsx
+@@ -233,13 +233,9 @@ class NumberPicker extends React.Component {
+                 val = props.max;
+             }
+ 
+-            // precision=2  and input from 1.99 to 1.999, should stay with 1.99 not 2
+-            const strValue = `${val}`;
+-            const pointPos = strValue.indexOf('.');
+-            const cutPos = pointPos + 1 + this.getPrecision();
+-            if (pointPos !== -1 && strValue.length > cutPos) {
+-                val = Number(strValue.substr(0, cutPos));
+-            }
++            // Ensure proper rounding to the specified precision
++            const precisionFactor = this.getPrecisionFactor();
++            val = Math.round(val * precisionFactor) / precisionFactor;
+ 
+         } else {
+             val = this.state.value;
+@@ -259,6 +255,9 @@ class NumberPicker extends React.Component {
+             });
+         }
+ 
++        // Ensure the value is rounded to the specified precision before setting
++        const precisionFactor = this.getPrecisionFactor();
++        v = Math.round(v * precisionFactor) / precisionFactor;
+         this.props.onChange(isNaN(v) || v === '' ? undefined : v, {...e, triggerType});
+     }
+ 

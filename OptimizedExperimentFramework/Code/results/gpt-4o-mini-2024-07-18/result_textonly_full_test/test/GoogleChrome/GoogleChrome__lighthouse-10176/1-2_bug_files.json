@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/stack-collector.js",
+            "lighthouse-core/lib/stack-packs.js",
+            "lighthouse-core/audits/js-libraries.js",
+            "lighthouse-core/gatherers/js-usage.js",
+            "proto/stack-packs/react.js"
+        ],
+        "explanation": "These files are related to the bug as they handle the collection and processing of stack packs, specifically the detection of JavaScript libraries. The stack-collector.js file is responsible for aggregating stack traces, which is crucial for understanding how libraries are being detected and reported. The stack-packs.js file contains the definitions of the various stack packs, including React, which is directly involved in this duplication issue. The js-libraries.js audit file is likely where the results are rendered, showing the detected libraries to users, and the js-usage.js gatherer collects the data on JavaScript libraries used on the page, making it critical for fixing the duplication and visibility problem.",
+        "bug_scenario": "The bug involves duplicated stack packs when running Lighthouse or PSI on the specified URL, which indicates that the JavaScript libraries are incorrectly detected, leading to redundant entries in the audit output. This is due to changes made in the js-lib-detector and its integration into Lighthouse, causing the experimental 'React (Fast Path)' entries to appear in user-visible audits without proper identification."
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/containers/monitor.jsx": [
+            {
+                "SEARCH": [
+                    "max={this.props.max}",
+                    "min={this.props.min}"
+                ],
+                "REPLACE": [
+                    "                max={this.props.max || 100} // Default to 100 if not set",
+                    "                min={this.props.min || 0}    // Default to 0 if not set"
+                ]
+            }
+        ],
+        "src/components/monitor/slider-monitor.jsx": [
+            {
+                "SEARCH": [
+                    "// Assuming there is a section where the slider is initialized",
+                    "const sliderProps = {",
+                    "min: this.props.min,",
+                    "max: this.props.max,"
+                ],
+                "REPLACE": [
+                    "const sliderProps = {",
+                    "    min: this.props.min || 0, // Default to 0 if not set",
+                    "    max: this.props.max || 100 // Default to 100 if not set"
+                ]
+            }
+        ],
+        "src/reducers/monitors.js": [
+            {
+                "SEARCH": [
+                    "case UPDATE_MONITORS:",
+                    "return action.monitors;"
+                ],
+                "REPLACE": [
+                    "    case UPDATE_MONITORS:",
+                    "        // Ensure monitors have default min/max values if not provided",
+                    "        action.monitors.forEach(monitor => {",
+                    "            monitor.min = monitor.min || 0; // Default to 0 if not set",
+                    "            monitor.max = monitor.max || 100; // Default to 100 if not set",
+                    "        });",
+                    "        return action.monitors;"
+                ]
+            }
+        ]
+    }
+}

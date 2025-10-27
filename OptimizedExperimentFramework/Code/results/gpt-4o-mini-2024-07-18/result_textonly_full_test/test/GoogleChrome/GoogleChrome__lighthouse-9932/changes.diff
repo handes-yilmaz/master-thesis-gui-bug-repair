@@ -1,0 +1,39 @@
+diff --git a/lighthouse-core/audits/network-rtt.js b/lighthouse-core/audits/network-rtt.js
+index 13f074f..6f6478b 100644
+--- a/lighthouse-core/audits/network-rtt.js
++++ b/lighthouse-core/audits/network-rtt.js
+@@ -50,7 +50,7 @@ class NetworkRTT extends Audit {
+     const results = [];
+     for (const [origin, additionalRtt] of analysis.additionalRttByOrigin.entries()) {
+       // Ignore entries that don't look like real origins, like the __SUMMARY__ entry.
+-      if (!origin.startsWith('http')) continue;
++      if (!origin.startsWith('http') && !origin.startsWith('data:')) continue;
+ 
+       const rtt = additionalRtt + baseRtt;
+       results.push({origin, rtt});
+diff --git a/lighthouse-core/audits/network-server-latency.js b/lighthouse-core/audits/network-server-latency.js
+index bd65c50..11e51a1 100644
+--- a/lighthouse-core/audits/network-server-latency.js
++++ b/lighthouse-core/audits/network-server-latency.js
+@@ -49,7 +49,7 @@ class NetworkServerLatency extends Audit {
+     const results = [];
+     for (const [origin, serverResponseTime] of analysis.serverResponseTimeByOrigin.entries()) {
+       // Ignore entries that don't look like real origins, like the __SUMMARY__ entry.
+-      if (!origin.startsWith('http')) continue;
++      if (!origin.startsWith('http') && !origin.startsWith('data:')) continue;
+ 
+       maxLatency = Math.max(serverResponseTime, maxLatency);
+       results.push({origin, serverResponseTime});
+diff --git a/lighthouse-core/lib/network-request.js b/lighthouse-core/lib/network-request.js
+index cce715d..4a9398f 100644
+--- a/lighthouse-core/lib/network-request.js
++++ b/lighthouse-core/lib/network-request.js
+@@ -183,7 +183,7 @@ class NetworkRequest {
+ 
+     this.frameId = data.frameId;
+     this.isLinkPreload = data.initiator.type === 'preload' || !!data.request.isLinkPreload;
+-    this.isValid = true;
++    this.isValid = this.url.startsWith('http') || this.url.startsWith('data:');
+   }
+ 
+   onRequestServedFromCache() {

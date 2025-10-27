@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/table/index.jsx//Table",
+            "src/table/base.jsx//Table",
+            "src/table/util.js//fetchDataByPath"
+        ],
+        "bug_functions": [
+            "src/table/index.jsx//transform",
+            "src/table/base.jsx//render",
+            "src/table/util.js//setStickyStyle"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they are integral to the Table component's functionality. The Table class in 'index.jsx' and 'base.jsx' defines the core structure and behavior of the Table component, including how it processes properties like dataIndex. The transform function in 'index.jsx' is responsible for modifying props, which may need to be adjusted to accommodate the new dataIndex format. The render function in 'base.jsx' is crucial for displaying the Table, and any changes to how dataIndex is handled will directly affect rendering. Lastly, the fetchDataByPath function in 'util.js' may be involved in retrieving data based on the dataIndex, and ensuring it can handle the new string format is essential for the bug fix.",
+        "bug_scenario": "The bug scenario involves the Table component not supporting a specific string format for the dataIndex property, which is expected to accept a string in the format of '[start, end]'. This is necessary for business requirements, even though the format may not have practical significance. The provided images likely illustrate the current behavior of the Table component when this format is used, showing that it does not function as intended."
+    }
+}

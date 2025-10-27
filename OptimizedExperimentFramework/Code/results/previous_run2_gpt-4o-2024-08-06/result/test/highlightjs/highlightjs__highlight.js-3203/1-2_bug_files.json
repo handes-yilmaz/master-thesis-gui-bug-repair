@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/powershell.js"
+        ],
+        "explanation": "The file `src/languages/powershell.js` is responsible for defining the syntax highlighting rules for PowerShell. Given the bug report and the sample code provided, the issue arises from how the highlighter processes the command-line options in PowerShell scripts. Modifications to this file will allow the correction of highlighting rules to properly handle both single and double hyphen flags.",
+        "bug_scenario": "The issue involves incorrect highlighting of double hyphen flags (e.g., `--flag`) in PowerShell scripts, where it is being detected as an error while single hyphen flags (e.g., `-flag`) work correctly. This is not expected as both should be highlighted correctly, as they both are used in command-line syntax."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/powershell.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "The `powershell.js` file in `src/languages/` is likely responsible for defining the syntax highlighting rules specific to PowerShell, including recognition of command flags. The need to correctly interpret and highlight both single and double dash flags would be handled here. Additionally, `regex.js` in `src/lib/` is a central file likely containing regular expressions used across different language files, and changes here might be necessary to correctly parse and highlight the double dash syntax universally if not explicitly handled in the individual language file.",
+        "bug_scenario": "The issue is related to the incorrect highlighting of double-dash flags in PowerShell code. Single dash flags (-flag) are highlighted correctly, but double dash flags (--flag) are not highlighted as expected. The bug is illustrated in the images showing both single and double dash flags with incorrect highlighting for the double dash flag specifically in a PowerShell environment visual."
+    }
+}

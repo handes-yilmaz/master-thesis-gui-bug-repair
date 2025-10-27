@@ -1,0 +1,9 @@
+{
+    "1": {
+        "bug_files": [
+            "src/number-picker/index.jsx"
+        ],
+        "explanation": "The file 'src/number-picker/index.jsx' is the key bug file because it contains the implementation of the NumberPicker component, which is directly responsible for handling the number increment operation. The issue arises from the way floating-point arithmetic is handled in JavaScript, and this file includes the logic for incrementing the number (in the 'upStep' and 'downStep' methods) and managing precision (in the 'getPrecision' and 'getPrecisionFactor' methods). To fix the bug, adjustments need to be made in these methods to correctly handle floating-point arithmetic and ensure the displayed value matches the expected result.",
+        "bug_scenario": "The bug scenario involves a display issue in the NumberPicker component when using Safari. Specifically, when a user tries to increment a number using the '+' button, the expected result of 4.02 + 0.01 should be 4.03, but due to JavaScript's floating-point precision issues, it displays 4.029999999999999 instead. This is a common problem with floating-point arithmetic in JavaScript, which can lead to unexpected results in calculations."
+    }
+}

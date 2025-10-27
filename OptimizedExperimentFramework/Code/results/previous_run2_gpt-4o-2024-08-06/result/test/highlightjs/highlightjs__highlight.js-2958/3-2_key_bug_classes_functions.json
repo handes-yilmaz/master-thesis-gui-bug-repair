@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/xml.js//XML_ENTITIES",
+            "src/languages/xml.js//TAG_NAME_RE"
+        ],
+        "bug_functions": [
+            "src/lib/regex.js//concat"
+        ],
+        "explanation": "The issue is related to the syntax highlighting of XML elements with single-letter namespace prefixes. In `src/languages/xml.js`, the `TAG_NAME_RE` and `XML_ENTITIES` definitions are responsible for recognizing and highlighting XML tag names and entities, respectively. The problem likely arises from the regular expression patterns which fail to account for single-letter prefixes. Additionally, the `concat` function in `src/lib/regex.js` is used to build these regular expressions, so it may also need adjustments to correctly handle this edge case.",
+        "bug_scenario": "The bug involves XML syntax highlighting where a single-letter namespace prefix is not highlighted correctly. The images show that lines with single-letter namespace prefixes do not receive the expected syntax highlighting, unlike those with longer prefixes."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/xml.js"
+        ],
+        "bug_functions": [
+            "src/lib/regex.js//concat",
+            "src/lib/regex.js//optional"
+        ],
+        "explanation": "The issue appears to be related to how single-letter namespace prefixes are handled by the regex patterns used to detect and highlight tags. In `src/languages/xml.js`, the `TAG_NAME_RE` regex pattern is responsible for matching XML tags, and it likely does not correctly handle single-letter prefixes. The functions `concat` and `optional` in `src/lib/regex.js` are crucial as they are used to build regex patterns that determine the matching and highlighting logic. Adjusting these patterns should address the highlighting issue.",
+        "bug_scenario": "The bug scenario involves a failure to highlight XML tags with single-letter namespace prefixes. In the images, tags like `<a:FAIL>` are not highlighted, which is unexpected behavior as other tags with longer prefixes are highlighted correctly."
+    }
+}

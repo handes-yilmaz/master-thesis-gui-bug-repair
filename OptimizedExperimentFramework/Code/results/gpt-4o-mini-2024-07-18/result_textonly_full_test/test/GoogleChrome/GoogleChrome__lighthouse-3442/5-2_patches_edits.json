@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "lighthouse-core/report/v2/report-generator.js": [
+            {
+                "SEARCH": [
+                    "const overallScore = ReportGeneratorV2.arithmeticMean(categories);"
+                ],
+                "REPLACE": [
+                    "    if (categories.length === 0) {",
+                    "      throw new Error('No categories found in the report data.');",
+                    "    }",
+                    "    const overallScore = ReportGeneratorV2.arithmeticMean(categories);"
+                ]
+            }
+        ],
+        "lighthouse-core/report/v2/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "const element = container.appendChild(this._renderReport(report));"
+                ],
+                "REPLACE": [
+                    "    if (!report || !report.reportCategories || report.reportCategories.length === 0) {",
+                    "      container.textContent = 'No report data available.';",
+                    "      return container;",
+                    "    }",
+                    "    const element = container.appendChild(this._renderReport(report));"
+                ]
+            }
+        ]
+    }
+}

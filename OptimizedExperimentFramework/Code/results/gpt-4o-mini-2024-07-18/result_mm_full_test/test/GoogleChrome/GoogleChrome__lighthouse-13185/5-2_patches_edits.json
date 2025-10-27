@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "flow-report/src/summary/summary.tsx": [
+            {
+                "SEARCH": [
+                    "<FlowStepThumbnail reportResult={reportResult} width={THUMBNAIL_WIDTH}/>"
+                ],
+                "REPLACE": [
+                    "      <FlowStepThumbnail ",
+                    "        reportResult={reportResult} ",
+                    "        width={THUMBNAIL_WIDTH} ",
+                    "        height={THUMBNAIL_HEIGHT} // Add height attribute",
+                    "      />"
+                ]
+            }
+        ],
+        "flow-report/src/util.ts": [
+            {
+                "SEARCH": [
+                    "return fullPageScreenshot || null;"
+                ],
+                "REPLACE": [
+                    "  return {",
+                    "    screenshot: fullPageScreenshot || null,",
+                    "    width: fullPageScreenshotAudit.details.width, // Add width",
+                    "    height: fullPageScreenshotAudit.details.height // Add height",
+                    "  };"
+                ]
+            }
+        ]
+    }
+}

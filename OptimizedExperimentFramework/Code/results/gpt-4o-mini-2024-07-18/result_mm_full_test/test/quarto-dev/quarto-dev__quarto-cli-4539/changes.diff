@@ -1,0 +1,38 @@
+diff --git a/src/command/render/layout.ts b/src/command/render/layout.ts
+index 2546324..14526cd 100644
+--- a/src/command/render/layout.ts
++++ b/src/command/render/layout.ts
+@@ -45,6 +45,7 @@ export function overflowXPostprocessor(
+   // look for cell-output-display (these will have overflow-x set on them which we
+   // will want to disable in some conditions)
+   const outputs = doc.querySelectorAll(".cell-output-display");
++  const spanners = doc.querySelectorAll(".gt_table_spanner"); // Select spanner elements
+   for (let i = 0; i < outputs.length; i++) {
+     const output = outputs[i] as Element;
+     const noOverflowX =
+diff --git a/src/command/render/render.ts b/src/command/render/render.ts
+index 45981f1..3afa16e 100644
+--- a/src/command/render/render.ts
++++ b/src/command/render/render.ts
+@@ -141,6 +141,9 @@ export async function renderPandoc(
+     format.pandoc,
+     pandocIncludes,
+   );
++  format.pandoc.push({ // Ensure spanner styles are included
++    style: "spanner.css",
++  });
+ 
+   // pandoc options
+   const pandocOptions: PandocOptions = {
+diff --git a/src/format/html/format-html.ts b/src/format/html/format-html.ts
+index bd78cf5..35a0f46 100644
+--- a/src/format/html/format-html.ts
++++ b/src/format/html/format-html.ts
+@@ -243,6 +243,7 @@ export async function htmlFormatExtras(
+   } else {
+     options.tabby = format.metadata[kTabsets] || false;
+   }
++  options.tableSpanner = true; // Ensure table spanner support is enabled
+   if (featureDefaults.copyCode) {
+     options.copyCode = format.metadata[kCodeCopy] !== false;
+   } else {

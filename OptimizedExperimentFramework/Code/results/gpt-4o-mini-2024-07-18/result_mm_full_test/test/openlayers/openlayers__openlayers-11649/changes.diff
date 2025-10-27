@@ -1,0 +1,22 @@
+diff --git a/src/ol/proj/Projection.js b/src/ol/proj/Projection.js
+index 5736327..da7ac0b 100644
+--- a/src/ol/proj/Projection.js
++++ b/src/ol/proj/Projection.js
+@@ -67,7 +67,7 @@ class Projection {
+      * @private
+      * @type {import("./Units.js").default}
+      */
+-    this.units_ = /** @type {import("./Units.js").default} */ (options.units);
++    this.units_ = /** @type {import("./Units.js").default} */ (options.units) || 'degrees';
+ 
+     /**
+      * Validity extent of the projection in projected coordinates. For projections
+@@ -93,7 +93,7 @@ class Projection {
+      * @type {string}
+      */
+     this.axisOrientation_ =
+-      options.axisOrientation !== undefined ? options.axisOrientation : 'enu';
++      options.axisOrientation !== undefined ? options.axisOrientation : 'neu';
+ 
+     /**
+      * @private

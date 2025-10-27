@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/cascader-select/cascader-select.jsx",
+            "src/cascader-select/index.jsx",
+            "src/cascader/cascader.jsx",
+            "src/cascader/index.jsx"
+        ],
+        "explanation": "The error is related to the CascaderSelect component modifying an input property, causing immutability issues with the Immer library. The files involved in this component are likely responsible for managing the input props and any caching or state that could affect them. The 'cascader.jsx' and 'cascader-select.jsx' files likely contain the logic for these operations, leading to the error seen in the bug scenario.",
+        "bug_scenario": "The bug occurs when using the CascaderSelect component, which improperly modifies the properties passed to it. This leads to an error with the Immer library, which does not allow modifications of an object once it is sealed."
+    },
+    "2": {
+        "bug_files": [
+            "src/cascader-select/cascader-select.jsx",
+            "src/cascader/cascader.jsx"
+        ],
+        "explanation": "The error message and stack trace indicate the issue occurs in `cascader.js`, which is likely related to the `cascader-select.jsx` file where the `CascaderSelect` component logic resides. These files are responsible for handling properties that seem to be erroneously modified, leading to conflicts when properties are not extensible. Therefore, checking and fixing state updates or prop handling logic within these files is essential to resolve the bug.",
+        "bug_scenario": "The bug occurs when the `CascaderSelect` component tries to modify an incoming property value, which is not allowed when using `immer`, causing an `Uncaught TypeError: Cannot add property value, object is not extensible`. The error stack trace points to `cascader.js`, specifically lines 196, 190, 211, and others, indicating that modifications to incoming props are being attempted within this file."
+    }
+}

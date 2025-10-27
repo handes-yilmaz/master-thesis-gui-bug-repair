@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/html/renderer/report-renderer.js//ReportRenderer",
+            "lighthouse-core/report/html/renderer/category-renderer.js//CategoryRenderer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/html/renderer/report-renderer.js//_renderReportWarnings",
+            "lighthouse-core/report/html/renderer/category-renderer.js//render"
+        ],
+        "explanation": "The 'ReportRenderer' class is responsible for rendering the overall report, including the sections for audits. The '_renderReportWarnings' function specifically handles the rendering of warnings, which is directly related to the bug since it needs to ensure that warnings are displayed in the report. The 'CategoryRenderer' class is responsible for rendering individual categories of audits, including how passed audits are displayed. The 'render' function in this class organizes the audits into clumps, which is relevant for ensuring that warnings are correctly associated with the passed audits.",
+        "bug_scenario": "The bug report indicates that warnings within the 'Passed Audits' section of the Lighthouse report are not visible. The proposed solution is to add a block of warnings following the 'Passed Audits' section, as illustrated in the provided image."
+    }
+}

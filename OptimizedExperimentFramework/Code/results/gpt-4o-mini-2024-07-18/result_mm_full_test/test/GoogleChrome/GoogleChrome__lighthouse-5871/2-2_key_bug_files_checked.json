@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/gatherers/gatherer.js",
+            "lighthouse-core/gather/connections/connection.js",
+            "lighthouse-core/config/config.js"
+        ],
+        "explanation": "These files are key to the bug because they likely contain the logic that defines how user agents are set and reported in Lighthouse. The 'gatherer.js' file is fundamental as it defines the base class for gatherers, which may include user agent settings. The 'connection.js' file handles the connection to the browser and may be responsible for sending commands that include user agent information. The 'config.js' file manages configuration settings, including those related to user agents, and is essential for ensuring that the correct user agent is used during tests.",
+        "bug_scenario": "The bug scenario involves a discrepancy between the user agent reported in Lighthouse's runtime settings and the actual user agent seen in the web server's access logs. This inconsistency can lead to confusion when analyzing logs, as requests from the same tool appear with different user agents. The user agent used by Lighthouse should match the one reported in the runtime settings for clarity and consistency."
+    }
+}

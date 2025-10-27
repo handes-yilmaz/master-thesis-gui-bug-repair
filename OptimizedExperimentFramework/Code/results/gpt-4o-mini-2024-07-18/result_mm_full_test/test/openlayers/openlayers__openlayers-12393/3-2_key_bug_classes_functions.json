@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageStatic.js//Static",
+            "src/ol/renderer/canvas/ImageLayer.js//CanvasImageLayerRenderer",
+            "src/ol/layer/Image.js//ImageLayer"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageStatic.js//handleImageChange",
+            "src/ol/renderer/canvas/ImageLayer.js//renderFrame",
+            "src/ol/layer/Image.js//createRenderer"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the rendering and scaling of images within the application. The `Static` class in `ImageStatic.js` is responsible for managing static images, including their dimensions and how they are drawn on the canvas. The `handleImageChange` function is crucial as it processes the image once it is loaded, and it contains the logic that currently uses `Math.ceil`, which is causing the rounding errors. The `CanvasImageLayerRenderer` class in `ImageLayer.js` is responsible for rendering the image layer on the canvas, and the `renderFrame` function is where the actual drawing occurs, making it essential to ensure that the image dimensions are calculated correctly. Lastly, the `ImageLayer` class is responsible for creating the renderer, linking the image source to the rendering process. Adjustments in these areas are necessary to resolve the rounding issues and improve the image fitting behavior.",
+        "bug_scenario": "The bug involves a square image that is not fitting correctly into a square tile extent due to rounding errors caused by floating point calculations. The use of `Math.ceil` is suspected to be the cause of the image being stretched unnecessarily, leading to a loss of detail. The expected behavior is to scale the image correctly without using `Math.ceil`, allowing for a more accurate fit."
+    }
+}

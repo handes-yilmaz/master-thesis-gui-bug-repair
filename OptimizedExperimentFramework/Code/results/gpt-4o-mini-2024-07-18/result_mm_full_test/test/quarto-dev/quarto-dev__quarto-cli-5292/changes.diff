@@ -1,0 +1,13 @@
+diff --git a/src/format/pdf/format-pdf.ts b/src/format/pdf/format-pdf.ts
+index 6bd5b9a..81f4f7d 100644
+--- a/src/format/pdf/format-pdf.ts
++++ b/src/format/pdf/format-pdf.ts
+@@ -217,7 +217,7 @@ function createPdfFormat(
+ 
+           const headerIncludes = [];
+           headerIncludes.push(
+-            "\\KOMAoption{captions}{" + captionOptions.join(",") + "}",
++    {\n      extensions: {\n        book: pdfBookExtension,\n        tikz: true,\n      },\n    },\n  );\n}\n\nexport function beamerFormat(): Format {\n  return createFormat(\n    "Beamer",\n    "pdf",\n    createPdfFormat("Beamer", false, false),\n    {\n      execute: {\n        [kFigWidth]: 10,\n        [kFigHeight]: 7,\n
+           );
+ 
+           extras.metadata = {

@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-jsx.js"
+        ],
+        "bug_functions": [
+            "components/prism-jsx.js//Prism.languages.insertBefore",
+            "components/prism-jsx.js//walkTokens"
+        ],
+        "explanation": "The file `components/prism-jsx.js` contains the logic for JSX syntax highlighting within the Prism library. The key functions and classes related to the bug include:\n\n1. `Prism.languages.insertBefore` - This function is used to modify the syntax patterns that Prism uses to identify different parts of JSX code. Specifically, it includes patterns for recognizing JSX spread operators and the attributes associated with them. Given the bug involves incorrect highlighting when using spread props, adjustments might be needed in how the `spread` pattern is defined.\n\n2. `walkTokens` - This function processes the tokens generated during JSX parsing and applies additional logic for token handling, including the handling of tags and braces. The function's logic for determining the context (whether inside a JSX context or plain text) might need to be revisited to ensure it correctly handles cases involving spread operators.\n\nThese elements are directly related to the syntax parsing and tokenizing logic that affects how JSX code is rendered and highlighted, making them critical to resolving the reported bug.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting in JSX components when using the spread operator for props. In the provided code snippet, a JSX component uses the spread operator to include props, which causes Prism's syntax highlighting to break, resulting in incorrect color rendering. This is shown in the first component, where the highlighting is wrong compared to the second component, which does not use the spread operator and is highlighted correctly. The issue is specific to JSX syntax highlighting plugins like Prism when rendering JavaScript code that uses JSX syntax."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-jsx.js//Prism.languages.insertBefore"
+        ],
+        "bug_functions": [
+            "components/prism-jsx.js//Prism.languages.jsx.tag.pattern",
+            "components/prism-jsx.js//Prism.languages.insertBefore"
+        ],
+        "explanation": "The bug is related to the way Prism's JSX syntax highlighting is set up to handle spread operators within JSX tags. The function `Prism.languages.jsx.tag.pattern` is responsible for defining the regex pattern that matches JSX tags, and it includes logic for handling spread operators within tags, which is precisely where the bug manifests. The `Prism.languages.insertBefore` function is used to add a 'spread' pattern inside the JSX tag matching logic, indicating that it directly deals with the spread operator syntax which is causing the highlighting issue. These functions are key to how JSX syntax is parsed by Prism, and adjustments here could fix the highlighting problem.",
+        "bug_scenario": "The bug scenario involves syntax highlighting issues in JSX components when props are spread using the spread operator. Specifically, the first Button component in the JSX code snippet, which uses the spread operator for props, is not highlighted correctly by Prism's syntax highlighter, while the second Button component, which lists props explicitly, is highlighted correctly. This issue is visualized in the bug report's screenshots, showing incorrect and correct syntax highlighting for the two components."
+    }
+}

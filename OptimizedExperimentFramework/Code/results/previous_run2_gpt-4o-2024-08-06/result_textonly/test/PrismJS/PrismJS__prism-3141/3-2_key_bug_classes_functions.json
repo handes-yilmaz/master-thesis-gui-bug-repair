@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [
+            "components/prism-sql.js//Prism.languages.sql",
+            "components/prism-sql.min.js//Prism.languages.sql"
+        ],
+        "explanation": "The bug is related to the SQL syntax highlighting, which is defined in the `Prism.languages.sql` object within the `components/prism-sql.js` and `components/prism-sql.min.js` files. The function `Prism.languages.sql` is responsible for defining patterns for SQL elements, including strings. The current pattern for strings does not account for tick marks as delimiters, which causes the issue. Therefore, updating the string pattern in this function to include tick marks as valid string delimiters is necessary to fix the bug.",
+        "bug_scenario": "The bug scenario involves SQL code highlighting where tick marks (`) are not being recognized as string delimiters. This results in keywords surrounded by tick marks not being formatted as strings in the SQL syntax highlighter."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [
+            "components/prism-sql.js//string"
+        ],
+        "explanation": "The bug is related to the 'string' pattern in the syntax highlighting configuration. The current pattern does not account for the backtick (`) as a valid string delimiter. This is evident in the provided code snippet in the bug report, which shows how the pattern should include backticks (`) along with single (') and double quotes (\") for string detection. The function in 'components/prism-sql.js' that defines the 'string' pattern is the key element causing the issue, as it needs to be updated to recognize backticks as valid string delimiters to fix the bug.",
+        "bug_scenario": "In the SQL code provided, tick marks (backticks) are used to surround keywords and identifiers such as column names and table aliases. However, these are not being highlighted as strings in the syntax highlighter, which is supposed to format these elements as strings when surrounded by tick marks."
+    }
+}

@@ -1,0 +1,40 @@
+diff --git a/src/ol/renderer/canvas/VectorLayer.js b/src/ol/renderer/canvas/VectorLayer.js
+index 169bf87..0b39961 100644
+--- a/src/ol/renderer/canvas/VectorLayer.js
++++ b/src/ol/renderer/canvas/VectorLayer.js
+@@ -159,7 +159,7 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+      * @private
+      * @type {number}
+      */
+-    this.opacity_ = 1;
++    this.opacity_ = options.opacity !== undefined ? options.opacity : 1;
+   }
+ 
+   /**
+@@ -224,16 +224,8 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+   }
+ 
+   setupCompositionContext_() {
+-    if (this.opacity_ !== 1) {
+-      const compositionContext = createCanvasContext2D(
+-        this.context.canvas.width,
+-        this.context.canvas.height,
+-        canvasPool,
+-      );
+-      this.compositionContext_ = compositionContext;
+-    } else {
+-      this.compositionContext_ = this.context;
+-    }
++    this.compositionContext_ = this.context;
++    this.context.globalAlpha = this.opacity_;
+   }
+ 
+   releaseCompositionContext_() {
+@@ -260,6 +252,7 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+     this.setupCompositionContext_(); //FIXME Check if this works, or if we need to defer something.
+     this.renderWorlds(this.replayGroup_, frameState, true);
+     this.releaseCompositionContext_();
++    this.context.globalAlpha = this.opacity_;
+   }
+ 
+   /**

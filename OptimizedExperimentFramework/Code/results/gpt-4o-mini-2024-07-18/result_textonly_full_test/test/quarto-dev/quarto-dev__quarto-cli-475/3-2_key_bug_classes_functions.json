@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/callout.lua//calloutLatex",
+            "src/resources/filters/quarto-pre/callout.lua//latexCalloutBoxDefault",
+            "src/resources/filters/quarto-pre/callout.lua//processCalloutDiv"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/callout.lua//latexCalloutBoxSimple",
+            "src/resources/filters/quarto-pre/callout.lua//calloutDiv"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the rendering of callout blocks in LaTeX format. The 'calloutLatex' function is responsible for generating the LaTeX output for callouts, while 'latexCalloutBoxDefault' and 'latexCalloutBoxSimple' define how the callout boxes are structured in LaTeX. The 'processCalloutDiv' function processes the callout divs and determines how they should be rendered, including handling captions. Any issues in these functions can lead to the incorrect rendering of captions, especially when they contain special characters, which is the core of the reported bug.",
+        "bug_scenario": "The bug occurs when processing markdown callout blocks with captions that contain special characters. These captions are rendered incorrectly in LaTeX output, leading to errors when generating PDF documents. Specifically, captions with special characters like '%<-%' or commas cause LaTeX to misinterpret the input, resulting in rendering issues or errors."
+    }
+}

@@ -1,0 +1,16 @@
+diff --git a/core/audits/no-unload-listeners.js b/core/audits/no-unload-listeners.js
+index 069fe70..8396baa 100644
+--- a/core/audits/no-unload-listeners.js
++++ b/core/audits/no-unload-listeners.js
+@@ -39,8 +39,9 @@ class NoUnloadListeners extends Audit {
+    * @return {Promise<LH.Audit.Product>}
+    */
+   static async audit(artifacts, context) {
+-    const unloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload');
+-    if (!unloadListeners.length) {
++    const unloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload' || l.type === 'unload' && l.executionContext === 'isolated');
++    const isolatedUnloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload' && l.executionContext === 'isolated');
++    if (!unloadListeners.length && !isolatedUnloadListeners.length) {
+       return {
+         score: 1,
+       };

@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/drilldown/SubprocessCompatibility",
+            "lib/features/modeling/behavior/ResizeBehavior",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/drilldown/SubprocessCompatibility//handleImport",
+            "lib/features/drilldown/SubprocessCompatibility//createNewDiagrams",
+            "lib/features/modeling/behavior/ResizeBehavior//resize.start",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior//_createNewDiagram"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the behavior and rendering of subprocesses and their interactions within the BPMN modeler. The 'SubprocessCompatibility' class manages the import and rendering of subprocesses, which is crucial for ensuring that the UI reflects the correct state of the elements. The 'ResizeBehavior' class sets constraints on resizing elements, which may affect how the subprocess is displayed and interacted with. Lastly, the 'SubProcessPlaneBehavior' class is responsible for creating and managing the diagram elements associated with subprocesses, which is directly related to the issue of not being able to revert to a call activity.",
+        "bug_scenario": "The bug occurs when transforming a task into a call activity and then into an expanded subprocess. The user is unable to revert back to a call activity due to the wrench menu only allowing a change to an event subprocess, leading to a dead end in the editing process."
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior",
+            "lib/features/modeling/behavior/AttachEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior//insertShape",
+            "lib/features/modeling/behavior/DropOnFlowBehavior//preExecute",
+            "lib/features/modeling/behavior/DropOnFlowBehavior//postExecuted",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior//preExecute",
+            "lib/features/modeling/behavior/AttachEventBehavior//preExecute"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the behavior of dropping and connecting elements in the BPMN model. The 'DropOnFlowBehavior' class specifically manages how shapes are inserted into flows, which is directly relevant to the issue of connecting message flows to pool boundaries. The 'CreateBoundaryEventBehavior' and 'AttachEventBehavior' classes also deal with the creation and attachment of events, which may influence how connections are made to pool boundaries. Modifications in these areas could resolve the issue of connecting message flows correctly after lane modifications.",
+        "bug_scenario": "The bug scenario involves difficulty in connecting message flows to the boundaries of a pool that previously had multiple lanes. The user can only connect the message flow at the header of the pool instead of within the single lane after removing a lane."
+    }
+}

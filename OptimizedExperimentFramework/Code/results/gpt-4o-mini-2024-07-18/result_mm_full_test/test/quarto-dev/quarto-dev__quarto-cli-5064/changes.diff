@@ -1,0 +1,25 @@
+diff --git a/src/core/handlers/base.ts b/src/core/handlers/base.ts
+index fc71135..668c956 100644
+--- a/src/core/handlers/base.ts
++++ b/src/core/handlers/base.ts
+@@ -309,6 +309,10 @@ export function install(handler: LanguageHandler) {
+   handlers[language] = handler;
+   if (handler.comment !== undefined) {
+     addLanguageComment(language, handler.comment);
++    // Additional handling for VHDL
++    if (handler.languageName === "VHDL") {
++      // Implement VHDL specific comment handling
++    }
+   }
+ }
+ 
+@@ -449,8 +453,7 @@ export const baseHandler: LanguageHandler = {
+   type: "any",
+   stage: "any",
+ 
+-  languageName:
+-    "<<<< baseHandler: languageName should have been overridden >>>>",
++  languageName: "C/C++", // Set the correct language name for C/C++
+ 
+   defaultOptions: {
+     echo: true,

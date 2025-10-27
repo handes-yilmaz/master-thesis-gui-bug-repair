@@ -1,0 +1,48 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "if (this.getSource()) {",
+                    "this.setStyle(this.style_);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (this.getSource()) {",
+                    "      this.setStyle(this.style_);",
+                    "      this.renderedSource_ = null; // Clear the rendered source",
+                    "      this.getSource().expireCache(); // Clear the cache for the old source",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/source/Tile.js": [
+            {
+                "SEARCH": [
+                    "const tileCache = this.getTileCacheForProjection(projection);",
+                    "if (tileCache) {",
+                    "tileCache.expireCache(usedTiles);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const tileCache = this.getTileCacheForProjection(projection);",
+                    "    if (tileCache) {",
+                    "      tileCache.expireCache(usedTiles);",
+                    "      this.clear(); // Clear the cache when the source is changed",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "this.renderComplete = true;"
+                ],
+                "REPLACE": [
+                    "    this.renderComplete = true;",
+                    "    tileSource.expireCache(frameState.viewState.projection, empty); // Expire the cache after rendering"
+                ]
+            }
+        ]
+    }
+}

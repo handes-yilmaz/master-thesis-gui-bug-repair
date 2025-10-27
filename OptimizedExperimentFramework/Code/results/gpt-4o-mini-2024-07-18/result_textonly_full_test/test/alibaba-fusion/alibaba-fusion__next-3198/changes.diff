@@ -1,0 +1,33 @@
+diff --git a/src/date-picker2/panels/time-panel.jsx b/src/date-picker2/panels/time-panel.jsx
+index baed906..6f1d54f 100644
+--- a/src/date-picker2/panels/time-panel.jsx
++++ b/src/date-picker2/panels/time-panel.jsx
+@@ -90,4 +90,28 @@ class TimePanel extends React.PureComponent {
+     }
+ }
+ 
++import React from 'react';
++import PropTypes from 'prop-types';
++
++const TimePanel = ({ defaultValue }) => {
++    const formattedValue = defaultValue ? new Date(defaultValue) : null;
++
++    if (isNaN(formattedValue)) {
++        console.error("Invalid date provided to TimePanel:", defaultValue);
++        return null; // or handle the error as needed
++    }
++
++    // ... rest of the component logic
++
++    return (
++        <div>
++            {/* Render the time panel with the formatted value */}
++        </div>
++    );
++};
++
++TimePanel.propTypes = {
++    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
++};
++
+ export default polyfill(TimePanel);

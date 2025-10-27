@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/LayoutConnectionBehavior.js",
+            "lib/features/auto-resize/BpmnAutoResize.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: \n1. **LabelBehavior.js**: This file manages the behavior of labels associated with shapes and connections. It contains logic for updating label positions when shapes are resized, which is directly related to the issue of labels not moving with the resized sub-process.\n2. **LayoutConnectionBehavior.js**: This file handles the layout adjustments of connections, ensuring that associated elements (like labels) are updated when connections are moved or resized. It is essential for ensuring that connections and their labels remain properly aligned after a resize.\n3. **BpmnAutoResize.js**: This file implements the auto-resizing functionality for BPMN elements. It is responsible for resizing shapes and ensuring that associated elements are adjusted accordingly. Fixing the resizing logic here will help ensure that labels and associations are repositioned correctly when a shape is resized.",
+        "bug_scenario": "The bug occurs when a connection with labels and associations is not properly repositioned after resizing a connected shape (sub-process). The labels and associations remain in their original position, leading to a disconnection from the resized shape, as demonstrated in the provided GIF."
+    }
+}

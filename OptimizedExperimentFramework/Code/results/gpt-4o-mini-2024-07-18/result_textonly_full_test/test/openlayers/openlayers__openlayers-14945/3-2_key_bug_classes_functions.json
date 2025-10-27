@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageArcGISRest.js//ImageArcGISRest"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageArcGISRest.js//constructor",
+            "src/ol/source/ImageArcGISRest.js//getImageInternal",
+            "src/ol/source/ImageArcGISRest.js//getRequestUrl_"
+        ],
+        "explanation": "The ImageArcGISRest class is directly related to the bug as it contains the logic for handling the ratio parameter that is causing the layer-map mismatch. The constructor initializes the ratio, and the getImageInternal function uses this ratio to adjust the extent of the image being requested. The getRequestUrl_ function constructs the URL for the image request, which also depends on the ratio. Modifying these functions will help address the issues related to the incorrect default ratio and its effects on layer alignment.",
+        "bug_scenario": "In OpenLayers version 7.4, the ImageArcGISRest source has a default ratio parameter set to 1.5, which causes layer-map mismatches when the zoom or scaling ratio is not 100%. This issue persists even after map rotation, leading to misalignment of layers. The workaround is to set the ratio to 1."
+    }
+}

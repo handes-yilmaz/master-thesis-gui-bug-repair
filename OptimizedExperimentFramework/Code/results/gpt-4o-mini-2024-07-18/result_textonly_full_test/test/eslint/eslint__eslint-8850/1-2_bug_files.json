@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/rules/indent.js",
+            "lib/rules/indent-legacy.js",
+            "lib/config/config-validator.js"
+        ],
+        "explanation": "The 'indent.js' and 'indent-legacy.js' files are directly related to the indentation rules enforced by ESLint. The regression issue pertains to how the 'indent' rule processes nested JSX elements with parentheses, making these files essential to investigate and potentially modify to address the bug. The 'config-validator.js' file is also relevant as it handles the validation of configuration settings, including the indent rule configurations, which may need to be inspected to ensure proper parsing and application of indentation rules.",
+        "bug_scenario": "The issue arises from a regression in ESLint version 4.1.0, where nested JSX elements with parentheses are causing indentation errors, contrary to the expected behavior seen in version 4.0. The provided bug images illustrate the specific indentation errors reported when parentheses are used around binary expressions within JSX."
+    },
+    "2": {
+        "bug_files": [
+            "lib/rules/indent.js",
+            "lib/rules/indent-legacy.js",
+            "lib/rules/arrow-parens.js",
+            "lib/rules/func-call-spacing.js"
+        ],
+        "explanation": "The 'indent.js' and 'indent-legacy.js' files are crucial because they contain the logic for handling indentation rules, which are at the core of the reported bug. The issue arises under the context of JSX, so any files related to handling function call spacing or arrow function parentheses, such as 'arrow-parens.js' and 'func-call-spacing.js', may also need examination or adjustment to ensure proper handling of indentation in these scenarios.",
+        "bug_scenario": "The bug relates to a regression in ESLint 4.1.0 where JSX binary expressions with parentheses are incorrectly reported for indentation errors, while the same code without parentheses passes without errors. This issue does not occur in the previous version (4.0.0). The provided images highlight the indentation errors caused by this regression."
+    }
+}

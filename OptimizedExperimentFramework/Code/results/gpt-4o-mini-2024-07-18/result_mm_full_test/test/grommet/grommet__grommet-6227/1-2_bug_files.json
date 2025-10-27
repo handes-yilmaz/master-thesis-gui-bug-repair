@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/Form/Form.js",
+            "src/js/components/Form/Controlled.js",
+            "src/js/components/Form/DynamicFields.js"
+        ],
+        "explanation": "These files are related to the form management and validation logic. 'Form.js' handles the overall form structure and validation states, 'Controlled.js' deals with controlled inputs and their validation, and 'DynamicFields.js' specifically manages adding and removing fields dynamically. The issue likely resides in how the validation state is updated when fields are conditionally rendered, making these files critical for resolving the bug.",
+        "bug_scenario": "The form becomes invalid when dynamically adding and removing required fields. When a required TextInput field is added upon checking a checkbox, it correctly becomes invalid when no value is provided. However, upon unchecking the checkbox and removing the TextInput, the form still reports as invalid, indicating an issue with the validation logic."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/Form/Form.js",
+            "src/js/components/Form/DynamicFields.js",
+            "src/js/components/Form/ControlledInput.js"
+        ],
+        "explanation": "These files are related to the form's functionality and validation logic. The Form.js file manages the overall form behavior, including validation checks. The DynamicFields.js is responsible for adding and removing fields dynamically, which is central to the reported issue. The ControlledInput.js handles the state of input elements and their validation, making it crucial for resolving the issue of incorrect form validity after modifying inputs.",
+        "bug_scenario": "The form becomes invalid when dynamically adding and removing required fields. Specifically, after unchecking a checkbox that adds a required TextInput field, removing that field does not correctly update the form's validity status, causing it to still be marked as invalid even when other fields are valid."
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/driver/wait-for-condition.js": [
+            {
+                "SEARCH": [
+                    "* @param {number} pauseAfterLoadMs"
+                ],
+                "REPLACE": [
+                    " * @param {number} pauseAfterLoadMs - Time to wait after load event before resolving."
+                ]
+            },
+            {
+                "SEARCH": [
+                    "session.once('Page.loadEventFired', loadListener);"
+                ],
+                "REPLACE": [
+                    "    session.once('Page.loadEventFired', loadListener);",
+                    "    // Increase the pause time to ensure accurate CLS measurement",
+                    "    pauseAfterLoadMs = Math.max(pauseAfterLoadMs, 3000); // Wait at least 3 seconds"
+                ]
+            }
+        ]
+    }
+}

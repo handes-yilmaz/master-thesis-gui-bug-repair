@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Group.js//LayerGroup",
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Group.js//setLayers",
+            "src/ol/layer/WebGLTile.js//setStyle",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "The LayerGroup class is responsible for managing the visibility of its child layers, including the WebGLTile layer. The setLayers function in LayerGroup is crucial as it handles the addition and removal of layers, which directly affects their visibility. The WebGLTileLayer class is essential because it defines the properties and behavior of the WebGLTile layer, including how it should respond to visibility changes. Lastly, the renderFrame function in WebGLTileLayerRenderer is responsible for rendering the layer, and any issues in this function could prevent the layer from being hidden when the group visibility is toggled.",
+        "bug_scenario": "The WebGLTile layer remains visible even when its parent group is set to not visible. This issue occurs specifically with the WebGLTile layer type, as changing it to a standard Tile layer resolves the visibility issue."
+    }
+}

@@ -1,0 +1,28 @@
+diff --git a/lighthouse-core/lib/i18n/i18n.js b/lighthouse-core/lib/i18n/i18n.js
+index d3da92e..48c01ad 100644
+--- a/lighthouse-core/lib/i18n/i18n.js
++++ b/lighthouse-core/lib/i18n/i18n.js
+@@ -183,9 +183,12 @@ const _ICUMsgNotFoundMsg = 'ICU message not found in destination locale';
+  */
+ function _formatIcuMessage(locale, icuMessageId, fallbackMessage, values) {
+   const localeMessages = LOCALES[locale];
+-  if (!localeMessages) throw new Error(`Unsupported locale '${locale}'`);
++  if (!localeMessages) {
++    console.warn(`Unsupported locale '${locale}', falling back to default locale.`);
++    return getRendererFormattedStrings('en'); // Fallback to default locale
++  }
+ 
+-  const localeMessage = localeMessages[icuMessageId] && localeMessages[icuMessageId].message;
++  const localeMessage = localeMessages[icuMessageId] ? localeMessages[icuMessageId].message : fallbackMessage;
+   // fallback to the original english message if we couldn't find a message in the specified locale
+   // better to have an english message than no message at all, in some number cases it won't even matter
+   const messageForMessageFormat = localeMessage || fallbackMessage;
+@@ -347,7 +350,7 @@ function replaceIcuMessageInstanceIds(inputObject, locale) {
+ 
+       // Check to see if the value in the LHR looks like a string reference. If it is, replace it.
+       if (typeof value === 'string' && isIcuMessage(value)) {
+-        const {icuMessageInstance, formattedString} = _resolveIcuMessageInstanceId(value, locale);
++        const {icuMessageInstance, formattedString} = _resolveIcuMessageInstanceId(value, locale) || {formattedString: fallbackMessage};
+         const messageInstancesInLHR = icuMessagePaths[icuMessageInstance.icuMessageId] || [];
+         const currentPathAsString = _formatPathAsString(currentPathInLHR);
+ 

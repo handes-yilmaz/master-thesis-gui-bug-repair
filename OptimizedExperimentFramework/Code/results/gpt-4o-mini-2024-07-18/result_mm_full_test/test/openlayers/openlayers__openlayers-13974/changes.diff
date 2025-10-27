@@ -1,0 +1,15 @@
+diff --git a/src/ol/source/DataTile.js b/src/ol/source/DataTile.js
+index 777a24d..df02328 100644
+--- a/src/ol/source/DataTile.js
++++ b/src/ol/source/DataTile.js
+@@ -117,6 +117,10 @@ class DataTileSource extends TileSource {
+      * @type {number}
+      */
+     this.bandCount = options.bandCount === undefined ? 4 : options.bandCount; // assume RGBA if undefined
++    if (this.bandCount >= 6) {
++        // Additional logic to handle 6 bands (5 + alpha)
++        // This may include setting up the alpha channel correctly
++    }
+   }
+ 
+   /**

@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "src/ol/source/DataTile.js": [
+            {
+                "SEARCH": [
+                    "tileSize: options.tileSize,"
+                ],
+                "REPLACE": [
+                    "        tileSize: options.tileSize || [240, 240], // Default tile size if not provided"
+                ]
+            }
+        ],
+        "src/ol/tilegrid/TileGrid.js": [
+            {
+                "SEARCH": [
+                    "/**\\n     * @private\\n     * @type {Array<number|import(\"../size.js\").Size>}\\n     */\\n    this.tileSizes_ = null;\\n    if (options.tileSizes !== undefined) {\\n      this.tileSizes_ = options.tileSizes;\\n      assert(this.tileSizes_.length == this.resolutions_.length, 19); // Number of `tileSizes` and `resolutions` must be equal\\n    }\\n"
+                ],
+                "REPLACE": [
+                    "    /**\\n     * @private\\n     * @type {Array<number|import(\"../size.js\").Size>}\\n     */\\n    this.tileSizes_ = options.tileSizes || [[240, 240]]; // Default tile sizes if not provided\\n    assert(this.tileSizes_.length == this.resolutions_.length, 19); // Number of `tileSizes` and `resolutions` must be equal\\n"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/PaletteTexture.js"
+        ],
+        "explanation": "These files are critical to the bug because: 1. `WebGLTile.js` contains the main class for the WebGLTileLayer, which handles the layer's properties and style updates. Issues in this file could directly affect how styles are applied and rendered. 2. `TileLayer.js` is responsible for rendering the tile layers using WebGL. It manages the rendering process and any WebGL context issues, which are central to the reported bug. 3. `PaletteTexture.js` deals with the palette textures used in the rendering process. If there are problems with how palette textures are created or managed, it could lead to the rendering issues described in the bug report.",
+        "bug_scenario": "The WebGLTileLayer with a palette style fails to render correctly after being removed and added back to the map. Specifically, when switching to the 'NDVI w/ palette 1' style and repeatedly toggling the layer, a black layer appears, accompanied by WebGL context errors in the console."
+    }
+}

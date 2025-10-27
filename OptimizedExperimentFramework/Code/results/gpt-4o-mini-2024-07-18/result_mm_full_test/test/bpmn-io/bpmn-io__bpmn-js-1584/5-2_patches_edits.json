@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "// Example for fixing the redo logic": [
+            {
+                "SEARCH": [
+                    "function redoAction() {",
+                    "// existing logic",
+                    "process.id = generateNewId(); // This line may need to be adjusted"
+                ],
+                "REPLACE": [
+                    "function redoAction() {",
+                    "    // existing logic",
+                    "    // Ensure the process ID remains the same as before",
+                    "    process.id = previousProcessId; // Maintain the previous ID"
+                ]
+            }
+        ],
+        "// Example for fixing the pool copy logic": [
+            {
+                "SEARCH": [
+                    "function copyPool(pool) {",
+                    "const newPool = { ...pool, id: pool.id }; // This line may need to be adjusted"
+                ],
+                "REPLACE": [
+                    "function copyPool(pool) {",
+                    "    const newPool = { ...pool, id: generateUniqueId(pool.id) }; // Ensure unique ID"
+                ]
+            }
+        ]
+    }
+}

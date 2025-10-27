@@ -1,0 +1,44 @@
+diff --git a/src/tab/tab.jsx b/src/tab/tab.jsx
+index 31dce00..a75a600 100644
+--- a/src/tab/tab.jsx
++++ b/src/tab/tab.jsx
+@@ -263,6 +263,25 @@ class Tab extends Component {
+             return;
+         }
+ 
++        if (keyCode >= KEYCODE.LEFT && keyCode <= KEYCODE.DOWN) {
++            e.preventDefault();
++        }
++        
++        // Allow keyboard navigation for vertical scrolling
++        if (keyCode === KEYCODE.UP) {
++            const newKey = this.getNextActiveKey(false);
++            this.handleTriggerEvent(this.props.triggerType, newKey);
++        } else if (keyCode === KEYCODE.DOWN) {
++            const newKey = this.getNextActiveKey(true);
++            this.handleTriggerEvent(this.props.triggerType, newKey);
++        }
++        const keyCode = e.keyCode;
++        const { disableKeyboard } = this.props;
++
++        if (disableKeyboard) {
++            return;
++        }
++
+         if (keyCode >= KEYCODE.LEFT && keyCode <= KEYCODE.DOWN) {
+             e.preventDefault();
+         }
+diff --git a/src/tab/tabs/nav.jsx b/src/tab/tabs/nav.jsx
+index e0a3155..4191adf 100644
+--- a/src/tab/tabs/nav.jsx
++++ b/src/tab/tabs/nav.jsx
+@@ -557,7 +557,8 @@ class Nav extends React.Component {
+         const container = (
+             <div className={containerCls} onKeyDown={this.handleKeyDown} key="nav-container">
+                 <div className={`${prefix}tabs-nav-wrap`} ref={this.wrapperRefHandler}>
+-                    <div className={`${prefix}tabs-nav-scroll`} style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
++                    <div className={`${prefix}tabs-nav-scroll`} style={{ overflowY: 'auto', overflowX: 'hidden', whiteSpace: 'nowrap' }}>
++### Adding vertical scrolling and hiding horizontal overflow
+                         {animation ? (
+                             <Animate
+                                 role="tablist"

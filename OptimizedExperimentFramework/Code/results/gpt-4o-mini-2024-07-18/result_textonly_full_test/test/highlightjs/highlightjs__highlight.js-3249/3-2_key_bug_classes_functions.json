@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/latex.js//MAGIC_COMMENT",
+            "src/languages/latex.js//COMMENT"
+        ],
+        "bug_functions": [],
+        "explanation": "The 'MAGIC_COMMENT' class is directly related to the bug because it defines how TeX magic comments are recognized and highlighted in the LaTeX language. The issue arises from the case sensitivity in the regex pattern used for this class. The 'COMMENT' class is also relevant as it defines the general comment behavior in LaTeX, which may need to be adjusted to ensure that all comments, including magic comments, are treated consistently.",
+        "bug_scenario": "The bug scenario involves the case sensitivity of TeX magic comments in LaTeX code. The expectation is that both '% !TeX program = lualatex' and '% !TEX encoding = UTF-8' should be highlighted as 'MAGIC_COMMENT', but currently, only the first line is highlighted due to the implementation of the 'MAGIC_COMMENT' rule in the code."
+    }
+}

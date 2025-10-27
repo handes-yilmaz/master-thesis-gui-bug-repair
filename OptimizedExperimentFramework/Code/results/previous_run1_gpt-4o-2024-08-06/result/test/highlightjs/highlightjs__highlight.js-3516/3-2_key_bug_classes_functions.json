@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/css.js//export default function"
+        ],
+        "bug_functions": [],
+        "explanation": "The main issue seems to be with how the highlight function in `src/languages/css.js` handles strings, particularly those containing parentheses. The return statement of the default export function defines the language rules for CSS, including how strings and URL patterns are recognized. The relevant portion of the code attempts to handle strings in URLs but fails to manage parentheses correctly, leading to the bug.",
+        "bug_scenario": "The bug scenario involves incorrect highlighting of CSS strings within parentheses. The URL strings in the CSS code contain parentheses, and these parentheses are not being correctly handled by the syntax highlighter, causing issues with string matching."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/css.js"
+        ],
+        "bug_functions": [
+            "src/languages/css.js//default function(hljs)"
+        ],
+        "explanation": "The issue is related to incorrect string highlighting when parentheses are involved. The function in 'css.js' is responsible for defining the syntax highlighting rules for CSS. Within this function, the handling of strings and parentheses needs to be adjusted to ensure that parentheses do not disrupt string matching. The bug likely resides in how the highlighting logic processes parentheses and strings, specifically in the part of the code dealing with URL handling and string boundaries.",
+        "bug_scenario": "The bug involves incorrect highlighting of strings within parentheses in CSS code. The expected behavior is that when parentheses appear in a string, they should not take precedence over single or double quotes for matching."
+    }
+}

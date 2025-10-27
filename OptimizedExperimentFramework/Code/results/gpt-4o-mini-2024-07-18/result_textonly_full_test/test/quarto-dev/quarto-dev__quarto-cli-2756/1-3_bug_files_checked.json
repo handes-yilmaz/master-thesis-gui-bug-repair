@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/core/handlers/include.ts",
+            "src/resources/filters/crossref/crossref.lua",
+            "src/resources/filters/quarto-pre/theorems.lua"
+        ],
+        "explanation": "These files are related to the bug because they contain the logic for handling the rendering of Theorems and Proofs, including how captions are processed. The 'crossref.lua' file appears to be directly involved in the error reported in the Lua filter, as the error traceback points to line numbers within it. The 'theorems.lua' file likely contains the definitions and rules for rendering the theorem blocks, which are essential for fixing the issue with captions being incorrectly included in lists. The 'include.ts' file may handle the overall inclusion logic for various components, including how the theorem captions are structured in the document.",
+        "bug_scenario": "The bug occurs when using Theorems and Proofs without headers or labels, which causes errors in the Lua filter during the conversion process to HTML. Specifically, the error traceback indicates that the 'insert' function is receiving a 'nil' value instead of a table, likely due to improper handling of theorem captions in the rendering logic."
+    }
+}

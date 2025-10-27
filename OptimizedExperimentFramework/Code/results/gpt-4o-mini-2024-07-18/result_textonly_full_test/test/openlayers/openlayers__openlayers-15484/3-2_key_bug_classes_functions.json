@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/reproj/DataTile.js//ReprojDataTile",
+            "src/ol/reproj/Image.js//ReprojImage"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//configure_",
+            "src/ol/reproj/DataTile.js//reproject_",
+            "src/ol/reproj/Image.js//reproject_"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the core functionality of processing GeoTIFF images and their reprojection. The `GeoTIFFSource` class is responsible for managing the GeoTIFF data source, including how it is configured and how it interacts with the tile grid. The `configure_` function within this class is crucial for setting up the tile grid based on the images, which directly relates to the cropping issue. The `ReprojDataTile` and `ReprojImage` classes are responsible for handling the reprojection of the data tiles and images, respectively. Their `reproject_` functions are critical as they perform the actual reprojection logic, which is where the bug manifests when the `wrapX` option is not respected during this process.",
+        "bug_scenario": "The bug occurs when cropping GeoTIFF source tiles to the tile grid extent is not respected during reprojection, particularly when a non-zero nodata value is specified. The expected behavior is that the `wrapX` option should crop the output to the tile grid extent on both axes, regardless of the source projection being global. This issue may lead to incorrect rendering of the GeoTIFF images when they are reprojected."
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/source/Raster.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/layer/Image.js",
+            "src/ol/renderer/canvas/ImageLayer.js"
+        ],
+        "explanation": "These files are related to the bug because they handle the processing and rendering of raster data from GeoTIFF files, the operations applied to raster sources, and the rendering of layers in WebGL. The issue arises when the floodRegion function processes pixel data and the style variables are updated; thus, changes in these files could affect the pixel color updates when the slider is adjusted.",
+        "bug_scenario": "The bug occurs during the Region Growing process using a GeoTIFF file. When the user increases the level on the slider, all pixels below that level turn white as expected. However, when the user decreases the level, the pixels do not change back as they should. Additionally, the printed R value of a pixel is incorrect."
+    }
+}

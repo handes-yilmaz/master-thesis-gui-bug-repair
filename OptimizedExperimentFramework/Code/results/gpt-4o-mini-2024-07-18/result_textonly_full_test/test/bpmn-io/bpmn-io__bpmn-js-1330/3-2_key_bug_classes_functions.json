@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior",
+            "lib/features/rules/BpmnRules"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior//postExecute",
+            "lib/features/rules/BpmnRules//canConnect"
+        ],
+        "explanation": "The `BoundaryEventBehavior` class contains logic related to the behavior of boundary events, specifically in the context of connections. The `postExecute` function is crucial as it handles the connection creation events and should enforce the rule that prevents message flows from connecting to boundary events. The `BpmnRules` class is responsible for defining the rules of the BPMN model, and the `canConnect` function is where the logic to disallow message flows to boundary events should be implemented. Both classes and their respective functions are directly related to the bug as they govern the behavior and rules surrounding boundary events in the BPMN modeling environment.",
+        "bug_scenario": "The bug scenario involves attempting to connect a message flow to a boundary event in a BPMN diagram, which is semantically incorrect according to BPMN standards. The expected behavior is that such connections should be disallowed, but currently, the system allows it, leading to incorrect diagram representations."
+    }
+}

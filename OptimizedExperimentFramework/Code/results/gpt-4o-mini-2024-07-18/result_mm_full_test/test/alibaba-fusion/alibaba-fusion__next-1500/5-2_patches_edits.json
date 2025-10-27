@@ -1,0 +1,46 @@
+{
+    "1/1": {
+        "src/table/base/header.jsx": [
+            {
+                "SEARCH": [
+                    "render() {",
+                    "return (",
+                    "<div className={`${prefix}table-header`}>"
+                ],
+                "REPLACE": [
+                    "    render() {",
+                    "        const { fixed, resizable } = this.props; // Assuming these props are passed",
+                    "        return (",
+                    "            <div className={`${prefix}table-header ${fixed ? 'fixed' : ''} ${resizable ? 'resizable' : ''}`}>"
+                ]
+            }
+        ],
+        "src/table/fixed/header.jsx": [
+            {
+                "SEARCH": [
+                    "</div>",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "            <div className={`${prefix}fixed-header`}>",
+                    "                {/* Additional logic to handle filter dropdown visibility */}",
+                    "            </div>",
+                    "        );",
+                    "    }"
+                ]
+            }
+        ],
+        "src/table/base/filter.jsx": [
+            {
+                "SEARCH": [
+                    "const content = renderMenuContent(filters),"
+                ],
+                "REPLACE": [
+                    "        const content = renderMenuContent(filters);",
+                    "        const adjustedContent = adjustForFixedHeader(content); // New function to adjust content"
+                ]
+            }
+        ]
+    }
+}

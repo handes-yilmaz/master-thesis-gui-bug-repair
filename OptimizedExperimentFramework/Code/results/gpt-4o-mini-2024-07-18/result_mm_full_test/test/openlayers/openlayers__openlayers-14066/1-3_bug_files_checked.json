@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/layer/Image.js",
+            "src/ol/ImageBase.js"
+        ],
+        "explanation": "These files are likely involved in processing GeoTIFF images and handling image data. The `GeoTIFF.js` file is directly related to reading and interpreting GeoTIFF sources, where the new `convertToRGB: 'auto'` functionality would need to be implemented. The `Image.js` and `ImageBase.js` files are related to image handling and may contain methods like `readRGB()` or processing logic that need to be modified to support the new feature.",
+        "bug_scenario": "The bug pertains to the handling of GeoTIFF sources in the codebase, specifically regarding the implementation of an `convertToRGB: 'auto'` option that should allow automatic conversion to RGB when certain conditions are met (like having 3 samples per pixel and specific photometric interpretations). The request suggests modifying how images are read and processed when the photometric interpretation is one of CMYK, YCbCr, CIELab, or ICCLab, using the `image.readRGB()` method."
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "lighthouse-core/lib/i18n/i18n.js": [
+            {
+                "SEARCH": [
+                    "const localeMessages = LOCALES[locale];",
+                    "const localeMessage = localeMessages[icuMessageId] && localeMessages[icuMessageId].message;"
+                ],
+                "REPLACE": [
+                    "  const localeMessages = LOCALES[locale] || LOCALES['en']; // Fallback to English if locale not found",
+                    "  const localeMessage = localeMessages[icuMessageId] ? localeMessages[icuMessageId].message : fallbackMessage; // Use fallback message if not found"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const icuMessageIds = Object.keys(LOCALES[locale]).filter(f => f.includes('core/report/html/'));"
+                ],
+                "REPLACE": [
+                    "  const icuMessageIds = Object.keys(LOCALES[locale] || LOCALES['en']).filter(f => f.includes('core/report/html/')); // Fallback to English if locale not found"
+                ]
+            }
+        ]
+    }
+}

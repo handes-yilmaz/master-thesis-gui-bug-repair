@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js//UnusedBytes",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js//EfficientAnimatedContent"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js//computeWasteWithTTIGraph",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js//audit_"
+        ],
+        "explanation": "The `UnusedBytes` class contains the `computeWasteWithTTIGraph` function, which is crucial for calculating the estimated effect of byte savings on the last long task in the provided graph. This function is directly related to the bug as it currently reports zero savings incorrectly. The `EfficientAnimatedContent` class's `audit_` function is responsible for identifying unoptimized GIF content and calculating potential savings, which is relevant to the reported issue of not reflecting the actual savings in the audit report.",
+        "bug_scenario": "The ByteEfficiency audit reports no savings for animated GIFs converted to video, despite significant potential savings being indicated. The `computeWasteWithTTIGraph` function incorrectly calculates savings as zero due to only one network request being affected and no long tasks being touched. The suggestion is to calculate the impact based on the end of the graph rather than estimated TTI."
+    }
+}

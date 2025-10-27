@@ -1,0 +1,45 @@
+diff --git a/src/ol/layer/MapboxVector.js b/src/ol/layer/MapboxVector.js
+index 73910c2..2e1e86f 100644
+--- a/src/ol/layer/MapboxVector.js
++++ b/src/ol/layer/MapboxVector.js
+@@ -280,7 +280,7 @@ class MapboxVectorLayer extends VectorTileLayer {
+ 
+     super({
+       source: source,
+-      background: options.background,
++      background: options.background || 'transparent', // Ensure a default background
+       declutter: declutter,
+       className: options.className,
+       opacity: options.opacity,
+diff --git a/src/ol/renderer/Composite.js b/src/ol/renderer/Composite.js
+index 69d9ec3..2947dcc 100644
+--- a/src/ol/renderer/Composite.js
++++ b/src/ol/renderer/Composite.js
+@@ -113,7 +113,8 @@ class CompositeMapRenderer extends MapRenderer {
+       if (
+         !inView(layerState, viewState) ||
+         (layerState.sourceState != SourceState.READY &&
+-          layerState.sourceState != SourceState.UNDEFINED)
++          layerState.sourceState != SourceState.UNDEFINED) ||
++        layerState.layer.getBackground() === undefined // Check for background
+       ) {
+         continue;
+       }
+diff --git a/src/ol/renderer/canvas/VectorLayer.js b/src/ol/renderer/canvas/VectorLayer.js
+index c83441b..e7142db 100644
+--- a/src/ol/renderer/canvas/VectorLayer.js
++++ b/src/ol/renderer/canvas/VectorLayer.js
+@@ -233,11 +233,12 @@ class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
+ 
+     const canvasTransform = transformToString(this.pixelTransform);
+ 
++    const background = this.getBackground(frameState) || 'transparent'; // Default to transparent if undefined
+     this.useContainer(
+       target,
+       canvasTransform,
+       layerState.opacity,
+-      this.getBackground(frameState)
++      background
+     );
+     const context = this.context;
+     const canvas = context.canvas;

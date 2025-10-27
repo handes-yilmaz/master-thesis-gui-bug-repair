@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/DataTable/DataTable.js",
+            "src/js/components/DataTable/Sorter.js",
+            "src/js/components/DataTable/stories/Sort.js"
+        ],
+        "explanation": "The 'DataTable.js' file is responsible for rendering the DataTable component, where the sorting logic is likely implemented. The 'Sorter.js' and 'Sort.js' files are directly related to the sorting functionality and would contain the logic to handle sorting operations. These files need to be examined and potentially modified to handle null or undefined properties correctly, ensuring they are treated as empty strings during the sorting process.",
+        "bug_scenario": "The sorting functionality in the Data Table breaks when a property is null or undefined. This leads to incorrect ordering of items when sorting a column, specifically observed when sorting by 'Parent_id'. The expected behavior is that undefined properties should be treated as empty strings, ensuring that the sorting mechanism works correctly."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/DataTable/DataTable.js",
+            "src/js/components/DataTable/Sorter.js",
+            "src/js/components/Page/stories/CustomThemed/LeftColumn.js",
+            "src/js/components/DataTable/Body.js"
+        ],
+        "explanation": "These files are related to the DataTable component, which is responsible for rendering and sorting the data. The DataTable.js file contains the main logic for the DataTable, while Sorter.js likely handles the sorting mechanism. Column.js manages the column definitions and properties, and Body.js is responsible for rendering the rows of data. Any changes needed to handle null or undefined properties during sorting would need to be made in these files.",
+        "bug_scenario": "When sorting a column in the Data Table, if any of the items have a property set to null or undefined, the sorting does not reorder the items as expected. Instead, these items are handled incorrectly, leading to an unexpected result in the order of the data displayed."
+    }
+}

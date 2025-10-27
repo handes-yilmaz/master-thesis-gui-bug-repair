@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/TileWMS.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "The WebGLTile.js file is directly involved in rendering the WebGLTile layer, which is where the bug originates. The TileWMS.js file is relevant because it handles the WMS source from which the tiles are drawn, potentially affecting how the gutter is managed. The webgl/TileLayer.js file is also essential as it defines how tile layers are rendered in WebGL, including the management of textures which is where the clipping should occur.",
+        "bug_scenario": "The bug occurs in the WebGLTile layer renderer where it fails to clip the image gutter before creating textures. This leads to visual issues such as misplacement and duplication of images. The expected behavior is that the gutter should be clipped, taking into account the pixel ratio, to produce a clean output similar to what is seen with the ol/layer/Tile."
+    }
+}

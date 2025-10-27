@@ -1,0 +1,17 @@
+diff --git a/src/select/select.jsx b/src/select/select.jsx
+index 1a3b71708..729dd1b1e 100644
+--- a/src/select/select.jsx
++++ b/src/select/select.jsx
+@@ -215,6 +215,12 @@ class Select extends Base {
+                 this.valueDataSource.mapValueDS,
+                 this.dataStore.getMapDS()
+             );
++        } else if (this.props.defaultValue) {
++            this.valueDataSource = getValueDataSource(
++                this.props.defaultValue,
++                this.valueDataSource.mapValueDS,
++                this.dataStore.getMapDS()
++            );
+         }
+ 
+         if (isIE9) {

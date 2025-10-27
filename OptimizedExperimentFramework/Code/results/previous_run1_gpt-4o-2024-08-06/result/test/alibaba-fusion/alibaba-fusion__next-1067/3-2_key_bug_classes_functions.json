@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/slider/slick/arrow.jsx//Arrow"
+        ],
+        "bug_functions": [
+            "src/slider/slick/arrow.jsx//Arrow.isDisabled"
+        ],
+        "explanation": "The 'Arrow' class in 'src/slider/slick/arrow.jsx' handles the display and functionality of navigation arrows in the slider. The 'isDisabled' function determines whether an arrow should be disabled based on the current slide state and slider settings. The bug lies in this logic, causing the left arrow to be incorrectly disabled when certain conditions are met.",
+        "bug_scenario": "The left arrow in the slider component is disabled even when it should be enabled. This happens when 'slidesToShow' is greater than 'slidesCount', 'infinite' is set to false, and 'defaultActiveIndex' is not 0."
+    },
+    "2": {
+        "bug_classes": [
+            "src/slider/slider.jsx//Slider",
+            "src/slider/slick/arrow.jsx//Arrow"
+        ],
+        "bug_functions": [
+            "src/slider/slick/arrow.jsx//Arrow.isDisabled"
+        ],
+        "explanation": "The 'Slider' class in 'slider.jsx' is responsible for rendering the slider component and its properties. The 'Arrow' class in 'arrow.jsx' handles the rendering and behavior of the slider arrows. The 'Arrow.isDisabled' function determines if the arrow should be disabled based on conditions, and it seems to incorrectly disable the left arrow under certain conditions. This function needs to be adjusted to ensure the arrow is enabled when appropriate.",
+        "bug_scenario": "The left arrow in the slider is disabled when the conditions 'slidesToShow > slidesCount', 'infinite=false', and 'defaultActiveIndex !== 0' are met."
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/ResizeBehavior",
+            "lib/features/modeling/behavior/ResizeLaneBehavior",
+            "lib/features/modeling/BpmnLayouter"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/ResizeBehavior//constructor",
+            "lib/features/modeling/behavior/ResizeLaneBehavior//constructor",
+            "lib/features/modeling/BpmnLayouter//layoutConnection"
+        ],
+        "explanation": "These classes and functions are related to the resizing and layout behavior of BPMN elements. The ResizeBehavior class manages the minimum dimensions and resizing constraints for various shapes, including Subprocesses. The ResizeLaneBehavior class handles resizing for lanes and participants, which may also affect the dimensions of the subprocess. The BpmnLayouter class is responsible for laying out connections and elements, which could influence how the dimensions are calculated and displayed after the subprocess is collapsed and converted to an Ad Hoc type. Modifications in these areas are likely necessary to ensure that the dimensions remain consistent as expected.",
+        "bug_scenario": "The bug occurs when an Ad Hoc Subprocess is created from an expanded Subprocess that contains a child element. After collapsing the Subprocess and converting it to an Ad Hoc Subprocess, the dimensions of the subprocess change unexpectedly, which is not the expected behavior."
+    }
+}

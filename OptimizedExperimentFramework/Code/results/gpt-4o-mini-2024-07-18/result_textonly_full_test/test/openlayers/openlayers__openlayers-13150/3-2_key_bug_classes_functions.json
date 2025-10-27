@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Heatmap//Heatmap"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Heatmap//setOpacity",
+            "src/ol/layer/Heatmap//createRenderer"
+        ],
+        "explanation": "The Heatmap class is directly responsible for rendering the heatmap layer, including handling its properties such as opacity. The setOpacity function is crucial as it sets the opacity property of the layer, which is the core of the reported bug. The createRenderer function is also relevant because it is responsible for creating the rendering context where the opacity setting would be applied. If the opacity is not being set correctly, it could be due to issues in either of these functions.",
+        "bug_scenario": "The opacity option for the heatmap layer is not being applied correctly, resulting in the heatmap being rendered with full opacity regardless of the specified opacity value. This issue was observed when testing the heatmap layer in a specific example, where setting the opacity to 0.1 had no visual effect, unlike in version 6.9.0 where it worked as expected."
+    }
+}

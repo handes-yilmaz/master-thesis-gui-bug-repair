@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/geom/GeometryCollection//GeometryCollection",
+            "src/ol/interaction/Modify//Modify"
+        ],
+        "bug_functions": [
+            "src/ol/geom/GeometryCollection//closestPointXY",
+            "src/ol/geom/GeometryCollection//containsXY",
+            "src/ol/interaction/Modify//handleEvent",
+            "src/ol/interaction/Modify//handleDragEvent",
+            "src/ol/interaction/Modify//handleDownEvent",
+            "src/ol/interaction/Modify//handleUpEvent"
+        ],
+        "explanation": "The classes GeometryCollection and Modify are central to the bug because they manage the geometries and the interactions for modifying them, respectively. The functions closestPointXY and containsXY in GeometryCollection are crucial for determining spatial relationships during modifications. In the Modify class, handleEvent, handleDragEvent, handleDownEvent, and handleUpEvent are responsible for processing user interactions, which are directly related to the reported issue of incorrect behavior when editing geometries.",
+        "bug_scenario": "The interaction does not work correctly when editing geometries in a GeometryCollection. Specifically, when dragging the common vertex of two polygons, the expected behavior is not achieved, indicating a potential issue in the handling of geometry modifications."
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/Graticule//Graticule"
+        ],
+        "bug_functions": [
+            "src/ol/layer/Graticule//addMeridian_",
+            "src/ol/layer/Graticule//addParallel_",
+            "src/ol/layer/Graticule//createGraticule_",
+            "src/ol/layer/Graticule//getMeridians",
+            "src/ol/layer/Graticule//getParallels"
+        ],
+        "explanation": "The Graticule class is responsible for rendering the grid for the coordinate system, which includes the meridians and parallels. The functions addMeridian_ and addParallel_ are specifically responsible for adding meridians and parallels to the graticule, which are directly related to the bug described. The createGraticule_ function is responsible for creating the graticule based on the current view, and it needs to be modified to correctly handle cases where the projection crosses the dateline. The getMeridians and getParallels functions retrieve the lists of meridians and parallels, which are essential for ensuring that the graticule displays correctly in the specified projection.",
+        "bug_scenario": "The graticule layer does not display correctly when the view projection crosses the dateline, resulting in missing meridians and incorrectly positioned parallels. The expected behavior is for all meridians and parallels within the projection extent to be displayed correctly."
+    }
+}

@@ -1,0 +1,13 @@
+diff --git a/src/publish/confluence/confluence-helper.ts b/src/publish/confluence/confluence-helper.ts
+index 51f2771..89c5bc3 100644
+--- a/src/publish/confluence/confluence-helper.ts
++++ b/src/publish/confluence/confluence-helper.ts
+@@ -399,7 +399,7 @@ export const buildSpaceChanges = (
+         buildContentUpdate(
+           existingPage.id,
+           fileMetadata.title,
+-          fileMetadata.contentBody,
++          fileMetadata.contentBody.replace(/(\[.*?\]\((.*?)\))/g, '<a href="$2">$1</a>'),
+           universalFileName,
+           pageParent
+         ),

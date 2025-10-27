@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/webgl/TileLayer.js",
+            "src/ol/tilegrid/TileGrid.js",
+            "src/ol/reproj/Image.js"
+        ],
+        "explanation": "These files are directly related to the rendering and management of tile layers and GeoTIFF sources in the WebGL context. 'GeoTIFF.js' is essential as it will need to be modified to handle the new pyramid structure. 'WebGLTile.js' and 'TileLayer.js' are crucial for adjusting how layers are rendered using WebGL and how tiles are processed. The 'TileGrid.js' file is related to managing the tile grid structure necessary for the proposed GeoTIFF source. Finally, 'Image.js' in reproj might be involved in how images are handled within the WebGL context, which is relevant to preventing context loss.",
+        "bug_scenario": "The issue arises when using WebGLTileLayers with larger GeoTIFF pyramids, leading to lost WebGL contexts that degrade performance significantly (2-5 FPS instead of the expected 30 FPS). The proposed solution involves creating a new source for GeoTIFFs that utilizes a tile grid object and a template string, which would allow for better management of overlapping tiles and use a single canvas/WebGL context per layer."
+    }
+}

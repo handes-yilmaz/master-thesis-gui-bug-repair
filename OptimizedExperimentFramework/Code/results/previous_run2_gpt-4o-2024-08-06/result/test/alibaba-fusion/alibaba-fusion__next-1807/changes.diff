@@ -1,0 +1,37 @@
+diff --git a/src/menu/view/item.jsx b/src/menu/view/item.jsx
+index ccdbed71f..da3ba499e 100644
+--- a/src/menu/view/item.jsx
++++ b/src/menu/view/item.jsx
+@@ -213,17 +213,20 @@ export default class Item extends Component {
+             role = 'option';
+         }
+ 
+-        return (
+-            <TagName
+-                role={role}
+-                title={this.getTitle(children)}
+-                {...others}
+-                className={newClassName}
+-                onClick={this.handleClick}
+-                onKeyDown={this.handleKeyDown}
+-            >
+-                <div className={`${prefix}menu-item-inner`}>{children}</div>
+-            </TagName>
+-        );
++const isPureString = typeof children === 'string';
++const title = isPureString ? this.getTitle(children) : undefined;
++
++return (
++    <TagName
++        role={role}
++        title={title}
++        {...others}
++        className={newClassName}
++        onClick={this.handleClick}
++        onKeyDown={this.handleKeyDown}
++    >
++        <div className={`${prefix}menu-item-inner`}>{children}</div>
++    </TagName>
++);
+     }
+ }

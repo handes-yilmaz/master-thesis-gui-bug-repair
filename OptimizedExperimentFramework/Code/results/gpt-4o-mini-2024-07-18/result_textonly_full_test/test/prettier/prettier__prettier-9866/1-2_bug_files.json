@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/print/jsx.js",
+            "src/language-js/parser-babel.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "These files are related to the bug because 'src/language-js/print/jsx.js' handles the printing of JSX code, and thus is crucial for formatting behavior. 'src/language-js/parser-babel.js' is responsible for parsing JSX code, which could affect how whitespace (including special characters like U+3000) is interpreted. 'src/main/parser.js' is part of the main parsing logic and likely manages overall formatting options, including how to treat various whitespace characters.",
+        "bug_scenario": "The bug occurs when using Prettier to format JSX code containing the Unicode character U+3000 (ideographic space). The formatting is unstable, resulting in inconsistent output where the spacing around the variable 'this.props.data.title' is altered unexpectedly. The expected behavior is that the JSX code should maintain a consistent structure without unexpected whitespace changes."
+    }
+}

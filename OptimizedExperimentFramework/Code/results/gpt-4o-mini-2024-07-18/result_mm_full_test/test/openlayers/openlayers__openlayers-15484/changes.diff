@@ -1,0 +1,42 @@
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index fcdb50c..77a3c0a 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -388,7 +388,7 @@ class GeoTIFFSource extends DataTile {
+       opaque: options.opaque,
+       transition: options.transition,
+       interpolate: options.interpolate !== false,
+-      wrapX: options.wrapX,
++      wrapX: options.wrapX !== undefined ? options.wrapX : true, // Default to true if not specified
+     });
+ 
+     /**
+@@ -741,6 +741,10 @@ class GeoTIFFSource extends DataTile {
+     });
+ 
+     this.tileGrid = tileGrid;
++    if (this.wrapX) {
++      // Ensure that wrapX is respected during reprojection
++      this.tileGrid.setWrapX(true);
++    }
+     this.setTileSizes(commonSourceTileSizes);
+ 
+     this.setLoader(this.loadTile_.bind(this));
+@@ -780,11 +784,16 @@ class GeoTIFFSource extends DataTile {
+     for (let sourceIndex = 0; sourceIndex < sourceCount; ++sourceIndex) {
+       const source = sourceInfo[sourceIndex];
+       const resolutionFactor = this.resolutionFactors_[sourceIndex];
+-      const pixelBounds = [
++      const pixelBounds = this.wrapX ? [
+         Math.round(x * (sourceTileSize[0] * resolutionFactor)),
+         Math.round(y * (sourceTileSize[1] * resolutionFactor)),
+         Math.round((x + 1) * (sourceTileSize[0] * resolutionFactor)),
+         Math.round((y + 1) * (sourceTileSize[1] * resolutionFactor)),
++      ] : [
++        Math.max(0, Math.round(x * (sourceTileSize[0] * resolutionFactor))),
++        Math.max(0, Math.round(y * (sourceTileSize[1] * resolutionFactor))),
++        Math.min(this.tileGrid.getExtent()[2], Math.round((x + 1) * (sourceTileSize[0] * resolutionFactor))),
++        Math.min(this.tileGrid.getExtent()[3], Math.round((y + 1) * (sourceTileSize[1] * resolutionFactor))),
+       ];
+       const image = this.sourceImagery_[sourceIndex][z];
+       let samples;

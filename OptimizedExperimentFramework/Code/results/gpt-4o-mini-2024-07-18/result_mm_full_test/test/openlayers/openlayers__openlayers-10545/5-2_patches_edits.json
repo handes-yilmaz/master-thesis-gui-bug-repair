@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "src/ol/format/KML.js": [
+            {
+                "SEARCH": [
+                    "feature.setProperties(object, true);"
+                ],
+                "REPLACE": [
+                    "    feature.setProperties(object, true);",
+                    "    if (object['name']) {",
+                    "        object['name'] = decodeURIComponent(object['name']);",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/style/Text.js": [
+            {
+                "SEARCH": [
+                    "this.text_ = options.text;"
+                ],
+                "REPLACE": [
+                    "    this.text_ = options.text ? decodeURIComponent(options.text) : undefined;"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,63 @@
+diff --git a/src/command/render/render-contexts.ts b/src/command/render/render-contexts.ts
+index 6c1d671..384af52 100644
+--- a/src/command/render/render-contexts.ts
++++ b/src/command/render/render-contexts.ts
+@@ -200,6 +200,16 @@ export async function resolveFormatsFromMetadata(
+   return resolved;
+ }
+ 
++// Add handling for Bokeh plots in the rendering context
++function handleBokehPlots(context) {
++  context.plots.forEach(plot => {
++    if (plot.type === 'bokeh') {
++      // Ensure the plot is processed correctly
++      plot.process(); // Assuming process is a method to handle the plot
++    }
++  });
++}
++
+ export async function renderContexts(
+   file: RenderFile,
+   options: RenderOptions,
+diff --git a/src/command/render/render.ts b/src/command/render/render.ts
+index 2e8630a..00003eb 100644
+--- a/src/command/render/render.ts
++++ b/src/command/render/render.ts
+@@ -349,8 +349,17 @@ export function renderResultFinalOutput(
+     return !file.supplemental;
+   });
+   if (!result) {
+-    return undefined;
++  return undefined;
++}
++
++// Ensure that Bokeh plots are rendered correctly
++function renderBokehPlot(plot) {
++  if (plot && plot.type === 'bokeh') {
++    // Logic to render the Bokeh plot correctly
++    return plot.render(); // Assuming render is a method of the plot
+   }
++  return null;
++}
+ 
+   // see if we can find an index.html instead
+   for (const fileResult of renderResults.files) {
+diff --git a/src/execute/jupyter/jupyter.ts b/src/execute/jupyter/jupyter.ts
+index 24a7154..58d3093 100644
+--- a/src/execute/jupyter/jupyter.ts
++++ b/src/execute/jupyter/jupyter.ts
+@@ -413,6 +413,14 @@ export const jupyterEngine: ExecutionEngine = {
+     }
+     return files;
+   },
++  // Ensure that the Bokeh plot is correctly identified as a single figure
++  processBokehPlot: function (plot) {
++    // Logic to ensure the plot is treated as a single entity
++    if (plot && plot.type === 'bokeh') {
++      return [plot]; // Return as a single plot
++    }
++    return [];
++  },
+ };
+ 
+ function isQmdFile(file: string) {

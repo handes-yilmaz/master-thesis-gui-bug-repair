@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/tree-select/tree-select.jsx//TreeSelect"
+        ],
+        "bug_functions": [
+            "src/tree-select/tree-select.jsx//handleSelect",
+            "src/tree-select/tree-select.jsx//handleCheck",
+            "src/tree-select/tree-select.jsx//createNodesByData"
+        ],
+        "explanation": "The TreeSelect class is central to the bug as it manages the rendering of the tree structure and handles selections. The handleSelect and handleCheck functions are responsible for managing the selected items, which could lead to duplicate keys if not properly handled. The createNodesByData function is crucial for generating the tree nodes based on the provided data, and if it does not ensure unique keys for each node, it will exacerbate the issue of duplicate labels.",
+        "bug_scenario": "The bug occurs when both disabled items and default values are enabled in the TreeSelect component, leading to duplicate labels in the input field. This results in a warning about non-unique keys, which can cause rendering issues."
+    }
+}

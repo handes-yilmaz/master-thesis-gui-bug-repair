@@ -1,0 +1,41 @@
+{
+    "1/1": {
+        "core/audits/no-unload-listeners.js": [
+            {
+                "SEARCH": [
+                    "if (!unloadListeners.length) {"
+                ],
+                "REPLACE": [
+                    "    if (!unloadListeners.length) {",
+                    "      // Add a warning for potential unload listeners injected by extensions",
+                    "      console.warn('Warning: Potential `unload` listeners may be injected by extensions.');"
+                ]
+            }
+        ],
+        "core/audits/bf-cache.js": [
+            {
+                "SEARCH": [
+                    "const failures = artifacts.BFCacheFailures;"
+                ],
+                "REPLACE": [
+                    "    const failures = artifacts.BFCacheFailures;",
+                    "    // Check for unload listeners in the main frame",
+                    "    const unloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload');",
+                    "    if (unloadListeners.length) {",
+                    "      console.warn('Warning: `unload` listeners detected, which may prevent bfcache restoration.');"
+                ]
+            }
+        ],
+        "core/gather/gatherers/global-listeners.js": [
+            {
+                "SEARCH": [
+                    "const filteredListeners = listeners.filter(GlobalListeners._filterForAllowlistedTypes)"
+                ],
+                "REPLACE": [
+                    "    const filteredListeners = listeners.filter(listener => {",
+                    "      return GlobalListeners._filterForAllowlistedTypes(listener) || listener.type === 'unload';"
+                ]
+            }
+        ]
+    }
+}

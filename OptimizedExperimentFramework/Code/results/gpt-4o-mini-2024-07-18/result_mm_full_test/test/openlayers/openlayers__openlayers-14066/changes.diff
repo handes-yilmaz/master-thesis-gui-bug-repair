@@ -1,0 +1,27 @@
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index 07ec7e6..ad74eb7 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -423,10 +423,18 @@ class GeoTIFFSource extends DataTile {
+      */
+     this.error_ = null;
+ 
+-    /**
+-     * @type {'readRasters' | 'readRGB'}
+-     */
+-    this.readMethod_ = options.convertToRGB ? 'readRGB' : 'readRasters';
++    /** 
++     * @type {'readRasters' | 'readRGB'} 
++     */ 
++    if (options.convertToRGB === 'auto') {
++      const samplesPerPixel = this.sourceInfo_.map(source => source.bands ? source.bands.length : 1);
++      const isAutoRGB = samplesPerPixel.every(samples => samples === 3) && 
++                        this.sourceInfo_.some(source => 
++                          ['CMYK', 'YCbCr', 'CIELab', 'ICCLab'].includes(source.photometric));
++      this.readMethod_ = isAutoRGB ? 'readRGB' : 'readRasters';
++    } else {
++      this.readMethod_ = options.convertToRGB ? 'readRGB' : 'readRasters';
++    }
+ 
+     this.setKey(this.sourceInfo_.map((source) => source.url).join(','));
+ 

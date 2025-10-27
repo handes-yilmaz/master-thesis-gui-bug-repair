@@ -1,0 +1,38 @@
+{
+    "1/1": {
+        "rendering/cases/layer-vector/main.js": [
+            {
+                "SEARCH": [
+                    "const smallLine = new Feature(new LineString([",
+                    "[center[0], center[1] - 1],",
+                    "[center[0], center[1] + 1]",
+                    "]));",
+                    "smallLine.setStyle(new Style({",
+                    "zIndex: -99,",
+                    "stroke: new Stroke({width: 75, color: 'red'})",
+                    "}));",
+                    "smallLine.getGeometry().translate(-1000, 1000);",
+                    "..."
+                ],
+                "REPLACE": [
+                    "const smallLine = new Feature(new LineString([",
+                    "  [center[0], center[1] - 1],",
+                    "  [center[0], center[1] + 1]",
+                    "]));",
+                    "smallLine.setStyle(new Style({",
+                    "  zIndex: -99,",
+                    "  stroke: new Stroke({width: 75, color: 'red'})",
+                    "}));",
+                    "smallLine.getGeometry().translate(-1000, 1000);",
+                    "",
+                    "// Unifying rendering tests",
+                    "describe('Rendering Tests', () => {",
+                    "  it('should render vector layers correctly', () => {",
+                    "    // Add your test logic here",
+                    "  });",
+                    "});"
+                ]
+            }
+        ]
+    }
+}

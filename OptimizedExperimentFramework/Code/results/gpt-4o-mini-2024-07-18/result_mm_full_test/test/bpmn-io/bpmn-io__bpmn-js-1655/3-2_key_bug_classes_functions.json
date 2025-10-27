@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/cmd/SetColorHandler.js//SetColorHandler"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/cmd/SetColorHandler.js//postExecute"
+        ],
+        "explanation": "The `SetColorHandler` class contains the logic for handling color changes in the modeling feature. The `postExecute` function is responsible for applying the colors to the elements, including labels. The bug is likely within this function where the color assignment for external labels is incorrectly set to the 'fill' color instead of the 'stroke' color. This function needs to be modified to ensure that external labels are assigned the correct stroke color.",
+        "bug_scenario": "The issue arises when using the `modeling.setColor` API to change the color of an external label. Instead of setting the label to the 'stroke' color, it incorrectly sets it to the 'fill' color, leading to a UX concern due to the light color being used."
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-basic.js//Prism.languages.basic"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue arises from the incorrect pattern matching for strings in VB.NET when an '@' symbol is included within quote marks. The relevant code snippet in the bug report suggests that the string pattern used in 'prism-basic.js' does not account for the '@' symbol, causing the syntax highlighting to fail. The 'string' key in the 'Prism.languages.basic' object contains a regular expression pattern that defines which characters are allowed within strings. Currently, it does not include the '@' symbol, which is why the pattern fails when this character is encountered. As the report suggests, adding '@' to this pattern could resolve the issue, making 'Prism.languages.basic' the key class that needs modification to fix the bug.",
+        "bug_scenario": "The bug report describes a scenario where in VB.NET, when quote marks include an '@' sign, the opening quotes are not recognized properly. This issue is identified within a syntax highlighting context, where the first line of code is incorrectly highlighted compared to the second line, which does not include an '@' symbol within the quotes."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-basic.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue lies in the regex pattern used for string highlighting in the `prism-basic.js` file. The current pattern does not account for the '@' symbol as a valid character within strings, causing the syntax highlighter to fail when encountering this character within quotes. The pattern in question is responsible for identifying string literals and needs to be updated to include the '@' symbol to fix the highlighting issue. The bug report explicitly suggests adding '@' to the string pattern, indicating that this is the code element directly related to the bug.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in VB.NET code where strings containing the '@' character are not being correctly highlighted by the Prism syntax highlighter. Specifically, when an '@' symbol is included within quotes in a VB.NET SQL command string, the opening quotes are not recognized, leading to incorrect syntax highlighting."
+    }
+}

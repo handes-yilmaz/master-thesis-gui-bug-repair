@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/ContextEventType.js",
+            "src/ol/webgl/Helper.js"
+        ],
+        "explanation": "These files are directly related to the bug scenario as follows: 'WebGLTile.js' is responsible for defining the WebGL TileLayer logic, including how contexts are created and managed. 'TileLayer.js' in the webgl renderer handles rendering operations for tile layers and is likely where the context management needs to be optimized. 'ContextEventType.js' and 'Helper.js' provide auxiliary functions and event handling for WebGL contexts, which are essential for modifying how contexts are utilized and shared among layers.",
+        "bug_scenario": "The application is facing limitations due to the number of WebGL contexts required by each WebGL TileLayer, which is capped at a browser limit (typically 16). This results in possible breakdown or misbehavior of the application when this limit is reached, especially when rendering multiple raster images. The proposed solution is to enable WebGL TileLayers within one OpenLayers map to share a single WebGL context to mitigate this issue."
+    }
+}

@@ -1,0 +1,20 @@
+diff --git a/src/js/components/List/List.js b/src/js/components/List/List.js
+index 9ef891b48..b282502c2 100644
+--- a/src/js/components/List/List.js
++++ b/src/js/components/List/List.js
+@@ -453,11 +453,13 @@ const List = React.forwardRef(
+                     <Box align="start" key={`actionContainer${index}`}>
+                       {content}
+                     </Box>,
+-                    action(item, index),
++                    <Box align="end" key={`action${index}`}>
++                      {action(item, index)}
++                    </Box>,
+                   ];
+                   boxProps = {
+                     direction: 'row',
+-                    align: secondaryKey ? 'start' : 'center',
++                    align: 'center',
+                     justify: 'between',
+                     gap: 'medium',
+                   };

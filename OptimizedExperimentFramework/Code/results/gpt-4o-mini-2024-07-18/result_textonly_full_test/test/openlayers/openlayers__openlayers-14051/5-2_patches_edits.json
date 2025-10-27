@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "const minZ = Math.max(",
+                    "initialZ - tileLayer.getPreload(),",
+                    "tileGrid.getMinZoom(),",
+                    "tileLayer.getMinZoom()",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const minZ = Math.max(",
+                    "      initialZ - tileLayer.getPreload(),",
+                    "      tileGrid.getZForResolution(layer.getMaxResolution()), // Corrected line",
+                    "      viewState.resolution // Alternatively, you could use view.getResolutionForZoom(layer.getMinZoom())",
+                    "    );"
+                ]
+            }
+        ]
+    }
+}

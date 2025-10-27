@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/RemoveElementBehavior.js",
+            "lib/features/modeling/behavior/UpdateSemanticParentHandler.js",
+            "lib/features/modeling/BpmnFactory.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "These files are related to the bug because they contain the logic for managing the relationships between elements in the modeling framework. The RemoveElementBehavior handles the removal of elements and needs to ensure that associations are updated correctly when their parents change. The UpdateSemanticParentHandler specifically manages the changes to the semantic parent of elements, which is critical to resolving the issue of associations being incorrectly linked to subprocesses. Additionally, BpmnFactory and Modeling.js may contain methods for creating and updating BPMN elements, which could also be involved in ensuring associations correctly reference their current parents.",
+        "bug_scenario": "The issue arises when moving a source or target element of an association to a new parent outside of the subprocess. The association's parent reference does not update to reflect this change, leading to potential deletion of the association when the subprocess is deleted."
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/print/typescript.js//function printTypescript"
+        ],
+        "bug_functions": [
+            "src/language-js/print/typescript.js//function printTypeParameters"
+        ],
+        "explanation": "The issue is related to how Prettier formats TypeScript code, specifically in handling trailing commas in generic parameter lists. The `printTypescript` function is responsible for printing TypeScript nodes, and it handles various TypeScript-specific syntax. Within this function, the handling of type parameters is crucial, as it directly affects the presence of trailing commas. The `printTypeParameters` function is likely responsible for printing the type parameters, including determining whether a trailing comma should be added. Any logic related to trailing commas for type parameters would be found or should be implemented in these functions to ensure they are retained in the output.",
+        "bug_scenario": "The bug scenario involves the removal of a trailing comma in TypeScript generic parameter lists by Prettier, a code formatter. The trailing comma is required by the TypeScript compiler, but the Prettier output does not retain it, leading to a discrepancy between expected and actual behavior."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-js/printer-estree.js//printTypescript"
+        ],
+        "bug_functions": [
+            "src/language-js/print/typescript.js//printTypescript"
+        ],
+        "explanation": "The bug is related to how the TypeScript code is printed by Prettier. The 'printTypescript' function in 'src/language-js/print/typescript.js' is directly responsible for converting TypeScript AST nodes into a formatted string. It handles various TypeScript syntax elements, including type parameters and annotations, which are relevant to the trailing comma issue in generic types. The function needs to account for the presence of a trailing comma in specific nodes. Additionally, the 'printTypescript' function is exported in 'src/language-js/printer-estree.js', suggesting it is used in the formatting process, making it a critical component related to the bug.",
+        "bug_scenario": "The bug scenario involves the removal of a trailing comma in the generic type arguments of a TypeScript function in .mts files when using Prettier. The expected behavior is to retain the trailing comma as it is a requirement from the compiler."
+    }
+}

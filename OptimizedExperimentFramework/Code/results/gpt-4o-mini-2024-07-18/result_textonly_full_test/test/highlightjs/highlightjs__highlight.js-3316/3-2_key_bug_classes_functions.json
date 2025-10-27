@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/cpp.js//LanguageFn"
+        ],
+        "bug_functions": [
+            "src/lib/compile_keywords.js//compileKeywords",
+            "src/lib/compile_keywords.js//scoreForKeyword",
+            "src/lib/compile_keywords.js//commonKeyword"
+        ],
+        "explanation": "The `LanguageFn` in `cpp.js` is responsible for defining the language rules, including how keywords and types are highlighted. The functions `compileKeywords`, `scoreForKeyword`, and `commonKeyword` in `compile_keywords.js` are directly related to how keywords are processed and scored for relevance. These functions would need to be modified to revert the handling of primitive types back to being treated as keywords, thus addressing the bug reported.",
+        "bug_scenario": "The bug scenario involves the highlighting of primitive types in C++ code after a change in the highlighting library. Previously, primitive types like `int` and `char` were recognized as keywords, but after the update, they are treated differently, leading to unnatural and confusing highlighting in code editors."
+    }
+}

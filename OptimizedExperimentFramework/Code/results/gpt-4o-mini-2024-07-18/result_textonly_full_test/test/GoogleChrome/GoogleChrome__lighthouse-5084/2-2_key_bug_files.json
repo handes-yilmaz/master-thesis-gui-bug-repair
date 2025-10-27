@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js",
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js"
+        ],
+        "explanation": "These files are key bug files because they directly relate to the ByteEfficiency audit functionality. The `byte-efficiency-audit.js` file contains the core logic for calculating byte savings, including the `computeWasteWithTTIGraph` function that is currently miscalculating savings. The `efficient-animated-content.js` file is specifically designed to audit the use of animated GIFs versus video formats, which is central to the reported issue. Lastly, the `render-blocking-resources.js` file may also be relevant as it deals with resource loading and could impact the overall performance metrics being reported.",
+        "bug_scenario": "The bug scenario involves the ByteEfficiency audit reporting no savings for animated GIFs when converting to video formats, despite significant savings being possible. The `computeWasteWithTTIGraph` function incorrectly calculates savings as zero due to only one network request being affected and no long tasks being touched. The suggestion is to calculate the impact based on the end of the graph or onload time, especially for problematic requests."
+    }
+}

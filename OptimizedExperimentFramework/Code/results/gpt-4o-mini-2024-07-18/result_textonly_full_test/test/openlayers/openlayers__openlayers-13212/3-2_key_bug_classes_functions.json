@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//getImagesForSource",
+            "src/ol/layer/WebGLTile.js//createRenderer",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "The identified classes and functions are critical to the bug because they directly handle the rendering and management of GeoTIFF data in WebGL. The GeoTIFFSource class is responsible for loading and managing GeoTIFF images, which is essential for the proposed solution of using a pyramid of GeoTIFFs. The WebGLTileLayer class manages the tile layer rendering, and the WebGLTileLayerRenderer class is responsible for the actual rendering process. Functions like getImagesForSource, createRenderer, and renderFrame are pivotal in ensuring that the rendering process is efficient and can handle larger datasets without losing WebGL contexts.",
+        "bug_scenario": "The current implementation of WebGLTileLayers does not scale well with larger GeoTIFF pyramids, leading to lost WebGL contexts and poor performance. The proposed solution involves creating a new source that uses a template string and a tile grid object to manage overlapping tiles more efficiently, which should help maintain a single WebGL context per layer."
+    }
+}

@@ -1,0 +1,38 @@
+diff --git a/src/ol/source/Raster.js b/src/ol/source/Raster.js
+index 9992395..4c79ed7 100644
+--- a/src/ol/source/Raster.js
++++ b/src/ol/source/Raster.js
+@@ -251,6 +251,17 @@ class RasterSource extends ImageSource {
+     }
+   }
+ 
++  /**
++   * Terminate all active workers.
++   * @private
++   */
++  terminateWorkers() {
++    if (this.worker_) {
++      this.worker_.terminate();
++      this.worker_ = null;
++    }
++  }
++
+   /**
+    * Set the operation.
+    * @param {Operation} operation New operation.
+@@ -259,6 +270,7 @@ class RasterSource extends ImageSource {
+    * @api
+    */
+   setOperation(operation, opt_lib) {
++    this.terminateWorkers(); // Terminate existing workers before setting a new operation
+     this.worker_ = new Processor({
+       operation: operation,
+       imageOps: this.operationType_ === RasterOperationType.IMAGE,
+@@ -267,7 +279,6 @@ class RasterSource extends ImageSource {
+       threads: this.threads_,
+     });
+     this.changed();
+-  }
+ 
+   /**
+    * Update the stored frame state.

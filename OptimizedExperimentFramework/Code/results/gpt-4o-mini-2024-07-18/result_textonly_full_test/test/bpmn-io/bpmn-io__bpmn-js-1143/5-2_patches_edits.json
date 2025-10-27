@@ -1,0 +1,33 @@
+{
+    "1/1": {
+        "src/diagram/DiagramManager.js": [
+            {
+                "SEARCH": [
+                    "if (this.diagram.isEmpty()) {",
+                    "// Logic to handle adding elements to an empty diagram",
+                    "}"
+                ],
+                "REPLACE": [
+                    "if (this.diagram.isEmpty() && this.diagram.hasGroup()) {",
+                    "    // Logic to handle adding elements to a diagram that has a group",
+                    "    // Ensure that the state is correctly managed",
+                    "}"
+                ]
+            }
+        ],
+        "src/diagram/ElementAdder.js": [
+            {
+                "SEARCH": [
+                    "this.diagram.addElement(newElement);"
+                ],
+                "REPLACE": [
+                    "if (!this.diagram.isInValidState()) {",
+                    "    console.error('Cannot add element to the diagram in its current state.');",
+                    "    return;",
+                    "}",
+                    "this.diagram.addElement(newElement);"
+                ]
+            }
+        ]
+    }
+}

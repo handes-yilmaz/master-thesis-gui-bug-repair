@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse",
+            "src/language-markdown/parser-markdown.js//splitText",
+            "src/language-markdown/parser-markdown.js//transformInlineCode",
+            "src/language-markdown/printer-markdown.js//printTable",
+            "src/main/options.js//normalize"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//restoreUnescapedCharacter",
+            "src/language-markdown/parser-markdown.js//mergeContinuousTexts"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the parsing and formatting of Markdown content. The 'parse' function is responsible for processing the Markdown text, while 'splitText' and 'transformInlineCode' deal with how text and inline code are treated, which is crucial for maintaining proper indentation. The 'printTable' function in the printer module is directly related to how tables are formatted in the output, which is where the indentation issue arises. Additionally, 'restoreUnescapedCharacter' and 'mergeContinuousTexts' are involved in managing text nodes and their formatting, which can affect how nested structures are rendered. The 'normalize' function in options.js is important for ensuring that the correct parser and formatting options are applied, which could influence the behavior of the formatting on save feature.",
+        "bug_scenario": "The bug scenario involves Markdown files where nested code blocks or raw HTML are improperly indented each time the file is saved. This results in the formatting becoming increasingly misaligned, particularly with raw HTML elements like tables. The user experiences this issue intermittently, especially when using Prettier in VS Code, leading to frustration as the expected indentation is not maintained."
+    }
+}

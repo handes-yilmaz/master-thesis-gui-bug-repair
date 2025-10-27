@@ -1,0 +1,26 @@
+diff --git a/src/lib/compiler_extensions.js b/src/lib/compiler_extensions.js
+index 61b6965..502b619 100644
+--- a/src/lib/compiler_extensions.js
++++ b/src/lib/compiler_extensions.js
+@@ -61,7 +61,7 @@ export function beginKeywords(mode, parent) {
+   // or whitespace - this does no harm in any case since our keyword engine
+   // doesn't allow spaces in keywords anyways and we still check for the boundary
+   // first
+-  mode.begin = '\\b(' + mode.beginKeywords.split(' ').join('|') + ')(?!\\.)(?=\\b|\\s)';
++mode.begin = '\\b(' + mode.beginKeywords.split(' ').join('|') + ')(?!\\.)(?=\\b|\\s|\\()';
+   mode.__beforeBegin = skipIfHasPrecedingDot;
+   mode.keywords = mode.keywords || mode.beginKeywords;
+   delete mode.beginKeywords;
+diff --git a/src/lib/regex.js b/src/lib/regex.js
+index da6cc45..d2c771c 100644
+--- a/src/lib/regex.js
++++ b/src/lib/regex.js
+@@ -77,7 +77,7 @@ function stripOptionsFromArgs(args) {
+ export function either(...args) {
+   /** @type { object & {capture?: boolean} }  */
+   const opts = stripOptionsFromArgs(args);
+-  const joined = '('
++const joined = '(?:'
+     + (opts.capture ? "" : "?:")
+     + args.map((x) => source(x)).join("|") + ")";
+   return joined;

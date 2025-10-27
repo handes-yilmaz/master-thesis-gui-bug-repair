@@ -1,0 +1,13 @@
+diff --git a/core/lib/emulation.js b/core/lib/emulation.js
+index 288a677..0ff20b7 100644
+--- a/core/lib/emulation.js
++++ b/core/lib/emulation.js
+@@ -44,7 +44,7 @@ function parseUseragentIntoMetadata(userAgent, formFactor) {
+     architecture: 'x86',
+     model: '',
+   };
+-  const mobile = formFactor === 'mobile';
++  const mobile = formFactor === 'mobile' && !settings.emulatedUserAgent; // Check if it's a real device
+ 
+   return {
+     brands,

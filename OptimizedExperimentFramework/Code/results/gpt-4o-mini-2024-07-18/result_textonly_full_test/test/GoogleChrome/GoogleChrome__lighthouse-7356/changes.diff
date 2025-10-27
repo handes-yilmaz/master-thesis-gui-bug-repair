@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/gather/driver.js b/lighthouse-core/gather/driver.js
+index b3e593d..0ba5915 100644
+--- a/lighthouse-core/gather/driver.js
++++ b/lighthouse-core/gather/driver.js
+@@ -862,7 +862,7 @@ class Driver {
+    * @private
+    */
+   async _waitForFullyLoaded(pauseAfterLoadMs, networkQuietThresholdMs, cpuQuietThresholdMs,
+-      maxWaitForLoadedMs, shouldWaitForFCP) {
++      maxWaitForLoadedMs = 120000, shouldWaitForFCP) { // Increased max wait time
+     /** @type {NodeJS.Timer|undefined} */
+     let maxTimeoutHandle;
+ 

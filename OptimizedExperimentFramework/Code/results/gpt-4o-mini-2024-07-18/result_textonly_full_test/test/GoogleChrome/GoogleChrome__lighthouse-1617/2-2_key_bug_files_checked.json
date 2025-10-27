@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/manifest-short-name-length.js",
+            "lighthouse-core/audits/manifest-short-name.js",
+            "lighthouse-core/lib/manifest-parser.js"
+        ],
+        "explanation": "These files are key bug files because they directly handle the logic related to the `short_name` property in the manifest. The `manifest-short-name-length.js` file contains the audit logic that checks if the `short_name` is short enough, while the `manifest-short-name.js` file checks for the existence of the `short_name`. The `manifest-parser.js` file is responsible for parsing the manifest and extracting the `short_name`, which is crucial for the audits to function correctly. Any issues in these files could lead to incorrect audit results, such as the false positive reported.",
+        "bug_scenario": "The bug scenario involves a false positive detection regarding the length of the `short_name` in a web app's manifest file. The image provided shows a warning indicating that the `short_name` is missing, which leads to the audit incorrectly suggesting that the length is acceptable when it should not be. This can cause confusion for developers who rely on accurate feedback from the audit."
+    }
+}

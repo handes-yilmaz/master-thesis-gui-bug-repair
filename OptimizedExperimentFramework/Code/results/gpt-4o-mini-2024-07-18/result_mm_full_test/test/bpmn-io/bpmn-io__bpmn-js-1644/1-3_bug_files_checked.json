@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/SubprocessCompatibility.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "These files are likely involved in handling the properties and behaviors of multi-instance configurations. `SubprocessCompatibility.js` may contain logic specific to handling multi-instance properties when switching types. `BpmnUpdater.js` is responsible for updating the BPMN model, which may not correctly retain properties during the transition, and `Modeling.js` handles the core modeling logic, potentially impacting how instance types are managed.",
+        "bug_scenario": "The bug occurs when a user creates a sub-process with a parallel multi-instance setup, sets a loop cardinality, and then switches to a sequential multi-instance. The expected behavior is that the multi-instance properties should persist, but they are lost upon changing the instance type."
+    }
+}

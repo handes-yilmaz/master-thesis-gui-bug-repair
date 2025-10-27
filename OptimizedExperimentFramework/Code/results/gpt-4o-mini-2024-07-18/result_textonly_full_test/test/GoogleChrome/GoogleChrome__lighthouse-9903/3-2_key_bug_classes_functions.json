@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/uses-rel-preconnect.js//UsesRelPreconnectAudit",
+            "lighthouse-core/gather/gatherers/link-elements.js//LinkElements"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/uses-rel-preconnect.js//audit",
+            "lighthouse-core/audits/uses-rel-preconnect.js//hasValidTiming",
+            "lighthouse-core/audits/uses-rel-preconnect.js//hasAlreadyConnectedToOrigin",
+            "lighthouse-core/audits/uses-rel-preconnect.js//socketStartTimeIsBelowThreshold",
+            "lighthouse-core/gather/gatherers/link-elements.js//getLinkElementsInDOM",
+            "lighthouse-core/gather/gatherers/link-elements.js//getLinkElementsInHeaders"
+        ],
+        "explanation": "The identified classes and functions are critical to the bug because they handle the auditing and gathering of link elements related to preconnects. The 'UsesRelPreconnectAudit' class is responsible for evaluating whether preconnect links are effectively utilized, while the 'LinkElements' class gathers the actual link elements from the DOM and headers. The functions within these classes check for valid timings, existing connections, and gather link elements, which are essential for determining why the Lighthouse report continues to suggest additional preconnects despite their presence in the HTML.",
+        "bug_scenario": "The Lighthouse report continues to suggest preconnecting to certain origins even after they have been added to the HTML. This indicates a potential issue with how the preconnect links are being recognized or utilized by the Lighthouse audit process."
+    }
+}

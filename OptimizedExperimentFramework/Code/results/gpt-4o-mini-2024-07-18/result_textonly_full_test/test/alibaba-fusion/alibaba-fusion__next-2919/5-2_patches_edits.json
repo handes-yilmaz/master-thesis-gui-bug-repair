@@ -1,0 +1,44 @@
+{
+    "1/1": {
+        "src/tab/tabs/nav.jsx": [
+            {
+                "SEARCH": [
+                    "<div className={`${prefix}tabs-nav-scroll`} style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>"
+                ],
+                "REPLACE": [
+                    "                    <div className={`${prefix}tabs-nav-scroll`} style={{ overflowY: 'auto', overflowX: 'hidden', whiteSpace: 'nowrap' }}>",
+                    "### Adding vertical scrolling and hiding horizontal overflow"
+                ]
+            }
+        ],
+        "src/tab/tab.jsx": [
+            {
+                "SEARCH": [
+                    "onNavKeyDown = e => {"
+                ],
+                "REPLACE": [
+                    "    onNavKeyDown = e => {",
+                    "        const keyCode = e.keyCode;",
+                    "        const { disableKeyboard } = this.props;",
+                    "",
+                    "        if (disableKeyboard) {",
+                    "            return;",
+                    "        }",
+                    "",
+                    "        if (keyCode >= KEYCODE.LEFT && keyCode <= KEYCODE.DOWN) {",
+                    "            e.preventDefault();",
+                    "        }",
+                    "        ",
+                    "        // Allow keyboard navigation for vertical scrolling",
+                    "        if (keyCode === KEYCODE.UP) {",
+                    "            const newKey = this.getNextActiveKey(false);",
+                    "            this.handleTriggerEvent(this.props.triggerType, newKey);",
+                    "        } else if (keyCode === KEYCODE.DOWN) {",
+                    "            const newKey = this.getNextActiveKey(true);",
+                    "            this.handleTriggerEvent(this.props.triggerType, newKey);",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

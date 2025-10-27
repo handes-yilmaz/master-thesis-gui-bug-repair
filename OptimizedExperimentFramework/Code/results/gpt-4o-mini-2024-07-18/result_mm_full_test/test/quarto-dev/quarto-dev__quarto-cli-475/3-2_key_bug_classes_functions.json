@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/callout.lua//calloutLatex",
+            "src/resources/filters/quarto-pre/callout.lua//latexCalloutBoxDefault",
+            "src/resources/filters/quarto-pre/callout.lua//processCalloutDiv"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/callout.lua//latexCalloutBoxDefault",
+            "src/resources/filters/quarto-pre/callout.lua//calloutLatex",
+            "src/resources/filters/quarto-pre/callout.lua//processCalloutDiv"
+        ],
+        "explanation": "These classes and functions are critical for handling the rendering of callout blocks in LaTeX. The 'calloutLatex' function is responsible for generating the LaTeX representation of the callout, while 'latexCalloutBoxDefault' constructs the LaTeX box with the caption. The 'processCalloutDiv' function processes the callout div, including the caption, which is where the special character handling needs to be improved to prevent errors during PDF generation.",
+        "bug_scenario": "The bug occurs when processing markdown in callout block captions, particularly when special characters are included. This leads to errors during PDF rendering, as the caption text is inserted without proper markdown processing, causing LaTeX to misinterpret the content."
+    }
+}

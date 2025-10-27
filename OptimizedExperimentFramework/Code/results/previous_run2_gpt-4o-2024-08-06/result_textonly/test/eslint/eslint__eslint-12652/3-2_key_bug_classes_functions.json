@@ -1,0 +1,25 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [
+            "lib/rules/key-spacing.js//Verifies correct vertical alignment of a group of properties.",
+            "lib/rules/key-spacing.js//Verifies vertical alignment, taking into account groups of properties.",
+            "lib/rules/key-spacing.js//Verifies spacing of property conforms to specified options.",
+            "lib/rules/key-spacing.js//Verifies spacing of each property in a list."
+        ],
+        "explanation": "The bug is related to the ESLint rule for key-spacing, specifically when the align option is set to 'value'. The functions identified are responsible for verifying the vertical alignment and spacing of properties in object literals. These functions are crucial in the context of this bug because they directly influence how object literals are formatted when the ESLint fix command is executed. The misalignment issue reported in the bug stems from the logic within these functions that determine how properties are aligned. Adjusting these functions would be necessary to ensure that the key-spacing rule behaves correctly with JSX objects and aligns them in a visually appealing manner.",
+        "bug_scenario": "The bug scenario involves the ESLint rule for key-spacing with the align option set to 'value'. When this rule is applied to JSX objects, it sometimes results in an undesirable re-alignment of object literals, making the code appear 'ugly'. This misalignment is evident in the provided screenshots, where the JSX object properties are not aligned as expected, leading to a visually displeasing code format after running eslint --fix."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/rules/key-spacing.js"
+        ],
+        "bug_functions": [
+            "lib/rules/key-spacing.js//Verifies correct vertical alignment of a group of properties",
+            "lib/rules/key-spacing.js//Verifies vertical alignment, taking into account groups of properties",
+            "lib/rules/key-spacing.js//Verifies spacing of property conforms to specified options"
+        ],
+        "explanation": "The file 'lib/rules/key-spacing.js' is directly related to the bug because it contains the implementation of the ESLint 'key-spacing' rule, which is responsible for managing the spacing between object keys and values. The functions like 'Verifies correct vertical alignment of a group of properties', 'Verifies vertical alignment, taking into account groups of properties', and 'Verifies spacing of property conforms to specified options' are key elements because they handle the logic for checking and enforcing the alignment and spacing of properties in objects. These functions likely contain the logic that is adjusting the spacing in a way that leads to the reported misalignment in JSX objects.",
+        "bug_scenario": "The bug scenario involves the ESLint rule for 'key-spacing' with the alignment option set to 'value' when formatting JSX objects. The issue occurs when the ESLint auto-fix feature misaligns or makes JSX object properties appear 'ugly' by re-aligning them in an undesirable way, as depicted in the provided screenshots. The expected behavior is for ESLint not to re-align objects in JSX curly braces, maintaining the developer's original formatting style."
+    }
+}

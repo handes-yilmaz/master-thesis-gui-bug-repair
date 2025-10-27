@@ -1,0 +1,19 @@
+{
+    "1/1": {
+        "// Assuming the validation logic is in a file named 'MessageFlowValidator.js'": [
+            {
+                "SEARCH": [
+                    "if (isBoundaryEvent(event) && !isMessageCatchEvent(event)) {",
+                    "// Disallow connection"
+                ],
+                "REPLACE": [
+                    "if (isBoundaryEvent(event)) {",
+                    "    if (isMessageCatchEvent(event)) {",
+                    "        // Allow connection for message catch boundary events",
+                    "    } else {",
+                    "        // Disallow connection for other boundary events"
+                ]
+            }
+        ]
+    }
+}

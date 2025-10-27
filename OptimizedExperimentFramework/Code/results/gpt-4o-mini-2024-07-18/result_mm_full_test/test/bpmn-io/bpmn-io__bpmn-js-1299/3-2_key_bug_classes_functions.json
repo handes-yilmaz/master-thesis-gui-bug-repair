@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/draw/BpmnRenderer.js//BpmnRenderer",
+            "lib/features/label-editing/LabelUtil.js//getLabel",
+            "lib/features/modeling/behavior/LabelBehavior.js//LabelBehavior"
+        ],
+        "bug_functions": [
+            "lib/draw/BpmnRenderer.js//drawShape",
+            "lib/features/label-editing/LabelUtil.js//setLabel",
+            "lib/features/modeling/behavior/LabelBehavior.js//postExecute"
+        ],
+        "explanation": "The identified classes and functions are crucial for rendering and managing labels in the BPMN diagram. The 'BpmnRenderer' class is responsible for drawing shapes, which directly relates to the resizing issue. The 'getLabel' and 'setLabel' functions in 'LabelUtil.js' manage label attributes, which are affected when an empty label is set. The 'LabelBehavior' class handles the behavior of labels during various actions, including updates and deletions, which is relevant to the bug's manifestation when selecting elements.",
+        "bug_scenario": "The bug occurs when selecting events or gateways in a BPMN diagram, causing the elements to resize incorrectly or disappear entirely. This issue arises after direct editing with an empty label, leading to unexpected behavior in the rendering of these elements."
+    }
+}

@@ -1,0 +1,26 @@
+diff --git a/src/command/preview/preview.ts b/src/command/preview/preview.ts
+index 35e56e5..e57c738 100644
+--- a/src/command/preview/preview.ts
++++ b/src/command/preview/preview.ts
+@@ -837,7 +837,7 @@ async function textPreviewHtml(file: string, req: Request) {
+   const styles = [
+     "```{=html}",
+     `<style type="text/css">`,
+-    `body { margin: 8px 12px; background-color: ${backgroundColor} }`,
++    `body { margin: 8px 12px; background-color: ${backgroundColor}; }`,
+     `div.sourceCode { background-color: transparent; }`,
+     `</style>`,
+     "```",
+diff --git a/src/command/render/pandoc-dependencies-html.ts b/src/command/render/pandoc-dependencies-html.ts
+index d23f4d5..ada10b3 100644
+--- a/src/command/render/pandoc-dependencies-html.ts
++++ b/src/command/render/pandoc-dependencies-html.ts
+@@ -412,7 +412,7 @@ function processCssFile(
+         : ref;
+ 
+       // Copy the file and provide the updated href target
+-      const refDestPath = join(dirname(file), targetRef);
++      const refDestPath = join(dirname(file), encodeURI(targetRef));
+       copyFileIfNewer(refPath, refDestPath);
+       return pathWithForwardSlashes(targetRef);
+     } else {

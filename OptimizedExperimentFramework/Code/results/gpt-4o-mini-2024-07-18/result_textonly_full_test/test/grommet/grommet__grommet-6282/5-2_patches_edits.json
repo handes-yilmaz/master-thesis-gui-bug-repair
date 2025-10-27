@@ -1,0 +1,20 @@
+{
+    "1/1": {
+        "bug_file_path (example: src/utils/sort.js)": [
+            {
+                "SEARCH": [
+                    "return data.sort((a, b) => {",
+                    "return a[property] > b[property] ? 1 : -1;",
+                    "});"
+                ],
+                "REPLACE": [
+                    "    return data.sort((a, b) => {",
+                    "        const aValue = a[property] == null ? '' : a[property];",
+                    "        const bValue = b[property] == null ? '' : b[property];",
+                    "        return aValue > bValue ? 1 : -1;",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

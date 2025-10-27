@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "// Conceptual patch for ESLint rule implementation": [
+            {
+                "SEARCH": [
+                    "if (condition) {",
+                    "report(node);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "if (isConstantCondition(condition)) {",
+                    "  report(node, {",
+                    "    start: node.loc.start,",
+                    "    end: {",
+                    "      line: node.loc.start.line,",
+                    "      column: node.loc.start.column + condition.length // Adjust end column to only include the condition",
+                    "    }",
+                    "  });",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

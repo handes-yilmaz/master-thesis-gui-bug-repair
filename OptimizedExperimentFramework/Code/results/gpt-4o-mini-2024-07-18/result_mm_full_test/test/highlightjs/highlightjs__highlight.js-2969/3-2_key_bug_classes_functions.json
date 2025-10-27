@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/ruby.js//STRING",
+            "src/lib/compiler_extensions.js//beginKeywords",
+            "src/lib/regex.js//either"
+        ],
+        "bug_functions": [
+            "src/languages/ruby.js//RUBY_DEFAULT_CONTAINS",
+            "src/lib/regex.js//concat",
+            "src/lib/regex.js//source"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the syntax and parsing of Ruby character literals. The STRING class in 'ruby.js' is responsible for defining how strings (including character literals) are recognized and processed. The RUBY_DEFAULT_CONTAINS function includes the STRING class, which means any issues with character literals will directly affect it. The beginKeywords function in 'compiler_extensions.js' helps in defining how keywords are recognized, which may need adjustments to accommodate the new character literal cases. Lastly, the regex functions in 'regex.js' are crucial for constructing the regular expressions that will match these character literals, making them essential for fixing the parsing issues.",
+        "bug_scenario": "The bug involves the Ruby character literal notation not being supported for certain cases, such as single slash characters, escaped backslashes, non-ASCII characters, Unicode curly-bracket notation, and control/meta characters. The provided images illustrate the expected versus actual behavior when using these character literals in Ruby code."
+    }
+}

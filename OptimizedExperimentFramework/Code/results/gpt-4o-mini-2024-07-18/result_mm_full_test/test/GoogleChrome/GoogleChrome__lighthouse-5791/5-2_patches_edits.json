@@ -1,0 +1,34 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/redirects.js": [
+            {
+                "SEARCH": [
+                    "// Kickoff the results table (with the initial request) if there are > 1 redirects",
+                    "if (redirectRequests.length > 1) {",
+                    "pageRedirects.push({",
+                    "url: `(Initial: ${redirectRequests[0].url})`,",
+                    "wastedMs: 0,",
+                    "});",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    // Kickoff the results table (with the initial request) if there are > 0 redirects",
+                    "    if (redirectRequests.length > 0) {",
+                    "      pageRedirects.push({",
+                    "        url: `(Initial: ${redirectRequests[0].url})`,",
+                    "        wastedMs: 0,",
+                    "      });",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "score: redirectRequests.length <= 2 ? 1 : UnusedBytes.scoreForWastedMs(totalWastedMs),"
+                ],
+                "REPLACE": [
+                    "      score: redirectRequests.length === 1 ? 1 : UnusedBytes.scoreForWastedMs(totalWastedMs),"
+                ]
+            }
+        ]
+    }
+}

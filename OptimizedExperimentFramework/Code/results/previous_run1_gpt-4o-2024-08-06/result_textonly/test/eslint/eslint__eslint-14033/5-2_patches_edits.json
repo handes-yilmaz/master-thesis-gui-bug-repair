@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "lib/rules/prefer-const.js": [
+            {
+                "SEARCH": [
+                    "fix: shouldFix",
+                    "? fixer => fixer.replaceText(",
+                    "sourceCode.getFirstToken(varDeclParent, t => t.value === varDeclParent.kind),",
+                    "\"const\"",
+                    ")",
+                    ": null"
+                ],
+                "REPLACE": [
+                    "fix: shouldFix",
+                    "    ? fixer => {",
+                    "        const firstDeclaration = varDeclParent.declarations[0];",
+                    "        const initText = firstDeclaration.init ? sourceCode.getText(firstDeclaration.init) : \"\";",
+                    "",
+                    "        return fixer.replaceTextRange(",
+                    "            [varDeclParent.range[0], firstDeclaration.range[1]],",
+                    "            `const ${sourceCode.getText(firstDeclaration.id)}${initText ? ` = ${initText}` : \"\"}`",
+                    "        );",
+                    "    }",
+                    "    : null"
+                ]
+            }
+        ]
+    }
+}

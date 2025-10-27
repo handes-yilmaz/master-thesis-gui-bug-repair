@@ -1,0 +1,14 @@
+diff --git a/src/format/reveal/format-reveal.ts b/src/format/reveal/format-reveal.ts
+index 152d54f..d5d5b31 100644
+--- a/src/format/reveal/format-reveal.ts
++++ b/src/format/reveal/format-reveal.ts
+@@ -292,7 +292,8 @@ function revealMarkdownAfterBody(format: Format) {
+     );
+     lines.push("\n");
+   }
+-  lines.push("::: {.footer .footer-default}");
++  lines.push("::: {.footer .footer-default}"); // Ensure footer is correctly formatted
++  lines.push("::: {.image-container}"); // Add a new container for images
+   if (format.metadata[kSlideFooter]) {
+     lines.push(String(format.metadata[kSlideFooter]));
+   } else {

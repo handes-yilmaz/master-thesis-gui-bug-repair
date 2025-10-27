@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/critical-request-chains.js",
+            "lighthouse-core/audits/uses-rel-preload.js",
+            "lighthouse-core/gather/computed/critical-request-chains.js"
+        ],
+        "explanation": "These files are directly related to the bug as they handle the auditing and reporting of critical request chains and the specific usage of `rel=preload`. The `critical-request-chains.js` file is responsible for determining how critical requests are evaluated, while `uses-rel-preload.js` specifically deals with the implications of using `rel=preload`. The `gather/computed/critical-request-chains.js` file gathers data on critical requests, which is essential for understanding Lighthouse's feedback on the page.",
+        "bug_scenario": "The bug involves the usage of `link[rel=preload]` for fetching a stylesheet asynchronously, which is flagged by Lighthouse as part of a 'critical request chain', even though it does not block page rendering. The issue raises concerns about whether this pattern is considered problematic by Lighthouse and what criteria it uses to identify such requests."
+    }
+}

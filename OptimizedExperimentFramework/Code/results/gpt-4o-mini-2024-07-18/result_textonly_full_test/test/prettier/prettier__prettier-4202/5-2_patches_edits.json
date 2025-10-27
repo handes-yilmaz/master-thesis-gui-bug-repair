@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "src/utils/markdownProcessor.js": [
+            {
+                "SEARCH": [
+                    "function processMarkdownTable(table) {",
+                    "// existing logic to process the markdown table",
+                    "...",
+                    "return formattedTable;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function processMarkdownTable(table) {",
+                    "    const MAX_LENGTH = 80; // Set a maximum length for table content",
+                    "    let formattedTable = '';",
+                    "",
+                    "    // Check each row and column for length",
+                    "    for (const row of table) {",
+                    "        const rowContent = row.join(' | ');",
+                    "        if (rowContent.length > MAX_LENGTH) {",
+                    "            // Fallback to three-dash pattern",
+                    "            formattedTable += '| ' + row.join(' | ') + ' |\\n';",
+                    "            formattedTable += '| ' + ':---: |'.repeat(row.length) + '\\n';",
+                    "        } else {",
+                    "            // Normal processing",
+                    "            formattedTable += '| ' + row.join(' | ') + ' |\\n';",
+                    "        }",
+                    "    }",
+                    "    return formattedTable;",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

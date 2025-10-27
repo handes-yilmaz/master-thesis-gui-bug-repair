@@ -1,0 +1,45 @@
+diff --git a/src/js/components/Select/Select.js b/src/js/components/Select/Select.js
+index 6843b4f29..dc35a620e 100644
+--- a/src/js/components/Select/Select.js
++++ b/src/js/components/Select/Select.js
+@@ -138,7 +138,7 @@ class Select extends Component {
+               flex={false}
+               style={{ minWidth: 'auto' }}
+             >
+-              <SelectIcon color='brand' size={size} />
++<SelectIcon color={theme.global.colors.text} size={size} />
+             </Box>
+           </Box>
+         </DropButton>
+diff --git a/src/js/components/Select/stories/components/icons/ArrowDown.js b/src/js/components/Select/stories/components/icons/ArrowDown.js
+index 4bf8869f8..5585e09f8 100644
+--- a/src/js/components/Select/stories/components/icons/ArrowDown.js
++++ b/src/js/components/Select/stories/components/icons/ArrowDown.js
+@@ -1,7 +1,7 @@
+ import React from 'react';
+ 
+ const ArrowDown = props => (
+-  <svg width='10' height='20' fill='rgba(0, 0, 0, 0.54)' {...props}>
++<svg width='10' height='20' fill='rgba(255, 255, 255, 0.8)' {...props}>
+     <path d='m0,7.5l5,5l5,-5l-10,0z' />
+   </svg>
+ );
+diff --git a/src/js/themes/dark.js b/src/js/themes/dark.js
+index 5c664df38..bb54fdc7e 100644
+--- a/src/js/themes/dark.js
++++ b/src/js/themes/dark.js
+@@ -80,10 +80,10 @@ export default deepFreeze({
+       weight: 700,
+     },
+   },
+-  icon: {
+-    color: textColor,
+-    colors,
+-  },
++icon: {
++  color: '#FFFFFF', // Ensure the icon color is set to white for contrast
++  colors,
++},
+   layer: {
+     backgroundColor,
+     overlayBackgroundColor: 'rgba(48, 48, 48, 0.5)',

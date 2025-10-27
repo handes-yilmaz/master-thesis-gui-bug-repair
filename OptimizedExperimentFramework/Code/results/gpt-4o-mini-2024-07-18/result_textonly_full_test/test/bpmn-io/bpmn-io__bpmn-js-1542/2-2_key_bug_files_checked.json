@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/util/LabelLayoutUtil.js"
+        ],
+        "explanation": "These files are critical to the bug because they handle the behavior of dropping elements onto flows and managing labels in the BPMN editor. The 'DropOnFlowBehavior.js' file is directly involved in the logic that processes the insertion of shapes onto flows, which is where the error originates. The 'LabelBehavior.js' and 'LabelLayoutUtil.js' files are also relevant as they manage label positioning and adjustments, which may be affected when a gateway is inserted incorrectly, leading to the undefined 'segmentIndex' error.",
+        "bug_scenario": "The bug occurs when a user attempts to insert a gateway into a flow in the BPMN editor. This action leads to a TypeError, specifically 'Cannot read properties of undefined (reading 'segmentIndex')', which indicates that the code is trying to access a property of an undefined object. The error disrupts the editor's functionality, rendering it unusable after the error occurs."
+    }
+}

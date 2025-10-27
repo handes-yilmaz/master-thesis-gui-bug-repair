@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-jsx.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue lies in the syntax highlighting logic for JSX in Prism, particularly with how spread props are handled. The relevant code in `prism-jsx.js` deals with defining patterns and handling JSX tags and attributes, including spread operators. The pattern used for recognizing spread props might not correctly trigger the highlighter to apply the expected styles, leading to incorrect syntax highlighting. The file `prism-jsx.js` is responsible for defining the JSX language rules used by Prism, which directly impacts how JSX code is highlighted.",
+        "bug_scenario": "The bug scenario involves JSX components where spreading props breaks the syntax highlighting when using certain syntax highlighters like Prism through React Markdown. The first Button component with spread props is not correctly highlighted, while the second Button component with explicit props is highlighted correctly."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-jsx.js"
+        ],
+        "bug_functions": [
+            "components/prism-jsx.js//function(Prism)"
+        ],
+        "explanation": "The issue is related to how the Prism library handles JSX syntax highlighting, specifically the spread operator in JSX props. The relevant code is in the `components/prism-jsx.js` file, which defines the JSX language support for Prism. The function within this file is responsible for setting up the pattern matching for JSX syntax, including handling the spread syntax. The problem likely lies in the regular expression or logic that processes JSX tags and attributes, particularly those involving the spread operator.",
+        "bug_scenario": "The bug report describes an issue where spreading props in JSX components causes syntax highlighting to break when using Prism with React Markdown and React Syntax Highlighter. The problem occurs specifically with the first component in the code snippet, which uses spread syntax, resulting in incorrect highlighting. The second component, which specifies individual props, is highlighted correctly."
+    }
+}

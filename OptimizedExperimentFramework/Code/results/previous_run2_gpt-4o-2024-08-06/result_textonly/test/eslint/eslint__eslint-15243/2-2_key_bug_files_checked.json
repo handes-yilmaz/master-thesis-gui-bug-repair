@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/cli-engine/cli-engine.js",
+            "lib/cli-engine/formatters/checkstyle.js",
+            "lib/cli-engine/formatters/compact.js",
+            "lib/cli-engine/formatters/html.js"
+        ],
+        "explanation": "1. **lib/cli-engine/cli-engine.js**: This file is the main CLI engine for ESLint, which likely handles the execution of formatters. To support asynchronous formatters, changes would need to be made here to allow the CLI engine to handle asynchronous operations.\n\n2. **lib/cli-engine/formatters/checkstyle.js**: This is one of the formatter files. To support async formatters, each formatter module might need to be updated to handle asynchronous operations if they are currently synchronous.\n\n3. **lib/cli-engine/formatters/compact.js**: Similar to the checkstyle formatter, this file represents another formatter that would need to be updated to support asynchronous operations.\n\n4. **lib/cli-engine/formatters/html.js**: This formatter outputs results in HTML format. It would also need to be updated to handle asynchronous operations if it currently operates synchronously. Supporting async operations in formatters would require changes in how results are processed and returned.",
+        "bug_scenario": "The bug scenario involves a request to support an asynchronous formatter in ESLint. The current formatter does not support asynchronous operations, which is a limitation when trying to use libraries like 'shiki' for better code highlighting. The image provided in the bug report shows a code snippet or a screenshot related to the ESLint formatter, possibly highlighting the issue with the current synchronous formatter."
+    }
+}

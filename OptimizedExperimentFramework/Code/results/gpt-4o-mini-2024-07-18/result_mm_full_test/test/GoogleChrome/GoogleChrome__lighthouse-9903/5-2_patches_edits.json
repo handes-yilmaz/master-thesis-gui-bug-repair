@@ -1,0 +1,46 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/uses-rel-preconnect.js": [
+            {
+                "SEARCH": [
+                    "// Add a warning for any origin the user tried to preconnect to but failed",
+                    "warnings.push(str_(UIStrings.crossoriginWarning, {securityOrigin}));"
+                ],
+                "REPLACE": [
+                    "      // Check if the crossorigin attribute is set correctly",
+                    "      if (!preconnectLinks.some(link => link.href === securityOrigin && link.crossOrigin)) {",
+                    "        warnings.push(str_(UIStrings.crossoriginWarning, {securityOrigin}));",
+                    "      }"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/link-elements.js": [
+            {
+                "SEARCH": [
+                    "linkElements.push({",
+                    "rel: link.rel,",
+                    "href: link.href,",
+                    "hrefRaw: link.href,",
+                    "hreflang: link.hreflang,",
+                    "as: link.as,",
+                    "crossOrigin: link.crossOrigin,",
+                    "source: link.closest('head') ? 'head' : 'body',",
+                    "});"
+                ],
+                "REPLACE": [
+                    "    // Ensure the crossorigin attribute is normalized",
+                    "    const crossOrigin = link.crossOrigin ? link.crossOrigin.toLowerCase() : null;",
+                    "    linkElements.push({",
+                    "      rel: link.rel,",
+                    "      href: link.href,",
+                    "      hrefRaw: link.href,",
+                    "      hreflang: link.hreflang,",
+                    "      as: link.as,",
+                    "      crossOrigin: crossOrigin,",
+                    "      source: link.closest('head') ? 'head' : 'body',",
+                    "    });"
+                ]
+            }
+        ]
+    }
+}

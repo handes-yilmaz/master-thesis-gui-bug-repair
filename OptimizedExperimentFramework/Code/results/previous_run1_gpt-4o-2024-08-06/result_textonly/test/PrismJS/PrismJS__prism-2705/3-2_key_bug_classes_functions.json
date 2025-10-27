@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-javascript.js//Prism.languages.javascript"
+        ],
+        "bug_functions": [
+            "components/prism-javascript.js//Prism.languages.insertBefore"
+        ],
+        "explanation": "The described bug scenario is directly related to how template literals are highlighted in JavaScript. The key components involved in parsing these literals in PrismJS are the 'Prism.languages.javascript' object, which defines the language grammar, and the 'Prism.languages.insertBefore' function, which is used to insert rules that handle template strings. The 'template-string' pattern within this function is critical because it specifies how template literals should be matched. The bug likely stems from this pattern, as it is responsible for identifying and tokenizing template strings, which are affected in the reported bug. Adjustments to this pattern or its associated logic are needed to fix the issue.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue with PrismJS when dealing with JavaScript template literals. Specifically, after certain lines of code are highlighted, subsequent template strings are not parsed correctly, causing the rest of the file's syntax highlighting to break. This issue arises when specific patterns of template literals and comments appear in a certain sequence, leading to incorrect parsing of template tags."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [
+            "components/prism-javascript.js//Prism.languages.insertBefore"
+        ],
+        "explanation": "The issue is likely related to the PrismJS syntax highlighting configuration for JavaScript, specifically the handling of template literals. The 'Prism.languages.insertBefore' function is used to define language patterns and insert additional ones before existing patterns. In this case, the 'template-string' pattern inside this function is crucial as it handles the parsing of template literals in JavaScript. The bug described involves incorrect parsing of template literals, indicating that this part of the code needs to be reviewed and potentially adjusted to correctly parse the specified sequence of literals and comments.",
+        "bug_scenario": "The bug occurs when specific template literal usage in JavaScript is incorrectly parsed, leading to improper syntax highlighting for template tags in the rest of the file. The issue arises when a regex containing a single quote is followed by a template literal with a single quote, and then a comment with a template literal, causing subsequent template literals to break. The screenshot in the bug report shows incorrect highlighting of template literals after a specific sequence of code."
+    }
+}

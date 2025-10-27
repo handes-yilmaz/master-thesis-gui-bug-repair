@@ -1,0 +1,28 @@
+diff --git a/lighthouse-core/report/report-generator.js b/lighthouse-core/report/report-generator.js
+index 2fb6776..1de9a9b 100644
+--- a/lighthouse-core/report/report-generator.js
++++ b/lighthouse-core/report/report-generator.js
+@@ -158,13 +158,17 @@ class ReportGenerator {
+   generateHTML(results, reportContext = 'extension', reportsCatalog) {
+     this._registerPartials(results.audits);
+ 
+-    results.aggregations.forEach(aggregation => {
+-      aggregation.score.forEach(score => {
+-        // Map subItem strings to auditResults from results.audits.
+-        // Coming soon events are not in auditResults, but rather still in subItems.
+-        score.subItems = score.subItems.map(subItem => results.audits[subItem] || subItem);
++    if (results.aggregations) {
++      results.aggregations.forEach(aggregation => {
++        if (aggregation.score) {
++          aggregation.score.forEach(score => {
++            // Map subItem strings to auditResults from results.audits.
++            // Coming soon events are not in auditResults, but rather still in subItems.
++            score.subItems = score.subItems.map(subItem => results.audits[subItem] || subItem);
++          });
++        }
+       });
+-    });
++    }
+ 
+     const template = Handlebars.template(reportTemplate.report.templates['report-template']);
+ 

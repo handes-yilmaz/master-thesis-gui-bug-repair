@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/format/reveal/format-reveal.ts//applyStretch",
+            "src/format/reveal/format-reveal.ts//revealHtmlPostprocessor"
+        ],
+        "bug_functions": [
+            "src/format/reveal/format-reveal.ts//revealjsFormat",
+            "src/format/reveal/format-reveal.ts//revealMarkdownAfterBody"
+        ],
+        "explanation": "The `applyStretch` function is crucial as it handles the stretching of images in slides, which is directly related to the bug where figures are stretched too much. The `revealHtmlPostprocessor` function is responsible for processing the HTML output, including how `aside` elements are handled. The `revealjsFormat` function sets up the overall format for the slides, which may need adjustments to ensure proper layout. Lastly, `revealMarkdownAfterBody` could be involved in how content is rendered after the main body, potentially affecting the layout of `aside` elements.",
+        "bug_scenario": "The `aside` class content overlaps with the figure on slides, causing the figure to stretch excessively and captions to be misplaced. The desired behavior is for the `aside` content to take priority and for figures to be adjusted accordingly."
+    }
+}

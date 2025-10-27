@@ -1,0 +1,40 @@
+{
+    "1/1": {
+        "src/tree/view/tree.jsx": [
+            {
+                "SEARCH": [
+                    "if (!(\\'selectedKeys\\' in this.props)) {",
+                    "this.setState({ selectedKeys });",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        if (!(\\'selectedKeys\\' in this.props)) {",
+                    "            this.setState({ selectedKeys });",
+                    "        } else {",
+                    "            // Ensure the selected state toggles correctly",
+                    "            const newSelectedKeys = selectedKeys.includes(key)",
+                    "                ? selectedKeys.filter(k => k !== key) // Remove key if already selected",
+                    "                : [...selectedKeys, key]; // Add key if not selected",
+                    "            this.setState({ selectedKeys: newSelectedKeys });",
+                    "        }"
+                ]
+            }
+        ],
+        "src/tree/view/tree-node.jsx": [
+            {
+                "SEARCH": [
+                    "const newSelectedState = !selected;",
+                    "root.handleSelect(newSelectedState, eventKey, this, e);",
+                    "this.setState({ selected: newSelectedState });"
+                ],
+                "REPLACE": [
+                    "        const newSelectedState = !selected;",
+                    "        root.handleSelect(newSelectedState, eventKey, this, e);",
+                    "        this.setState({ selected: newSelectedState });",
+                    "        // Ensure the parent Tree component is aware of the selection change",
+                    "        root.setFocusKey(); // Update focus key to reflect the current selection"
+                ]
+            }
+        ]
+    }
+}

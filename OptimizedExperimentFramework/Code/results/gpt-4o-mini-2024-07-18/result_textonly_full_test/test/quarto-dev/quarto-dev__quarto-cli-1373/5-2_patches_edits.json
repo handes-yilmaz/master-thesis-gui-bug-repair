@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "src/command/render/codetools.ts": [
+            {
+                "SEARCH": [
+                    "source: typeof (codeTools) === \"boolean\"",
+                    "? codeTools",
+                    ": codeTools?.source !== undefined",
+                    "? codeTools?.source",
+                    ": true,"
+                ],
+                "REPLACE": [
+                    "    source: typeof (codeTools) === \"boolean\"",
+                    "      ? codeTools",
+                    "      : codeTools?.source !== undefined && codeTools?.source !== false",
+                    "      ? codeTools?.source",
+                    "      : true,"
+                ]
+            }
+        ]
+    }
+}

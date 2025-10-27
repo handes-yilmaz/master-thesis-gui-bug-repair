@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js//UnusedBytes",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js//EfficientAnimatedContent",
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js//RenderBlockingResources"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js//computeWasteWithTTIGraph",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js//audit_",
+            "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js//computeResults"
+        ],
+        "explanation": "The classes and functions identified are directly related to the bug because they handle the computation of byte efficiency and the auditing of resources. The `UnusedBytes` class contains the `computeWasteWithTTIGraph` function, which is central to calculating the time savings from byte efficiency improvements. The `EfficientAnimatedContent` class is responsible for auditing animated GIFs and determining if they can be replaced with more efficient formats, which is directly related to the reported issue. The `RenderBlockingResources` class also plays a role in assessing the impact of resources on performance, which can affect the overall savings reported. These elements are crucial for addressing the bug and implementing the suggested improvements.",
+        "bug_scenario": "The bug scenario involves the ByteEfficiency audit in Lighthouse reporting no savings for animated GIFs converted to video, despite significant savings being possible. The `computeWasteWithTTIGraph` function is not accounting for the time savings correctly due to its reliance on network requests and long tasks, which may not reflect the actual savings when only one request is involved. The suggestion is to calculate the impact based on the end of the graph or onload time, especially for isolated requests."
+    }
+}

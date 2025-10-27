@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/VectorTile.js//VectorTileLayer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/VectorTile.js//constructor",
+            "src/ol/layer/VectorTile.js//createRenderer",
+            "src/ol/layer/VectorTile.js//getRenderMode",
+            "src/ol/layer/VectorTile.js//setPreload",
+            "src/ol/layer/VectorTile.js//setUseInterimTilesOnError"
+        ],
+        "explanation": "The VectorTileLayer class is central to rendering vector tiles, and its constructor initializes the render mode, which is crucial for the bug. The createRenderer function is responsible for creating the renderer that handles the actual rendering of tiles. The getRenderMode function retrieves the current render mode, which is essential for understanding how tiles are rendered. The setPreload and setUseInterimTilesOnError functions manage tile loading behavior, which may impact rendering when the browser is zoomed. Adjustments in these functions could help resolve the clipping issue.",
+        "bug_scenario": "The bug occurs when the browser is zoomed in, causing the VectorTile rendering with renderMode: 'image' to clip tiles, resulting in visible gaps between them. This issue does not occur at 100% zoom or when using renderMode: 'hybrid'."
+    }
+}

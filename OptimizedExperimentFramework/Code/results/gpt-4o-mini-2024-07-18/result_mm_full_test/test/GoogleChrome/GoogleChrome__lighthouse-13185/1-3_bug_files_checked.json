@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "flow-report/src/summary/summary.tsx",
+            "flow-report/src/wrappers/report-renderer.tsx",
+            "flow-report/src/util.ts"
+        ],
+        "explanation": "These files are related to rendering and displaying the report. The `summary.tsx` likely contains the logic for generating report summaries, which include images. The `report-renderer.tsx` is responsible for rendering the entire report layout, including images. The `util.ts` may contain utility functions that handle image sources or paths, which would need modification to switch from hotlinking to using local assets.",
+        "bug_scenario": "The bug scenario involves removing image hotlinking from the report by replacing `<img>` tags that point to remote servers with assets from a full-page screenshot. This is necessary to simplify Content Security Policy (CSP) and mixed content issues when reports are displayed over HTTPS."
+    }
+}

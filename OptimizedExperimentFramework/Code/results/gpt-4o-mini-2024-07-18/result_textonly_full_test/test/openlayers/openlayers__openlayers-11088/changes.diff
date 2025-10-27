@@ -1,0 +1,26 @@
+diff --git a/src/ol/proj/Projection.js b/src/ol/proj/Projection.js
+index 5736327..e0eb77c 100644
+--- a/src/ol/proj/Projection.js
++++ b/src/ol/proj/Projection.js
+@@ -93,7 +93,7 @@ class Projection {
+      * @type {string}
+      */
+     this.axisOrientation_ =
+-      options.axisOrientation !== undefined ? options.axisOrientation : 'enu';
++      options.axisOrientation !== undefined ? options.axisOrientation : 'neu'; // Changed from 'enu' to 'neu' to match proj4js 2.6.1
+ 
+     /**
+      * @private
+diff --git a/src/ol/proj/proj4.js b/src/ol/proj/proj4.js
+index 099c80e..636955e 100644
+--- a/src/ol/proj/proj4.js
++++ b/src/ol/proj/proj4.js
+@@ -32,7 +32,7 @@ export function register(proj4) {
+       addProjection(
+         new Projection({
+           code: code,
+-          axisOrientation: def.axis,
++          axisOrientation: def.axis === 'enu' ? 'neu' : def.axis, // Adjusting axis orientation to match proj4js 2.6.1
+           metersPerUnit: def.to_meter,
+           units: def.units,
+         })

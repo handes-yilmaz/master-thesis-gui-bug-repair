@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/modeling/BpmnUpdater.js",
+            "lib/modeling/behavior/DataStoreBehavior.js",
+            "lib/modeling/behavior/CreateDataObjectBehavior.js",
+            "lib/modeling/Modeling.js",
+            "lib/modeling/behavior/ReplaceElementBehaviour.js"
+        ],
+        "explanation": "These files are related to the bug because they contain the core logic for updating and manipulating BPMN elements during the morphing process. The BpmnUpdater.js file is directly mentioned in the bug report, indicating it is responsible for updating the diagram and handling the properties of BPMN elements. The DataStoreBehavior.js and CreateDataObjectBehavior.js files define how DataStoreReferences and DataObjectReferences behave, including their rules and restrictions. The Modeling.js file orchestrates interactions between different modeling behaviors, and ReplaceElementBehaviour.js may also play a role in handling element replacements, which is critical when morphing elements.",
+        "bug_scenario": "The bug occurs when trying to morph a DataStoreReference into a DataObjectReference while it is placed outside of a designated pool in the BPMN diagram. This results in an error because the application is unable to access certain properties of an undefined object, leading to a TypeError. The error is specifically triggered during the update process of diagram elements, indicating a flaw in how the application handles the morphing process in this context."
+    }
+}

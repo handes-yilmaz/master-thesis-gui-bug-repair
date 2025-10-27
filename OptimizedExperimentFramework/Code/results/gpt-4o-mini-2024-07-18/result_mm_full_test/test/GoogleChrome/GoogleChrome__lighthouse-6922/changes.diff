@@ -1,0 +1,32 @@
+diff --git a/lighthouse-core/gather/connections/connection.js b/lighthouse-core/gather/connections/connection.js
+index df20400..190ab10 100644
+--- a/lighthouse-core/gather/connections/connection.js
++++ b/lighthouse-core/gather/connections/connection.js
+@@ -61,7 +61,7 @@ class Connection {
+ 
+     log.formatProtocol('method => browser', {method, params}, 'verbose');
+     const id = ++this._lastCommandId;
+-    const message = JSON.stringify({id, method, params});
++    const message = JSON.stringify({id, method, params, targetId: this._targetId});
+     this.sendRawMessage(message);
+ 
+     return new Promise(resolve => {
+diff --git a/lighthouse-core/gather/gatherers/gatherer.js b/lighthouse-core/gather/gatherers/gatherer.js
+index a76a259..f665266 100644
+--- a/lighthouse-core/gather/gatherers/gatherer.js
++++ b/lighthouse-core/gather/gatherers/gatherer.js
+@@ -41,7 +41,13 @@ class Gatherer {
+    * @param {LH.Gatherer.PassContext} passContext
+    * @return {PhaseResult|Promise<PhaseResult>}
+    */
+-  pass(passContext) { }
++  async pass(passContext) {
++    if (passContext.targetId) {
++      await passContext.driver.sendCommand('Target.sendMessageToTarget', {
++        targetId: passContext.targetId,
++        method: 'Network.enable',
++      });
++    }
+ 
+   /**
+    * Called after target page is loaded, all gatherer `pass` methods have been

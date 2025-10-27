@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "this.opacity_ = 1;"
+                ],
+                "REPLACE": [
+                    "    this.opacity_ = options.opacity !== undefined ? options.opacity : 1;"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.setupCompositionContext_();"
+                ],
+                "REPLACE": [
+                    "    if (this.getLayer().getDeclutter()) {",
+                    "        this.setupCompositionContext_();",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.releaseCompositionContext_();"
+                ],
+                "REPLACE": [
+                    "    if (this.getLayer().getDeclutter()) {",
+                    "        this.releaseCompositionContext_();",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "const opacity = layerState.opacity;"
+                ],
+                "REPLACE": [
+                    "    const opacity = layerState.opacity !== undefined ? layerState.opacity : 1;"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "this.renderWorlds(frameState, false, startWorld, endWorld, worldWidth);"
+                ],
+                "REPLACE": [
+                    "    if (this.getLayer().getDeclutter()) {",
+                    "        this.renderWorlds(frameState, false, startWorld, endWorld, worldWidth);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

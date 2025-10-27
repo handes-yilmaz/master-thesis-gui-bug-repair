@@ -1,0 +1,27 @@
+diff --git a/src/ol/format/KML.js b/src/ol/format/KML.js
+index 11c1ec0..6a6c7cc 100644
+--- a/src/ol/format/KML.js
++++ b/src/ol/format/KML.js
+@@ -534,6 +534,9 @@ class KML extends XMLFeature {
+     // gets stored on feature when setProperties is called
+ 
+     feature.setProperties(object, true);
++    if (object['name']) {
++        object['name'] = decodeURIComponent(object['name']);
++    }
+ 
+     return feature;
+   }
+diff --git a/src/ol/style/Text.js b/src/ol/style/Text.js
+index 98648cd..c658554 100644
+--- a/src/ol/style/Text.js
++++ b/src/ol/style/Text.js
+@@ -86,7 +86,7 @@ class Text {
+      * @private
+      * @type {string|undefined}
+      */
+-    this.text_ = options.text;
++    this.text_ = options.text ? decodeURIComponent(options.text) : undefined;
+ 
+     /**
+      * @private

@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/cascader-select/cascader-select.jsx//CascaderSelect",
+            "src/overlay/popup-v2.jsx//Popup"
+        ],
+        "bug_functions": [],
+        "explanation": "The error arises when using the 'popupProps' with 'v2: true' in the CascaderSelect component. This indicates a potential issue in how the CascaderSelect component interacts with the popup logic. The 'Popup' component in 'src/overlay/popup-v2.jsx' is directly related to this issue because it handles the rendering and behavior of the popup, which is failing when 'v2' mode is enabled. The interaction between CascaderSelect and Popup needs to be examined to resolve the TypeError.",
+        "bug_scenario": "The bug scenario involves an error occurring when the 'popupProps' attribute is set with 'v2: true' for the CascaderSelect component. The error message indicates a TypeError: Cannot read properties of null, specifically when trying to read 'getInstance'. This suggests that the code is attempting to access a method or property on an undefined or null object."
+    },
+    "2": {
+        "bug_classes": [
+            "src/cascader-select/cascader-select.jsx//CascaderSelect",
+            "src/overlay/popup-v2.jsx//Popup"
+        ],
+        "bug_functions": [
+            "src/overlay/popup-v2.jsx//handleVisibleChange",
+            "src/overlay/popup-v2.jsx//handlePosition"
+        ],
+        "explanation": "The 'CascaderSelect' class in 'cascader-select.jsx' is directly involved in rendering the component where the error occurs. The 'Popup' component in 'popup-v2.jsx' is likely responsible for handling the popup logic, including visibility and positioning, which are crucial when 'v2: true' is set. Errors in 'handleVisibleChange' and 'handlePosition' functions might lead to incorrect handling of the popup state or positioning, resulting in null references.",
+        "bug_scenario": "The bug scenario involves a 'CascaderSelect' component that throws an error when the 'popupProps' attribute is set with 'v2: true'. The error message displayed is 'Uncaught TypeError: Cannot read properties of null (reading 'getInstance')', indicating a problem with accessing a property of a null object."
+    }
+}

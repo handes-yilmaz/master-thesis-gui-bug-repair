@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "src/language-markdown/parser-markdown.js": [
+            {
+                "SEARCH": [
+                    "return Object.assign({}, node, {",
+                    "value: node.value.replace(/\\\\s+/g, \" \")",
+                    "});"
+                ],
+                "REPLACE": [
+                    "      return Object.assign({}, node, {",
+                    "        value: node.value.replace(/\\\\s+/g, \" \").trim() // Trim whitespace to prevent excess indentation",
+                    "      });"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "? originalText.slice(",
+                    "node.position.start.offset,",
+                    "node.position.end.offset",
+                    ")"
+                ],
+                "REPLACE": [
+                    "                ? originalText.slice(",
+                    "                    node.position.start.offset,",
+                    "                    node.position.end.offset",
+                    "                  ).trim() // Trim whitespace to prevent excess indentation"
+                ]
+            }
+        ]
+    }
+}

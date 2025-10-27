@@ -1,0 +1,37 @@
+diff --git a/src/language-js/print/jsx.js b/src/language-js/print/jsx.js
+index bd21710..c5c1d64 100644
+--- a/src/language-js/print/jsx.js
++++ b/src/language-js/print/jsx.js
+@@ -119,8 +119,16 @@ function printJsxElementInternal(path, options, print) {
+     : ifBreak(concat([rawJsxWhitespace, softline]), " ");
+ 
+   // Handle full-width space (U+3000) consistently
+-  const fullWidthSpace = "\u3000";
++  const fullWidthSpace = "\\u3000";
+   const jsxFullWidthWhitespace = ifBreak(concat([`{"${fullWidthSpace}"}`, softline]), fullWidthSpace);
++  
++  // Ensure that full-width spaces are treated consistently
++  const consistentWhitespaceHandling = (child) => {
++    if (typeof child === 'string' && child.includes(fullWidthSpace)) {
++      return child.replace(new RegExp(fullWidthSpace, 'g'), jsxFullWidthWhitespace);
++    }
++    return child;
++  };
+ 
+   const isFacebookTranslationTag =
+     n.openingElement &&
+@@ -133,13 +141,7 @@ function printJsxElementInternal(path, options, print) {
+     print,
+     jsxWhitespace,
+     isFacebookTranslationTag
+-  ).map(child => {
+-    // Ensure full-width spaces are handled consistently
+-    if (typeof child === 'string' && child.includes(fullWidthSpace)) {
+-      return child.replace(new RegExp(fullWidthSpace, 'g'), jsxFullWidthWhitespace);
+-    }
+-    return child;
+-  });
++  ).map(consistentWhitespaceHandling);
+ 
+   const containsText = n.children.some((child) => isMeaningfulJSXText(child));
+ 

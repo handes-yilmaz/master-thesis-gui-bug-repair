@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "core/gather/gatherers/trace.js//Trace",
+            "core/lib/tracehouse/trace-processor.js//TraceProcessor"
+        ],
+        "bug_functions": [
+            "core/lib/tracehouse/trace-processor.js//findMainFramePidTids",
+            "core/lib/tracehouse/trace-processor.js//findMainFrameIds",
+            "core/lib/tracehouse/trace-processor.js//processTrace"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the processing of trace events, including the 'FrameCommittedInBrowser' event. The 'Trace' class is responsible for gathering trace data, while the 'TraceProcessor' class contains methods that process this data to extract relevant information, such as process IDs and thread IDs. Specifically, the 'findMainFramePidTids' and 'findMainFrameIds' functions are crucial for determining the correct process and thread IDs, which are directly related to the error reported in the bug. The 'processTrace' function is also relevant as it processes the trace data to ensure that the necessary events are correctly identified and handled.",
+        "bug_scenario": "The bug occurs when the 'FrameCommittedInBrowser' event incorrectly uses a 'processPseudoId' instead of a 'processId', leading to the 'mainFramePids' array containing only 'undefined' values. This results in Lighthouse being unable to determine the thread ID (tid) for the renderer process, causing an error message to be displayed."
+    }
+}

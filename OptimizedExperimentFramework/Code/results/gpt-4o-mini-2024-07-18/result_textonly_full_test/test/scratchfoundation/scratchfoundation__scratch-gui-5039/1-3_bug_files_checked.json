@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "src/components/context-menu/context-menu.jsx",
+            "src/components/sprite-info/sprite-info.jsx",
+            "src/components/sprite-selector/sprite-selector.jsx",
+            "src/components/drag-layer/drag-layer.jsx",
+            "src/reducers/menus.js"
+        ],
+        "explanation": "The context menu component is directly responsible for displaying the custom menu upon right-click events. The sprite-info and sprite-selector components may handle the sprite interactions and event triggering. The drag-layer component could be involved in managing the drag events that are interfering with the right-click functionality. Lastly, the menus reducer might be managing the state of the menus, which is crucial for ensuring the correct menu is shown when the right-click occurs.",
+        "bug_scenario": "The user is unable to see the duplicate menu when right-clicking on a sprite in the application. Instead of the expected custom context menu, the operating system's default context menu appears. This indicates that the event handling for the right-click is not functioning correctly, likely due to issues in the context menu implementation."
+    },
+    "2": {
+        "bug_files": [
+            "src/components/context-menu/context-menu.jsx",
+            "src/components/sprite-info/sprite-info.jsx",
+            "src/reducers/menus.js",
+            "src/lib/drag-utils.js",
+            "src/lib/drag-recognizer.js"
+        ],
+        "explanation": "These files are related to the bug as follows: 1. **context-menu.jsx**: This file likely contains the logic for rendering and handling the context menu when a sprite is right-clicked. Any issues here could prevent the duplicate menu from displaying. 2. **sprite-info.jsx**: This file may manage sprite interactions, including right-click actions. If it does not correctly trigger the context menu under certain conditions, it could lead to the bug described. 3. **menus.js**: This reducer may manage the state related to menus, including which menus are displayed based on the user's actions. A bug in this file could prevent the correct menu from being shown. 4. **drag-utils.js**: This file may handle logic for drag-and-drop interactions. If it improperly manages event handling during drag operations, it could interfere with the context menu functionality. 5. **drag-recognizer.js**: This file is likely involved in recognizing drag gestures. If the drag recognition is not implemented correctly, it may result in the OS's context menu appearing instead of the application's intended duplicate menu.",
+        "bug_scenario": "When right-clicking on a sprite, the expected duplicate menu does not appear. Instead, the OS's context menu is displayed. This occurs when dragging the sprite to another location, which differs from the intended behavior where the duplicate menu should be accessible upon right-clicking the sprite."
+    }
+}

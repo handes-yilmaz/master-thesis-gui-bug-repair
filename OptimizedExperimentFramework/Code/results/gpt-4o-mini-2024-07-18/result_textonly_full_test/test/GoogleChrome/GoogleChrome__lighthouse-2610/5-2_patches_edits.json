@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/critical-request-chains.js": [
+            {
+                "SEARCH": [
+                    "chainTransferSize: (transferSize + child.request.transferSize)"
+                ],
+                "REPLACE": [
+                    "          chainTransferSize: (transferSize + child.request.transferSize || 0)"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/computed/critical-request-chains.js": [
+            {
+                "SEARCH": [
+                    "transferSize: request.transferSize"
+                ],
+                "REPLACE": [
+                    "        transferSize: request.transferSize || 0"
+                ]
+            }
+        ],
+        "lighthouse-core/report/v2/renderer/crc-details-renderer.js": [
+            {
+                "SEARCH": [
+                    "dom.find('.lh-crc__longest_transfersize', tmpl).textContent =",
+                    "Util.formatBytesToKB(details.longestChain.transferSize);"
+                ],
+                "REPLACE": [
+                    "    dom.find('.lh-crc__longest_transfersize', tmpl).textContent =",
+                    "        Util.formatBytesToKB(details.longestChain.transferSize || 0);"
+                ]
+            }
+        ]
+    }
+}

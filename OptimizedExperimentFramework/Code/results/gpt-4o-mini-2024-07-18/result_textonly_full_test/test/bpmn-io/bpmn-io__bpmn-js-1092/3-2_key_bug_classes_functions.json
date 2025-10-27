@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/grid-snapping/BpmnGridSnapping",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior",
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior//snapMiddleSegments",
+            "lib/features/grid-snapping/behavior/LayoutConnectionBehavior//hasMiddleSegments",
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior//fixConnection",
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior//replaceReconnectedConnection"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the behavior of connections and grid snapping in the BPMN diagram. The 'LayoutConnectionBehavior' class is responsible for managing how connections are laid out and snapped, which directly affects the ability to connect tasks center to center. The 'snapMiddleSegments' and 'hasMiddleSegments' functions specifically deal with the snapping logic that is likely causing the issue. The 'ReplaceConnectionBehavior' class manages the connections between elements, and its functions 'fixConnection' and 'replaceReconnectedConnection' are crucial for ensuring that connections are valid and can be re-established correctly, which is essential for the expected center-to-center connection behavior.",
+        "bug_scenario": "The bug scenario involves the inability to connect two tasks center to center due to the introduction of connection previews and grid snapping. This results in a failure to achieve the expected behavior of a center-to-center connection, which is a common requirement in task management."
+    }
+}

@@ -1,0 +1,32 @@
+diff --git a/src/command/render/render-files.ts b/src/command/render/render-files.ts
+index dd2bdcc..5690931 100644
+--- a/src/command/render/render-files.ts
++++ b/src/command/render/render-files.ts
+@@ -304,6 +304,11 @@ export async function renderFiles(
+         );
+       }
+ 
++      // Check if caption is character(0) and handle accordingly
++      if (file.caption && Array.isArray(file.caption) && file.caption.length === 0) {
++        file.caption = "Default Caption"; // or handle as needed
++      }
++      
+       // get contexts
+       const fileLifetime = await waitUntilNamedLifetime("render-file");
+       try {
+diff --git a/src/command/render/render.ts b/src/command/render/render.ts
+index 05b8773..f25e155 100644
+--- a/src/command/render/render.ts
++++ b/src/command/render/render.ts
+@@ -448,6 +448,11 @@ export function renderResultFinalOutput(
+     }
+   }
+ 
++  // Check if caption is character(0) and handle accordingly
++  if (result.caption && Array.isArray(result.caption) && result.caption.length === 0) {
++    result.caption = "Default Caption"; // or handle as needed
++  }
++  
+   // determine final output
+   let finalInput = result.input;
+   let finalOutput = result.file;

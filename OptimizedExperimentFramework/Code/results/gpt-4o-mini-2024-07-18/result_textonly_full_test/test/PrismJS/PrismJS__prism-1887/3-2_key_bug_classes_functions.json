@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-cpp.js//Prism.languages.cpp"
+        ],
+        "bug_functions": [
+            "components/prism-cpp.js//Prism.languages.extend",
+            "components/prism-cpp.js//Prism.languages.insertBefore"
+        ],
+        "explanation": "The 'Prism.languages.cpp' class is crucial because it defines the language rules for C++ syntax highlighting, including how numbers are recognized. The 'extend' function is used to modify the existing C language rules to accommodate C++ features, which is where the regex for number literals needs to be updated to include single quotes. The 'insertBefore' function is also relevant as it allows for the insertion of additional language features, which may be necessary for handling raw strings or other C++ specific syntax. These classes and functions are directly related to the bug as they control how the C++ syntax is parsed and highlighted, and thus need to be modified to fix the issue with single quote separation in literals.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting of C++ floating point and integer literals that use single quotes for separation. The current implementation fails to recognize these literals correctly, leading to improper highlighting in the code editor. The user provided examples of valid C++ literals that should be highlighted correctly but are not, as shown in the screenshots."
+    }
+}

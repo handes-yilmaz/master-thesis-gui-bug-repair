@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/drilldown/SubprocessCompatibility.js",
+            "lib/features/modeling/behavior/CreateBehavior.js",
+            "lib/features/modeling/behavior/SubProcessStartEventBehavior.js",
+            "lib/features/modeling/BpmnFactory.js",
+            "lib/features/modeling/BpmnUpdater.js"
+        ],
+        "explanation": "These files are likely related to the bug because they handle the behaviors and properties of subprocesses and the morphing functionality. The SubprocessCompatibility.js file may contain logic that defines how a subprocess should behave when created or modified. CreateBehavior.js is responsible for creating various BPMN elements, including subprocesses, and could contain the logic that needs to be modified to ensure a start event is added. SubProcessStartEventBehavior.js likely defines the behavior of start events within a subprocess and needs to be checked to ensure that it triggers properly during the morphing process. BpmnFactory.js and BpmnUpdater.js are responsible for constructing and updating BPMN objects, so they must also be reviewed to ensure that the subprocess is created with the necessary elements.",
+        "bug_scenario": "The bug occurs when morphing a call activity into an expanded subprocess. Instead of generating a properly defined subprocess with a start event, a minimal subprocess resembling a task is created, leading to confusion in user experience."
+    }
+}

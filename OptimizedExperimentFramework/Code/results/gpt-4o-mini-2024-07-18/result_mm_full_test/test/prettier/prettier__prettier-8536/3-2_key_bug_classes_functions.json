@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/main/parser.js//parse",
+            "src/main/options.js//normalize",
+            "src/document/doc-printer.js//trim"
+        ],
+        "bug_functions": [
+            "src/main/parser.js//resolveParser",
+            "src/document/doc-printer.js//printDocToString"
+        ],
+        "explanation": "The `parse` function in `parser.js` is responsible for parsing the input code, which is crucial for understanding how the formatting is applied. The `resolveParser` function helps in determining which parser to use, which is essential since the bug is reproducible with the Babylon parser. The `normalize` function in `options.js` manages the options passed to the parser, including handling defaults that may affect the output. The `trim` function in `doc-printer.js` is directly related to the issue of trailing newlines, as it is responsible for trimming whitespace at the end of lines. Finally, `printDocToString` is involved in the final output generation, making it relevant to the bug's manifestation.",
+        "bug_scenario": "The bug occurs when a file containing only a directive followed by a comment ends with two newlines instead of one after formatting with Prettier. This issue is reproducible using the Babylon parser."
+    }
+}

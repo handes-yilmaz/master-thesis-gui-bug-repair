@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/needs-parens.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the handling of parentheses in the context of JSDoc comments and module exports. The file 'src/language-js/needs-parens.js' contains multiple references and conditions related to when parentheses should be preserved in the formatting process. Given the issue is about the incorrect removal of parentheses that affects Intellisense, this file is likely where the logic determining whether to keep or remove parentheses is implemented. Modifying the logic in this file to ensure parentheses are correctly preserved when they are required for Intellisense functionality would likely fix the bug.",
+        "bug_scenario": "The bug scenario involves the removal of parentheses around an object in a module export statement, which is supposed to satisfy a JSDoc type declaration. The expected behavior is to keep the parentheses to ensure Intellisense works correctly, as removing them breaks the functionality. The Prettier formatter is incorrectly removing these parentheses, which affects the code's expected behavior and breaks Intellisense."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/needs-parens.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to handling of parentheses in JSDoc comments, which affects Intellisense. The compressed bug files show areas where parentheses handling is a focal point:\n\n1. **src/language-js/printer-estree.js**: This file likely contains logic related to printing and formatting JavaScript code, including handling of parentheses around different types of expressions. The comments suggest handling of decorators and parentheses, which are directly related to the bug.\n\n2. **src/language-js/needs-parens.js**: This file discusses various scenarios where parentheses are needed or omitted. The presence of extensive comments on parentheses usage indicates that modifications here are necessary to ensure parentheses are retained around JSDoc comments for Intellisense compatibility.\n\nThese files are critical in addressing the bug because they directly handle when and where parentheses are added or removed in the code formatting process, which is the core issue in this bug report.",
+        "bug_scenario": "The bug scenario involves a formatting issue with Prettier 2.8.3 where parentheses around JSDoc comments are being removed, which breaks Intellisense functionality. The expected behavior is to retain these parentheses for proper Intellisense support."
+    }
+}

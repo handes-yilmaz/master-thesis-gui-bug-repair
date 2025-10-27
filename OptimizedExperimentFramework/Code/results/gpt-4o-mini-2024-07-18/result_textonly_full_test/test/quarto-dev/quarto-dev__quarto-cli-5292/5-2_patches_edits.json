@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "src/format/pdf/format-pdf.ts": [
+            {
+                "SEARCH": [
+                    "extensions: {",
+                    "book: pdfBookExtension,",
+                    "},"
+                ],
+                "REPLACE": [
+                    "      extensions: {",
+                    "        book: {",
+                    "          onSingleFilePreRender: (format: Format, _config?: ProjectConfig) => {",
+                    "            // Ensure necessary LaTeX packages are included",
+                    "            format.render[kLatexPackages] = [",
+                    "              \"tikz\", // Include tikz package",
+                    "              // Add any other necessary packages here",
+                    "            ];",
+                    "            return format;",
+                    "          },",
+                    "        },",
+                    "      },"
+                ]
+            }
+        ]
+    }
+}

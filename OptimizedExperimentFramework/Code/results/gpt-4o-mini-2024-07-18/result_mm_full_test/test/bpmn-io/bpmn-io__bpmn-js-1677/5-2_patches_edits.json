@@ -1,0 +1,19 @@
+{
+    "1/1": {
+        "// Example patch for handling direct editing before deletion": [
+            {
+                "SEARCH": [
+                    "function deleteElement(element) {",
+                    "// existing deletion logic"
+                ],
+                "REPLACE": [
+                    "function deleteElement(element) {",
+                    "    if (isDirectEditingActive()) {",
+                    "        completeDirectEditing(); // Complete or cancel direct editing",
+                    "    }",
+                    "    // existing deletion logic"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/uses-rel-preconnect.js",
+            "lighthouse-core/gather/gatherers/link-elements.js",
+            "lighthouse-core/runner.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: 1. **uses-rel-preconnect.js**: This file contains the logic for the Lighthouse audit that checks for preconnect links. It determines whether the preconnects are being utilized correctly and may need adjustments to handle the user's added origins. 2. **link-elements.js**: This file gathers link elements from the DOM and headers, which is essential for ensuring that the preconnect links are correctly identified and processed. If the links are not being recognized, this file may need modifications. 3. **runner.js**: This file orchestrates the overall Lighthouse run, including the gathering of artifacts and running audits. If there are issues with how audits are executed or how results are reported, this file could be involved in the problem.",
+        "bug_scenario": "The Lighthouse report suggests adding preconnect links to several third-party origins even after they have been added. The user is confused about why these suggestions persist and how to identify important third-party origins for preconnects."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/v2/report-renderer.js//ReportRenderer",
+            "lighthouse-core/report/report-generator.js//ReportGenerator"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/report-generator.js//_escapeScriptTags",
+            "lighthouse-core/report/report-generator.js//generateHTML"
+        ],
+        "explanation": "The `ReportRenderer` class is responsible for rendering the report, and any vulnerabilities in how it handles input could lead to security issues like the one described. The `ReportGenerator` class contains the `_escapeScriptTags` function, which is directly related to escaping potentially harmful content. If this function does not properly escape user input, it could allow for JavaScript injection. The `generateHTML` function is crucial as it generates the final HTML output of the report, and any flaws in this function could also lead to the injection issue described in the bug report.",
+        "bug_scenario": "The bug scenario involves a security vulnerability where a file injection technique can be exploited by injecting JavaScript code into the `report-renderer.js` file. This can lead to unintended JavaScript execution on the page, as demonstrated by the example of inserting `console.log('$');` which can escape the page context."
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "core/lib/lh-trace-processor.js//LHTraceProcessor"
+        ],
+        "bug_functions": [
+            "core/lib/lh-trace-processor.js//createNoNavstartError",
+            "core/lib/lh-trace-processor.js//createNoTracingStartedError"
+        ],
+        "explanation": "The class 'LHTraceProcessor' is responsible for processing trace events, which includes handling the 'FrameCommittedInBrowser' event. The functions 'createNoNavstartError' and 'createNoTracingStartedError' are relevant as they deal with error handling related to navigation and tracing, which are critical in determining the correct process ID. Fixing the issue will likely involve ensuring that the correct 'processId' is captured and utilized during the event handling.",
+        "bug_scenario": "The bug occurs when the 'FrameCommittedInBrowser' event is triggered, resulting in a 'processPseudoId' being used instead of a 'processId'. This leads to the 'mainFramePids' array containing 'undefined', causing Lighthouse to throw an error stating 'Unable to determine tid for renderer process'."
+    }
+}

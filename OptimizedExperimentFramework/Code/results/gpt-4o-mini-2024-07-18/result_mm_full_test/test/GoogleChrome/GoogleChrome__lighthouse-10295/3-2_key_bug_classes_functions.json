@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js//NoVulnerableLibrariesAudit"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js//normalizeVersion",
+            "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js//getVulnerabilities"
+        ],
+        "explanation": "The class 'NoVulnerableLibrariesAudit' is responsible for auditing JavaScript libraries for known vulnerabilities. The function 'normalizeVersion' is crucial as it attempts to normalize the version string, which is where the 'match' method is likely being called. If 'version' is not a string, this will lead to the error. The function 'getVulnerabilities' also relies on the version being correctly formatted, making it essential to ensure that the version handling is robust and can accommodate the variations in version formats that may arise from different JavaScript bundling methods.",
+        "bug_scenario": "The error 'version.match is not a function' indicates that the code is attempting to call the 'match' method on a variable 'version' that is not a string. This is likely occurring in the context of the Lighthouse audit tool, specifically when it is trying to detect JavaScript library versions on a Magento 2 website. The issue may stem from how versions are being parsed or handled, particularly with the use of require.js and JS bundling in Magento 2."
+    }
+}

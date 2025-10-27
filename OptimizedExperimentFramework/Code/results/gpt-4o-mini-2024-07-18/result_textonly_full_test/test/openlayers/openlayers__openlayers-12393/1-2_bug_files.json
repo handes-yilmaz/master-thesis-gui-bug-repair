@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/ImageStatic.js",
+            "src/ol/render/canvas/ImageLayer.js",
+            "src/ol/render/canvas/Builder.js"
+        ],
+        "explanation": "The file `ImageStatic.js` is directly responsible for handling the image scaling logic, making it the primary candidate for the bug fix. The `ImageLayer.js` and `Builder.js` files are likely involved in rendering the image on the map, and thus may also contain relevant scaling or rendering logic that needs to be adjusted to handle the rounding errors correctly.",
+        "bug_scenario": "The bug is related to rounding errors when scaling a square image to fit a square extent in JavaScript. The issue arises due to floating-point calculations that lead to the image being stretched unnecessarily. The use of `Math.ceil` is suspected to be the cause of the rounding issue, making the image not fit correctly within the specified extent."
+    }
+}

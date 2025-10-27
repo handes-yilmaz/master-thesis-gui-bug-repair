@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/javascript.js//HTMLRenderer",
+            "src/lib/token_tree.js//TokenTreeEmitter"
+        ],
+        "bug_functions": [
+            "src/languages/javascript.js//openNode",
+            "src/lib/token_tree.js//addText",
+            "src/lib/token_tree.js//addKeyword"
+        ],
+        "explanation": "The classes and functions identified are related to the rendering and processing of syntax highlighting in JavaScript. The 'HTMLRenderer' class is responsible for generating the HTML output, which includes handling comments. The 'TokenTreeEmitter' class manages the structure of the token tree and includes methods like 'addText' and 'addKeyword' that are crucial for adding text nodes to the output. The 'openNode' function in 'HTMLRenderer' determines when to start a new span for a node, which is essential for correctly handling comments, including empty block comments that are causing the highlighting issue.",
+        "bug_scenario": "The bug occurs when an empty block comment is present in JavaScript code, which causes the syntax highlighting to break. The provided images illustrate the expected behavior of syntax highlighting versus the actual behavior when the empty block comment is included."
+    }
+}

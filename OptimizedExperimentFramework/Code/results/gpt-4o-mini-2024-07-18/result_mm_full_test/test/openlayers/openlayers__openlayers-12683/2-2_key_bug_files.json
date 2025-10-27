@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/style/Icon.js",
+            "src/ol/style/Style.js",
+            "src/ol/renderer/canvas/ImageLayer.js"
+        ],
+        "explanation": "These files are key to fixing the bug because: 1. **Icon.js**: This file contains the implementation of the Icon style, including how offsets and colors are applied. Adjustments here could correct the offset calculations based on pixel ratio and color. 2. **Style.js**: This file manages the overall styling of vector features, including how image styles are applied. Changes here could ensure that the icon styles are rendered correctly across different pixel ratios. 3. **ImageLayer.js**: This file handles the rendering of image layers, which is crucial for ensuring that the icons are displayed correctly on the canvas. Fixes in this file could address rendering issues related to the pixel ratio.",
+        "bug_scenario": "The bug occurs when using an icon style with a custom color and a pixel ratio greater than 1, causing the offset of the icon to be incorrect. This results in the icon not being displayed in the expected position on the screen, as seen in the provided images. The expected behavior is that the icon should be rendered correctly regardless of the pixel ratio or color applied."
+    }
+}

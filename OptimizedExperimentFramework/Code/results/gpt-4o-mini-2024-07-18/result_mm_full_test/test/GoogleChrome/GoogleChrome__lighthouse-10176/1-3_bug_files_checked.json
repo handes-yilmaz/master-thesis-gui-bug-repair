@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/stack-collector.js",
+            "lighthouse-core/audits/dobetterweb/js-libraries.js",
+            "stack-packs/index.js"
+        ],
+        "explanation": "1. **lighthouse-core/lib/stack-collector.js**: This file is responsible for collecting stack information, and it needs modifications to correctly handle the new 'Fast Path' checks and avoid duplication of library entries. 2. **lighthouse-core/audits/js-libraries.js**: This audit file may need adjustments to ensure it doesn't display the unintended 'React (Fast Path)' entries to users. 3. **proto/stack-packs/index.js**: This file manages the stack packs, and adding real `id` properties into js-library-detector will require changes here to resolve the duplication issue.",
+        "bug_scenario": "The bug involves duplicated stack packs when running Lighthouse or PSI on the specified URL. The issue arises from the implementation of new 'Fast Path' checks in the js-lib-detector and their integration into Lighthouse, leading to two entries for the same library in the stack packs."
+    }
+}

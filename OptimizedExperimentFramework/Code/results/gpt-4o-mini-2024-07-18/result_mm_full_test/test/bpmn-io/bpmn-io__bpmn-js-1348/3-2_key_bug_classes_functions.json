@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior",
+            "lib/features/rules/BpmnRules",
+            "lib/features/modeling/BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/BoundaryEventBehavior//postExecute",
+            "lib/features/rules/BpmnRules//canConnect",
+            "lib/features/modeling/BpmnUpdater//updateConnection"
+        ],
+        "explanation": "The identified classes and functions are critical to the bug because they handle the behavior and rules associated with boundary events and message flows. The 'BoundaryEventBehavior' class manages the behavior of boundary events, including how they interact with connections. The 'BpmnRules' class contains the rules that govern whether connections can be made, specifically addressing the conditions under which message flows can target boundary events. Lastly, the 'BpmnUpdater' class is responsible for updating the BPMN model when changes occur, which includes ensuring that the connections are valid according to the specified rules. Modifications in these areas are necessary to allow message flows to target intermediate message catch boundary events as per the BPMN 2.0 specification.",
+        "bug_scenario": "The user is attempting to connect a message flow from an activity in one participant to an intermediate message catch boundary event, but the modeler disallows this connection. According to the BPMN 2.0 specification, this connection should be allowed, indicating a bug in the modeling tool's implementation of the rules governing message flows."
+    }
+}

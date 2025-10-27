@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/print/type-parameters.js"
+        ],
+        "bug_functions": [
+            "src/language-js/print/type-parameters.js//printTypeParameters"
+        ],
+        "explanation": "The bug is related to how type parameters are printed, specifically concerning the handling of trailing commas in formatted TypeScript generics. The function `printTypeParameters` in `src/language-js/print/type-parameters.js` seems to be responsible for formatting type parameters, including the decision to insert commas. The bug description and the example provided indicate that this function likely includes logic for determining when to add a trailing comma, which is malfunctioning in this specific case. Therefore, this function is a key element in addressing the bug.",
+        "bug_scenario": "The bug scenario involves the Prettier formatter incorrectly inserting a comma in an empty array when formatting TypeScript generics. This problem occurs specifically when the print-width is set to 120, and the length of the identifier is exactly at this limit. The bug report provides an example input where a type with generics is formatted incorrectly, resulting in an unexpected comma in the output."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-js/print/type-parameters.js"
+        ],
+        "bug_functions": [
+            "src/language-js/print/type-parameters.js//printTypeParameters"
+        ],
+        "explanation": "The bug is related to the formatting of TypeScript generics, specifically involving the incorrect insertion of commas in empty arrays. The function 'printTypeParameters' in the file 'src/language-js/print/type-parameters.js' is directly responsible for printing and formatting TypeScript type parameters. The logic within this function determines how type parameters are formatted, including whether or not commas are inserted. Since the issue involves incorrect comma insertion when formatting, this function is a key element in resolving the bug. The presence of the function 'printDanglingCommentsForInline' also suggests handling of inline comments, which could affect the formatting and introduce unwanted commas, but the primary focus should be on how 'printTypeParameters' manages comma placement according to the provided options.",
+        "bug_scenario": "The bug occurs when formatting TypeScript generics with Prettier version 2.5.0. A comma is incorrectly inserted in an empty array when the print-width is set to 120, and the length of the identifier matches this print-width. The error involves the formatting output not matching the expected behavior, where unnecessary commas are added to type parameters in TypeScript code."
+    }
+}

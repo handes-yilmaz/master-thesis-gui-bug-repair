@@ -1,0 +1,28 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1409a69..fb26765 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -289,7 +289,7 @@ class WebGLTileLayer extends BaseTileLayer {
+     const cacheSize = options.cacheSize;
+     delete options.cacheSize;
+ 
+-    super(options);
++    super(assign({}, options, { imageSmoothing: options.imageSmoothing }));
+ 
+     /**
+      * @type {Style}
+diff --git a/src/ol/webgl/TileTexture.js b/src/ol/webgl/TileTexture.js
+index d67a804..767c9ec 100644
+--- a/src/ol/webgl/TileTexture.js
++++ b/src/ol/webgl/TileTexture.js
+@@ -15,8 +15,8 @@ function bindAndConfigure(gl, texture) {
+   gl.bindTexture(gl.TEXTURE_2D, texture);
+   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
++  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, this.imageSmoothing ? gl.LINEAR : gl.NEAREST);
++  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, this.imageSmoothing ? gl.LINEAR : gl.NEAREST);
+ }
+ 
+ /**

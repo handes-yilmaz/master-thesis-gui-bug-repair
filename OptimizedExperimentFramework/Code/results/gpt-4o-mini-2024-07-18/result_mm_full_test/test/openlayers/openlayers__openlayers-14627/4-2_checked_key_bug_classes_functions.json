@@ -1,0 +1,85 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "EPSG4326Projection",
+            "file_path": "src/ol/proj/epsg4326.js",
+            "class_details": [
+                {
+                    "name": "EPSG4326Projection",
+                    "start_line": 36,
+                    "end_line": 52,
+                    "methods": [
+                        {
+                            "name": "constructor",
+                            "start_line": 41,
+                            "end_line": 51
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class EPSG4326Projection extends Projection {",
+                "  /**",
+                "   * @param {string} code Code.",
+                "   * @param {string} [axisOrientation] Axis orientation.",
+                "   */",
+                "  constructor(code, axisOrientation) {",
+                "    super({",
+                "      code: code,",
+                "      units: 'degrees',",
+                "      extent: EXTENT,",
+                "      axisOrientation: axisOrientation,",
+                "      global: true,",
+                "      metersPerUnit: METERS_PER_UNIT,",
+                "      worldExtent: EXTENT,",
+                "    });",
+                "  }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {
+        "2": {
+            "function_name": "add",
+            "file_path": "src/ol/proj/transforms.js",
+            "function_details": [
+                {
+                    "name": "add",
+                    "start_line": 27,
+                    "end_line": 34
+                }
+            ],
+            "function_code": [
+                "export function add(source, destination, transformFn) {",
+                "  const sourceCode = source.getCode();",
+                "  const destinationCode = destination.getCode();",
+                "  if (!(sourceCode in transforms)) {",
+                "    transforms[sourceCode] = {};",
+                "  }",
+                "  transforms[sourceCode][destinationCode] = transformFn;",
+                "}"
+            ]
+        },
+        "3": {
+            "function_name": "get",
+            "file_path": "src/ol/proj/transforms.js",
+            "function_details": [
+                {
+                    "name": "get",
+                    "start_line": 62,
+                    "end_line": 68
+                }
+            ],
+            "function_code": [
+                "export function get(sourceCode, destinationCode) {",
+                "  let transform;",
+                "  if (sourceCode in transforms && destinationCode in transforms[sourceCode]) {",
+                "    transform = transforms[sourceCode][destinationCode];",
+                "  }",
+                "  return transform;",
+                "}"
+            ]
+        }
+    }
+}

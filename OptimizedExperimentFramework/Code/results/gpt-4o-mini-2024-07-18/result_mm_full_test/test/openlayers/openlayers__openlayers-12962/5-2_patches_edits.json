@@ -1,0 +1,63 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/Layer.js": [
+            {
+                "SEARCH": [
+                    "if (context && context.canvas.style.transform === transform) {",
+                    "// Container of the previous layer renderer can be used.",
+                    "this.container = target;",
+                    "this.context = context;",
+                    "this.containerReused = true;",
+                    "} else if (this.containerReused) {",
+                    "// Previously reused container cannot be used any more.",
+                    "this.container = null;",
+                    "this.context = null;",
+                    "this.containerReused = false;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    if (context && context.canvas.style.transform === transform) {",
+                    "      // Ensure opacity is handled correctly for identical values",
+                    "      if (target.style.opacity !== cssOpacity(opacity)) {",
+                    "        this.container = null;",
+                    "        this.context = null;",
+                    "        this.containerReused = false;",
+                    "      } else {",
+                    "        // Container of the previous layer renderer can be used.",
+                    "        this.container = target;",
+                    "        this.context = context;",
+                    "        this.containerReused = true;",
+                    "      }",
+                    "    } else if (this.containerReused) {",
+                    "      // Previously reused container cannot be used any more.",
+                    "      this.container = null;",
+                    "      this.context = null;",
+                    "      this.containerReused = false;",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "if (opacity < 1) {",
+                    "target = null;",
+                    "}",
+                    "super.useContainer(target, transform, opacity);"
+                ],
+                "REPLACE": [
+                    "    if (opacity < 1) {",
+                    "      target = null;",
+                    "    } else {",
+                    "      // Ensure that the opacity is set correctly for rendering",
+                    "      const layerOpacity = this.getLayer().getOpacity();",
+                    "      if (layerOpacity === opacity) {",
+                    "        target = null; // Prevent reusing the container if opacities match",
+                    "      }",
+                    "    }",
+                    "    super.useContainer(target, transform, opacity);"
+                ]
+            }
+        ]
+    }
+}

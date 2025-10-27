@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/cascader-select/cascader-select.jsx",
+            "src/cascader/cascader.jsx",
+            "src/cascader-select/index.jsx"
+        ],
+        "explanation": "These files are key bug files because:\n1. **cascader-select/cascader-select.jsx**: This file contains the main implementation of the CascaderSelect component, which is directly responsible for handling the props and their modifications. Any changes to how props are handled should be made here to prevent mutation.\n2. **cascader/cascader.jsx**: This file likely contains the logic for the Cascader component, which may also be involved in how data is processed and passed down to CascaderSelect. Ensuring that it does not modify props is crucial.\n3. **cascader-select/index.jsx**: This file is responsible for exporting the CascaderSelect component with some configuration. It may need adjustments to ensure that the props are correctly transformed without causing mutations.",
+        "bug_scenario": "The bug occurs in the CascaderSelect component, where it modifies the properties passed to it, leading to errors when using Immer, which expects the original state to remain immutable. The error message indicates that an attempt was made to add a property to an object that is not extensible, suggesting that the component is mutating the props directly instead of treating them as immutable."
+    }
+}

@@ -1,0 +1,125 @@
+diff --git a/components/prism-javascript.js b/components/prism-javascript.js
+index 2b057bfea..7393493fc 100644
+--- a/components/prism-javascript.js
++++ b/components/prism-javascript.js
+@@ -70,28 +70,34 @@ Prism.languages.insertBefore('javascript', 'keyword', {
+ });
+ 
+ Prism.languages.insertBefore('javascript', 'string', {
+-	'template-string': {
+-		pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,
+-		greedy: true,
+-		inside: {
+-			'template-punctuation': {
+-				pattern: /^`|`$/,
+-				alias: 'string'
+-			},
+-			'interpolation': {
+-				pattern: /((?:^|[^\\])(?:\\{2})*)\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
+-				lookbehind: true,
+-				inside: {
+-					'interpolation-punctuation': {
+-						pattern: /^\${|}$/,
+-						alias: 'punctuation'
+-					},
+-					rest: Prism.languages.javascript
+-				}
+-			},
+-			'string': /[\s\S]+/
+-		}
+-	}
++'template-string': {
++pattern: /`(?:\\[\s\S]|\\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\\${)[^\\`])*`/,
++greedy: true,
++inside: {
++'template-punctuation': {
++pattern: /^`|`$/,
++alias: 'string'
++},
++'interpolation': {
++pattern: /((?:^|[^\\])(?:\\{2})*)\\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
++lookbehind: true,
++inside: {
++'interpolation-punctuation': {
++pattern: /^\\${|}$/,
++alias: 'punctuation'
++},
++rest: Prism.languages.javascript
++}
++},
++'string': /[\s\S]+/
++}
++}
++});
++Prism.languages.insertBefore('javascript', 'comment', {
++'template-comment': {
++pattern: /\/\/.*`.*`/,
++greedy: true
++}
+ });
+ 
+ if (Prism.languages.markup) {
+diff --git a/components/prism-js-templates.js b/components/prism-js-templates.js
+index d4b9f69b7..645ae2b3a 100644
+--- a/components/prism-js-templates.js
++++ b/components/prism-js-templates.js
+@@ -43,29 +43,36 @@
+ 	}
+ 
+ 
+-	Prism.languages.javascript['template-string'] = [
+-		// styled-jsx:
+-		//   css`a { color: #25F; }`
+-		// styled-components:
+-		//   styled.h1`color: red;`
+-		createTemplate('css', /\b(?:styled(?:\([^)]*\))?(?:\s*\.\s*\w+(?:\([^)]*\))*)*|css(?:\s*\.\s*(?:global|resolve))?|createGlobalStyle|keyframes)/.source),
+-
+-		// html`<p></p>`
+-		// div.innerHTML = `<p></p>`
+-		createTemplate('html', /\bhtml|\.\s*(?:inner|outer)HTML\s*\+?=/.source),
+-
+-		// svg`<path fill="#fff" d="M55.37 ..."/>`
+-		createTemplate('svg', /\bsvg/.source),
+-
+-		// md`# h1`, markdown`## h2`
+-		createTemplate('markdown', /\b(?:md|markdown)/.source),
+-
+-		// gql`...`, graphql`...`, graphql.experimental`...`
+-		createTemplate('graphql', /\b(?:gql|graphql(?:\s*\.\s*experimental)?)/.source),
+-
+-		// vanilla template string
+-		templateString
+-	].filter(Boolean);
++Prism.languages.javascript['template-string'] = [
++// styled-jsx:
++//   css`a { color: #25F; }`
++// styled-components:
++//   styled.h1`color: red;`
++createTemplate('css', /\b(?:styled(?:\([^)]*\))?(?:\s*\.\s*\w+(?:\([^)]*\))*)*|css(?:\s*\.\s*(?:global|resolve))?|createGlobalStyle|keyframes)/.source),
++
++// html`<p></p>`
++// div.innerHTML = `<p></p>`
++createTemplate('html', /\bhtml|\.\s*(?:inner|outer)HTML\s*\+?=/.source),
++
++// svg`<path fill="#fff" d="M55.37 ..."/>`
++createTemplate('svg', /\bsvg/.source),
++
++// md`# h1`, markdown`## h2`
++createTemplate('markdown', /\b(?:md|markdown)/.source),
++
++// gql`...`, graphql`...`, graphql.experimental`...`
++createTemplate('graphql', /\b(?:gql|graphql(?:\s*\.\s*experimental)?)/.source),
++
++// vanilla template string
++templateString
++].filter(Boolean);
++
++Prism.languages.insertBefore('javascript', 'template-string', {
++'template-comment': {
++pattern: /\/\/.*`.*`/,
++greedy: true
++}
++});
+ 
+ 
+ 	/**

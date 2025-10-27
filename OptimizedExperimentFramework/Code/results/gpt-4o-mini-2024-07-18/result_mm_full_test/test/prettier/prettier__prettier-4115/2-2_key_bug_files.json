@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/main/options.js"
+        ],
+        "explanation": "These files are key to addressing the bug because: 1. **parser-markdown.js**: This file contains the logic for parsing Markdown, including handling nested structures. Adjustments here could help maintain the correct indentation for nested code blocks and HTML. 2. **printer-markdown.js**: This file is responsible for printing the formatted output. Modifications may be necessary to ensure that the formatting rules applied do not introduce additional indentation on save. 3. **options.js**: This file manages configuration options for Prettier, including how it handles different file types. Changes here could allow for better control over formatting behavior specific to Markdown files.",
+        "bug_scenario": "The bug scenario involves the formatting of Markdown files where nested code blocks or raw HTML are incorrectly indented each time the file is saved. This results in the HTML table being pushed further out of sync with the surrounding text, causing formatting issues. The user is experiencing this problem intermittently with code blocks and consistently with raw HTML when using Prettier in VS Code."
+    }
+}

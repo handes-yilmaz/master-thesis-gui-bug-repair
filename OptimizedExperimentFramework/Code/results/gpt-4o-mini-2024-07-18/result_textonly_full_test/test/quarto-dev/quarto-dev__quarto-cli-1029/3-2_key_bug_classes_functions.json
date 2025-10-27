@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/format/reveal/format-reveal.ts//applyStretch",
+            "src/format/reveal/format-reveal.ts//revealHtmlPostprocessor"
+        ],
+        "bug_functions": [],
+        "explanation": "The `applyStretch` function is crucial because it handles the stretching of images in slides, particularly those with a single image. This function needs to be modified to ensure that the stretching does not interfere with the `aside` content. The `revealHtmlPostprocessor` function is also relevant as it processes the HTML output after the body is rendered, which may include adjustments for the `aside` elements and their interaction with figures. Both functions are directly related to the layout and rendering of slides, making them key areas to address the bug.",
+        "bug_scenario": "The bug occurs when using the `aside` class on a slide that contains a single figure. The figure gets stretched excessively, causing the `aside` content to overlap with the figure and potentially pushing the figure's caption below the `aside` content. The desired behavior is for the `aside` content to take priority and occupy the bottom part of the slide, while the figure should be adjusted to fit above the `aside` block."
+    }
+}

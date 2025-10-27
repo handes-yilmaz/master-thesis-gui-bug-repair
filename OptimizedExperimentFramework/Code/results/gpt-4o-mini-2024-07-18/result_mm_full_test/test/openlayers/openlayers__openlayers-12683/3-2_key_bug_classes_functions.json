@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Icon",
+            "src/ol/style/Style"
+        ],
+        "bug_functions": [
+            "src/ol/style/Icon//getAnchor",
+            "src/ol/style/Icon//getOrigin",
+            "src/ol/style/Icon//getImage",
+            "src/ol/style/Icon//getSize",
+            "src/ol/style/Icon//getPixelRatio",
+            "src/ol/style/Style//getImage",
+            "src/ol/style/Style//setImage"
+        ],
+        "explanation": "The classes 'Icon' and 'Style' are central to the rendering of vector features with icon styles. The functions listed are related to obtaining and setting the properties of the icon, including its anchor point, origin, image, and size. These properties are crucial for correctly calculating the offset of the icon, especially when dealing with different pixel ratios and custom colors. Adjustments in these functions may resolve the offset issue described in the bug report.",
+        "bug_scenario": "The bug occurs when using an icon style with a color on a screen with a pixel ratio greater than 1, causing the offset of the icon to be incorrect. The expected behavior is that the offset should select the same region of the image sprite regardless of the screen ratio or color provided."
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "createConfig",
+            "file_path": "clients/devtools/devtools-entry.js",
+            "function_details": [
+                {
+                    "name": "createConfig",
+                    "start_line": 37,
+                    "end_line": 57
+                }
+            ],
+            "function_code": [
+                "function createConfig(categoryIDs, device) {",
+                "  /** @type {LH.SharedFlagsSettings} */",
+                "  const settings = {",
+                "    onlyCategories: categoryIDs,",
+                "    // In DevTools, emulation is applied _before_ Lighthouse starts (to deal with viewport emulation bugs). go/xcnjf",
+                "    // As a result, we don't double-apply viewport emulation.",
+                "    screenEmulation: {disabled: true},",
+                "  };",
+                "  if (device === 'desktop') {",
+                "    settings.throttling = constants.throttling.desktopDense4G;",
+                "    // UA emulation, however, is lost in the protocol handover from devtools frontend to the lighthouse_worker. So it's always applied.",
+                "    settings.emulatedUserAgent = constants.userAgents.desktop;",
+                "    settings.formFactor = 'desktop';",
+                "  }",
+                "",
+                "  return {",
+                "    extends: 'lighthouse:default',",
+                "    plugins: ['lighthouse-plugin-publisher-ads'],",
+                "    settings,",
+                "  };",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "emulate",
+            "file_path": "core/lib/emulation.js",
+            "function_details": [
+                {
+                    "name": "emulate",
+                    "start_line": 65,
+                    "end_line": 82
+                }
+            ],
+            "function_code": [
+                "async function emulate(session, settings) {",
+                "  if (settings.emulatedUserAgent !== false) {",
+                "    const userAgent = /** @type {string} */ (settings.emulatedUserAgent);",
+                "    await session.sendCommand('Network.setUserAgentOverride', {",
+                "      userAgent,",
+                "      userAgentMetadata: parseUseragentIntoMetadata(userAgent, settings.formFactor),",
+                "    });",
+                "  }",
+                "  // See devtools-entry for one usecase for disabling screenEmulation",
+                "  if (settings.screenEmulation.disabled !== true) {",
+                "    const {width, height, deviceScaleFactor, mobile} = settings.screenEmulation;",
+                "    const params = {width, height, deviceScaleFactor, mobile};",
+                "    await session.sendCommand('Emulation.setDeviceMetricsOverride', params);",
+                "    await session.sendCommand('Emulation.setTouchEmulationEnabled', {",
+                "      enabled: params.mobile,",
+                "    });",
+                "  }",
+                "}"
+            ]
+        }
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "1/1": {
+        "src/js/components/DateInput/DateInput.js": [
+            {
+                "SEARCH": [
+                    "onSelect={",
+                    "disabled",
+                    "? undefined",
+                    ": (nextValue) => {",
+                    "let normalizedValue;",
+                    "if (range && Array.isArray(nextValue))",
+                    "[normalizedValue] = nextValue;",
+                    "// clicking an edge date removes it",
+                    "else if (range) normalizedValue = [nextValue, nextValue];",
+                    "else normalizedValue = nextValue;",
+                    "",
+                    "if (schema) setTextValue(valueToText(normalizedValue, schema));",
+                    "setValue(normalizedValue);",
+                    "setReference(getReference(nextValue));",
+                    "if (onChange) onChange({ value: normalizedValue });",
+                    "if (open && !range) {",
+                    "closeCalendar();",
+                    "setTimeout(() => ref.current.focus(), 1);",
+                    "}",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "onSelect={",
+                    "  disabled",
+                    "    ? undefined",
+                    "    : (nextValue) => {",
+                    "        let normalizedValue;",
+                    "        if (range && Array.isArray(nextValue))",
+                    "          [normalizedValue] = nextValue;",
+                    "        else if (range) normalizedValue = [nextValue, nextValue];",
+                    "        else normalizedValue = nextValue;",
+                    "",
+                    "        // Check if the selected date is within bounds",
+                    "        const isWithinBounds = (date) => {",
+                    "          const [start, end] = calendarProps.bounds || [];",
+                    "          const dateObj = new Date(date);",
+                    "          return (!start || dateObj >= new Date(start)) && (!end || dateObj <= new Date(end));",
+                    "        };",
+                    "",
+                    "        if (isWithinBounds(normalizedValue)) {",
+                    "          if (schema) setTextValue(valueToText(normalizedValue, schema));",
+                    "          setValue(normalizedValue);",
+                    "          setReference(getReference(nextValue));",
+                    "          if (onChange) onChange({ value: normalizedValue });",
+                    "          if (open && !range) {",
+                    "            closeCalendar();",
+                    "            setTimeout(() => ref.current.focus(), 1);",
+                    "          }",
+                    "        }",
+                    "      }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

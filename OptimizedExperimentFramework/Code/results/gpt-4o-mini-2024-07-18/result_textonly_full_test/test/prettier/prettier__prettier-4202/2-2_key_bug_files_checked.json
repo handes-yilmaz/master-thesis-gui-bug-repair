@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/common/util.js"
+        ],
+        "explanation": "These files are key bug files because they are directly involved in the parsing and printing of markdown content. The 'parser-markdown.js' file contains the logic for parsing markdown text, which is crucial for understanding how tables are processed. The 'printer-markdown.js' file is responsible for formatting the output of the markdown, including tables, and needs to be modified to implement the new logic for handling long lines. The 'util.js' file likely contains utility functions that support both parsing and printing, making it essential for any changes related to markdown processing.",
+        "bug_scenario": "The bug scenario involves the processing of markdown tables where the contents of the cleaned markdown table columns can become excessively long, leading to issues with formatting. The user has provided an example of a markdown table that, when processed, results in lines that exceed a reasonable length, making it difficult to read and manage. The user requests a solution that detects such cases and reverts to a simpler markdown table format with three-dash separators instead of long lines."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/GroupBehavior.js",
+            "lib/import/BpmnImporter.js",
+            "lib/import/BpmnTreeWalker.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/GroupBehavior.js**: This file is responsible for handling BPMN-specific group behaviors, including creating and removing category values associated with groups. The bug report indicates an issue with unresolved category value references, which suggests that the logic for managing these references when groups are created or deleted might be faulty.\n\n2. **lib/import/BpmnImporter.js**: This file deals with importing BPMN elements onto the canvas, including handling BPMN shapes and connections. The unresolved reference issue during re-import suggests that the import logic might not be correctly handling the category values or group elements, leading to missing references.\n\n3. **lib/import/BpmnTreeWalker.js**: This file is involved in walking through BPMN elements and handling their DI (Diagram Interchange) elements. The issue with unresolved references could be related to how the tree walker processes and registers DI elements for groups within collapsed sub-processes, potentially missing or incorrectly handling category value references.",
+        "bug_scenario": "The bug scenario involves creating a group inside a collapsed sub-process in a BPMN model. When the model is saved and then re-imported, a warning appears indicating an unresolved reference to a category value. This suggests that the group creation within a collapsed sub-process is not being handled correctly, leading to missing or incorrect references in the BPMN export."
+    }
+}

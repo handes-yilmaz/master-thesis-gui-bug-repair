@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/copy-paste/BpmnCopyPaste",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior",
+            "lib/features/modeling/behavior/BoundaryEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/copy-paste/BpmnCopyPaste//copyProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//removeProperties",
+            "lib/features/copy-paste/BpmnCopyPaste//resolveReferences",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior//preExecute",
+            "lib/features/modeling/behavior/BoundaryEventBehavior//postExecute"
+        ],
+        "explanation": "The identified classes and functions are critical for handling the copy-paste functionality and the behavior of Boundary Events. The `copyProperties` and `removeProperties` functions in `BpmnCopyPaste` manage the transfer of properties during the copy-paste operation, which is directly related to the bug. The `preExecute` function in `CreateBoundaryEventBehavior` is responsible for replacing Intermediate Events with Boundary Events, which is where the property loss occurs. Lastly, the `postExecute` function in `BoundaryEventBehavior` may also influence how Boundary Events behave after being created, potentially affecting their properties.",
+        "bug_scenario": "The bug occurs when an Intermediate Event is copied and pasted as a Boundary Event, resulting in the loss of properties such as Async Continuations and Job Configurations. The expected behavior is that these properties should be retained during the copy-paste operation."
+    }
+}

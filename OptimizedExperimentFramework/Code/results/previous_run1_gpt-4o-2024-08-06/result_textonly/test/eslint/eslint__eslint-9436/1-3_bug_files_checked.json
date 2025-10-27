@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/rules/no-constant-condition.js"
+        ],
+        "explanation": "The file 'lib/rules/no-constant-condition.js' is likely to be responsible for the behavior of the 'no-constant-condition' rule in ESLint. Given that the bug is specific to how this rule is handling the range of reported errors (highlighting entire expressions instead of just the constant condition), this file is the one that needs to be reviewed and updated to ensure that only the constant parts of expressions are highlighted when this rule triggers. This file defines the logic for how constant conditions are identified and reported, which is directly connected to the issue at hand.",
+        "bug_scenario": "The bug report indicates that the ESLint rule 'no-constant-condition' is giving an error range that is too broad. Specifically, when this rule triggers, it currently underlines the entire statement/expression rather than just the constant condition part (e.g., \"true\" in the expressions given). The expected behavior is for the ESLint to only underline the parts of the code that are actual constant conditions, not the surrounding code or expression."
+    },
+    "2": {
+        "bug_files": [
+            "lib/rules/no-constant-condition.js",
+            "lib/linter.js",
+            "lib/report-translator.js"
+        ],
+        "explanation": "1. **lib/rules/no-constant-condition.js**: This file likely implements the 'no-constant-condition' rule. To fix the bug, the logic for identifying and marking the range of constant conditions needs to be adjusted so that only the relevant parts of the source code are flagged.\n\n2. **lib/linter.js**: The linter is responsible for executing rules and collecting errors. It may need adjustments to how it parses and processes error ranges or how it interacts with rule files like 'no-constant-condition'.\n\n3. **lib/report-translator.js**: This file is likely involved in translating internal error data into the final output format. Adjustments may be needed here to ensure that the error ranges being output are as specific as required, based on any changes made to how ranges are determined.",
+        "bug_scenario": "The bug scenario involves incorrect reporting of the range for 'no-constant-condition' errors in ESLint. Specifically, instead of highlighting just the constant condition (e.g., the word \"true\"), the entire statement or expression is underlined in the visual representation of errors, indicating a broader than necessary range."
+    }
+}

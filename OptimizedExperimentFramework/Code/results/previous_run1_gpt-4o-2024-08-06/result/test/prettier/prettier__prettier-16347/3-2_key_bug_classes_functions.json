@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/printer-markdown.js"
+        ],
+        "bug_functions": [
+            "src/language-markdown/print-whitespace.js//printWhitespace"
+        ],
+        "explanation": "The class and functions identified are responsible for handling whitespace and line breaks in Markdown files. In this case, `printer-markdown.js` likely deals with parsing and formatting logic that could be responsible for removing empty lines. The `printWhitespace` function in `print-whitespace.js` is directly related to how whitespace is managed and printed, and it would need to be reviewed to ensure that empty lines are preserved as expected in the YAML frontmatter.",
+        "bug_scenario": "The bug involves the improper removal of empty lines in YAML frontmatter when using Prettier to format Markdown files. This issue is specifically affecting the 'blogs' section, where empty lines are being removed, leading to incorrect formatting."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-markdown/print-whitespace.js"
+        ],
+        "bug_functions": [
+            "src/language-markdown/print-whitespace.js//printWhitespace",
+            "src/language-markdown/print-whitespace.js//isBreakable"
+        ],
+        "explanation": "The problem relates to how whitespace, specifically empty lines, is handled during the formatting process. The `printWhitespace` function is responsible for determining how spaces and line breaks are printed, which affects whether empty lines are retained or removed. The `isBreakable` function helps decide if a whitespace can be printed as a line break or a space, impacting the presence of empty lines. Modifications in these functions are necessary to ensure that empty lines are not removed when they should be preserved.",
+        "bug_scenario": "The bug is related to empty lines being incorrectly removed in markdown YAML frontmatter when processed by Prettier 3.3.0. The expected output should retain empty lines within certain sections, such as `blogs`."
+    }
+}

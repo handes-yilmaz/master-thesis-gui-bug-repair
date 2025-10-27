@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/cli-engine/cli-engine.js//CLI"
+        ],
+        "bug_functions": [
+            "lib/cli-engine/cli-engine.js//getFormatter"
+        ],
+        "explanation": "The bug is related to adding support for asynchronous operations in the ESLint formatter. The 'CLI' class in 'lib/cli-engine/cli-engine.js' likely handles the main logic for executing ESLint operations, including formatting. The 'getFormatter' function is responsible for loading formatter functions, which would need to be adapted to handle async formatters.",
+        "bug_scenario": "The bug report requests support for an async formatter in ESLint. The current formatter does not support async operations, which is necessary for integrating with an async highlighter like 'shiki'. The images illustrate code formatting issues such as missing spaces and extra semicolons, which are auto-fixable."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/cli-engine/cli-engine.js//CLIEngine"
+        ],
+        "bug_functions": [
+            "lib/cli-engine/cli-engine.js//executeOnFiles",
+            "lib/cli-engine/cli-engine.js//executeOnText",
+            "lib/cli-engine/cli-engine.js//getFormatter"
+        ],
+        "explanation": "The 'CLIEngine' class is central to configuring and running ESLint, including handling formatters. The 'executeOnFiles' and 'executeOnText' functions are critical as they execute the linting process on files and text, where the formatter needs to be applied. The 'getFormatter' function is directly related to retrieving and using the formatter, which is where async support needs to be implemented.",
+        "bug_scenario": "The bug involves ESLint not supporting async formatters, which affects code highlighting when using a formatter with async capabilities like 'shiki'. The image shows code formatting issues such as extra semicolons and missing spaces, which are marked as auto-fixable."
+    }
+}

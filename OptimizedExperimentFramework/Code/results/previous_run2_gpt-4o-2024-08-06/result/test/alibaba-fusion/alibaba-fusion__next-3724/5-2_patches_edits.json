@@ -1,0 +1,39 @@
+{
+    "1/1": {
+        "src/transfer/view/transfer-panel.jsx": [
+            {
+                "SEARCH": [
+                    "renderSearch() {",
+                    "const { prefix, searchPlaceholder, locale, searchProps = {} } = this.props;",
+                    "return (",
+                    "<Search",
+                    "aria-labelledby={this.headerId}",
+                    "shape=\"simple\"",
+                    "{...searchProps}",
+                    "className={`${prefix}transfer-panel-search`}",
+                    "placeholder={searchPlaceholder || locale.searchPlaceholder}",
+                    "onChange={this.handleSearch}",
+                    "/>",
+                    ");",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    renderSearch() {",
+                    "        const { prefix, searchPlaceholder, locale, searchProps = {}, position } = this.props;",
+                    "        const specificSearchProps = position === 'left' ? searchProps.left : searchProps.right;",
+                    "        return (",
+                    "            <Search",
+                    "                aria-labelledby={this.headerId}",
+                    "                shape=\"simple\"",
+                    "                {...specificSearchProps}",
+                    "                className={`${prefix}transfer-panel-search`}",
+                    "                placeholder={searchPlaceholder || locale.searchPlaceholder}",
+                    "                onChange={this.handleSearch}",
+                    "            />",
+                    "        );",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/print/angular.js//printAngular",
+            "src/language-html/print/element.js//printElement",
+            "src/utils/whitespace-utils.js//WhitespaceUtils"
+        ],
+        "bug_functions": [
+            "src/language-js/print/angular.js//printAngular",
+            "src/language-js/print/angular.js//printBinaryishExpression",
+            "src/utils/whitespace-utils.js//trim"
+        ],
+        "explanation": "The identified classes and functions are related to the formatting and printing of Angular expressions and elements. The 'printAngular' function is responsible for handling Angular nodes, including pipe expressions, and needs to be modified to prevent adding spaces around string or number arguments. The 'printElement' function deals with the printing of HTML elements, which may also be affected by whitespace handling. The 'WhitespaceUtils' class provides utility functions for managing whitespace, which can be leveraged to ensure proper formatting according to the user's expectations.",
+        "bug_scenario": "The bug scenario involves the formatting of Angular Pipes in HTML templates. The issue arises when Prettier adds unnecessary spaces around pipe arguments, which deviates from the expected formatting as per Angular documentation. The user expects the pipes to be formatted without spaces when the arguments are strings or numbers, while spaces should be added in other cases. The provided images illustrate the difference in formatting between the expected and actual output."
+    }
+}

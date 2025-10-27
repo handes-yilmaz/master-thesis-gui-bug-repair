@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/components/record-modal/record-modal.jsx//RecordModal",
+            "src/components/modal/modal.jsx//ModalComponent",
+            "src/lib/drag-recognizer.js//DragRecognizer"
+        ],
+        "bug_functions": [
+            "src/components/record-modal/record-modal.jsx//onRequestClose",
+            "src/components/modal/modal.jsx//onRequestClose",
+            "src/lib/drag-recognizer.js//_handleMove",
+            "src/lib/drag-recognizer.js//_handleEnd"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the modal's behavior and the drag-and-drop functionality. The 'RecordModal' and 'ModalComponent' classes are responsible for rendering the modal and managing its open/close state. The 'onRequestClose' function in both classes is crucial as it determines when the modal should close, which is directly related to the bug. The 'DragRecognizer' class manages drag events, and its '_handleMove' and '_handleEnd' functions are responsible for detecting drag actions and determining when to close the modal. If the drag detection logic is not correctly implemented, it can lead to the modal closing unexpectedly when the user drags outside of it.",
+        "bug_scenario": "The bug scenario involves a user dragging the mouse outside of a modal window, which unexpectedly closes the modal and results in the loss of unsaved work. The expected behavior is that the modal should remain open while dragging sound selection handles within the modal."
+    }
+}

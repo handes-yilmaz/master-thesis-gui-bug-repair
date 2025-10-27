@@ -1,0 +1,14 @@
+diff --git a/src/number-picker/number-picker.jsx b/src/number-picker/number-picker.jsx
+index 322a0e9..32103a1 100644
+--- a/src/number-picker/number-picker.jsx
++++ b/src/number-picker/number-picker.jsx
+@@ -376,6 +376,9 @@ class NumberPicker extends React.Component {
+             });
+         }
+ 
++        if (this.isGreaterThan(value, this.state.max)) {
++            return; // Prevent setting value if it exceeds max
++        }
+         this.props.onChange(isNaN(value) || value === '' ? undefined : value, {
+             ...e,
+             triggerType,

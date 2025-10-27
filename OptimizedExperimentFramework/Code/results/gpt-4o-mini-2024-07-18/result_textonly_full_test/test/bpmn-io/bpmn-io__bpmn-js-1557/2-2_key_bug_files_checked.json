@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/features/modeling/behavior/DataStoreBehavior.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "These files are key to the bug because they contain the logic responsible for updating the BPMN diagram elements and handling their relationships. The BpmnUpdater.js file is crucial as it manages the updates to the diagram when elements are morphed, including the updateDiParent function where the error occurs. The DataStoreBehavior.js file is important because it defines the behavior of DataStoreReferences, including how they should be handled when moved or created. Lastly, the Modeling.js file contains the core modeling functionalities that may interact with the morphing process, making it essential for understanding how elements are manipulated within the BPMN environment.",
+        "bug_scenario": "The bug occurs when a user attempts to morph a DataStoreReference to a DataObjectReference outside of a Pool in a BPMN diagram. This action results in an error being thrown, specifically a TypeError indicating that properties of an undefined object are being accessed. The expected behavior is either to prevent the morphing action or to handle it gracefully without throwing an error."
+    }
+}

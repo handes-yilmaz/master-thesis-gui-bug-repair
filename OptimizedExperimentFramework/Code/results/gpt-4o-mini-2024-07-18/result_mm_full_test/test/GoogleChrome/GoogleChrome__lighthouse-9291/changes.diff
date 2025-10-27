@@ -1,0 +1,13 @@
+diff --git a/lighthouse-core/lib/lh-error.js b/lighthouse-core/lib/lh-error.js
+index cf2c5be..eab251d 100644
+--- a/lighthouse-core/lib/lh-error.js
++++ b/lighthouse-core/lib/lh-error.js
+@@ -62,7 +62,7 @@ class LighthouseError extends Error {
+     this.name = 'LHError';
+     this.code = errorDefinition.code;
+     // Insert the i18n reference with errorCode and all additional ICU replacement properties.
+-    this.friendlyMessage = str_(errorDefinition.message, {errorCode: this.code, ...properties});
++    this.friendlyMessage = str_(errorDefinition.message, {errorCode: this.code, ...properties, locale: properties.locale});
+     this.lhrRuntimeError = !!errorDefinition.lhrRuntimeError;
+     if (properties) Object.assign(this, properties);
+ 

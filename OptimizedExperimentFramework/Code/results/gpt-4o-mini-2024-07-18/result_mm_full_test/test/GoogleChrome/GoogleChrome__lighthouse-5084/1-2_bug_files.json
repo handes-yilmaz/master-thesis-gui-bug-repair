@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js",
+            "lighthouse-core/gather/computed/network-analysis.js",
+            "lighthouse-core/gather/computed/metrics/estimated-input-latency.js"
+        ],
+        "explanation": "These files are related to the bug as follows: `byte-efficiency-audit.js` and `efficient-animated-content.js` handle the evaluation of byte efficiency, including the analysis of animated content. Adjustments in these files could improve the accuracy of savings reports. The `network-analysis.js` file may need updates to better assess the impact of network requests on savings calculations, while `estimated-input-latency.js` could be relevant for understanding the timing aspects involved in the calculations.",
+        "bug_scenario": "The ByteEfficiency report is indicating that no savings are reported for animated GIF to video conversions, despite there being a significant potential savings in bytes. The function `computeWasteWithTTIGraph` incorrectly reports zero savings due to its reliance on network requests and task durations. Adjustments are suggested to better evaluate the impact on the end of the graph."
+    }
+}

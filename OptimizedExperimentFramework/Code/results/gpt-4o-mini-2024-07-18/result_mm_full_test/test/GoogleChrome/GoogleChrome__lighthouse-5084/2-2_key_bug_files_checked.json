@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js",
+            "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js",
+            "lighthouse-core/gather/computed/network-analysis.js"
+        ],
+        "explanation": "These files are key to addressing the bug because: 1. `byte-efficiency-audit.js` contains the core logic for calculating byte efficiency and savings, including the `computeWasteWithTTIGraph` function that needs modification to account for end-of-graph impacts. 2. `efficient-animated-content.js` specifically audits the use of animated GIFs and their efficiency, making it crucial for implementing changes related to GIF savings. 3. `network-analysis.js` provides network request analysis, which is essential for understanding the impact of network requests on performance and savings.",
+        "bug_scenario": "The bug scenario involves the ByteEfficiency audit reporting no savings for animated GIFs when there are significant savings possible. The report indicates a perfect score of 100, despite the potential for substantial savings of around 5MB. The issue arises because the `computeWasteWithTTIGraph` function reports zero savings due to only one network request being affected and no long tasks being touched. The suggestion is to calculate the impact based on the end of the graph rather than the estimated Time to Interactive (TTI)."
+    }
+}

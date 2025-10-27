@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/elixir.js//FUNCTION",
+            "src/languages/elixir.js//ELIXIR_DEFAULT_CONTAINS"
+        ],
+        "bug_functions": [
+            "src/languages/elixir.js//export default function"
+        ],
+        "explanation": "The `FUNCTION` and `ELIXIR_DEFAULT_CONTAINS` elements are responsible for defining the syntax highlighting rules for Elixir code, including how functions and operators are identified and colored. The incorrect treatment of the `/` in function captures likely stems from how these definitions interpret the pattern. Editing these to properly recognize and handle function captures will fix the issue. The `export default function` is the main function where these rules are applied, so adjustments would likely occur here as well.",
+        "bug_scenario": "The issue is with the syntax highlighting of Elixir code snippets when a function capture (e.g., `&function_name/arity`) is used. The highlighting treats the `/` as a regex or division operator, causing incorrect coloring until the next `/`. The expected behavior is for the capture to be highlighted correctly without affecting the rest of the code."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/elixir.js//FUNCTION",
+            "src/languages/elixir.js//ELIXIR_DEFAULT_CONTAINS"
+        ],
+        "bug_functions": [
+            "src/languages/elixir.js//export default function"
+        ],
+        "explanation": "The `FUNCTION` and `ELIXIR_DEFAULT_CONTAINS` in `elixir.js` are responsible for defining how functions and other syntax elements are recognized and highlighted. The issue likely lies in how the function capture syntax (`&function_name/arity`) is parsed, specifically how the slash is treated within the context of Elixir syntax. Adjustments to the regex patterns or parsing logic in these parts of the code might be needed to correctly handle the `/` in function captures.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting in Elixir code when using function capture syntax (`&function_name/arity`). The highlighting treats the `/` as a division or another operator, leading to incorrect coloring until the next `/`. The expected behavior is that the function capture should appear in white, and the rest of the code should be correctly colored. Screenshots show the difference in highlighting between using `&letter?/1` and an equivalent anonymous function `&letter?(&1)`."
+    }
+}

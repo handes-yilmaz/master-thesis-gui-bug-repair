@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Text//Text",
+            "src/ol/render/canvas/TextBuilder//CanvasTextBuilder",
+            "src/ol/renderer/canvas/VectorLayer//CanvasVectorLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/style/Text//setTextAlign",
+            "src/ol/render/canvas/TextBuilder//setTextStyle",
+            "src/ol/renderer/canvas/VectorLayer//renderFeature"
+        ],
+        "explanation": "The `Text` class is directly related to the text styling and alignment, including the `textAlign` property that is causing the regression. The `setTextAlign` function is crucial as it sets the alignment of the text, which is the core of the reported issue. The `CanvasTextBuilder` class is responsible for rendering text on the canvas, and the `setTextStyle` function within it likely handles how the text styles, including alignment, are applied during rendering. Lastly, the `CanvasVectorLayerRenderer` class and its `renderFeature` function are involved in rendering vector features, which may include the text that is misaligned, thus making it relevant to the bug as it could affect how the text is displayed on the canvas.",
+        "bug_scenario": "The bug report indicates a regression in the alignment of text styles, specifically the 'start' and 'end' values of the `textAlign` property in the `Text` style. This issue was discovered during rendering tests where the texts 'Small text' and 'negative offsetX' were not aligned correctly, leading to visual discrepancies in the output."
+    }
+}

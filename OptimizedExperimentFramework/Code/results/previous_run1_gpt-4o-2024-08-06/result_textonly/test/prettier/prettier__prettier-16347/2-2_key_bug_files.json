@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/printer-markdown.js",
+            "src/language-markdown/unified-plugins/front-matter.js",
+            "src/utils/front-matter/parse.js"
+        ],
+        "explanation": "1. **src/language-markdown/printer-markdown.js**: This file is likely responsible for the printing or formatting of markdown content. Given that the issue is related to the removal of empty lines in YAML frontmatter, the logic in this file might be incorrectly collapsing or removing these lines during the formatting process.\n\n2. **src/language-markdown/unified-plugins/front-matter.js**: This file deals with the parsing of frontmatter in markdown files. The tokenizer function within this file might be incorrectly handling the parsing of frontmatter, leading to the removal of empty lines.\n\n3. **src/utils/front-matter/parse.js**: This file contains the logic for parsing frontmatter using a regular expression. The regex or the subsequent handling of the parsed data might be incorrectly identifying or processing empty lines, leading to their removal. This is crucial because the parsing step directly affects how the content is interpreted and subsequently formatted.",
+        "bug_scenario": "The bug scenario involves the removal of some empty lines in the markdown YAML frontmatter when processed by Prettier 3.3.0. The expected behavior is that these empty lines should not be removed, as indicated in the 'Expected output' section of the bug report."
+    }
+}

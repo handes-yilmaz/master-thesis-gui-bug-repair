@@ -1,0 +1,18 @@
+{
+    "1/1": {
+        "lighthouse-core/report/html/renderer/report-renderer.js": [
+            {
+                "SEARCH": [
+                    "reportSection.appendChild(this._renderReportWarnings(report));"
+                ],
+                "REPLACE": [
+                    "    // Ensure warnings are rendered after the passed audits section",
+                    "    const warningsContainer = this._renderReportWarnings(report);",
+                    "    if (warningsContainer) {",
+                    "      reportSection.appendChild(warningsContainer);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/gatherers/offline.js",
+            "lighthouse-core/gather/gatherers/start-url.js",
+            "lighthouse-core/audits/offline-start-url.js"
+        ],
+        "explanation": "These files are critical to the bug because they handle the offline functionality and the start URL fetching process in Lighthouse. The 'offline.js' file contains the logic for going offline and checking network records, which is essential for determining if the page can load offline. The 'start-url.js' file is responsible for fetching the start URL while offline, and it includes error handling for when the fetch fails. Lastly, the 'offline-start-url.js' file audits the offline capabilities of the start URL, providing the necessary checks to ensure that the page responds correctly when offline. Any issues in these files could directly lead to the reported bug.",
+        "bug_scenario": "The bug scenario involves Lighthouse failing to correctly report that a webpage can load offline. When running Lighthouse on the specified URL, it indicates that the page does not load offline, despite the expectation that it should. The desktop version of the page is loaded instead of the offline version, and internal flags indicate that the requests are not being served from the service worker or disk cache, which is incorrect behavior when offline."
+    }
+}

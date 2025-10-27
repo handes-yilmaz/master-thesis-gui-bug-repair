@@ -1,0 +1,10 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/critical-request-chains.js",
+            "lighthouse-core/gather/computed/critical-request-chains.js"
+        ],
+        "explanation": "The files 'critical-request-chains.js' in both the audits and gather directories are directly related to the handling of critical request chains. Given that the bug report specifies that iframes should not be considered critical requests, modifications in these files would likely be necessary to implement the exclusion of iframes from the CRC calculations. These files contain the logic that determines which resources are treated as critical and would need to be updated to reflect the desired behavior outlined in the bug report.",
+        "bug_scenario": "The bug report highlights the issue that iframes are incorrectly treated as critical requests in the Critical Request Chains (CRC) tree. This leads to misleading performance metrics since iframes are not render-blocking and should not be prioritized as critical resources. The report suggests excluding iframes and their children from the CRC tree to provide more accurate performance assessments."
+    }
+}

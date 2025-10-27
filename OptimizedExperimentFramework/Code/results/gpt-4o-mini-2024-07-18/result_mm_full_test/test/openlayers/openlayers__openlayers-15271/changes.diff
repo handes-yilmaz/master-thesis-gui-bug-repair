@@ -1,0 +1,37 @@
+diff --git a/src/ol/Feature.js b/src/ol/Feature.js
+index ea6fd8c..07c7bb4 100644
+--- a/src/ol/Feature.js
++++ b/src/ol/Feature.js
+@@ -180,7 +180,7 @@ class Feature extends BaseObject {
+     return /** @type {Geometry|undefined} */ (this.get(this.geometryName_));
+   }
+ 
+-  /**
++  /** 
+    * Get the feature identifier.  This is a stable identifier for the feature and
+    * is either set when reading data from a remote source or set explicitly by
+    * calling {@link module:ol/Feature~Feature#setId}.
+@@ -188,7 +188,7 @@ class Feature extends BaseObject {
+    * @api
+    */
+   getId() {
+-    return this.id_;
++    return this.id_ !== undefined ? this.id_ : null; // Ensure it returns null if id_ is undefined
+   }
+ 
+   /**
+diff --git a/src/ol/format/GeoJSON.js b/src/ol/format/GeoJSON.js
+index 21bcbf0..1563953 100644
+--- a/src/ol/format/GeoJSON.js
++++ b/src/ol/format/GeoJSON.js
+@@ -238,8 +238,8 @@ class GeoJSON extends JSONFeature {
+     };
+ 
+     const id = feature.getId();
+-    if (id !== undefined) {
+-      object.id = id;
++    if (id !== null) { // Check for null instead of undefined
++      object.id = id; // Include id in the GeoJSON object
+     }
+ 
+     if (!feature.hasProperties()) {

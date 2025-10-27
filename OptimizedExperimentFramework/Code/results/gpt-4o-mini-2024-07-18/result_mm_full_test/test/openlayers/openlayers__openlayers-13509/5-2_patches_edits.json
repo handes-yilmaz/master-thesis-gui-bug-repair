@@ -1,0 +1,33 @@
+{
+    "1/1": {
+        "src/ol/layer/Group.js": [
+            {
+                "SEARCH": [
+                    "this.set(Property.LAYERS, layers);"
+                ],
+                "REPLACE": [
+                    "    this.set(Property.LAYERS, layers);",
+                    "    layers.forEach(layer => {",
+                    "        if (layer instanceof WebGLTileLayer) {",
+                    "            layer.setVisible(this.getVisible());",
+                    "        }",
+                    "    });"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "/** @return {import(\"../source/State.js\").default} Source state. */"
+                ],
+                "REPLACE": [
+                    "    /** @return {import(\"../source/State.js\").default} Source state. */",
+                    "    setVisible(visible) {",
+                    "        this.visible = visible;",
+                    "        this.changed(); // Notify that the layer has changed",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

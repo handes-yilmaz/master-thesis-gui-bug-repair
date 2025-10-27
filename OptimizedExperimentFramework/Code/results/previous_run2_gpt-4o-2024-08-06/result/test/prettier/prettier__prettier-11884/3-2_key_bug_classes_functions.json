@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/print/type-parameters.js//"
+        ],
+        "bug_functions": [
+            "src/language-js/print/type-parameters.js//printTypeParameters"
+        ],
+        "explanation": "The function 'printTypeParameters' in 'src/language-js/print/type-parameters.js' is responsible for formatting TypeScript type parameters. The issue with the trailing comma in an empty array likely stems from this function's logic handling the formatting of type parameters, especially when dealing with trailing commas. The presence of a comma in an empty array suggests that the logic for determining when to insert or omit a trailing comma needs adjustment, particularly under specific conditions like the print-width and identifier length constraints.",
+        "bug_scenario": "The image shows TypeScript code where a comma is incorrectly inserted in an empty array when formatting generics. This issue occurs when the print-width is set to 120 and the identifier length matches this width, causing an unexpected trailing comma to appear in the output."
+    },
+    "2": {
+        "bug_classes": [
+            "src/language-js/print/typescript.js",
+            "src/language-js/print/type-parameters.js"
+        ],
+        "bug_functions": [
+            "src/language-js/print/type-parameters.js//printTypeParameters"
+        ],
+        "explanation": "The bug is related to the formatting logic in TypeScript files. The file 'src/language-js/print/typescript.js' deals with TypeScript node printing and mentions issues with trailing commas, which is directly related to the problem. The function 'printTypeParameters' in 'src/language-js/print/type-parameters.js' handles the printing of TypeScript type parameters and includes logic for when to insert commas, making it a likely source of the bug.",
+        "bug_scenario": "The bug scenario involves incorrectly inserted commas in TypeScript generics when the print-width is set to 120. This issue occurs when the length of the identifier is exactly this length. The output shows a comma in an empty array, which is not expected behavior."
+    }
+}

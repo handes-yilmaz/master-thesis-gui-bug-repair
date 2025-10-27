@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/main/parser.js"
+        ],
+        "explanation": "The files are related to Markdown language processing within Prettier. 'src/language-markdown/parser-markdown.js' and 'src/language-markdown/printer-markdown.js' are directly responsible for parsing and printing markdown code blocks, which include detecting the language of fenced code blocks. The 'src/main/parser.js' file is integral in the parsing process across different languages and is likely where the initial language detection logic would reside or be called from. To fix this bug, adjustments are needed in the language detection logic to correctly parse code blocks with additional attributes.",
+        "bug_scenario": "In the images, we observe a markdown file and its preview. There are two code blocks: a plain JS block and another with arguments. The issue arises when Prettier is unable to detect the code block language accurately if there are additional attributes present after the language definition in the fenced code block. In the preview, the syntax highlight appears correct, but the parsing logic in Prettier doesn't handle these arguments well and fails to process them properly."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/index.js"
+        ],
+        "explanation": "The issue pertains to how fenced code blocks in Markdown with additional attributes are parsed and formatted. The relevant files are located in the 'language-markdown' directory as they handle the parsing and processing of Markdown content. 'parser-markdown.js' would be the likely file responsible for language detection and needs to be updated to ignore additional attributes after the language. 'index.js' might also play a role in coordinating the Markdown parsing logic.",
+        "bug_scenario": "The bug involves detecting the language of fenced code blocks in Markdown files when additional attributes are present. Currently, Prettier fails to detect the language of code blocks if there are non-whitespace characters following the language identifier, such as attributes used for styling or execution commands. The expected behavior is for Prettier to correctly format the code block by recognizing the language and ignoring the additional attributes."
+    }
+}

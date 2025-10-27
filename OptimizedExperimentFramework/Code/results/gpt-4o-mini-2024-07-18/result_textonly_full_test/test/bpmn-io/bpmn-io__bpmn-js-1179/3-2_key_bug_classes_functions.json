@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior",
+            "lib/features/modeling/BpmnLayouter"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior//insertShape",
+            "lib/features/modeling/BpmnLayouter//layoutConnection"
+        ],
+        "explanation": "The 'DropOnFlowBehavior' class is crucial because it handles the behavior when an element is dropped onto a flow, specifically through the 'insertShape' function, which determines how the shape is inserted and where it is positioned. If this function does not calculate the docking point correctly, it can lead to the layout being broken as described in the bug report. The 'BpmnLayouter' class is also relevant as it manages the layout of connections, including sequence flows, through the 'layoutConnection' function. If the layout logic is flawed, it could contribute to the issue of elements not being positioned correctly after being dropped.",
+        "bug_scenario": "The bug scenario involves dropping an element onto a sequence flow in a diagramming application, which results in the layout being broken. Instead of the element docking correctly, it appears to always dock at the top left corner of the sequence flow, disrupting the intended layout."
+    }
+}

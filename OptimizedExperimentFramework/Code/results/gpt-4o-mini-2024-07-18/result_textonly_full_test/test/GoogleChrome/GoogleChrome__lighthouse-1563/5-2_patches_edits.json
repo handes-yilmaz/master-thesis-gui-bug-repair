@@ -1,0 +1,19 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/user-timings.js": [
+            {
+                "SEARCH": [
+                    "return evt.name !== 'requestStart' &&",
+                    "evt.name !== 'navigationStart' &&",
+                    "evt.name !== 'paintNonDefaultBackgroundColor' &&",
+                    "evt.args.frame === undefined;"
+                ],
+                "REPLACE": [
+                    "      // Allow for a more dynamic filtering approach",
+                    "      const irrelevantEvents = ['requestStart', 'navigationStart', 'paintNonDefaultBackgroundColor'];",
+                    "      return !irrelevantEvents.includes(evt.name) && evt.args.frame === undefined;"
+                ]
+            }
+        ]
+    }
+}

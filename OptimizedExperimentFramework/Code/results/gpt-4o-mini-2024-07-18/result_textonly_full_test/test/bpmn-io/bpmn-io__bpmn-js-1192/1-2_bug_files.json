@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/rules/BpmnRules.js",
+            "lib/modeling/behavior/BoundaryEventBehavior.js",
+            "lib/copy-paste/BpmnCopyPaste.js"
+        ],
+        "explanation": "The `BpmnRules.js` file directly contains the logic that enforces the `element.copy` rule, which is preventing the copying of boundary events. To fix the bug, this rule must be adjusted or removed. The `BoundaryEventBehavior.js` file likely contains the behavior associated with boundary events, and changes here may be necessary to support copying once the rule is modified. Lastly, `BpmnCopyPaste.js` handles the copy and paste operations in the application, and it may need to be reviewed or updated to ensure it can handle the new logic for copying boundary events after the rule change.",
+        "bug_scenario": "The bug arises from the inability to copy boundary events in the BPMN model, which is restricted by the `element.copy` rule in the BpmnRules.js file. The user expects that after detaching a boundary event, it should be possible to copy it, but the current implementation does not allow for this functionality. The provided image demonstrates the failure when attempting to copy a boundary event."
+    }
+}

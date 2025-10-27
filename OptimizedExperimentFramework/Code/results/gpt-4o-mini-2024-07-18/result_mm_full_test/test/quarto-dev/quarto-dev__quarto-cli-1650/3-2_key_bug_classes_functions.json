@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/core/handlers/mermaid.ts//mermaidHandler",
+            "src/core/handlers/dot.ts//dotHandler"
+        ],
+        "bug_functions": [
+            "src/core/handlers/mermaid.ts//cell",
+            "src/core/handlers/dot.ts//cell"
+        ],
+        "explanation": "The `mermaidHandler` and `dotHandler` classes are responsible for processing the respective language chunks in Quarto documents. The `cell` functions within these handlers manage the rendering of the content, including how the output is formatted. The blank line issue likely originates from how these functions handle the output formatting when the `echo` options are set, necessitating a review and potential modification to ensure that no extraneous lines are added to the output.",
+        "bug_scenario": "The issue arises when using `echo: true` and `echo: fenced` options in Quarto documents with mermaid and dot chunks, resulting in a blank line appearing at the top of the code chunk output. This is evident in the provided screenshots where the output includes an unwanted blank line before the actual content."
+    }
+}

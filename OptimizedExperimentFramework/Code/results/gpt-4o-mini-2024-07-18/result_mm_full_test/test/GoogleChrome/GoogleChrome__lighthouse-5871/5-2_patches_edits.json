@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/connections/connection.js": [
+            {
+                "SEARCH": [
+                    "this._eventEmitter = new EventEmitter();"
+                ],
+                "REPLACE": [
+                    "    this._eventEmitter = new EventEmitter();",
+                    "    this.userAgent = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3473.0 Mobile Safari/537.36'; // Set the user agent"
+                ]
+            }
+        ],
+        "lighthouse-core/config/config.js": [
+            {
+                "SEARCH": [
+                    "/** @type {LH.Config.Settings} */"
+                ],
+                "REPLACE": [
+                    "    /** @type {LH.Config.Settings} */",
+                    "    this.settings.userAgent = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3473.0 Mobile Safari/537.36'; // Ensure user agent is set"
+                ]
+            }
+        ]
+    }
+}

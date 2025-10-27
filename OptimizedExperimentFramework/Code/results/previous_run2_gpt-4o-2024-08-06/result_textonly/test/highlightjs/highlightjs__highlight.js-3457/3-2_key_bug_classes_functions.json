@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/markdown.js//BOLD",
+            "src/languages/markdown.js//ITALIC"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to the handling of bold and italics in the Markdown rendering logic. The classes `BOLD` and `ITALIC` in `src/languages/markdown.js` define the patterns for recognizing and applying these text styles. They are crucial in the Markdown parsing process, and any issue with how they interrelate or terminate could result in the misrendering described in the bug report. The inclusion of each other's patterns (`BOLD.contains.push(ITALIC)` and `ITALIC.contains.push(BOLD)`) suggests that they may not be correctly recognizing the end of a bold or italic span, leading to continued styling beyond the intended scope.",
+        "bug_scenario": "The bug scenario involves a Markdown rendering issue where text with both bold and italics formatting causes the entire document to continue rendering as bold and italics, even after the closing formatting characters are used. This results in misrendering of the document's text formatting."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/markdown.js//BOLD",
+            "src/languages/markdown.js//ITALIC"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the handling of bold and italics in the markdown rendering process. The classes BOLD and ITALIC in 'src/languages/markdown.js' are directly related to how bold and italics are detected and applied in markdown text. These classes contain the patterns for matching bold and italic text and are responsible for applying the correct styling. The bug likely arises from incorrect handling of nested or consecutive bold and italic tags, causing the parser to fail to properly close these tags, hence affecting the entire text rendering. Modifications in these classes, particularly in their regex patterns or how they interact with each other, would be necessary to resolve the issue.",
+        "bug_scenario": "The bug scenario involves a rendering issue in a markdown parser where the application of both bold and italics to text incorrectly causes the rest of the document to be rendered in bold and italics, ignoring the closing characters. This issue disrupts the intended text formatting, as shown in the before and after images."
+    }
+}

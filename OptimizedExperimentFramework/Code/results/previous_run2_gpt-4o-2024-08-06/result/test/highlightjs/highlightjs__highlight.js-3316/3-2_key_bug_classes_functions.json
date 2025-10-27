@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/cpp.js//LanguageFn",
+            "src/languages/arduino.js//LanguageFn"
+        ],
+        "bug_functions": [],
+        "explanation": "The main issue is with the handling of primitive types in C++ and their categorization as keywords. The cpp.js file likely contains the logic for defining and categorizing keywords and types for C++ syntax highlighting. The LanguageFn class or function is responsible for defining the language rules, which includes handling of keywords and types. Similarly, the arduino.js file uses the C++ definitions as Arduino is a superset of C++, and changes here might also affect the highlighting behavior. Adjustments in these files would be required to revert to the previous behavior where primitive types are recognized as keywords.",
+        "bug_scenario": "The bug involves the recognition and highlighting of C++ primitive types as keywords in code editors. After a change in the highlighting library, primitive types like 'int' and 'char' are no longer highlighted as keywords, causing unnatural and confusing code representation. The images show the differences in highlighting before and after the change, as well as how different IDEs handle the highlighting of these types."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/cpp.js//LanguageFn"
+        ],
+        "bug_functions": [
+            "src/languages/arduino.js//default function"
+        ],
+        "explanation": "The change causing the issue involves moving primitive types from `RESERVED_TYPES` to `RESERVED_KEYWORDS`. The `LanguageFn` in `cpp.js` is likely responsible for defining how C++ syntax is highlighted, making it a key element in addressing this problem. Similarly, the default function in `arduino.js` manages syntax highlighting for Arduino, a superset of C++, and would need adjustments to align with the revised keyword handling.",
+        "bug_scenario": "The bug relates to the highlighting of primitive types in C++ code. After a change in version 11.0.0 of hljs, primitive types like `int` and `char` are no longer highlighted as keywords, which makes the syntax highlighting look unnatural and confusing. The images show different editors' syntax highlighting, with variations in how primitive types are presented. The issue concerns the differentiation of primitive types and keywords in code editors, affecting readability and consistency with C++ standards and common practices in IDEs."
+    }
+}

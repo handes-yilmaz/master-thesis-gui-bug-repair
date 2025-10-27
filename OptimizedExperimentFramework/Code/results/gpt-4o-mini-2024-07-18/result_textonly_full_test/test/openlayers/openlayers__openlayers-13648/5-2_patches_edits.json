@@ -1,0 +1,23 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "sourceTileSizes[level] = [image.getTileWidth(), image.getTileHeight()];"
+                ],
+                "REPLACE": [
+                    "        const tileWidth = image.getTileWidth();",
+                    "        const tileHeight = image.getTileHeight();",
+                    "        sourceTileSizes[level] = [tileWidth, tileHeight];",
+                    "        // Ensure that the aspect ratio is maintained for non-square pixels",
+                    "        if (tileWidth !== tileHeight) {",
+                    "          const aspectRatio = tileWidth / tileHeight;",
+                    "          sourceResolutions[level] = getResolution(image, images[0]) * aspectRatio;",
+                    "        } else {",
+                    "          sourceResolutions[level] = getResolution(image, images[0]);",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

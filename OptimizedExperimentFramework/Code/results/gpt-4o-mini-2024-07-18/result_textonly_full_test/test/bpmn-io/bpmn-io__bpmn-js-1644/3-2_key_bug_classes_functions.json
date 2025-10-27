@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnUpdater",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler",
+            "lib/features/modeling/BpmnFactory"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnUpdater//updateParent",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler//execute",
+            "lib/features/modeling/BpmnFactory//create"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the updating and creation of BPMN elements and their properties. The BpmnUpdater class is responsible for updating the BPMN model when changes occur, which is crucial when switching between multi-instance types. The UpdatePropertiesHandler class manages the properties of BPMN elements, and its execute function is likely involved in setting or updating the properties that are lost during the transition. Lastly, the BpmnFactory class is responsible for creating BPMN elements, and its create function may be involved in ensuring that the correct properties are assigned when new elements are instantiated or modified.",
+        "bug_scenario": "The bug scenario involves a user creating a sub-process with parallel multi-instance properties, then changing it to a sequential multi-instance. Upon this change, the multi-instance properties are lost, which is not the expected behavior."
+    }
+}

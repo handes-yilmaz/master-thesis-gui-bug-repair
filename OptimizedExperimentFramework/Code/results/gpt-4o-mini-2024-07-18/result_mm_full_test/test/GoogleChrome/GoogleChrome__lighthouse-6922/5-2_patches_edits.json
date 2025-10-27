@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "lighthouse-core/gather/connections/connection.js": [
+            {
+                "SEARCH": [
+                    "const message = JSON.stringify({id, method, params});"
+                ],
+                "REPLACE": [
+                    "    const message = JSON.stringify({id, method, params, targetId: this._targetId});"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gather-runner.js": [
+            {
+                "SEARCH": [
+                    "await driver.gotoURL(passContext.url, {"
+                ],
+                "REPLACE": [
+                    "    await driver.gotoURL(passContext.url, {",
+                    "      waitForNavigated: true,",
+                    "      targetId: passContext.targetId,"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/gatherer.js": [
+            {
+                "SEARCH": [
+                    "pass(passContext) { }"
+                ],
+                "REPLACE": [
+                    "  async pass(passContext) {",
+                    "    if (passContext.targetId) {",
+                    "      await passContext.driver.sendCommand('Target.sendMessageToTarget', {",
+                    "        targetId: passContext.targetId,",
+                    "        method: 'Network.enable',",
+                    "      });",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+diff --git a/lighthouse-core/audits/service-worker.js b/lighthouse-core/audits/service-worker.js
+index 360a2c0..58e0301 100644
+--- a/lighthouse-core/audits/service-worker.js
++++ b/lighthouse-core/audits/service-worker.js
+@@ -36,7 +36,7 @@ class ServiceWorker extends Audit {
+ 
+     const origin = new URL(url).origin;
+     const matchingSW = versions.filter(v => v.status === 'activated')
+-        .find(v => new URL(v.scriptURL).origin === origin);
++        .find(v => new URL(v.scriptURL).origin === origin && v.scriptURL);
+ 
+     return {
+       rawValue: !!matchingSW,
+diff --git a/lighthouse-core/gather/gatherers/start-url.js b/lighthouse-core/gather/gatherers/start-url.js
+index 4548c51..127b39c 100644
+--- a/lighthouse-core/gather/gatherers/start-url.js
++++ b/lighthouse-core/gather/gatherers/start-url.js
+@@ -31,7 +31,7 @@ class StartUrl extends Gatherer {
+           driver.off('Network.loadingFinished', fetchDone);
+           driver.off('Network.loadingFailed', fetchDone);
+ 
+-          resolve();
++          resolve(data.response.status);
+         }
+       };
+ 

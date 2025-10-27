@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/copy-paste/ModdleCopy.js",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/cmd/UpdatePropertiesHandler.js"
+        ],
+        "explanation": "1. **lib/features/copy-paste/BpmnCopyPaste.js**: This file likely handles the logic for copy-paste operations specifically for BPMN elements. Given the problem involves copying and pasting an Intermediate Event, it is highly probable that this file is where the issue originates or is triggered.\n\n2. **lib/features/copy-paste/ModdleCopy.js**: This file might manage the copying of moddle properties (these are likely the properties that include configurations for Async Continuations and Job Configurations), which pertains directly to the bug of properties not being transferred during a paste operation.\n\n3. **lib/features/modeling/behavior/CreateBoundaryEventBehavior.js**: Since the bug involves the conversion of an Intermediate Event to a Boundary Event, this file might contain logic regarding how Boundary Events are created, potentially affecting whether properties from the Intermediate Event are preserved or discarded.\n\n4. **lib/features/modeling/behavior/AttachEventBehavior.js**: This may affect how events, including Boundary Events, are attached to tasks or other elements. If properties are lost in this transition, this behavior might be the cause.\n\n5. **lib/features/modeling/cmd/UpdatePropertiesHandler.js**: This file could be responsible for actually applying changes to the properties of a BPMN element. If the properties are not retained, this handler might need adjustment to ensure properties are not lost during paste operations.",
+        "bug_scenario": "The bug scenario involves copying an Intermediate Event and pasting it as a Boundary Event, which results in the loss of pre-filled properties like Async Continuations and Job Configurations. The expectation is that these properties should persist even when the Intermediate Event is pasted as a Boundary Event, similar to when it is pasted normally."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/copy-paste/BpmnCopyPaste.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js"
+        ],
+        "explanation": "1. **features/copy-paste/BpmnCopyPaste.js** - This is directly involved in the copy-paste functionality. The issue arises specifically when these events are copied and pasted, and thus, this file is central to the bug.\n\n2. **features/modeling/behavior/AttachEventBehavior.js** - This file likely deals with attaching events to tasks, which is relevant when pasting an event as a Boundary Event. Ensuring properties are retained during this attachment phase could be critical in resolving the bug.\n\n3. **features/modeling/behavior/CreateBoundaryEventBehavior.js** - This file is relevant as it controls the behavior when creating a Boundary Event. To ensure properties are retained, the interaction between copying, pasting, and creating this specific event type is crucial, making this file a likely candidate for inspection.",
+        "bug_scenario": "The bug scenario describes an issue where when an Intermediate Event is copied and then pasted as a Boundary Event in a process modeling application, it loses its previously set properties such as Async Continuations and Job Configurations. Therefore, the properties persist when copying normally, but not when converting to a Boundary Event."
+    }
+}

@@ -1,0 +1,28 @@
+diff --git a/src/lib/compile_keywords.js b/src/lib/compile_keywords.js
+index 31d9a7f..2fc63b3 100644
+--- a/src/lib/compile_keywords.js
++++ b/src/lib/compile_keywords.js
+@@ -58,7 +58,8 @@ export function compileKeywords(rawKeywords, caseInsensitive, scopeName = DEFAUL
+     }
+     keywordList.forEach(function(keyword) {
+       const pair = keyword.split('|');
+-      compiledKeywords[pair[0]] = [scopeName, scoreForKeyword(pair[0], pair[1])];
++// Ensure that we only match whole keywords and not parts of identifiers
++compiledKeywords[`\\b${pair[0]}\\b`] = [scopeName, scoreForKeyword(pair[0], pair[1])];
+     });
+   }
+ }
+diff --git a/src/lib/modes.js b/src/lib/modes.js
+index 5bbff22..24986db 100644
+--- a/src/lib/modes.js
++++ b/src/lib/modes.js
+@@ -56,7 +56,8 @@ export const QUOTE_STRING_MODE = {
+   contains: [BACKSLASH_ESCAPE]
+ };
+ export const PHRASAL_WORDS_MODE = {
+-  begin: /\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\b/
++// Adjusting the regex to ensure it matches whole words only
++begin: /\\b(a|an|the|are|I\'m|isn\'t|don\'t|doesn\'t|won\'t|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\\b(?![a-zA-Z_])/
+ };
+ /**
+  * Creates a comment mode

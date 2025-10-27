@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/accessibility/frame-title.js",
+            "lighthouse-core/gather/gatherers/iframe-elements.js",
+            "lighthouse-core/runner.js"
+        ],
+        "explanation": "These files are key to addressing the bug because they are directly involved in how Lighthouse audits and gathers information about iframes. The 'frame-title.js' file is responsible for auditing iframe accessibility, which may need to be extended to include performance metrics. The 'iframe-elements.js' file is crucial for gathering data about iframes, and modifications here could allow for better performance tracking. Lastly, 'runner.js' orchestrates the overall audit process, and changes here could help integrate iframe performance into the Lighthouse scoring system.",
+        "bug_scenario": "The bug scenario involves the Lighthouse performance audit tool not accurately reflecting the performance impact of iframes in its reports. Specifically, when an iframe with poor performance is included in a page, Lighthouse does not account for this in its scoring, leading to misleading performance metrics. The user demonstrated this with an example where a page with a large, slow-loading iframe received a higher performance score than a standalone page with the same iframe, which is counterintuitive and problematic for users relying on accurate performance assessments."
+    }
+}

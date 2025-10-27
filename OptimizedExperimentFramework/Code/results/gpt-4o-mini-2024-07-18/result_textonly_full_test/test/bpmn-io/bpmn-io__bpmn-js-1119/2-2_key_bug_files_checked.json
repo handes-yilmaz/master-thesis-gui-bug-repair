@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ReplaceConnectionBehavior.js",
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "These files are critical for fixing the bug because they contain the logic for handling connections and element replacements in the BPMN modeler. The 'ReplaceConnectionBehavior.js' file specifically manages the behavior when connections are replaced, which is directly related to the issue of the sequence flow not being correctly associated with the participant. The 'ReplaceElementBehaviour.js' file deals with the behavior of elements when they morph into other BPMN elements, which may also affect how the sequence flow is treated. Lastly, 'Modeling.js' contains the core modeling functionalities, including connection management, which is essential for ensuring that the sequence flow is correctly integrated into the model after replacement.",
+        "bug_scenario": "The bug occurs when a message flow is replaced with a sequence flow, causing the modeler to crash or the sequence flow to not be correctly associated with the intended participant. The expected behavior is that the sequence flow should be part of the second participant and rendered accordingly, but instead, it fails to do so, leading to a broken interaction in the modeler."
+    }
+}

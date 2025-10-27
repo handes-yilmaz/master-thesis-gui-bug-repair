@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/config-provider/index.jsx",
+            "src/config-provider/cache.js",
+            "src/config-provider/config.jsx"
+        ],
+        "explanation": "The 'index.jsx' file contains the primary implementation of the ConfigProvider component, where the caching mechanism likely exists. The 'cache.js' file is responsible for managing the cache, which is directly related to the memory leak issue. The 'config.jsx' file may include configuration settings for the component, which could influence how caching behaves during SSR. All these files are integral to addressing the memory leak in the ConfigProvider component.",
+        "bug_scenario": "The ConfigProvider component in SSR (Server-Side Rendering) scenarios is causing a memory leak due to its built-in cache not being garbage collected. The cache removal in componentWillUnmount does not execute during SSR lifecycle, leading to an accumulation of memory."
+    }
+}

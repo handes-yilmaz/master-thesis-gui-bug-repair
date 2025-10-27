@@ -1,0 +1,27 @@
+{
+    "1/1": {
+        "src/ol/reproj/Tile.js": [
+            {
+                "SEARCH": [
+                    "if (state == TileState.IDLE || state == TileState.LOADING) {"
+                ],
+                "REPLACE": [
+                    "        if (state == TileState.IDLE || state == TileState.LOADING || state == TileState.ABORT) {"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (state == TileState.LOADED ||",
+                    "state == TileState.ERROR ||",
+                    "state == TileState.EMPTY) {"
+                ],
+                "REPLACE": [
+                    "                if (state == TileState.LOADED ||",
+                    "                    state == TileState.ERROR ||",
+                    "                    state == TileState.EMPTY ||",
+                    "                    state == TileState.ABORT) {"
+                ]
+            }
+        ]
+    }
+}

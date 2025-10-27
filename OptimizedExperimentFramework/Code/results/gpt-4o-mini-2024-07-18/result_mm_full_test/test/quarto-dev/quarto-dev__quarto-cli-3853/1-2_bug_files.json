@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/format/pdf/format-pdf.ts",
+            "src/command/render/latexmk/latex.ts",
+            "src/command/render/latexmk/texlive.ts",
+            "src/command/render/latexmk/quarto-latexmk.ts",
+            "src/command/render/latexmk/quarto-latexmk-metadata.ts"
+        ],
+        "explanation": "These files are related to the PDF rendering process and LaTeX generation. The `format-pdf.ts` file manages the overall PDF formatting, while the `latex.ts`, `texlive.ts`, `quarto-latexmk.ts`, and `quarto-latexmk-metadata.ts` files handle specific aspects of LaTeX processing and output. Adjustments in these files can address the issues with excessive vertical space and improper placement of the QED symbol.",
+        "bug_scenario": "The bug involves excessive vertical space before definition, theorem, and proof environments in LaTeX output, which affects document formatting. The issue arises from extra code generated in the LaTeX output, specifically the inclusion of `\\leavevmode\\vadjust pre{...}` before definitions and the placement of the QED symbol in proofs. Removing this extra code and managing line spacing correctly resolves the formatting issues."
+    }
+}

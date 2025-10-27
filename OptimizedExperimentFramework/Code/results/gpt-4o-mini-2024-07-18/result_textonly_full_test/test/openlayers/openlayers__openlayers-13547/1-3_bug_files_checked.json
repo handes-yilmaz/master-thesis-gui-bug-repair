@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Tile.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/DataTile.js",
+            "src/ol/source/TileWMS.js",
+            "src/ol/source/XYZ.js"
+        ],
+        "explanation": "These files are related to the bug because they handle tile rendering and source management within the application. Specifically, 'Tile.js' and 'WebGLTile.js' are responsible for rendering tiles, including how they manage edge effects and the application of gutters. 'DataTile.js' and 'TileWMS.js' manage specific tile sources that need to support the gutter feature. Lastly, 'XYZ.js' is likely to be involved given the request to extend gutter support to XYZ tile sources. Modifications in these files will be necessary to implement the feature and resolve the edge effect issues.",
+        "bug_scenario": "The bug relates to the handling of the gutter (buffer) for tile sources in a mapping application. Currently, only the TileWMS supports a gutter option. The user reports that the Nextzen tiles and some Mapbox tiles also require a buffer to avoid edge effects during interpolation. The edge effects are evident where datatiles join, particularly when rendered with WebGL. The request involves making the gutter option available for more tile sources and revising WebGL rendering to correctly handle the gutter during texture creation."
+    }
+}

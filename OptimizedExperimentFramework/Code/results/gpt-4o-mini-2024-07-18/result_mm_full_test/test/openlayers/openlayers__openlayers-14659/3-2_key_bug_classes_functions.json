@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/render/VectorContext//VectorContext"
+        ],
+        "bug_functions": [
+            "src/ol/render/VectorContext//drawFeature",
+            "src/ol/render/VectorContext//drawGeometry",
+            "src/ol/render/VectorContext//setStyle",
+            "src/ol/render/VectorContext//drawCircle"
+        ],
+        "explanation": "The class VectorContext contains methods related to rendering geometries on a map. The function drawFeature() is directly implicated in the bug report as it fails to render features correctly with geographic coordinates. The drawGeometry() function is mentioned as a working alternative, indicating that the issue is likely within the logic of drawFeature(). Additionally, drawCircle() is noted in the report as needing a fix, suggesting that it may also be related to the extent comparison issue. The setStyle() function is relevant as it provides a working alternative to drawFeature(), further emphasizing the need to investigate the extent comparison logic within these functions.",
+        "bug_scenario": "The function drawFeature() fails to render features correctly when geographic coordinates are used, particularly when Null Island is not visible on the map. This is due to an incorrect extent comparison that prevents the function from executing as expected. However, when the function is replaced with setStyle() or drawGeometry(), the features are rendered correctly, indicating that the issue lies specifically within drawFeature()."
+    }
+}

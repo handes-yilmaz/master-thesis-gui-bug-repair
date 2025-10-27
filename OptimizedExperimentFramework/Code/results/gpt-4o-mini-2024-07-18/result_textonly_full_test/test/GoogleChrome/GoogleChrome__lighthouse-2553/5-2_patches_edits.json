@@ -1,0 +1,36 @@
+{
+    "1/1": {
+        "lighthouse-core/report/report-generator.js": [
+            {
+                "SEARCH": [
+                    "url: results.url,",
+                    "lighthouseVersion: results.lighthouseVersion,",
+                    "generatedTime: results.generatedTime,",
+                    "lhresults: this._escapeScriptTags(JSON.stringify(results, null, 2)),"
+                ],
+                "REPLACE": [
+                    "      url: results.url,",
+                    "      lighthouseVersion: results.lighthouseVersion,",
+                    "      generatedTime: results.generatedTime.toLocaleString(undefined, {maximumFractionDigits: 1}),",
+                    "      lhresults: this._escapeScriptTags(JSON.stringify(results, null, 2)),"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "aggregations: results.aggregations,",
+                    "auditsByCategory: this._createPWAAuditsByCategory(results.aggregations),"
+                ],
+                "REPLACE": [
+                    "      aggregations: results.aggregations.map(aggregation => ({",
+                    "        ...aggregation,",
+                    "        score: aggregation.score.map(score => ({",
+                    "          ...score,",
+                    "          value: score.value.toLocaleString(undefined, {maximumFractionDigits: 1}),",
+                    "        })),",
+                    "      })),",
+                    "      auditsByCategory: this._createPWAAuditsByCategory(results.aggregations),"
+                ]
+            }
+        ]
+    }
+}

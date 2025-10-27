@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/uses-request-compression.ResponsesAreCompressed"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/uses-request-compression.ResponsesAreCompressed.audit_",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.ResponseCompression.filterUnoptimizedResponses",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.ResponseCompression.afterPass"
+        ],
+        "explanation": "The class 'ResponsesAreCompressed' is responsible for auditing whether resources are served with compression. The function 'audit_' within this class analyzes the responses and determines if they are compressed based on the artifacts provided. The functions 'filterUnoptimizedResponses' and 'afterPass' in the 'ResponseCompression' class are crucial as they filter out responses that are not optimized for compression and handle the processing of network records to check for compression. These classes and functions are directly related to the bug because they are involved in the logic that determines whether the compression is reported correctly.",
+        "bug_scenario": "The user is experiencing an issue where the audit tool incorrectly reports that gzip compression is not enabled, despite it being confirmed through the Dev Tools Network panel and a curl command. The audit suggests enabling text compression, which is misleading since gzip is already enabled."
+    }
+}

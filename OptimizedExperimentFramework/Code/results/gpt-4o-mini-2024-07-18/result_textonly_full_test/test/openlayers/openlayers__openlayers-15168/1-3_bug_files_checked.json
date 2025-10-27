@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/reproj/common.js",
+            "src/ol/reproj/Image.js",
+            "src/ol/reproj/Tile.js",
+            "src/ol/reproj/DataTile.js",
+            "src/ol/proj/projections.js",
+            "src/ol/render/canvas/Builder.js",
+            "src/ol/renderer/canvas/ImageLayer.js"
+        ],
+        "explanation": "These files are related to the bug because they handle the reprojection process of raster images. The common.js file contains functions that may determine how pixels are treated during reprojection. The Image.js and Tile.js files specifically manage image and tile representation, which are likely responsible for how the pixel dimensions are interpreted and rendered. The DataTile.js file works with tile data, which is essential for understanding how source pixels are mapped onto the target projection. Additionally, the projections.js file defines the projection mechanisms that may need adjustments to handle non-square pixel representations. Lastly, the Builder.js and ImageLayer.js files in the canvas render section are responsible for rendering the images onto the canvas, which could also be affected by incorrect assumptions about pixel shapes.",
+        "bug_scenario": "The bug involves raster reprojection in which the system incorrectly assumes that projected pixels are square. This leads to misalignments in pixel representation when projecting a 5x5 pixel source image where each pixel should cover an area of 3km by 2km. The resulting image is distorted, with some pixels being repeated, which affects the horizontal alignment of the projected image."
+    }
+}

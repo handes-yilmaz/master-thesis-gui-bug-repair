@@ -1,0 +1,69 @@
+{
+    "1/1": {
+        "src/execute/jupyter/jupyter.ts": [
+            {
+                "SEARCH": [
+                    "return files;",
+                    "},",
+                    "};"
+                ],
+                "REPLACE": [
+                    "    return files;",
+                    "  },",
+                    "  // Ensure that the Bokeh plot is correctly identified as a single figure",
+                    "  processBokehPlot: function (plot) {",
+                    "    // Logic to ensure the plot is treated as a single entity",
+                    "    if (plot && plot.type === 'bokeh') {",
+                    "      return [plot]; // Return as a single plot",
+                    "    }",
+                    "    return [];",
+                    "  },",
+                    "};"
+                ]
+            }
+        ],
+        "src/command/render/render.ts": [
+            {
+                "SEARCH": [
+                    "return undefined;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  return undefined;",
+                    "}",
+                    "",
+                    "// Ensure that Bokeh plots are rendered correctly",
+                    "function renderBokehPlot(plot) {",
+                    "  if (plot && plot.type === 'bokeh') {",
+                    "    // Logic to render the Bokeh plot correctly",
+                    "    return plot.render(); // Assuming render is a method of the plot",
+                    "  }",
+                    "  return null;",
+                    "}"
+                ]
+            }
+        ],
+        "src/command/render/render-contexts.ts": [
+            {
+                "SEARCH": [
+                    "return resolved;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "  return resolved;",
+                    "}",
+                    "",
+                    "// Add handling for Bokeh plots in the rendering context",
+                    "function handleBokehPlots(context) {",
+                    "  context.plots.forEach(plot => {",
+                    "    if (plot.type === 'bokeh') {",
+                    "      // Ensure the plot is processed correctly",
+                    "      plot.process(); // Assuming process is a method to handle the plot",
+                    "    }",
+                    "  });",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnUpdater.js//BpmnUpdater",
+            "lib/import/BpmnImporter.js//BpmnImporter"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnUpdater.js//updateConnectionWaypoints",
+            "lib/import/BpmnImporter.js//getWaypoints"
+        ],
+        "explanation": "The 'BpmnUpdater' class is responsible for updating the BPMN 2.0 XML when changes occur in the diagram. The 'updateConnectionWaypoints' function within this class is crucial as it handles the waypoints of connections, which is directly related to the bug. The 'BpmnImporter' class is responsible for importing BPMN elements, and the 'getWaypoints' function retrieves the waypoints for a connection. This function is relevant because it determines how waypoints are serialized, which is where the bug manifests.",
+        "bug_scenario": "The bug occurs when a new task is created from an existing one, resulting in an illegal 'waypoints' property being serialized in the XML for a 'sequenceFlow'. The waypoints are incorrectly represented as '[object Object]' instead of valid coordinates, particularly when the connection has a middle segment."
+    }
+}

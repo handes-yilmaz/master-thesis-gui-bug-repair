@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/DataTile.js",
+            "src/ol/tilegrid/TileGrid.js"
+        ],
+        "explanation": "The file `WebGLTile.js` is directly responsible for rendering tiles in WebGL, which is where the bug manifests as black tiles. The `DataTile.js` file is crucial because it handles the data source that feeds tiles to the WebGL layer, making it essential to investigate how data is loaded and passed. The `TileGrid.js` file defines the tile grid structure and layout, which is relevant since the issue might stem from a misconfiguration of the custom tile grid used.",
+        "bug_scenario": "The `ol.layer.WebGLTile` is failing to render tiles from `ol.source.DataTile` when using a custom tile grid, resulting in black tiles. A warning is logged that indicates a mismatch in the expected and available data dimensions for rendering."
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/print/statement.js//printSwitchCaseConsequent"
+        ],
+        "bug_functions": [
+            "src/language-js/print/statement.js//printStatementSequence",
+            "src/language-js/print/statement.js//statementNeedsASIProtection"
+        ],
+        "explanation": "The `printSwitchCaseConsequent` function is responsible for printing the contents of switch case statements, including the `default` case. If it does not handle comments correctly, it can lead to the loss of comments during formatting. The `printStatementSequence` function is called within it and is crucial for managing how statements are printed, including handling comments. The `statementNeedsASIProtection` function checks if a statement needs protection from Automatic Semicolon Insertion (ASI), which may also affect how comments are treated in the output. These functions are directly related to the bug as they control the formatting behavior of switch statements.",
+        "bug_scenario": "The bug occurs when formatting switch statements in JavaScript using Prettier. Specifically, the formatting of the `default` case with a comment results in different outcomes than expected. The comment in the `default` case is not preserved in the output, leading to a loss of information."
+    }
+}

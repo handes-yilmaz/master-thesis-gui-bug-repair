@@ -1,0 +1,29 @@
+{
+    "1/1": {
+        "src/ol/interaction/Draw.js": [
+            {
+                "SEARCH": [
+                    "// Reset shouldHandle_ to ensure other interactions can proceed",
+                    "this.shouldHandle_ = false;",
+                    "this.lastDragTime_ = undefined; // Reset last drag time"
+                ],
+                "REPLACE": [
+                    "    // Reset shouldHandle_ to ensure other interactions can proceed",
+                    "    this.shouldHandle_ = false;",
+                    "    this.lastDragTime_ = undefined; // Reset last drag time",
+                    "    this.finishCoordinate_ = null; // Ensure finishCoordinate is reset"
+                ]
+            }
+        ],
+        "src/ol/interaction/DragPan.js": [
+            {
+                "SEARCH": [
+                    "if (this.targetPointers.length > 0 && this.condition_(mapBrowserEvent)) {"
+                ],
+                "REPLACE": [
+                    "      if (this.targetPointers.length > 0 && this.condition_(mapBrowserEvent) && !this.panning_) {"
+                ]
+            }
+        ]
+    }
+}

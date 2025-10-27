@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.TagsBlockingFirstPaint",
+            "lighthouse-core/audits/metrics/first-contentful-paint.FirstContentfulPaint",
+            "lighthouse-core/computed/load-simulator.LoadSimulator"
+        ],
+        "bug_functions": [
+            "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.collectTagsThatBlockFirstPaint",
+            "lighthouse-core/audits/metrics/first-contentful-paint.audit",
+            "lighthouse-core/computed/load-simulator.compute_"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle critical aspects of page loading and rendering performance. The 'TagsBlockingFirstPaint' class identifies elements that may block the first paint, which is crucial for understanding latency issues. The 'FirstContentfulPaint' class measures the time until the first content is painted, directly linked to the timeout problem. The 'LoadSimulator' class simulates network conditions, which can help in diagnosing the impact of latency on rendering times. Modifications in these areas could help address the increased timeout and error rates.",
+        "bug_scenario": "The bug scenario involves an increase in error rates on the LR backend, attributed to a 60-second timeout related to latency issues. The provided images illustrate the render error rate and timing data, indicating that the 'loadPage-defaultPass' timing has significantly increased, which correlates with the observed errors. The issue seems to be exacerbated by a recent change in the codebase that affects how the system waits for the First Contentful Paint (FCP)."
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "1/1": {
+        "src/ol/layer/Group.js": [
+            {
+                "SEARCH": [
+                    "layerState.opacity *= ownLayerState.opacity;"
+                ],
+                "REPLACE": [
+                    "      if (layer instanceof VectorTileLayer) { // Check if the layer is a vector tile layer",
+                    "        layerState.opacity *= ownLayerState.opacity; // Apply group opacity to vector tile labels",
+                    "      } else {",
+                    "        layerState.opacity *= ownLayerState.opacity; // Apply group opacity to other layers",
+                    "      }"
+                ]
+            }
+        ]
+    }
+}

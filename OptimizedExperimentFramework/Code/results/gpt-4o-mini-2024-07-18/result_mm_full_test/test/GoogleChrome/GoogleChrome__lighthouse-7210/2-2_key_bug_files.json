@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.js",
+            "lighthouse-core/gather/gatherers/css-usage.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.js"
+        ],
+        "explanation": "These files are key to addressing the bug because they handle the auditing and gathering of CSS usage and efficiency metrics in Lighthouse. The 'unused-css-rules.js' file specifically deals with identifying unused CSS rules, which is directly related to the reported issue. The 'css-usage.js' file gathers information about CSS stylesheets and their usage, which is essential for accurate reporting. Lastly, 'response-compression.js' checks the optimization of response sizes, which is relevant to the gzip compression issue mentioned in the bug report.",
+        "bug_scenario": "The bug scenario involves a third-party JavaScript tool that fetches styles via gzipped JSON and appends them to the DOM. Google PageSpeed reports a size of 80kb with potential savings of around 70kb under 'Defer unused CSS', despite the actual configuration being only about 20kb gzipped. This discrepancy indicates that the calculated scores and savings should reflect the actual resources fetched, rather than the size in the DOM."
+    }
+}

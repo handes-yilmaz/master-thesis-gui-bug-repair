@@ -1,0 +1,55 @@
+diff --git a/src/input/textarea.jsx b/src/input/textarea.jsx
+index 517725e..0e2ec8a 100644
+--- a/src/input/textarea.jsx
++++ b/src/input/textarea.jsx
+@@ -211,6 +211,13 @@ export default class TextArea extends Base {
+         this.helpRef = ref;
+     }
+ 
++    onBlur = (event) => {
++        // Handle onBlur event
++        if (this.props.onBlur) {
++            this.props.onBlur(event);
++        }
++    };
++
+     render() {
+         const {
+             rows,
+@@ -223,6 +230,17 @@ export default class TextArea extends Base {
+             rtl,
+             hasBorder,
+         } = this.props;
++        ...
++        <textarea
++            {...others}
++            {...props}
++            data-real
++            rows={rows}
++            style={textareStyle}
++            ref={this.saveRef.bind(this)}
++            onKeyDown={this.onKeyDown.bind(this)}
++            onBlur={this.onBlur} // Add onBlur event handler
++        />
+ 
+         const cls = classNames(this.getClass(), {
+             [`${prefix}input-textarea`]: true,
+diff --git a/types/input/index.d.ts b/types/input/index.d.ts
+index 06f6455..d50197b 100644
+--- a/types/input/index.d.ts
++++ b/types/input/index.d.ts
+@@ -111,10 +111,10 @@ export interface TextAreaProps extends HTMLAttributesWeak, CommonProps {
+      */
+     hasBorder?: boolean;
+ 
+-    /**
+-     * 自动高度 true / {minRows: 2, maxRows: 4}
+-     */
+-    autoHeight?: boolean | {};
++    /** 
++     * 自动高度 true / {minRows: 2, maxRows: 4} 
++     */ 
++    autoHeight?: boolean | { minRows?: number; maxRows?: number }; // Specify object structure
+ 
+     /**
+      * 多行文本框高度 <br />(不要直接用height设置多行文本框的高度, ie9 10会有兼容性问题)

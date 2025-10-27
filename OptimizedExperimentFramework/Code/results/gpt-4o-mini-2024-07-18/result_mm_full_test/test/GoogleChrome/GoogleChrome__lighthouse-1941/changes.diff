@@ -1,0 +1,37 @@
+diff --git a/lighthouse-core/report/report-generator.js b/lighthouse-core/report/report-generator.js
+index 2fb6776..ff15dd1 100644
+--- a/lighthouse-core/report/report-generator.js
++++ b/lighthouse-core/report/report-generator.js
+@@ -32,12 +32,18 @@ class ReportGenerator {
+   }
+ 
+   /**
+-   * Escape closing script tags.
+-   * @param {string} jsonStr
+-   * @return {string}
++   * Safely stringify JSON to prevent injection attacks.
++   * @param {Object} obj
++   * @return {string} Safe JSON string
+    */
+-  _escapeScriptTags(jsonStr) {
+-    return jsonStr.replace(/<\/script>/g, '<\\/script>');
++  _sanitizeJSONStringify(obj) {
++    const jsonString = JSON.stringify(obj, (key, value) => {
++      if (typeof value === 'string') {
++        return value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
++      }
++      return value;
++    }, 2);
++    return jsonString;
+   }
+ 
+   /**
+@@ -172,7 +178,7 @@ class ReportGenerator {
+       url: results.url,
+       lighthouseVersion: results.lighthouseVersion,
+       generatedTime: results.generatedTime,
+-      lhresults: this._escapeScriptTags(JSON.stringify(results, null, 2)),
++      lhresults: this._escapeScriptTags(this._sanitizeJSONStringify(results)),
+       stylesheets: this.getReportCSS(),
+       reportContext: reportContext,
+       scripts: this.getReportJS(reportContext),

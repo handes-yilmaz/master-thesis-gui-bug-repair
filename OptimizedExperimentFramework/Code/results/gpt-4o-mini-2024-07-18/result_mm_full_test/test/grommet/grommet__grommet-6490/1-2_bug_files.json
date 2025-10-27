@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/Box/Box.js",
+            "src/js/components/Box/__tests__/Box-test.tsx"
+        ],
+        "explanation": "The Box.js file contains the implementation of the Box component, where the properties border and gap are used. This is where the bug is likely originating from, as the component fails to handle these properties correctly. The Box-test.tsx file is relevant as it likely contains tests for the Box component; if the tests do not account for the specified border and gap properties, they may need to be updated to ensure they cover this scenario.",
+        "bug_scenario": "The Box component breaks at runtime when specifying border='between' and gap='10px'. The expected behavior is that the Box component applies half the value of gap around the separator line, but instead, it throws a TypeError stating that it cannot read properties of undefined (reading 'match')."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/Box/Box.js",
+            "src/js/components/Box/__tests__/Box-test.tsx",
+            "src/js/components/Box/stories/Border.js"
+        ],
+        "explanation": "These files are related to the bug because the Box.js file contains the implementation of the Box component, which is where the error likely originates. The Box-test.tsx file contains tests for the Box component, which may need to be updated to reflect the correct expected behavior. The Border.js story demonstrates how the border property is used, which is critical to reproducing the issue.",
+        "bug_scenario": "The Box component breaks at runtime when using the properties border=\"between\" and gap=\"10px\". The expected behavior is to apply half the value of the gap around the separator line, but instead, a TypeError occurs, indicating that the code is trying to read properties of undefined."
+    }
+}

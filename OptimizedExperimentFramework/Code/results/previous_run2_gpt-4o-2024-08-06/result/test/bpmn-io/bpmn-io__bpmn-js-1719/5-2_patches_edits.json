@@ -1,0 +1,45 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/SubProcessPlaneBehavior.js": [
+            {
+                "SEARCH": [
+                    "// create/remove plane for the subprocess",
+                    "this.executed('shape.toggleCollapse', LOW_PRIORITY, function(context) {",
+                    "var shape = context.shape;",
+                    "",
+                    "if (!is(shape, 'bpmn:SubProcess')) {",
+                    "return;",
+                    "}",
+                    "",
+                    "if (!isExpanded(shape)) {",
+                    "createRoot(context);",
+                    "self._showRecursively(shape.children);",
+                    "} else {",
+                    "removeRoot(context);",
+                    "}",
+                    "",
+                    "}, true);"
+                ],
+                "REPLACE": [
+                    "  // create/remove plane for the subprocess",
+                    "  this.executed('shape.toggleCollapse', LOW_PRIORITY, function(context) {",
+                    "    var shape = context.shape;",
+                    "",
+                    "    if (!is(shape, 'bpmn:SubProcess')) {",
+                    "      return;",
+                    "    }",
+                    "",
+                    "    if (!isExpanded(shape)) {",
+                    "      createRoot(context);",
+                    "      self._showRecursively(shape.children, true); // Hide labels when collapsed",
+                    "    } else {",
+                    "      removeRoot(context);",
+                    "      self._showRecursively(shape.children, false); // Show labels when expanded",
+                    "    }",
+                    "",
+                    "  }, true);"
+                ]
+            }
+        ]
+    }
+}

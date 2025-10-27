@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/source/TileWMS.js//TileWMS"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//createRenderer",
+            "src/ol/source/TileWMS.js//tileUrlFunction",
+            "src/ol/source/TileWMS.js//getGutter"
+        ],
+        "explanation": "The classes WebGLTileLayer and TileWMS are directly related to the rendering and management of tile layers in the application. The createRenderer function in WebGLTileLayer is responsible for setting up the rendering process, which includes how textures are created and managed. The tileUrlFunction in TileWMS is responsible for generating the URLs for the tiles, which includes handling the gutter parameter. The getGutter function retrieves the gutter value, which is crucial for ensuring that the rendering process respects the gutter setting. These functions and classes are essential to address the clipping issue described in the bug report.",
+        "bug_scenario": "The WebGLTile layer renderer fails to properly clip the image gutter before creating textures, leading to issues such as misplacement and duplication of tiles. This occurs when the gutter option is set, which is intended to ignore artifacts at the edges of tiles, but is not being applied correctly in the rendering process."
+    }
+}

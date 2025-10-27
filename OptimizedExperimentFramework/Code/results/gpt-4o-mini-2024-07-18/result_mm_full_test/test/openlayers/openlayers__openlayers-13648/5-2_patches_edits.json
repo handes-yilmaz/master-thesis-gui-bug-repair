@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "return [0, 0, fileDirectory.ImageWidth, fileDirectory.ImageLength];"
+                ],
+                "REPLACE": [
+                    "    return [0, 0, fileDirectory.ImageWidth * fileDirectory.PixelScale[0], fileDirectory.ImageLength * fileDirectory.PixelScale[1]];"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return [0, image.fileDirectory.ImageLength];"
+                ],
+                "REPLACE": [
+                    "    return [0, image.fileDirectory.ImageLength * image.fileDirectory.PixelScale[1]];"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return image.getResolution(referenceImage)[0];"
+                ],
+                "REPLACE": [
+                    "    const resolution = image.getResolution(referenceImage);",
+                    "    return [resolution[0] * image.fileDirectory.PixelScale[0], resolution[1] * image.fileDirectory.PixelScale[1]];"
+                ]
+            }
+        ]
+    }
+}

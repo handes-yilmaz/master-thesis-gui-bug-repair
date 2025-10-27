@@ -1,0 +1,70 @@
+{
+    "bug_classes": {
+        "1": {
+            "class_name": "JsLibrariesAudit",
+            "file_path": "lighthouse-core/audits/dobetterweb/js-libraries.js",
+            "class_details": [
+                {
+                    "name": "JsLibrariesAudit",
+                    "start_line": 27,
+                    "end_line": 65,
+                    "methods": [
+                        {
+                            "name": "meta",
+                            "start_line": 31,
+                            "end_line": 38
+                        },
+                        {
+                            "name": "audit",
+                            "start_line": 44,
+                            "end_line": 64
+                        }
+                    ],
+                    "isExported": false
+                }
+            ],
+            "class_code": [
+                "class JsLibrariesAudit extends Audit {",
+                "  /**",
+                "   * @return {LH.Audit.Meta}",
+                "   */",
+                "  static get meta() {",
+                "    return {",
+                "      id: 'js-libraries',",
+                "      title: str_(UIStrings.title),",
+                "      description: str_(UIStrings.description),",
+                "      requiredArtifacts: ['Stacks'],",
+                "    };",
+                "  }",
+                "",
+                "  /**",
+                "   * @param {LH.Artifacts} artifacts",
+                "   * @return {LH.Audit.Product}",
+                "   */",
+                "  static audit(artifacts) {",
+                "    const libDetails = artifacts.Stacks",
+                "      .filter(stack => stack.detector === 'js')",
+                "      .map(stack => ({",
+                "        name: stack.name,",
+                "        version: stack.version,",
+                "        npm: stack.npm,",
+                "      }));",
+                "",
+                "    /** @type {LH.Audit.Details.Table['headings']} */",
+                "    const headings = [",
+                "      {key: 'name', itemType: 'text', text: str_(i18n.UIStrings.columnName)},",
+                "      {key: 'version', itemType: 'text', text: str_(UIStrings.columnVersion)},",
+                "    ];",
+                "    const details = Audit.makeTableDetails(headings, libDetails, {});",
+                "",
+                "    return {",
+                "      score: 1, // Always pass for now.",
+                "      details,",
+                "    };",
+                "  }",
+                "}"
+            ]
+        }
+    },
+    "bug_functions": {}
+}

@@ -1,0 +1,19 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/offscreen-images.js": [
+            {
+                "SEARCH": [
+                    "const processed = OffscreenImages.computeWaste(image, viewportDimensions);"
+                ],
+                "REPLACE": [
+                    "      // Ignore SVG images",
+                    "      if (image.networkRecord.mimeType === 'image/svg+xml') {",
+                    "        return results;",
+                    "      }",
+                    "      ",
+                    "      const processed = OffscreenImages.computeWaste(image, viewportDimensions);"
+                ]
+            }
+        ]
+    }
+}

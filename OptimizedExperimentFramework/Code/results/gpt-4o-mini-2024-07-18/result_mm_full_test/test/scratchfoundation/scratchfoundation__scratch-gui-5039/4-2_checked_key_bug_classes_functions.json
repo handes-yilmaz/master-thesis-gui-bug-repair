@@ -1,0 +1,79 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "openMenu",
+            "file_path": "src/reducers/menus.js",
+            "function_details": [
+                {
+                    "name": "openMenu",
+                    "start_line": 34,
+                    "end_line": 37
+                }
+            ],
+            "function_code": [
+                "const openMenu = menu => ({",
+                "    type: OPEN_MENU,",
+                "    menu: menu",
+                "});"
+            ]
+        },
+        "2": {
+            "function_name": "closeMenu",
+            "file_path": "src/reducers/menus.js",
+            "function_details": [
+                {
+                    "name": "closeMenu",
+                    "start_line": 38,
+                    "end_line": 41
+                }
+            ],
+            "function_code": [
+                "const closeMenu = menu => ({",
+                "    type: CLOSE_MENU,",
+                "    menu: menu",
+                "});"
+            ]
+        },
+        "3": {
+            "function_name": "indexForPositionOnList",
+            "file_path": "src/lib/drag-utils.js",
+            "function_details": [
+                {
+                    "name": "indexForPositionOnList",
+                    "start_line": 17,
+                    "end_line": 43
+                }
+            ],
+            "function_code": [
+                "const indexForPositionOnList = ({x, y}, boxes) => {",
+                "    if (boxes.length === 0) return null;",
+                "    let index = null;",
+                "    const leftEdge = Math.min.apply(null, boxes.map(b => b.left));",
+                "    const rightEdge = Math.max.apply(null, boxes.map(b => b.right));",
+                "    const topEdge = Math.min.apply(null, boxes.map(b => b.top));",
+                "    const bottomEdge = Math.max.apply(null, boxes.map(b => b.bottom));",
+                "    for (let n = 0; n < boxes.length; n++) {",
+                "        const box = boxes[n];",
+                "        // Construct an \"extended\" box for each, extending out to infinity if",
+                "        // the box is along a boundary.",
+                "        const minX = box.left === leftEdge ? -Infinity : box.left;",
+                "        const minY = box.top === topEdge ? -Infinity : box.top;",
+                "        const maxY = box.bottom === bottomEdge ? Infinity : box.bottom;",
+                "        // The last item in the wrapped list gets a right edge at infinity, even",
+                "        // if it isn't the farthest right. Add this as an \"or\" condition for extension.",
+                "        const maxX = (n === boxes.length - 1 || box.right === rightEdge) ?",
+                "            Infinity : box.right;",
+                "",
+                "        // Check if the point is in the bounds.",
+                "        if (x > minX && x <= maxX && y > minY && y <= maxY) {",
+                "            index = n;",
+                "            break; // No need to keep looking.",
+                "        }",
+                "    }",
+                "    return index;",
+                "};"
+            ]
+        }
+    }
+}

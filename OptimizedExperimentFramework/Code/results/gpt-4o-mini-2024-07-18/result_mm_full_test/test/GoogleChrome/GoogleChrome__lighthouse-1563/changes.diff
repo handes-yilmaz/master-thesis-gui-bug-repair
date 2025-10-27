@@ -1,0 +1,15 @@
+diff --git a/lighthouse-core/audits/user-timings.js b/lighthouse-core/audits/user-timings.js
+index 45acbf6..de82092 100644
+--- a/lighthouse-core/audits/user-timings.js
++++ b/lighthouse-core/audits/user-timings.js
+@@ -57,7 +57,9 @@ class UserTimings extends Audit {
+       // https://cs.chromium.org/search/?q=trace_event.*?user_timing&sq=package:chromium&type=cs
+       return evt.name !== 'requestStart' &&
+           evt.name !== 'navigationStart' &&
+-          evt.name !== 'paintNonDefaultBackgroundColor' &&
++          evt.name !== 'paintNonDefaultBackgroundColor' && 
++          evt.name !== 'goog_123_3_1_start' && // Exclude Google Ads timing marks
++          evt.name !== 'goog_123_3_1_end' &&   // Exclude Google Ads timing marks
+           evt.args.frame === undefined;
+     })
+     .forEach(ut => {

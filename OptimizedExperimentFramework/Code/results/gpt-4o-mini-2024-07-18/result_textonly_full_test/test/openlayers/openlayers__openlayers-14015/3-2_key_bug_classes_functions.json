@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/BaseTile.js//BaseTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer",
+            "src/ol/source/Tile.js//TileSource"
+        ],
+        "bug_functions": [
+            "src/ol/layer/BaseTile.js//setPreload",
+            "src/ol/layer/BaseTile.js//setUseInterimTilesOnError",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame",
+            "src/ol/source/Tile.js//clear",
+            "src/ol/source/Tile.js//expireCache"
+        ],
+        "explanation": "These classes and functions are related to the bug because they manage the caching and rendering of tile layers. The `BaseTileLayer` class is responsible for the basic properties of tile layers, including how they handle tile preloading and interim tiles on error. The `WebGLTileLayerRenderer` class is responsible for rendering the tile layers using WebGL, and its `renderFrame` function is crucial for determining how tiles are drawn on the screen. The `TileSource` class manages the source of the tiles and includes methods like `clear` and `expireCache`, which are essential for invalidating and refreshing the tile cache when the source or projection changes. Fixing the bug will likely involve ensuring that these methods are called appropriately when `setSource()` is invoked or when the view projection changes.",
+        "bug_scenario": "The bug occurs when the WebGL tile layers do not update their cached textures after the source is replaced using `setSource()` or when the view projection is changed. This leads to the display of incorrect tiles from the old source or projection when panning or zooming."
+    }
+}

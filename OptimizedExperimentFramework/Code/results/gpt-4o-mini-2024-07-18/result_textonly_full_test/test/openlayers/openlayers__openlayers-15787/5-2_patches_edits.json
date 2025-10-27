@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "this.changed();"
+                ],
+                "REPLACE": [
+                    "    this.dispose(); // Ensure resources are cleaned up when the layer is removed",
+                    "    this.changed(); // Notify that the layer has changed"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "super.disposeInternal(); // Call the parent dispose method"
+                ],
+                "REPLACE": [
+                    "    this.disposeInternal(); // Ensure to clean up WebGL resources",
+                    "    super.disposeInternal(); // Call the parent dispose method"
+                ]
+            }
+        ]
+    }
+}

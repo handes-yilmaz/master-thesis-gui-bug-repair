@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/TileWMS.js",
+            "src/ol/source/XYZ.js",
+            "src/ol/layer/WebGLTile.js"
+        ],
+        "explanation": "These files are key to addressing the bug because: 1. **TileWMS.js**: This file contains the implementation of the WMS tile source, which currently supports the gutter option. Modifications here will help extend this functionality to other tile sources. 2. **XYZ.js**: This file defines the XYZ tile source, which needs to be updated to include gutter support to prevent edge effects. 3. **WebGLTile.js**: This file handles rendering for WebGL layers and needs adjustments to ensure that the gutter is respected during the rendering process, particularly to avoid removing the gutter before creating textures.",
+        "bug_scenario": "The bug scenario involves the need for a gutter option for more tile sources to prevent edge effects when rendering tiles. Currently, only TileWMS supports this feature, while other sources like Nextzen and Mapbox have different requirements. The provided image illustrates the edge effects that occur when tiles are rendered without proper buffering, leading to visible seams in the map display."
+    }
+}

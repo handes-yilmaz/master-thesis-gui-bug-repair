@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/resources/filters/crossref/crossref.lua",
+            "src/resources/filters/quarto-pre/theorems.lua",
+            "package/src/common/dependencies/pandoc.ts"
+        ],
+        "explanation": "These files are key to the bug because: 1. **crossref.lua**: This file handles the cross-referencing functionality, which is likely involved in processing the theorem references and could be causing the Lua filter error when it encounters unexpected input. 2. **theorems.lua**: This file specifically deals with the rendering of theorems, and any issues with how theorem captions are processed or rendered would be directly related to the bug described. 3. **pandoc.ts**: This file is responsible for managing the Pandoc dependencies and configurations, which may affect how documents are processed and rendered, including the handling of Lua filters.",
+        "bug_scenario": "The bug occurs when using theorems and proofs in a document without proper headers or labels, causing the Lua filter to throw an error. Specifically, the theorem captions are being rendered as part of the list items, which is not the expected behavior. This issue is evident in the provided images, where the theorem headings are incorrectly included in the bullet and numbered lists."
+    }
+}

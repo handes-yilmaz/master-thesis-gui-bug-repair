@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/TileWMS//TileWMS",
+            "src/ol/layer/Tile//TileLayer",
+            "src/ol/control/Attribution//Attribution"
+        ],
+        "bug_functions": [
+            "src/ol/source/TileWMS//getFeatureInfoUrl",
+            "src/ol/source/TileWMS//updateParams",
+            "src/ol/control/Attribution//collectSourceAttributions_",
+            "src/ol/control/Attribution//updateElement_"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they handle the visibility and attribution logic for layers in the mapping application. The `TileWMS` class is responsible for managing WMS layer sources, including their attributions. The `getFeatureInfoUrl` function is crucial for retrieving information about features, which may include attributions. The `Attribution` class manages the display of attributions on the map, and its methods `collectSourceAttributions_` and `updateElement_` are directly involved in determining which attributions are visible based on the current layer visibility settings. Therefore, modifications in these areas are necessary to ensure that attributions are not displayed when their parent group layer is invisible.",
+        "bug_scenario": "The bug occurs when the info popup displays attributions from a WMS layer that belongs to an invisible group layer. Specifically, when the group layer's visibility is set to false, but a sub-layer within it is visible, the attributions for the WMS layer still appear in the popup, which is not the expected behavior."
+    }
+}

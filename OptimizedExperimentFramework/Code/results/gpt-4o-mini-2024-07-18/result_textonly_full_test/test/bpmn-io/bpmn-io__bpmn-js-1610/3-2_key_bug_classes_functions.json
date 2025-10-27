@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/label-editing/LabelEditingProvider",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/label-editing/LabelEditingProvider//activateDirectEdit",
+            "lib/features/label-editing/LabelEditingProvider//update",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior//_moveChildrenToShape"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they handle the direct editing functionality and the behavior of subprocess planes. The 'LabelEditingProvider' class manages the activation and deactivation of direct editing, which is crucial for ensuring that the editing box closes when switching planes. The 'activateDirectEdit' function specifically controls when direct editing is activated, and the 'update' function manages updates to the label, which may need to be adjusted to ensure proper cancellation of editing. The 'SubProcessPlaneBehavior' class is responsible for managing the behavior of subprocess planes, including moving elements between planes, which could be relevant to ensuring that editing states are correctly handled when switching contexts.",
+        "bug_scenario": "The bug occurs when a user switches planes while direct editing is active. The editing box remains open even though the element being edited is no longer visible, which is not the expected behavior. The expected behavior is that direct editing should be canceled when the user navigates to a different plane."
+    }
+}

@@ -1,0 +1,15 @@
+diff --git a/src/ol/layer/WebGLPoints.js b/src/ol/layer/WebGLPoints.js
+index 2707e1a..421267a 100644
+--- a/src/ol/layer/WebGLPoints.js
++++ b/src/ol/layer/WebGLPoints.js
+@@ -101,7 +101,10 @@ class WebGLPointsLayer extends Layer {
+         ...this.parseResult_.attributes[name],
+       })
+     );
++    const projection = this.getProjection(); // Get the current projection
++    const isGeographic = projection && projection.getCode() === 'EPSG:4326'; // Check if it's EPSG:4326
+     return new WebGLPointsLayerRenderer(this, {
++      useGeographic: isGeographic, // Pass the geographic flag to the renderer
+       vertexShader: this.parseResult_.builder.getSymbolVertexShader(),
+       fragmentShader: this.parseResult_.builder.getSymbolFragmentShader(),
+       hitDetectionEnabled: !this.hitDetectionDisabled_,

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/label-editing/LabelEditingProvider.js",
+            "lib/features/modeling/Modeling.js"
+        ],
+        "explanation": "These files are critical to the bug because they handle the label updating and direct editing functionalities. The 'UpdateLabelHandler.js' file contains the logic for updating labels, which is directly involved in the error when an element is deleted. The 'LabelEditingProvider.js' manages the direct editing process and listens for events that could trigger the bug. Lastly, 'Modeling.js' includes the command stack execution for updating labels, which is where the illegal invocation error is thrown during the delete operation.",
+        "bug_scenario": "The bug occurs when a user attempts to delete an element while direct editing is active, leading to an 'illegal invocation' exception. This is demonstrated in the provided GIF, where the editor crashes upon the deletion of an element during direct editing."
+    }
+}

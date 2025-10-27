@@ -1,0 +1,17 @@
+diff --git a/src/lib/compile_keywords.js b/src/lib/compile_keywords.js
+index 31d9a7f..51fb7a5 100644
+--- a/src/lib/compile_keywords.js
++++ b/src/lib/compile_keywords.js
+@@ -78,7 +78,11 @@ function scoreForKeyword(keyword, providedScore) {
+     return Number(providedScore);
+   }
+ 
+-  return commonKeyword(keyword) ? 0 : 1;
++// Adjusting the scoring for TypeScript generics with extends
++if (keyword.includes('extends')) {
++return 2; // Higher score for generics with extends
++}
++return commonKeyword(keyword) ? 0 : 1;
+ }
+ 
+ /**

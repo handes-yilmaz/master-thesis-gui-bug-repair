@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/main/parser.js",
+            "src/main/options.js",
+            "src/language-js/printer-estree.js",
+            "src/language-js/printer-estree-json.js",
+            "src/document/doc-printer.js"
+        ],
+        "explanation": "These files are related to the bug because they handle parsing and printing of JavaScript code, which includes formatting directives and comments. The extra newline issue likely arises from how the formatting rules are defined in these files, particularly in the context of how directives and comments are processed. Modifications in these files might help to adjust the newline behavior when only a directive and comment are present.",
+        "bug_scenario": "The bug occurs when a file contains only a directive followed by a comment and is formatted using Prettier, resulting in an unexpected extra newline at the end of the file. This is reproducible with the babylon parser, and the user expects the output to have only a single newline instead of two."
+    }
+}

@@ -1,0 +1,111 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "renderPage",
+            "file_path": "rendering/test.js",
+            "function_details": [
+                {
+                    "name": "renderPage",
+                    "start_line": 157,
+                    "end_line": 170
+                }
+            ],
+            "function_code": [
+                "async function renderPage(page, entry, options) {",
+                "  const renderCalled = new Promise(resolve => {",
+                "    handleRender = (config) => {",
+                "      handleRender = null;",
+                "      resolve(config || {});",
+                "    };",
+                "  });",
+                "  options.log.debug('navigating', entry);",
+                "  await page.goto(`http://${options.host}:${options.port}${getHref(entry)}`, {waitUntil: 'networkidle0'});",
+                "  const config = await renderCalled;",
+                "  options.log.debug('screenshot', entry);",
+                "  await page.screenshot({path: getActualScreenshotPath(entry)});",
+                "  return config;",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "renderEach",
+            "file_path": "rendering/test.js",
+            "function_details": [
+                {
+                    "name": "renderEach",
+                    "start_line": 184,
+                    "end_line": 215
+                }
+            ],
+            "function_code": [
+                "async function renderEach(page, entries, options) {",
+                "  let fail = false;",
+                "  for (const entry of entries) {",
+                "    const {tolerance = 0, message = ''} = await renderPage(page, entry, options);",
+                "",
+                "    if (options.fix) {",
+                "      await copyActualToExpected(entry);",
+                "      continue;",
+                "    }",
+                "",
+                "    const {error, mismatch} = await getScreenshotsMismatch(entry);",
+                "    if (error) {",
+                "      options.log.error(error);",
+                "      fail = true;",
+                "      continue;",
+                "    }",
+                "",
+                "    let detail = `case ${entry}`;",
+                "    if (message) {",
+                "      detail = `${detail} (${message})`;",
+                "    }",
+                "",
+                "    if (mismatch > tolerance) {",
+                "      options.log.error(`${detail}': mismatch ${mismatch.toFixed(3)}`);",
+                "      fail = true;",
+                "    } else {",
+                "      options.log.info(`${detail}': ok`);",
+                "      await touch(getPassFilePath(entry));",
+                "    }",
+                "  }",
+                "  return fail;",
+                "}"
+            ]
+        },
+        "3": {
+            "function_name": "main",
+            "file_path": "rendering/test.js",
+            "function_details": [
+                {
+                    "name": "main",
+                    "start_line": 289,
+                    "end_line": 309
+                }
+            ],
+            "function_code": [
+                "async function main(entries, options) {",
+                "  if (!options.force && !options.match) {",
+                "    entries = await getOutdated(entries, options);",
+                "  }",
+                "  if (options.match) {",
+                "    const exp = new RegExp(options.match);",
+                "    entries = entries.filter(entry => exp.test(entry));",
+                "  }",
+                "  if (!options.interactive && entries.length === 0) {",
+                "    return;",
+                "  }",
+                "",
+                "  const done = await serve(options);",
+                "  try {",
+                "    await render(entries, options);",
+                "  } finally {",
+                "    if (!options.interactive) {",
+                "      done();",
+                "    }",
+                "  }",
+                "}"
+            ]
+        }
+    }
+}

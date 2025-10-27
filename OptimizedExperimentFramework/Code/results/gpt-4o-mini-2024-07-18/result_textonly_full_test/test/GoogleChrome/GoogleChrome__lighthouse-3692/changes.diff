@@ -1,0 +1,12 @@
+diff --git a/lighthouse-core/report/v2/report-generator.js b/lighthouse-core/report/v2/report-generator.js
+index 0784bf9..2b9ff1b 100644
+--- a/lighthouse-core/report/v2/report-generator.js
++++ b/lighthouse-core/report/v2/report-generator.js
+@@ -116,6 +116,7 @@ class ReportGeneratorV2 {
+    * @return {string}
+    */
+   generateReportHtml(reportAsJson) {
++    const warningMessage = '<div class="warning">Warning: Performance numbers may vary when using headless Chrome.</div>';
+     const sanitizedJson = JSON.stringify(reportAsJson)
+       .replace(/</g, '\\u003c') // replaces opening script tags
+       .replace(/\u2028/g, '\\u2028') // replaces line separators ()

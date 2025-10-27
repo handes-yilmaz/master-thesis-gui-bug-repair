@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior",
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape",
+            "lib/features/copy-paste/BpmnCopyPaste.js//resolveReferences",
+            "lib/features/copy-paste/BpmnCopyPaste.js//copyProperties"
+        ],
+        "explanation": "1. **DropOnFlowBehavior.js**: The `DropOnFlowBehavior` class and its function `insertShape` are directly involved in handling the repositioning and connection of shapes when they are dropped onto a flow. The logic here is crucial for determining how shapes are connected after being pasted, which aligns with the issue described in the bug report.\n\n2. **BpmnCopyPaste.js**: The `BpmnCopyPaste` class is responsible for handling the copying and pasting of BPMN elements. The `resolveReferences` function is crucial because it resolves how elements are linked after being pasted, which can affect the unexpected connections. Similarly, `copyProperties` is involved in copying attributes that might influence how connections are handled post-paste. Changes or issues in these functionalities can lead to the unexpected behavior observed in the bug scenario.",
+        "bug_scenario": "The bug scenario involves copying multiple tasks and pasting them onto a sequence flow, which results in unexpected connections between the shapes. The expected behavior is that the flow either does not connect the pasted shapes at all or connects them in a logical manner."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//DropOnFlowBehavior",
+            "lib/features/copy-paste/BpmnCopyPaste.js//BpmnCopyPaste"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js//insertShape"
+        ],
+        "explanation": "The class 'DropOnFlowBehavior' in 'lib/features/modeling/behavior/DropOnFlowBehavior.js' is responsible for handling the behavior of shapes being dropped onto flows. This class includes the function 'insertShape', which is specifically designed to manage the insertion of shapes into a sequence flow and ensure connections are made correctly. The logic within 'insertShape', such as calculating intersections and reconnecting elements, directly pertains to the issue described in the bug report. Therefore, it is likely that an error or oversight in this function's logic is causing the unexpected connections.\n\nThe class 'BpmnCopyPaste' in 'lib/features/copy-paste/BpmnCopyPaste.js' handles the copying and pasting of elements within the BPMN model. This class is relevant because the bug involves copying and pasting tasks, which suggests that the issue might also involve how elements are duplicated and their properties are transferred. Errors in handling the properties and connections during the paste operation could contribute to the unexpected behavior observed.",
+        "bug_scenario": "The bug occurs when copying and pasting multiple shapes onto a sequence flow in a BPMN diagram. Instead of connecting the shapes in a logical manner, unexpected connections are made, or the intended behavior does not initiate. The bug report includes an animated GIF showing the issue, where two tasks are copied and pasted onto a sequence flow, resulting in incorrect connections."
+    }
+}

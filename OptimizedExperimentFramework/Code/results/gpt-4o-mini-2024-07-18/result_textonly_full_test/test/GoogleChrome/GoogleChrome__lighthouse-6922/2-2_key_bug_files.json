@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/connections/connection.js",
+            "lighthouse-core/gather/gatherers/anchor-elements.js",
+            "lighthouse-core/gather/gatherers/html-without-javascript.js"
+        ],
+        "explanation": "The selected files are crucial for addressing the bug because: 1. 'connection.js' is responsible for managing the connection to the browser and sending commands, which is essential for implementing target discovery for OOPIFs. 2. 'anchor-elements.js' gathers information about anchor elements on the page, which may need to be adjusted to include those in iframes. 3. 'html-without-javascript.js' retrieves the HTML content without executing JavaScript, which is relevant for understanding how iframes are rendered and may need to be modified to include iframe content.",
+        "bug_scenario": "The bug scenario involves Lighthouse not being able to handle OOPIFs (Out-of-Process IFrames), which means it cannot analyze requests from iframes. The user observed that Chrome DevTools uses a websocket connection to discover targets and send messages to enable network tracking for these targets, but Lighthouse does not seem to implement this functionality, leading to the question of whether it can only analyze requests from the main frame."
+    }
+}

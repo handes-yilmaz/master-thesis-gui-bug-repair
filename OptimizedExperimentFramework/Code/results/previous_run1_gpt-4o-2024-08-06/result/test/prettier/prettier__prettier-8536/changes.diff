@@ -1,0 +1,14 @@
+diff --git a/src/language-js/printer-estree.js b/src/language-js/printer-estree.js
+index 2285663dd..9d2181c82 100644
+--- a/src/language-js/printer-estree.js
++++ b/src/language-js/printer-estree.js
+@@ -459,7 +459,8 @@ function printPathNoParens(path, options, print, args) {
+               options.originalText,
+               childPath.getValue(),
+               options.locEnd
+-            )
++            ) &&
++            !path.getNextSiblingNode()
+           ) {
+             parts.push(hardline);
+           }

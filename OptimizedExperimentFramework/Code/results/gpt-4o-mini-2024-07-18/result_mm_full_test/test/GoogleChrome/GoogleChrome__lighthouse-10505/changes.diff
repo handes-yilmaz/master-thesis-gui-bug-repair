@@ -1,0 +1,22 @@
+diff --git a/lighthouse-core/computed/metrics/first-cpu-idle.js b/lighthouse-core/computed/metrics/first-cpu-idle.js
+index 73a9f0d..a6b5fec 100644
+--- a/lighthouse-core/computed/metrics/first-cpu-idle.js
++++ b/lighthouse-core/computed/metrics/first-cpu-idle.js
+@@ -144,7 +144,7 @@ class FirstCPUIdle extends ComputedMetric {
+       const windowEnd = windowStart + windowSize;
+ 
+       // Check that we have a long enough trace
+-      if (windowEnd > traceEnd) {
++      if (windowEnd > traceEnd || longTasks.length === 0) {
+         throw new LHError(LHError.errors.NO_FCPUI_IDLE_PERIOD);
+       }
+ 
+@@ -155,7 +155,7 @@ class FirstCPUIdle extends ComputedMetric {
+       }
+ 
+       const taskClusters = FirstCPUIdle.getTaskClustersInWindow(longTasks, i + 1, windowEnd);
+-      const hasBadTaskClusters = taskClusters.some(isBadCluster);
++      const hasBadTaskClusters = taskClusters.some(isBadCluster) || taskClusters.length === 0;
+ 
+       if (!hasBadTaskClusters) {
+         return windowStart;

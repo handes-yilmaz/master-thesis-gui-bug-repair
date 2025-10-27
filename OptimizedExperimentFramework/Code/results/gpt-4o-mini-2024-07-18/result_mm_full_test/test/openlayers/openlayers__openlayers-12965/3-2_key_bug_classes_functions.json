@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//createRenderer",
+            "src/ol/layer/WebGLTile.js//updateStyleVariables",
+            "src/ol/renderer/webgl/TileLayer.js//renderFrame"
+        ],
+        "explanation": "The WebGLTileLayer class is central to the implementation of WebGL TileLayers, which are directly related to the issue of context management. The createRenderer function is responsible for creating the renderer for the layer, which involves setting up the WebGL context. The updateStyleVariables function allows for dynamic updates to the layer's style, which could potentially be optimized to reduce the number of contexts used. The renderFrame function in the TileLayer renderer is crucial as it handles the rendering process, and any changes to how rendering is managed could help in sharing contexts among layers.",
+        "bug_scenario": "The application is limited to a maximum of 16 WebGL contexts due to browser restrictions. Each WebGL TileLayer currently requires its own context, which can lead to issues when trying to render multiple layers with different dimensions and positions. This results in older contexts being removed, causing the application to misbehave or break."
+    }
+}

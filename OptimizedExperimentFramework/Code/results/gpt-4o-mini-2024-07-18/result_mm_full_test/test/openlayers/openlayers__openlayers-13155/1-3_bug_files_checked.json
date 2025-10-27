@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/source/DataTile.js",
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/webgl/TileTexture.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "The files listed are related to the bug because they directly involve the rendering of tiles in a WebGL context and the handling of image smoothing settings. `WebGLTile.js` is responsible for the WebGL tile layer implementation, where the rendering settings can be applied. `TileTexture.js` handles texture parameters, including the filtering methods like `gl.NEAREST` and `gl.LINEAR`, which need to be modified according to the `imageSmoothing` setting. The `DataTile.js` and `GeoTIFF.js` files are important because they define the data sources that may require implementing the same smoothing settings as the `TileImage`. Lastly, `TileLayer.js` in the render/webgl directory is where the rendering logic is defined and needs to be reviewed to ensure it respects the new smoothing settings.",
+        "bug_scenario": "The bug occurs when using the WebGLTile renderer to display a Sea Level example. When zoomed in, pixelation is observed along the sea's edge due to the improper application of the `imageSmoothing` setting. This issue leads to visual distortion, creating thin lines of 'sea' that become noticeable at certain zoom levels and positions, particularly at 3107 meters. The report suggests that the renderer should support the `imageSmoothing: false` setting to avoid distortion, which is currently only implemented in `TileImage` sources."
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/format/reveal/format-reveal.ts//revealHtmlPostprocessor",
+            "src/format/reveal/format-reveal.ts//applyStretch",
+            "src/format/reveal/format-reveal-plugin.ts//revealPluginExtras"
+        ],
+        "bug_functions": [
+            "src/core/handlers/embed.ts//embedHandler",
+            "src/core/handlers/embed.ts//kHandlers.handle",
+            "src/format/reveal/format-reveal.ts//revealjsFormat"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the rendering and processing of images and links in the RevealJS format. The 'revealHtmlPostprocessor' function is responsible for post-processing HTML content, which likely includes handling how images and links are rendered. The 'applyStretch' function may be involved in adjusting the layout of images, which could affect how links are processed. The 'revealPluginExtras' function deals with additional configurations for plugins, which might include link handling. The 'embedHandler' and 'kHandlers.handle' functions are crucial as they manage how embedded content, including images with links, is processed, and the 'revealjsFormat' function sets up the overall rendering format for RevealJS presentations. Fixing the bug will likely require modifications in these areas to ensure that standalone images retain their hyperlinks.",
+        "bug_scenario": "The bug occurs when a standalone image in a RevealJS presentation does not render its hyperlink correctly. When the image is placed alone on a slide, the hyperlink is ignored, while it works when the image is embedded within text. This suggests an issue with the rendering logic for standalone images."
+    }
+}

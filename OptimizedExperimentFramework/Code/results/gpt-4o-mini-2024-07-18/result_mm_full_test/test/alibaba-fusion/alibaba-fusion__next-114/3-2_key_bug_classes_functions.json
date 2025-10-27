@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/number-picker/index.jsx//NumberPicker"
+        ],
+        "bug_functions": [
+            "src/number-picker/index.jsx//getCurrentValidValue",
+            "src/number-picker/index.jsx//setValue",
+            "src/number-picker/index.jsx//upStep",
+            "src/number-picker/index.jsx//downStep"
+        ],
+        "explanation": "The NumberPicker class is directly related to the bug as it encapsulates the logic for handling number input and display. The getCurrentValidValue function is crucial because it processes the input value and ensures it adheres to the defined precision, which is where the floating-point issue manifests. The setValue function is responsible for updating the component's state with the new value, and it needs to handle the precision correctly to avoid displaying incorrect results. The upStep and downStep functions manage the increment and decrement operations, respectively, and they also need to ensure that the results are rounded or formatted correctly to prevent floating-point inaccuracies.",
+        "bug_scenario": "The bug occurs in the NumberPicker component when using floating-point arithmetic in JavaScript. Specifically, when the user attempts to add 0.01 to 4.02, the result displayed is 4.029999999999999 instead of the expected 4.03. This issue arises due to the inherent imprecision of floating-point numbers in JavaScript, particularly in the Safari browser."
+    }
+}

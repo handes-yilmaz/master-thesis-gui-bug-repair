@@ -1,0 +1,13 @@
+diff --git a/src/tree/view/tree.jsx b/src/tree/view/tree.jsx
+index 6f2789e5c..deb2dec16 100644
+--- a/src/tree/view/tree.jsx
++++ b/src/tree/view/tree.jsx
+@@ -144,7 +144,7 @@ const preHandleData = (dataSource, props) => {
+     const drill = (data = [], level = 1, prefix = '0', parent) =>
+         data.map((item, index) => {
+             // 为了兼容之前的实现 保留非法节点
+-            if (item.illegalFlag) {
++            if (!item || typeof item !== 'object' || item.illegalFlag) {
+                 return item;
+             }
+ 

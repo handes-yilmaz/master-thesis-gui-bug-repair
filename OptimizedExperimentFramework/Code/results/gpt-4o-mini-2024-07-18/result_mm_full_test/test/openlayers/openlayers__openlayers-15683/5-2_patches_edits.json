@@ -1,0 +1,70 @@
+{
+    "1/1": {
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "const width = Math.round((getWidth(extent) / resolution) * pixelRatio);",
+                    "const height = Math.round((getHeight(extent) / resolution) * pixelRatio);"
+                ],
+                "REPLACE": [
+                    "    const width = Math.round((getWidth(extent) / resolution) * pixelRatio);",
+                    "    const height = Math.round((getHeight(extent) / resolution) * pixelRatio);",
+                    "    ",
+                    "    // Adjust the width and height based on the rotation",
+                    "    const adjustedWidth = width * Math.abs(Math.cos(rotation)) + height * Math.abs(Math.sin(rotation));",
+                    "    const adjustedHeight = height * Math.abs(Math.cos(rotation)) + width * Math.abs(Math.sin(rotation));"
+                ]
+            }
+        ],
+        "src/ol/render/canvas/Builder.js": [
+            {
+                "SEARCH": [
+                    "this.instructions.push([\\n",
+                    "CanvasInstruction.CUSTOM,\\n",
+                    "builderBegin,\\n",
+                    "builderEnds,\\n",
+                    "geometry,\\n",
+                    "renderer,\\n",
+                    "inflateCoordinatesArray,\\n",
+                    "index,\\n",
+                    "]);"
+                ],
+                "REPLACE": [
+                    "    this.instructions.push([\\n",
+                    "      CanvasInstruction.CUSTOM,\\n",
+                    "      builderBegin,\\n",
+                    "      builderEnds,\\n",
+                    "      geometry,\\n",
+                    "      renderer,\\n",
+                    "      inflateCoordinatesArray,\\n",
+                    "      index,\\n",
+                    "    ]);",
+                    "    ",
+                    "    // Ensure that the geometry is transformed correctly based on the current rotation",
+                    "    if (geometry.getType() === 'Polygon' || geometry.getType() === 'MultiPolygon') {",
+                    "      // Apply rotation transformation to the geometry",
+                    "      applyRotationTransformation(geometry, rotation);",
+                    "    }"
+                ]
+            }
+        ],
+        "src/ol/render/canvas/Executor.js": [
+            {
+                "SEARCH": [
+                    "this.viewRotation = viewRotation;\\n"
+                ],
+                "REPLACE": [
+                    "    this.viewRotation_ = viewRotation;\\n",
+                    "    ",
+                    "    // Adjust the rendering based on the view rotation",
+                    "    if (this.viewRotation_ !== 0) {",
+                    "      context.save();",
+                    "      context.translate(scaledCanvasSize[0] / 2, scaledCanvasSize[1] / 2);",
+                    "      context.rotate(-this.viewRotation_);",
+                    "      context.translate(-scaledCanvasSize[0] / 2, -scaledCanvasSize[1] / 2);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

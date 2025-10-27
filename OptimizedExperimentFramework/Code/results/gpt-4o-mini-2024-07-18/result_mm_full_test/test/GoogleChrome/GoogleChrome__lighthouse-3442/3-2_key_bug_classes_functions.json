@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/v2/report-generator.js//ReportGeneratorV2",
+            "lighthouse-core/report/v2/renderer/report-renderer.js//ReportRenderer",
+            "lighthouse-core/report/v2/renderer/details-renderer.js//DetailsRenderer"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/v2/report-generator.js//generateReportJson",
+            "lighthouse-core/report/v2/report-generator.js//generateReportHtml",
+            "lighthouse-core/report/v2/renderer/report-renderer.js//renderReport",
+            "lighthouse-core/report/v2/renderer/report-renderer.js//_renderReportHeader"
+        ],
+        "explanation": "The classes and functions identified are crucial for generating and rendering the report. The 'ReportGeneratorV2' class is responsible for creating the report JSON and HTML, which are essential for displaying the report. The 'generateReportJson' function computes the report data, and if it fails to include the 'generatedTime', it will lead to errors during rendering. The 'ReportRenderer' class handles the rendering of the report, and the '_renderReportHeader' function specifically accesses the 'generatedTime' property. If this property is undefined, it will cause the rendering to fail, resulting in a blank report page.",
+        "bug_scenario": "The report page is blank, and the console shows errors indicating that the report cannot be generated due to an undefined property 'generatedTime'. This suggests that the report data is not being properly populated or passed to the rendering functions."
+    }
+}

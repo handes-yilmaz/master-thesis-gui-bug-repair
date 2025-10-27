@@ -1,0 +1,24 @@
+diff --git a/components/prism-shell-session.js b/components/prism-shell-session.js
+index f16b1b25..98a7cf54 100644
+--- a/components/prism-shell-session.js
++++ b/components/prism-shell-session.js
+@@ -6,7 +6,10 @@
+ 	var strings = [
+ 		// normal string
+ 		// 1 capturing group
+-		/(["'])(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|(?!\1)[^\\`$])*\1/.source,
++\t\t\'output\': {
++\t\t\tpattern: /(?:^|\\n)(?![$#])(?:[^\\r\\n]|\\r?(?:\\n|$))+/,
++\t\t\talias: \'output\'
++\t\t}
+ 
+ 		// here doc
+ 		// 2 capturing groups
+diff --git a/components/prism-shell-session.min.js b/components/prism-shell-session.min.js
+index 98465f24..44c1f0dd 100644
+--- a/components/prism-shell-session.min.js
++++ b/components/prism-shell-session.min.js
+@@ -1 +1 @@
+-!function(s){var n=["([\"'])(?:\\\\[^]|\\$\\([^)]+\\)|\\$(?!\\()|`[^`]+`|(?!\\1)[^\\\\`$])*\\1","<<-?\\s*([\"']?)(\\w+)\\2\\s[^]*?[\r\n]\\3"].join("|");s.languages["shell-session"]={command:{pattern:RegExp('^(?:[^\\s@:$#*!/\\\\]+@[^\\s@:$#*!/\\\\]+(?::[^\0-\\x1F$#*?"<>:;|]+)?)?[$#](?:[^\\\\\r\n\'"<]|\\\\.|<<str>>)+'.replace(/<<str>>/g,function(){return n}),"m"),greedy:!0,inside:{info:{pattern:/^[^#$]+/,alias:"punctuation",inside:{path:{pattern:/(:)[\s\S]+/,lookbehind:!0},user:/^[^:]+/,punctuation:/:/}},bash:{pattern:/(^[$#]\s*)\S[\s\S]*/,lookbehind:!0,alias:"language-bash",inside:s.languages.bash},"shell-symbol":{pattern:/^[$#]/,alias:"important"}}},output:/.(?:.*(?:[\r\n]|.$))*/},s.languages["sh-session"]=s.languages.shellsession=s.languages["shell-session"]}(Prism);
+\ No newline at end of file
++},"output":{pattern:/(?:^|\\n)(?![$#])(?:[^\\r\\n]|\\r?(?:\\n|$))+/,alias:"output"}},s.languages["sh-session"]=s.languages.shellsession=s.languages["shell-session"]}(Prism);

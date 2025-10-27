@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/Raster.js",
+            "src/ol/worker/webgl.js",
+            "src/ol/render/canvas/Builder.js"
+        ],
+        "explanation": "The 'Raster.js' file is likely where the raster source interacts with the creation of web workers. Modifications here could ensure that workers are tracked and terminated properly. The 'webgl.js' file might contain relevant logic for managing web workers, and changes here could help in implementing proper termination. The 'Builder.js' file is included as it might deal with rendering tasks that could be related to when and how these workers are created, thus potentially requiring adjustments to ensure proper resource management.",
+        "bug_scenario": "The bug scenario involves a memory leak caused by raster web workers that are instantiated but not terminated, leading to high memory usage. The bug can be observed by creating multiple raster sources and checking the memory tab in Chrome dev tools to see that the workers persist even after their intended use."
+    }
+}

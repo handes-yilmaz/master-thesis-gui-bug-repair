@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/font-display.js",
+            "lighthouse-core/gather/gatherers/css-usage.js",
+            "lighthouse-core/config/budget.js",
+            "lighthouse-core/config/config.js"
+        ],
+        "explanation": "These files are related to the bug for the following reasons: 'font-display.js' contains the audit logic for checking font display properties and is directly responsible for handling the audit warnings. 'css-usage.js' is responsible for gathering and analyzing CSS usage, which is critical for understanding why certain fonts are not being referenced correctly. The 'budget.js' and 'config.js' files may define thresholds or configurations that impact the evaluation of font display properties and related audits. Changes in these files may help ensure that the appropriate stylesheets are referenced and that the audit warnings are resolved.",
+        "bug_scenario": "The bug scenario involves audit warnings related to the 'font-display' property for various fonts when using Lighthouse to analyze a web page. The issue arises because the 'font-display' value for certain fonts cannot be checked automatically, indicating that the CSSUsage artifact does not reference the required stylesheets for these fonts. This was identified during a migration to the flatten protocol, suggesting that the issue might be pre-existing."
+    }
+}

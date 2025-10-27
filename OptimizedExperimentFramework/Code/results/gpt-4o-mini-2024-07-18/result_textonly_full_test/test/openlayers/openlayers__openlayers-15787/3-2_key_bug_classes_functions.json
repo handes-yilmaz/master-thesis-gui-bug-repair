@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer",
+            "src/ol/webgl/PaletteTexture.js//PaletteTexture"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//setStyle",
+            "src/ol/layer/WebGLTile.js//updateStyleVariables",
+            "src/ol/renderer/webgl/TileLayer.js//renderTile",
+            "src/ol/renderer/webgl/TileLayer.js//beforeTilesRender",
+            "src/ol/webgl/PaletteTexture.js//getTexture"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the rendering and management of WebGL textures and layers. The `WebGLTileLayer` class is responsible for the overall layer behavior, including style management through `setStyle` and `updateStyleVariables`, which are crucial for applying the correct palette style. The `WebGLTileLayerRenderer` class manages the rendering process, specifically the `renderTile` and `beforeTilesRender` functions, which are essential for ensuring that the tiles are rendered correctly in the WebGL context. The `PaletteTexture` class is directly involved in managing the texture data used for rendering the palette styles, and its `getTexture` function is critical for retrieving the correct texture for rendering. Any issues in these areas could lead to the observed rendering problems after layer removal and addition.",
+        "bug_scenario": "The WebGLTileLayer with a palette style fails to render correctly after being removed and added back to the map, resulting in a black layer. This issue is indicated by WebGL context warnings in the console, suggesting that the texture is from a different or lost WebGL context."
+    }
+}

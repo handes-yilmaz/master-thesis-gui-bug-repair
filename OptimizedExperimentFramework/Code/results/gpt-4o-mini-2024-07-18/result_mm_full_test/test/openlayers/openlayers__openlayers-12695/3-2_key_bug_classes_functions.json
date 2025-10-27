@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Icon//Icon",
+            "src/ol/format/KML//KML",
+            "src/ol/renderer/canvas/VectorLayer//CanvasVectorLayerRenderer"
+        ],
+        "bug_functions": [
+            "src/ol/style/Icon//getAnchor",
+            "src/ol/style/Icon//setAnchor",
+            "src/ol/format/KML//readPlacemark_",
+            "src/ol/renderer/canvas/VectorLayer//renderFrame"
+        ],
+        "explanation": "The 'Icon' class is crucial because it defines how icons are styled and positioned, including their anchor points. The 'getAnchor' and 'setAnchor' functions are directly related to the positioning issue described in the bug report, as they manage the anchor point of the icons. The 'KML' class is responsible for reading and interpreting KML files, including the placement of symbols, making the 'readPlacemark_' function relevant for ensuring that the symbols are processed correctly. Lastly, the 'CanvasVectorLayerRenderer' class and its 'renderFrame' function are involved in rendering the vector layers, which includes the KML symbols, thus affecting their display on the map.",
+        "bug_scenario": "The KML symbols are not aligned correctly, appearing anchored at the center-bottom instead of the intended center point. This misalignment is particularly noticeable with the star symbols in the provided KML layer, which should be centered on the red circles but are not. Additionally, the symbols appear larger than expected compared to their representation in Google Earth."
+    }
+}

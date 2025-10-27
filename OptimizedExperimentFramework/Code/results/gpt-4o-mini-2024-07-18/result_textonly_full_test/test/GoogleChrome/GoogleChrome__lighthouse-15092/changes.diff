@@ -1,0 +1,17 @@
+diff --git a/flow-report/src/wrappers/report.tsx b/flow-report/src/wrappers/report.tsx
+index 8c6e86c..a67aa18 100644
+--- a/flow-report/src/wrappers/report.tsx
++++ b/flow-report/src/wrappers/report.tsx
+@@ -24,7 +24,11 @@ function convertAnchor(link: HTMLAnchorElement, index: number) {
+   newLink.onclick = e => {
+     e.preventDefault();
+     const el = document.getElementById(nodeId);
+-    if (el) el.scrollIntoView();
++    if (el) {
++        el.scrollIntoView();
++    } else {
++        console.warn(`Element with ID ${nodeId} not found.`);
++    }
+   };
+   link.replaceWith(newLink);
+ }

@@ -1,0 +1,38 @@
+diff --git a/lighthouse-core/audits/metrics/first-contentful-paint.js b/lighthouse-core/audits/metrics/first-contentful-paint.js
+index cbc0dc4..c62f318 100644
+--- a/lighthouse-core/audits/metrics/first-contentful-paint.js
++++ b/lighthouse-core/audits/metrics/first-contentful-paint.js
+@@ -63,6 +63,14 @@ class FirstContentfulPaint extends Audit {
+   static async audit(artifacts, context) {
+     const trace = artifacts.traces[Audit.DEFAULT_PASS];
+     const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
++    if (!trace || !devtoolsLog) {
++      return {
++        score: 0,
++        numericValue: 0,
++        numericUnit: 'millisecond',
++        displayValue: 'No FCP data available',
++      };
++    }
+     const metricComputationData = {trace, devtoolsLog, settings: context.settings};
+     const metricResult = await ComputedFcp.request(metricComputationData, context);
+     const isDesktop = artifacts.TestedAsMobileDevice === false;
+diff --git a/lighthouse-core/audits/metrics/speed-index.js b/lighthouse-core/audits/metrics/speed-index.js
+index df5306f..acd14f7 100644
+--- a/lighthouse-core/audits/metrics/speed-index.js
++++ b/lighthouse-core/audits/metrics/speed-index.js
+@@ -65,6 +65,14 @@ class SpeedIndex extends Audit {
+   static async audit(artifacts, context) {
+     const trace = artifacts.traces[Audit.DEFAULT_PASS];
+     const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
++    if (!trace || !devtoolsLog) {
++      return {
++        score: 0,
++        numericValue: 0,
++        numericUnit: 'millisecond',
++        displayValue: 'No Speed Index data available',
++      };
++    }
+     const metricComputationData = {trace, devtoolsLog, settings: context.settings};
+     const metricResult = await ComputedSi.request(metricComputationData, context);
+     const isDesktop = artifacts.TestedAsMobileDevice === false;

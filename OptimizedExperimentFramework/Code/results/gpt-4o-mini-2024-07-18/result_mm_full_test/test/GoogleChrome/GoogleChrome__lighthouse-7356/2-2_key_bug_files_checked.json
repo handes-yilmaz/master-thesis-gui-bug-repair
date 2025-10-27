@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/gatherers/dobetterweb/tags-blocking-first-paint.js",
+            "lighthouse-core/audits/metrics/first-contentful-paint.js",
+            "lighthouse-core/computed/load-simulator.js"
+        ],
+        "explanation": "These files are key to addressing the bug because they directly relate to the rendering process and the measurement of performance metrics like First Contentful Paint (FCP). The 'tags-blocking-first-paint.js' file identifies elements that may block the first paint, which is crucial for optimizing load times. The 'first-contentful-paint.js' file contains the logic for calculating the FCP metric, which is central to the reported issue. Lastly, 'load-simulator.js' is involved in simulating load conditions, which can help in understanding and mitigating the timeout issues.",
+        "bug_scenario": "The bug scenario involves increased error rates on the LR backend, particularly related to a 60-second timeout during rendering. The provided images illustrate spikes in latency and render error rates, indicating that the loadPage timing has significantly increased, which correlates with the observed errors. The issue seems to stem from changes in the Lighthouse code that affect how long the system waits for the First Contentful Paint (FCP), leading to more instances of the NO_FCP error."
+    }
+}

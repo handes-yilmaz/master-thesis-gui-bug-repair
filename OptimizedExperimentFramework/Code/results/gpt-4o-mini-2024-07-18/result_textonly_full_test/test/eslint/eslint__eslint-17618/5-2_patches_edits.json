@@ -1,0 +1,19 @@
+{
+    "1/1": {
+        "lib/linter/code-path-analysis/code-path-analyzer.js": [
+            {
+                "SEARCH": [
+                    "if (parent.operator === \"&&\") {",
+                    "state.forkBypassPath(); // Add a bypass path for short-circuiting",
+                    "}"
+                ],
+                "REPLACE": [
+                    "                if (parent.operator === \"&&\") {",
+                    "                    state.forkBypassPath(); // Add a bypass path for short-circuiting",
+                    "                    state.makeLogicalRight(); // Ensure logical right is set",
+                    "                }"
+                ]
+            }
+        ]
+    }
+}

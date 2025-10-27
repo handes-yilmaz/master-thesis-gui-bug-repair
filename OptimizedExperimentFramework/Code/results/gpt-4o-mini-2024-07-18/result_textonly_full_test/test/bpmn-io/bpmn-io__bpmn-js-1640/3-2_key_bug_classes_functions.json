@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/BpmnUpdater",
+            "lib/features/modeling/BpmnFactory",
+            "lib/features/replace/BpmnReplace"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/BpmnUpdater//updateSemanticParent",
+            "lib/features/modeling/BpmnUpdater//updateConnection",
+            "lib/features/replace/BpmnReplace//replaceElement"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the updating and replacing of BPMN elements. The BpmnUpdater class is responsible for updating the BPMN model when changes occur, which is crucial when switching between multi-instance types. The updateSemanticParent function specifically deals with ensuring that the properties of elements are correctly maintained when their parent context changes. The BpmnReplace class and its replaceElement function are involved in replacing BPMN elements, which is relevant when changing the type of multi-instance. If these functions do not correctly handle the preservation of properties during such transitions, it could lead to the loss of multi-instance properties as described in the bug report.",
+        "bug_scenario": "The bug scenario involves a user creating a sub-process with parallel multi-instance properties, then changing it to a sequential multi-instance, which results in the loss of the multi-instance properties. This is visually represented in the provided GIF, showing the transition and the unexpected behavior of the properties disappearing."
+    }
+}

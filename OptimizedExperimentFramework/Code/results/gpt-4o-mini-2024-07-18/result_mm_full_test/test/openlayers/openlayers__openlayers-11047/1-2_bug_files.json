@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/Raster.js",
+            "src/ol/worker/webgl.js",
+            "src/ol/render/canvas/Layer.js"
+        ],
+        "explanation": "These files are related to the creation and management of web workers and raster sources. The `Raster.js` file is likely responsible for handling raster sources and their associated workers, while `webgl.js` may contain the implementation for web workers specific to WebGL rendering. The `Layer.js` within the canvas render folder may also deal with how layers interact with these workers, potentially impacting their termination. Fixing the memory leak will require ensuring that these workers are properly terminated when no longer needed.",
+        "bug_scenario": "The raster source creates web workers that are not terminated properly, leading to memory leaks and high memory usage when users interact with the application by changing input values multiple times."
+    }
+}

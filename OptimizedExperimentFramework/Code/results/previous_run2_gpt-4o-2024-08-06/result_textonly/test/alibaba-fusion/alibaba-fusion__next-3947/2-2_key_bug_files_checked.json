@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/form/form.jsx",
+            "src/form/enhance.jsx",
+            "src/form/item.jsx"
+        ],
+        "explanation": "1. **src/form/form.jsx**: This file contains the main Form component where the `useLabelForErrorMessage` API is defined and used. The issue is related to how error messages are labeled, and this file is central to implementing any new API like `errorMessageLabel` to address the problem.\n\n2. **src/form/enhance.jsx**: This file includes functions related to form validation rules, such as `getRules`, which uses the `labelForErrorMessage` parameter. Modifications here would be necessary to incorporate the new `errorMessageLabel` API to ensure it works in conjunction with existing validation logic.\n\n3. **src/form/item.jsx**: This file handles individual form items and their properties, including validation and error message display. Since the bug involves how labels are used for error messages, changes here would be needed to support the new API and ensure it integrates with the form items correctly.",
+        "bug_scenario": "The bug scenario involves a form component where the current API, `useLabelForErrorMessage`, does not work effectively when additional DOM structures are added for styling purposes. This results in the API not functioning as expected. The request is to introduce a new API, `errorMessageLabel`, to work alongside `useLabelForErrorMessage` to ensure proper error message labeling even when the DOM structure is altered."
+    }
+}

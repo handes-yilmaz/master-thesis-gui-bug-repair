@@ -1,0 +1,33 @@
+diff --git a/src/ol/layer/Group.js b/src/ol/layer/Group.js
+index 9f3ae95..01f1d47 100644
+--- a/src/ol/layer/Group.js
++++ b/src/ol/layer/Group.js
+@@ -274,6 +274,11 @@ class LayerGroup extends BaseLayer {
+     }
+ 
+     this.set(Property.LAYERS, layers);
++    layers.forEach(layer => {
++        if (layer instanceof WebGLTileLayer) {
++            layer.setVisible(this.getVisible());
++        }
++    });
+   }
+ 
+   /**
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 150fc1a..799fd67 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -380,7 +380,11 @@ class WebGLTileLayer extends BaseTileLayer {
+   }
+ 
+   /**
+-   * @return {import("../source/State.js").default} Source state.
++    /** @return {import("../source/State.js").default} Source state. */
++    setVisible(visible) {
++        this.visible = visible;
++        this.changed(); // Notify that the layer has changed
++    }
+    */
+   getSourceState() {
+     const source = this.getRenderSource();

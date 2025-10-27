@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-yaml.js//Prism.languages.yaml",
+            "components/prism-yaml.min.js//Prism.languages.yaml"
+        ],
+        "bug_functions": [],
+        "explanation": "The classes 'Prism.languages.yaml' in both 'components/prism-yaml.js' and 'components/prism-yaml.min.js' are responsible for defining the syntax highlighting rules for YAML. The issue with trailing comments not being highlighted correctly is likely due to the regex patterns defined in these classes. Specifically, the pattern for 'string' may not account for comments that appear on the same line, which is crucial for proper syntax highlighting. Therefore, these classes are directly related to the bug as they contain the logic that needs to be modified to fix the issue.",
+        "bug_scenario": "The bug scenario involves YAML string highlighting failing when a string contains a comment on the same line. This is evident from the provided HTML example where the YAML string 'hello: - \"world\" # test' does not get highlighted correctly due to the presence of the trailing comment."
+    }
+}

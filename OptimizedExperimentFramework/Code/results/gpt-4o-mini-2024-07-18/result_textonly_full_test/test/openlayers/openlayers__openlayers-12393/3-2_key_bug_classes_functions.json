@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/ImageStatic.js//Static"
+        ],
+        "bug_functions": [
+            "src/ol/source/ImageStatic.js//handleImageChange"
+        ],
+        "explanation": "The `Static` class in `ImageStatic.js` is responsible for handling static images, including their loading and rendering. The `handleImageChange` function is crucial as it processes the image once it is loaded, including the calculations for scaling the image to fit the specified extent. The rounding errors mentioned in the bug report are likely occurring in this function, particularly where `Math.ceil` is used to determine the target width for the image. Modifying this function to use a different rounding method could resolve the issue of image stretching.",
+        "bug_scenario": "The bug involves rounding errors when scaling a square image to fit a square tile extent in JavaScript. The use of `Math.ceil` in the calculations leads to unnecessary stretching of the image, which affects the visual quality. The expected behavior is to scale the image correctly without losing detail, potentially by rounding to the nearest pixel instead of using `Math.ceil`."
+    }
+}

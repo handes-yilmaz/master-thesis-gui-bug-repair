@@ -1,0 +1,22 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/user-timings.js": [
+            {
+                "SEARCH": [
+                    "return evt.name !== 'requestStart' &&",
+                    "evt.name !== 'navigationStart' &&",
+                    "evt.name !== 'paintNonDefaultBackgroundColor' &&",
+                    "evt.args.frame === undefined;"
+                ],
+                "REPLACE": [
+                    "      return evt.name !== 'requestStart' &&",
+                    "          evt.name !== 'navigationStart' &&",
+                    "          evt.name !== 'paintNonDefaultBackgroundColor' && ",
+                    "          evt.name !== 'goog_123_3_1_start' && // Exclude Google Ads timing marks",
+                    "          evt.name !== 'goog_123_3_1_end' &&   // Exclude Google Ads timing marks",
+                    "          evt.args.frame === undefined;"
+                ]
+            }
+        ]
+    }
+}

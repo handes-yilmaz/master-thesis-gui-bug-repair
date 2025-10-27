@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/render/canvas/hitdetect.js",
+            "src/ol/renderer/canvas/ImageLayer.js",
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/renderer/canvas/VectorImageLayer.js",
+            "src/ol/renderer/canvas/Layer.js",
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/style/Icon.js",
+            "src/ol/style/IconImage.js"
+        ],
+        "explanation": "These files are related to the rendering and hit detection of icons on the map. The 'hitdetect.js' file is crucial as it likely handles the logic for determining hit areas for rendered objects, which is directly related to the bug with hit detection failing when the icon scale is negative. The 'ImageLayer.js', 'VectorLayer.js', and 'VectorImageLayer.js' files are responsible for rendering images and vector graphics, which include the icons that are failing to appear correctly at the map's edge. The 'Icon.js' and 'IconImage.js' files define how icons are styled and rendered, impacting their visibility and interaction with user inputs.",
+        "bug_scenario": "The issue arises when an icon is rendered with a negative scale and zero rotation, causing the hit detection to fail, and the icon is not displayed correctly at the edge of the map. This results in the icon disappearing instead of being partially visible at the edge."
+    }
+}

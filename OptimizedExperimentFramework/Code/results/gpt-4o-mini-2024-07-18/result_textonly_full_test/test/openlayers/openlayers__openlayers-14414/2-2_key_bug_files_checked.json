@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/GeoTIFF.js",
+            "src/ol/source/Raster.js",
+            "src/ol/layer/WebGLTile.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: 1. **GeoTIFF.js**: This file handles the loading and processing of GeoTIFF images, which is essential for understanding how pixel data is read and manipulated. Any issues in reading the pixel values could lead to incorrect rendering. 2. **Raster.js**: This file is responsible for raster operations, including the floodRegion function that processes pixel data based on the user's input. If the operation is not correctly implemented, it could lead to the described behavior of pixels not updating correctly. 3. **WebGLTile.js**: This file manages the rendering of tiles using WebGL, which is crucial for visualizing the GeoTIFF data on the map. If there are issues in how the tiles are rendered or updated based on the level changes, it could directly affect the user's experience.",
+        "bug_scenario": "The user is experiencing issues with a Region Growing operation on a GeoTIFF file. When the user increases the level using a slider, pixels below the level turn white, but when the level is decreased, the pixels do not change as expected. Additionally, the R value of a pixel printed in the console is incorrect, indicating a potential issue with how pixel values are being processed or rendered."
+    }
+}

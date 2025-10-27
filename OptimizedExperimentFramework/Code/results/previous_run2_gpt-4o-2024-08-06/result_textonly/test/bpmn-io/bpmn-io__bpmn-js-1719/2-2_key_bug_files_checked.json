@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/LabelBehavior.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/behavior/SubProcessPlaneBehavior.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/LabelBehavior.js**: This file handles the behavior of labels in the BPMN model, including their creation, update, and deletion. The bug involves labels not being hidden when a sub-process is collapsed, which suggests that the logic for updating label visibility during state changes might be incorrect or missing.\n\n2. **lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js**: This file manages the behavior when elements, such as sub-processes, are toggled between expanded and collapsed states. The bug specifically involves the transition to a collapsed state, where labels should be hidden. This file likely contains the logic that needs to be adjusted to ensure labels are hidden when a sub-process is collapsed.\n\n3. **lib/features/modeling/behavior/SubProcessPlaneBehavior.js**: This file deals with the creation and management of planes for sub-processes, particularly when they are collapsed. Since the bug involves the visibility of elements within a collapsed sub-process, this file might contain relevant logic for managing the visibility of elements, including labels, when a sub-process is collapsed.",
+        "bug_scenario": "The bug scenario involves an issue with the visibility of labels when a sub-process is collapsed in a BPMN diagram. Specifically, after changing a sub-process to a collapsed state, the labels of the start, task, and end events inside the sub-process become visible and misaligned, with the start event label moving far outside its expected position. This issue occurs when clicking through the steps, although importing and exporting the diagram works correctly. The expected behavior is for the labels inside the sub-process to be hidden when it is collapsed."
+    }
+}

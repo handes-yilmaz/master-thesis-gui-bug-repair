@@ -1,0 +1,37 @@
+diff --git a/src/cascader/cascader.jsx b/src/cascader/cascader.jsx
+index 524f13cbe..b290e812b 100644
+--- a/src/cascader/cascader.jsx
++++ b/src/cascader/cascader.jsx
+@@ -102,7 +102,11 @@ export default class Cascader extends Component {
+          * 每列列表类名
+          */
+         listClassName: PropTypes.string,
+-        /**
++        /** 
++         * 是否显示标题信息
++         */
++        showTitle: PropTypes.bool,
++        /** 
+          * 每列列表项渲染函数
+          * @param {Object} data 数据
+          * @return {ReactNode} 列表项内容
+@@ -119,6 +123,7 @@ export default class Cascader extends Component {
+         filteredPaths: PropTypes.array,
+         filteredListStyle: PropTypes.object,
+         resultRender: PropTypes.func,
++        showTitle: true,
+     };
+ 
+     static defaultProps = {
+@@ -133,7 +138,10 @@ export default class Cascader extends Component {
+         multiple: false,
+         useVirtual: false,
+         checkStrictly: false,
+-        itemRender: item => item.label,
++        itemRender: item => {
++            const title = this.props.showTitle ? item.label : undefined;
++            return <span title={title}>{item.label}</span>;
++        },
+     };
+ 
+     constructor(props, context) {

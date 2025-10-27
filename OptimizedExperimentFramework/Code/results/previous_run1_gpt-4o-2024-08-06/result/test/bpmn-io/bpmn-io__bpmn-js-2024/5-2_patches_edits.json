@@ -1,0 +1,83 @@
+{
+    "1/1": {
+        "lib/draw/BpmnRenderer.js": [
+            {
+                "SEARCH": [
+                    "function drawRect(parentGfx, width, height, r, offset, attrs) {",
+                    "",
+                    "if (isObject(offset)) {",
+                    "attrs = offset;",
+                    "offset = 0;",
+                    "}",
+                    "",
+                    "offset = offset || 0;",
+                    "",
+                    "attrs = shapeStyle(attrs);",
+                    "",
+                    "var rect = svgCreate('rect', {",
+                    "x: offset,",
+                    "y: offset,",
+                    "width: width - offset * 2,",
+                    "height: height - offset * 2,",
+                    "rx: r,",
+                    "ry: r,",
+                    "...attrs",
+                    "});",
+                    "",
+                    "svgAppend(parentGfx, rect);",
+                    "",
+                    "return rect;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function drawRect(parentGfx, width, height, r, offset, attrs, isHorizontal = true) {",
+                    "",
+                    "  if (isObject(offset)) {",
+                    "    attrs = offset;",
+                    "    offset = 0;",
+                    "  }",
+                    "",
+                    "  offset = offset || 0;",
+                    "",
+                    "  attrs = shapeStyle(attrs);",
+                    "",
+                    "  var rect = svgCreate('rect', {",
+                    "    x: offset,",
+                    "    y: offset,",
+                    "    width: isHorizontal ? width - offset * 2 : height - offset * 2,",
+                    "    height: isHorizontal ? height - offset * 2 : width - offset * 2,",
+                    "    rx: r,",
+                    "    ry: r,",
+                    "    ...attrs",
+                    "  });",
+                    "",
+                    "  svgAppend(parentGfx, rect);",
+                    "",
+                    "  return rect;",
+                    "}"
+                ]
+            }
+        ],
+        "lib/features/modeling/behavior/IsHorizontalFix.js": [
+            {
+                "SEARCH": [
+                    "if (isAny(bo, elementTypesToUpdate) && !di.get('isHorizontal')) {",
+                    "",
+                    "// set attribute directly to avoid modeling#updateProperty side effects",
+                    "di.set('isHorizontal', true);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "if (isAny(bo, elementTypesToUpdate)) {",
+                    "  var isHorizontal = di.get('isHorizontal');",
+                    "  ",
+                    "  if (isHorizontal === undefined) {",
+                    "    // Default to true if not set",
+                    "    di.set('isHorizontal', true);",
+                    "  }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

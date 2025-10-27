@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/byte-efficiency/byte-efficiency-audit.js": [
+            {
+                "SEARCH": [
+                    "const savingsOnTTI = Math.max(",
+                    "Interactive.getLastLongTaskEndTime(simulationBeforeChanges.nodeTimings) -",
+                    "Interactive.getLastLongTaskEndTime(simulationAfterChanges.nodeTimings),",
+                    "0",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const savingsOnEnd = Math.max(",
+                    "      Interactive.getLastLongTaskEndTime(simulationBeforeChanges.nodeTimings) -",
+                    "        Interactive.getLastLongTaskEndTime(simulationAfterChanges.nodeTimings),",
+                    "      0",
+                    "    );",
+                    "",
+                    "    const savingsOnTTI = Math.max(",
+                    "      Interactive.getLastLongTaskEndTime(simulationBeforeChanges.nodeTimings) -",
+                    "        Interactive.getLastLongTaskEndTime(simulationAfterChanges.nodeTimings),",
+                    "      savingsOnEnd",
+                    "    );"
+                ]
+            }
+        ]
+    }
+}

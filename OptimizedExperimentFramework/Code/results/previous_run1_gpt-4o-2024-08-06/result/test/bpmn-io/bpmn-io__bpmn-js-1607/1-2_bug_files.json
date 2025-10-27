@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_files": [
+            "features/modeling/behavior/GroupBehavior.js",
+            "features/modeling/behavior/util/CategoryUtil.js",
+            "import/BpmnTreeWalker.js",
+            "import/BpmnImporter.js"
+        ],
+        "explanation": "1. **GroupBehavior.js**: This file likely handles the behavior of groups within BPMN modeling, so an issue in its logic could cause the unresolved reference error.\n2. **CategoryUtil.js**: Since the error references a 'CategoryValue', this utility might be responsible for managing categories and could be failing.\n3. **BpmnTreeWalker.js**: This file probably deals with traversing BPMN models, and may have a flaw when handling collapsed sub-processes with groups.\n4. **BpmnImporter.js**: Import errors usually involve the logic here, especially when integrating aspects like groups into BPMN diagrams.",
+        "bug_scenario": "The user encounters a warning about an unresolved reference when re-importing a BPMN diagram after adding a group to a collapsed sub-process. This suggests an issue in handling or referencing the group created inside sub-processes."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/drilldown/SubprocessCompatibility.js",
+            "lib/import/BpmnImporter.js",
+            "lib/modeling/behavior/GroupBehavior.js",
+            "lib/modeling/behavior/util/CategoryUtil.js"
+        ],
+        "explanation": "1. `SubprocessCompatibility.js`: Handles compatibility for sub-processes and possibly related to the behavior of collapsed sub-processes during import/export.\n2. `BpmnImporter.js`: Directly related to importing BPMN diagrams, likely where the unresolved reference issue surfaces.\n3. `GroupBehavior.js`: Manages group behavior which might be causing issues within collapsed sub-processes due to incorrect handling or translation of group-related data.\n4. `CategoryUtil.js`: Might be responsible for categorization logic, potentially involved in resolving category references properly.",
+        "bug_scenario": "The bug occurs when trying to import a BPMN diagram that contains a group inside a collapsed sub-process, leading to an import warning: 'unresolved reference <CategoryValue_01k5toe>'. This issue suggests a potential mishandling of references for categorized elements during export or import of the BPMN data."
+    }
+}

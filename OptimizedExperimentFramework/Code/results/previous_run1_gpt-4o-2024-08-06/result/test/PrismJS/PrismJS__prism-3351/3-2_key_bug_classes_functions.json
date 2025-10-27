@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-java.js//className"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue arises from how the Java class names are defined and matched in the `components/prism-java.js` file. The `className` pattern is responsible for identifying Java class names, and it appears that the regular expression does not correctly recognize \"UUID\" as a class-name. Modifying this pattern to appropriately include such cases would likely resolve the bug.",
+        "bug_scenario": "The bug involves incorrect syntax highlighting of the term \"UUID\" in Java code snippets. It should be highlighted as a \"class-name\" but is rendered as plain text instead."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-java.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue arises because the 'UUID' class is not being recognized as a class name by the syntax highlighting rules. In the 'components/prism-java.js' file, the 'class-name' pattern is responsible for identifying class names in Java code. The current pattern may not be fully capturing all valid class names, particularly those that don't fit the typical pattern expected by the existing regular expressions. Adjusting the pattern to properly identify 'UUID' and similar class names will likely resolve the issue.",
+        "bug_scenario": "The code snippet highlights Java code but fails to highlight 'UUID' as a 'class-name' token, rendering it as plain text instead."
+    }
+}

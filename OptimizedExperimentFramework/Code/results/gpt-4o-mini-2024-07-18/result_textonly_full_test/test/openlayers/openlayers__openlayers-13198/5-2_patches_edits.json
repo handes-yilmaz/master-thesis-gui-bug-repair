@@ -1,0 +1,54 @@
+{
+    "1/1": {
+        "src/ol/layer/MapboxVector.js": [
+            {
+                "SEARCH": [
+                    "background: options.background,"
+                ],
+                "REPLACE": [
+                    "      background: options.background || 'transparent', // Ensure a default background"
+                ]
+            }
+        ],
+        "src/ol/renderer/canvas/VectorLayer.js": [
+            {
+                "SEARCH": [
+                    "this.useContainer(",
+                    "target,",
+                    "canvasTransform,",
+                    "layerState.opacity,",
+                    "this.getBackground(frameState)",
+                    ");"
+                ],
+                "REPLACE": [
+                    "    const background = this.getBackground(frameState) || 'transparent'; // Default to transparent if undefined",
+                    "    this.useContainer(",
+                    "      target,",
+                    "      canvasTransform,",
+                    "      layerState.opacity,",
+                    "      background",
+                    "    );"
+                ]
+            }
+        ],
+        "src/ol/renderer/Composite.js": [
+            {
+                "SEARCH": [
+                    "if (",
+                    "!inView(layerState, viewState) ||",
+                    "(layerState.sourceState != SourceState.READY &&",
+                    "layerState.sourceState != SourceState.UNDEFINED)",
+                    ") {"
+                ],
+                "REPLACE": [
+                    "      if (",
+                    "        !inView(layerState, viewState) ||",
+                    "        (layerState.sourceState != SourceState.READY &&",
+                    "          layerState.sourceState != SourceState.UNDEFINED) ||",
+                    "        layerState.layer.getBackground() === undefined // Check for background",
+                    "      ) {"
+                ]
+            }
+        ]
+    }
+}

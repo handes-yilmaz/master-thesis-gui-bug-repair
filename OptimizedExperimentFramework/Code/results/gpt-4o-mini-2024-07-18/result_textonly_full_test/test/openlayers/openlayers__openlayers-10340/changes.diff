@@ -1,0 +1,26 @@
+diff --git a/src/ol/geom/Circle.js b/src/ol/geom/Circle.js
+index 25010f9..4dab9f8 100644
+--- a/src/ol/geom/Circle.js
++++ b/src/ol/geom/Circle.js
+@@ -185,7 +185,7 @@ class Circle extends SimpleGeometry {
+     const flatCoordinates = this.flatCoordinates;
+     let offset = deflateCoordinate(
+       flatCoordinates, 0, center, this.stride);
+-    flatCoordinates[offset++] = flatCoordinates[0] + radius;
++    flatCoordinates[offset++] = flatCoordinates[0] + radius * Math.cos(center[1]);
+     for (let i = 1, ii = this.stride; i < ii; ++i) {
+       flatCoordinates[offset++] = flatCoordinates[i];
+     }
+diff --git a/src/ol/geom/Polygon.js b/src/ol/geom/Polygon.js
+index 24d0f17..ad47378 100644
+--- a/src/ol/geom/Polygon.js
++++ b/src/ol/geom/Polygon.js
+@@ -415,7 +415,7 @@ export function fromCircle(circle, opt_sides, opt_angle) {
+ export function makeRegular(polygon, center, radius, opt_angle) {
+   const flatCoordinates = polygon.getFlatCoordinates();
+   const stride = polygon.getStride();
+-  const sides = flatCoordinates.length / stride - 1;
++    const sides = Math.round(flatCoordinates.length / stride - 1);
+   const startAngle = opt_angle ? opt_angle : 0;
+   for (let i = 0; i <= sides; ++i) {
+     const offset = i * stride;

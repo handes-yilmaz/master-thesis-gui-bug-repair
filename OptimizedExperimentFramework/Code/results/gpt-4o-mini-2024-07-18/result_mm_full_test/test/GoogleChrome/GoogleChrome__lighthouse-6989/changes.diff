@@ -1,0 +1,17 @@
+diff --git a/lighthouse-core/report/html/renderer/report-renderer.js b/lighthouse-core/report/html/renderer/report-renderer.js
+index 8b9559f..653df67 100644
+--- a/lighthouse-core/report/html/renderer/report-renderer.js
++++ b/lighthouse-core/report/html/renderer/report-renderer.js
+@@ -176,7 +176,11 @@ class ReportRenderer {
+     const container = this._dom.createElement('div', 'lh-container');
+     const reportSection = container.appendChild(this._dom.createElement('div', 'lh-report'));
+ 
+-    reportSection.appendChild(this._renderReportWarnings(report));
++    // Ensure warnings are rendered after the passed audits section
++    const warningsContainer = this._renderReportWarnings(report);
++    if (warningsContainer) {
++      reportSection.appendChild(warningsContainer);
++    }
+ 
+     let scoreHeader;
+     const isSoloCategory = report.reportCategories.length === 1;

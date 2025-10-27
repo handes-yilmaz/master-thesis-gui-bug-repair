@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/DetachEventBehavior",
+            "lib/features/modeling/behavior/BoundaryEventBehavior",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/DetachEventBehavior//preExecute",
+            "lib/features/modeling/behavior/BoundaryEventBehavior//postExecute",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior//preExecute"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the behavior of events in the BPMN model. The 'DetachEventBehavior' class is responsible for detaching events and should include logic to convert Boundary Events to Intermediate Events when moved. The 'BoundaryEventBehavior' class manages the behavior of Boundary Events, and the 'CreateBoundaryEventBehavior' class deals with creating Boundary Events from Intermediate Events. Any issues in these classes/functions could lead to the failure of the expected behavior when moving Boundary Events.",
+        "bug_scenario": "The bug scenario involves Boundary Events not being converted to Intermediate Events when they are moved to the canvas in a batch operation. The expected behavior is that these events should either be disallowed from moving or automatically converted to Intermediate Events."
+    }
+}

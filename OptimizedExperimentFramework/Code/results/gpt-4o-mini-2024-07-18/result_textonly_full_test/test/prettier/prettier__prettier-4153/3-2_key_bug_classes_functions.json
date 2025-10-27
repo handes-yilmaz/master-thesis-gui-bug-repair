@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//detectLanguageWithAttributes"
+        ],
+        "bug_functions": [
+            "src/language-markdown/parser-markdown.js//parse"
+        ],
+        "explanation": "The 'detectLanguageWithAttributes' function is crucial because it is responsible for extracting the language from code blocks while ignoring any attributes that follow. This directly relates to the bug, as the failure to correctly handle non-whitespace characters after the language identifier is the core issue. The 'parse' function is also relevant as it orchestrates the parsing process, including the use of 'detectLanguageWithAttributes', making it essential for understanding how the language detection is implemented.",
+        "bug_scenario": "The bug scenario involves Prettier failing to detect the language of fenced code blocks in markdown when there are non-whitespace characters following the language identifier. This affects the formatting of code blocks with attributes, which should be ignored for language detection."
+    }
+}

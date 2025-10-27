@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/ol/source/GeoTIFF.js": [
+            {
+                "SEARCH": [
+                    "wrapX: options.wrapX,"
+                ],
+                "REPLACE": [
+                    "      wrapX: options.wrapX !== undefined ? options.wrapX : true, // Default to true for cropping"
+                ]
+            }
+        ],
+        "src/ol/reproj/DataTile.js": [
+            {
+                "SEARCH": [
+                    "const targetResolution = this.targetTileGrid_.getResolution("
+                ],
+                "REPLACE": [
+                    "    const targetResolution = this.targetTileGrid_.getResolution(this.wrappedTileCoord_[0]);"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const targetExtent = this.targetTileGrid_.getTileCoordExtent("
+                ],
+                "REPLACE": [
+                    "      const targetExtent = getIntersection(this.targetTileGrid_.getTileCoordExtent(this.wrappedTileCoord_), this.sourceTileGrid_.getExtent());"
+                ]
+            }
+        ],
+        "src/ol/reproj/Image.js": [
+            {
+                "SEARCH": [
+                    "const sourceImage = isEmpty(sourceExtent)"
+                ],
+                "REPLACE": [
+                    "      const sourceImage = isEmpty(sourceExtent) || !this.maxSourceExtent_"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js//HTMLRenderer"
+        ],
+        "bug_functions": [
+            "src/languages/python.js//openNode",
+            "src/languages/python.js//closeNode"
+        ],
+        "explanation": "The `openNode` and `closeNode` functions in the `HTMLRenderer` class are responsible for handling the opening and closing of nodes in the syntax highlighting process. Since the bug involves incorrect class assignment for comments when decorators are present, these functions are directly related to the issue. They need to be modified to ensure that comments are correctly identified and assigned the `hljs-comment` class instead of the `hljs-meta` class when they appear on the same line as decorators.",
+        "bug_scenario": "The issue arises when a comment is placed on the same line as a decorator in Python code. The entire line is incorrectly assigned the `hljs-meta` class, while the comment should be assigned the `hljs-comment` class instead. This leads to improper syntax highlighting, as seen in the provided screenshot."
+    }
+}

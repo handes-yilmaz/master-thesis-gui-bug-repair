@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/DropOnFlowBehavior.js",
+            "lib/features/modeling/behavior/CreateBoundaryEventBehavior.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js"
+        ],
+        "explanation": "These files are key bug files because they contain the logic related to how elements are dropped and connected within the BPMN modeler. The 'DropOnFlowBehavior.js' file specifically handles the behavior when elements are dropped on flows, which is directly related to the issue of connecting message flows to pool boundaries. The 'CreateBoundaryEventBehavior.js' file manages the creation of boundary events, which is relevant to the user's action of connecting to the pool boundary. Lastly, 'AttachEventBehavior.js' deals with attaching events to shapes, which may also influence how connections are made in the context of lanes and pools.",
+        "bug_scenario": "The bug occurs when trying to connect a message flow to the boundary of a pool that previously had more than one lane. The user can only drop the connector at the header of the pool, not inside the single lane, which is not the expected behavior."
+    }
+}

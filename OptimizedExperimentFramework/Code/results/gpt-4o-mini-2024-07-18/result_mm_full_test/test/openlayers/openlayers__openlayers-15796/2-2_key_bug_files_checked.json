@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Vector.js",
+            "src/ol/renderer/canvas/VectorLayer.js",
+            "src/ol/renderer/webgl/VectorLayer.js"
+        ],
+        "explanation": "These files are critical to the bug because they contain the definitions and implementations of the VectorLayer and its rendering logic. The 'Vector.js' file defines the VectorLayer class, which is responsible for managing the layer's properties, including decluttering and opacity. The 'VectorLayer.js' files in both the canvas and webgl renderer directories contain the rendering logic that handles how the layer is drawn on the screen. Since the bug involves rendering issues related to decluttering and opacity, modifications in these files are necessary to address the problem.",
+        "bug_scenario": "The bug occurs when using a VectorLayer with declutter enabled and an opacity less than 1. When the map is panned, the previous frame's rendering does not clear, leading to visual artifacts. This issue was observed in the latest npm release while testing a modified version of the Vector Layer example."
+    }
+}

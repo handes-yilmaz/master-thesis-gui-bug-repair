@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/imagevector.js",
+            "src/ol/interaction/draw.js",
+            "src/ol/render/canvas/immediate.js",
+            "src/ol/render/canvas/polygonreplay.js",
+            "src/ol/render/canvas/linestringreplay.js"
+        ],
+        "explanation": "The file 'src/ol/source/imagevector.js' is directly related to the image vector layer functionality and any changes or deprecations in this file can lead to performance issues as noted in the bug report. The 'src/ol/interaction/draw.js' file deals with the drawing interactions, which is where the performance drop was observed. The rendering files, including 'src/ol/render/canvas/immediate.js', 'src/ol/render/canvas/polygonreplay.js', and 'src/ol/render/canvas/linestringreplay.js', are responsible for rendering the drawn shapes on the canvas, and any inefficiencies in these files could contribute to the slow performance mentioned in the report. Thus, these files are crucial for troubleshooting and resolving the performance issue.",
+        "bug_scenario": "The performance of the draw interaction is significantly degraded when upgrading the image vector layer from version 4.4.2 to 4.6.2, specifically when using renderMode: 'image'. A comparison was made between the two versions, with the 4.4.2 version showing better performance. The provided images depict the test conditions for drawing a triangle at a specific resolution, highlighting the performance issue visually."
+    }
+}

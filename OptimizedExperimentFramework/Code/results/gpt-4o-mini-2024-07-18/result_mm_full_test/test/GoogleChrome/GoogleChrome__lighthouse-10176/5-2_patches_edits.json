@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "lighthouse-core/audits/dobetterweb/js-libraries.js": [
+            {
+                "SEARCH": [
+                    ".filter(stack => stack.detector === 'js')"
+                ],
+                "REPLACE": [
+                    "      .filter(stack => stack.detector === 'js' && !stack.experimental) // Exclude experimental stacks"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const libDetails = artifacts.Stacks",
+                    ".filter(stack => stack.detector === 'js')",
+                    ".map(stack => ({",
+                    "name: stack.name,",
+                    "version: stack.version,",
+                    "npm: stack.npm,",
+                    "}));"
+                ],
+                "REPLACE": [
+                    "    const libDetails = artifacts.Stacks",
+                    "      .filter(stack => stack.detector === 'js' && !stack.experimental) // Exclude experimental stacks",
+                    "      .map(stack => ({",
+                    "        id: stack.id, // Add id property for unique identification",
+                    "        name: stack.name,",
+                    "        version: stack.version,",
+                    "        npm: stack.npm,",
+                    "      }));"
+                ]
+            }
+        ]
+    }
+}

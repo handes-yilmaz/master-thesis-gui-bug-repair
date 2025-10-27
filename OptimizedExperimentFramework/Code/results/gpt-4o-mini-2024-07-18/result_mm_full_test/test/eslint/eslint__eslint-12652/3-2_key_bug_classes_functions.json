@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/rules/key-spacing",
+            "lib/rules/object-curly-newline",
+            "lib/rules/object-property-newline"
+        ],
+        "bug_functions": [
+            "lib/rules/key-spacing//initOptions",
+            "lib/rules/key-spacing//check",
+            "lib/rules/object-curly-newline//create",
+            "lib/rules/object-property-newline//create"
+        ],
+        "explanation": "The 'key-spacing' rule is directly related to the issue as it controls the spacing of object literal keys and values, including JSX objects. The 'initOptions' function initializes the options for this rule, which includes the alignment settings that are causing the problem. The 'check' function is responsible for verifying the spacing rules, and it needs to be modified to exclude JSX objects from alignment checks. The 'object-curly-newline' and 'object-property-newline' rules are also relevant as they deal with line breaks and property placement in objects, which may interact with the key-spacing rule and contribute to the formatting issues.",
+        "bug_scenario": "The issue arises when using the ESLint rule 'key-spacing' with the 'align: value' option in JSX objects, causing the formatting to become inconsistent and visually unappealing. The user expects that the alignment should not be applied to JSX objects, but it is currently being enforced, leading to undesirable formatting."
+    }
+}

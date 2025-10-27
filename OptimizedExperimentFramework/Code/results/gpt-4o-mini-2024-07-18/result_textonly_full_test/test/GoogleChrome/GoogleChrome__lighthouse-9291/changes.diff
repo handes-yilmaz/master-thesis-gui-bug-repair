@@ -1,0 +1,24 @@
+diff --git a/lighthouse-core/lib/i18n/i18n.js b/lighthouse-core/lib/i18n/i18n.js
+index 1fd5d99..58b1c93 100644
+--- a/lighthouse-core/lib/i18n/i18n.js
++++ b/lighthouse-core/lib/i18n/i18n.js
+@@ -182,8 +182,8 @@ const _ICUMsgNotFoundMsg = 'ICU message not found in destination locale';
+  * @return {{formattedString: string, icuMessage: string}}
+  */
+ function _formatIcuMessage(locale, icuMessageId, fallbackMessage, values) {
+-  const localeMessages = LOCALES[locale];
+-  const localeMessage = localeMessages[icuMessageId] && localeMessages[icuMessageId].message;
++  const localeMessages = LOCALES[locale] || LOCALES['en']; // Fallback to English if locale not found
++  const localeMessage = localeMessages[icuMessageId] ? localeMessages[icuMessageId].message : fallbackMessage; // Use fallback message if not found
+   // fallback to the original english message if we couldn't find a message in the specified locale
+   // better to have an english message than no message at all, in some number cases it won't even matter
+   const messageForMessageFormat = localeMessage || fallbackMessage;
+@@ -220,7 +220,7 @@ function _formatPathAsString(pathInLHR) {
+  * @return {LH.I18NRendererStrings}
+  */
+ function getRendererFormattedStrings(locale) {
+-  const icuMessageIds = Object.keys(LOCALES[locale]).filter(f => f.includes('core/report/html/'));
++  const icuMessageIds = Object.keys(LOCALES[locale] || LOCALES['en']).filter(f => f.includes('core/report/html/')); // Fallback to English if locale not found
+   /** @type {LH.I18NRendererStrings} */
+   const strings = {};
+   for (const icuMessageId of icuMessageIds) {

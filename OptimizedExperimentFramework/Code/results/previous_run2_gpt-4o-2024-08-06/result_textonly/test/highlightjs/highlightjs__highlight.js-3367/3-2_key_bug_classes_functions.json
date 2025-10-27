@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [
+            "src/languages/python.js//export default function"
+        ],
+        "explanation": "The bug is related to the syntax highlighting of Python code, which is implemented in the 'src/languages/python.js' file. The main function exported from this file is responsible for defining the syntax rules and grammar for highlighting Python code. Within this function, regular expressions define how numbers and keywords are identified. The issue arises because the regular expressions do not account for keywords immediately following numbers, leading to incorrect tokenization. To fix the bug, changes need to be made in the exported function to correctly handle cases where a keyword follows a number directly, ensuring they are recognized as separate tokens.",
+        "bug_scenario": "The bug involves the incorrect syntax highlighting of Python code where a keyword directly follows a number without any space. The highlighting tool fails to separate the number and the keyword, displaying them as a single token. The expected behavior is to treat the number and keyword as separate tokens, allowing for proper syntax highlighting. This issue occurs because the highlighting tool does not account for the possibility of a keyword directly following a number without a space in Python code."
+    },
+    "2": {
+        "bug_classes": [],
+        "bug_functions": [
+            "src/languages/python.js//export default function"
+        ],
+        "explanation": "The function in `src/languages/python.js` is responsible for defining how Python code is highlighted. It includes the regular expressions and logic for identifying keywords, numbers, and other syntax elements in Python code. The issue described involves the incorrect identification of keywords when they immediately follow a number without a space. This implies that the regular expressions or logic within this function need to be adjusted to correctly separate numbers from keywords, ensuring that highlighting is applied correctly. The presence of specific handling for numbers and keywords within this function indicates its direct relation to the bug.",
+        "bug_scenario": "The bug occurs when Python code is highlighted, and keywords directly following numbers are not detected as separate entities. This causes issues in syntax highlighting where code like `1if` is not correctly parsed into a number (`1`) and a keyword (`if`). The expected behavior is that the highlighting should separate the number from the keyword, as shown in the expected output image."
+    }
+}

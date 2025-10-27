@@ -1,0 +1,21 @@
+diff --git a/src/command/render/pandoc.ts b/src/command/render/pandoc.ts
+index 64af3cc..65869f9 100644
+--- a/src/command/render/pandoc.ts
++++ b/src/command/render/pandoc.ts
+@@ -239,8 +239,16 @@ export async function runPandoc(
+     ...options.flags?.metadata,
+   };
+ 
++  // Check for empty captions and set a default if necessary
++  const handleEmptyCaptions = (metadata: Metadata) => {
++    if (metadata[kFigCap] && Array.isArray(metadata[kFigCap]) && metadata[kFigCap].length === 0) {
++      metadata[kFigCap] = ["Default Caption"]; // Set a default caption
++    }
++  };
++
+   // remove some metadata that are used as parameters to our lua filters
+   const cleanMetadataForPrinting = (metadata: Metadata) => {
++    handleEmptyCaptions(metadata); // Call the function to handle empty captions
+     delete metadata.params;
+     delete metadata[kQuartoInternal];
+     delete metadata[kQuartoVarsKey];

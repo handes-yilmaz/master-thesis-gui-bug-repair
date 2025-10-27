@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/style/Icon//Icon",
+            "src/ol/style/Style//Style"
+        ],
+        "bug_functions": [
+            "src/ol/style/Icon//clone",
+            "src/ol/style/Icon//setScale",
+            "src/ol/style/Icon//updateScaleFromWidthAndHeight"
+        ],
+        "explanation": "The 'Icon' class is directly related to the bug because it handles the icon's properties, including scale. The 'clone' function is crucial as it is responsible for creating a copy of the icon, and the bug arises from how it sets the scale in the cloned instance. The 'setScale' function is also relevant because it defines how the scale is set, and the 'updateScaleFromWidthAndHeight' function is important as it recalculates the scale based on width and height, which is part of the conflict described in the bug report.",
+        "bug_scenario": "The bug occurs when an icon's scale is set as a number and then cloned. Instead of retaining the original scale value, the cloned icon's scale is set to an array of values, which is incorrect. This happens due to the constructor behavior in the clone method, which conflicts with the documentation stating that height and width cannot be used with scale."
+    }
+}

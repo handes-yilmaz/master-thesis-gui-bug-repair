@@ -1,0 +1,24 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "/**\\n   * Clean up underlying WebGL resources.\\n   * @function\\n   * @api\\n   */\\n  WebGLTileLayer.prototype.dispose;\\n\\n  export default WebGLTileLayer;"
+                ],
+                "REPLACE": [
+                    "  /**\\n   * Clean up underlying WebGL resources.\\n   * @function\\n   * @api\\n   */\\n  dispose() {\\n    // Call the dispose method to clean up resources\\n    if (this.getRenderer()) {\\n      this.getRenderer().dispose();\\n    }\\n    super.dispose();\\n  }\\n\\n  export default WebGLTileLayer;"
+                ]
+            }
+        ],
+        "src/ol/renderer/webgl/TileLayer.js": [
+            {
+                "SEARCH": [
+                    "/**\\n   * Clean up.\\n   */\\n  disposeInternal() {\\n    const helper = this.helper;\\n    if (helper) {\\n      const gl = helper.getGL();\\n      gl.deleteProgram(this.program_);\\n      delete this.program_;\\n      helper.deleteBuffer(this.indices_);\\n    }\\n    super.disposeInternal();\\n    delete this.indices_;\\n  }\\n}\\n\\nexport default WebGLTileLayerRenderer;"
+                ],
+                "REPLACE": [
+                    "  /**\\n   * Clean up.\\n   */\\n  disposeInternal() {\\n    const helper = this.helper;\\n    if (helper) {\\n      const gl = helper.getGL();\\n      gl.deleteProgram(this.program_);\\n      delete this.program_;\\n      helper.deleteBuffer(this.indices_);\\n      // Dispose of palette textures\\n      for (const texture of this.paletteTextures_) {\\n        texture.dispose();\\n      }\\n    }\\n    super.disposeInternal();\\n    delete this.indices_;\\n  }\\n}\\n\\nexport default WebGLTileLayerRenderer;"
+                ]
+            }
+        ]
+    }
+}

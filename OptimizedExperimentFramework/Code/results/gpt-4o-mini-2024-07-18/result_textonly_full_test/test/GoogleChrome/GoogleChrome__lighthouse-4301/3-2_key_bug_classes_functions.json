@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/service-worker.js//ServiceWorker",
+            "lighthouse-core/audits/critical-request-chains.js//CriticalRequestChains",
+            "lighthouse-core/gather/gatherers/start-url.js//StartUrl"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/service-worker.js//audit",
+            "lighthouse-core/audits/critical-request-chains.js//audit",
+            "lighthouse-core/gather/gatherers/start-url.js//executeFetchRequest",
+            "lighthouse-core/gather/gatherers/start-url.js//pass",
+            "lighthouse-core/gather/gatherers/start-url.js//afterPass"
+        ],
+        "explanation": "These classes and functions are related to the bug because they are responsible for auditing the service worker and managing the critical request chains during the Lighthouse audit process. The 'ServiceWorker' class checks if a service worker is registered, which is crucial for the PWA functionality. The 'CriticalRequestChains' class analyzes the request chains that could affect loading times. The 'StartUrl' class handles fetching the start URL of the PWA, which is essential for determining if the app can load correctly. Any issues in these areas could lead to the hanging behavior described in the bug report.",
+        "bug_scenario": "The Lighthouse tool hangs indefinitely on the 'Loading page & waiting for onload' step when testing a specific Progressive Web App (PWA) URL. This issue occurs in both the native audit and the Lighthouse extension, indicating a potential problem with how the service worker or critical request chains are being handled during the audit process."
+    }
+}

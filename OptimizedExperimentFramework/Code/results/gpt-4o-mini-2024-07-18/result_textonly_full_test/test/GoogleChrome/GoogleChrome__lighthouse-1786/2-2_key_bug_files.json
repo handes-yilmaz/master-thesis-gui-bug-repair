@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/report/report-generator.js",
+            "lighthouse-core/report/handlebar-helpers.js",
+            "lighthouse-core/formatters/formatter.js"
+        ],
+        "explanation": "These files are key to the bug because they are involved in the generation and formatting of the report output. The 'report-generator.js' file is responsible for generating the HTML report, which includes the code snippets. The 'handlebar-helpers.js' file contains the sanitization logic that processes the markdown and code snippets, which is where the incorrect handling of markdown characters likely occurs. Lastly, 'formatter.js' manages the formatters used in the report, which may also affect how the markdown is rendered. Fixing the bug will require changes in these files to ensure that markdown characters in code snippets are handled correctly.",
+        "bug_scenario": "The bug scenario involves rendering issues in code snippets due to improper handling of markdown syntax characters like `_` and `[]()`. When these characters are present in a string that starts with a backtick (`), they should not be converted into markup, but currently, they are, leading to incorrect rendering in the output."
+    }
+}

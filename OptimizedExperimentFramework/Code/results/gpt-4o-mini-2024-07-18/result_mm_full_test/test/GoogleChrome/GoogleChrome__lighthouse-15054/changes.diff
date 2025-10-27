@@ -1,0 +1,42 @@
+diff --git a/core/audits/bf-cache.js b/core/audits/bf-cache.js
+index 9ede3b9..de1a78c 100644
+--- a/core/audits/bf-cache.js
++++ b/core/audits/bf-cache.js
+@@ -69,6 +69,10 @@ class BFCache extends Audit {
+    */
+   static async audit(artifacts) {
+     const failures = artifacts.BFCacheFailures;
++    // Check for unload listeners in the main frame
++    const unloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload');
++    if (unloadListeners.length) {
++      console.warn('Warning: `unload` listeners detected, which may prevent bfcache restoration.');
+     if (!failures.length) return {score: 1};
+ 
+     // TODO: Analyze more than one bf cache failure.
+diff --git a/core/audits/no-unload-listeners.js b/core/audits/no-unload-listeners.js
+index 069fe70..f88a4d8 100644
+--- a/core/audits/no-unload-listeners.js
++++ b/core/audits/no-unload-listeners.js
+@@ -41,6 +41,8 @@ class NoUnloadListeners extends Audit {
+   static async audit(artifacts, context) {
+     const unloadListeners = artifacts.GlobalListeners.filter(l => l.type === 'unload');
+     if (!unloadListeners.length) {
++      // Add a warning for potential unload listeners injected by extensions
++      console.warn('Warning: Potential `unload` listeners may be injected by extensions.');
+       return {
+         score: 1,
+       };
+diff --git a/core/gather/gatherers/global-listeners.js b/core/gather/gatherers/global-listeners.js
+index 38f5eb4..18acb9c 100644
+--- a/core/gather/gatherers/global-listeners.js
++++ b/core/gather/gatherers/global-listeners.js
+@@ -72,7 +72,8 @@ class GlobalListeners extends FRGatherer {
+ 
+     // And get all its listeners of interest.
+     const {listeners} = await session.sendCommand('DOMDebugger.getEventListeners', {objectId});
+-    const filteredListeners = listeners.filter(GlobalListeners._filterForAllowlistedTypes)
++    const filteredListeners = listeners.filter(listener => {
++      return GlobalListeners._filterForAllowlistedTypes(listener) || listener.type === 'unload';
+     .map(listener => {
+       const {type, scriptId, lineNumber, columnNumber} = listener;
+       return {

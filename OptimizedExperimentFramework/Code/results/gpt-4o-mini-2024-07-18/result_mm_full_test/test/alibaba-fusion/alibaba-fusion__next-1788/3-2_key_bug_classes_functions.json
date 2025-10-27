@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "types/input/index.d.ts//TextArea",
+            "types/input/index.d.ts//Input"
+        ],
+        "bug_functions": [
+            "types/input/index.d.ts//onBlur"
+        ],
+        "explanation": "The TextArea class defines the onBlur property, which is expected to be a function with no parameters. However, the error indicates that the actual implementation is a function that takes an event parameter. This mismatch is causing the TypeScript error. The Input class also contains the onBlur property, which may need to be reviewed to ensure consistency in type definitions across components.",
+        "bug_scenario": "The issue arises from a type mismatch in the onBlur event handler for the Input.TextArea component in TypeScript. The expected type is a function that takes no arguments and returns void, but the actual implementation is a function that takes an event as an argument, leading to a type incompatibility error."
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "1/1": {
+        "src/markdown/annotationHandler.js": [
+            {
+                "SEARCH": [
+                    "function handleAnnotations(code, language) {",
+                    "// Existing logic for handling annotations",
+                    "if (language === 'R' || language === 'Python') {",
+                    "// Handle R and Python annotations",
+                    "}",
+                    "// Missing handling for C/C++ and VHDL",
+                    "}"
+                ],
+                "REPLACE": [
+                    "function handleAnnotations(code, language) {",
+                    "    // Existing logic for handling annotations",
+                    "    if (language === 'R' || language === 'Python') {",
+                    "        // Handle R and Python annotations",
+                    "    } else if (language === 'C' || language === 'C++' || language === 'VHDL') {",
+                    "        // New logic for handling C/C++ and VHDL annotations",
+                    "        code = code.replace(/\\/\\/ <(\\d+)>/g, 'Circle $1'); // Example replacement",
+                    "    }",
+                    "}"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/BugProof.js",
+            "src/Extender.js",
+            "lib/rules/constructor-super.js"
+        ],
+        "explanation": "The 'BugProof.js' file contains the class definition that is causing the issue, particularly the constructor where 'super(props)' is called. The 'Extender.js' file is relevant because it defines the parent class that 'BugProof' extends. Lastly, the 'constructor-super.js' rule in the 'lib/rules/' directory is directly related to ensuring that the 'super' constructor is called appropriately in derived classes, which is the crux of the error reported.",
+        "bug_scenario": "The bug scenario involves a JavaScript class that extends another class, where an attempt to call the super constructor results in a parsing error. The error message indicates that the property 'superCalled' cannot be read because the object is undefined, which may suggest that the constructor is not properly invoked, or that there's a syntax issue in the code leading to the parsing error."
+    },
+    "2": {
+        "bug_files": [
+            "lib/rules/constructor-super.js",
+            "lib/rules/no-this-before-super.js",
+            "lib/rules/no-undef.js"
+        ],
+        "explanation": "The files are related to the bug because 'constructor-super.js' deals with ensuring that the 'super' constructor is called before using 'this' in a derived class, which directly relates to the issue of reading properties of an undefined object. The 'no-this-before-super.js' rule also prevents the usage of 'this' before calling 'super', which can lead to similar errors. The 'no-undef.js' rule checks for usage of undefined variables, which is a related concern in this scenario.",
+        "bug_scenario": "The bug is caused by attempting to read a property 'superCalled' of an undefined object, which indicates that the superclass constructor is not being properly called. This can happen if the 'super' function is not invoked correctly in the derived class constructor, leading to the instance being improperly initialized. The provided ESLint error message indicates a parsing error that points to unexpected tokens in the code, which might be affecting the execution of the constructor."
+    }
+}

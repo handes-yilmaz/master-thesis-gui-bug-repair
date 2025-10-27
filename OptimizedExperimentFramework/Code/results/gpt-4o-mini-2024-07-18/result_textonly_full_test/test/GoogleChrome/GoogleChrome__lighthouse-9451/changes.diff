@@ -1,0 +1,48 @@
+diff --git a/lighthouse-core/audits/offline-start-url.js b/lighthouse-core/audits/offline-start-url.js
+index 88b78d2..2d7b6f1 100644
+--- a/lighthouse-core/audits/offline-start-url.js
++++ b/lighthouse-core/audits/offline-start-url.js
+@@ -54,7 +54,7 @@ class OfflineStartUrl extends Audit {
+       warnings.push(str_(UIStrings.warningCantStart, {manifestWarning}));
+     }
+ 
+-    const hasOfflineStartUrl = artifacts.StartUrl.statusCode === 200;
++    const hasOfflineStartUrl = artifacts.StartUrl.statusCode === 200 && artifacts.StartUrl.explanation.includes('fetched by service worker');
+ 
+     return {
+       score: Number(hasOfflineStartUrl),
+diff --git a/lighthouse-core/gather/gatherers/offline.js b/lighthouse-core/gather/gatherers/offline.js
+index 673f0d4..78a00d9 100644
+--- a/lighthouse-core/gather/gatherers/offline.js
++++ b/lighthouse-core/gather/gatherers/offline.js
+@@ -27,8 +27,12 @@ class Offline extends Gatherer {
+         record.fetchedViaServiceWorker;
+     }).pop(); // Take the last record that matches.
+ 
+-    return passContext.driver.goOnline(passContext)
+-      .then(_ => navigationRecord ? navigationRecord.statusCode : -1);
++    return passContext.driver.goOnline(passContext).then(_ => {
++      if (!navigationRecord || !navigationRecord.fetchedViaServiceWorker) {
++        throw new Error('No valid navigation record found for offline pass.');
++      }
++      return navigationRecord.statusCode;
++    });
+   }
+ }
+ 
+diff --git a/lighthouse-core/gather/gatherers/start-url.js b/lighthouse-core/gather/gatherers/start-url.js
+index e19e1ef..d0d0bde 100644
+--- a/lighthouse-core/gather/gatherers/start-url.js
++++ b/lighthouse-core/gather/gatherers/start-url.js
+@@ -22,7 +22,10 @@ class StartUrl extends Gatherer {
+       return {statusCode: -1, explanation: startUrlInfo.reason};
+     }
+ 
+-    return this._attemptStartURLFetch(passContext.driver, startUrlInfo.startUrl).catch(() => {
++    return this._attemptStartURLFetch(passContext.driver, startUrlInfo.startUrl).then(result => {
++      if (result.statusCode !== 200) {
++        throw new Error('Failed to fetch start URL via service worker.');
++      }
+       return {statusCode: -1, explanation: 'Unable to fetch start URL via service worker.'};
+     });
+   }

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/index.js",
+            "lighthouse-core/gather/gather-runner.js",
+            "lighthouse-core/gather/connections/connection.js",
+            "lighthouse-core/config/constants.js",
+            "lighthouse-extension/src/lighthouse-background.js"
+        ],
+        "explanation": "These files are likely responsible for managing the user agent settings in Lighthouse. The 'index.js' file is crucial as it initializes various components of Lighthouse, and it's where user agent settings might first be configured. The 'gather-runner.js' file likely handles the execution of gathering metrics, including user agent information. The 'connection.js' file is responsible for managing network connections, which would include the user agent in request headers. 'constants.js' may hold the definitions for default user agents used throughout the application. Finally, 'lighthouse-background.js' in the extension context manages the background processes and requests, including any user agent configurations specific to the extension. Modifying these files should help align the user agent reported in runtime settings with the one used in requests.",
+        "bug_scenario": "The Lighthouse tool is reporting two different user agents in the runtime settings and in the actual requests made during the tests. This inconsistency is causing confusion, as users see requests with varying user agents in their webserver logs. The expected behavior is for the user agent in the runtime settings to match the user agent used by Lighthouse during the tests."
+    }
+}

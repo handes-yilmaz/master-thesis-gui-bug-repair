@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-ruby.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The bug is related to how the Prism.js library handles syntax highlighting for Ruby interpolation within regex patterns. The file `components/prism-ruby.js` defines the language grammar for Ruby in Prism.js and includes pattern definitions for Ruby-specific syntax elements such as comments, class names, keywords, regex, and interpolation. The interpolation pattern is defined within the regex handling logic, suggesting that this is where the issue arises. The code defines interpolation handling for `%r` regex patterns but seems to overlook or incorrectly define it for slashes-delimited regex patterns. Therefore, the `components/prism-ruby.js` file is the primary location to investigate and modify to address the highlighting issue.",
+        "bug_scenario": "The bug scenario involves an issue with syntax highlighting for Ruby code, specifically when using interpolation in regular expressions. The bug report indicates that interpolation within regex patterns delimited by slashes (e.g., `/foo#{bar}/`) is not being highlighted correctly, whereas interpolation in regex patterns using `%r{}` is highlighted correctly."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-ruby.js"
+        ],
+        "bug_functions": [
+            "components/prism-ruby.js//Prism.languages.insertBefore"
+        ],
+        "explanation": "The problem relates to how the Prism syntax highlighter handles regex patterns in Ruby. The file `components/prism-ruby.js` is responsible for defining the syntax highlighting rules for Ruby, including regex patterns. Within this file, the function `Prism.languages.insertBefore` is used to insert new token classes and patterns for highlighting. The issue is with the regex pattern logic inside this function, which currently handles `%r{...}` correctly but fails to correctly highlight interpolation for regex wrapped in `/.../`. Modifying this function to handle interpolation within `/.../` regex patterns similarly to `%r{...}` will likely resolve the bug.",
+        "bug_scenario": "The bug scenario involves syntax highlighting in Ruby using regular expressions (regex). Specifically, the bug pertains to the lack of syntax highlighting for interpolation within regex patterns when they are wrapped with `/.../`. In contrast, interpolation is correctly highlighted when using `%r{...}`. This issue is demonstrated in the provided image, which shows side-by-side comparisons of the regex highlighting for `/foo#{bar}/` and `%r{foo#{bar}}` in Ruby."
+    }
+}

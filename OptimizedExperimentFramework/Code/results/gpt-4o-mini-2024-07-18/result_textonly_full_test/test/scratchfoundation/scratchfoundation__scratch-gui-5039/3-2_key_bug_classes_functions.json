@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/components/context-menu/context-menu.jsx//StyledContextMenu",
+            "src/components/context-menu/context-menu.jsx//StyledMenuItem",
+            "src/components/drag-layer/drag-layer.jsx//DragLayer",
+            "src/lib/drag-recognizer.js//DragRecognizer"
+        ],
+        "bug_functions": [
+            "src/reducers/menus.js//openEditMenu",
+            "src/reducers/menus.js//closeEditMenu",
+            "src/lib/drag-recognizer.js//_handleMove",
+            "src/lib/drag-recognizer.js//_handleEnd"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the context menu and drag events. The 'StyledContextMenu' and 'StyledMenuItem' classes are responsible for rendering the context menu, which is expected to show the duplicate option. The 'DragLayer' class manages the visual representation of the sprite during drag operations. The 'DragRecognizer' class contains methods that handle the drag events, specifically '_handleMove' and '_handleEnd', which are crucial for determining how the application responds to mouse movements and clicks. The functions 'openEditMenu' and 'closeEditMenu' in the menus reducer manage the state of the edit menu, which is likely involved in the context menu logic. Fixing the bug will require ensuring that the right-click event is properly captured and that the correct context menu is displayed instead of the OS's default menu.",
+        "bug_scenario": "The bug scenario involves a user right-clicking on a sprite in a graphical interface, expecting a duplicate menu to appear. However, instead of the expected duplicate menu, the operating system's default context menu appears when the sprite is dragged, indicating that the application is not handling the right-click event correctly during drag operations."
+    }
+}

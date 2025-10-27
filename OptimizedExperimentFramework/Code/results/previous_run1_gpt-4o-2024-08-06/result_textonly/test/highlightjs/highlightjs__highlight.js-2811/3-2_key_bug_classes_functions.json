@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/python.js//SUBST",
+            "src/languages/python.js//HASH_COMMENT_MODE"
+        ],
+        "bug_functions": [
+            "src/lib/modes.js//COMMENT"
+        ],
+        "explanation": "The issue is related to how comments are processed and highlighted in Python code. In 'src/languages/python.js', the 'SUBST' and 'HASH_COMMENT_MODE' are relevant because they involve comment processing and highlighting. The 'SUBST' class contains logic to handle substitutions which might interfere with comment parsing if not correctly implemented to recognize comments. The 'HASH_COMMENT_MODE' is directly responsible for recognizing Python comments, and any issue in this mode can lead to incorrect comment highlighting. In 'src/lib/modes.js', the 'COMMENT' function is responsible for defining comment modes across different languages. If there's a bug in how comments are defined or processed in this function, it can cause the described issue across all languages, including Python.",
+        "bug_scenario": "The bug scenario involves a syntax highlighting issue in Python code where comments on the same line as a decorator are incorrectly highlighted as metadata rather than comments. This results in the entire line being assigned the 'hljs-meta' class instead of 'hljs-comment', which is incorrect formatting."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/python.js"
+        ],
+        "bug_functions": [
+            "src/languages/python.js//export default function"
+        ],
+        "explanation": "The file 'src/languages/python.js' contains the function that defines the syntax highlighting rules for Python, including how comments and decorators should be treated. Within this file, the 'export default function' is responsible for configuring the language syntax highlighting, including defining classes like 'hljs-meta' and 'hljs-comment'. The issue arises from incorrect parsing of comments when they are on the same line as a decorator, which indicates that adjustments are needed in the logic or regex patterns used in this function to correctly classify comments separately from decorators.",
+        "bug_scenario": "The bug scenario involves incorrect syntax highlighting in Python code when a comment is placed on the same line as a decorator. Instead of the comment being highlighted as a comment (hljs-comment), the entire line is incorrectly highlighted as metadata (hljs-meta). This affects the readability and accuracy of the syntax highlighting for Python code snippets."
+    }
+}

@@ -1,0 +1,48 @@
+diff --git a/lib/linter/code-path-analysis/code-path-analyzer.js b/lib/linter/code-path-analysis/code-path-analyzer.js
+index c0b1854..ddf9537 100644
+--- a/lib/linter/code-path-analysis/code-path-analyzer.js
++++ b/lib/linter/code-path-analysis/code-path-analyzer.js
+@@ -492,10 +492,18 @@ function processCodePathToEnter(analyzer, node) {
+ 
+         case "LogicalExpression":
+             if (isHandledLogicalOperator(node.operator)) {
+-                state.pushChoiceContext(
+-                    node.operator,
+-                    isForkingByTrueOrFalse(node)
+-                );
++                if (node.operator === "&&") {
++                    // Add logic to handle short-circuiting for `&&`
++                    state.pushChoiceContext(
++                        node.operator,
++                        isForkingByTrueOrFalse(node) || isForkingByTrueOrFalse(node.right)
++                    );
++                } else {
++                    state.pushChoiceContext(
++                        node.operator,
++                        isForkingByTrueOrFalse(node)
++                    );
++                }
+             }
+             break;
+ 
+diff --git a/lib/linter/code-path-analysis/code-path-state.js b/lib/linter/code-path-analysis/code-path-state.js
+index dcd2469..71ead63 100644
+--- a/lib/linter/code-path-analysis/code-path-state.js
++++ b/lib/linter/code-path-analysis/code-path-state.js
+@@ -1117,10 +1117,16 @@ class CodePathState {
+                  * then we add these segments to all possible forks.
+                  */
+                 if (!context.processed) {
++                if (context.kind === "&&") {
++                    // Ensure that the true and false paths are correctly set for `&&`
++                    context.trueForkContext.add(headSegments);
++                    context.falseForkContext.add(headSegments);
++                } else {
+                     context.trueForkContext.add(headSegments);
+                     context.falseForkContext.add(headSegments);
+                     context.qqForkContext.add(headSegments);
+                 }
++                }
+ 
+                 /*
+                  * If this context is the left (test) expression for another choice

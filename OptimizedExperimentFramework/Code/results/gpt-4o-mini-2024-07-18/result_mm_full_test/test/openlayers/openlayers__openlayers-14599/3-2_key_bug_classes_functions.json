@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/control/Attribution.js//Attribution",
+            "src/ol/layer/Group.js//LayerGroup",
+            "src/ol/source/TileWMS.js//TileWMS"
+        ],
+        "bug_functions": [
+            "src/ol/control/Attribution.js//collectSourceAttributions_",
+            "src/ol/control/Attribution.js//updateElement_",
+            "src/ol/layer/Group.js//getLayers",
+            "src/ol/source/TileWMS.js//getParams"
+        ],
+        "explanation": "The classes and functions identified are crucial for addressing the bug. The `Attribution` class is responsible for displaying attributions, and its `collectSourceAttributions_` function gathers visible attributions from layers. The `updateElement_` function updates the displayed attributions, which is where the bug manifests. The `LayerGroup` class manages the visibility of layers, and its `getLayers` function is essential for determining which layers are visible. Finally, the `TileWMS` class's `getParams` function retrieves parameters related to the WMS layer, which may include attribution settings. Modifications in these areas can help ensure that attributions are only displayed when appropriate.",
+        "bug_scenario": "The bug occurs when the visibility of a group layer is set to false, but the sub-layer is visible. In this case, attributions from the WMS layer are incorrectly displayed in the info popup, even though they should not be shown due to the parent group's invisibility."
+    }
+}

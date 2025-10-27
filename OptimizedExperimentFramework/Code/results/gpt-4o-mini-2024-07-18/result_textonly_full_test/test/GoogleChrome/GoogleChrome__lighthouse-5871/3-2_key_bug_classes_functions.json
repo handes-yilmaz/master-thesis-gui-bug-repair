@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/index.js//lighthouse",
+            "lighthouse-core/gather/gather-runner.js//GatherRunner",
+            "lighthouse-core/gather/connections/connection.js//Connection"
+        ],
+        "bug_functions": [
+            "lighthouse-core/index.js//lighthouse",
+            "lighthouse-core/gather/gather-runner.js//getBaseArtifacts",
+            "lighthouse-core/gather/connections/connection.js//sendCommand"
+        ],
+        "explanation": "The classes and functions identified are related to the bug because they handle the core functionality of running Lighthouse tests and managing connections to the browser. The 'lighthouse' function in 'index.js' is responsible for initiating the Lighthouse run, which includes setting the user agent. The 'GatherRunner' class manages the lifecycle of the gathering process, including the retrieval of the user agent through the 'getBaseArtifacts' function. The 'Connection' class is responsible for sending commands to the browser, which may include setting or retrieving the user agent. Any changes to ensure consistency in the user agent would likely involve modifications in these classes and functions.",
+        "bug_scenario": "The bug scenario involves a discrepancy between the user agent reported in the Lighthouse runtime settings and the actual user agent used for requests. This inconsistency can lead to confusion when analyzing web server logs, as requests from the same tool appear with different user agents. The user expects the user agent in the Lighthouse report to match the one used in the test requests."
+    }
+}

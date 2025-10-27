@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [],
+        "bug_functions": [],
+        "explanation": "The bug is related to the JSON parsing and tokenization logic, specifically in the handling of comments and string patterns. The relevant files `components/prism-json.js` and `components/prism-json.min.js` define the tokenization rules for JSON in the Prism library. The issue is likely to be with the regular expressions or logic used to identify and handle comments (`\\/\\/.*|\\/\\*[\\s\\S]*?(?:\\*\\/|$)`) and strings (`\"(?:\\\\.|[^\\\"\\r\\n])*\"`). These patterns need to correctly distinguish between actual comments and strings that contain similar patterns like `/*` within JSON data. Adjustments in these expressions are necessary to handle such cases without breaking the tokenization.",
+        "bug_scenario": "The bug scenario involves incorrect tokenization of JSON data when the HTTP header `Accept: */*` is present. The JSON tokenization breaks, possibly due to the `/*` being misinterpreted as the start of a comment in the JSON data, leading to improper syntax highlighting or parsing."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-json.js//Prism.languages.json"
+        ],
+        "bug_functions": [],
+        "explanation": "The class 'Prism.languages.json' in the file 'components/prism-json.js' is responsible for defining the tokenization patterns for JSON syntax in Prism. The issue described in the bug report relates to the incorrect handling of comment syntax, which is part of the tokenization logic defined in this class. Specifically, the pattern for comments '/\\/\\/.*|\\/\\*[\\s\\S]*?(?:\\*\\/|$)/' appears to be incorrectly processing the '/*' sequence as a comment start, leading to incorrect tokenization. Therefore, this class is directly related to the problem and needs to be revised to handle such cases correctly.",
+        "bug_scenario": "The bug scenario involves incorrect tokenization when logging server responses as JSON. Specifically, the issue arises with the HTTP header 'Accept: */*', which causes JSON tokenization to break. The code snippet provided shows a JSON object where the property 'A' has a value of '/*', and the incorrect tokenization is observed in this context."
+    }
+}

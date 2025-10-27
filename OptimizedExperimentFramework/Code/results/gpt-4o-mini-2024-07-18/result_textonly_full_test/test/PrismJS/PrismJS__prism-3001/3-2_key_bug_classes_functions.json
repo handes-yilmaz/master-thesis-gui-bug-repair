@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-typescript.js//Prism.languages.typescript",
+            "components/prism-typescript.js//Prism.languages.typescript.keyword",
+            "components/prism-typescript.min.js//Prism.languages.typescript",
+            "components/prism-typescript.min.js//Prism.languages.typescript.keyword",
+            "plugins/highlight-keywords/prism-highlight-keywords.js//Prism.hooks.add"
+        ],
+        "bug_functions": [],
+        "explanation": "The identified classes and functions are related to the bug because they define the syntax highlighting rules for TypeScript keywords. The 'Prism.languages.typescript' class contains the patterns that determine how keywords are recognized and highlighted. The 'Prism.languages.typescript.keyword' specifically manages the keywords that need to be highlighted, including the problematic ones like 'infer' and 'type'. The 'Prism.hooks.add' function in the highlight keywords plugin is responsible for adding classes to the highlighted keywords, which may also need to be adjusted to ensure correct highlighting behavior.",
+        "bug_scenario": "The bug scenario involves TypeScript keywords such as 'infer' and 'type' being incorrectly highlighted when they are followed by an alphabetic character. The expected behavior is that these keywords should only be highlighted when they are standalone or followed by non-alphabetic characters, as shown in the provided examples. The actual highlighting incorrectly marks them as keywords even when they are part of a larger identifier."
+    }
+}

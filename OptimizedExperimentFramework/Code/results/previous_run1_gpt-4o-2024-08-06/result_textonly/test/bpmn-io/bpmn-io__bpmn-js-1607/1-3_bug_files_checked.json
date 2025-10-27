@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/GroupBehavior.js",
+            "lib/features/modeling/behavior/RootElementReferenceBehavior.js",
+            "lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js",
+            "lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js",
+            "lib/import/BpmnImporter.js",
+            "lib/import/BpmnTreeWalker.js"
+        ],
+        "explanation": "1. **lib/features/modeling/behavior/GroupBehavior.js**: The bug involves groups within a collapsed sub-process. GroupBehavior is likely to manage grouping functionalities, and thus changes in its handling can affect group creation and manipulation.\n\n2. **lib/features/modeling/behavior/RootElementReferenceBehavior.js**: The error message mentions an 'unresolved reference', suggesting a failure to properly register or maintain references during the import process. This file might deal with maintaining references between BPMN elements.\n\n3. **lib/features/modeling/behavior/ToggleElementCollapseBehaviour.js**: Since this file is related to the collapsed nature of the sub-processes, it might be involved in handling states or behaviors when sub-processes are collapsed or expanded, affecting how groups within them are managed.\n\n4. **lib/features/modeling/cmd/UpdateModdlePropertiesHandler.js**: Given the error about a category value reference, this file might be relevant if it deals with updating or preserving properties (like category value references) in the model during save or load operations.\n\n5. **lib/import/BpmnImporter.js** and **lib/import/BpmnTreeWalker.js**: The issue surfaces upon re-importing, indicating that the import process does not correctly resolve or maintain references for groups inside collapsed sub-processes. These files would be critical to evaluate how the import mechanism handles such scenarios.",
+        "bug_scenario": "The bug occurs when creating a group inside a collapsed sub-process in a BPMN diagram. After saving and re-importing the diagram, a warning appears indicating an unresolved reference to a category value."
+    },
+    "2": {
+        "bug_files": [
+            "lib/features/modeling/behavior/GroupBehavior.js",
+            "lib/import/BpmnImporter.js",
+            "lib/import/BpmnTreeWalker.js",
+            "lib/import/Util.js"
+        ],
+        "explanation": "The bug involves creating groups inside collapsed sub-processes, which breaks BPMN export. This issue likely relates to how groups are handled within the modeling and importing processes:\n\n1. **lib/modeling/behavior/GroupBehavior.js**: As the name suggests, this file likely contains the behavior logic for handling groups within the modeling environment. Incorrect handling or failure to register groups within sub-processes could lead to unresolved references during import.\n\n2. **lib/import/BpmnImporter.js** & **lib/import/BpmnTreeWalker.js**: These files likely manage the importation of BPMN diagrams. If groups are not correctly imported or their references not resolved, it would result in unresolved references.\n\n3. **lib/import/Util.js**: Utility functions for the import process might be responsible for handling references or resolving elements within the diagram hierarchy. If they incorrectly manage references for groups within collapsed processes, it could cause the issue.\n\nThe combination of these files suggests issues with both the modeling and importing phases of BPMN diagrams, specifically concerning how groups are handled within sub-processes.",
+        "bug_scenario": "The bug occurs when a group is created inside a collapsed sub-process in a BPMN model. When this model is saved and then re-imported, a warning message appears: \"unresolved reference <CategoryValue_01k5toe>.\" The expected behavior is that groups should be modelable without triggering any warnings or errors on re-import."
+    }
+}

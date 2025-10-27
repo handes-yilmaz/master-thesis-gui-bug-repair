@@ -1,0 +1,15 @@
+diff --git a/src/select/select.jsx b/src/select/select.jsx
+index d12cd53..a965e88 100644
+--- a/src/select/select.jsx
++++ b/src/select/select.jsx
+@@ -712,8 +712,8 @@ class Select extends Base {
+         } = this.props;
+         let value = this.state.value;
+ 
+-        if (isNull(value)) {
+-            return null;
++        if (isNull(value) && !this.props.dataSource) {
++            return this.props.defaultValue ? this.props.defaultValue[this.props.fillProps] : null;
+         }
+ 
+         // get detail value

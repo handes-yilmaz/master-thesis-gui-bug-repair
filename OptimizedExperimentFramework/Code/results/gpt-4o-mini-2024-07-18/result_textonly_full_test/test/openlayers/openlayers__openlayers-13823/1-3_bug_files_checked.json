@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Image.js",
+            "src/ol/render/canvas/ImageBuilder.js",
+            "src/ol/source/ImageWMS.js"
+        ],
+        "explanation": "The identified files are related to the image rendering process and the WMS (Web Map Service) source. The 'Image.js' file in the 'layer' directory handles the image layers, and modifications here could address how the canvas size is calculated based on the image ratio. The 'ImageBuilder.js' under 'render/canvas' is crucial for the rendering logic and needs to be optimized to prevent unnecessary canvas size allocation for HiDPI displays. Additionally, 'ImageWMS.js' is relevant as it manages the WMS image source loading and could be adjusted to ensure that the correct image ratios are used instead of display pixel ratios.",
+        "bug_scenario": "The image layer renderer is using excessive memory due to the creation of a canvas that is larger than necessary for HiDPI devices. This occurs because the canvas size is based on the display pixel ratio rather than the actual image ratio from the source. As a result, the canvas can be twice the size it needs to be, leading to four times the memory usage."
+    }
+}

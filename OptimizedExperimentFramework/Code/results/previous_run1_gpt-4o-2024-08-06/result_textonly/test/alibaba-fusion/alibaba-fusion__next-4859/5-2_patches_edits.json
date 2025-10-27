@@ -1,0 +1,55 @@
+{
+    "1/1": {
+        "components/cascader-select/cascader-select.tsx": [
+            {
+                "SEARCH": [
+                    "handleAfterOpen() {",
+                    "if (!this.popup) {",
+                    "return;",
+                    "}",
+                    "",
+                    "const { prefix, popupProps } = this.props;",
+                    "const { v2 = false } = popupProps;",
+                    "if (!v2) {",
+                    "// @ts-expect-error 待 overlay 技术升级完成",
+                    "const dropDownNode = this.popup.getInstance().overlay.getInstance().getContentNode();",
+                    "const cascaderNode = dropDownNode.querySelector(`.${prefix}cascader`) as HTMLElement;",
+                    "if (cascaderNode) {",
+                    "this.cascaderHeight = getStyle(cascaderNode, 'height');",
+                    "}",
+                    "}",
+                    "",
+                    "if (typeof popupProps.afterOpen === 'function') {",
+                    "popupProps.afterOpen();",
+                    "}",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    handleAfterOpen() {",
+                    "        if (!this.popup) {",
+                    "            return;",
+                    "        }",
+                    "",
+                    "        const { prefix, popupProps, useVirtual } = this.props;",
+                    "        const { v2 = false } = popupProps;",
+                    "        if (!v2) {",
+                    "            // @ts-expect-error 待 overlay 技术升级完成",
+                    "            const dropDownNode = this.popup.getInstance().overlay.getInstance().getContentNode();",
+                    "            const cascaderNode = dropDownNode.querySelector(`.${prefix}cascader`) as HTMLElement;",
+                    "            if (cascaderNode) {",
+                    "                this.cascaderHeight = getStyle(cascaderNode, 'height');",
+                    "                if (useVirtual) {",
+                    "                    cascaderNode.style.backgroundColor = 'inherit'; // Ensure background color is set correctly",
+                    "                }",
+                    "            }",
+                    "        }",
+                    "",
+                    "        if (typeof popupProps.afterOpen === 'function') {",
+                    "            popupProps.afterOpen();",
+                    "        }",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

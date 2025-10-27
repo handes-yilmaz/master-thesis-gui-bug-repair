@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/space-tool/BpmnSpaceTool",
+            "lib/features/modeling/behavior/ResizeBehavior",
+            "lib/features/modeling/behavior/SpaceToolBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/space-tool/BpmnSpaceTool//calculateAdjustments",
+            "lib/features/modeling/behavior/ResizeBehavior//getParticipantResizeConstraints",
+            "lib/features/modeling/behavior/SpaceToolBehavior//getParticipantMinHeight"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the resizing behavior of shapes in the BPMN model. The 'BpmnSpaceTool' class is responsible for the space tool functionality, and its 'calculateAdjustments' method is crucial for determining how shapes are resized. The 'ResizeBehavior' class contains the 'getParticipantResizeConstraints' function, which sets constraints on resizing elements like pools and lanes, and is likely where the logic for preventing the resizing of empty pools should be implemented. Lastly, the 'SpaceToolBehavior' class includes the 'getParticipantMinHeight' function, which calculates the minimum height for participants, and may need to be adjusted to ensure that empty pools do not resize vertically when the space tool is used.",
+        "bug_scenario": "The bug occurs when using the space tool on an empty pool, which is supposed to have a fixed height. Instead of maintaining its height, the empty pool is resized vertically, which is not the expected behavior."
+    }
+}

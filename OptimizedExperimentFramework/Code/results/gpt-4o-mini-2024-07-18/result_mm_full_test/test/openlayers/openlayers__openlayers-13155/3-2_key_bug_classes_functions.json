@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/source/DataTile.js//DataTileSource",
+            "src/ol/webgl/TileTexture.js//TileTexture"
+        ],
+        "bug_functions": [
+            "src/ol/layer/WebGLTile.js//setStyle",
+            "src/ol/layer/WebGLTile.js//createRenderer",
+            "src/ol/webgl/TileTexture.js//uploadTile_",
+            "src/ol/webgl/TileTexture.js//uploadDataTexture"
+        ],
+        "explanation": "The classes WebGLTileLayer, DataTileSource, and TileTexture are central to the rendering process of tiles in the WebGL context. The WebGLTileLayer class is responsible for managing the layer's style and rendering, which includes handling the imageSmoothing setting. The DataTileSource class is responsible for loading the tile data, which may need to support the imageSmoothing option. The TileTexture class handles the actual texture uploads to the GPU, where the filtering method (gl.NEAREST vs. gl.LINEAR) is set. The functions setStyle and createRenderer in WebGLTileLayer are crucial for applying the correct style settings, while uploadTile_ and uploadDataTexture in TileTexture are responsible for ensuring the correct texture parameters are set based on the imageSmoothing setting.",
+        "bug_scenario": "The bug involves the WebGLTile renderer not respecting the imageSmoothing setting of the tile source, leading to pixelation and distortion when zoomed in on the Sea Level example. This is particularly noticeable at certain zoom levels and can cause visual artifacts along tile boundaries. The issue arises because the renderer does not pass the imageSmoothing setting to the TileTexture, which defaults to using linear filtering instead of nearest-neighbor filtering when it should be using gl.NEAREST."
+    }
+}

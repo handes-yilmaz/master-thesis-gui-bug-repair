@@ -1,0 +1,61 @@
+{
+    "1/1": {
+        "src/menu/view/menu.jsx": [
+            {
+                "SEARCH": [
+                    "const loop = (children, posPrefix, indexWrapper = { index: 0 }) => {",
+                    "const keyArray = [];",
+                    "return Children.map(children, child => {",
+                    "if (",
+                    "child &&",
+                    "(typeof child.type === 'function' ||",
+                    "typeof child.type === 'object') &&",
+                    "'menuChildType' in child.type",
+                    ") {"
+                ],
+                "REPLACE": [
+                    "        const loop = (children, posPrefix, indexWrapper = { index: 0 }) => {",
+                    "            const keyArray = [];",
+                    "            return Children.map(children, child => {",
+                    "                if (",
+                    "                    child &&",
+                    "                    (typeof child.type === 'function' ||",
+                    "                        typeof child.type === 'object') &&",
+                    "                    'menuChildType' in child.type &&",
+                    "                    child.props.label // Ensure child has a label",
+                    "                ) {"
+                ]
+            }
+        ],
+        "src/menu/view/sub-menu.jsx": [
+            {
+                "SEARCH": [
+                    "return Children.toArray(children).filter(React.isValidElement).map(child => {",
+                    "return cloneElement(child, {",
+                    "parent: this,",
+                    "parentMode: mode || root.props.mode,",
+                    "});"
+                ],
+                "REPLACE": [
+                    "        return Children.toArray(children).filter(React.isValidElement).filter(child => child.props.label).map(child => {",
+                    "            return cloneElement(child, {",
+                    "                parent: this,",
+                    "                parentMode: mode || root.props.mode,",
+                    "            });"
+                ]
+            }
+        ],
+        "src/menu/view/group.jsx": [
+            {
+                "SEARCH": [
+                    "return Children.map(children, child => {",
+                    "if (child && child.props.label) {"
+                ],
+                "REPLACE": [
+                    "        return Children.map(children, child => {",
+                    "            if (child && child.props.label && child.props.label.trim() !== '') {"
+                ]
+            }
+        ]
+    }
+}

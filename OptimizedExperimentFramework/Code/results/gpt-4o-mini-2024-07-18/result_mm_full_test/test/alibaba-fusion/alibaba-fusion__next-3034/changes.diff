@@ -1,0 +1,22 @@
+diff --git a/src/upload/list.jsx b/src/upload/list.jsx
+index a0c383e..478c5c4 100644
+--- a/src/upload/list.jsx
++++ b/src/upload/list.jsx
+@@ -72,7 +72,7 @@ class List extends Component {
+         listType: 'text',
+         value: [],
+         locale: zhCN.Upload,
+-        closable: false,
++        closable: true,
+         onRemove: func.noop,
+         onCancel: func.noop,
+         extraRender: func.noop,
+@@ -224,7 +224,7 @@ class List extends Component {
+                             role="button"
+                             aria-label={locale.upload.delete}
+                             tabIndex="0"
+-                            onClick={onClick}
++                            onClick={() => this.handleClose(file)} // Ensure handleClose is called
+                             onKeyDown={onKeyDown}
+                         />
+                     ) : null}

@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/cpp.js//function",
+            "src/lib/compile_keywords.js//compileKeywords",
+            "src/lib/compile_keywords.js//scoreForKeyword",
+            "src/lib/compile_keywords.js//commonKeyword"
+        ],
+        "bug_functions": [
+            "src/lib/compile_keywords.js//compileKeywords",
+            "src/lib/compile_keywords.js//scoreForKeyword",
+            "src/lib/compile_keywords.js//commonKeyword"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they are responsible for compiling and scoring keywords in the syntax highlighting process. The `compileKeywords` function is crucial as it processes the keywords for the C++ language, including control flow statements like `switch`. The `scoreForKeyword` and `commonKeyword` functions determine how keywords are treated in terms of relevance and highlighting. If the `switch` statement is not correctly included or scored in these functions, it would lead to the observed highlighting issue.",
+        "bug_scenario": "The bug scenario involves a regression in the syntax highlighting of the `switch` statement in C++ code between versions 10.6.0 and 10.7.0 of the highlight.js library. The expected behavior is that the `switch` statement should be highlighted consistently with other control flow statements like `if`, `while`, and `for`, but in the actual behavior, it is highlighted differently, leading to a visual inconsistency in the code highlighting."
+    }
+}

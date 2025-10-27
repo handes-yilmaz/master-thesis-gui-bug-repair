@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/v2/renderer/util.js//Util"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/v2/renderer/util.js//formatNumber",
+            "lighthouse-core/report/v2/renderer/util.js//formateBytesToKB",
+            "lighthouse-core/report/v2/renderer/util.js//formatMilliseconds",
+            "lighthouse-core/report/v2/renderer/util.js//chainDuration"
+        ],
+        "explanation": "The `Util` class contains several static methods that handle number formatting. The `formatNumber` method directly implements the `toLocaleString` method, which is crucial for the bug fix. The `formateBytesToKB` and `formatMilliseconds` methods also utilize `toLocaleString`, making them relevant for ensuring all numerical outputs are formatted correctly. The `chainDuration` method formats the duration of a process, which should also adhere to the new formatting standards.",
+        "bug_scenario": "The bug scenario involves ensuring that all numerical outputs in the application utilize the `toLocaleString` method for formatting. This method provides a consistent way to display numbers with appropriate thousands separators and decimal places, enhancing readability and user experience."
+    }
+}

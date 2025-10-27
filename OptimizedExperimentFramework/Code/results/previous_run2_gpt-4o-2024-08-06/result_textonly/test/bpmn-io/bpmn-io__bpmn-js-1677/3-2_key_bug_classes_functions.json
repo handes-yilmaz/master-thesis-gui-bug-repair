@@ -1,0 +1,27 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/label-editing/LabelEditingProvider.js//LabelEditingProvider",
+            "lib/features/modeling/Modeling.js//Modeling",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//UpdateLabelHandler"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/Modeling.js//Modeling.prototype.updateLabel",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//UpdateLabelHandler.prototype.execute",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//UpdateLabelHandler.prototype.revert"
+        ],
+        "explanation": "The 'LabelEditingProvider' class manages the direct editing of labels, which includes activation and cancellation, making it critical in handling direct interactions that lead to the error. The 'Modeling' class contains the 'updateLabel' function, which is directly responsible for executing the command stack operation that triggers the 'illegal invocation'. The 'UpdateLabelHandler' class handles the specific command to update labels, with its 'execute' and 'revert' methods being directly involved in the label update process that leads to the exception. These classes and functions are central to the error as they manage the label update operations that fail under certain conditions, specifically when an element is deleted during direct editing.",
+        "bug_scenario": "The bug is triggered when a user attempts to delete an element while direct editing is active, causing an 'illegal invocation' exception. This occurs during the <execute> or <revert> phases when the action 'element.updateLabel' is called, leading to a breakdown in the editor interface."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/label-editing/LabelEditingProvider.js//LabelEditingProvider"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/Modeling.js//Modeling.prototype.updateLabel",
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js//UpdateLabelHandler"
+        ],
+        "explanation": "The 'LabelEditingProvider' class is involved in managing direct editing operations such as activating and completing direct edits, and it listens for events that should cancel or complete direct editing. The issue arises when an element is deleted while editing is still active, suggesting that the handling of direct editing states or events related to element deletion might be faulty within this class.\n\nThe 'Modeling.prototype.updateLabel' function is directly responsible for executing the 'element.updateLabel' command, which is the action mentioned in the error message. This indicates that issues in how label updates are managed during direct editing could be contributing to the illegal state.\n\nThe 'UpdateLabelHandler' class is responsible for handling updates to the text of a BPMN element, including setting and reverting labels. The error suggests a problem with label updates during the deletion of an element, which implies that the execution or revert methods in this handler may not be appropriately managing the state of the element or its labels when an element is removed while direct editing is active.",
+        "bug_scenario": "The bug scenario involves an 'illegal invocation' exception that occurs when an element is deleted while direct editing is active in a BPMN editor. The error is triggered during the execute or revert phase of an element's updateLabel action, as seen in the Sentry Issue log."
+    }
+}

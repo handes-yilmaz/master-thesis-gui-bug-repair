@@ -1,0 +1,16 @@
+diff --git a/src/ol/layer/Vector.js b/src/ol/layer/Vector.js
+index 5573620..790cd8b 100644
+--- a/src/ol/layer/Vector.js
++++ b/src/ol/layer/Vector.js
+@@ -28,7 +28,10 @@ class VectorLayer extends BaseVectorLayer {
+   }
+ 
+   createRenderer() {
+-    return new CanvasVectorLayerRenderer(this);
++    const renderer = new CanvasVectorLayerRenderer(this);
++    // Ensure that the renderer accounts for rotation and translation
++    renderer.setRotationTranslationHandler(this.handleRotationTranslation.bind(this));
++    return renderer;
+   }
+ }
+ 

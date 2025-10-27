@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/c.js",
+            "src/languages/cpp.js",
+            "src/lib/modes.js"
+        ],
+        "explanation": "1. **src/languages/c.js**: This file is likely responsible for defining how C code is lexed and highlighted. Since the issue pertains to incorrect highlighting of 'LL' suffix in C, any code handling literals or suffixes in this file might need modification to correctly recognize 'LL' as part of the integer literal.\n\n2. **src/languages/cpp.js**: Similarly, since C++ code shares lexical conventions with C (including the use of 'LL' suffix), this file would similarly need to be checked and potentially updated to ensure the suffix is handled correctly.\n\n3. **src/lib/modes.js**: This file might define common modes or rules applied across multiple languages for syntax highlighting. If the interpretation of affixes or suffix rules is centralized here, it may be involved in handling 'LL' suffix recognition across different languages, including C and C++.",
+        "bug_scenario": "The bug is related to the incorrect syntax highlighting of the 'LL' integer literal suffix in C and C++ code, where only the first 'L' is being highlighted. This issue is visible on platforms like StackOverflow which employ syntax highlighting for code snippets."
+    },
+    "2": {
+        "bug_files": [
+            "src/languages/c.js",
+            "src/languages/cpp.js",
+            "src/lib/regex.js"
+        ],
+        "explanation": "1. **src/languages/c.js:** This file is responsible for syntax highlighting rules specific to the C language. Given that one of the affected languages is C, it's likely this file needs modification to correctly identify and highlight the 'LL' suffix.\n\n2. **src/languages/cpp.js:** Similar to the C language, C++ also suffers from the same issue. Thus, this file would contain the rules for highlighting C++ syntax, including integer literals, and should be updated to handle 'LL' as a complete suffix.\n\n3. **src/lib/regex.js:** Syntax highlighting typically relies on regular expressions. This file may define common regex patterns used across various language files. Updating these patterns to accurately recognize multi-character suffixes like 'LL' may require changes here, so the highlight engine treats 'LL' as a single unit in both C and C++.",
+        "bug_scenario": "The bug scenario is related to syntax highlighting for C/C++ integer literals that use the 'LL' suffix. In the reported issue, when using the 'LL' suffix to denote a long long integer, only the first 'L' is highlighted correctly, and the second 'L' is not highlighted as expected. This causes a visual inconsistency and fails to properly denote the entire 'LL' as a part of the integer literal suffix in syntax highlighting."
+    }
+}

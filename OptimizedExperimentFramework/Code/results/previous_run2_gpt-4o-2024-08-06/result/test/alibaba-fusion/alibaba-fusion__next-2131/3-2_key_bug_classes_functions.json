@@ -1,0 +1,23 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/tree/view/tree.jsx//TreeNode"
+        ],
+        "bug_functions": [
+            "src/tree/view/tree.jsx//renderByDataSource",
+            "src/tree/view/tree.jsx//getNodeProps"
+        ],
+        "explanation": "The error occurs due to attempting to add a property to a non-extensible object, which is a common issue when dealing with immutable data structures in JavaScript. The functions 'renderByDataSource' and 'getNodeProps' are directly involved in rendering and accessing node properties, which are likely manipulating the object in question. The 'TreeNode' class is central to the component's functionality, likely managing the state and properties of nodes within the tree, including the 'pos' property. Fixing the bug would require ensuring that objects are mutable or handling them in a way that respects their immutability.",
+        "bug_scenario": "The bug is related to the Tree component in a React application. After upgrading, an error occurs stating \"Cannot add property pos, object is not extensible.\" This indicates an issue with adding a 'pos' property to an object that is not extensible. The error trace points to the 'tree.js' file, specifically around line 159, where the 'pos' property is being accessed or modified."
+    },
+    "2": {
+        "bug_classes": [
+            "src/tree/view/tree.jsx//TreeNode"
+        ],
+        "bug_functions": [
+            "src/tree/view/tree.jsx//getNodeProps"
+        ],
+        "explanation": "The problem is likely related to the handling of tree nodes, specifically when trying to add or access properties on nodes. The 'getNodeProps' function in 'tree.js' is involved in node processing as indicated by the error trace (tree.js:709). The error message suggests that there is an issue with adding properties to an object, which could be a result of improper handling of immutable data structures or incorrect node initialization. The issue might be related to how nodes are cloned or initialized, possibly within the 'TreeNode' class or related functions, necessitating a review and modification of these areas to ensure nodes are properly mutable or correctly structured.",
+        "bug_scenario": "The bug is related to a tree component where an error occurs during an upgrade. The error message indicates that an attempt to add the property 'pos' failed because the object is not extensible. The error occurs at line 159 in 'tree.js' as shown in the images. The error also shows up in the console indicating 'Cannot read property 'pos' of undefined'."
+    }
+}

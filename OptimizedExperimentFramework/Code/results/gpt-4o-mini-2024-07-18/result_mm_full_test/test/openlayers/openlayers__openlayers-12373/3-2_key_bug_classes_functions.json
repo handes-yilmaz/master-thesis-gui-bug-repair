@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/TileDebug.js//TileDebug",
+            "src/ol/source/TileImage.js//TileImage"
+        ],
+        "bug_functions": [
+            "src/ol/source/TileDebug.js//getTile",
+            "src/ol/source/TileImage.js//getTile"
+        ],
+        "explanation": "The TileDebug class is responsible for rendering the debug tiles, and its getTile function retrieves the tile based on the coordinates provided. The TileImage class handles the actual image tiles and also has a getTile function that fetches the tile based on the coordinates. Since the bug involves incorrect handling of the inverted Y coordinate, both classes and their respective getTile functions are critical to address the issue.",
+        "bug_scenario": "The TileDebug layer does not correctly represent the inverted Y coordinate for the TileImage layer, leading to discrepancies in the displayed tile coordinates when debugging. This issue arises when the TileImage server is called, as the Y coordinates do not match the expected inverted values."
+    }
+}

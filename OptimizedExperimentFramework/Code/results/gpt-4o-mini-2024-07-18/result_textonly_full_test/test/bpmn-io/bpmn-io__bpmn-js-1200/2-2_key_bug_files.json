@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/modeling/behavior/ReplaceElementBehaviour.js",
+            "lib/features/modeling/behavior/AttachEventBehavior.js",
+            "lib/features/modeling/BpmnUpdater.js"
+        ],
+        "explanation": "These files are key bug files because they contain the logic that handles the behavior of elements in the BPMN model. The 'ReplaceElementBehaviour.js' file is responsible for defining how elements are replaced in the model, which is directly related to the issue of the condition expression being removed. The 'AttachEventBehavior.js' file deals with the behavior of attaching events to shapes, which may also influence how the Timer Intermediate Catch Event interacts with existing sequence flows. Lastly, 'BpmnUpdater.js' is responsible for updating the BPMN model and ensuring that changes are reflected correctly, which is crucial for maintaining the integrity of the condition expressions during modifications.",
+        "bug_scenario": "The bug scenario involves dropping a 'Timer Intermediate Catch Event' onto a sequence flow that already has a condition expression set. When this action is performed, the existing condition expression is removed, which is not the expected behavior. The expected behavior is that the condition expression should remain intact after the event is dropped."
+    }
+}

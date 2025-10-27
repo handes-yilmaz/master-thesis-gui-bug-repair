@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/command/render/crossref.ts//crossrefFilterParams",
+            "src/command/render/output-tex.ts//texToPdfOutputRecipe",
+            "src/project/types/book/book-render.ts//bookPostRender"
+        ],
+        "bug_functions": [],
+        "explanation": "The identified classes and functions are related to the bug as follows: 1. **crossrefFilterParams**: This function handles the parameters for cross-referencing, which is crucial for ensuring that subfigures are labeled correctly. If this function does not properly handle subfigure references, it could lead to the issue described. 2. **texToPdfOutputRecipe**: This function is responsible for generating the LaTeX output from the Quarto document. If it does not correctly implement the logic for subfigure labeling, it will result in the incorrect output seen in the bug report. 3. **bookPostRender**: This function is involved in the post-rendering process for books, which may include handling cross-references and ensuring that all figures and subfigures are correctly labeled and referenced. Any issues in this function could directly impact the labeling of subfigures.",
+        "bug_scenario": "The bug scenario involves the generation of LaTeX documents using Quarto, where subfigures are not labeled correctly. In the minimal working example, the subfigures are labeled as normal figures, leading to confusion in cross-referencing. The expected behavior is that subfigures should have their own labels, which is demonstrated in the patched version of the example."
+    }
+}

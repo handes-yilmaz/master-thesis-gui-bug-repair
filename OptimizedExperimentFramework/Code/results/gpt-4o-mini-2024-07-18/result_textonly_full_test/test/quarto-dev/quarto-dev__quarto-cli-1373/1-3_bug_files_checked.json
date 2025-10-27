@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/command/render/codetools.ts",
+            "src/command/render/render.ts",
+            "src/command/render/pandoc-dependencies-html.ts",
+            "src/command/render/output.ts"
+        ],
+        "explanation": "The `codetools.ts` file is directly related to the rendering of code tools in Quarto markdown files. Since the bug pertains to the visibility of the `code-tools` menu, any rendering logic that fails to account for URLs will likely be found here. The `render.ts` file contains the core rendering logic for Quarto documents, which should also be inspected for issues related to how different source types (local vs URL) are handled. The `pandoc-dependencies-html.ts` and `output.ts` files could also play a role in how outputs are rendered based on the source provided, thus they are relevant to the bug as well.",
+        "bug_scenario": "`code-tools` menu fails to show when a URL is provided for the `source` in a Quarto markdown file, but works fine when set to `source: true`. Images demonstrate the issue with the menu visibility."
+    }
+}

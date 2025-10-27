@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/renderer/webgl/TileLayer.js//WebGLTileLayerRenderer",
+            "src/ol/layer/Layer.js//Layer"
+        ],
+        "bug_functions": [
+            "src/ol/renderer/webgl/TileLayer.js//enqueueTiles",
+            "src/ol/layer/Layer.js//getMinZoom",
+            "src/ol/layer/Layer.js//getMaxResolution"
+        ],
+        "explanation": "The `WebGLTileLayerRenderer` class is directly involved in rendering tiles, and the `enqueueTiles` function is where the incorrect use of `layer.getMinZoom()` occurs. This function is critical because it determines how tiles are queued for rendering based on zoom levels. The `Layer` class contains the `getMinZoom` and `getMaxResolution` functions, which are essential for understanding the zoom levels and resolutions that affect tile loading. The incorrect implementation of these methods can lead to tiles not being rendered correctly, which is the core of the reported bug.",
+        "bug_scenario": "`layer.getMinZoom()` is being used incorrectly in the `WebGLTileLayerRenderer` class, which can lead to issues with tile loading. The method is expected to return a zoom level that does not directly correspond to tile grid zoom levels, potentially causing tiles not to load when used as a tile grid index."
+    }
+}

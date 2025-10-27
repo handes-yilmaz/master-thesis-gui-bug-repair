@@ -1,0 +1,42 @@
+{
+    "1/1": {
+        "src/command/render/pandoc.ts": [
+            {
+                "SEARCH": [
+                    "// remove some metadata that are used as parameters to our lua filters",
+                    "const cleanMetadataForPrinting = (metadata: Metadata) => {",
+                    "delete metadata.params;",
+                    "delete metadata[kQuartoInternal];",
+                    "delete metadata[kQuartoVarsKey];",
+                    "delete metadata[kQuartoVersion];",
+                    "delete metadata[kFigResponsive];",
+                    "delete metadata[kQuartoTemplateParams];",
+                    "delete metadata[kRevealJsScripts];",
+                    "deleteProjectMetadata(metadata);",
+                    "deleteCrossrefMetadata(metadata);"
+                ],
+                "REPLACE": [
+                    "  // Check for empty captions and set a default if necessary",
+                    "  const handleEmptyCaptions = (metadata: Metadata) => {",
+                    "    if (metadata[kFigCap] && Array.isArray(metadata[kFigCap]) && metadata[kFigCap].length === 0) {",
+                    "      metadata[kFigCap] = [\"Default Caption\"]; // Set a default caption",
+                    "    }",
+                    "  };",
+                    "",
+                    "  // remove some metadata that are used as parameters to our lua filters",
+                    "  const cleanMetadataForPrinting = (metadata: Metadata) => {",
+                    "    handleEmptyCaptions(metadata); // Call the function to handle empty captions",
+                    "    delete metadata.params;",
+                    "    delete metadata[kQuartoInternal];",
+                    "    delete metadata[kQuartoVarsKey];",
+                    "    delete metadata[kQuartoVersion];",
+                    "    delete metadata[kFigResponsive];",
+                    "    delete metadata[kQuartoTemplateParams];",
+                    "    delete metadata[kRevealJsScripts];",
+                    "    deleteProjectMetadata(metadata);",
+                    "    deleteCrossrefMetadata(metadata);"
+                ]
+            }
+        ]
+    }
+}

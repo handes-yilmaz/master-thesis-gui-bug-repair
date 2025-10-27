@@ -1,0 +1,15 @@
+diff --git a/src/tree/view/tree.jsx b/src/tree/view/tree.jsx
+index 33abf61..16fa019 100644
+--- a/src/tree/view/tree.jsx
++++ b/src/tree/view/tree.jsx
+@@ -152,7 +152,9 @@ const drill = (data = [], level = 1, prefix = '0', parent) =>
+         const pos = `${prefix}-${index}`;
+         let { key } = item;
+ 
+-        item.pos = pos;
++        if (item && typeof item === 'object') {
++            item.pos = pos;
++        }
+         item.level = level;
+ 
+         // 判断为叶子节点

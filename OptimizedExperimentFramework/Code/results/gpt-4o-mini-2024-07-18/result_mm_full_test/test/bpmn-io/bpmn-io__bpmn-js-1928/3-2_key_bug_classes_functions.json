@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/space-tool/BpmnSpaceTool",
+            "lib/features/modeling/behavior/SpaceToolBehavior",
+            "lib/features/modeling/behavior/ResizeBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/space-tool/BpmnSpaceTool//calculateAdjustments",
+            "lib/features/modeling/behavior/SpaceToolBehavior//spaceTool.getMinDimensions",
+            "lib/features/modeling/behavior/ResizeBehavior//resize.start"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the behavior of the space tool and resizing logic in the BPMN model. The 'BpmnSpaceTool' class contains the logic for calculating adjustments when elements are resized, which is directly relevant to the issue of the empty pool resizing incorrectly. The 'SpaceToolBehavior' class manages the minimum dimensions for shapes, including pools, and is crucial for ensuring that the empty pool does not resize beyond its fixed height. Lastly, the 'ResizeBehavior' class defines the constraints and logic for resizing elements, which is essential for preventing the unintended vertical resizing of the empty pool.",
+        "bug_scenario": "The bug occurs when using the space tool on an empty pool, causing it to resize vertically, which is not the expected behavior. The expected behavior is that the empty pool should maintain its fixed height and not resize when the space tool is applied."
+    }
+}

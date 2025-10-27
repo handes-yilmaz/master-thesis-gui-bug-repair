@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/report/report-generator.js//ReportGenerator",
+            "lighthouse-core/audits/audit.js//Audit",
+            "lighthouse-cli/performance-experiment/report/perf-x-report-generator.js//PerfXReportGenerator"
+        ],
+        "bug_functions": [
+            "lighthouse-core/report/report-generator.js//generateHTML",
+            "lighthouse-core/audits/audit.js//generateAuditResult",
+            "lighthouse-cli/performance-experiment/report/perf-x-report-generator.js//getReportJS"
+        ],
+        "explanation": "These classes and functions are related to the bug because they are responsible for generating reports and handling the output of numerical data. The ReportGenerator class's generateHTML function is crucial for rendering the final report, where number formatting needs to be applied. The Audit class's generateAuditResult function is responsible for creating the results that will be displayed, which may include numerical values that need formatting. Lastly, the PerfXReportGenerator class extends ReportGenerator and overrides the getReportJS function, which may also involve outputting numbers in the report. Therefore, these elements are key to implementing the required changes for number formatting.",
+        "bug_scenario": "The bug scenario involves ensuring that all number outputs in the application are formatted using the toLocaleString method, which provides better readability by adding thousands separators and controlling decimal places. This is particularly important for displaying metrics, element counts, diagnostics, and sizes in kilobytes."
+    }
+}

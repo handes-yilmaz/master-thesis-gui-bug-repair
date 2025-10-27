@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-yaml.js"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is with the YAML syntax highlighting, specifically when a string is followed by a comment on the same line. The file 'components/prism-yaml.js' contains the language definition for YAML in Prism.js. The relevant section is likely the definition of the 'string' and 'comment' patterns. The 'string' pattern needs to correctly handle scenarios where comments appear on the same line, which seems to be the source of the bug. Adjusting these patterns should help resolve the highlighting issue.",
+        "bug_scenario": "The bug scenario involves the incorrect syntax highlighting of YAML strings when there is a comment on the same line. In the provided example, the string '\"world\"' followed by a comment '# test' is not highlighted correctly, indicating an issue with the YAML parser's handling of comments and strings on the same line."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-yaml.js//Prism.languages.yaml"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue is related to the syntax highlighting logic within the 'components/prism-yaml.js' file. Specifically, the 'Prism.languages.yaml' object defines the patterns for highlighting different YAML components. The problem likely lies in the definition of the 'string' and 'comment' patterns, which do not correctly handle strings followed by comments. Adjusting these regex patterns would be necessary to fix the highlighting issue.",
+        "bug_scenario": "The bug scenario involves the incorrect syntax highlighting of YAML strings when a comment is present on the same line. In the provided example, the string '\"world\" # test' is not highlighted correctly due to the presence of the comment '# test'. The image illustrates that the syntax highlighting fails to apply to the string when it is followed by a comment."
+    }
+}

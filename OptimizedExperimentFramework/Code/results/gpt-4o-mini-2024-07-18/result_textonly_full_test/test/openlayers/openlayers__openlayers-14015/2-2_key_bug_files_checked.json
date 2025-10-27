@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/BaseTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/source/Tile.js"
+        ],
+        "explanation": "These files are critical to the bug because they handle the core functionalities related to tile layers and their rendering. The `BaseTile.js` file defines the base class for tile layers, which includes methods for managing tile sources and caching. The `TileLayer.js` file is responsible for rendering the tile layers using WebGL, and it likely contains the logic for managing the cache of tile textures. The `Tile.js` file defines the tile source and its caching mechanisms, which are essential for ensuring that the correct tiles are displayed when the source changes. Modifications in these files are necessary to implement the logic for invalidating and clearing the cache when the source is updated or the view projection changes.",
+        "bug_scenario": "The bug occurs when using WebGL tile layers in a mapping application. When the source of the tile layer is changed using the `setSource()` method or when the view projection is altered, the application fails to clear the cached textures of the old tile source. As a result, when the user pans or zooms in and out, they see tiles from the old source instead of the new one, leading to incorrect visual representation."
+    }
+}

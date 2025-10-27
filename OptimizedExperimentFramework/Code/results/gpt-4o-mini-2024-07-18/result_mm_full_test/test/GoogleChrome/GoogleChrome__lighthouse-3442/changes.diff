@@ -1,0 +1,34 @@
+diff --git a/lighthouse-core/report/v2/renderer/report-renderer.js b/lighthouse-core/report/v2/renderer/report-renderer.js
+index 732fc99..6e03be7 100644
+--- a/lighthouse-core/report/v2/renderer/report-renderer.js
++++ b/lighthouse-core/report/v2/renderer/report-renderer.js
+@@ -55,8 +55,12 @@ class ReportRenderer {
+    */
+   _renderReportHeader(report) {
+     const header = this._dom.cloneTemplate('#tmpl-lh-heading', this._templateContext);
+-    this._dom.find('.lh-config__timestamp', header).textContent =
+-        Util.formatDateTime(report.generatedTime);
++    if (report && report.generatedTime) {
++        this._dom.find('.lh-config__timestamp', header).textContent =
++            Util.formatDateTime(report.generatedTime);
++    } else {
++        this._dom.find('.lh-config__timestamp', header).textContent = 'N/A';
++    }
+     const url = this._dom.find('.lh-metadata__url', header);
+     url.href = report.url;
+     url.textContent = report.url;
+@@ -83,8 +87,12 @@ class ReportRenderer {
+   _renderReportFooter(report) {
+     const footer = this._dom.cloneTemplate('#tmpl-lh-footer', this._templateContext);
+     this._dom.find('.lh-footer__version', footer).textContent = report.lighthouseVersion;
+-    this._dom.find('.lh-footer__timestamp', footer).textContent =
+-        Util.formatDateTime(report.generatedTime);
++    if (report && report.generatedTime) {
++        this._dom.find('.lh-footer__timestamp', footer).textContent =
++            Util.formatDateTime(report.generatedTime);
++    } else {
++        this._dom.find('.lh-footer__timestamp', footer).textContent = 'N/A';
++    }
+     return footer;
+   }
+ 

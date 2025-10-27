@@ -1,0 +1,13 @@
+diff --git a/src/ol/geom/Polygon.js b/src/ol/geom/Polygon.js
+index 983c2e8..dbfb88b 100644
+--- a/src/ol/geom/Polygon.js
++++ b/src/ol/geom/Polygon.js
+@@ -211,7 +211,7 @@ class Polygon extends SimpleGeometry {
+     let flatCoordinates;
+     if (right !== undefined) {
+       flatCoordinates = this.getOrientedFlatCoordinates().slice();
+-      orientLinearRings(flatCoordinates, 0, this.ends_, this.stride, right);
++      orientLinearRings(flatCoordinates, 0, this.ends_, this.stride, !right); // Invert the orientation
+     } else {
+       flatCoordinates = this.flatCoordinates;
+     }

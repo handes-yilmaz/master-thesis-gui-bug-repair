@@ -1,0 +1,26 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js//DeleteSequenceFlowBehavior",
+            "lib/features/modeling/Modeling.js//Modeling"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js//isDefaultFlow",
+            "lib/features/modeling/Modeling.js//updateProperties"
+        ],
+        "explanation": "The `DeleteSequenceFlowBehavior` class in `UnsetDefaultFlowBehavior.js` is directly involved in handling the default attribute when sequence flows are deleted. The function `isDefaultFlow` checks whether a sequence flow is default, which is central to the bug's occurrence when modifying the flow. In `Modeling.js`, the `updateProperties` function is used to update the properties of elements, including setting or removing default attributes. This is relevant to the bug as it may be improperly updating the gateway's properties when a Timer Intermediate Catch Event is added.",
+        "bug_scenario": "The GIF demonstrates that when a Timer Intermediate Catch Event is added to a non-default flow of an exclusive gateway, the default attribute is removed from the gateway. This issue affects the visual representation and behavior of the BPMN diagram by incorrectly altering the default flow setting."
+    },
+    "2": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js//DeleteSequenceFlowBehavior",
+            "lib/features/modeling/behavior/AttachEventBehavior.js//AttachEventBehavior"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/UnsetDefaultFlowBehavior.js//isDefaultFlow",
+            "lib/features/modeling/behavior/AttachEventBehavior.js//AttachEventBehavior"
+        ],
+        "explanation": "1. **UnsetDefaultFlowBehavior.js** contains the `DeleteSequenceFlowBehavior` class and `isDefaultFlow` function. These manage the default attribute of sequence flows when an element is deleted. Since the bug involves unintended removal of the default attribute, this class and function are directly related to the issue.\n\n2. **AttachEventBehavior.js** contains the `AttachEventBehavior` class, which handles the behavior of attaching events like the Timer Intermediate Catch Event to shapes. Since the bug occurs when attaching such an event, this class is relevant to the problem.",
+        "bug_scenario": "The GIF shows a BPMN diagram where a Timer Intermediate Catch Event is added to a non-default flow of an exclusive gateway. This action removes the default attribute from the gateway, even though the default flow remains visually intact in the diagram."
+    }
+}

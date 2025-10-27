@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/audits/byte-efficiency/total-byte-weight.js",
+            "lighthouse-core/audits/network-rtt.js",
+            "lighthouse-core/audits/network-server-latency.js",
+            "lighthouse-core/lib/network-request.js",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.js"
+        ],
+        "explanation": "These files are related to the bug because they handle network requests and response times. The 'network-rtt.js' and 'network-server-latency.js' files specifically deal with measuring response times for network requests. The 'total-byte-weight.js' file assesses overall network usage, which could be impacted by incorrectly including non-network URLs. The 'network-request.js' gatherer is responsible for tracking network requests, and 'response-compression.js' might also play a role in how server responses are processed. Modifying logic in these files may help to correctly differentiate between network and non-network URLs, thus resolving the issue.",
+        "bug_scenario": "The bug occurs when non-network URLs are erroneously treated as actual network requests, leading to incorrect server response time calculations in the Lantern tool. The user expects that non-zero response times should be minimal, but the current implementation does not account for this distinction."
+    }
+}

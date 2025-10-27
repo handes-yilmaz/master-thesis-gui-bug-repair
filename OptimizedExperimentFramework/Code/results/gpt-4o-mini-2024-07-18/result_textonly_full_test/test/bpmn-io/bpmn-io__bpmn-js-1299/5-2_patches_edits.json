@@ -1,0 +1,43 @@
+{
+    "1/1": {
+        "src/rendering/ElementRenderer.js": [
+            {
+                "SEARCH": [
+                    "function updateElementDimensions(element) {",
+                    "// Existing logic to calculate dimensions",
+                    "element.width = Math.max(element.width, MIN_WIDTH);",
+                    "element.height = Math.max(element.height, MIN_HEIGHT);"
+                ],
+                "REPLACE": [
+                    "function updateElementDimensions(element) {",
+                    "    // Ensure that dimensions are not set to minimum bounds if the label is empty",
+                    "    if (element.label && element.label.text.trim() === '') {",
+                    "        element.width = DEFAULT_WIDTH; // Set to a default width instead of minimum",
+                    "        element.height = DEFAULT_HEIGHT; // Set to a default height instead of minimum",
+                    "    } else {",
+                    "        element.width = Math.max(element.width, MIN_WIDTH);",
+                    "        element.height = Math.max(element.height, MIN_HEIGHT);",
+                    "    }"
+                ]
+            }
+        ],
+        "src/selection/ElementSelection.js": [
+            {
+                "SEARCH": [
+                    "function onElementClick(element) {",
+                    "// Logic to handle element selection",
+                    "element.selected = true;",
+                    "updateElementDimensions(element); // This may cause resizing issues"
+                ],
+                "REPLACE": [
+                    "function onElementClick(element) {",
+                    "    // Logic to handle element selection",
+                    "    element.selected = true;",
+                    "    if (!element.isResizing) { // Prevent resizing if already resizing",
+                    "        updateElementDimensions(element); // This may cause resizing issues",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

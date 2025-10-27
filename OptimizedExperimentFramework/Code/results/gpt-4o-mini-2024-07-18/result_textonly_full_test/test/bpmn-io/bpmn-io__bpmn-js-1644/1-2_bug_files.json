@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/modeling/BpmnUpdater.js",
+            "lib/modeling/BpmnFactory.js",
+            "lib/modeling/behavior/UpdatePropertiesHandler.js",
+            "lib/features/auto-resize/BpmnAutoResize.js"
+        ],
+        "explanation": "These files are likely to contain the logic responsible for handling and updating the properties of BPMN elements. The BpmnUpdater.js is crucial for managing updates to the BPMN model, including transitions between multi-instance types. The BpmnFactory.js may handle the creation and initialization of instances, while UpdatePropertiesHandler.js is responsible for ensuring that properties are updated correctly when changes are made. Lastly, the BpmnAutoResize.js could relate to how element properties are visually represented and adjusted during transitions, which may contribute to the loss of properties during the change from parallel to sequential multi-instance.",
+        "bug_scenario": "The bug occurs when a user creates a sub-process with a parallel multi-instance and then changes it to a sequential multi-instance, leading to the loss of the multi-instance properties that were previously set. This issue disrupts the expected behavior where the multi-instance properties should be retained regardless of the change in instance type."
+    }
+}

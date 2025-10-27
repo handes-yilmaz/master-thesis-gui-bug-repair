@@ -1,0 +1,36 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "COMMENT",
+            "file_path": "src/lib/modes.js",
+            "function_details": [
+                {
+                    "name": "COMMENT",
+                    "start_line": 65,
+                    "end_line": 82
+                }
+            ],
+            "function_code": [
+                "export const COMMENT = function(begin, end, modeOptions = {}) {",
+                "  var mode = inherit(",
+                "    {",
+                "      className: 'comment',",
+                "      begin,",
+                "      end,",
+                "      contains: []",
+                "    },",
+                "    modeOptions",
+                "  );",
+                "  mode.contains.push(PHRASAL_WORDS_MODE);",
+                "  mode.contains.push({",
+                "    className: 'doctag',",
+                "    begin: '(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):',",
+                "    relevance: 0",
+                "  });",
+                "  return mode;",
+                "};"
+            ]
+        }
+    }
+}

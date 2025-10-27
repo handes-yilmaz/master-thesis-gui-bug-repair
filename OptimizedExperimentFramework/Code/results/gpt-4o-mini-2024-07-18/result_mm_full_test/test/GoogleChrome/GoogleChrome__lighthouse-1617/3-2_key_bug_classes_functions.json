@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/manifest-short-name",
+            "lighthouse-core/audits/manifest-short-name-length",
+            "lighthouse-core/gather/gatherers/manifest"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/manifest-short-name//audit",
+            "lighthouse-core/audits/manifest-short-name-length//audit",
+            "lighthouse-core/gather/gatherers/manifest//afterPass"
+        ],
+        "explanation": "The classes and functions identified are related to the auditing of the manifest's short name and its length. The 'ManifestShortName' class checks if the short name or name exists, which is crucial for determining if the manifest is valid. The 'ManifestShortNameLength' class specifically checks if the length of the short name is within the acceptable limit to avoid truncation. The 'Manifest' class is responsible for gathering the manifest data, which is essential for the audits to function correctly. Any issues in these classes or functions could lead to incorrect audit results, such as the false positive reported.",
+        "bug_scenario": "The bug scenario indicates that there is a false positive regarding the length of the manifest's short name when it is missing. The audit suggests that the short name should not be truncated when displayed on the homescreen, but it found 0 characters instead of the expected length."
+    }
+}

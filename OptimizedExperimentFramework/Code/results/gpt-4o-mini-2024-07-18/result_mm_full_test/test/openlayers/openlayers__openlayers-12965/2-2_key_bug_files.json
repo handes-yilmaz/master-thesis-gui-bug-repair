@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js",
+            "src/ol/webgl/Helper.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because they directly relate to the implementation of WebGL TileLayers and their rendering. The 'WebGLTile.js' file defines the WebGLTileLayer class, which is responsible for managing the TileLayers. The 'TileLayer.js' file contains the WebGLTileLayerRenderer class, which handles the rendering logic for these layers. Lastly, the 'Helper.js' file provides low-level WebGL functions that are essential for managing WebGL contexts and resources. Modifications in these files can help implement the proposed solution of sharing a single WebGL context among multiple TileLayers.",
+        "bug_scenario": "The application is limited to 16 WebGL contexts due to browser constraints, which causes issues when rendering multiple WebGL TileLayers with different dimensions and positions. This leads to older contexts being removed, resulting in application breakdown or misbehavior. The proposed solution is to share a single WebGL context among multiple TileLayers to reduce the number of contexts used."
+    }
+}

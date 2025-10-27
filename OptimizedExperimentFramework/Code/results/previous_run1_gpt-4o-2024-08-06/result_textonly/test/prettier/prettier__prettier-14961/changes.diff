@@ -1,0 +1,17 @@
+diff --git a/src/language-js/print/angular.js b/src/language-js/print/angular.js
+index 20ad674114..9281224959 100644
+--- a/src/language-js/print/angular.js
++++ b/src/language-js/print/angular.js
+@@ -26,8 +26,10 @@ function printAngular(path, options, print) {
+           ? " //" + getComments(node.node)[0].value.trimEnd()
+           : "",
+       ];
+-    case "NGPipeExpression":
+-      return printBinaryishExpression(path, options, print);
++case "NGPipeExpression":
++  return printBinaryishExpression(path, options, print, {
++    noSpaceForStringOrNumber: true,
++  });
+     case "NGChainedExpression":
+       return group(
+         join(

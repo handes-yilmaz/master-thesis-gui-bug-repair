@@ -1,0 +1,59 @@
+diff --git a/src/languages/kotlin.js b/src/languages/kotlin.js
+index 2e50992e9..88fff0432 100644
+--- a/src/languages/kotlin.js
++++ b/src/languages/kotlin.js
+@@ -205,30 +205,30 @@ export default function(hljs) {
+       {
+         className: 'class',
+         beginKeywords: 'class interface trait', // remove 'trait' when removed from KEYWORDS
+-        end: /[:\{(]|$/,
+-        excludeEnd: true,
+-        illegal: 'extends implements',
+-        contains: [
+-          { beginKeywords: 'public protected internal private constructor' },
+-          hljs.UNDERSCORE_TITLE_MODE,
+-          {
+-            className: 'type',
+-            begin: /</,
+-            end: />/,
+-            excludeBegin: true,
+-            excludeEnd: true,
+-            relevance: 0
+-          },
+-          {
+-            className: 'type',
+-            begin: /[,:]\s*/,
+-            end: /[<\(,]|$/,
+-            excludeBegin: true,
+-            returnEnd: true
+-          },
+-          ANNOTATION_USE_SITE,
+-          ANNOTATION
+-        ]
++end: /[:{(]|$/,
++excludeEnd: true,
++illegal: 'extends implements',
++contains: [
++{ beginKeywords: 'public protected internal private constructor' },
++hljs.UNDERSCORE_TITLE_MODE,
++{
++className: 'type',
++begin: /</,
++end: />/,
++excludeBegin: true,
++excludeEnd: true,
++relevance: 0
++},
++{
++className: 'type',
++begin: /[,:]\s*/,
++end: /[<({,]|$/,
++excludeBegin: true,
++returnEnd: true
++},
++ANNOTATION_USE_SITE,
++ANNOTATION
++]
+       },
+       STRING,
+       {

@@ -1,0 +1,21 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-rest.js//Prism.languages.rest"
+        ],
+        "bug_functions": [
+            "components/prism-core.js//Prism.highlight",
+            "components/prism-core.js//Prism.tokenize"
+        ],
+        "explanation": "The issue lies in the highlighting rules for reST in the `prism-rest.js` file, specifically within the `Prism.languages.rest` definition. This is where the language patterns are defined, and it likely needs to be adjusted to correctly recognize and separate inline links and verbatim elements. The `Prism.highlight` and `Prism.tokenize` functions in `prism-core.js` are responsible for processing and applying these language rules, so changes might also be needed here to ensure the correct application of the updated grammar rules.",
+        "bug_scenario": "The reStructuredText (reST) code snippet with a link and verbatim elements is not rendered correctly. It incorrectly highlights the entire text as italic. When split into two lines, it renders correctly."
+    },
+    "2": {
+        "bug_classes": [
+            "components/prism-rest.js//Prism.languages.rest"
+        ],
+        "bug_functions": [],
+        "explanation": "The issue lies in the handling of inline elements in the Prism language definition for reST in 'components/prism-rest.js'. The 'Prism.languages.rest' object defines the grammar for parsing reST, including patterns for inline and link elements. The incorrect rendering suggests a problem with regex patterns or their application within this grammar, particularly related to inline elements, which is why this class is a key bug-related element. Adjustments are likely needed here to ensure single-line elements are correctly identified and rendered.",
+        "bug_scenario": "The bug scenario involves incorrect rendering of reStructuredText (reST) link and verbatim elements. The link and verbatim elements are not being detected properly, causing the entire text to be italicized instead of being highlighted correctly. When the text is split into two lines, it renders correctly, indicating an issue with how single-line reST links and verbatim elements are processed."
+    }
+}

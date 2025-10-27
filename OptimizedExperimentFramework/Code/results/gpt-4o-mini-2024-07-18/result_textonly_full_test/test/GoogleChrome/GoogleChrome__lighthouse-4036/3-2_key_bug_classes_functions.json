@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js//ExternalAnchorsUseRelNoopenerAudit",
+            "lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js//AnchorsWithNoRelNoopener"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js//audit",
+            "lighthouse-core/gather/gatherers/dobetterweb/anchors-with-no-rel-noopener.js//afterPass"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the auditing and gathering of anchor elements in the web application. The `ExternalAnchorsUseRelNoopenerAudit` class is responsible for auditing external links to ensure they use `rel=\"noopener\"`, which is where the bug arises when applied to `mailto:` links. The `AnchorsWithNoRelNoopener` class gathers anchor elements that do not have the `rel=\"noopener\"` attribute, and its `afterPass` function evaluates the document to find these anchors. Modifications in these classes/functions are necessary to exclude `mailto:` links from the audit or to handle them differently to prevent the breaking of functionality in specific browsers.",
+        "bug_scenario": "The bug scenario involves the use of `rel=\"noopener\"` on `mailto:` links, which causes these links to break in Chrome for Android and iOS Safari. The report indicates that while the `mailto:` links are intended to open email clients, the addition of `rel=\"noopener\"` disrupts this functionality, leading to a failure in opening the links correctly on certain browsers."
+    }
+}

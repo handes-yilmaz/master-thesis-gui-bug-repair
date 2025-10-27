@@ -1,0 +1,24 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/select/select.jsx//Select",
+            "src/select/data-store.js//DataStore"
+        ],
+        "bug_functions": [
+            "src/select/util.js//getValueDataSource"
+        ],
+        "explanation": "The issue is related to how the Select component handles the 'fillProps' property when there is no dataSource. The 'Select' class in 'select.jsx' is responsible for rendering the component and handling properties like 'fillProps'. The 'DataStore' class in 'data-store.js' manages how dataSource is processed and might not be handling empty dataSource correctly. The 'getValueDataSource' function in 'util.js' is likely involved in mapping the default value to the dataSource, which might not be functioning correctly in the absence of a dataSource.",
+        "bug_scenario": "The Select component does not display the default value 'jack' when the 'fillProps' property is used with an empty dataSource."
+    },
+    "2": {
+        "bug_classes": [
+            "src/select/select.jsx//Select",
+            "src/select/util.js//getValueDataSource"
+        ],
+        "bug_functions": [
+            "src/select/util.js//getValueDataSource"
+        ],
+        "explanation": "The problem is related to the Select component not displaying the default value. The 'Select' class in 'select.jsx' is directly involved in rendering the component and managing its state, including handling props like 'fillProps'. The 'getValueDataSource' function in 'util.js' is responsible for computing the valueDataSource by new value. If 'dataSource' is empty, it might not be mapping the default value correctly, leading to the display issue.",
+        "bug_scenario": "The 'Select' component is not displaying the default value 'jack' when 'fillProps' is used with an empty 'dataSource'."
+    }
+}

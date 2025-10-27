@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/network-rtt.js//NetworkRTT",
+            "lighthouse-core/audits/network-server-latency.js//NetworkServerLatency",
+            "lighthouse-core/lib/network-request.js//NetworkRequest"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/network-rtt.js//audit",
+            "lighthouse-core/audits/network-server-latency.js//audit",
+            "lighthouse-core/lib/network-request.js//onRequestWillBeSent",
+            "lighthouse-core/lib/network-request.js//onResponseReceived"
+        ],
+        "explanation": "The classes and functions identified are related to network request handling and performance auditing. The 'NetworkRTT' and 'NetworkServerLatency' classes are responsible for calculating round-trip times and server latencies, respectively, which are directly impacted by the bug. The 'audit' functions in these classes perform the calculations that need to be adjusted to account for non-network URLs. The 'NetworkRequest' class manages the details of network requests, including how they are initiated and how responses are handled, which is crucial for ensuring that non-network URLs are treated correctly and do not affect server response time calculations.",
+        "bug_scenario": "The bug scenario involves the simulator treating non-network URLs as actual network requests, which leads to incorrect server response time calculations. The user expects that non-network URLs should not incur any server response time, but a small round-trip time (RTT) is acceptable."
+    }
+}

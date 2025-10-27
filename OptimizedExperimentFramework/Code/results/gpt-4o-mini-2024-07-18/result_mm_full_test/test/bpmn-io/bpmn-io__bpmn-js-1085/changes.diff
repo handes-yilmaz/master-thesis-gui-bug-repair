@@ -1,0 +1,20 @@
+diff --git a/lib/import/BpmnImporter.js b/lib/import/BpmnImporter.js
+index 39862a7..f1424fa 100644
+--- a/lib/import/BpmnImporter.js
++++ b/lib/import/BpmnImporter.js
+@@ -36,7 +36,7 @@ function elementData(semantic, attrs) {
+ 
+ function getWaypoints(bo, source, target) {
+ 
+-  var waypoints = bo.di.waypoint;
++  var waypoints = bo.di.waypoint || [];
+ 
+   if (!waypoints || waypoints.length < 2) {
+     return [ getMid(source), getMid(target) ];
+@@ -330,4 +330,4 @@ function isPointInsideBBox(bbox, point) {
+     x <= bbox.x + bbox.width &&
+     y >= bbox.y &&
+     y <= bbox.y + bbox.height;
+-}
+\ No newline at end of file
++}

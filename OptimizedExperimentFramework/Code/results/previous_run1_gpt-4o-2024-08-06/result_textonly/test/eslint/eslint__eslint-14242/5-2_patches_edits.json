@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "lib/cli.js": [
+            {
+                "SEARCH": [
+                    "if (options.quiet) {",
+                    "debug(\"Quiet mode enabled - filtering out warnings\");",
+                    "results = ESLint.getErrorResults(results);",
+                    "}",
+                    "",
+                    "if (await printResults(engine, results, options.format, options.outputFile)) {",
+                    "const { errorCount, warningCount } = countErrors(results);",
+                    "const tooManyWarnings =",
+                    "options.maxWarnings >= 0 && warningCount > options.maxWarnings;",
+                    "",
+                    "if (!errorCount && tooManyWarnings) {",
+                    "log.error(",
+                    "\"ESLint found too many warnings (maximum: %s).\",",
+                    "options.maxWarnings",
+                    ");",
+                    "}",
+                    "",
+                    "return (errorCount || tooManyWarnings) ? 1 : 0;",
+                    "}"
+                ],
+                "REPLACE": [
+                    "        const { errorCount, warningCount } = countErrors(results);",
+                    "        const tooManyWarnings =",
+                    "            options.maxWarnings >= 0 && warningCount > options.maxWarnings;",
+                    "",
+                    "        if (options.quiet && !tooManyWarnings) {",
+                    "            debug(\"Quiet mode enabled - filtering out warnings\");",
+                    "            results = ESLint.getErrorResults(results);",
+                    "        }",
+                    "",
+                    "        if (await printResults(engine, results, options.format, options.outputFile)) {",
+                    "            if (!errorCount && tooManyWarnings) {",
+                    "                log.error(",
+                    "                    \"ESLint found too many warnings (maximum: %s).\",",
+                    "                    options.maxWarnings",
+                    "                );",
+                    "            }",
+                    "",
+                    "            return (errorCount || tooManyWarnings) ? 1 : 0;",
+                    "        }"
+                ]
+            }
+        ]
+    }
+}

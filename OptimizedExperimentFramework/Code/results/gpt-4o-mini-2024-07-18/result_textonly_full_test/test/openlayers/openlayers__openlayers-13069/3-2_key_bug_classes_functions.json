@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//configure_",
+            "src/ol/source/GeoTIFF.js//getImagesForSource"
+        ],
+        "explanation": "The class GeoTIFFSource is responsible for handling GeoTIFF data, including its normalization. The configure_ function is crucial as it sets up the parameters for the GeoTIFF source, including the min and max values for normalization. The getImagesForSource function is also relevant as it retrieves the images from the GeoTIFF source, which would need to incorporate the STATISTICS_MAXIMUM and STATISTICS_MINIMUM values for proper normalization.",
+        "bug_scenario": "The bug scenario involves the normalization process of GeoTIFF data where the values of STATISTICS_MAXIMUM and STATISTICS_MINIMUM should be utilized as default maximum and minimum values for normalization. Currently, these values are not being considered, which may lead to incorrect normalization results."
+    }
+}

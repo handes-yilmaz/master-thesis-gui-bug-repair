@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/lib/stack-collector.js",
+            "lighthouse-core/lib/stack-packs.js",
+            "lighthouse-core/audits/dobetterweb/js-libraries.js"
+        ],
+        "explanation": "These files are key bug files because they are directly involved in the detection and reporting of JavaScript libraries and stack packs. The 'stack-collector.js' file is responsible for gathering detected libraries, while 'stack-packs.js' manages the inclusion of stack packs based on detected libraries. The 'js-libraries.js' file is responsible for the audit that lists the detected JavaScript libraries, which is where the duplicated entries are being displayed. Modifications in these files are necessary to address the issue of duplicated stack packs and to ensure that experimental entries are not shown to users.",
+        "bug_scenario": "The bug scenario involves duplicated stack packs being displayed when running Lighthouse or PSI on the specified website. This issue arises from the recent addition of 'Fast Path' checks in the js-lib-detector, which has led to the unintended visibility of experimental React entries in the audit results."
+    }
+}

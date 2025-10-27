@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/language-js/print/jsx.js": [
+            {
+                "SEARCH": [
+                    "const fullWidthSpace = \"\\\\u3000\";",
+                    "const jsxFullWidthWhitespace = ifBreak(concat([`{\"${fullWidthSpace}\"}`, softline]), fullWidthSpace);"
+                ],
+                "REPLACE": [
+                    "  const fullWidthSpace = \"\\\\u3000\";",
+                    "  const jsxFullWidthWhitespace = ifBreak(concat([`{\" \"}`, softline]), \" \");"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (typeof child === 'string' && child.includes(fullWidthSpace)) {",
+                    "return child.replace(new RegExp(fullWidthSpace, 'g'), jsxFullWidthWhitespace);"
+                ],
+                "REPLACE": [
+                    "    if (typeof child === 'string' && child.includes(fullWidthSpace)) {",
+                    "      return child.replace(new RegExp(fullWidthSpace, 'g'), \" \");"
+                ]
+            }
+        ]
+    }
+}

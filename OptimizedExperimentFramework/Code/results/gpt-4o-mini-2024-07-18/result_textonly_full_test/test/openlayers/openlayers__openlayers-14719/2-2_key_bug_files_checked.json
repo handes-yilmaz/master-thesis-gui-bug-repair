@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/source/ImageWMS.js",
+            "src/ol/source/Image.js",
+            "src/ol/renderer/canvas/ImageLayer.js"
+        ],
+        "explanation": "These files are critical for addressing the bug because: \n1. **ImageWMS.js**: This file handles the WMS image source, including how images are fetched and rendered. It contains logic related to image resolution and dimensions, which directly impacts the blurriness issue when the width or height is not even.\n2. **Image.js**: This file defines the base image source and includes methods for image loading and handling. It is essential for understanding how images are processed and displayed, which is crucial for fixing the blurriness problem.\n3. **ImageLayer.js**: This file is responsible for rendering image layers on the canvas. It includes methods that determine how images are drawn, including scaling and transformations that could affect the final output quality. Adjustments here could help ensure that images are rendered correctly without blurriness.",
+        "bug_scenario": "The bug occurs when the WMS image becomes blurry if the ratio is not a round integer or if the map width or height is not even. This results in a less than pixel-perfect rendering of the map, which can be observed on the specified URL."
+    }
+}

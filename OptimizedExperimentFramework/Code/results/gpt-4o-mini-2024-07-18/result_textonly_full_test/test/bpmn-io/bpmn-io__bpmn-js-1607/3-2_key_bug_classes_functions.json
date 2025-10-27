@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "lib/features/modeling/behavior/GroupBehavior",
+            "lib/import/BpmnImporter",
+            "lib/features/modeling/BpmnUpdater"
+        ],
+        "bug_functions": [
+            "lib/features/modeling/behavior/GroupBehavior//execute",
+            "lib/features/modeling/behavior/GroupBehavior//removeReferencedCategoryValue",
+            "lib/import/BpmnImporter//add",
+            "lib/features/modeling/BpmnUpdater//updateSemanticParent"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the behavior and management of BPMN groups and their references. The `GroupBehavior` class is responsible for managing group elements, including creating and removing category values associated with groups. The `BpmnImporter` class is crucial for adding BPMN elements to the canvas, which includes handling the references when groups are created or modified. Lastly, the `BpmnUpdater` class is responsible for updating the BPMN model when changes occur, ensuring that the semantic relationships between elements are maintained. The unresolved reference warning indicates that there is likely a failure in these classes to properly manage the lifecycle and references of the group elements within the BPMN model.",
+        "bug_scenario": "The bug occurs when a user creates a group inside a collapsed sub-process in a BPMN diagram. Upon saving and re-importing the diagram, a warning appears indicating an unresolved reference to a category value, which suggests that the group is not being properly linked to the BPMN model."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/table/index.jsx//Table",
+            "src/table/util.js//fetchDataByPath",
+            "src/table/base/body.jsx//Body"
+        ],
+        "bug_functions": [
+            "src/table/util.js//fetchDataByPath"
+        ],
+        "explanation": "The `Table` class in `src/table/index.jsx` is responsible for rendering the table component, which includes handling the `dataIndex` property. The `fetchDataByPath` function in `src/table/util.js` is crucial because it attempts to access properties based on the `dataIndex`, and if the format is not supported, it leads to errors. The `Body` class in `src/table/base/body.jsx` is involved in rendering the table body and may also be affected by how data is accessed and displayed based on the `dataIndex`. These classes and functions are directly related to the bug as they handle the data structure and rendering logic that is causing the issue.",
+        "bug_scenario": "The bug occurs when the `dataIndex` property of the Table component is expected to support a string format like '[start, end]'. This format is not currently handled, leading to errors when trying to access properties that do not exist, resulting in an 'undefined' error. The images show the error message and the relevant code snippets where the issue arises."
+    }
+}

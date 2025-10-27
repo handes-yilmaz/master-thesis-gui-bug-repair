@@ -1,0 +1,22 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/sql.js"
+        ],
+        "bug_functions": [
+            "src/languages/sql.js//export default function"
+        ],
+        "explanation": "The bug is related to how SQL strings are processed in the highlight.js library. The `export default function` in `src/languages/sql.js` contains the logic for defining SQL language rules, including how strings and escape sequences are handled. The incorrect handling of quote escape sequences is likely due to misconfiguration in the string handling logic within this function.",
+        "bug_scenario": "The issue is with highlight.js breaking on quote escape sequences in SQL code highlighting. The problem arises when dynamic SQL with escape sequences is used, causing incorrect highlighting in the code snippet provided. The image shows a codepen example where SQL code is not highlighted correctly due to this issue."
+    },
+    "2": {
+        "bug_classes": [
+            "src/languages/sql.js//default"
+        ],
+        "bug_functions": [
+            "src/highlight.js//highlight"
+        ],
+        "explanation": "The issue appears to be related to the handling of string escape sequences in the SQL language definition within 'highlight.js'. The 'default' function in 'src/languages/sql.js' defines how SQL is parsed and highlighted, including handling of strings and keywords. The 'highlight' function in 'src/highlight.js' is responsible for the core highlighting process, which includes applying the rules defined in language files like 'sql.js'. The bug likely stems from the way these functions process escape sequences in strings, causing the highlighting to break.",
+        "bug_scenario": "The bug scenario involves SQL code highlighting breaking on quote escape sequences in dynamic SQL. The issue arises when using the 'highlight.js' library for syntax highlighting with SQL or TSQL, specifically in sequences involving embedded quotes within SQL code strings. The problem is visible in the provided image where the syntax highlighting fails after an escape sequence."
+    }
+}

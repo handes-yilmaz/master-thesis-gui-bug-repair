@@ -1,0 +1,19 @@
+{
+    "1": {
+        "bug_files": [
+            "src/js/components/RadioButton/RadioButton.js",
+            "src/js/components/RadioButton/StyledRadioButton.js",
+            "src/js/themes/base.js"
+        ],
+        "explanation": "1. **RadioButton.js**: This file likely contains the logic for rendering radio buttons, including their selection state management. If the styling logic is incorrect, it would affect whether the background color is applied based on the correct condition (i.e., whether the radio button is checked).\n\n2. **StyledRadioButton.js**: This file is likely responsible for CSS styling related to the radio buttons. The issue with the background color being applied to all radio buttons equally rather than conditionally could stem from this file.\n\n3. **base.js (in themes)**: This file might define theme-related properties that include defaults for radio button styles, such as colors. If the conditional application of the background color isn't implemented here, it could cause the observed behavior across all radio buttons.",
+        "bug_scenario": "The bug relates to radio button styling, specifically how the checked radio button's background color is applied. The problem arises when the background color intended for only checked radio buttons is being applied to all radio buttons indiscriminately, instead of solely the checked one, resulting in all radio buttons displaying the blue background color instead of only the checked one."
+    },
+    "2": {
+        "bug_files": [
+            "src/js/components/RadioButton/RadioButton.js",
+            "src/js/components/RadioButton/StyledRadioButton.js"
+        ],
+        "explanation": "The issue is related to how the styling is applied when a radio button is checked. Therefore, the files related to the RadioButton component will likely contain the code responsible for applying styles to the radio buttons. Specifically, \n\n1. **RadioButton.js (src/js/components/RadioButton/RadioButton.js)**: This file likely contains the main logic of the RadioButton component, where event handling and state change determine which radio button is selected. The application of styles based on checked status is likely handled here or affects this logic.\n\n2. **StyledRadioButton.js (src/js/components/RadioButton/StyledRadioButton.js)**: This file is responsible for the styling of the RadioButton component. It likely contains the CSS logic where styles are incorrectly applied to all radio buttons irrespective of their checked state. This is where adjustments would be made to ensure only the checked radio button gets the specified background color.\n\nThese files will need to be examined and possibly modified to ensure the checked state correctly applies the intended background color styling only to the active radio button.",
+        "bug_scenario": "The bug involves the check.background.color property being universally applied to all radio buttons, not just the checked ones. This results in all radio buttons displaying the same blue background color, contrary to the expected behavior where only the currently checked radio button should have a blue background while others remain grey."
+    }
+}

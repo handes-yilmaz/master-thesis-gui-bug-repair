@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-markdown/printer-markdown.js",
+            "src/doc/doc-printer.js"
+        ],
+        "explanation": "1. **src/language-markdown/parser-markdown.js**: This file is responsible for parsing markdown content. The issue with incorrect indentation likely stems from how the markdown is parsed and transformed, particularly in handling nested structures like code blocks and raw HTML.\n\n2. **src/language-markdown/printer-markdown.js**: This file deals with printing or formatting markdown content. The problem with additional indentation on save suggests that the printer logic might be incorrectly adding spaces or not handling nested structures properly.\n\n3. **src/doc/doc-printer.js**: This file is involved in the document printing process, which includes handling line breaks and whitespace. The issue of accumulating indentation could be related to how this file manages whitespace and line breaks during the formatting process.",
+        "bug_scenario": "The bug scenario involves a formatting issue in markdown files when using the 'format on save' feature in VS Code with Prettier. Specifically, when code blocks or raw HTML are nested, the formatter adds additional indentation each time the file is saved, which disrupts the intended structure. This issue is intermittent with code blocks but consistently problematic with raw HTML, leading to incorrect formatting unless the feature is disabled or markdown files are ignored."
+    }
+}

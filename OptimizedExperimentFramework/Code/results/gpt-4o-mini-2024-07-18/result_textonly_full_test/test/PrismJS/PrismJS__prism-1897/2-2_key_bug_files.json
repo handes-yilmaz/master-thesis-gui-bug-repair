@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "components/prism-markdown.js",
+            "components/prism-markdown.min.js",
+            "components/prism-core.js"
+        ],
+        "explanation": "These files are key bug files because they contain the definitions and patterns used for parsing Markdown syntax, including the handling of italic and bold text. The `prism-markdown.js` file specifically includes the regex patterns that need to be modified to fix the greedy matching issue. The `prism-markdown.min.js` file is the minified version of the same, which is also relevant for deployment. The `prism-core.js` file is essential as it provides the core functionality for the Prism library, which is responsible for syntax highlighting and may need adjustments to accommodate the changes made in the Markdown parsing.",
+        "bug_scenario": "The bug occurs when using Markdown syntax for italic and bold text, where the punctuation characters `*` and `_` are too greedy, matching multiple leading characters instead of just one. This leads to incorrect parsing of text like `*__foo__*` or `_**bar**_`, causing formatting issues."
+    }
+}

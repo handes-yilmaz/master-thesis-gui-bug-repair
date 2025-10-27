@@ -1,0 +1,31 @@
+{
+    "1/1": {
+        "lib/linter/code-path-analysis/code-path-analyzer.js": [
+            {
+                "SEARCH": [
+                    "case \"LogicalExpression\":",
+                    "if (",
+                    "parent.right === node &&",
+                    "isHandledLogicalOperator(parent.operator)",
+                    ") {",
+                    "state.makeLogicalRight();",
+                    "}",
+                    "break;"
+                ],
+                "REPLACE": [
+                    "        case \"LogicalExpression\":",
+                    "            if (",
+                    "                parent.right === node &&",
+                    "                isHandledLogicalOperator(parent.operator)",
+                    "            ) {",
+                    "                if (parent.operator === \"&&\") {",
+                    "                    state.forkBypassPath(); // Add a bypass path for short-circuiting",
+                    "                }",
+                    "                state.makeLogicalRight();",
+                    "            }",
+                    "            break;"
+                ]
+            }
+        ]
+    }
+}

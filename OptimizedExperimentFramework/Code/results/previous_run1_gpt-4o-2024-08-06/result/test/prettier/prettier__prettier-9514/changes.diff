@@ -1,0 +1,44 @@
+diff --git a/src/language-js/parser-babel.js b/src/language-js/parser-babel.js
+index 539571361..4e996d024 100644
+--- a/src/language-js/parser-babel.js
++++ b/src/language-js/parser-babel.js
+@@ -252,17 +252,34 @@ function assertJsonNode(node, parent) {
+   }
+ }
+ 
+-const babel = { parse, astFormat: "estree", hasPragma, locStart, locEnd };
+-const babelFlow = { ...babel, parse: parseFlow };
+-const babelTypeScript = { ...babel, parse: parseTypeScript };
+-const babelExpression = { ...babel, parse: parseExpression };
++const cherow = require("cherow");
++
++function parseWithCherow(text, opts = {}) {
++  try {
++    return cherow.parse(text, {
++      module: opts.__babelSourceType !== "script",
++      loc: true,
++      ranges: true,
++      raw: true,
++    });
++  } catch (error) {
++    throw createError(error.message, {
++      start: {
++        line: error.line,
++        column: error.column + 1,
++      },
++    });
++  }
++}
++
++const cherowParser = { parse: parseWithCherow, astFormat: "estree", hasPragma, locStart, locEnd };
+ 
+-// Export as a plugin so we can reuse the same bundle for UMD loading
+ module.exports = {
+   parsers: {
+     babel,
+     "babel-flow": babelFlow,
+     "babel-ts": babelTypeScript,
++    cherow: cherowParser,
+     json: {
+       ...babelExpression,
+       hasPragma() {

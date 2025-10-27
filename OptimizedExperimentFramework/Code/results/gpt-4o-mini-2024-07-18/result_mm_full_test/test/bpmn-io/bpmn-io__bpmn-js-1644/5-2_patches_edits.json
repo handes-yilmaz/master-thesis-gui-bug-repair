@@ -1,0 +1,25 @@
+{
+    "1/1": {
+        "// Hypothetical patch for BPMN multi-instance handling": [
+            {
+                "SEARCH": [
+                    "function changeMultiInstanceType(instance, newType) {",
+                    "// Existing logic to change the type",
+                    "instance.type = newType;",
+                    "// Potentially losing properties here"
+                ],
+                "REPLACE": [
+                    "function changeMultiInstanceType(instance, newType) {",
+                    "    // Preserve existing multi-instance properties",
+                    "    const existingProperties = instance.multiInstanceProperties || {};",
+                    "    ",
+                    "    // Existing logic to change the type",
+                    "    instance.type = newType;",
+                    "",
+                    "    // Restore properties after type change",
+                    "    instance.multiInstanceProperties = { ...existingProperties };"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/interaction/Draw.js",
+            "src/ol/geom/Circle.js",
+            "src/ol/geom/Polygon.js"
+        ],
+        "explanation": "These files are key to the bug because they contain the core logic for drawing geometries. The `Draw.js` file handles the drawing interactions, including how shapes are created and modified. The `Circle.js` file defines the properties and methods for circle geometries, which are directly affected by the geographic projection issues. The `Polygon.js` file manages polygon geometries, which are also impacted by the irregularities in shape and size when using geographic coordinates.",
+        "bug_scenario": "The bug involves issues with the size and shapes of drawn geometries (like circles and polygons) when using the `useGeographic` option. Specifically, drawn circles do not extend to the pointer position as expected, especially in higher latitudes, and regular shapes created by `createRegularPolygon` can appear irregular. Additionally, drawing boxes with `createBox` is problematic when the view projection is not parallel to WGS84."
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/format/KML.js//KML",
+            "src/ol/style/Text.js//Text"
+        ],
+        "bug_functions": [
+            "src/ol/format/KML.js//readPlacemark_",
+            "src/ol/style/Text.js//getText",
+            "src/ol/style/Text.js//setText"
+        ],
+        "explanation": "The KML class is responsible for reading KML files, including placemarks where the text is defined. The readPlacemark_ function is crucial as it handles the reading of placemark nodes, which likely includes the text that needs decoding. The Text class manages the text styles and content for vector features. The getText and setText functions are important as they retrieve and set the text content, which is where the character encoding issue arises. Modifications in these functions can ensure that the text is properly decoded before being rendered.",
+        "bug_scenario": "The label for 'Andy's Pub' is incorrectly displayed as 'Andy&amp;apos;s Pub' due to character encoding issues. The text should be decoded properly to show the correct name."
+    }
+}

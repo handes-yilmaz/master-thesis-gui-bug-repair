@@ -1,0 +1,13 @@
+diff --git a/lib/features/modeling/behavior/DropOnFlowBehavior.js b/lib/features/modeling/behavior/DropOnFlowBehavior.js
+index 4d1c35ba..d50b378e 100644
+--- a/lib/features/modeling/behavior/DropOnFlowBehavior.js
++++ b/lib/features/modeling/behavior/DropOnFlowBehavior.js
+@@ -45,7 +45,7 @@ export default function DropOnFlowBehavior(eventBus, bpmnRules, modeling) {
+         return;
+       }
+ 
+-      dockingPoint = intersection.bendpoint ? waypoints[intersection.index] : position;
++      dockingPoint = intersection.bendpoint ? waypoints[intersection.index] : getMid(shape);
+ 
+       // if last waypointBefore is inside shape's bounds, ignore docking point
+       if (!isPointInsideBBox(shape, waypointsBefore[waypointsBefore.length-1])) {

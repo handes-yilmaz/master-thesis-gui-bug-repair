@@ -1,0 +1,17 @@
+diff --git a/src/lib/html_renderer.js b/src/lib/html_renderer.js
+index 27e6826..161c150 100644
+--- a/src/lib/html_renderer.js
++++ b/src/lib/html_renderer.js
+@@ -65,9 +65,9 @@ export default class HTMLRenderer {
+     if (!emitsWrappingTags(node)) return;
+ 
+     let className = node.kind;
+-    if (!node.sublanguage) {
+-      className = expandClassName(className, { prefix: this.classPrefix });
+-    }
++if (!node.sublanguage && className !== 'php') {
++className = expandClassName(className, { prefix: this.classPrefix });
++}
+     this.span(className);
+   }
+ 

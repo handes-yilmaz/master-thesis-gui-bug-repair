@@ -1,0 +1,26 @@
+diff --git a/lib/linter/code-path-analysis/code-path-analyzer.js b/lib/linter/code-path-analysis/code-path-analyzer.js
+index b60e55c16..7f510968d 100644
+--- a/lib/linter/code-path-analysis/code-path-analyzer.js
++++ b/lib/linter/code-path-analysis/code-path-analyzer.js
+@@ -489,10 +489,17 @@ function processCodePathToEnter(analyzer, node) {
+ 
+         case "LogicalExpression":
+             if (isHandledLogicalOperator(node.operator)) {
+-                state.pushChoiceContext(
+-                    node.operator,
+-                    isForkingByTrueOrFalse(node)
+-                );
++                if (node.operator === "&&" && node.parent.operator === "??") {
++                    state.pushChoiceContext(
++                        "??",
++                        true
++                    );
++                } else {
++                    state.pushChoiceContext(
++                        node.operator,
++                        isForkingByTrueOrFalse(node)
++                    );
++                }
+             }
+             break;
+ 

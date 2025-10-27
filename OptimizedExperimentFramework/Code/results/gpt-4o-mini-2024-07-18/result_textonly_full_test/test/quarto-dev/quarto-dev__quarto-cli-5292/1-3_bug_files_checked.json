@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "src/format/pdf/format-pdf.ts",
+            "src/resources/filters/layout/latex.lua",
+            "src/resources/filters/quarto-pre/code-annotation.lua",
+            "src/resources/filters/quarto-post/tikz.lua",
+            "src/core/pandoc/pandoc-partition.ts"
+        ],
+        "explanation": "These files are related to the bug because they handle the formatting and rendering of PDF documents and code annotations. The `format-pdf.ts` file is responsible for the output format settings for PDF, which is directly connected to how the output document is generated. The `code-annotation.lua` file is specifically mentioned in the bug report as it pertains to code annotations, and correcting it may resolve the issue with annotations not being rendered correctly in the document. Additionally, the `tikz.lua` file is important as it likely contains necessary definitions and rendering logic for TikZ graphics, which is essential to include for proper annotation functionality. Lastly, the `pandoc-partition.ts` file may handle the overall processing of the document structure, thus affecting how code annotations are processed and displayed in the final PDF.",
+        "bug_scenario": "The bug involves the failure of code annotation to work correctly in version 1.3.336 of the software. Specifically, the `tikz` package is not included, and the `\tocircled` command is not defined, which causes issues with rendering PDF documents that utilize code annotations. The user reported trying to define the `\tocircled` command in the document preamble, but it doesn't resolve the issue, as the stylized list elements are still not being produced correctly."
+    }
+}

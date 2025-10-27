@@ -1,0 +1,26 @@
+{
+    "1/1": {
+        "src/ol/webgl/TileTexture.js": [
+            {
+                "SEARCH": [
+                    "gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);",
+                    "gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);"
+                ],
+                "REPLACE": [
+                    "  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, this.imageSmoothing ? gl.LINEAR : gl.NEAREST);",
+                    "  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, this.imageSmoothing ? gl.LINEAR : gl.NEAREST);"
+                ]
+            }
+        ],
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "super(options);"
+                ],
+                "REPLACE": [
+                    "    super(assign({}, options, { imageSmoothing: options.imageSmoothing }));"
+                ]
+            }
+        ]
+    }
+}

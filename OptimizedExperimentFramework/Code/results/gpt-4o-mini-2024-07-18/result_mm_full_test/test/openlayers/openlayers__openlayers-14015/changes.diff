@@ -1,0 +1,37 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 5aca739..cc21a88 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -394,6 +394,8 @@ class WebGLTileLayer extends BaseTileLayer {
+   handleSourceUpdate_() {
+     if (this.getSource()) {
+       this.setStyle(this.style_);
++      this.renderedSource_ = null; // Clear the rendered source
++      this.getSource().expireCache(); // Clear the cache for the old source
+     }
+   }
+ 
+diff --git a/src/ol/renderer/webgl/TileLayer.js b/src/ol/renderer/webgl/TileLayer.js
+index 5de570b..2949a40 100644
+--- a/src/ol/renderer/webgl/TileLayer.js
++++ b/src/ol/renderer/webgl/TileLayer.js
+@@ -418,6 +418,7 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
+   renderFrame(frameState) {
+     this.frameState_ = frameState;
+     this.renderComplete = true;
++    tileSource.expireCache(frameState.viewState.projection, empty); // Expire the cache after rendering
+     const gl = this.helper.getGL();
+     this.preRender(gl, frameState);
+ 
+diff --git a/src/ol/source/Tile.js b/src/ol/source/Tile.js
+index 0776784..c8c63b8 100644
+--- a/src/ol/source/Tile.js
++++ b/src/ol/source/Tile.js
+@@ -154,6 +154,7 @@ class TileSource extends Source {
+     const tileCache = this.getTileCacheForProjection(projection);
+     if (tileCache) {
+       tileCache.expireCache(usedTiles);
++      this.clear(); // Clear the cache when the source is changed
+     }
+   }
+ 

@@ -1,0 +1,37 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "super(options);"
+                ],
+                "REPLACE": [
+                    "    this.blendFunction_ = options.blendFunction || null; // New property for blend function",
+                    "    super(options);",
+                    "    ",
+                    "    // Ensure the blend function is set in the options",
+                    "    if (this.blendFunction_) {",
+                    "        options.blendFunction = this.blendFunction_;",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return new WebGLTileLayerRenderer(this, {"
+                ],
+                "REPLACE": [
+                    "    const rendererOptions = {"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "return new WebGLTileLayerRenderer(this, {"
+                ],
+                "REPLACE": [
+                    "    return new WebGLTileLayerRenderer(this, {",
+                    "      blendFunction: this.blendFunction_, // Pass the blend function to the renderer"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-js/print/typescript.js//printTypescript"
+        ],
+        "bug_functions": [
+            "src/language-js/parse/typescript.js//parse",
+            "src/language-js/parse/typescript.js//isProbablyJsx"
+        ],
+        "explanation": "The `printTypescript` function is responsible for formatting TypeScript code, which is directly related to the bug as it handles the output formatting where the incorrect comma is inserted. The `parse` function is crucial as it processes the TypeScript code before it is formatted, and any issues in parsing could lead to incorrect formatting. The `isProbablyJsx` function is also relevant as it determines if the input text is JSX, which could affect how the formatting is applied, especially in cases where TypeScript and JSX are mixed.",
+        "bug_scenario": "The bug occurs when formatting TypeScript generics, where an incorrect comma is inserted in an empty array. This issue arises specifically when the `print-width` is set to 120 and the length of the identifier matches this width. The output is not as expected, leading to formatting issues in the TypeScript code."
+    }
+}

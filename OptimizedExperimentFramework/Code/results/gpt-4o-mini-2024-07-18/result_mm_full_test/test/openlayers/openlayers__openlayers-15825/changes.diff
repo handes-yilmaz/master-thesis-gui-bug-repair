@@ -1,0 +1,41 @@
+diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
+index 1dd7e6b..fa04099 100644
+--- a/src/ol/layer/WebGLTile.js
++++ b/src/ol/layer/WebGLTile.js
+@@ -344,6 +344,9 @@ class WebGLTileLayer extends BaseTileLayer {
+    */
+   getSources(extent, resolution) {
+     const source = this.getSource();
++    if (source && source.wrapX) { // Check if wrapping is enabled
++        this.setStyle(this.style_);
++    }
+     return this.sources_
+       ? typeof this.sources_ === 'function'
+         ? this.sources_(extent, resolution)
+diff --git a/src/ol/reproj/DataTile.js b/src/ol/reproj/DataTile.js
+index db5bb83..84ddf0b 100644
+--- a/src/ol/reproj/DataTile.js
++++ b/src/ol/reproj/DataTile.js
+@@ -151,6 +151,10 @@ class ReprojDataTile extends DataTile {
+     }
+ 
+     const targetResolution = this.targetTileGrid_.getResolution(
++    if (this.sourceTileGrid_.getExtent()[0] < 0 && this.targetTileGrid_.getExtent()[0] > 0) {
++        // Adjust for antimeridian crossing
++        this.sourceZ_ = this.sourceTileGrid_.getZForResolution(sourceResolution);
++    }
+       this.wrappedTileCoord_[0],
+     );
+ 
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index fcdb50c..a2c5e68 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -465,6 +465,7 @@ class GeoTIFFSource extends DataTile {
+     this.convertToRGB_ = options.convertToRGB || false;
+ 
+     this.setKey(this.sourceInfo_.map((source) => source.url).join(','));
++    this.wrapX = options.wrapX !== undefined ? options.wrapX : true; // Ensure wrapping is enabled
+ 
+     const self = this;
+     const requests = new Array(numSources);

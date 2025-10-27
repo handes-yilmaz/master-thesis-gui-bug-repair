@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/linter/code-path-analysis/code-path-analyzer.js",
+            "lib/linter/code-path-analysis/code-path.js",
+            "lib/linter/code-path-analysis/code-path-state.js"
+        ],
+        "explanation": "These files are responsible for analyzing the code paths of logical expressions in the ESLint linter. They need to be modified to correctly handle the logical AND (&&) followed by the nullish coalescing operator (??) in order to account for scenarios where 'a' is falsy, allowing the evaluation to skip 'b' and directly return 'c'.",
+        "bug_scenario": "The bug arises from an incorrect code path analysis for the expression (a && b) ?? c. The expectation is that if 'a' is falsy, the expression should directly evaluate to 'c', but the current analysis suggests that 'b' must be evaluated first, which is incorrect."
+    }
+}

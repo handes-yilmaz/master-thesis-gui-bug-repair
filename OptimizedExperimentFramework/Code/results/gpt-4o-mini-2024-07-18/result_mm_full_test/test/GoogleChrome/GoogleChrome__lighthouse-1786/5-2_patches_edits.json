@@ -1,0 +1,35 @@
+{
+    "1/1": {
+        "lighthouse-core/formatters/formatter.js": [
+            {
+                "SEARCH": [
+                    "return this._supportedFormatsNames;"
+                ],
+                "REPLACE": [
+                    "    return this._supportedFormatsNames.map(name => escapeMarkdown(name));"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/computed/computed-artifact.js": [
+            {
+                "SEARCH": [
+                    "return Promise.resolve().then(_ => this.compute_(artifact)).then(computedArtifact => {"
+                ],
+                "REPLACE": [
+                    "    return Promise.resolve().then(_ => this.compute_(artifact)).then(computedArtifact => {",
+                    "        computedArtifact = escapeMarkdown(computedArtifact);"
+                ]
+            }
+        ],
+        "lighthouse-core/gather/gatherers/gatherer.js": [
+            {
+                "SEARCH": [
+                    "return this.constructor.name;"
+                ],
+                "REPLACE": [
+                    "    return escapeMarkdown(this.constructor.name);"
+                ]
+            }
+        ]
+    }
+}

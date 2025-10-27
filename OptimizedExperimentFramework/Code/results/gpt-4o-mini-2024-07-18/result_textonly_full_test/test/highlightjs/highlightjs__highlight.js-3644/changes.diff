@@ -1,0 +1,15 @@
+diff --git a/src/lib/modes.js b/src/lib/modes.js
+index 5bbff22..47b4d96 100644
+--- a/src/lib/modes.js
++++ b/src/lib/modes.js
+@@ -132,8 +132,9 @@ export const COMMENT = function(begin, end, modeOptions = {}) {
+   return mode;
+ };
+ export const C_LINE_COMMENT_MODE = COMMENT('//', '$');
+-export const C_BLOCK_COMMENT_MODE = COMMENT('/\\*', '\\*/');
++export const C_BLOCK_COMMENT_MODE = COMMENT('/\\\\*', '\\\\*/');
+ export const HASH_COMMENT_MODE = COMMENT('#', '$');
++export const CMAKE_MULTI_LINE_COMMENT_MODE = COMMENT('\\#\\[\\[', '\\]\\]');
+ export const NUMBER_MODE = {
+   scope: 'number',
+   begin: NUMBER_RE,

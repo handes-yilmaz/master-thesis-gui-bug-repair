@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "lighthouse-core/gather/connections/connection.js",
+            "lighthouse-core/gather/gatherers/gatherer.js",
+            "lighthouse-core/gather/gather-runner.js"
+        ],
+        "explanation": "These files are likely bug related because:\n1. `connection.js`: This file manages network connections, and modifying it might help implement the required target discovery for iframes.\n2. `gatherer.js`: This file is responsible for collecting data during the Lighthouse run. Enhancements here can enable it to also gather data from OOPIFs.\n3. `gather-runner.js`: This file orchestrates the gathering process; changes here can ensure that iframe targets are included in the analysis.",
+        "bug_scenario": "The Lighthouse tool is not handling Out-of-Process iframes (OOPIFs) correctly. It seems that Lighthouse can only analyze requests from the main frame, as it doesn't perform target discovery for iframes, which is crucial for full analysis of web pages that use iframes extensively. This is evident from the provided bug report and related image showing the Chrome DevTools target discovery process that Lighthouse appears not to implement."
+    }
+}

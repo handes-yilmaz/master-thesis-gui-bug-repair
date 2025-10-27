@@ -1,0 +1,26 @@
+diff --git a/src/dialog/dialog.jsx b/src/dialog/dialog.jsx
+index 1b20eb2..bc2a60b 100644
+--- a/src/dialog/dialog.jsx
++++ b/src/dialog/dialog.jsx
+@@ -378,7 +378,7 @@ export default class Dialog extends Component {
+             rtl,
+             maskClass: useCSS ? `${prefix}dialog-container` : '',
+             isChildrenInMask: useCSS && hasMask,
+-            container: this.props.popupContainer || overlayProps.container,
++            container: this.props.popupContainer || overlayProps.container || this.context.nextPopupContainer,
+         };
+         if (!useCSS) {
+             newOverlayProps.beforePosition = this.beforePosition;
+diff --git a/src/dialog/index.jsx b/src/dialog/index.jsx
+index 65c7da1..e6413bd 100644
+--- a/src/dialog/index.jsx
++++ b/src/dialog/index.jsx
+@@ -6,7 +6,7 @@ import { show, alert, confirm } from './show';
+ 
+ Dialog.Inner = Inner;
+ Dialog.show = config => {
+-    const { warning } = ConfigProvider.getContextProps(config, 'Dialog');
++    const { warning, nextPopupContainer } = ConfigProvider.getContextProps(config, 'Dialog');
+     if (warning !== false) {
+         config = processProps(config, log.deprecated);
+     }

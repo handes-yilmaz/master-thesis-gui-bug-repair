@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/languages/perl.js",
+            "src/lib/regex.js",
+            "src/highlight.js"
+        ],
+        "explanation": "1. **perl.js**: This file is crucial as it contains the language definitions and rules for Perl syntax highlighting. The regex detection logic within this file needs to be updated to handle the arbitrary delimiters used in Perl's `m` style regex correctly.\n2. **regex.js**: This file likely manages the regex handling and parsing logic for various languages. Modifications here might be necessary to enhance the regex detection capabilities to accommodate Perl's specific requirements for arbitrary delimiters.\n3. **highlight.js**: This core file is responsible for the overall syntax highlighting mechanism. Any changes made to language-specific files like `perl.js` and `regex.js` will require integration and testing within this file to ensure that the highlighting works seamlessly across the application.",
+        "bug_scenario": "The issue involves the regex detection after the keyword `m` in Perl, specifically when using arbitrary delimiters like `/`, `|`, or `#`. The regex parser fails to recognize the regex correctly when it includes a slash after `m`, causing improper syntax highlighting. The provided code snippet demonstrates this problem with the Perl regex match operator."
+    }
+}

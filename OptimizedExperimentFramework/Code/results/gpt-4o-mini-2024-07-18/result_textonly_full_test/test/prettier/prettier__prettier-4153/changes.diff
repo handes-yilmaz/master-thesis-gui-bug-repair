@@ -1,0 +1,13 @@
+diff --git a/src/language-markdown/parser-markdown.js b/src/language-markdown/parser-markdown.js
+index 0d482ac..28c11c2 100644
+--- a/src/language-markdown/parser-markdown.js
++++ b/src/language-markdown/parser-markdown.js
+@@ -35,7 +35,7 @@ function detectLanguageWithAttributes() {
+   return ast => map(ast, node => {
+     if (node.type === "code" && node.lang) {
+       // Extract the language ignoring any attributes
+-      const [language] = node.lang.split(/TEST_CHANGE/);
++      const [language] = node.lang.split(/\\s*{.*}/)[0].trim();
+       return Object.assign({}, node, { lang: language });
+     }
+     return node;

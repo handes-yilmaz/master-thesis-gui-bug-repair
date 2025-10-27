@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "core/audits/no-unload-listeners.js",
+            "core/audits/bf-cache.js",
+            "core/gather/gatherers/global-listeners.js"
+        ],
+        "explanation": "These files are key to addressing the bug because: 1. `no-unload-listeners.js` contains the logic for auditing unload listeners, which needs to be modified to account for listeners injected in isolated contexts. 2. `bf-cache.js` is responsible for the bfcache audit, which is failing due to the presence of the unload listener. Adjustments here could help improve the detection of such listeners. 3. `global-listeners.js` gathers information about global event listeners, and enhancing its functionality could help in identifying unload listeners that are not visible in the current context.",
+        "bug_scenario": "The bug scenario involves an extension injecting an unload listener into the main frame, which causes the bfcache audit to fail while the no-unload-listeners audit passes. This discrepancy makes it difficult for users to detect the presence of the unload listener, leading to challenges in debugging."
+    }
+}

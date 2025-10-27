@@ -1,0 +1,25 @@
+diff --git a/lighthouse-core/report/report-generator.js b/lighthouse-core/report/report-generator.js
+index 53c3c5f..5a75eb4 100644
+--- a/lighthouse-core/report/report-generator.js
++++ b/lighthouse-core/report/report-generator.js
+@@ -160,12 +160,18 @@ class ReportGenerator {
+     return template({
+       url: results.url,
+       lighthouseVersion: results.lighthouseVersion,
+-      generatedTime: results.generatedTime,
++      generatedTime: results.generatedTime.toLocaleString(undefined, {maximumFractionDigits: 1}),
+       lhresults: this._escapeScriptTags(JSON.stringify(results, null, 2)),
+       stylesheets: this.getReportCSS(),
+       reportContext: reportContext,
+       scripts: this.getReportJS(reportContext),
+-      aggregations: results.aggregations,
++      aggregations: results.aggregations.map(aggregation => ({
++        ...aggregation,
++        score: aggregation.score.map(score => ({
++          ...score,
++          value: score.value.toLocaleString(undefined, {maximumFractionDigits: 1}),
++        })),
++      })),
+       auditsByCategory: this._createPWAAuditsByCategory(results.aggregations),
+       runtimeConfig: results.runtimeConfig,
+       reportsCatalog

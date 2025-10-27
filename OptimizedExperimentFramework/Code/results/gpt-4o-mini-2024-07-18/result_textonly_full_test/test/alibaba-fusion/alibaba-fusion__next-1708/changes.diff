@@ -1,0 +1,24 @@
+diff --git a/src/tree-select/tree-select.jsx b/src/tree-select/tree-select.jsx
+index a764687..d5c540a 100644
+--- a/src/tree-select/tree-select.jsx
++++ b/src/tree-select/tree-select.jsx
+@@ -265,8 +265,8 @@ updateCache(props) {
+     this._p2n = {};
+     this._v2n = {};
+ 
+-    const generateUniqueKey = (item, pos) => {
+-        return item.key || `${pos}-${item.value}`;
++        const generateUniqueKey = (item, pos, index) => {
++            return item.key || `${pos}-${item.value}-${index}`;
+     };
+ 
+     if ('dataSource' in props) {
+@@ -274,7 +274,7 @@ updateCache(props) {
+             data.map((item, index) => {
+                 const { value, children } = item;
+                 const pos = `${prefix}-${index}`;
+-                const key = generateUniqueKey(item, pos);
++                const key = generateUniqueKey(item, pos, index);
+                 const newItem = { ...item, key, pos };
+                 if (children && children.length) {
+                     newItem.children = loop(children, pos);

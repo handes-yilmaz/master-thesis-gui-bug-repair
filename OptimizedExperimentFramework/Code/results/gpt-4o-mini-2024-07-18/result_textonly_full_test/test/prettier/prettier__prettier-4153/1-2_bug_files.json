@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-markdown/parser-markdown.js",
+            "src/language-js/parser-babylon.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "The identified files are related to the parsing and printing of markdown and JavaScript code blocks. Specifically, `parser-markdown.js` is responsible for interpreting markdown syntax, including fenced code blocks, and thus needs to be updated to recognize and correctly handle attributes. The JavaScript parser files (`parser-babylon.js` and `printer-estree.js`) are involved in handling JavaScript syntax, and updates may be necessary to ensure that the additional attributes do not interfere with language detection and formatting.",
+        "bug_scenario": "The bug scenario involves Prettier failing to recognize code block languages in markdown when there are additional attributes immediately following the language identifier. For example, the code block ```js {cmd=node .line-numbers}``` should be formatted like a standard ```js``` block, but Prettier does not handle the additional attributes correctly, leading to incorrect formatting."
+    }
+}

@@ -1,0 +1,66 @@
+diff --git a/src/number-picker/index.jsx b/src/number-picker/index.jsx
+index acc589329..dcd8027b7 100644
+--- a/src/number-picker/index.jsx
++++ b/src/number-picker/index.jsx
+@@ -298,35 +298,37 @@ class NumberPicker extends React.Component {
+         return Math.pow(10, precision);
+     }
+ 
+-    upStep(val) {
+-        const {step, min} = this.props;
+-        const precisionFactor = this.getPrecisionFactor();
+-        let result;
+-        if (typeof val === 'number') {
+-            result = (precisionFactor * val + precisionFactor * step) / precisionFactor;
+-        } else {
+-            result = min === -Infinity ? step : min;
++upStep(val) {
++    const {step, min} = this.props;
++    const precisionFactor = this.getPrecisionFactor();
++    let result;
++    if (typeof val === 'number') {
++        result = (precisionFactor * val + precisionFactor * step) / precisionFactor;
++        const precision = this.getPrecision();
++        if (precision > 0) {
++            result = Number(result.toFixed(precision));
+         }
+-        return result;
++    } else {
++        result = min === -Infinity ? step : min;
+     }
++    return result;
++}
+ 
+-    downStep(val) {
+-        const {step, min} = this.props;
+-        const precisionFactor = this.getPrecisionFactor();
+-        let result;
+-        if (typeof val === 'number') {
+-            result = (precisionFactor * val - precisionFactor * step) / precisionFactor;
+-
+-            // in chrome browser: 0.3 - 0.2 = 0.09999999999, we should creact to 0.1
+-            const precision = this.getPrecision();
+-            if (precision > 0) {
+-                result = Number(Number(result).toFixed(precision));
+-            }
+-        } else {
+-            result = min === -Infinity ? -step : min;
++downStep(val) {
++    const {step, min} = this.props;
++    const precisionFactor = this.getPrecisionFactor();
++    let result;
++    if (typeof val === 'number') {
++        result = (precisionFactor * val - precisionFactor * step) / precisionFactor;
++        const precision = this.getPrecision();
++        if (precision > 0) {
++            result = Number(result.toFixed(precision));
+         }
+-        return result;
++    } else {
++        result = min === -Infinity ? -step : min;
+     }
++    return result;
++}
+ 
+     step(type, e) {
+         if (e) {

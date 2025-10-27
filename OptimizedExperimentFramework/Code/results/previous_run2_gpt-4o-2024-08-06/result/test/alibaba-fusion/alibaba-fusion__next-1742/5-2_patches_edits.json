@@ -1,0 +1,95 @@
+{
+    "1/1": {
+        "src/cascader/cascader.jsx": [
+            {
+                "SEARCH": [
+                    "static propTypes = {",
+                    "prefix: PropTypes.string,",
+                    "rtl: PropTypes.bool,",
+                    "pure: PropTypes.bool,",
+                    "className: PropTypes.string,",
+                    "/**",
+                    "* 数据源，结构可参考下方说明",
+                    "*/",
+                    "dataSource: PropTypes.arrayOf(PropTypes.object),"
+                ],
+                "REPLACE": [
+                    "    static propTypes = {",
+                    "        prefix: PropTypes.string,",
+                    "        rtl: PropTypes.bool,",
+                    "        pure: PropTypes.bool,",
+                    "        className: PropTypes.string,",
+                    "        /**",
+                    "         * 数据源，结构可参考下方说明",
+                    "         */",
+                    "        dataSource: PropTypes.arrayOf(PropTypes.object),",
+                    "        /**",
+                    "         * 是否显示标题信息",
+                    "         */",
+                    "        showTitle: PropTypes.bool,"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "static defaultProps = {",
+                    "prefix: 'next-',",
+                    "rtl: false,",
+                    "pure: false,",
+                    "dataSource: [],",
+                    "defaultValue: null,",
+                    "canOnlySelectLeaf: false,",
+                    "canOnlyCheckLeaf: false,",
+                    "expandTriggerType: 'click',",
+                    "multiple: false,",
+                    "useVirtual: false,",
+                    "checkStrictly: false,",
+                    "itemRender: item => item.label,"
+                ],
+                "REPLACE": [
+                    "    static defaultProps = {",
+                    "        prefix: 'next-',",
+                    "        rtl: false,",
+                    "        pure: false,",
+                    "        dataSource: [],",
+                    "        defaultValue: null,",
+                    "        canOnlySelectLeaf: false,",
+                    "        canOnlyCheckLeaf: false,",
+                    "        expandTriggerType: 'click',",
+                    "        multiple: false,",
+                    "        useVirtual: false,",
+                    "        checkStrictly: false,",
+                    "        itemRender: item => item.label,",
+                    "        showTitle: true,"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "handleSelect(v, canExpand) {",
+                    "if (!(this.props.canOnlySelectLeaf && canExpand)) {",
+                    "const data = this._v2n[v];",
+                    "const nums = data.pos.split('-');",
+                    "const selectedPath = nums.slice(1).reduce((ret, num, index) => {",
+                    "const p = nums.slice(0, index + 2).join('-');",
+                    "ret.push(this._p2n[p]);",
+                    "return ret;",
+                    "}, []);"
+                ],
+                "REPLACE": [
+                    "    handleSelect(v, canExpand) {",
+                    "        if (!(this.props.canOnlySelectLeaf && canExpand)) {",
+                    "            const data = this._v2n[v];",
+                    "            const nums = data.pos.split('-');",
+                    "            const selectedPath = nums.slice(1).reduce((ret, num, index) => {",
+                    "                const p = nums.slice(0, index + 2).join('-');",
+                    "                ret.push(this._p2n[p]);",
+                    "                return ret;",
+                    "            }, []);",
+                    "            ",
+                    "            if (!this.props.showTitle) {",
+                    "                data.title = '';",
+                    "            }"
+                ]
+            }
+        ]
+    }
+}

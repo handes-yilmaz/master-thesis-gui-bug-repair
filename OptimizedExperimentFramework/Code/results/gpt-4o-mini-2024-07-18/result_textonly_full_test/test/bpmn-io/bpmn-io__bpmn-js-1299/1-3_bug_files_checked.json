@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/features/label-editing/cmd/UpdateLabelHandler.js",
+            "lib/features/modeling/behavior/ResizeBehavior.js",
+            "lib/features/modeling/BpmnUpdater.js",
+            "lib/draw/BpmnRenderer.js",
+            "lib/draw/TextRenderer.js"
+        ],
+        "explanation": "These files are related to the bug for the following reasons: 1. `UpdateLabelHandler.js` manages label updates and could be responsible for resizing issues when an empty label is submitted. 2. `ResizeBehavior.js` directly handles the behavior of resizing elements, which is at the core of the bug where elements change size unexpectedly. 3. `BpmnUpdater.js` manages updates to BPMN elements, which may include changes to their dimensions or visibility upon interaction. 4. `BpmnRenderer.js` is responsible for rendering the BPMN elements, and any issues in rendering could lead to elements appearing smaller or disappearing. 5. `TextRenderer.js` deals with the text that is displayed on the BPMN elements, which may affect how labels are handled during the editing process.",
+        "bug_scenario": "The bug occurs when selecting events or gateways in a BPMN diagram where the elements unexpectedly resize or disappear after direct editing with an empty label. This is demonstrated in the provided images where elements shrink in size or are not clickable, particularly after an upgrade to version 6.3.3."
+    }
+}

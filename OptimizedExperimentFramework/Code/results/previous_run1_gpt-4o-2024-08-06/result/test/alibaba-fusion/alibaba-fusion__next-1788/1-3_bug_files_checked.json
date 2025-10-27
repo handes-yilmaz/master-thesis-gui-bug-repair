@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/input/input.jsx",
+            "types/input/index.d.ts"
+        ],
+        "explanation": "The bug relates to the Input.TextArea component's handling of the 'onBlur' event. This indicates that it is likely sourced from the 'input.jsx' file in the 'src/input/' directory where the component's logic is implemented. Additionally, since the issue involves TypeScript types, it's likely that the type definition for the Input component in 'types/input/index.d.ts' is incorrect or outdated, necessitating a fix.",
+        "bug_scenario": "The images show a TypeScript type error related to the 'onBlur' event of an Input.TextArea component. The error indicates a type mismatch where the 'onBlur' event is expected to match a specific type '() => void', but it has instead been assigned a type '(event: MouseEvent<Element, MouseEvent>) => void'. This suggests that the 'onBlur' type definition needs to be updated to accommodate an event signature."
+    },
+    "2": {
+        "bug_files": [
+            "types/input/index.d.ts",
+            "src/input/textarea.jsx"
+        ],
+        "explanation": "1. `types/input/index.d.ts`: This file likely contains the TypeScript definitions for the `Input` components. The `onBlur` event handler type will need correcting to accept an event parameter.\n   \n2. `src/input/textarea.jsx`: Since the bug is related to the `Input.TextArea` component, this file might contain the logic for the textarea where the event handler is being defined and/or used. Adjustments here may also be needed.\n\nBoth files are directly related to the input component's event handling logic and its TypeScript type definitions.",
+        "bug_scenario": "The bug is related to a TypeScript typing issue with the `onBlur` event handler for a textarea input component. The error message suggests that the `onBlur` property type definition is incompatible. It expects a function without parameters, i.e., `() => void`, but it is receiving a function with an event argument, `(event: MouseEvent<Element, MouseEvent>) => void`."
+    }
+}

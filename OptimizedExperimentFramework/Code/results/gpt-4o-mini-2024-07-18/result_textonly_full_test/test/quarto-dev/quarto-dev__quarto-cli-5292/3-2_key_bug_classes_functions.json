@@ -1,0 +1,20 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/resources/filters/quarto-pre/code-annotation.lua",
+            "src/resources/filters/quarto-post/tikz.lua",
+            "src/format/pdf/format-pdf.ts"
+        ],
+        "bug_functions": [
+            "src/resources/filters/quarto-pre/code-annotation.lua//isAnnotationCell",
+            "src/resources/filters/quarto-pre/code-annotation.lua//annoteProvider",
+            "src/resources/filters/quarto-pre/code-annotation.lua//processLaTeXAnnotation",
+            "src/resources/filters/quarto-pre/code-annotation.lua//processAnnotation",
+            "src/resources/filters/quarto-post/tikz.lua//tikz",
+            "src/format/pdf/format-pdf.ts//pdfFormat",
+            "src/format/pdf/format-pdf.ts//latexFormat"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they handle the processing of code annotations and the inclusion of necessary LaTeX packages for rendering. The `code-annotation.lua` file contains functions that determine how annotations are processed and displayed in the output, including the handling of LaTeX-specific annotations. The `tikz.lua` file is crucial because it defines how TikZ images are processed, which is directly related to the user's issue with the `\tikz` command. Lastly, the `format-pdf.ts` file includes functions that set up the PDF format and ensure that necessary LaTeX packages are included, which is essential for the correct rendering of annotations in PDF outputs.",
+        "bug_scenario": "The user is experiencing issues with code annotations in PDF documents generated using the Quarto tool. Specifically, the `tikz` package is not included, which is necessary for the `\tikz` command used to create stylized annotations like circles around numbers. The user has provided a code snippet that demonstrates the problem, and they have also attempted to define the `\textcircled` command in the document preamble, but it does not resolve the issue with the annotations not appearing correctly."
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/interaction/Select.js",
+            "src/ol/layer/Layer.js",
+            "src/ol/render/canvas/Replay.js",
+            "src/ol/render/webgl/Replay.js"
+        ],
+        "explanation": "These files are related to the bug because: \n1. `Select.js`: This file handles the selection interaction, and any changes to the z-index logic or rendering behavior for selected features would need to be made here. \n2. `Layer.js`: This file may define how layers are rendered and could influence the stacking order of the selected and underlying features. \n3. `Replay.js` (both canvas and webgl versions): These files manage how features are drawn on the map. If the rendering logic does not respect the intended z-index during the drawing process, it could lead to the observed behavior where selected features appear below other elements.",
+        "bug_scenario": "The issue describes a problem with the `ol.select.Interaction` feature in a mapping application, where selected features do not appear on top of other layers as intended, causing an unexpected visual layering effect. The user wishes for selected features to have a higher z-index than the underlying features, which are represented by red dots in a separate layer."
+    }
+}

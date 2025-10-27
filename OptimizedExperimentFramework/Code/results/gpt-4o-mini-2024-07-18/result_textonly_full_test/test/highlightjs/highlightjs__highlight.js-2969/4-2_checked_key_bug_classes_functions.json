@@ -1,0 +1,37 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "beginKeywords",
+            "file_path": "src/lib/compiler_extensions.js",
+            "function_details": [
+                {
+                    "name": "beginKeywords",
+                    "start_line": 39,
+                    "end_line": 57
+                }
+            ],
+            "function_code": [
+                "export function beginKeywords(mode, parent) {",
+                "  if (!parent) return;",
+                "  if (!mode.beginKeywords) return;",
+                "",
+                "  // for languages with keywords that include non-word characters checking for",
+                "  // a word boundary is not sufficient, so instead we check for a word boundary",
+                "  // or whitespace - this does no harm in any case since our keyword engine",
+                "  // doesn't allow spaces in keywords anyways and we still check for the boundary",
+                "  // first",
+                "  mode.begin = '\\\\b(' + mode.beginKeywords.split(' ').join('|') + ')(?!\\\\.)(?=\\\\b|\\\\s)';",
+                "  mode.__beforeBegin = skipIfhasPrecedingDot;",
+                "  mode.keywords = mode.keywords || mode.beginKeywords;",
+                "  delete mode.beginKeywords;",
+                "",
+                "  // prevents double relevance, the keywords themselves provide",
+                "  // relevance, the mode doesn't need to double it",
+                "  // eslint-disable-next-line no-undefined",
+                "  if (mode.relevance === undefined) mode.relevance = 0;",
+                "}"
+            ]
+        }
+    }
+}

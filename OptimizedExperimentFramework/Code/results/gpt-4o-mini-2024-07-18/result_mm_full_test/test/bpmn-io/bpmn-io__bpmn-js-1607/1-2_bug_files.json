@@ -1,0 +1,13 @@
+{
+    "1": {
+        "bug_files": [
+            "lib/modeling/behavior/GroupBehavior.js",
+            "lib/import/BpmnImporter.js",
+            "lib/import/BpmnTreeWalker.js",
+            "lib/util/ModelUtil.js",
+            "lib/modeling/BpmnUpdater.js"
+        ],
+        "explanation": "The identified files are related to the bug because: \n1. **GroupBehavior.js** - This file likely contains the logic for handling group elements within the model. Issues in this file could lead to improper references during export/import operations.\n2. **BpmnImporter.js** - Responsible for importing BPMN diagrams. If there are problems in how groups are imported, this file would be a key area to investigate.\n3. **BpmnTreeWalker.js** - This file traverses the BPMN model during import. It may not be correctly processing the group references, leading to unresolved references.\n4. **ModelUtil.js** - This utility may include functions that manage model elements, including groups, and could contribute to the problem if not handling groups properly.\n5. **BpmnUpdater.js** - Responsible for updating BPMN models. This could also affect how groups and their references are managed during changes to the model.",
+        "bug_scenario": "The bug occurs when attempting to create a group inside a collapsed sub-process in a BPMN diagram, resulting in an unresolved reference warning upon re-importing the diagram. This indicates that the reference to the group is not being correctly handled by the BPMN exporter/importer."
+    }
+}

@@ -1,0 +1,115 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "_formatIcuMessage",
+            "file_path": "lighthouse-core/lib/i18n/i18n.js",
+            "function_details": [
+                {
+                    "name": "_formatIcuMessage",
+                    "start_line": 184,
+                    "end_line": 202
+                }
+            ],
+            "function_code": [
+                "function _formatIcuMessage(locale, icuMessageId, fallbackMessage, values) {",
+                "  const localeMessages = LOCALES[locale];",
+                "  if (!localeMessages) throw new Error(`Unsupported locale '${locale}'`);",
+                "",
+                "  const localeMessage = localeMessages[icuMessageId] && localeMessages[icuMessageId].message;",
+                "  // fallback to the original english message if we couldn't find a message in the specified locale",
+                "  // better to have an english message than no message at all, in some number cases it won't even matter",
+                "  const messageForMessageFormat = localeMessage || fallbackMessage;",
+                "  if (messageForMessageFormat === undefined) throw new Error(_ICUMsgNotFoundMsg);",
+                "  // when using accented english, force the use of a different locale for number formatting",
+                "  const localeForMessageFormat = (locale === 'en-XA' || locale === 'en-XL') ? 'de-DE' : locale;",
+                "  // pre-process values for the message format like KB and milliseconds",
+                "  const valuesForMessageFormat = _preprocessMessageValues(messageForMessageFormat, values);",
+                "",
+                "  const formatter = new MessageFormat(messageForMessageFormat, localeForMessageFormat, formats);",
+                "  const formattedString = formatter.format(valuesForMessageFormat);",
+                "",
+                "  return {formattedString, icuMessage: messageForMessageFormat};",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "getRendererFormattedStrings",
+            "file_path": "lighthouse-core/lib/i18n/i18n.js",
+            "function_details": [
+                {
+                    "name": "getRendererFormattedStrings",
+                    "start_line": 224,
+                    "end_line": 238
+                }
+            ],
+            "function_code": [
+                "function getRendererFormattedStrings(locale) {",
+                "  const localeMessages = LOCALES[locale];",
+                "  if (!localeMessages) throw new Error(`Unsupported locale '${locale}'`);",
+                "",
+                "  const icuMessageIds = Object.keys(localeMessages).filter(f => f.includes('core/report/html/'));",
+                "  /** @type {LH.I18NRendererStrings} */",
+                "  const strings = {};",
+                "  for (const icuMessageId of icuMessageIds) {",
+                "    const [filename, varName] = icuMessageId.split(' | ');",
+                "    if (!filename.endsWith('util.js')) throw new Error(`Unexpected message: ${icuMessageId}`);",
+                "    strings[varName] = localeMessages[icuMessageId].message;",
+                "  }",
+                "",
+                "  return strings;",
+                "}"
+            ]
+        },
+        "3": {
+            "function_name": "replaceIcuMessageInstanceIds",
+            "file_path": "lighthouse-core/lib/i18n/i18n.js",
+            "function_details": [
+                {
+                    "name": "replaceIcuMessageInstanceIds",
+                    "start_line": 336,
+                    "end_line": 372
+                }
+            ],
+            "function_code": [
+                "function replaceIcuMessageInstanceIds(inputObject, locale) {",
+                "  /**",
+                "   * @param {*} subObject",
+                "   * @param {LH.I18NMessages} icuMessagePaths",
+                "   * @param {string[]} pathInLHR",
+                "   */",
+                "  function replaceInObject(subObject, icuMessagePaths, pathInLHR = []) {",
+                "    if (typeof subObject !== 'object' || !subObject) return;",
+                "",
+                "    for (const [property, value] of Object.entries(subObject)) {",
+                "      const currentPathInLHR = pathInLHR.concat([property]);",
+                "",
+                "      // Check to see if the value in the LHR looks like a string reference. If it is, replace it.",
+                "      if (typeof value === 'string' && isIcuMessage(value)) {",
+                "        const {icuMessageInstance, formattedString} = _resolveIcuMessageInstanceId(value, locale);",
+                "        const messageInstancesInLHR = icuMessagePaths[icuMessageInstance.icuMessageId] || [];",
+                "        const currentPathAsString = _formatPathAsString(currentPathInLHR);",
+                "",
+                "        messageInstancesInLHR.push(",
+                "          icuMessageInstance.values ?",
+                "            {values: icuMessageInstance.values, path: currentPathAsString} :",
+                "            currentPathAsString",
+                "        );",
+                "",
+                "        subObject[property] = formattedString;",
+                "        icuMessagePaths[icuMessageInstance.icuMessageId] = messageInstancesInLHR;",
+                "      } else {",
+                "        replaceInObject(value, icuMessagePaths, currentPathInLHR);",
+                "      }",
+                "    }",
+                "  }",
+                "",
+                "  /** @type {LH.I18NMessages} */",
+                "  const icuMessagePaths = {};",
+                "  replaceInObject(inputObject, icuMessagePaths);",
+                "  return icuMessagePaths;",
+                "}"
+            ]
+        }
+    }
+}

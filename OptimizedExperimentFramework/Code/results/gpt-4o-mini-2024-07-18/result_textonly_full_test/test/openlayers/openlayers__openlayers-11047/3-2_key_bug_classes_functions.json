@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/Raster.js//RasterSource"
+        ],
+        "bug_functions": [
+            "src/ol/source/Raster.js//setOperation",
+            "src/ol/source/Raster.js//processSources_",
+            "src/ol/source/Raster.js//onWorkerComplete_"
+        ],
+        "explanation": "The 'RasterSource' class is central to the bug as it is responsible for managing the raster operations and the associated web workers. The 'setOperation' function is crucial because it sets the operation that the workers will perform, and if not managed correctly, it can lead to workers not being terminated. The 'processSources_' function is responsible for starting the processing of source data, which may involve creating new workers. Lastly, the 'onWorkerComplete_' function handles the completion of worker tasks, and if it does not properly terminate workers, it can contribute to memory leaks.",
+        "bug_scenario": "The bug scenario involves the raster source creating web workers that are not being terminated properly, leading to high memory usage and potential memory leaks. This can be observed in the Chrome DevTools memory tab, where multiple workers are still active even after changes are made to the input."
+    }
+}

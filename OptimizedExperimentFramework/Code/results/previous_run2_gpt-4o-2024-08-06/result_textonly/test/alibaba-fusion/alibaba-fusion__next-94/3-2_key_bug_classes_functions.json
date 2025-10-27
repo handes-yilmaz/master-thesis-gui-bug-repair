@@ -1,0 +1,28 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/number-picker/index.jsx//NumberPicker"
+        ],
+        "bug_functions": [
+            "src/number-picker/index.jsx//getCurrentValidValue",
+            "src/number-picker/index.jsx//upStep",
+            "src/number-picker/index.jsx//downStep",
+            "src/number-picker/index.jsx//setValue"
+        ],
+        "explanation": "The NumberPicker class is directly implicated because it is responsible for rendering the component where the bug manifests. The functions getCurrentValidValue, upStep, and downStep are critical because they handle the calculations and logic concerning the number stepping and precision. The getCurrentValidValue function attempts to validate and correct the input number, which is essential for ensuring the displayed value is accurate. The upStep and downStep methods are responsible for incrementing and decrementing the number, respectively, using the precision factor, which is where the floating-point arithmetic issue likely causes the bug. The setValue function is important as it sets the state value and triggers changes, directly affecting the display output.",
+        "bug_scenario": "The bug scenario involves the NumberPicker component in a React application, where adding a small step (0.01) to a default value (4.02) in Safari results in an unexpected outcome due to JavaScript's floating point precision issues. Instead of showing 4.03, it shows 4.029999999999999, causing a display bug."
+    },
+    "2": {
+        "bug_classes": [
+            "src/number-picker/index.jsx//NumberPicker"
+        ],
+        "bug_functions": [
+            "src/number-picker/index.jsx//getPrecision",
+            "src/number-picker/index.jsx//getPrecisionFactor",
+            "src/number-picker/index.jsx//upStep",
+            "src/number-picker/index.jsx//downStep"
+        ],
+        "explanation": "The bug is related to JavaScript's handling of floating-point arithmetic, particularly in operations like addition, which are common in the NumberPicker component. The NumberPicker class is directly involved as it is the main class rendering the component and handling its logic. The getPrecision and getPrecisionFactor functions are key because they determine the number of decimal places considered during calculations, which is crucial for handling precision issues. The upStep and downStep functions perform the arithmetic operations that are affected by the precision issue, as they calculate the new value when incrementing or decrementing the current value, directly leading to the incorrect display value seen in the bug.",
+        "bug_scenario": "The bug occurs in the NumberPicker component when using it in the Safari browser. When trying to add 0.01 to 4.02, instead of getting 4.03 as expected, the result is 4.029999999999999 due to JavaScript's floating-point precision issue. This causes a display bug in the NumberPicker."
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.UnusedCSSRules",
+            "lighthouse-core/audits/byte-efficiency/uses-text-compression.ResponsesAreCompressed",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.ResponseCompression"
+        ],
+        "bug_functions": [
+            "lighthouse-core/audits/byte-efficiency/unused-css-rules.UnusedCSSRules.audit_",
+            "lighthouse-core/audits/byte-efficiency/uses-text-compression.ResponsesAreCompressed.audit_",
+            "lighthouse-core/gather/gatherers/dobetterweb/response-compression.ResponseCompression.afterPass"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the auditing and processing of CSS and compression efficiency in the Lighthouse tool. The 'UnusedCSSRules' class is responsible for identifying unused CSS rules and calculating their impact on performance, which is directly related to the reported size discrepancies. The 'ResponsesAreCompressed' class audits whether resources are served with compression, which is crucial for understanding the actual size of the fetched resources. Lastly, the 'ResponseCompression' class gathers data on the compression of responses, which is essential for diagnosing the issue with the reported sizes and potential savings.",
+        "bug_scenario": "The bug scenario involves a discrepancy in the reported size of CSS resources when using a third-party JavaScript tool that fetches styles via gzipped JSON. The tool appends these styles to the DOM, but Google Pagespeed reports a significantly larger size than expected, indicating potential savings that do not align with the actual data fetched."
+    }
+}

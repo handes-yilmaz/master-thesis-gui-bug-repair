@@ -1,0 +1,13 @@
+diff --git a/src/menu/view/sub-menu.jsx b/src/menu/view/sub-menu.jsx
+index 332801f..97b3809 100644
+--- a/src/menu/view/sub-menu.jsx
++++ b/src/menu/view/sub-menu.jsx
+@@ -118,7 +118,7 @@ export default class SubMenu extends Component {
+     passParentToChildren(children) {
+         const { mode, root } = this.props;
+ 
+-        return Children.toArray(children).filter(React.isValidElement).map(child => {
++        return Children.toArray(children).filter(React.isValidElement).filter(child => child.props.label).map(child => {
+             return cloneElement(child, {
+                 parent: this,
+                 parentMode: mode || root.props.mode,

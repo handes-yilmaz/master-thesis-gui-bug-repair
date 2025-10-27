@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_files": [
+            "src/number-picker/index.jsx",
+            "src/util/string.js"
+        ],
+        "explanation": "The bug relates to the precision issues in JavaScript float arithmetic affecting the `NumberPicker` component. The `NumberPicker` component is located in `src/number-picker/index.jsx`. This is the main file responsible for rendering and managing the logic related to the number picking functionality, including handling increments and displaying values. Another potentially related file could be `src/util/string.js`, which might contain utility functions for formatting numbers into strings with specified precision, which could be crucial in ensuring the displayed number is rounded correctly to 4.03 rather than showing a floating point precision error.",
+        "bug_scenario": "The bug scenario involves using the `NumberPicker` component in Safari browser, where incrementing the default value 4.02 by step 0.01 results in a precision error due to JavaScript's float arithmetic issues. This causes the display to show 4.029999999999999 instead of the expected 4.03."
+    },
+    "2": {
+        "bug_files": [
+            "src/number-picker/index.jsx"
+        ],
+        "explanation": "The file `src/number-picker/index.jsx` likely contains the implementation of the NumberPicker component. Since the bug is directly related to how the component handles the arithmetic operation (addition of step to the default value), modifications in this file would be necessary to handle or workaround floating-point precision issues in JavaScript, such as using a fixed-point arithmetic library or rounding the result to the specified precision before displaying it.",
+        "bug_scenario": "The bug occurs due to floating point precision issues in JavaScript when adding numbers. Specifically, 4.02 + 0.01 in Safari is being interpreted as 4.029999999999999, which is a common issue with floating-point arithmetic in JavaScript. This results in the NumberPicker component not displaying the expected value of 4.03 after incrementing the default value of 4.02 by the step of 0.01."
+    }
+}

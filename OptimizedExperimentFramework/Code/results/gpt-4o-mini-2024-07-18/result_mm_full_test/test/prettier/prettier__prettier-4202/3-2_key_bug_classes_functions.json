@@ -1,0 +1,14 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/language-markdown/parser-markdown.js//parse",
+            "src/language-markdown/printer-markdown.js//printTable"
+        ],
+        "bug_functions": [
+            "src/language-markdown/printer-markdown.js//printTable",
+            "src/language-markdown/printer-markdown.js//printListItem"
+        ],
+        "explanation": "The 'parse' function in 'parser-markdown.js' is responsible for processing markdown text, which includes handling tables. If the table normalization is not correctly implemented, it could lead to excessively long lines. The 'printTable' function in 'printer-markdown.js' is directly related to the output of tables and needs to check for line lengths to implement the fallback to the three-dash pattern. The 'printListItem' function may also be relevant as it deals with list items, which could be affected by similar formatting issues.",
+        "bug_scenario": "The bug scenario involves markdown tables that are excessively long due to the lack of limits on the length of cleaned markdown table columns. This results in lines that can exceed 800 characters, making the output difficult to read and manage. The user wants to implement a detection mechanism to revert to a simpler markdown table format when such long lines are encountered."
+    }
+}

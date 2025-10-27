@@ -1,0 +1,50 @@
+{
+    "1/1": {
+        "lighthouse-core/report/html/renderer/category-renderer.js": [
+            {
+                "SEARCH": [
+                    "const warnings = audit.result.warnings;",
+                    "if (!warnings || warnings.length === 0) return auditEl;"
+                ],
+                "REPLACE": [
+                    "    const warnings = audit.result.warnings;",
+                    "    if (warnings && warnings.length > 0) {",
+                    "      // Add list of warnings or singular warning",
+                    "      const warningsEl = this.dom.createChildOf(titleEl, 'div', 'lh-warnings');",
+                    "      if (warnings.length === 1) {",
+                    "        warningsEl.textContent = `${Util.UIStrings.warningHeader} ${warnings.join('')}`;",
+                    "      } else {",
+                    "        warningsEl.textContent = Util.UIStrings.warningHeader;",
+                    "        const warningsUl = this.dom.createChildOf(warningsEl, 'ul');",
+                    "        for (const warning of warnings) {",
+                    "          const item = this.dom.createChildOf(warningsUl, 'li');",
+                    "          item.textContent = warning;",
+                    "        }",
+                    "      }",
+                    "    }"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "if (!report.runWarnings || report.runWarnings.length === 0) {",
+                    "return this._dom.createElement('div');"
+                ],
+                "REPLACE": [
+                    "    const warningsContainer = this._dom.createElement('div');",
+                    "    if (report.runWarnings && report.runWarnings.length > 0) {",
+                    "      const message = this._dom.createElement('div', 'lh-warnings__msg');",
+                    "      message.textContent = Util.UIStrings.toplevelWarningsMessage;",
+                    "      warningsContainer.appendChild(message);",
+                    "      const warningsList = this._dom.createElement('ul');",
+                    "      for (const warning of report.runWarnings) {",
+                    "        const warningItem = this._dom.createElement('li');",
+                    "        warningItem.textContent = warning;",
+                    "        warningsList.appendChild(warningItem);",
+                    "      }",
+                    "      warningsContainer.appendChild(warningsList);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

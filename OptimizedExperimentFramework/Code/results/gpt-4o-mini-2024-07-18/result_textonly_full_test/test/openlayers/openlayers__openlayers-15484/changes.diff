@@ -1,0 +1,48 @@
+diff --git a/src/ol/reproj/DataTile.js b/src/ol/reproj/DataTile.js
+index 3d1aa88..bec5efd 100644
+--- a/src/ol/reproj/DataTile.js
++++ b/src/ol/reproj/DataTile.js
+@@ -123,7 +123,7 @@ class ReprojDataTile extends DataTile {
+      */
+     this.sourceZ_ = 0;
+ 
+-    const targetExtent = this.targetTileGrid_.getTileCoordExtent(
++      const targetExtent = getIntersection(this.targetTileGrid_.getTileCoordExtent(this.wrappedTileCoord_), this.sourceTileGrid_.getExtent());
+       this.wrappedTileCoord_,
+     );
+     const maxTargetExtent = this.targetTileGrid_.getExtent();
+@@ -150,7 +150,7 @@ class ReprojDataTile extends DataTile {
+       }
+     }
+ 
+-    const targetResolution = this.targetTileGrid_.getResolution(
++    const targetResolution = this.targetTileGrid_.getResolution(this.wrappedTileCoord_[0]);
+       this.wrappedTileCoord_[0],
+     );
+ 
+diff --git a/src/ol/reproj/Image.js b/src/ol/reproj/Image.js
+index de33d9a..ca9ace1 100644
+--- a/src/ol/reproj/Image.js
++++ b/src/ol/reproj/Image.js
+@@ -87,7 +87,7 @@ class ReprojImage extends ImageWrapper {
+     );
+ 
+     const sourceExtent = triangulation.calculateSourceExtent();
+-    const sourceImage = isEmpty(sourceExtent)
++      const sourceImage = isEmpty(sourceExtent) || !this.maxSourceExtent_
+       ? null
+       : getImageFunction(sourceExtent, sourceResolution, pixelRatio);
+     const state = sourceImage ? ImageState.IDLE : ImageState.EMPTY;
+diff --git a/src/ol/source/GeoTIFF.js b/src/ol/source/GeoTIFF.js
+index fcdb50c..aad8320 100644
+--- a/src/ol/source/GeoTIFF.js
++++ b/src/ol/source/GeoTIFF.js
+@@ -388,7 +388,7 @@ class GeoTIFFSource extends DataTile {
+       opaque: options.opaque,
+       transition: options.transition,
+       interpolate: options.interpolate !== false,
+-      wrapX: options.wrapX,
++      wrapX: options.wrapX !== undefined ? options.wrapX : true, // Default to true for cropping
+     });
+ 
+     /**

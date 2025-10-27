@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_classes": [
+            "components/prism-yaml.js//Prism.languages.yaml",
+            "components/prism-yaml.min.js//Prism.languages.yaml"
+        ],
+        "bug_functions": [],
+        "explanation": "The classes 'Prism.languages.yaml' in both 'prism-yaml.js' and 'prism-yaml.min.js' are responsible for defining the syntax highlighting rules for YAML. The issue arises from the way the 'string' and 'comment' patterns are defined. The current regex patterns do not account for comments that appear on the same line as strings, which leads to incorrect highlighting. Modifying these patterns will be necessary to ensure that comments are properly handled in conjunction with strings.",
+        "bug_scenario": "The YAML string highlighting fails when a string has a comment on the same line, causing the comment to not be highlighted correctly in the syntax highlighting."
+    }
+}

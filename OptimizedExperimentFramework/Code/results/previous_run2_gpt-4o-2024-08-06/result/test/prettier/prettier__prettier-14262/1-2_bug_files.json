@@ -1,0 +1,18 @@
+{
+    "1": {
+        "bug_files": [
+            "src/language-js/printer-estree.js",
+            "src/language-js/parse/babel.js"
+        ],
+        "explanation": "These files are related to how JavaScript objects and comments are processed by Prettier. The bug likely resides in the printing or parsing logic that handles JSDoc comments and parentheses. The `printer-estree.js` deals with how JavaScript code is formatted into a string, crucial for maintaining syntax like parentheses. The `babel.js` parser may handle the interpretation of JSDoc comments and parentheses, and changes here would affect how AST nodes are generated and subsequently printed.",
+        "bug_scenario": "The issue is with Prettier 2.8.3 not retaining parentheses for JSDoc comments when using @satisfies. This affects Intellisense by breaking type inference, which is apparent in the VS Code editor with the error underlining and incorrect formatting of the exported module object."
+    },
+    "2": {
+        "bug_files": [
+            "src/language-js/print/object.js",
+            "src/language-js/printer-estree.js"
+        ],
+        "explanation": "These files are likely involved in how Prettier formats JavaScript objects and handles syntax transformations. The problem is related to specific JSDoc syntax that requires parentheses, and these files would be responsible for the printing logic that could strip away these necessary parentheses.",
+        "bug_scenario": "The issue is with Prettier removing parentheses required for proper JSDoc typing and IntelliSense functionality. In the given code, parentheses are needed around the object to satisfy the JSDoc with intellisense, but Prettier removes them, breaking the expected behavior."
+    }
+}

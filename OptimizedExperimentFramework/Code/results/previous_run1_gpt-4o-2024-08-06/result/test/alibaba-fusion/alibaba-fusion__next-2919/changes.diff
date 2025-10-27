@@ -1,0 +1,58 @@
+diff --git a/src/tab/tabs/nav.jsx b/src/tab/tabs/nav.jsx
+index 22a1dd4e4..ab51e1604 100644
+--- a/src/tab/tabs/nav.jsx
++++ b/src/tab/tabs/nav.jsx
+@@ -49,6 +49,53 @@ class Nav extends React.Component {
+         this.offset = 0;
+     }
+ 
++    handleDragStart = (e) => {
++        this.dragStartX = e.clientX;
++        this.startOffset = this.offset;
++    };
++
++    handleDragMove = (e) => {
++        if (this.dragStartX !== null) {
++            const deltaX = e.clientX - this.dragStartX;
++            this.setOffset(this.startOffset - deltaX, true, false);
++        }
++    };
++
++    handleDragEnd = () => {
++        this.dragStartX = null;
++    };
++
++    handleKeyDown = (e) => {
++        const wrapperWH = getOffsetWH(this.wrapper);
++        if (e.key === 'ArrowLeft') {
++            this.setOffset(this.offset + wrapperWH / 3, true, false);
++        } else if (e.key === 'ArrowRight') {
++            this.setOffset(this.offset - wrapperWH / 3, true, false);
++        }
++    };
++
++    componentDidMount() {
++        if (!this.props.animation) {
++            this.initialSettings();
++        }
++
++        events.on(window, 'resize', this.onWindowResized);
++        events.on(this.nav, 'mousedown', this.handleDragStart);
++        events.on(this.nav, 'mousemove', this.handleDragMove);
++        events.on(this.nav, 'mouseup', this.handleDragEnd);
++        events.on(this.nav, 'mouseleave', this.handleDragEnd);
++        events.on(this.wrapper, 'keydown', this.handleKeyDown);
++    }
++
++    componentWillUnmount() {
++        events.off(window, 'resize', this.onWindowResized);
++        events.off(this.nav, 'mousedown', this.handleDragStart);
++        events.off(this.nav, 'mousemove', this.handleDragMove);
++        events.off(this.nav, 'mouseup', this.handleDragEnd);
++        events.off(this.nav, 'mouseleave', this.handleDragEnd);
++        events.off(this.wrapper, 'keydown', this.handleKeyDown);
++    }
++
+     componentDidMount() {
+         if (!this.props.animation) {
+             this.initialSettings();

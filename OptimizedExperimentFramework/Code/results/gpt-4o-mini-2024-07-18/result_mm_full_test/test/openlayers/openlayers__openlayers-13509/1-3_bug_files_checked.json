@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Group.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "1. **Group.js**: This file manages the group layers and their visibility. It is crucial to check how the visibility of group layers interacts with their child layers, like WebGlTile. 2. **WebGLTile.js**: This file defines the WebGlTile layer and likely contains the rendering logic and visibility handling specific to this layer type. The bug could stem from improper handling of visibility state within this file. 3. **TileLayer.js**: This renderer file handles the drawing of tile layers using WebGL. If the rendering logic is not correctly implemented for the WebGlTile layer, it may not respond to visibility changes as expected.",
+        "bug_scenario": "The WebGlTile layer inside a group is not being hidden when the group's visibility is set to false. This issue arises specifically when using the WebGlTile layer type, as switching to a standard Tile layer correctly hides the layer when the group's visibility changes."
+    }
+}

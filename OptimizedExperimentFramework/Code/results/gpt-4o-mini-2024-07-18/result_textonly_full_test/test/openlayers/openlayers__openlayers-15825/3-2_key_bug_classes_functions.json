@@ -1,0 +1,17 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/ol/source/GeoTIFF.js//GeoTIFFSource",
+            "src/ol/layer/WebGLTile.js//WebGLTileLayer",
+            "src/ol/reproj/DataTile.js//ReprojDataTile"
+        ],
+        "bug_functions": [
+            "src/ol/source/GeoTIFF.js//determineProjection",
+            "src/ol/source/GeoTIFF.js//configure_",
+            "src/ol/layer/WebGLTile.js//getRenderSource",
+            "src/ol/reproj/DataTile.js//reproject_"
+        ],
+        "explanation": "These classes and functions are related to the bug because they handle the rendering and reprojection of GeoTIFF tiles. The 'GeoTIFFSource' class is responsible for managing the GeoTIFF data, including determining the projection and configuring the tile grid. The 'WebGLTileLayer' class is responsible for rendering the tiles using WebGL, and the 'ReprojDataTile' class handles the reprojection of tiles, which is crucial for ensuring that tiles are rendered correctly, especially near the antimeridian. The functions 'determineProjection' and 'configure_' in 'GeoTIFFSource' are critical for setting up the correct projection and tile configuration, while 'getRenderSource' in 'WebGLTileLayer' retrieves the source being rendered, and 'reproject_' in 'ReprojDataTile' performs the actual reprojection of the tiles, which is where the rendering issue likely originates.",
+        "bug_scenario": "The bug occurs when tiles near the antimeridian are not rendered correctly after reprojecting GeoTiff tiles into a stereographic projection. This results in visible black gaps in the rendered output, which depend on the sizes of the source tiles and the zoom level."
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "1/1": {
+        "lib/features/modeling/behavior/GroupBehavior.js": [
+            {
+                "SEARCH": [
+                    "this.execute('shape.create', function(event) {",
+                    "var context = event.context,",
+                    "shape = context.shape,",
+                    "businessObject = getBusinessObject(shape);",
+                    "",
+                    "if (is(businessObject, 'bpmn:Group') && !businessObject.categoryValueRef) {",
+                    "",
+                    "var definitions = getDefinitions(),",
+                    "categoryValue = createCategoryValue(definitions, bpmnFactory);",
+                    "",
+                    "// link the reference to the Group",
+                    "businessObject.categoryValueRef = categoryValue;",
+                    "}",
+                    "});"
+                ],
+                "REPLACE": [
+                    "  this.execute('shape.create', function(event) {",
+                    "    var context = event.context,",
+                    "        shape = context.shape,",
+                    "        businessObject = getBusinessObject(shape);",
+                    "",
+                    "    if (is(businessObject, 'bpmn:Group') && !businessObject.categoryValueRef) {",
+                    "",
+                    "      var definitions = getDefinitions(),",
+                    "          categoryValue = createCategoryValue(definitions, bpmnFactory);",
+                    "",
+                    "      // Ensure the category value is correctly linked to the group",
+                    "      businessObject.categoryValueRef = categoryValue;",
+                    "",
+                    "      // Add the category value to the definitions if not already present",
+                    "      if (!definitions.get('rootElements').includes(categoryValue.$parent)) {",
+                    "        collectionAdd(definitions.get('rootElements'), categoryValue.$parent);",
+                    "      }",
+                    "    }",
+                    "  });"
+                ]
+            }
+        ]
+    }
+}

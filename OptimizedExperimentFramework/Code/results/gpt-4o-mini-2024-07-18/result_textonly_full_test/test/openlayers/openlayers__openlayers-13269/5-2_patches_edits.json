@@ -1,0 +1,32 @@
+{
+    "1/1": {
+        "src/ol/layer/WebGLTile.js": [
+            {
+                "SEARCH": [
+                    "const canvas = this.renderSources(frameState, sources);"
+                ],
+                "REPLACE": [
+                    "    const canvas = this.renderSources(frameState, sources, this.getGutter());"
+                ]
+            }
+        ],
+        "src/ol/source/TileWMS.js": [
+            {
+                "SEARCH": [
+                    "const gutter = this.gutter_;",
+                    "if (gutter !== 0) {",
+                    "tileSize = bufferSize(tileSize, gutter, this.tmpSize);",
+                    "tileExtent = buffer(tileExtent, tileResolution * gutter, tileExtent);",
+                    "}"
+                ],
+                "REPLACE": [
+                    "    const gutter = this.getGutter();",
+                    "    if (gutter !== 0) {",
+                    "      tileSize = bufferSize(tileSize, gutter, this.tmpSize);",
+                    "      tileExtent = buffer(tileExtent, tileResolution * gutter, tileExtent);",
+                    "    }"
+                ]
+            }
+        ]
+    }
+}

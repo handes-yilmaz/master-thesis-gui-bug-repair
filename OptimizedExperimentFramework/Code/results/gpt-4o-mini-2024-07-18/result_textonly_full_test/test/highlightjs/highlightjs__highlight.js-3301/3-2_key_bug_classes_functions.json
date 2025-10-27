@@ -1,0 +1,16 @@
+{
+    "1": {
+        "bug_classes": [
+            "src/languages/css.js//className",
+            "src/languages/lib/css-shared.js//MODES",
+            "src/lib/mode_compiler.js//compileLanguage"
+        ],
+        "bug_functions": [
+            "src/languages/css.js//default",
+            "src/languages/lib/css-shared.js//MODES",
+            "src/lib/mode_compiler.js//compileMode"
+        ],
+        "explanation": "The identified classes and functions are related to the bug because they are responsible for defining the CSS language mode and its highlighting rules. The `default` function in `css.js` sets up the highlighting rules for CSS, including how comments should be treated. The `MODES` function in `css-shared.js` defines various modes for CSS highlighting, including comments. The `compileLanguage` and `compileMode` functions in `mode_compiler.js` are responsible for compiling these rules into a format that the highlighter can use, which is crucial for ensuring that comments are highlighted correctly. Any issues in these areas could lead to the regression in comment highlighting observed in the bug report.",
+        "bug_scenario": "The bug scenario involves the incorrect highlighting of inline comments in CSS code when using the `highlightAll` API from version 10.6.0 onwards. The expected behavior is that inline comments should be highlighted correctly, as shown in the expected image, but the actual behavior shows that they are not highlighted as intended."
+    }
+}

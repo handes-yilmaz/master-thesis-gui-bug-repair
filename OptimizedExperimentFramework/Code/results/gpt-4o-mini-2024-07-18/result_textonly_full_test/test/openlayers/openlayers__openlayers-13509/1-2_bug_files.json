@@ -1,0 +1,11 @@
+{
+    "1": {
+        "bug_files": [
+            "src/ol/layer/Group.js",
+            "src/ol/layer/WebGLTile.js",
+            "src/ol/renderer/webgl/TileLayer.js"
+        ],
+        "explanation": "The 'Group.js' file is responsible for managing the visibility and properties of layers within a group, which is critical for the visibility change issue described in the bug report. The 'WebGLTile.js' file specifically defines the WebGlTile layer and its behavior, making it directly relevant to the visibility issue. Finally, the 'TileLayer.js' under the webgl renderer is important as it handles how WebGlTile layers are rendered, which may be causing the layer to remain visible despite changes in group visibility.",
+        "bug_scenario": "The issue occurs when a WebGlTile layer is placed inside a layer group, and after changing the visibility of the group to false, the WebGlTile layer remains visible. This behavior is not observed when using a regular Tile layer. The bug suggests that there might be an issue in how visibility is handled for WebGlTile layers in the group context."
+    }
+}

@@ -1,0 +1,109 @@
+{
+    "1/1": {
+        "src/js/components/DataTable/DataTable.js": [
+            {
+                "SEARCH": [
+                    "import { Pagination } from '../Pagination';"
+                ],
+                "REPLACE": [
+                    "import { Pagination } from '../Pagination';",
+                    "import { DataTableGroup } from './DataTableGroup';"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const DataTable = ({",
+                    "background,",
+                    "border,",
+                    "columns: columnsProp,",
+                    "data: dataProp,",
+                    "disabled,",
+                    "fill,",
+                    "groupBy,",
+                    "onClickRow, // removing unknown DOM attributes",
+                    "onMore,",
+                    "onSearch, // removing unknown DOM attributes",
+                    "onSelect,",
+                    "onSort: onSortProp,",
+                    "onUpdate,",
+                    "replace,",
+                    "pad,",
+                    "paginate,",
+                    "pin,",
+                    "placeholder,",
+                    "primaryKey,",
+                    "resizeable,",
+                    "rowProps,",
+                    "select,",
+                    "show: showProp,",
+                    "size,",
+                    "sort: sortProp,",
+                    "sortable,",
+                    "rowDetails,",
+                    "step = 50,",
+                    "verticalAlign,",
+                    "...rest",
+                    "}) => {"
+                ],
+                "REPLACE": [
+                    "const DataTable = ({",
+                    "  background,",
+                    "  border,",
+                    "  columns: columnsProp,",
+                    "  data: dataProp,",
+                    "  disabled,",
+                    "  fill,",
+                    "  groupBy,",
+                    "  onClickRow, // removing unknown DOM attributes",
+                    "  onMore,",
+                    "  onSearch, // removing unknown DOM attributes",
+                    "  onSelect,",
+                    "  onSort: onSortProp,",
+                    "  onUpdate,",
+                    "  replace,",
+                    "  pad,",
+                    "  paginate,",
+                    "  pin,",
+                    "  placeholder,",
+                    "  primaryKey,",
+                    "  resizeable,",
+                    "  rowProps,",
+                    "  select,",
+                    "  show: showProp,",
+                    "  size,",
+                    "  sort: sortProp,",
+                    "  sortable,",
+                    "  rowDetails,",
+                    "  step = 50,",
+                    "  verticalAlign,",
+                    "  ...rest",
+                    "}) => {",
+                    "  const [groupByValue, setGroupByValue] = useState(groupBy);",
+                    "",
+                    "  const onGroupByChange = (event) => {",
+                    "    setGroupByValue(event.value);",
+                    "    if (onUpdate) {",
+                    "      onUpdate({ groupBy: event.value });",
+                    "    }",
+                    "  };"
+                ]
+            },
+            {
+                "SEARCH": [
+                    "const bodyContent = groups ? ("
+                ],
+                "REPLACE": [
+                    "  const groupByOptions = columns.map((column) => column.property);",
+                    "",
+                    "  const bodyContent = groups ? (",
+                    "    <DataTableGroup",
+                    "      options={groupByOptions}",
+                    "      value={groupByValue}",
+                    "      onChange={onGroupByChange}",
+                    "    />"
+                ]
+            }
+        ],
+        "src/js/components/DataTable/DataTableGroup.js": []
+    }
+}

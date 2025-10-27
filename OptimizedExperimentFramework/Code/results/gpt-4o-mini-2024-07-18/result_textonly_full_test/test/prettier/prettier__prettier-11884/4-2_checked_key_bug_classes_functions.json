@@ -1,0 +1,62 @@
+{
+    "bug_classes": {},
+    "bug_functions": {
+        "1": {
+            "function_name": "parse",
+            "file_path": "src/language-js/parse/typescript.js",
+            "function_details": [
+                {
+                    "name": "parse",
+                    "start_line": 35,
+                    "end_line": 55
+                }
+            ],
+            "function_code": [
+                "function parse(text, parsers, opts) {",
+                "  const textToParse = replaceHashbang(text);",
+                "  const jsx = isProbablyJsx(text);",
+                "",
+                "  const { parseWithNodeMaps } = require(\"@typescript-eslint/typescript-estree\");",
+                "  const { result, error: firstError } = tryCombinations(",
+                "    // Try passing with our best guess first.",
+                "    () => parseWithNodeMaps(textToParse, { ...parseOptions, jsx }),",
+                "    // But if we get it wrong, try the opposite.",
+                "    () => parseWithNodeMaps(textToParse, { ...parseOptions, jsx: !jsx })",
+                "  );",
+                "",
+                "  if (!result) {",
+                "    // Suppose our guess is correct, throw the first error",
+                "    throw createParseError(firstError);",
+                "  }",
+                "",
+                "  opts.originalText = text;",
+                "  opts.tsParseResult = result;",
+                "  return postprocess(result.ast, opts);",
+                "}"
+            ]
+        },
+        "2": {
+            "function_name": "isProbablyJsx",
+            "file_path": "src/language-js/parse/typescript.js",
+            "function_details": [
+                {
+                    "name": "isProbablyJsx",
+                    "start_line": 60,
+                    "end_line": 69
+                }
+            ],
+            "function_code": [
+                "function isProbablyJsx(text) {",
+                "  return new RegExp(",
+                "    [",
+                "      \"(?:^[^\\\"'`]*</)\", // Contains \"</\" when probably not in a string",
+                "      \"|\",",
+                "      \"(?:^[^/]{2}.*/>)\", // Contains \"/>\" on line not starting with \"//\"",
+                "    ].join(\"\"),",
+                "    \"m\"",
+                "  ).test(text);",
+                "}"
+            ]
+        }
+    }
+}
