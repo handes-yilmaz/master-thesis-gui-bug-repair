@@ -18,6 +18,7 @@ from utils import (
 from utils.file_io import load_images_for_multimodal
 from core.localization import FileLocalizer, ElementLocalizer, LocalizationResult
 from core.patch_generation import PatchGenerator, PatchResult
+from enhanced_logging import ResearchLogger
 
 
 logger = logging.getLogger(__name__)
@@ -41,6 +42,7 @@ class GUIRepairWorkflow:
             config: Framework configuration
         """
         self.config = config
+        self.research_logger = None  # Will be initialized in run()
         
         # Determine LLM provider from model name
         if 'gpt' in config.model_name.lower() or 'o4' in config.model_name.lower():
@@ -91,23 +93,47 @@ class GUIRepairWorkflow:
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
         
+        # Extract repo name for logging
+        repo_name = instance_id.split('__')[0]
+        
+        # Initialize ResearchLogger for metrics collection
+        self.research_logger = ResearchLogger(
+            output_dir=str(output_path),
+            instance_id=instance_id,
+            repo_name=repo_name
+        )
+        self.research_logger.set_bug_description(bug_report)
+        
         # Initialize managers
         repo_manager = RepoManager(str(repo_path))
         
         # Load images if multimodal mode
         images = None
+        image_paths_list = []
         if self.config.enable_images:
             image_dir = self._get_image_dir(instance_id)
             if image_dir and image_dir.exists():
                 provider = 'openai' if 'gpt' in self.config.model_name.lower() else 'claude'
                 images = load_images_for_multimodal(str(image_dir), provider)
                 logger.info(f"📷 Loaded {len(images)} images")
+                
+                # Collect image paths for complexity analysis
+                for img_dict in images:
+                    if 'url' in img_dict:
+                        image_paths_list.append(img_dict['url'])
+                    elif 'path' in img_dict:
+                        image_paths_list.append(img_dict['path'])
+        
+        # Analyze visual complexity
+        if image_paths_list:
+            self.research_logger.analyze_visual_complexity(image_paths_list)
         
         # Clean repository
         logger.info("🧹 Cleaning repository...")
         repo_manager.clean_repo()
         
         # Phase 1: File Localization
+        self.research_logger.start_phase("file_localization")
         file_localizer = FileLocalizer(
             self.config,
             self.llm,
@@ -120,11 +146,17 @@ class GUIRepairWorkflow:
             images
         )
         
+        # Log phase completion
+        file_tokens = file_metadata.get('token_usage', {}).get('total_tokens', 0)
+        self.research_logger.end_phase("file_localization", success=bool(bug_files), tokens_used=file_tokens)
+        
         if not bug_files:
             logger.error("❌ No bug files identified!")
+            self.research_logger.save_research_data()
             return self._create_failure_result(instance_id, "No bug files found")
         
         # Phase 2: Element Localization
+        self.research_logger.start_phase("element_localization")
         element_localizer = ElementLocalizer(
             self.config,
             self.llm,
@@ -138,6 +170,10 @@ class GUIRepairWorkflow:
             bug_files,
             images
         )
+        
+        # Log phase completion
+        element_tokens = element_metadata.get('token_usage', {}).get('total_tokens', 0)
+        self.research_logger.end_phase("element_localization", success=bool(bug_elements), tokens_used=element_tokens)
         
         # Create localization result
         loc_result = LocalizationResult(
@@ -153,6 +189,7 @@ class GUIRepairWorkflow:
         code_context = loc_result.get_code_context()
         
         # Phase 3: Patch Generation
+        self.research_logger.start_phase("patch_generation")
         patch_generator = PatchGenerator(
             self.config,
             self.llm,
@@ -165,6 +202,10 @@ class GUIRepairWorkflow:
             code_context,
             images
         )
+        
+        # Log phase completion
+        patch_tokens = patch_metadata.get('token_usage', {}).get('total_tokens', 0)
+        self.research_logger.end_phase("patch_generation", success=bool(unified_diff), tokens_used=patch_tokens)
         
         # Create patch result
         patch_result = PatchResult(unified_diff, patch_metadata)
@@ -201,6 +242,12 @@ class GUIRepairWorkflow:
             results
         )
         
+        # Save research metrics
+        self.research_logger.save_research_data()
+        
+        # Save token usage data
+        self._save_token_usage(output_path, results)
+        
         logger.info(f"\n{'='*70}")
         logger.info(f"✅ Workflow completed in {duration:.1f} seconds")
         logger.info(f"   Total tokens: {results['total_tokens']}")
@@ -208,6 +255,24 @@ class GUIRepairWorkflow:
         logger.info(f"{'='*70}\n")
         
         return results
+    
+    def _save_token_usage(self, output_path: Path, results: Dict):
+        """Save token usage per phase to token_usage.json"""
+        token_usage = {}
+        
+        for phase_name, metadata in results.get('phase_breakdown', {}).items():
+            if 'token_usage' in metadata:
+                # Extract token data
+                token_data = metadata['token_usage']
+                if isinstance(token_data, dict):
+                    token_usage[phase_name] = {
+                        'prompt_tokens': token_data.get('prompt_tokens', 0),
+                        'completion_tokens': token_data.get('completion_tokens', 0),
+                        'total_tokens': token_data.get('total_tokens', 0)
+                    }
+        
+        if token_usage:
+            save_json(str(output_path / "token_usage.json"), token_usage)
     
     def _get_image_dir(self, instance_id: str) -> Optional[Path]:
         """
